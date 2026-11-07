@@ -1,0 +1,386 @@
+[
+ {
+  "id": "ATP3-90.99/fig/1-1",
+  "manual": "ATP3-90.99",
+  "num": "1-1",
+  "title": "Mountain desert terrain ............................................................................................... 1-2",
+  "page": 4,
+  "bbox": [
+   44.96,
+   417.06752,
+   567.0400000000001,
+   467.37649999999996
+  ],
+  "png": "ATP3-90.99_fig_1-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-2",
+  "manual": "ATP3-90.99",
+  "num": "1-2",
+  "title": "Rocky plateau desert ................................................................................................... 1-2",
+  "page": 4,
+  "bbox": [
+   44.96,
+   474.3965,
+   567.0400000000001,
+   482.8565
+  ],
+  "png": "ATP3-90.99_fig_1-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-3",
+  "manual": "ATP3-90.99",
+  "num": "1-3",
+  "title": "Polar desert ................................................................................................................. 1-3",
+  "page": 4,
+  "bbox": [
+   44.96,
+   489.8765,
+   567.0400000000001,
+   498.3965
+  ],
+  "png": "ATP3-90.99_fig_1-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-4",
+  "manual": "ATP3-90.99",
+  "num": "1-4",
+  "title": "Sandy or dune desert .................................................................................................. 1-4",
+  "page": 4,
+  "bbox": [
+   44.96,
+   505.41650000000004,
+   567.0400000000001,
+   513.8765
+  ],
+  "png": "ATP3-90.99_fig_1-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-5",
+  "manual": "ATP3-90.99",
+  "num": "1-5",
+  "title": "Day refraction ............................................................................................................ 1-24",
+  "page": 4,
+  "bbox": [
+   44.96,
+   520.8965000000001,
+   567.0400000000001,
+   529.3565
+  ],
+  "png": "ATP3-90.99_fig_1-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-6",
+  "manual": "ATP3-90.99",
+  "num": "1-6",
+  "title": "Night refraction .......................................................................................................... 1-25",
+  "page": 4,
+  "bbox": [
+   44.96,
+   536.3765,
+   567.0400000000001,
+   544.8965000000001
+  ],
+  "png": "ATP3-90.99_fig_1-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/2-1",
+  "manual": "ATP3-90.99",
+  "num": "2-1",
+  "title": "Cyberspace in the multi-domain extended desert battlefield ...................................... 2-5",
+  "page": 4,
+  "bbox": [
+   44.96,
+   551.9165,
+   567.0400000000001,
+   560.3765
+  ],
+  "png": "ATP3-90.99_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/3-1",
+  "manual": "ATP3-90.99",
+  "num": "3-1",
+  "title": "Marine air-ground task force ....................................................................................... 3-6",
+  "page": 4,
+  "bbox": [
+   44.96,
+   567.3965,
+   567.0400000000001,
+   575.8565
+  ],
+  "png": "ATP3-90.99_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/3-2",
+  "manual": "ATP3-90.99",
+  "num": "3-2",
+  "title": "Methods to overcome desert communications challenges ....................................... 3-10",
+  "page": 4,
+  "bbox": [
+   44.96,
+   582.8765,
+   567.0400000000001,
+   591.3965000000001
+  ],
+  "png": "ATP3-90.99_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/5-1",
+  "manual": "ATP3-90.99",
+  "num": "5-1",
+  "title": "Reverse slope defense .............................................................................................. 5-10",
+  "page": 4,
+  "bbox": [
+   44.96,
+   598.4165,
+   567.0400000000001,
+   606.8765
+  ],
+  "png": "ATP3-90.99_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/6-1",
+  "manual": "ATP3-90.99",
+  "num": "6-1",
+  "title": "Sample desert SWEAT-MSO lines of effort ................................................................ 6-4",
+  "page": 4,
+  "bbox": [
+   44.96,
+   613.8965,
+   567.0400000000001,
+   622.3565
+  ],
+  "png": "ATP3-90.99_fig_6-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/A-1",
+  "manual": "ATP3-90.99",
+  "num": "A-1",
+  "title": "Notable deserts of the world ....................................................................................... A-1",
+  "page": 4,
+  "bbox": [
+   44.96,
+   629.3765,
+   567.0400000000001,
+   637.8365
+  ],
+  "png": "ATP3-90.99_fig_A-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-1",
+  "manual": "ATP3-90.99",
+  "num": "1-1",
+  "title": "Mountain desert terrain",
+  "page": 14,
+  "bbox": [
+   66.5,
+   43.40100000000007,
+   527.501,
+   309.90752000000003
+  ],
+  "png": "ATP3-90.99_fig_1-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-2",
+  "manual": "ATP3-90.99",
+  "num": "1-2",
+  "title": "Rocky plateau desert",
+  "page": 14,
+  "bbox": [
+   105.5000076,
+   421.394043,
+   487.8999915,
+   693.43496
+  ],
+  "png": "ATP3-90.99_fig_1-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-3",
+  "manual": "ATP3-90.99",
+  "num": "1-3",
+  "title": "Polar desert",
+  "page": 15,
+  "bbox": [
+   123.5,
+   493.3684387,
+   505.8999839,
+   694.83878
+  ],
+  "png": "ATP3-90.99_fig_1-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-4",
+  "manual": "ATP3-90.99",
+  "num": "1-4",
+  "title": "Sandy or dune desert",
+  "page": 16,
+  "bbox": [
+   105.5000076,
+   397.2273254,
+   487.8999915,
+   659.84492
+  ],
+  "png": "ATP3-90.99_fig_1-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-5",
+  "manual": "ATP3-90.99",
+  "num": "1-5",
+  "title": "Day refraction",
+  "page": 36,
+  "bbox": [
+   77.0,
+   439.03999999999996,
+   516.9724307,
+   629.16752
+  ],
+  "png": "ATP3-90.99_fig_1-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/1-6",
+  "manual": "ATP3-90.99",
+  "num": "1-6",
+  "title": "Night refraction",
+  "page": 37,
+  "bbox": [
+   84.5,
+   43.40100000000007,
+   545.501,
+   250.02751999999998
+  ],
+  "png": "ATP3-90.99_fig_1-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/2-1",
+  "manual": "ATP3-90.99",
+  "num": "2-1",
+  "title": "Cyberspace in the multi-domain extended desert battlefield",
+  "page": 45,
+  "bbox": [
+   95.0000076,
+   153.79412839999998,
+   534.9594502,
+   592.1016800000002
+  ],
+  "png": "ATP3-90.99_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/3-1",
+  "manual": "ATP3-90.99",
+  "num": "3-1",
+  "title": "Marine air-ground task force",
+  "page": 54,
+  "bbox": [
+   76.9999771,
+   354.79999999999995,
+   526.0,
+   642.84752
+  ],
+  "png": "ATP3-90.99_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/3-2",
+  "manual": "ATP3-90.99",
+  "num": "3-2",
+  "title": "Methods to overcome desert communications challenges",
+  "page": 58,
+  "bbox": [
+   66.5,
+   43.40100000000007,
+   527.501,
+   409.86752
+  ],
+  "png": "ATP3-90.99_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/5-1",
+  "manual": "ATP3-90.99",
+  "num": "5-1",
+  "title": "Reverse slope defense",
+  "page": 112,
+  "bbox": [
+   66.5,
+   43.40100000000007,
+   527.501,
+   517.62752
+  ],
+  "png": "ATP3-90.99_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/6-1",
+  "manual": "ATP3-90.99",
+  "num": "6-1",
+  "title": "Sample desert SWEAT-MSO lines of effort",
+  "page": 124,
+  "bbox": [
+   66.5,
+   43.40100000000007,
+   527.501,
+   317.52752
+  ],
+  "png": "ATP3-90.99_fig_6-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.99/fig/A-1",
+  "manual": "ATP3-90.99",
+  "num": "A-1",
+  "title": "Notable deserts of the world",
+  "page": 133,
+  "bbox": [
+   94.9999924,
+   270.79516609999996,
+   534.9864499,
+   602.4179000000001
+  ],
+  "png": "ATP3-90.99_fig_A-1.png",
+  "restricted": false,
+  "dpi": 200
+ }
+]

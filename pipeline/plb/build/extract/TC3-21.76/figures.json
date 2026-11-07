@@ -1,0 +1,4242 @@
+[
+ {
+  "id": "TC3-21.76/fig/2-1",
+  "manual": "TC3-21.76",
+  "num": "2-1",
+  "title": "Terrain model ........................................................... 2-42",
+  "page": 7,
+  "bbox": [
+   23.36,
+   130.02999999999997,
+   318.64,
+   174.45999999999998
+  ],
+  "png": "TC3-21.76_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/3-1",
+  "manual": "TC3-21.76",
+  "num": "3-1",
+  "title": "Sterile fire support overlay .............................................. 3-7",
+  "page": 7,
+  "bbox": [
+   23.36,
+   180.45999999999998,
+   318.64,
+   188.73999999999998
+  ],
+  "png": "TC3-21.76_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/3-2",
+  "manual": "TC3-21.76",
+  "num": "3-2",
+  "title": "Nonsterile fire support overlay ......................................... 3-8",
+  "page": 7,
+  "bbox": [
+   23.36,
+   194.73999999999998,
+   318.64,
+   203.01999999999998
+  ],
+  "png": "TC3-21.76_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/3-3",
+  "manual": "TC3-21.76",
+  "num": "3-3",
+  "title": "Example of a close air support request ............................ 3-14",
+  "page": 7,
+  "bbox": [
+   23.36,
+   209.01999999999998,
+   318.64,
+   217.42
+  ],
+  "png": "TC3-21.76_fig_3-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/4-1",
+  "manual": "TC3-21.76",
+  "num": "4-1",
+  "title": "Cobra head ................................................................ 4-9",
+  "page": 7,
+  "bbox": [
+   23.36,
+   223.42,
+   318.64,
+   231.83999999999997
+  ],
+  "png": "TC3-21.76_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/4-2",
+  "manual": "TC3-21.76",
+  "num": "4-2",
+  "title": "Antenna base ........................................................... 4-10",
+  "page": 7,
+  "bbox": [
+   23.36,
+   237.83999999999997,
+   318.64,
+   246.11999999999998
+  ],
+  "png": "TC3-21.76_fig_4-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/4-3",
+  "manual": "TC3-21.76",
+  "num": "4-3",
+  "title": "Completed expedient 292-type antenna .......................... 4-12",
+  "page": 7,
+  "bbox": [
+   23.36,
+   252.12,
+   318.64,
+   260.4
+  ],
+  "png": "TC3-21.76_fig_4-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/4-4",
+  "manual": "TC3-21.76",
+  "num": "4-4",
+  "title": "Curvature of the Earth ................................................. 4-13",
+  "page": 7,
+  "bbox": [
+   23.36,
+   266.4,
+   318.64,
+   274.67999999999995
+  ],
+  "png": "TC3-21.76_fig_4-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-1",
+  "manual": "TC3-21.76",
+  "num": "5-1",
+  "title": "Technique for lighting time fuze with a match ...................... 5-4",
+  "page": 7,
+  "bbox": [
+   23.36,
+   280.67999999999995,
+   318.64,
+   289.08
+  ],
+  "png": "TC3-21.76_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-2",
+  "manual": "TC3-21.76",
+  "num": "5-2",
+  "title": "Improvised shape charge ............................................... 5-6",
+  "page": 7,
+  "bbox": [
+   23.36,
+   295.08,
+   318.64,
+   303.48
+  ],
+  "png": "TC3-21.76_fig_5-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-3",
+  "manual": "TC3-21.76",
+  "num": "5-3",
+  "title": "Platter charge ............................................................. 5-7",
+  "page": 7,
+  "bbox": [
+   23.36,
+   309.48,
+   318.64,
+   317.79
+  ],
+  "png": "TC3-21.76_fig_5-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-4",
+  "manual": "TC3-21.76",
+  "num": "5-4",
+  "title": "Grapeshot charge ........................................................ 5-7",
+  "page": 7,
+  "bbox": [
+   23.36,
+   323.79,
+   318.64,
+   332.18600000000004
+  ],
+  "png": "TC3-21.76_fig_5-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-5",
+  "manual": "TC3-21.76",
+  "num": "5-5",
+  "title": "Various joining knots used in demolitions ........................... 5-8",
+  "page": 7,
+  "bbox": [
+   23.36,
+   338.18600000000004,
+   318.64,
+   346.466
+  ],
+  "png": "TC3-21.76_fig_5-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-6",
+  "manual": "TC3-21.76",
+  "num": "5-6",
+  "title": "British junction knot ...................................................... 5-9",
+  "page": 7,
+  "bbox": [
+   23.36,
+   352.466,
+   318.64,
+   360.866
+  ],
+  "png": "TC3-21.76_fig_5-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-7",
+  "manual": "TC3-21.76",
+  "num": "5-7",
+  "title": "Minimum safe distance for charges over 500",
+  "page": 7,
+  "bbox": [
+   23.36,
+   366.866,
+   318.64,
+   375.146
+  ],
+  "png": "TC3-21.76_fig_5-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-8",
+  "manual": "TC3-21.76",
+  "num": "5-8",
+  "title": "Formula for computing size of charge to breach",
+  "page": 8,
+  "bbox": [
+   20.5,
+   42.69999999999999,
+   321.6,
+   59.110000000000014
+  ],
+  "png": "TC3-21.76_fig_5-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-9",
+  "manual": "TC3-21.76",
+  "num": "5-9",
+  "title": "Example of abatis ...................................................... 5-14",
+  "page": 8,
+  "bbox": [
+   23.36,
+   75.55000000000001,
+   318.64,
+   83.82999999999998
+  ],
+  "png": "TC3-21.76_fig_5-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-10",
+  "manual": "TC3-21.76",
+  "num": "5-10",
+  "title": "Formula for fallen tree obstacles or test shot ................... 5-14",
+  "page": 8,
+  "bbox": [
+   23.36,
+   89.82999999999998,
+   318.64,
+   98.10999999999996
+  ],
+  "png": "TC3-21.76_fig_5-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-11",
+  "manual": "TC3-21.76",
+  "num": "5-11",
+  "title": "Timber-cutting ring charge .......................................... 5-15",
+  "page": 8,
+  "bbox": [
+   23.36,
+   104.10999999999996,
+   318.64,
+   112.50999999999993
+  ],
+  "png": "TC3-21.76_fig_5-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-12",
+  "manual": "TC3-21.76",
+  "num": "5-12",
+  "title": "Timber-cutting charge (external) ................................... 5-16",
+  "page": 8,
+  "bbox": [
+   23.36,
+   118.50999999999993,
+   318.64,
+   126.90999999999991
+  ],
+  "png": "TC3-21.76_fig_5-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-13",
+  "manual": "TC3-21.76",
+  "num": "5-13",
+  "title": "Formula for external timber-cutting charge ..................... 5-16",
+  "page": 8,
+  "bbox": [
+   23.36,
+   132.9099999999999,
+   318.64,
+   141.2199999999999
+  ],
+  "png": "TC3-21.76_fig_5-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-14",
+  "manual": "TC3-21.76",
+  "num": "5-14",
+  "title": "Timber-cutting charge (internal) ................................... 5-17",
+  "page": 8,
+  "bbox": [
+   23.36,
+   147.2199999999999,
+   318.64,
+   155.6199999999999
+  ],
+  "png": "TC3-21.76_fig_5-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-15",
+  "manual": "TC3-21.76",
+  "num": "5-15",
+  "title": "Formula for internal timber-cutting charge ....................... 5-17",
+  "page": 8,
+  "bbox": [
+   23.36,
+   161.6199999999999,
+   318.64,
+   169.89999999999992
+  ],
+  "png": "TC3-21.76_fig_5-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-1",
+  "manual": "TC3-21.76",
+  "num": "6-1",
+  "title": "Formations ................................................................. 6-1",
+  "page": 8,
+  "bbox": [
+   23.36,
+   175.8999999999999,
+   318.64,
+   184.2999999999999
+  ],
+  "png": "TC3-21.76_fig_6-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-2",
+  "manual": "TC3-21.76",
+  "num": "6-2",
+  "title": "Squad bounding overwatch ............................................ 6-4",
+  "page": 8,
+  "bbox": [
+   23.36,
+   190.2999999999999,
+   318.64,
+   198.5799999999999
+  ],
+  "png": "TC3-21.76_fig_6-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-3",
+  "manual": "TC3-21.76",
+  "num": "6-3",
+  "title": "Platoon bounding overwatch ........................................... 6-5",
+  "page": 8,
+  "bbox": [
+   23.36,
+   204.5799999999999,
+   318.64,
+   212.8599999999999
+  ],
+  "png": "TC3-21.76_fig_6-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-4",
+  "manual": "TC3-21.76",
+  "num": "6-4",
+  "title": "Linear danger area ..................................................... 6-10",
+  "page": 8,
+  "bbox": [
+   23.36,
+   218.8599999999999,
+   318.64,
+   227.1599999999999
+  ],
+  "png": "TC3-21.76_fig_6-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-5",
+  "manual": "TC3-21.76",
+  "num": "6-5",
+  "title": "Small open danger area .............................................. 6-11",
+  "page": 8,
+  "bbox": [
+   23.36,
+   233.1599999999999,
+   318.64,
+   241.55999999999992
+  ],
+  "png": "TC3-21.76_fig_6-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-1",
+  "manual": "TC3-21.76",
+  "num": "7-1",
+  "title": "Area reconnaissance .................................................... 7-6",
+  "page": 8,
+  "bbox": [
+   23.36,
+   247.55999999999992,
+   318.64,
+   255.95999999999992
+  ],
+  "png": "TC3-21.76_fig_7-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-2",
+  "manual": "TC3-21.76",
+  "num": "7-2",
+  "title": "Ambush formations .................................................... 7-11",
+  "page": 8,
+  "bbox": [
+   23.36,
+   261.9599999999999,
+   318.64,
+   270.2399999999999
+  ],
+  "png": "TC3-21.76_fig_7-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-3",
+  "manual": "TC3-21.76",
+  "num": "7-3",
+  "title": "Hasty ambush ........................................................... 7-12",
+  "page": 8,
+  "bbox": [
+   23.36,
+   276.2399999999999,
+   318.64,
+   284.63999999999993
+  ],
+  "png": "TC3-21.76_fig_7-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-4",
+  "manual": "TC3-21.76",
+  "num": "7-4",
+  "title": "Deliberate ambush ..................................................... 7-15",
+  "page": 8,
+  "bbox": [
+   23.36,
+   290.63999999999993,
+   318.64,
+   299.03999999999996
+  ],
+  "png": "TC3-21.76_fig_7-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-5",
+  "manual": "TC3-21.76",
+  "num": "7-5",
+  "title": "Actions on the objective, raid ....................... 7-26 April 2017",
+  "page": 8,
+  "bbox": [
+   23.36,
+   305.03999999999996,
+   318.64,
+   313.34999999999997
+  ],
+  "png": "TC3-21.76_fig_7-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-6",
+  "manual": "TC3-21.76",
+  "num": "7-6",
+  "title": "Occupation of the objective rally point ............................. 7-21",
+  "page": 8,
+  "bbox": [
+   23.36,
+   319.34999999999997,
+   318.64,
+   327.626
+  ],
+  "png": "TC3-21.76_fig_7-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-7",
+  "manual": "TC3-21.76",
+  "num": "7-7",
+  "title": "Patrol base ............................................................... 7-23",
+  "page": 8,
+  "bbox": [
+   23.36,
+   333.626,
+   318.64,
+   342.02599999999995
+  ],
+  "png": "TC3-21.76_fig_7-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-1",
+  "manual": "TC3-21.76",
+  "num": "8-1",
+  "title": "07-3-D9501. Assuming nearest covered position ................. 8-2",
+  "page": 8,
+  "bbox": [
+   23.36,
+   348.02599999999995,
+   318.64,
+   356.42599999999993
+  ],
+  "png": "TC3-21.76_fig_8-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-2",
+  "manual": "TC3-21.76",
+  "num": "8-2",
+  "title": "07-3-D9501. Control of the support element ........................ 8-4",
+  "page": 8,
+  "bbox": [
+   23.36,
+   362.42599999999993,
+   318.64,
+   370.70599999999996
+  ],
+  "png": "TC3-21.76_fig_8-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-3",
+  "manual": "TC3-21.76",
+  "num": "8-3",
+  "title": "07-3-D9505. Employing indirect fires to suppress",
+  "page": 9,
+  "bbox": [
+   20.5,
+   42.69999999999999,
+   321.6,
+   58.99000000000001
+  ],
+  "png": "TC3-21.76_fig_8-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-4",
+  "manual": "TC3-21.76",
+  "num": "8-4",
+  "title": "07-3-D9505. Moving element occupies overwatch",
+  "page": 9,
+  "bbox": [
+   23.36,
+   75.55000000000001,
+   318.64,
+   83.71000000000004
+  ],
+  "png": "TC3-21.76_fig_8-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-5",
+  "manual": "TC3-21.76",
+  "num": "8-5",
+  "title": "07-3-D9505. Movement and fire technique ....................... 8-13",
+  "page": 9,
+  "bbox": [
+   23.36,
+   100.15000000000003,
+   318.64,
+   108.43
+  ],
+  "png": "TC3-21.76_fig_8-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-6",
+  "manual": "TC3-21.76",
+  "num": "8-6",
+  "title": "06-3-D9502. React to ambush (near)",
+  "page": 9,
+  "bbox": [
+   23.36,
+   114.43,
+   318.64,
+   122.59000000000003
+  ],
+  "png": "TC3-21.76_fig_8-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-7",
+  "manual": "TC3-21.76",
+  "num": "8-7",
+  "title": "07-3-D9502. Returning fire immediately ........................... 8-16",
+  "page": 9,
+  "bbox": [
+   23.36,
+   139.18,
+   318.64,
+   147.34000000000003
+  ],
+  "png": "TC3-21.76_fig_8-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-8",
+  "manual": "TC3-21.76",
+  "num": "8-8",
+  "title": "07-3-D9502. Assaulting through enemy positions ............... 8-17",
+  "page": 9,
+  "bbox": [
+   23.36,
+   153.34000000000003,
+   318.64,
+   161.74
+  ],
+  "png": "TC3-21.76_fig_8-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-9",
+  "manual": "TC3-21.76",
+  "num": "8-9",
+  "title": "07-4-D9509. Clear a room. First two soldiers",
+  "page": 9,
+  "bbox": [
+   23.36,
+   167.74,
+   318.64,
+   176.02
+  ],
+  "png": "TC3-21.76_fig_8-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-10",
+  "manual": "TC3-21.76",
+  "num": "8-10",
+  "title": "07-4-D9509. Clear a room. Third soldier enters,",
+  "page": 9,
+  "bbox": [
+   23.36,
+   192.58,
+   318.64,
+   200.74
+  ],
+  "png": "TC3-21.76_fig_8-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-11",
+  "manual": "TC3-21.76",
+  "num": "8-11",
+  "title": "07-4-D9509. Clear a room. Third soldier enters,",
+  "page": 9,
+  "bbox": [
+   23.36,
+   217.18,
+   318.64,
+   225.36
+  ],
+  "png": "TC3-21.76_fig_8-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-1",
+  "manual": "TC3-21.76",
+  "num": "9-1",
+  "title": "Examples of traditional (removable) protection",
+  "page": 9,
+  "bbox": [
+   23.36,
+   241.8,
+   318.64,
+   249.96
+  ],
+  "png": "TC3-21.76_fig_9-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-2",
+  "manual": "TC3-21.76",
+  "num": "9-2",
+  "title": "Examples of fixed (permanent or semipermanent)",
+  "page": 9,
+  "bbox": [
+   23.36,
+   266.52,
+   318.64,
+   274.68
+  ],
+  "png": "TC3-21.76_fig_9-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-3",
+  "manual": "TC3-21.76",
+  "num": "9-3",
+  "title": "Constructing a three-point, pre-equalized anchor",
+  "page": 9,
+  "bbox": [
+   23.36,
+   291.12,
+   318.64,
+   299.28
+  ],
+  "png": "TC3-21.76_fig_9-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-4",
+  "manual": "TC3-21.76",
+  "num": "9-4",
+  "title": "Tensionless natural anchor ............................................ 9-9",
+  "page": 9,
+  "bbox": [
+   23.36,
+   315.71999999999997,
+   318.64,
+   324.02599999999995
+  ],
+  "png": "TC3-21.76_fig_9-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-5",
+  "manual": "TC3-21.76",
+  "num": "9-5",
+  "title": "Rope terminology ....................................................... 9-10",
+  "page": 9,
+  "bbox": [
+   23.36,
+   330.02599999999995,
+   318.64,
+   338.306
+  ],
+  "png": "TC3-21.76_fig_9-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-6",
+  "manual": "TC3-21.76",
+  "num": "9-6",
+  "title": "Square knot .............................................................. 9-11",
+  "page": 9,
+  "bbox": [
+   23.36,
+   344.306,
+   318.64,
+   352.706
+  ],
+  "png": "TC3-21.76_fig_9-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-7",
+  "manual": "TC3-21.76",
+  "num": "9-7",
+  "title": "Round turn with two half hitches .................................... 9-11",
+  "page": 9,
+  "bbox": [
+   23.36,
+   358.706,
+   318.64,
+   366.986
+  ],
+  "png": "TC3-21.76_fig_9-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-8",
+  "manual": "TC3-21.76",
+  "num": "9-8",
+  "title": "Double figure-eight knot ............................................... 9-12",
+  "page": 9,
+  "bbox": [
+   23.36,
+   372.986,
+   318.64,
+   381.38599999999997
+  ],
+  "png": "TC3-21.76_fig_9-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-9",
+  "manual": "TC3-21.76",
+  "num": "9-9",
+  "title": "End-of-the-rope clove hitch .......................................... 9-13",
+  "page": 10,
+  "bbox": [
+   20.5,
+   42.69999999999999,
+   321.6,
+   59.22999999999996
+  ],
+  "png": "TC3-21.76_fig_9-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-10",
+  "manual": "TC3-21.76",
+  "num": "9-10",
+  "title": "Middle-of-the-rope clove hitch ..................................... 9-14",
+  "page": 10,
+  "bbox": [
+   23.36,
+   65.22999999999996,
+   318.64,
+   73.50999999999993
+  ],
+  "png": "TC3-21.76_fig_9-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-11",
+  "manual": "TC3-21.76",
+  "num": "9-11",
+  "title": "Rappel seat ............................................................ 9-15",
+  "page": 10,
+  "bbox": [
+   23.36,
+   79.50999999999999,
+   318.64,
+   87.78999999999996
+  ],
+  "png": "TC3-21.76_fig_9-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-12",
+  "manual": "TC3-21.76",
+  "num": "9-12",
+  "title": "Rerouted figure-eight knot .......................................... 9-16",
+  "page": 10,
+  "bbox": [
+   23.36,
+   93.78999999999996,
+   318.64,
+   102.18999999999994
+  ],
+  "png": "TC3-21.76_fig_9-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-13",
+  "manual": "TC3-21.76",
+  "num": "9-13",
+  "title": "Figure-eight slipknot .................................................. 9-16",
+  "page": 10,
+  "bbox": [
+   23.36,
+   108.18999999999994,
+   318.64,
+   116.46999999999991
+  ],
+  "png": "TC3-21.76_fig_9-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-14",
+  "manual": "TC3-21.76",
+  "num": "9-14",
+  "title": "Munter hitch ............................................................ 9-17",
+  "page": 10,
+  "bbox": [
+   23.36,
+   122.46999999999991,
+   318.64,
+   130.89999999999992
+  ],
+  "png": "TC3-21.76_fig_9-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-15",
+  "manual": "TC3-21.76",
+  "num": "9-15",
+  "title": "Munter mule knot .................................... 9-26 April 2017",
+  "page": 10,
+  "bbox": [
+   23.36,
+   136.89999999999992,
+   318.64,
+   145.1799999999999
+  ],
+  "png": "TC3-21.76_fig_9-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-16",
+  "manual": "TC3-21.76",
+  "num": "9-16",
+  "title": "Prusik knot ............................................ 9-26 April 2017",
+  "page": 10,
+  "bbox": [
+   23.36,
+   151.1799999999999,
+   318.64,
+   159.45999999999987
+  ],
+  "png": "TC3-21.76_fig_9-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-17",
+  "manual": "TC3-21.76",
+  "num": "9-17",
+  "title": "Bowline .................................................................. 9-19",
+  "page": 10,
+  "bbox": [
+   23.36,
+   165.45999999999987,
+   318.64,
+   173.8599999999999
+  ],
+  "png": "TC3-21.76_fig_9-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-19",
+  "manual": "TC3-21.76",
+  "num": "9-19",
+  "title": "Mechanical belay devices ........................................... 9-22",
+  "page": 10,
+  "bbox": [
+   23.36,
+   194.13999999999987,
+   318.64,
+   202.53999999999988
+  ],
+  "png": "TC3-21.76_fig_9-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-20",
+  "manual": "TC3-21.76",
+  "num": "9-20",
+  "title": "Air traffic controller .................................................... 9-23",
+  "page": 10,
+  "bbox": [
+   23.36,
+   208.53999999999988,
+   318.64,
+   216.93999999999988
+  ],
+  "png": "TC3-21.76_fig_9-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-21",
+  "manual": "TC3-21.76",
+  "num": "9-21",
+  "title": "Transport-tightening system ........................................ 9-26",
+  "page": 10,
+  "bbox": [
+   23.36,
+   222.93999999999988,
+   318.64,
+   231.2399999999999
+  ],
+  "png": "TC3-21.76_fig_9-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-22",
+  "manual": "TC3-21.76",
+  "num": "9-22",
+  "title": "Commando crawl method ........................................... 9-27",
+  "page": 10,
+  "bbox": [
+   23.36,
+   237.2399999999999,
+   318.64,
+   245.5199999999999
+  ],
+  "png": "TC3-21.76_fig_9-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-23",
+  "manual": "TC3-21.76",
+  "num": "9-23",
+  "title": "Rappel seat (Tyrolean traverse) method ........................ 9-28",
+  "page": 10,
+  "bbox": [
+   23.36,
+   251.5199999999999,
+   318.64,
+   259.9199999999999
+  ],
+  "png": "TC3-21.76_fig_9-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-24",
+  "manual": "TC3-21.76",
+  "num": "9-24",
+  "title": "Z-Pulley system ....................................................... 9-30",
+  "page": 10,
+  "bbox": [
+   23.36,
+   265.91999999999996,
+   318.64,
+   274.32
+  ],
+  "png": "TC3-21.76_fig_9-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-25",
+  "manual": "TC3-21.76",
+  "num": "9-25",
+  "title": "Hasty rappel ........................................................... 9-31",
+  "page": 10,
+  "bbox": [
+   23.36,
+   280.32,
+   318.64,
+   288.6
+  ],
+  "png": "TC3-21.76_fig_9-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-26",
+  "manual": "TC3-21.76",
+  "num": "9-26",
+  "title": "Body rappel ............................................................ 9-32",
+  "page": 10,
+  "bbox": [
+   23.36,
+   294.6,
+   318.64,
+   303.0
+  ],
+  "png": "TC3-21.76_fig_9-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-27",
+  "manual": "TC3-21.76",
+  "num": "9-27",
+  "title": "Figure-eight descender .............................................. 9-33",
+  "page": 10,
+  "bbox": [
+   23.36,
+   309.0,
+   318.64,
+   317.31
+  ],
+  "png": "TC3-21.76_fig_9-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-28",
+  "manual": "TC3-21.76",
+  "num": "9-28",
+  "title": "Close-up of carabiner wrap descender, and the",
+  "page": 10,
+  "bbox": [
+   23.36,
+   323.31,
+   318.64,
+   331.586
+  ],
+  "png": "TC3-21.76_fig_9-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-29",
+  "manual": "TC3-21.76",
+  "num": "9-29",
+  "title": "Sling extension ........................................................ 9-34",
+  "page": 10,
+  "bbox": [
+   23.36,
+   358.226,
+   318.64,
+   366.626
+  ],
+  "png": "TC3-21.76_fig_9-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-30",
+  "manual": "TC3-21.76",
+  "num": "9-30",
+  "title": "Extended ATC rappel ................................................ 9-35",
+  "page": 10,
+  "bbox": [
+   23.36,
+   372.626,
+   318.64,
+   381.026
+  ],
+  "png": "TC3-21.76_fig_9-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/10-1",
+  "manual": "TC3-21.76",
+  "num": "10-1",
+  "title": "Trajectory and maximum ordinate ................................ 10-3",
+  "page": 11,
+  "bbox": [
+   20.5,
+   42.69999999999999,
+   321.6,
+   59.22999999999996
+  ],
+  "png": "TC3-21.76_fig_10-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/10-2",
+  "manual": "TC3-21.76",
+  "num": "10-2",
+  "title": "Cone of fire and the beaten zone ................................. 10-4",
+  "page": 11,
+  "bbox": [
+   23.36,
+   65.22999999999996,
+   318.64,
+   73.50999999999993
+  ],
+  "png": "TC3-21.76_fig_10-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/10-3",
+  "manual": "TC3-21.76",
+  "num": "10-3",
+  "title": "Classes of fire, respect to ground ................................. 10-5",
+  "page": 11,
+  "bbox": [
+   23.36,
+   79.50999999999999,
+   318.64,
+   87.78999999999996
+  ],
+  "png": "TC3-21.76_fig_10-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/10-5",
+  "manual": "TC3-21.76",
+  "num": "10-5",
+  "title": "Classes of fire, respect to gun ................................... 10-10",
+  "page": 11,
+  "bbox": [
+   23.36,
+   122.46999999999997,
+   318.64,
+   130.89999999999998
+  ],
+  "png": "TC3-21.76_fig_10-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/11-1",
+  "manual": "TC3-21.76",
+  "num": "11-1",
+  "title": "07-4-D9509. Clear a room, first two Soldiers",
+  "page": 11,
+  "bbox": [
+   23.36,
+   136.89999999999998,
+   318.64,
+   145.17999999999995
+  ],
+  "png": "TC3-21.76_fig_11-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/11-3",
+  "manual": "TC3-21.76",
+  "num": "11-3",
+  "title": "07-4-D9509. Clear a room, third Soldier enters",
+  "page": 11,
+  "bbox": [
+   23.36,
+   175.78,
+   318.64,
+   184.05999999999997
+  ],
+  "png": "TC3-21.76_fig_11-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-1",
+  "manual": "TC3-21.76",
+  "num": "12-1",
+  "title": "Position of bridge team personnel ................................ 12-3",
+  "page": 11,
+  "bbox": [
+   23.36,
+   214.89999999999998,
+   318.64,
+   223.2
+  ],
+  "png": "TC3-21.76_fig_12-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-2",
+  "manual": "TC3-21.76",
+  "num": "12-2",
+  "title": "Transport-tightening system ........................................ 12-5",
+  "page": 11,
+  "bbox": [
+   23.36,
+   229.2,
+   318.64,
+   237.48
+  ],
+  "png": "TC3-21.76_fig_12-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-3",
+  "manual": "TC3-21.76",
+  "num": "12-3",
+  "title": "Weapon rigging ..................................................... 12-10",
+  "page": 11,
+  "bbox": [
+   23.36,
+   243.48,
+   318.64,
+   251.88
+  ],
+  "png": "TC3-21.76_fig_12-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-4",
+  "manual": "TC3-21.76",
+  "num": "12-4",
+  "title": "Rucksack rigging .................................................... 12-11",
+  "page": 11,
+  "bbox": [
+   23.36,
+   257.88,
+   318.64,
+   266.28
+  ],
+  "png": "TC3-21.76_fig_12-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-5",
+  "manual": "TC3-21.76",
+  "num": "12-5",
+  "title": "Equipment rigging .................................................. 12-12",
+  "page": 11,
+  "bbox": [
+   23.36,
+   272.28,
+   318.64,
+   280.55999999999995
+  ],
+  "png": "TC3-21.76_fig_12-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-6",
+  "manual": "TC3-21.76",
+  "num": "12-6",
+  "title": "Crew positions, long count and short count ................... 12-13",
+  "page": 11,
+  "bbox": [
+   23.36,
+   286.55999999999995,
+   318.64,
+   294.84
+  ],
+  "png": "TC3-21.76_fig_12-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-1",
+  "manual": "TC3-21.76",
+  "num": "13-1",
+  "title": "React to ambush (near) ............................................. 13-6",
+  "page": 11,
+  "bbox": [
+   23.36,
+   300.84,
+   318.64,
+   309.12
+  ],
+  "png": "TC3-21.76_fig_13-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-2",
+  "manual": "TC3-21.76",
+  "num": "13-2",
+  "title": "React to ambush (far) ............................................... 13-7",
+  "page": 11,
+  "bbox": [
+   23.36,
+   315.12,
+   318.64,
+   323.55
+  ],
+  "png": "TC3-21.76_fig_13-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-3",
+  "manual": "TC3-21.76",
+  "num": "13-3",
+  "title": "Mounted patrol forced to stop, method one ..................... 13-9",
+  "page": 11,
+  "bbox": [
+   23.36,
+   329.55,
+   318.64,
+   337.826
+  ],
+  "png": "TC3-21.76_fig_13-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-4",
+  "manual": "TC3-21.76",
+  "num": "13-4",
+  "title": "Mounted patrol forced to stop, method two ................... 13-11",
+  "page": 11,
+  "bbox": [
+   23.36,
+   343.826,
+   318.64,
+   352.226
+  ],
+  "png": "TC3-21.76_fig_13-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-5",
+  "manual": "TC3-21.76",
+  "num": "13-5",
+  "title": "Break contact ........................................................ 13-13",
+  "page": 11,
+  "bbox": [
+   23.36,
+   358.226,
+   318.64,
+   366.626
+  ],
+  "png": "TC3-21.76_fig_13-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-6",
+  "manual": "TC3-21.76",
+  "num": "13-6",
+  "title": "Recovery/CASEVAC operations ................................ 13-15",
+  "page": 11,
+  "bbox": [
+   23.36,
+   372.626,
+   318.64,
+   381.026
+  ],
+  "png": "TC3-21.76_fig_13-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-1",
+  "manual": "TC3-21.76",
+  "num": "14-1",
+  "title": "Inverted \"Y\" ............................................................ 14-3",
+  "page": 12,
+  "bbox": [
+   20.5,
+   42.69999999999999,
+   321.6,
+   59.22999999999996
+  ],
+  "png": "TC3-21.76_fig_14-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-2",
+  "manual": "TC3-21.76",
+  "num": "14-2",
+  "title": "Heavy left or heavy right formation ............................... 14-5",
+  "page": 12,
+  "bbox": [
+   23.36,
+   65.22999999999996,
+   318.64,
+   73.50999999999993
+  ],
+  "png": "TC3-21.76_fig_14-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-3",
+  "manual": "TC3-21.76",
+  "num": "14-3",
+  "title": "Diamond formation ................................................... 14-6",
+  "page": 12,
+  "bbox": [
+   23.36,
+   79.50999999999999,
+   318.64,
+   87.78999999999996
+  ],
+  "png": "TC3-21.76_fig_14-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-4",
+  "manual": "TC3-21.76",
+  "num": "14-4",
+  "title": "Vee formation .......................................................... 14-7",
+  "page": 12,
+  "bbox": [
+   23.36,
+   93.78999999999996,
+   318.64,
+   102.18999999999994
+  ],
+  "png": "TC3-21.76_fig_14-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-5",
+  "manual": "TC3-21.76",
+  "num": "14-5",
+  "title": "Echelon left or right formation ...................................... 14-8",
+  "page": 12,
+  "bbox": [
+   23.36,
+   108.19,
+   318.64,
+   116.46999999999997
+  ],
+  "png": "TC3-21.76_fig_14-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-6",
+  "manual": "TC3-21.76",
+  "num": "14-6",
+  "title": "Trail formation ......................................................... 14-9",
+  "page": 12,
+  "bbox": [
+   23.36,
+   122.46999999999997,
+   318.64,
+   130.89999999999998
+  ],
+  "png": "TC3-21.76_fig_14-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-7",
+  "manual": "TC3-21.76",
+  "num": "14-7",
+  "title": "Staggered trail left or right formation ........................... 14-10",
+  "page": 12,
+  "bbox": [
+   23.36,
+   136.89999999999998,
+   318.64,
+   145.17999999999995
+  ],
+  "png": "TC3-21.76_fig_14-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-8",
+  "manual": "TC3-21.76",
+  "num": "14-8",
+  "title": "Large, one-sided pickup zone ................................... 14-11",
+  "page": 12,
+  "bbox": [
+   23.36,
+   151.18,
+   318.64,
+   159.45999999999998
+  ],
+  "png": "TC3-21.76_fig_14-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-9",
+  "manual": "TC3-21.76",
+  "num": "14-9",
+  "title": "UH-60L loading sequence ........................................ 14-12",
+  "page": 12,
+  "bbox": [
+   23.36,
+   165.45999999999998,
+   318.64,
+   173.86
+  ],
+  "png": "TC3-21.76_fig_14-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-10",
+  "manual": "TC3-21.76",
+  "num": "14-10",
+  "title": "UH-60L unloading sequence ................................... 14-13",
+  "page": 12,
+  "bbox": [
+   23.36,
+   179.85999999999999,
+   318.64,
+   188.14
+  ],
+  "png": "TC3-21.76_fig_14-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-11",
+  "manual": "TC3-21.76",
+  "num": "14-11",
+  "title": "Tactical loading sequence ...................................... 14-14",
+  "page": 12,
+  "bbox": [
+   23.36,
+   194.14,
+   318.64,
+   202.54
+  ],
+  "png": "TC3-21.76_fig_14-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-12",
+  "manual": "TC3-21.76",
+  "num": "14-12",
+  "title": "Tactical unloading sequence using door",
+  "page": 12,
+  "bbox": [
+   23.36,
+   208.54,
+   318.64,
+   216.82
+  ],
+  "png": "TC3-21.76_fig_14-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-13",
+  "manual": "TC3-21.76",
+  "num": "14-13",
+  "title": "CH 47/CV-22 rear ramp off-load ............................... 14-16",
+  "page": 12,
+  "bbox": [
+   23.36,
+   233.4,
+   318.64,
+   241.55999999999997
+  ],
+  "png": "TC3-21.76_fig_14-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-1",
+  "manual": "TC3-21.76",
+  "num": "15-1",
+  "title": "Chin lift and jaw thrust methods ................................... 15-2",
+  "page": 12,
+  "bbox": [
+   23.36,
+   247.56,
+   318.64,
+   255.95999999999998
+  ],
+  "png": "TC3-21.76_fig_15-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-2",
+  "manual": "TC3-21.76",
+  "num": "15-2",
+  "title": "Nasal airway insertion ............................................... 15-3",
+  "page": 12,
+  "bbox": [
+   23.36,
+   261.96,
+   318.64,
+   270.24
+  ],
+  "png": "TC3-21.76_fig_15-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-3",
+  "manual": "TC3-21.76",
+  "num": "15-3",
+  "title": "Mouth airway insertion ............................................... 15-4",
+  "page": 12,
+  "bbox": [
+   23.36,
+   276.24,
+   318.64,
+   284.64
+  ],
+  "png": "TC3-21.76_fig_15-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-4",
+  "manual": "TC3-21.76",
+  "num": "15-4",
+  "title": "Percentage of body area ............................................ 15-6",
+  "page": 12,
+  "bbox": [
+   23.36,
+   290.64,
+   318.64,
+   299.03999999999996
+  ],
+  "png": "TC3-21.76_fig_15-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-5",
+  "manual": "TC3-21.76",
+  "num": "15-5",
+  "title": "Poisonous plants .................................................... 15-10",
+  "page": 12,
+  "bbox": [
+   23.36,
+   305.04,
+   318.64,
+   313.35
+  ],
+  "png": "TC3-21.76_fig_15-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-1",
+  "manual": "TC3-21.76",
+  "num": "A-1",
+  "title": "React to indirect fire .....................................................A-2",
+  "page": 12,
+  "bbox": [
+   23.36,
+   319.35,
+   318.64,
+   327.626
+  ],
+  "png": "TC3-21.76_fig_A-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-2",
+  "manual": "TC3-21.76",
+  "num": "A-2",
+  "title": "React to direct fire contact .............................................A-3",
+  "page": 12,
+  "bbox": [
+   23.36,
+   333.626,
+   318.64,
+   341.906
+  ],
+  "png": "TC3-21.76_fig_A-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-3",
+  "manual": "TC3-21.76",
+  "num": "A-3",
+  "title": "React to a near ambush ...............................................A-4",
+  "page": 12,
+  "bbox": [
+   23.36,
+   347.906,
+   318.64,
+   356.30600000000004
+  ],
+  "png": "TC3-21.76_fig_A-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-4",
+  "manual": "TC3-21.76",
+  "num": "A-4",
+  "title": "Break contact .............................................................A-5",
+  "page": 12,
+  "bbox": [
+   23.36,
+   362.30600000000004,
+   318.64,
+   370.586
+  ],
+  "png": "TC3-21.76_fig_A-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-5",
+  "manual": "TC3-21.76",
+  "num": "A-5",
+  "title": "Formations and order of movement .................................A-6",
+  "page": 12,
+  "bbox": [
+   23.36,
+   376.586,
+   318.64,
+   384.986
+  ],
+  "png": "TC3-21.76_fig_A-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-6",
+  "manual": "TC3-21.76",
+  "num": "A-6",
+  "title": "Linkup ......................................................................A-7",
+  "page": 13,
+  "bbox": [
+   20.5,
+   42.69999999999999,
+   321.6,
+   59.22999999999996
+  ],
+  "png": "TC3-21.76_fig_A-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-7",
+  "manual": "TC3-21.76",
+  "num": "A-7",
+  "title": "Linear danger area ......................................................A-8",
+  "page": 13,
+  "bbox": [
+   23.36,
+   65.22999999999996,
+   318.64,
+   73.50999999999993
+  ],
+  "png": "TC3-21.76_fig_A-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-8",
+  "manual": "TC3-21.76",
+  "num": "A-8",
+  "title": "Large open danger area ...............................................A-9",
+  "page": 13,
+  "bbox": [
+   23.36,
+   79.50999999999993,
+   318.64,
+   87.7899999999999
+  ],
+  "png": "TC3-21.76_fig_A-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-9",
+  "manual": "TC3-21.76",
+  "num": "A-9",
+  "title": "Crossing a small open area .........................................A-10",
+  "page": 13,
+  "bbox": [
+   23.36,
+   93.7899999999999,
+   318.64,
+   102.18999999999988
+  ],
+  "png": "TC3-21.76_fig_A-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-10",
+  "manual": "TC3-21.76",
+  "num": "A-10",
+  "title": "Squad attack ..........................................................A-11",
+  "page": 13,
+  "bbox": [
+   23.36,
+   108.18999999999988,
+   318.64,
+   116.46999999999986
+  ],
+  "png": "TC3-21.76_fig_A-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-11",
+  "manual": "TC3-21.76",
+  "num": "A-11",
+  "title": "Crossing a small open area .......................................A-12",
+  "page": 13,
+  "bbox": [
+   23.36,
+   122.46999999999986,
+   318.64,
+   130.89999999999986
+  ],
+  "png": "TC3-21.76_fig_A-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-12",
+  "manual": "TC3-21.76",
+  "num": "A-12",
+  "title": "Raid boards (middle) ................................................A-14",
+  "page": 13,
+  "bbox": [
+   23.36,
+   136.89999999999986,
+   318.64,
+   145.17999999999984
+  ],
+  "png": "TC3-21.76_fig_A-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-13",
+  "manual": "TC3-21.76",
+  "num": "A-13",
+  "title": "Leader's reconnaissance ..........................................A-19",
+  "page": 13,
+  "bbox": [
+   23.36,
+   151.17999999999984,
+   318.64,
+   159.4599999999998
+  ],
+  "png": "TC3-21.76_fig_A-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-14",
+  "manual": "TC3-21.76",
+  "num": "A-14",
+  "title": "Diamond and vee formations ......................................A-21",
+  "page": 13,
+  "bbox": [
+   23.36,
+   165.4599999999998,
+   318.64,
+   173.85999999999984
+  ],
+  "png": "TC3-21.76_fig_A-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-15",
+  "manual": "TC3-21.76",
+  "num": "A-15",
+  "title": "Clearing hallway junctions .........................................A-23",
+  "page": 13,
+  "bbox": [
+   23.36,
+   179.85999999999981,
+   318.64,
+   188.13999999999982
+  ],
+  "png": "TC3-21.76_fig_A-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-16",
+  "manual": "TC3-21.76",
+  "num": "A-16",
+  "title": "Clearing a \"T\" intersection .........................................A-25",
+  "page": 13,
+  "bbox": [
+   23.36,
+   194.13999999999982,
+   318.64,
+   202.53999999999982
+  ],
+  "png": "TC3-21.76_fig_A-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-17",
+  "manual": "TC3-21.76",
+  "num": "A-17",
+  "title": "Three-man flow clearing technique ..............................A-27",
+  "page": 13,
+  "bbox": [
+   23.36,
+   208.53999999999982,
+   318.64,
+   216.93999999999983
+  ],
+  "png": "TC3-21.76_fig_A-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/B-1",
+  "manual": "TC3-21.76",
+  "num": "B-1",
+  "title": "IED/UXO card ............................................................B-2",
+  "page": 13,
+  "bbox": [
+   23.36,
+   222.93999999999983,
+   318.64,
+   231.23999999999984
+  ],
+  "png": "TC3-21.76_fig_B-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/B-2",
+  "manual": "TC3-21.76",
+  "num": "B-2",
+  "title": "Range card with final protective line ................................B-3",
+  "page": 13,
+  "bbox": [
+   23.36,
+   237.23999999999984,
+   318.64,
+   245.51999999999984
+  ],
+  "png": "TC3-21.76_fig_B-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/B-3",
+  "manual": "TC3-21.76",
+  "num": "B-3",
+  "title": "Standard Range Card ..................................................B-4",
+  "page": 13,
+  "bbox": [
+   23.36,
+   251.51999999999984,
+   318.64,
+   259.91999999999985
+  ],
+  "png": "TC3-21.76_fig_B-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/B-4",
+  "manual": "TC3-21.76",
+  "num": "B-4",
+  "title": "NATO 9-Line MEDEVAC Request card and MIST",
+  "page": 13,
+  "bbox": [
+   23.36,
+   265.91999999999985,
+   318.64,
+   274.1999999999998
+  ],
+  "png": "TC3-21.76_fig_B-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/2-1",
+  "manual": "TC3-21.76",
+  "num": "2-1",
+  "title": "Terrain model",
+  "page": 74,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   266.73
+  ],
+  "png": "TC3-21.76_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/3-1",
+  "manual": "TC3-21.76",
+  "num": "3-1",
+  "title": "Sterile fire support overlay",
+  "page": 81,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   239.37
+  ],
+  "png": "TC3-21.76_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/3-2",
+  "manual": "TC3-21.76",
+  "num": "3-2",
+  "title": "Nonsterile fire support overlay",
+  "page": 82,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   331.076
+  ],
+  "png": "TC3-21.76_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/3-3",
+  "manual": "TC3-21.76",
+  "num": "3-3",
+  "title": "Example of a close air support request",
+  "page": 88,
+  "bbox": [
+   64.4,
+   322.05,
+   277.6,
+   329.996
+  ],
+  "png": "TC3-21.76_fig_3-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/4-1",
+  "manual": "TC3-21.76",
+  "num": "4-1",
+  "title": "Cobra head",
+  "page": 103,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   347.876
+  ],
+  "png": "TC3-21.76_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/4-2",
+  "manual": "TC3-21.76",
+  "num": "4-2",
+  "title": "Antenna base",
+  "page": 104,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   380.996
+  ],
+  "png": "TC3-21.76_fig_4-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/4-3",
+  "manual": "TC3-21.76",
+  "num": "4-3",
+  "title": "Completed expedient 292-type antenna",
+  "page": 106,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   302.37
+  ],
+  "png": "TC3-21.76_fig_4-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/4-4",
+  "manual": "TC3-21.76",
+  "num": "4-4",
+  "title": "Curvature of the Earth",
+  "page": 107,
+  "bbox": [
+   30.75,
+   263.6,
+   311.35,
+   365.996
+  ],
+  "png": "TC3-21.76_fig_4-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-1",
+  "manual": "TC3-21.76",
+  "num": "5-1",
+  "title": "Technique for lighting time fuze with a match",
+  "page": 112,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   227.97
+  ],
+  "png": "TC3-21.76_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-2",
+  "manual": "TC3-21.76",
+  "num": "5-2",
+  "title": "Improvised shape charge",
+  "page": 114,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   237.81
+  ],
+  "png": "TC3-21.76_fig_5-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-3",
+  "manual": "TC3-21.76",
+  "num": "5-3",
+  "title": "Platter charge",
+  "page": 115,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   184.26999999999998
+  ],
+  "png": "TC3-21.76_fig_5-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-4",
+  "manual": "TC3-21.76",
+  "num": "5-4",
+  "title": "Grapeshot charge",
+  "page": 115,
+  "bbox": [
+   26.25,
+   238.85000000000002,
+   316.0,
+   383.036
+  ],
+  "png": "TC3-21.76_fig_5-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-5",
+  "manual": "TC3-21.76",
+  "num": "5-5",
+  "title": "Various joining knots used in demolitions",
+  "page": 116,
+  "bbox": [
+   26.25,
+   121.25,
+   316.0,
+   343.676
+  ],
+  "png": "TC3-21.76_fig_5-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-6",
+  "manual": "TC3-21.76",
+  "num": "5-6",
+  "title": "British junction knot",
+  "page": 117,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   288.69
+  ],
+  "png": "TC3-21.76_fig_5-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-7",
+  "manual": "TC3-21.76",
+  "num": "5-7",
+  "title": "Minimum safe distance for charges over 500 pounds",
+  "page": 118,
+  "bbox": [
+   50.1,
+   81.82,
+   291.95,
+   310.77
+  ],
+  "png": "TC3-21.76_fig_5-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-8",
+  "manual": "TC3-21.76",
+  "num": "5-8",
+  "title": "Formula for computing size of charge to breach concrete, masonry, and rock",
+  "page": 121,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   164.82999999999998
+  ],
+  "png": "TC3-21.76_fig_5-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-9",
+  "manual": "TC3-21.76",
+  "num": "5-9",
+  "title": "Example of abatis",
+  "page": 122,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   293.49
+  ],
+  "png": "TC3-21.76_fig_5-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-10",
+  "manual": "TC3-21.76",
+  "num": "5-10",
+  "title": "Formula for fallen tree obstacles or test shot",
+  "page": 122,
+  "bbox": [
+   70.05,
+   356.85,
+   272.2,
+   363.716
+  ],
+  "png": "TC3-21.76_fig_5-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-11",
+  "manual": "TC3-21.76",
+  "num": "5-11",
+  "title": "Timber-cutting ring charge",
+  "page": 123,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   267.81
+  ],
+  "png": "TC3-21.76_fig_5-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-12",
+  "manual": "TC3-21.76",
+  "num": "5-12",
+  "title": "Timber-cutting charge (external)",
+  "page": 124,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   266.49
+  ],
+  "png": "TC3-21.76_fig_5-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-13",
+  "manual": "TC3-21.76",
+  "num": "5-13",
+  "title": "Formula for external timber-cutting charge",
+  "page": 124,
+  "bbox": [
+   66.7,
+   337.45,
+   286.8,
+   344.396
+  ],
+  "png": "TC3-21.76_fig_5-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-14",
+  "manual": "TC3-21.76",
+  "num": "5-14",
+  "title": "Timber-cutting charge (internal)",
+  "page": 125,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   212.82999999999998
+  ],
+  "png": "TC3-21.76_fig_5-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/5-15",
+  "manual": "TC3-21.76",
+  "num": "5-15",
+  "title": "Formula for internal timber-cutting charge",
+  "page": 125,
+  "bbox": [
+   74.5,
+   272.2,
+   267.6,
+   279.09000000000003
+  ],
+  "png": "TC3-21.76_fig_5-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-1",
+  "manual": "TC3-21.76",
+  "num": "6-1",
+  "title": "Formations",
+  "page": 127,
+  "bbox": [
+   37.5,
+   228.8,
+   304.2,
+   365.996
+  ],
+  "png": "TC3-21.76_fig_6-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-2",
+  "manual": "TC3-21.76",
+  "num": "6-2",
+  "title": "Squad bounding overwatch",
+  "page": 130,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   276.81
+  ],
+  "png": "TC3-21.76_fig_6-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-3",
+  "manual": "TC3-21.76",
+  "num": "6-3",
+  "title": "Platoon bounding overwatch",
+  "page": 131,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   209.70999999999998
+  ],
+  "png": "TC3-21.76_fig_6-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-4",
+  "manual": "TC3-21.76",
+  "num": "6-4",
+  "title": "Linear danger area",
+  "page": 136,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   308.37
+  ],
+  "png": "TC3-21.76_fig_6-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/6-5",
+  "manual": "TC3-21.76",
+  "num": "6-5",
+  "title": "Small open danger area",
+  "page": 137,
+  "bbox": [
+   26.25,
+   139.0,
+   316.0,
+   380.756
+  ],
+  "png": "TC3-21.76_fig_6-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-1",
+  "manual": "TC3-21.76",
+  "num": "7-1",
+  "title": "Area reconnaissance",
+  "page": 144,
+  "bbox": [
+   26.25,
+   132.55,
+   316.0,
+   345.356
+  ],
+  "png": "TC3-21.76_fig_7-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-2",
+  "manual": "TC3-21.76",
+  "num": "7-2",
+  "title": "Ambush formations",
+  "page": 149,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   277.16999999999996
+  ],
+  "png": "TC3-21.76_fig_7-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-3",
+  "manual": "TC3-21.76",
+  "num": "7-3",
+  "title": "Hasty ambush",
+  "page": 150,
+  "bbox": [
+   42.75,
+   199.95000000000002,
+   299.6,
+   370.31600000000003
+  ],
+  "png": "TC3-21.76_fig_7-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-4",
+  "manual": "TC3-21.76",
+  "num": "7-4",
+  "title": "Deliberate ambush",
+  "page": 153,
+  "bbox": [
+   26.25,
+   145.95,
+   316.05,
+   344.156
+  ],
+  "png": "TC3-21.76_fig_7-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-5",
+  "manual": "TC3-21.76",
+  "num": "7-5",
+  "title": "Actions on the objective, raid",
+  "page": 156,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   252.80999999999997
+  ],
+  "png": "TC3-21.76_fig_7-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-6",
+  "manual": "TC3-21.76",
+  "num": "7-6",
+  "title": "Occupation of the objective rally point",
+  "page": 159,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   234.92999999999998
+  ],
+  "png": "TC3-21.76_fig_7-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/7-7",
+  "manual": "TC3-21.76",
+  "num": "7-7",
+  "title": "Patrol base",
+  "page": 161,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   322.09999999999997,
+   223.76999999999998
+  ],
+  "png": "TC3-21.76_fig_7-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-1",
+  "manual": "TC3-21.76",
+  "num": "8-1",
+  "title": "07-3-D9501. Assuming nearest covered position",
+  "page": 166,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.53
+  ],
+  "png": "TC3-21.76_fig_8-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-2",
+  "manual": "TC3-21.76",
+  "num": "8-2",
+  "title": "07-3-D9501. Control of the support element",
+  "page": 168,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   295.16999999999996
+  ],
+  "png": "TC3-21.76_fig_8-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-3",
+  "manual": "TC3-21.76",
+  "num": "8-3",
+  "title": "07-3-D9505. Employing indirect fires to suppress enemy",
+  "page": 175,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_8-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-4",
+  "manual": "TC3-21.76",
+  "num": "8-4",
+  "title": "07-3-D9505. Moving element occupies overwatch and engages enemy",
+  "page": 176,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_8-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-5",
+  "manual": "TC3-21.76",
+  "num": "8-5",
+  "title": "07-3-D9505. Movement and fire technique",
+  "page": 177,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_8-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-6",
+  "manual": "TC3-21.76",
+  "num": "8-6",
+  "title": "06-3-D9502. React to ambush (near) (dismounted)",
+  "page": 179,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_8-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-7",
+  "manual": "TC3-21.76",
+  "num": "8-7",
+  "title": "07-3-D9502. Returning fire immediately",
+  "page": 180,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_8-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-8",
+  "manual": "TC3-21.76",
+  "num": "8-8",
+  "title": "07-3-D9502. Assaulting through enemy positions",
+  "page": 181,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_8-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-9",
+  "manual": "TC3-21.76",
+  "num": "8-9",
+  "title": "07-4-D9509. Clear a room. First two soldiers enter simultaneously",
+  "page": 183,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   215.82999999999998
+  ],
+  "png": "TC3-21.76_fig_8-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-10",
+  "manual": "TC3-21.76",
+  "num": "8-10",
+  "title": "07-4-D9509. Clear a room. Third soldier enters, clearing his sector",
+  "page": 184,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   200.47
+  ],
+  "png": "TC3-21.76_fig_8-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/8-11",
+  "manual": "TC3-21.76",
+  "num": "8-11",
+  "title": "07-4-D9509. Clear a room. Third soldier enters, dominating his sector",
+  "page": 184,
+  "bbox": [
+   26.25,
+   220.4,
+   316.0,
+   356.156
+  ],
+  "png": "TC3-21.76_fig_8-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-1",
+  "manual": "TC3-21.76",
+  "num": "9-1",
+  "title": "Examples of traditional (removable) protection used on rocks",
+  "page": 192,
+  "bbox": [
+   26.25,
+   181.4,
+   316.05,
+   322.8
+  ],
+  "png": "TC3-21.76_fig_9-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-2",
+  "manual": "TC3-21.76",
+  "num": "9-2",
+  "title": "Examples of fixed (permanent or semipermanent) protection used on rocks",
+  "page": 193,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   185.82999999999998
+  ],
+  "png": "TC3-21.76_fig_9-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-3",
+  "manual": "TC3-21.76",
+  "num": "9-3",
+  "title": "Constructing a three-point, pre-equalized anchor using fixed artificial protection",
+  "page": 194,
+  "bbox": [
+   25.65,
+   106.89999999999998,
+   316.45,
+   320.88
+  ],
+  "png": "TC3-21.76_fig_9-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-4",
+  "manual": "TC3-21.76",
+  "num": "9-4",
+  "title": "Tensionless natural anchor",
+  "page": 195,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   281.37
+  ],
+  "png": "TC3-21.76_fig_9-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-5",
+  "manual": "TC3-21.76",
+  "num": "9-5",
+  "title": "Rope terminology",
+  "page": 196,
+  "bbox": [
+   22.9,
+   108.10000000000002,
+   322.09999999999997,
+   319.92
+  ],
+  "png": "TC3-21.76_fig_9-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-6",
+  "manual": "TC3-21.76",
+  "num": "9-6",
+  "title": "Square knot",
+  "page": 197,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   154.26999999999998
+  ],
+  "png": "TC3-21.76_fig_9-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-7",
+  "manual": "TC3-21.76",
+  "num": "9-7",
+  "title": "Round turn with two half hitches",
+  "page": 197,
+  "bbox": [
+   26.25,
+   195.04999999999998,
+   316.05,
+   358.676
+  ],
+  "png": "TC3-21.76_fig_9-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-8",
+  "manual": "TC3-21.76",
+  "num": "9-8",
+  "title": "Double figure-eight knot",
+  "page": 198,
+  "bbox": [
+   26.25,
+   100.5,
+   315.95,
+   210.42999999999998
+  ],
+  "png": "TC3-21.76_fig_9-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-9",
+  "manual": "TC3-21.76",
+  "num": "9-9",
+  "title": "End-of-the-rope clove hitch",
+  "page": 199,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   247.17
+  ],
+  "png": "TC3-21.76_fig_9-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-10",
+  "manual": "TC3-21.76",
+  "num": "9-10",
+  "title": "Middle-of-the-rope clove hitch",
+  "page": 200,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   175.39
+  ],
+  "png": "TC3-21.76_fig_9-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-11",
+  "manual": "TC3-21.76",
+  "num": "9-11",
+  "title": "Rappel seat",
+  "page": 201,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   287.01
+  ],
+  "png": "TC3-21.76_fig_9-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-12",
+  "manual": "TC3-21.76",
+  "num": "9-12",
+  "title": "Rerouted figure-eight knot",
+  "page": 202,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   173.59000000000003
+  ],
+  "png": "TC3-21.76_fig_9-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-13",
+  "manual": "TC3-21.76",
+  "num": "9-13",
+  "title": "Figure-eight slipknot",
+  "page": 202,
+  "bbox": [
+   29.25,
+   204.39999999999998,
+   313.45,
+   349.916
+  ],
+  "png": "TC3-21.76_fig_9-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-14",
+  "manual": "TC3-21.76",
+  "num": "9-14",
+  "title": "Munter hitch",
+  "page": 203,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   229.41
+  ],
+  "png": "TC3-21.76_fig_9-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-15",
+  "manual": "TC3-21.76",
+  "num": "9-15",
+  "title": "Munter mule knot",
+  "page": 204,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   182.23
+  ],
+  "png": "TC3-21.76_fig_9-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-16",
+  "manual": "TC3-21.76",
+  "num": "9-16",
+  "title": "Prusik knot",
+  "page": 204,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   303.93
+  ],
+  "png": "TC3-21.76_fig_9-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-17",
+  "manual": "TC3-21.76",
+  "num": "9-17",
+  "title": "Bowline",
+  "page": 205,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   354.116
+  ],
+  "png": "TC3-21.76_fig_9-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-19",
+  "manual": "TC3-21.76",
+  "num": "9-19",
+  "title": "Mechanical belay devices",
+  "page": 208,
+  "bbox": [
+   37.5,
+   96.54999999999995,
+   313.6,
+   372.476
+  ],
+  "png": "TC3-21.76_fig_9-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-20",
+  "manual": "TC3-21.76",
+  "num": "9-20",
+  "title": "Air traffic controller",
+  "page": 209,
+  "bbox": [
+   26.25,
+   93.54999999999995,
+   316.05,
+   287.49
+  ],
+  "png": "TC3-21.76_fig_9-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-21",
+  "manual": "TC3-21.76",
+  "num": "9-21",
+  "title": "Transport-tightening system",
+  "page": 212,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   274.04999999999995
+  ],
+  "png": "TC3-21.76_fig_9-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-22",
+  "manual": "TC3-21.76",
+  "num": "9-22",
+  "title": "Commando crawl method",
+  "page": 213,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   245.37
+  ],
+  "png": "TC3-21.76_fig_9-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-23",
+  "manual": "TC3-21.76",
+  "num": "9-23",
+  "title": "Rappel seat (Tyrolean traverse) method",
+  "page": 214,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   239.37
+  ],
+  "png": "TC3-21.76_fig_9-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-24",
+  "manual": "TC3-21.76",
+  "num": "9-24",
+  "title": "Z-Pulley system",
+  "page": 216,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   290.01
+  ],
+  "png": "TC3-21.76_fig_9-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-25",
+  "manual": "TC3-21.76",
+  "num": "9-25",
+  "title": "Hasty rappel",
+  "page": 217,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_9-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-26",
+  "manual": "TC3-21.76",
+  "num": "9-26",
+  "title": "Body rappel",
+  "page": 218,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   316.2
+  ],
+  "png": "TC3-21.76_fig_9-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-27",
+  "manual": "TC3-21.76",
+  "num": "9-27",
+  "title": "Figure-eight descender",
+  "page": 219,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   206.47
+  ],
+  "png": "TC3-21.76_fig_9-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-28",
+  "manual": "TC3-21.76",
+  "num": "9-28",
+  "title": "Close-up of carabiner wrap descender, and the seat hip rappel",
+  "page": 219,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   374.516
+  ],
+  "png": "TC3-21.76_fig_9-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-29",
+  "manual": "TC3-21.76",
+  "num": "9-29",
+  "title": "Sling extension",
+  "page": 220,
+  "bbox": [
+   26.25,
+   93.55000000000001,
+   316.0,
+   324.72
+  ],
+  "png": "TC3-21.76_fig_9-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/9-30",
+  "manual": "TC3-21.76",
+  "num": "9-30",
+  "title": "Extended ATC rappel",
+  "page": 221,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   321.0
+  ],
+  "png": "TC3-21.76_fig_9-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/10-1",
+  "manual": "TC3-21.76",
+  "num": "10-1",
+  "title": "Trajectory and maximum ordinate",
+  "page": 225,
+  "bbox": [
+   22.28,
+   177.24999,
+   318.62001,
+   292.77
+  ],
+  "png": "TC3-21.76_fig_10-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/10-2",
+  "manual": "TC3-21.76",
+  "num": "10-2",
+  "title": "Cone of fire and the beaten zone",
+  "page": 226,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   186.91
+  ],
+  "png": "TC3-21.76_fig_10-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/10-3",
+  "manual": "TC3-21.76",
+  "num": "10-3",
+  "title": "Classes of fire, respect to ground",
+  "page": 227,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   302.49
+  ],
+  "png": "TC3-21.76_fig_10-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/10-5",
+  "manual": "TC3-21.76",
+  "num": "10-5",
+  "title": "Classes of fire, respect to gun",
+  "page": 232,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   329.756
+  ],
+  "png": "TC3-21.76_fig_10-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/11-1",
+  "manual": "TC3-21.76",
+  "num": "11-1",
+  "title": "07-4-D9509. Clear a room, first two Soldiers enter",
+  "page": 246,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   212.82999999999998
+  ],
+  "png": "TC3-21.76_fig_11-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/11-2",
+  "manual": "TC3-21.76",
+  "num": "11-2",
+  "title": "07-4-D9509. Clear a room, third Soldier enters",
+  "page": 246,
+  "bbox": [
+   26.25,
+   219.9,
+   316.05,
+   347.516
+  ],
+  "png": "TC3-21.76_fig_11-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/11-3",
+  "manual": "TC3-21.76",
+  "num": "11-3",
+  "title": "07-4-D9509. Clear a room, third Soldier enters dominating his sector",
+  "page": 247,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   205.39
+  ],
+  "png": "TC3-21.76_fig_11-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-1",
+  "manual": "TC3-21.76",
+  "num": "12-1",
+  "title": "Position of bridge team personnel",
+  "page": 251,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_12-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-2",
+  "manual": "TC3-21.76",
+  "num": "12-2",
+  "title": "Transport-tightening system",
+  "page": 253,
+  "bbox": [
+   29.25,
+   129.89999999999998,
+   313.25,
+   329.276
+  ],
+  "png": "TC3-21.76_fig_12-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-3",
+  "manual": "TC3-21.76",
+  "num": "12-3",
+  "title": "Weapon rigging",
+  "page": 258,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   352.196
+  ],
+  "png": "TC3-21.76_fig_12-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-4",
+  "manual": "TC3-21.76",
+  "num": "12-4",
+  "title": "Rucksack rigging",
+  "page": 259,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   222.91
+  ],
+  "png": "TC3-21.76_fig_12-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-5",
+  "manual": "TC3-21.76",
+  "num": "12-5",
+  "title": "Equipment rigging",
+  "page": 260,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   283.16999999999996
+  ],
+  "png": "TC3-21.76_fig_12-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/12-6",
+  "manual": "TC3-21.76",
+  "num": "12-6",
+  "title": "Crew positions, long count and short count",
+  "page": 261,
+  "bbox": [
+   26.25,
+   171.25,
+   316.0,
+   348.836
+  ],
+  "png": "TC3-21.76_fig_12-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-1",
+  "manual": "TC3-21.76",
+  "num": "13-1",
+  "title": "React to ambush (near)",
+  "page": 272,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_13-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-2",
+  "manual": "TC3-21.76",
+  "num": "13-2",
+  "title": "React to ambush (far)",
+  "page": 273,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_13-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-3",
+  "manual": "TC3-21.76",
+  "num": "13-3",
+  "title": "Mounted patrol forced to stop, method one",
+  "page": 275,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.836
+  ],
+  "png": "TC3-21.76_fig_13-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-4",
+  "manual": "TC3-21.76",
+  "num": "13-4",
+  "title": "Mounted patrol forced to stop, method two",
+  "page": 277,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_13-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-5",
+  "manual": "TC3-21.76",
+  "num": "13-5",
+  "title": "Break contact",
+  "page": 279,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_13-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/13-6",
+  "manual": "TC3-21.76",
+  "num": "13-6",
+  "title": "Recovery/CASEVAC operations",
+  "page": 281,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_13-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-1",
+  "manual": "TC3-21.76",
+  "num": "14-1",
+  "title": "Inverted \"Y\"",
+  "page": 285,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   264.92999999999995
+  ],
+  "png": "TC3-21.76_fig_14-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-2",
+  "manual": "TC3-21.76",
+  "num": "14-2",
+  "title": "Heavy left or heavy right formation",
+  "page": 287,
+  "bbox": [
+   26.25,
+   93.54999999999995,
+   316.0,
+   236.37
+  ],
+  "png": "TC3-21.76_fig_14-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-3",
+  "manual": "TC3-21.76",
+  "num": "14-3",
+  "title": "Diamond formation",
+  "page": 288,
+  "bbox": [
+   26.25,
+   93.54999999999995,
+   316.0,
+   382.076
+  ],
+  "png": "TC3-21.76_fig_14-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-4",
+  "manual": "TC3-21.76",
+  "num": "14-4",
+  "title": "Vee formation",
+  "page": 289,
+  "bbox": [
+   26.25,
+   86.60000000000002,
+   316.0,
+   299.73
+  ],
+  "png": "TC3-21.76_fig_14-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-5",
+  "manual": "TC3-21.76",
+  "num": "14-5",
+  "title": "Echelon left or right formation",
+  "page": 290,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   311.49
+  ],
+  "png": "TC3-21.76_fig_14-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-6",
+  "manual": "TC3-21.76",
+  "num": "14-6",
+  "title": "Trail formation",
+  "page": 291,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   362.276
+  ],
+  "png": "TC3-21.76_fig_14-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-7",
+  "manual": "TC3-21.76",
+  "num": "14-7",
+  "title": "Staggered trail left or right formation",
+  "page": 292,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   314.37
+  ],
+  "png": "TC3-21.76_fig_14-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-8",
+  "manual": "TC3-21.76",
+  "num": "14-8",
+  "title": "Large, one-sided pickup zone",
+  "page": 293,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   340.43600000000004
+  ],
+  "png": "TC3-21.76_fig_14-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-9",
+  "manual": "TC3-21.76",
+  "num": "14-9",
+  "title": "UH-60L loading sequence",
+  "page": 294,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   254.25
+  ],
+  "png": "TC3-21.76_fig_14-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-10",
+  "manual": "TC3-21.76",
+  "num": "14-10",
+  "title": "UH-60L unloading sequence",
+  "page": 295,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   239.37
+  ],
+  "png": "TC3-21.76_fig_14-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-11",
+  "manual": "TC3-21.76",
+  "num": "14-11",
+  "title": "Tactical loading sequence",
+  "page": 296,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_14-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-12",
+  "manual": "TC3-21.76",
+  "num": "14-12",
+  "title": "Tactical unloading sequence using door nearest cover, concealment",
+  "page": 297,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_14-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/14-13",
+  "manual": "TC3-21.76",
+  "num": "14-13",
+  "title": "CH 47/CV-22 rear ramp off-load",
+  "page": 298,
+  "bbox": [
+   26.25,
+   114.5,
+   316.05,
+   332.516
+  ],
+  "png": "TC3-21.76_fig_14-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-1",
+  "manual": "TC3-21.76",
+  "num": "15-1",
+  "title": "Chin lift and jaw thrust methods",
+  "page": 306,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   206.23
+  ],
+  "png": "TC3-21.76_fig_15-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-2",
+  "manual": "TC3-21.76",
+  "num": "15-2",
+  "title": "Nasal airway insertion",
+  "page": 307,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   329.2,
+   239.60999999999999
+  ],
+  "png": "TC3-21.76_fig_15-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-3",
+  "manual": "TC3-21.76",
+  "num": "15-3",
+  "title": "Mouth airway insertion",
+  "page": 308,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   293.97
+  ],
+  "png": "TC3-21.76_fig_15-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-4",
+  "manual": "TC3-21.76",
+  "num": "15-4",
+  "title": "Percentage of body area",
+  "page": 310,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   378.836
+  ],
+  "png": "TC3-21.76_fig_15-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/15-5",
+  "manual": "TC3-21.76",
+  "num": "15-5",
+  "title": "Poisonous plants",
+  "page": 314,
+  "bbox": [
+   26.25,
+   238.6,
+   316.0,
+   374.996
+  ],
+  "png": "TC3-21.76_fig_15-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-1",
+  "manual": "TC3-21.76",
+  "num": "A-1",
+  "title": "React to indirect fire",
+  "page": 320,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_A-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-2",
+  "manual": "TC3-21.76",
+  "num": "A-2",
+  "title": "React to direct fire contact",
+  "page": 321,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   311.85
+  ],
+  "png": "TC3-21.76_fig_A-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-3",
+  "manual": "TC3-21.76",
+  "num": "A-3",
+  "title": "React to a near ambush",
+  "page": 322,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.40999999999997
+  ],
+  "png": "TC3-21.76_fig_A-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-4",
+  "manual": "TC3-21.76",
+  "num": "A-4",
+  "title": "Break contact",
+  "page": 323,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_A-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-5",
+  "manual": "TC3-21.76",
+  "num": "A-5",
+  "title": "Formations and order of movement",
+  "page": 324,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   309.93
+  ],
+  "png": "TC3-21.76_fig_A-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-6",
+  "manual": "TC3-21.76",
+  "num": "A-6",
+  "title": "Linkup",
+  "page": 325,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   306.81
+  ],
+  "png": "TC3-21.76_fig_A-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-7",
+  "manual": "TC3-21.76",
+  "num": "A-7",
+  "title": "Linear danger area",
+  "page": 326,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.40999999999997
+  ],
+  "png": "TC3-21.76_fig_A-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-8",
+  "manual": "TC3-21.76",
+  "num": "A-8",
+  "title": "Large open danger area",
+  "page": 327,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_A-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-9",
+  "manual": "TC3-21.76",
+  "num": "A-9",
+  "title": "Crossing a small open area",
+  "page": 328,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.40999999999997
+  ],
+  "png": "TC3-21.76_fig_A-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-10",
+  "manual": "TC3-21.76",
+  "num": "A-10",
+  "title": "Squad attack",
+  "page": 329,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_A-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-11",
+  "manual": "TC3-21.76",
+  "num": "A-11",
+  "title": "Crossing a small open area",
+  "page": 330,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   360.116
+  ],
+  "png": "TC3-21.76_fig_A-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-12",
+  "manual": "TC3-21.76",
+  "num": "A-12",
+  "title": "Raid boards (middle)",
+  "page": 332,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   303.45
+  ],
+  "png": "TC3-21.76_fig_A-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-13",
+  "manual": "TC3-21.76",
+  "num": "A-13",
+  "title": "Leader's reconnaissance",
+  "page": 337,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   295.28999999999996
+  ],
+  "png": "TC3-21.76_fig_A-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-14",
+  "manual": "TC3-21.76",
+  "num": "A-14",
+  "title": "Diamond and vee formations",
+  "page": 339,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   281.85
+  ],
+  "png": "TC3-21.76_fig_A-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-15",
+  "manual": "TC3-21.76",
+  "num": "A-15",
+  "title": "Clearing hallway junctions",
+  "page": 341,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   376.436
+  ],
+  "png": "TC3-21.76_fig_A-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-16",
+  "manual": "TC3-21.76",
+  "num": "A-16",
+  "title": "Clearing a \"T\" intersection",
+  "page": 343,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   376.436
+  ],
+  "png": "TC3-21.76_fig_A-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/A-17",
+  "manual": "TC3-21.76",
+  "num": "A-17",
+  "title": "Three-man flow clearing technique",
+  "page": 345,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   370.916
+  ],
+  "png": "TC3-21.76_fig_A-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/B-1",
+  "manual": "TC3-21.76",
+  "num": "B-1",
+  "title": "IED/UXO card",
+  "page": 350,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   322.05,
+   304.41
+  ],
+  "png": "TC3-21.76_fig_B-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/B-2",
+  "manual": "TC3-21.76",
+  "num": "B-2",
+  "title": "Range card with final protective line",
+  "page": 351,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   322.05,
+   309.09000000000003
+  ],
+  "png": "TC3-21.76_fig_B-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/B-3",
+  "manual": "TC3-21.76",
+  "num": "B-3",
+  "title": "Standard Range Card",
+  "page": 352,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   385.556
+  ],
+  "png": "TC3-21.76_fig_B-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-21.76/fig/B-4",
+  "manual": "TC3-21.76",
+  "num": "B-4",
+  "title": "NATO 9-Line MEDEVAC Request card and MIST report",
+  "page": 353,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   386.996
+  ],
+  "png": "TC3-21.76_fig_B-4.png",
+  "restricted": false,
+  "dpi": 200
+ }
+]

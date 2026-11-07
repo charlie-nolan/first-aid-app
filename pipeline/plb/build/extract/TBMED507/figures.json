@@ -1,0 +1,562 @@
+[
+ {
+  "id": "TBMED507/fig/2-1",
+  "manual": "TBMED507",
+  "num": "2-1",
+  "title": "Overall frequency and weekly distribution of heat exhaustion and heat stroke over a 5-year",
+  "page": 7,
+  "bbox": [
+   44.96,
+   481.8568,
+   567.0400000000001,
+   521.0968
+  ],
+  "png": "TBMED507_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/2-2",
+  "manual": "TBMED507",
+  "num": "2-2",
+  "title": "Energy (heat) transfer of a Service member performing physical work in a hot environment,",
+  "page": 7,
+  "bbox": [
+   44.96,
+   528.1768,
+   567.0400000000001,
+   543.9268
+  ],
+  "png": "TBMED507_fig_2-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/2-3",
+  "manual": "TBMED507",
+  "num": "2-3",
+  "title": "Effect of measurement location on WBGT index, Fort Benning, Georgia, July 2005, page 8",
+  "page": 7,
+  "bbox": [
+   44.96,
+   551.0068,
+   567.0400000000001,
+   566.70664
+  ],
+  "png": "TBMED507_fig_2-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/2-4",
+  "manual": "TBMED507",
+  "num": "2-4",
+  "title": "Independent and combined effects of environmental heat stress on a self-paced endurance",
+  "page": 7,
+  "bbox": [
+   44.96,
+   573.8068000000001,
+   567.0400000000001,
+   578.4868
+  ],
+  "png": "TBMED507_fig_2-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/2-5",
+  "manual": "TBMED507",
+  "num": "2-5",
+  "title": "Trade-off analysis performance nomogram, page 10",
+  "page": 7,
+  "bbox": [
+   44.96,
+   585.5668000000001,
+   567.0400000000001,
+   601.26664
+  ],
+  "png": "TBMED507_fig_2-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-1",
+  "manual": "TBMED507",
+  "num": "3-1",
+  "title": "Heat stress risk assessment process, page 14",
+  "page": 7,
+  "bbox": [
+   44.96,
+   585.5668000000001,
+   567.0400000000001,
+   612.78664
+  ],
+  "png": "TBMED507_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-2",
+  "manual": "TBMED507",
+  "num": "3-2",
+  "title": "Illustration of body core temperature responses during continuous physical work at three",
+  "page": 7,
+  "bbox": [
+   44.96,
+   585.5668000000001,
+   567.0400000000001,
+   624.5868
+  ],
+  "png": "TBMED507_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-3",
+  "manual": "TBMED507",
+  "num": "3-3",
+  "title": "Comparison between military and sports medicine WBGT index categories, page 20",
+  "page": 7,
+  "bbox": [
+   44.96,
+   631.6668,
+   567.0400000000001,
+   647.36664
+  ],
+  "png": "TBMED507_fig_3-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-4",
+  "manual": "TBMED507",
+  "num": "3-4",
+  "title": "Historical weather data from Fort Benning, Georgia, July 31, 2017, page 21",
+  "page": 7,
+  "bbox": [
+   44.96,
+   654.4668,
+   567.0400000000001,
+   658.6466399999999
+  ],
+  "png": "TBMED507_fig_3-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-5",
+  "manual": "TBMED507",
+  "num": "3-5",
+  "title": "Comparison of body heat storage rates during a 12-mile march with 55 pounds completed in",
+  "page": 7,
+  "bbox": [
+   44.96,
+   665.7468,
+   567.0400000000001,
+   670.4268
+  ],
+  "png": "TBMED507_fig_3-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-6",
+  "manual": "TBMED507",
+  "num": "3-6",
+  "title": "Body cooling methods for the prevention and treatment of exertional heat illness, page 23",
+  "page": 8,
+  "bbox": [
+   44.96,
+   43.519999999999996,
+   567.0400000000001,
+   106.7166400000001
+  ],
+  "png": "TBMED507_fig_3-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-7",
+  "manual": "TBMED507",
+  "num": "3-7",
+  "title": "Accumulated differences between water intake (in accordance with table 3-2) and measured",
+  "page": 8,
+  "bbox": [
+   44.96,
+   113.81680000000006,
+   567.0400000000001,
+   118.52679999999998
+  ],
+  "png": "TBMED507_fig_3-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-8",
+  "manual": "TBMED507",
+  "num": "3-8",
+  "title": "Screenshots of the Soldier Water Estimation Tool (SWET) main (A) and mission planner (B)",
+  "page": 8,
+  "bbox": [
+   44.96,
+   136.64679999999998,
+   567.0400000000001,
+   141.32679999999993
+  ],
+  "png": "TBMED507_fig_3-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/4-1",
+  "manual": "TBMED507",
+  "num": "4-1",
+  "title": "Spectrum of exertional heat illness with associated categories of physiological dysfunction,",
+  "page": 8,
+  "bbox": [
+   44.96,
+   148.40679999999998,
+   567.0400000000001,
+   164.3668
+  ],
+  "png": "TBMED507_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/5-1",
+  "manual": "TBMED507",
+  "num": "5-1",
+  "title": "Field treatment of heat casualties, page 44",
+  "page": 8,
+  "bbox": [
+   44.96,
+   171.44680000000005,
+   567.0400000000001,
+   187.14664000000005
+  ],
+  "png": "TBMED507_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/5-2",
+  "manual": "TBMED507",
+  "num": "5-2",
+  "title": "Treatment mock-up of a Navy heat illness cooling deck outside the John H. Bradley",
+  "page": 8,
+  "bbox": [
+   44.96,
+   171.44680000000005,
+   567.0400000000001,
+   198.92679999999996
+  ],
+  "png": "TBMED507_fig_5-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/5-3",
+  "manual": "TBMED507",
+  "num": "5-3",
+  "title": "Rectal temperature cooling rate in EHS casualties using the method",
+  "page": 8,
+  "bbox": [
+   44.96,
+   206.0068,
+   567.0400000000001,
+   221.98680000000002
+  ],
+  "png": "TBMED507_fig_5-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/2-1",
+  "manual": "TBMED507",
+  "num": "2-1",
+  "title": "Overall frequency and weekly distribution of heat exhaustion and heat stroke over a",
+  "page": 13,
+  "bbox": [
+   239.84,
+   353.38669999999996,
+   330.4733,
+   375.1568
+  ],
+  "png": "TBMED507_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/2-2",
+  "manual": "TBMED507",
+  "num": "2-2",
+  "title": "Energy (heat) transfer of a Service member performing physical work in a",
+  "page": 14,
+  "bbox": [
+   81.5,
+   114.0,
+   557.5,
+   381.3968
+  ],
+  "png": "TBMED507_fig_2-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/2-3",
+  "manual": "TBMED507",
+  "num": "2-3",
+  "title": "Effect of measurement location on WBGT index, Fort Benning, Georgia, July 2005.",
+  "page": 16,
+  "bbox": [
+   218.465881912,
+   279.12422804535004,
+   395.45724838176,
+   504.29679999999996
+  ],
+  "png": "TBMED507_fig_2-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/2-4",
+  "manual": "TBMED507",
+  "num": "2-4",
+  "title": "Independent and combined effects of environmental heat stress on a self-paced",
+  "page": 18,
+  "bbox": [
+   148.3068510665306,
+   152.98170611940805,
+   389.426316956606,
+   322.81679999999994
+  ],
+  "png": "TBMED507_fig_2-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/2-5",
+  "manual": "TBMED507",
+  "num": "2-5",
+  "title": "Trade-off analysis performance nomogram.",
+  "page": 18,
+  "bbox": [
+   145.0,
+   422.05,
+   480.43,
+   651.9467999999999
+  ],
+  "png": "TBMED507_fig_2-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-1",
+  "manual": "TBMED507",
+  "num": "3-1",
+  "title": "Heat stress risk assessment process.",
+  "page": 22,
+  "bbox": [
+   140.6,
+   102.5,
+   471.38,
+   446.91679999999997
+  ],
+  "png": "TBMED507_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-2",
+  "manual": "TBMED507",
+  "num": "3-2",
+  "title": "Illustration of body core temperature responses during continuous physical work at",
+  "page": 23,
+  "bbox": [
+   160.41845362334112,
+   128.7878198508015,
+   433.7443627018909,
+   336.7368
+  ],
+  "png": "TBMED507_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-3",
+  "manual": "TBMED507",
+  "num": "3-3",
+  "title": "Comparison between military and sports medicine WBGT index categories.",
+  "page": 28,
+  "bbox": [
+   169.25,
+   102.5,
+   456.22,
+   415.2368
+  ],
+  "png": "TBMED507_fig_3-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-4",
+  "manual": "TBMED507",
+  "num": "3-4",
+  "title": "Historical weather data from Fort Benning, Georgia, July 31, 2017.",
+  "page": 29,
+  "bbox": [
+   239.79834649541075,
+   190.50319259863375,
+   427.46628451088833,
+   359.05679999999995
+  ],
+  "png": "TBMED507_fig_3-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-5",
+  "manual": "TBMED507",
+  "num": "3-5",
+  "title": "Comparison of body heat storage rates during a 12-mile march with 55 pounds",
+  "page": 29,
+  "bbox": [
+   263.00249900871216,
+   421.5801182702976,
+   380.45261915225774,
+   621.7067999999999
+  ],
+  "png": "TBMED507_fig_3-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-6",
+  "manual": "TBMED507",
+  "num": "3-6",
+  "title": "Body cooling methods for the prevention and treatment of exertional heat illness",
+  "page": 31,
+  "bbox": [
+   164.52,
+   102.5,
+   460.97,
+   377.79679999999996
+  ],
+  "png": "TBMED507_fig_3-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-7",
+  "manual": "TBMED507",
+  "num": "3-7",
+  "title": "Accumulated differences between water intake (in accordance with table 3-2) and",
+  "page": 35,
+  "bbox": [
+   188.4090358405674,
+   219.78890513749263,
+   466.69702313417343,
+   421.71680000000003
+  ],
+  "png": "TBMED507_fig_3-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/3-8",
+  "manual": "TBMED507",
+  "num": "3-8",
+  "title": "Screenshots of Soldier Water Estimation Tool (SWET) main (A) and",
+  "page": 36,
+  "bbox": [
+   165.43,
+   102.49000000000001,
+   446.58,
+   343.69680000000005
+  ],
+  "png": "TBMED507_fig_3-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/4-1",
+  "manual": "TBMED507",
+  "num": "4-1",
+  "title": "Spectrum of exertional heat illness with associated categories of",
+  "page": 41,
+  "bbox": [
+   138.0,
+   171.49,
+   473.97,
+   364.81679999999994
+  ],
+  "png": "TBMED507_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/5-1",
+  "manual": "TBMED507",
+  "num": "5-1",
+  "title": "Field treatment of heat casualties",
+  "page": 52,
+  "bbox": [
+   132.5,
+   114.0,
+   479.47,
+   427.4768
+  ],
+  "png": "TBMED507_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/5-2",
+  "manual": "TBMED507",
+  "num": "5-2",
+  "title": "While the average cooling rate is ~0.10  degrees F per minute, the range of cooling responses is",
+  "page": 53,
+  "bbox": [
+   44.96,
+   309.4968,
+   567.0400000000001,
+   313.93679999999995
+  ],
+  "png": "TBMED507_fig_5-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/5-2",
+  "manual": "TBMED507",
+  "num": "5-2",
+  "title": "Treatment mock-up of a Navy heat illness cooling deck outside the John H. Bradley",
+  "page": 53,
+  "bbox": [
+   137.57,
+   366.97,
+   474.32,
+   493.4968
+  ],
+  "png": "TBMED507_fig_5-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/5-3",
+  "manual": "TBMED507",
+  "num": "5-3",
+  "title": "Rectal temperature cooling rate in EHS casualties using the method illustrated in",
+  "page": 54,
+  "bbox": [
+   203.692592,
+   121.16837221545006,
+   422.379952,
+   307.69680000000005
+  ],
+  "png": "TBMED507_fig_5-3.png",
+  "restricted": false,
+  "dpi": 200
+ }
+]

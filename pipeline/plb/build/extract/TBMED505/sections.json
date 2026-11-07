@@ -1,0 +1,486 @@
+[
+ {
+  "id": "TBMED505/1-1",
+  "manual": "TBMED505",
+  "para": "1-1",
+  "chapter": "CHAPTER 1",
+  "heading": "INTRODUCTION",
+  "pages": [
+   9
+  ],
+  "text": "Definition and purpose The subject matter of this bulletin is hypobaric hypoxia, an environmental stress resulting from ascent to progressively higher terrestrial elevation or altitude. This bulletin defines the threshold altitude at which hypobaric hypoxia becomes functionally and medically significant at 1,200 meters (m) (3,937 feet (ft)) above sea level. Throughout this bulletin, the terms altitude, elevation, hypobaric hypoxia, or hypoxia are considered interchangeable. This bulletin provides guidance to military and civilian health care providers, allied medical personnel, unit commanders and leaders to--\na. Develop an evidence-based prevention program to protect military personnel from altitude stress and associated adverse health effects.\nb. Understand the physiologic responses and adaptations to altitude (chapter 2).\nc. Implement procedures for managing altitude stress (chapter 3).\nd. Understand the principles and proper use of altitude acclimatization tables (chapter 3).\ne. Understand the physical work performance limitations caused by altitude (chapter 4).\nf. Understand the neuropsychological performance limitations caused by altitude (chapter 5).\ng. Understand the diagnosis and treatment of altitude illness and other medical conditions associated with altitude environments (chapter 6).\nh. Identify the risk factors for altitude illnesses and implement prevention and treatment protocols (chapter 6).\ni. Understand the principles and use of the altitude illness probabilities (chapter 6).\nj. Prevent altitude injuries during training and operational deployments.\nk. Provide background information for reporting and data collection of epidemiological information to note trends and to identify individual, work, and environmental factors that are not adequately controlled by preventive measures and policies."
+ },
+ {
+  "id": "TBMED505/1-2",
+  "manual": "TBMED505",
+  "para": "1-2",
+  "chapter": "CHAPTER 1",
+  "heading": "INTRODUCTION",
+  "pages": [
+   9
+  ],
+  "text": "References Required and related publications are listed in appendix A."
+ },
+ {
+  "id": "TBMED505/1-3",
+  "manual": "TBMED505",
+  "para": "1-3",
+  "chapter": "CHAPTER 1",
+  "heading": "INTRODUCTION",
+  "pages": [
+   9
+  ],
+  "text": "Explanation of abbreviations and terms The glossary contains a list of abbreviations and terms used in this publication. Use of trademarked names does not imply endorsement by the U.S. Army but is intended only to assist in identification of a specific product."
+ },
+ {
+  "id": "TBMED505/1-4",
+  "manual": "TBMED505",
+  "para": "1-4",
+  "chapter": "CHAPTER 1",
+  "heading": "TB MED 505",
+  "pages": [
+   10
+  ],
+  "text": "Roles\na. Unit commander, leaders, and medical personnel, preventive medicine officers, medics and combat lifesavers, Soldiers, and local medical commands will coordinate to implement educational and training programs at all levels in the command based on the principles of this document. They should review all training and operations to make sure adequate planning is made for emergency medical support and altitude illness assessment and management where tactically feasible.\nb. Unit commanders and leaders, when appropriate, will--\n(1) Integrate the medical officer into all unit staff functions.\n(2) Assess training/mission hazards from altitude exposure.\n(3) Develop and implement controls for altitude exposure.\n(4) Ensure Soldiers are provided adequate training, clothing, shelter, food, and beverages for altitude operations.\n(5) Modify physical exertion levels to compensate for effects of increasing altitude.\n(6) Ensure planning for all aspects of fluid and food availability.\n(7) Modify altitude exposures to provide safe alternative training for individuals or units identified as being at particular risk for altitude casualties.\n(8) Initiate a buddy system under altitude conditions and have Soldiers check each other for altitude illness.\n(9) Ensure the study of terrain elevations at the deployment site in the advance planning stages, to include location(s) of the lowest elevations for possible altitude treatment activities, as well as the mean and highest elevations at the deployment site to assess impact on physical and cognitive work performances and susceptibility to altitude illness.\n(10) Obtain regular real-time weather data and predictions to decrease the risk of cold or heat injury or to provide windows of opportunity for critical military operations.\nc. Unit medical personnel or area support medical company staff will--\n(1) Understand the commander's intent and mission goals, advise the commander on the potential adverse effects of altitude, and propose practical options for control of altitude exposure.\n(2) Assess each component of altitude exposure (condition of the Soldier, elevation, duration of exposure, environmental factors, work load and mission requirements) to plan for the primary prevention of altitude illness by answering the following questions:\n(a) What is the altitude and duration of altitude exposure?\n(b) What is the altitude acclimatization status of the Soldier?\n(c) What work intensity and duration are planned?\n(d) Will the Soldier be with a buddy who can assist/watch over him or her to identify and mitigate development of altitude illness?\n(3) Estimate the altitude acclimatization status of the unit and provide guidance for regulating physical activities according to the altitude and terrain in the deployment site.\n(4) Assist the logistician in estimating water, food, clothing, and shelter requirements.\n(5) Develop a casualty evacuation plan to include a means of monitoring patients."
+ },
+ {
+  "id": "TBMED505/2-1",
+  "manual": "TBMED505",
+  "para": "2-1",
+  "chapter": "CHAPTER 2",
+  "heading": "PHYSIOLOGIC RESPONSES AND ADAPTATIONS TO ALTITUDE",
+  "pages": [
+   13
+  ],
+  "text": "Altitude stress in military operations\na. Altitude is the vertical height above sea level of a land mass (for example, Mount Everest) or object (for example, aircraft). With increasing altitude, a decrease in the atmospheric barometric pressure causes a proportional decrease in the partial pressure of oxygen. Ultimately, with increasing altitude the oxygen partial pressure falls to a level at which there are measurable changes in physiological responses, physical and cognitive performance, and the emergence of altitude illness. Based on these measurements, functional definitions of altitude stress have been developed. In this bulletin, altitude stress is defined as terrestrial elevations at or above 1,200 m (3,937 ft). At and above this elevation, the decreased availability of oxygen (that is, hypoxia) in the atmospheric air causes functional impairments and altitude illness. Further demarcations of altitudes above 1,200 m (for example, moderate, high, very high and extreme altitudes) are provided later in this chapter. Throughout this bulletin, the terms altitude, elevation, hypobaric hypoxia, or hypoxia are considered interchangeable. Reference to altitude will be presented in meters, which is the measurement of altitude presented on U.S. military grid maps. Conversions between feet and meters is provided in the glossary.\nb. Soldiers participating in military training and deployments do not often encounter altitude stress. Within the U.S., few military installations are located at altitude (table 2-1). Even at these installations, the area available for maneuvers may be very limited. For example, only the very limited mountainous regions of Fort Irwin are above 1,200 m. Thus, opportunities for training at altitude are limited. Nevertheless, the lack of familiarity and experience with strategies to cope with this unique environment should not be minimized because altitude exposure can deleteriously affect health, mental and physical performance, and morale. U.S. military deployments and operations at altitude have increased as a result of combat operations against military units or terrorist organizations based in high mountainous terrain. A list of countries with geographical elevations above 1,200 m is listed in appendix B. Units preparing for deployments to altitude regions should give strong consideration to scheduling training at altitude prior to deployment."
+ },
+ {
+  "id": "TBMED505/2-2",
+  "manual": "TBMED505",
+  "para": "2-2",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 505",
+  "pages": [
+   16
+  ],
+  "text": "Altitude and hypoxemia\na. Decreased availability of oxygen in the atmospheric air (hypobaric hypoxia) is the only environmental stress unique to high terrestrial altitude. It lowers the oxygen supply to body tissues which causes altitude illness and a decline in physical and mental performance often seen in military and civilian personnel operating in high mountain terrain. Hypobaric hypoxia can also interact with other factors in the environment to increase the likelihood of environmentrelated injuries, or it can exacerbate preexisting medical conditions. Given its widespread effects, a basic understanding of hypobaric hypoxia is essential for medical personnel who support military units operating in high mountain regions.\nb. There is a curvilinear reduction in the atmospheric barometric pressure (P ) with increasing B altitude (figure 2-1). In figure 2-1, the P is measured in millimeters mercury (mmHg). The B exact magnitude of the reduction at any geographic location depends on the combination of elevation, latitude, weather, and season. Generally, within 30 degrees latitude of the equator, the prevailing P is higher than predicted by the Standard Atmosphere Model, resulting in a B \"physiological altitude\" that is generally 100-200 m lower than the actual terrestrial altitude. Conversely, the atmospheric prevailing P is lower than predicted by the Standard Atmosphere B Model as one approaches the Poles (for example, South Pole elevation is 2,837 m, but atmospheric P is equivalent to 3,352 m). Table 2-2 shows the relationship between altitude and B P based on the Standard Atmosphere Model (U.S. Standard Atmosphere 1962). To use the table B to estimate altitude from a reported P in the U.S., use the \"Station Pressure\" observations from B the National Oceanic and Atmospheric Administration (NOAA), usually reported in inches mercury (inHg). The U.S. Air Force (USAF) weather observations usually report P in millibars B (mb), the North Atlantic Treaty Organization (NATO) Nations report in either mb or hectopascals (hPa), and medical units with arterial blood gas analyzers usually measure P in B mmHg."
+ },
+ {
+  "id": "TBMED505/2-3",
+  "manual": "TBMED505",
+  "para": "2-3",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 505",
+  "pages": [
+   21
+  ],
+  "text": "Adaptations to altitude\na. Exposure to levels of hypoxia inherent to elevations over 1,200 m triggers a series of integrated physiologic changes in Soldiers who ascend from lower altitudes. These changes function to increase O supply to body tissues and are most noticeable in those body systems 2 involved in O delivery (that is, respiratory and cardiovascular), but changes probably occur in 2 all organ systems. Over time, the series of changes produce a state of physiologic adaptation termed \"acclimatization.\" Altitude acclimatization allows Soldiers to achieve the maximum physical and cognitive work performances possible for the altitude to ALTITUDE STRESS Key Points which they are acclimatized. More importantly from a medical perspective, * With increasing altitude, PO decreases 2 acclimatization is associated with the (hypoxia). absence of or very low susceptibility to\n- At and above 1,200 meters, hypoxia causes altitude illness. The rate and success of functional impairments and illness. acclimatization is a function of the\n- Hypoxia severity increases with altitude. interaction between the unique\n- Hypoxia causes physiological adaptations physiologic characteristics of the that improve oxygen delivery and individual Soldier and the magnitude of utilization. hypoxic stress as defined by the elevation\n- Between 70 and 80 percent of altitude gained and the speed of ascent. acclimatization occurs in the first week at a Acclimatization is elevation-specific, that specific altitude. is full acclimatization to a lower altitude\n- Large interindividual variability in confers only partial acclimatization to a physiologic response to hypoxia. higher altitude (for example, a resident of moderate altitude ascending to high altitude). Once acquired, acclimatization is maintained as long as the Soldier remains at altitude, but is lost over several days to a week or more after return to lower elevations.\nb. The physiologic changes that produce altitude acclimatization affect all phases of oxygen delivery and utilization from gas exchange in the lungs to diffusion of oxygen into mitochondria within individual cells. The major adaptations to altitude are summarized in table 2-4, and the"
+ },
+ {
+  "id": "TBMED505/2-4",
+  "manual": "TBMED505",
+  "para": "2-4",
+  "chapter": "CHAPTER 2",
+  "heading": "directly ascending to 4,300 meters",
+  "pages": [
+   25
+  ],
+  "text": "Individual factors modifying physiological responses to high altitude\na. Currently, no tests can predict individual susceptibility to altitude sickness or the adaptability to altitude of a healthy man or woman residing at low altitudes. Prior histories of altitude sickness or maladaptations to altitude are the best predictors of likely individual responses to future altitude exposures."
+ },
+ {
+  "id": "TBMED505/3-1",
+  "manual": "TBMED505",
+  "para": "3-1",
+  "chapter": "CHAPTER 3",
+  "heading": "ALTITUDE RISK MANAGEMENT",
+  "pages": [
+   29
+  ],
+  "text": "General\na. Rapid insertion of a military unit into a moderate to extreme altitude environment will cause immediate impairments in physical and cognitive work performance and trigger pathologic conditions collectively referred to as altitude illness. The purpose of this chapter is to provide guidance on recognizing the risks imposed by altitude and implementing effective controls to minimize altitude stress on individual and unit performance and health.\nb. Successful management of altitude stress depends on proper education and experience of leaders and troops exposed to altitude. Successful management of altitude stress results in sustained work capabilities and avoidance of casualties. Composite Risk Management (CRM) is the systematic five-step process of--\n(1) Identifying potential risks.\n(2) Assessing the significance of the risk.\n(3) Developing and selecting controls to minimize the risks.\n(4) Implementing the controls.\n(5) Supervising and evaluating the effectiveness of the controls.\nc. Field Manual (FM) 5-19 recommends using the mission, enemy, terrain and weather, troops and support available, time available, and civil considerations (METT-TC) model to identify potential sources of risk. Leaders must have knowledge and understanding of the risks associated with working in an altitude environment in order to minimize each risk factor imposed by altitude stress.\nd. Table 3-1 lists the most common risk factors that contribute to altitude stress. Using a simplified version of the METT-TC model, there are three principal sources of risk common to operations or training conducted at altitude: environmental, mission, and individual (table 3-1). Most of these risk factors are not unique to the altitude environment. Many impose their own stress on the Soldier independent of the unique altitude stress of hypoxia. However, several of these risks do have specific interactions with hypoxia. These risks factors with known impact on physical and cognitive work performances and susceptibility to altitude illness are listed with their relative impacts (that is, beneficial, no risk, slight risk, moderate risk and significant risk) in table 3-2."
+ },
+ {
+  "id": "TBMED505/3-2",
+  "manual": "TBMED505",
+  "para": "3-2",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 505",
+  "pages": [
+   32
+  ],
+  "text": "Altitude acclimatization procedures\na. General. Altitude acclimatization allows Soldiers to decrease their susceptibility to altitude illness and achieve optimal physical and cognitive performance for the altitude to which they are acclimatized. Altitude acclimatization can be induced in both natural and simulated altitude environments using continuous exposures, such as a staged ascent or graded ascent, and intermittent exposures, such as daily or frequent ascents and descents. Furthermore, altitude acclimatization has no negative side effects and will not harm health or physical performance upon return to low altitude. There are no pharmaceutical therapies that induce altitude acclimatization, but the drug acetazolamide can aid its development (chapter 6). Altitude acclimatization consists of physiological adaptations (chapter 2) that develop in a timedependent manner during continuous or repeated intermittent exposure to hypoxia. Effective and efficient induction of altitude acclimatization can be accomplished by following two golden rules--\n(1) Ascend to a high enough altitude to create an effective hypoxic stimulus, but not too high that significant altitude illness can develop.\n(2) Reside in the hypoxic environment for a sufficient period of time to allow the adaptations to develop.\nb. Staged ascent. The goal of staged ascent protocols is to promote development of altitude acclimatization while averting the adverse consequences of rapid ascent to ALTITUDE ACCLIMATIZATION higher altitudes (>2,400 m). These PROCEDURES staging recommendations will Key Points significantly reduce AMS incidence\n- Ascend high enough to induce adaptions, and severity and improve physical and but not so high as to develop altitude illness. cognitive work performance at higher\n- Unacclimatized Soldiers should not ascend altitudes. above 2,400 m.\n(1) Figure 3-1 provides\n- Stage 4-6 days between 2,000-2,400 m. recommended altitude staging profiles\n- Stage 7-14 days between 1,400-2,000 m. between 1,400 and 2,400 m to\n- Staging reduces AMS incidence for altitudes minimize AMS when ascending 1,000 to 2,000 m above the staging altitude. another 1,000 to 2,000 m. To use\n- Graded ascents above 2400 m should not figure 3-1, enter the altitude at which exceed 300 m/day. Soldiers will stage (y-axis), then move\n- Graded ascents greater than 300 m/day to the right; when intersecting the dark should include a rest day at each higher line, the x-axis provides the exposure altitude. duration needed to minimize AMS with further ascent. Altitude staging requires continuous exposure, and unacclimatized Soldiers should not go beyond 2,400 m without staging. The higher the initial staging altitude, the more quickly altitude acclimatization will be achieved until ~2,400 m; beyond this elevation the risk of developing altitude illness is high, and staging time for unacclimatized Soldiers is at least 3 days. For higher altitudes at or"
+ },
+ {
+  "id": "TBMED505/3-3",
+  "manual": "TBMED505",
+  "para": "3-3",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 505",
+  "pages": [
+   36
+  ],
+  "text": "Monitoring and assessing altitude acclimatization\na. Leaders are responsible for implementing controls to minimize identified risks and for continuously monitoring and evaluating their effectiveness. An important aspect of this implementation is being vigilant for signs of Soldier distress in the altitude environment so that management procedures and interventions can be adjusted accordingly to reduce work impairments and susceptibility to altitude illness. Therefore, all members of a unit must have knowledge of valid metrics for monitoring unit and individual acclimatization status.\nb. Written documentation of daily altitude exposure is the best and, at present, the only way to track unit acclimatization status. If units are deployed to terrestrial altitudes above 1,200 m or are passengers on aircraft with cabin altitudes greater than 1,200 m, then a log of their altitude exposure duration can be used to assess their altitude acclimatization status using the information provided in figure 3-1.\nc. Currently, there are no tests administered at low altitude that reliably assess a Soldier's altitude acclimatization status. The most objective and quantifiable assessment of altitude acclimatization is ventilatory acclimatization. However, in order to assess ventilatory acclimatization, the Soldier must be exposed to high altitude (real or simulated) during the measurement.\n(1) A useful and practical measure of ventilatory acclimatization is resting SaO by pulse 2 oximetry. However, any measurement of SaO by pulse oximetry must be carefully conducted to 2 eliminate possible aberrant results due to cold hands, physical movement artifact, talking, stimulation, voluntary hyperventilation, recent ingestion of food, caffeinated beverages, or recent exercise. A finger pulse oximeter placed on a cold finger will generally underreport the true SaO , while all other conditions will elevate the SaO above its true resting value. 2 2\n(2) A good time to assess resting SaO is immediately upon awakening while the Soldier is 2 still lying in his or her bed or sleeping bag. Table 3-4 lists the expected median resting SaO for 2 unacclimatized and acclimatized individuals over a wide range of altitudes. Soldiers with resting SaO at or below the median value are at greater risk of developing altitude illness than 2 individuals with resting SaO higher than the median SaO for that altitude. Regardless of initial 2 2"
+ },
+ {
+  "id": "TBMED505/3-4",
+  "manual": "TBMED505",
+  "para": "3-4",
+  "chapter": "CHAPTER 3",
+  "heading": "Value Personnel Altitude (m)",
+  "pages": [
+   37
+  ],
+  "text": "Pharmaceutical control for altitude stress Pharmaceutical enhancement of altitude acclimatization is extremely limited. Acetazolamide ? (Diamox ) is the only medication that induces physiological adaptations similar to altitude acclimatization. For hastening ventilatory acclimatization, acetazolamide administration (250 to 500 milligrams (mg), twice daily ( bis in die or b.i.d.)) should start at least 24 hrs prior to ascent. Depending upon acetazolamide dosage and target altitude, pharmaceutically aided ventilatory acclimatization is roughly equivalent to 2 to 4 days of continuous altitude residence. After 1 to 2 days at altitude, acetazolamide use can be stopped if symptoms of altitude illness are absent ? (chapter 6). (Diamox is a registered trademark of American Cyanamid Company, New York, New York.)"
+ },
+ {
+  "id": "TBMED505/3-5",
+  "manual": "TBMED505",
+  "para": "3-5",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 505",
+  "pages": [
+   38
+  ],
+  "text": "Supportive interventions\na. In addition to the procedures described for inducing altitude acclimatization, maintaining adequate hydration levels and primarily consuming carbohydrates can sustain physical performance and possibly decrease altitude illness susceptibility.\n(1) Dehydration significantly impairs physical performance and will increase susceptibility to AMS. The physical performance decrements produced by dehydration are most likely additive to the impairments produced by hypoxia. Dehydration does increase the severity of hypoxic symptoms, such as lightheadedness and dizziness. However, there is no evidence that sustaining a high water intake reduces risk of developing altitude illness. For the same atmospheric climatic conditions (temperature, humidity) and metabolic activity, water requirements may be slightly increased at altitude due to the increased loss of water through breathing and the diuresis produced by hypoxia and/or acetazolamide use. Daily water requirement guidance provided in Technical Bulletin, Medical (TB MED) 507/Air Force Pamphlet (AFPAM) 48-152(I) should be followed with a bias toward the upper range of estimated daily water required as altitude increases.\n(2) Carbohydrate is the most efficient fuel for optimizing physical performance at altitude. A 6-to-12 percent glucose or maltodextran solution in liquid form (for example, 56 grams (g) in 560 millimeters (mm) of water) ingested just before and periodically during moderate to intense physical activity improves endurance performance by 10-to-25 percent at 4,300 m in unacclimatized individuals. Carbohydrate supplementation also maintains blood glucose levels and reduces perception of effort. Moreover, its ingestion after activity completion hastens recovery and replenishment of muscle glycogen stores. In addition to providing energy to power prolonged and intense activity, ingesting carbohydrate in a liquid form assures a better hydration status by replacing much of the fluid volume lost due to sweating and increased ventilation.\nb. Exposure to altitude (continuous or intermittent) stimulates the body to produce more RBCs. This increased erythropoiesis draws on the body's iron stores, potentially causing iron deficiency. Individuals exposed to altitude should maintain an iron-rich diet and/or consider taking an iron supplement."
+ },
+ {
+  "id": "TBMED505/3-6",
+  "manual": "TBMED505",
+  "para": "3-6",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 505",
+  "pages": [
+   38
+  ],
+  "text": "Long-term high altitude residence\na. There have been relatively few prolonged (>month) deployments of U.S. forces to altitudes above 3,000 m. Since the majority of adaptive responses develop within the first weeks of high altitude exposure, a normal healthy Soldier will experience only modest improvements in health or performance with more prolonged residence at high altitudes. Below 5,000 m there are no significant negative consequences of residing at high altitudes for months to a year or more.\nb. Body weight loss is the most commonly observed change with prolonged residence at high to very high altitudes. Chronic mountain sickness has only been observed in life-long residents of high altitudes. Some physical deconditioning will occur at high altitudes since exercise training intensity is reduced (chapter 4). Soldiers will likely require longer times to complete the Army Physical Fitness Test (APFT) 2-mile run at and above 1,400 m."
+ },
+ {
+  "id": "TBMED505/4-1",
+  "manual": "TBMED505",
+  "para": "4-1",
+  "chapter": "CHAPTER 4",
+  "heading": "PHYSICAL PERFORMANCE CAPABILITIES AT ALTITUDE",
+  "pages": [
+   39
+  ],
+  "text": "General\na. Tactical operations dictate the timing and duration of deployments to mountainous regions. Military personnel will therefore be subjected to hypoxic conditions to which they may not be acclimatized.\nb. Hypoxia will immediately impair maximal and prolonged whole-body physical performance capabilities in all personnel by amounts generally proportional to the elevation. Impairments will occur for nearly all tasks but will be most conspicuous for those in which a given distance must be traversed in the shortest time or those that involve sustained or intermittent bouts of arduous physical activities for prolonged durations.\nc. The physical performance impairment for a particular task will be variable from one Soldier to another for any elevation above approximately 1,000 m. Specific physiological responses relate to factors such as fitness level, intensity of effort, size of the engaged muscle mass, whether the task requires sustained effort or repeated work/rest cycles, pack load being carried, and amount of acclimatization.\nd. The physical performance impairments due solely to hypoxia will be in addition to those associated with terrestrial, logistical, nutritional or altitude illness factors that independently or collectively affect task performance adversely.\ne. Task performance will be most impaired in the first few days after rapid deployment from sea level to altitude. Newly arrived military personnel will have difficulty participating in physically demanding tasks or duties such as dismounted patrolling operations, entrenchment, and combat.\nf. Maximal physical performance at high altitude is not improved by acclimatization, but may be improved by long-duration (months) residence at moderate altitude.\ng. Prolonged physical performance at a given altitude is improved by acclimatization but will remain impaired relative to sea level at elevations above 1,000 m.\nh. Hypoxia will minimally impair small muscle mass activity or whole-body activity lasting less than 2 minutes (min)."
+ },
+ {
+  "id": "TBMED505/4-2",
+  "manual": "TBMED505",
+  "para": "4-2",
+  "chapter": "CHAPTER 4",
+  "heading": "PHYSICAL PERFORMANCE CAPABILITIES AT ALTITUDE",
+  "pages": [
+   39
+  ],
+  "text": "Maximal physical performance\na. The O requirement of numerous tasks requiring prolonged, sustained or intermittent 2 activity is often characterized relative to maximal physical performance capability (expressed as V O (maximal oxygen uptake)) which is commonly evaluated in an exercise laboratory or can 2max be estimated using a maximal effort 2-mile run (appendix C). Relative intensity (along with heart rate) can then be used at sea level or altitude as general guidance for an individual or unit to estimate task duration or whether assigned tasks should be performed continuously at low intensity or intermittently at a higher intensity alternated with periodic rest periods."
+ },
+ {
+  "id": "TBMED505/4-3",
+  "manual": "TBMED505",
+  "para": "4-3",
+  "chapter": "CHAPTER 4",
+  "heading": "Altitude (meters)",
+  "pages": [
+   41
+  ],
+  "text": "Relationship of task performance to maximal oxygen uptake\na. Oxygen is required to perform nearly every physical task with the specific amount ranging from very small (for example, map reading) to extremely large (for example, brisk foot march up a hill with a heavy pack load). If the O requirement of the task is compared to V O , the 2 2max relative intensity (that is, percent V O ) and the expected heart rate response during 2max performance of the task can be estimated. This information can then be used as general guidance to estimate task duration. For example, a whole-body repetitive task requiring 30 to 40 percent of V O (and heart rates of ~100 to 120 beats/min) is a reasonable average upper limit that can 2max be sustained by 20- to 30-year olds over an 8-hr workday for continuous days at sea level. In contrast, whole-body tasks that require more than approximately 40 to 45 percent of V O are 2max better suited for shorter durations or for repeated work/rest cycles if they are to be performed over a long period of time.\nb. Table 4-1 provides measured percent V O values for young Soldiers performing a 2max variety of standardized military tasks that are easy, moderate, and hard for no more than 15 min at sea level. Descriptors such as weight lifted, distance traveled, and activity pace are also provided. The tasks are listed in ascending order of percent V O . Note that for any given 2max task, there is a range of percent V O values that relate to factors such as V O , body size, 2max 2max"
+ },
+ {
+  "id": "TBMED505/4-4",
+  "manual": "TBMED505",
+  "para": "4-4",
+  "chapter": "CHAPTER 4",
+  "heading": "oxygen uptake) and time to reach exhaustion",
+  "pages": [
+   43
+  ],
+  "text": "Effect of altitude on prolonged physical performance\na. The decline in V O at altitude directly affects performance of nearly all tasks. The O 2max 2 requirement for any given prolonged task that is performed at a specified rate or pace is similar at sea level and altitude. But because V O progressively decreases with increasing elevation, 2max the O requirement of the task will represent a relatively greater percent V O with increasing 2 2max elevation."
+ },
+ {
+  "id": "TBMED505/4-5",
+  "manual": "TBMED505",
+  "para": "4-5",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 505",
+  "pages": [
+   48
+  ],
+  "text": "Time estimation of a unit foot march on mountain trails\na. Historically, map distance plus one-third of the map distance has been used as a general guide to estimate actual ground distance to be traveled on dirt trails through the mountains. The added distance accounts for minor ascents and descents and non-linearity of routes inherent to mountainous terrain.\nb. In addition, 1 hr is commonly added to the time required to cover the ground distance for each 300 m of ascent or 600 m of descent.\nc. With increasing elevations, additional time should also be added to account for the likely hypoxia-induced reduction in pace and increased number or duration of rest periods during travel on flat and ascending terrain. No hypoxia adjustment is needed for the descent.\nd. A slow, steady pace is preferred to more rapid movement with frequent stops. Also, the collective pace will be slower as the unit increases in size. A typical pace for an 8- to 12-person squad carrying a light load is 4 km/hr including 5 to 10 min of rest for every 1?2 hr of foot march. Following is an example using Soldiers having high V O values. 2max\n(1) Information provided. The map distance is 12 km. There are 600 m of ascent and 600 m of descent, with an average elevation of 3,000 m. Average foot march pace for the squad is 4 km/hr over a dirt trail carrying a pack weighing 22 km that requires 28 percent of V O on 2max level ground and 50 percent of V O while ascending. (Note: The example provided here is 2max for foot marching only. More advanced mountaineering tasks such as rock climbing, belaying and rappelling required in some mountain environments will add more time to the estimate as a direct result of performing the task and also indirectly because of the heavier load carried due to the additional weight of technical equipment.)\n(2) Calculations. Ground distance is estimated as 16 km (map distance plus one-third of map distance). The 600-m ascent requires an additional 2 hrs (600 m/300 m per hr), and the 600-m descent requires an additional hour (600 m/600 m per hr). The final estimated duration to complete the ground distance and the ascent has been increased by 28 percent and 40 percent for acclimatized and unacclimatized Soldiers, respectively (see table 4-2). The estimated overall duration will therefore be approximately 1.7 and 2.4 hrs (or 24 and 34 percent) longer, respectively, at 3,000 m than for elevations less than 1,000 m over similar terrain. The calculations are summarized in table 4-3. Time estimates for the unit foot march should be modified if factors, such as elevation, pack load, grade, unit fitness, number of participants, pace or trail surface, differ from those provided in the above example."
+ },
+ {
+  "id": "TBMED505/4-6",
+  "manual": "TBMED505",
+  "para": "4-6",
+  "chapter": "CHAPTER 4",
+  "heading": "Totals 7.0 8.7 9.4",
+  "pages": [
+   49
+  ],
+  "text": "Physical performance, weight loss, nutrition, and acetazolamide\na. Soldiers deployed to high mountainous areas are likely to be in negative energy balance for weeks or longer and will lose body weight. The energy deficit is usually attributed to some combination of voluntarily or involuntarily reduced consumption of field rations, altitude illness, diuresis, increased time being physically active, heavier loads being carried, and elevation of basal metabolic rate. Body weight losses of approximately 5 percent or less are typical and usually do not affect performance of most tasks.\nb. There is little indication that altitude exposure by itself requires supplementation of protein, vitamins or minerals (other than iron).\nc. A negative energy balance is usually also associated with reduced carbohydrate intakes that are much less than the recommended minimum of 400 g per day. A consistently diminished daily carbohydrate intake results in reduced muscle glycogen storage that will likely contribute to diminished performance especially during prolonged, difficult tasks. A carbohydrate-rich diet, as well as frequent ingestion of small amounts of carbohydrate-rich foods or liquids during prolonged, difficult tasks, will sustain performance at the highest level possible for a given altitude.\nd. Caffeine ingested prior to participating in some prolonged tasks at altitude may help sustain performance. However, for some Soldiers, there will be increased diuresis that may exacerbate an already present altitude-induced hypohydration. Therefore, caffeine should be consumed in moderation at altitude.\ne. There is no evidence that creatine supplementation will improve task performance at altitude.\nf. Acetazolamide is often provided for the avoidance/treatment of altitude illness during early exposure to altitude (see chapter 6). However, acetazolamide will worsen performance of high intensity tasks that involve either prolonged whole-body effort or rapidly repeated local muscular effort. Moreover, paresthesia (that is, tingling) in the extremities that occurs during acetazolamide treatment typically becomes more pronounced with increased effort and may be bothersome during tasks requiring fine motor control."
+ },
+ {
+  "id": "TBMED505/4-7",
+  "manual": "TBMED505",
+  "para": "4-7",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 505",
+  "pages": [
+   50
+  ],
+  "text": "Physical training while deployed at altitude\na. Endurance training.\n(1) Monitoring heart rate provides a safe, easy and objective means to maintain the proper exercise intensity during endurance training while deployed at altitudes up to approximately 4,000 m, as it does at sea level. That is, approximately the same heart rate range, duration, and frequency that was used during training at sea level can be used up to 4,000 m. For example, a commonly used formula of (220 - age) times 55 percent and 90 percent estimates that training heart rate for ~ 20-year-olds should be maintained in the range of 110 to 180 beats per min for 20 to 60 min per day for 3 or more days per week. Doing so will provide the necessary training stimulus to at least maintain endurance fitness. For the same perceived effort, jogging pace will be reduced at altitude compared to sea level.\n(2) For the first few days of rapid exposure to moderate to high elevations, all voluntary activity should be minimized and endurance training stopped or intensity greatly reduced to minimize susceptibility to altitude illness.\n(3) After the first few days, endurance training can resume. For the first couple of sessions, training heart rate should be maintained in the lower part of the heart rate range, with the training session duration being no more than approximately 30 minutes. As altitude acclimatization develops, heart rate and the duration and frequency of the exercise sessions can be progressively increased as desired.\nb. Strength training.\n(1) For the first few days of rapid exposure to moderate to high elevations, all voluntary activity should be minimized and strength training stopped to reduce susceptibility to altitude illness.\n(2) After this time, strength training can resume as at sea level. It is not necessary to monitor heart rate during strength training. The amount of weight, sets, and repetitions used during each exercise session should be similar at altitude and at sea level. Required rest periods between sets likely will be slightly longer.\nc. Stretch training. Muscle stretching exercise (for example, yoga) can be performed without restriction."
+ },
+ {
+  "id": "TBMED505/5-1",
+  "manual": "TBMED505",
+  "para": "5-1",
+  "chapter": "CHAPTER 5",
+  "heading": "NEUROPSYCHOLOGICAL PERFORMANCE AT ALTITUDE",
+  "pages": [
+   51
+  ],
+  "text": "General\na. Altitude stress can cause a wide range of neuropsychological consequences that affect a Soldier's mood, senses, judgment, memory and ability to perform cognitive and psychomotor tasks. Generally, significant changes in neuropsychological function emerge at altitudes higher than 3,000 m. However, Soldiers who have low levels of ventilation or impaired pulmonary gas exchange may experience neuropsychological problems at even lower altitudes. Changes in neuropsychological function are most evident in unacclimatized Soldiers during the first 24 hrs of their ascent above 3,000 m. Also, there is a progression in the deleterious effects of hypoxia on the central nervous system. The higher cortical centers are the most sensitive, followed by the cerebellum, medulla, and spinal cord. Higher-level brain functions involving cognition, decision-making, and reasoning are most sensitive to the effects of altitude and oxygen deprivation. Figure 5-1 indicates the general progression in deterioration of sensory and mental function with increasing hypoxia. Reductions are presented relative to sea-level function in figure 5-1.\nb. Sleep deprivation, poor sleep quality and quantity, and physical fatigue will contribute to the direct effects of hypoxia on neuropsychological function. Sleep quality and quantity are decreased at altitude due to increased awakenings resulting from central sleep apnea. Soldiers experiencing more frequent awakenings demonstrate greater impairments in cognition. Hypoventilation during sleep increases the severity of hypoxemia. Increased hypoxemia can contribute directly to increased neuropsychological impairments as well as increased AMS severity (chapter 6). Hypoxia increases the development and feeling of physical fatigue both by direct effects on the brain and by lowering the maximal oxygen uptake of the warfighter at altitude (chapter 4). Fatigue also contributes to decreased motivation that can adversely impact cognitive and psychomotor performances at altitude."
+ },
+ {
+  "id": "TBMED505/5-2",
+  "manual": "TBMED505",
+  "para": "5-2",
+  "chapter": "CHAPTER 5",
+  "heading": "NEUROPSYCHOLOGICAL PERFORMANCE AT ALTITUDE",
+  "pages": [
+   51
+  ],
+  "text": "Mood states and personality\na. Changes in mood states and personality are usually not recognized by the affected Soldier. Initially, Soldiers can exhibit euphoria that can lead to overconfidence. After several hours at altitude, Soldiers may become irritable, quarrelsome, uncooperative, anxious, apathetic, and less friendly and clear thinking. More adverse changes are noted at altitudes above 4,000 m. These aversive mood changes reach a peak after 18 to 24 hrs of altitude exposure and recede to normal after 48 hrs, at altitudes up to 4,700 m. Moods of Soldiers afflicted with severe AMS are more negative and improve more slowly than individuals with no illness. These behaviors are usually not acknowledged by the affected Soldiers and may even be adamantly denied. Unit leaders must anticipate these mood changes and their potential impact on unit cohesion. Altitude acclimatization lessens these adverse changes in mood states. Acetazolamide (used to prevent AMS) will lessen the intensity of these adverse mood changes (chapter 6)."
+ },
+ {
+  "id": "TBMED505/5-3",
+  "manual": "TBMED505",
+  "para": "5-3",
+  "chapter": "CHAPTER 5",
+  "heading": "Altitude (m)",
+  "pages": [
+   52
+  ],
+  "text": "Special senses\na. Of the special senses (vision, hearing, smell, taste, and touch), vision is the most sensitive to the effects of hypoxia. Decrements in light sensitivity can occur at altitudes as low as 1,525 m (figure 5-1). Visual acuity and color discrimination are measurably decreased above 3,000 m. Above 4,000 m, the combination of impaired dark adaptation and decreased accommodation and convergence lead to increased occurrence of heterophorias. From moderate to extreme altitude, night vision (light sensitivity and visual acuity) is more affected than daytime vision. There appears to be little recovery of visual function with development of altitude acclimatization."
+ },
+ {
+  "id": "TBMED505/5-4",
+  "manual": "TBMED505",
+  "para": "5-4",
+  "chapter": "CHAPTER 5",
+  "heading": "TB MED 505",
+  "pages": [
+   53
+  ],
+  "text": "Cognitive and psychomotor performance\na. Altitudes above 3,000 m can produce substantial impairments in a number of cognitive and psychomotor performance measures. Cognitive performance is more affected at altitude than psychomotor performance, and complex tasks are usually affected before simple tasks. Successful execution of many military tasks is dependent upon the integration of multiple cognitive functions.\nb. Cognitive and psychomotor performance changes do not follow the same time course at altitude as do symptoms of AMS. Within minutes of exposure to altitudes above 3,000 m, cognitive and psychomotor performances decrease, whereas development of AMS may not occur for 4 or more hrs. At altitudes below 5,000 m, cognitive performances improve and return toward baseline after 24 to 48 hrs. Cognitive performances improve less in individuals afflicted with AMS during this period. Soldiers afflicted with severe AMS will have greater impairment of cognitive performances than Soldiers with lesser symptoms. Upon return to low altitude, cognitive and psychomotor performances quickly return to normal. However, some cases of long-term to permanent cognitive impairments have been reported in climbers who ascended to extreme altitudes (>5,500 m).\nc. Tasks requiring assimilation of novel information and/or requiring decisions and strategies (for example, friend-foe identification, targeting, tactical maneuvering, etc.) are more vulnerable to hypoxia than simple and more automated tasks (for example, weapon function check, donning mission-oriented protective posture gear, etc.). Performances involving visual processing of"
+ },
+ {
+  "id": "TBMED505/5-5",
+  "manual": "TBMED505",
+  "para": "5-5",
+  "chapter": "CHAPTER 5",
+  "heading": "TB MED 505",
+  "pages": [
+   54
+  ],
+  "text": "Mitigation of neuropsychological impairments\na. The effects of altitude on mood states, and visual, cognitive and psychomotor performances are often larger than those recognized by the affected Soldier(s). Unit leaders must anticipate these adverse changes and their potential impact on unit effectiveness."
+ },
+ {
+  "id": "TBMED505/6-1",
+  "manual": "TBMED505",
+  "para": "6-1",
+  "chapter": "CHAPTER 6",
+  "heading": "HIGH ALTITUDE ILLNESS: IDENTIFICATION AND TREATMENT",
+  "pages": [
+   57
+  ],
+  "text": "Medical problems in high mountain areas\na. Medical problems (other than ballistic injuries) in Soldiers operating in high mountain environments can be classified into three broad categories--\n(1) Problems caused by sustained hypobaric hypoxia.\n(2) Problems caused by environmental and mission factors.\n(3) Exacerbation of preexisting medical conditions (table 6-1).\nb. Problems caused by sustained hypobaric hypoxia are unique to high altitudes, and medical personnel may be unfamiliar with them. Medical personnel are more familiar with environmental injuries (such as sunburn and dehydration) and preexisting medical conditions that can occur in many different environments. Problems not directly caused by hypobaric hypoxia can be profoundly affected by it, and medical personnel must be aware of that potential."
+ },
+ {
+  "id": "TBMED505/6-2",
+  "manual": "TBMED505",
+  "para": "6-2",
+  "chapter": "Appendix D presents a summary of treatments for some of the problems that are commonly",
+  "heading": "Related Factors Medical Conditions",
+  "pages": [
+   58
+  ],
+  "text": "Hypobaric-hypoxia medical problems\na. Acute mountain sickness (AMS) .\n(1) Acute mountain sickness occurs in Soldiers from low altitude (<1,200 m) who ascend rapidly to high altitude (>2,500 m) or from high to higher altitude and remain there for several hours or more. Acute mountain sickness is caused by the decreased amount of O available to 2 the body in the low-pressure atmosphere at high altitude. The pathophysiology of AMS is thought to be the result of mild cerebral edema and subsequent brain swelling. Although not life-threatening, AMS is the most common altitude illness, and its symptoms, when severe, can degrade physical and mental performance such that large numbers of troops may be completely incapacitated in their first few days at altitude. In a few Soldiers, AMS can progress to lifethreatening HACE or HAPE, both of which require evacuation."
+ },
+ {
+  "id": "TBMED505/6-4",
+  "manual": "TBMED505",
+  "para": "6-4",
+  "chapter": "chapter 3). Because SaO is lowest during sleep, unacclimatized Soldiers should sleep at as low",
+  "heading": "TB MED 505",
+  "pages": [
+   86
+  ],
+  "text": "Preexisting medical conditions\na. Introduction.\n(1) A number of acute and chronic medical conditions that may be present in Soldiers before deployment to high altitude can interact with hypobaric hypoxia and either worsen the underlying condition itself or aggravate the hypoxia making the Soldier more susceptible to altitude illness. Medications that Soldiers may be taking during deployment to treat preexisting medical conditions may also increase the risk of altitude illness (see appendix E for dosing recommendations for primary altitude illness medications and contraindications). Chronic conditions or medications that affect the cardiovascular and/or respiratory systems are obvious risks at high altitude and may be contraindicated. Examples include chronic obstructive pulmonary disease, unstable angina, poorly controlled arrhythmia, congestive heart failure, congenital and acquired valvular heart disease, unrevascularized coronary artery disease, pulmonary hypertension, anemia, high-risk pregnancy, and medications that depress respiration. Any blood-clotting abnormality as evidenced by a history of stroke or abnormal laboratory values carries a greatly increased risk of altitude-related embolic events. Both sleep apnea and obesity can exaggerate hypoxemia. Temporary or acute medical conditions which can increase the health risk of Soldiers deployed to high mountain environments include infections (especially upper and lower respiratory tract infections) and high-risk pregnancies."
+ },
+ {
+  "id": "TBMED505/6-3",
+  "manual": "TBMED505",
+  "para": "6-3",
+  "chapter": "chapter 3). Because SaO is lowest during sleep, unacclimatized Soldiers should sleep at as low",
+  "heading": "TB MED 505",
+  "pages": [
+   78
+  ],
+  "text": "Environmental/mission factor threats\na. Introduction. In high mountain areas, environmental and mission factors other than hypobaric hypoxia can cause medical problems in military personnel. These factors include trauma, climatic conditions, solar radiation, lightning strikes, CO poisoning, dehydration, negative energy balance, poor sanitation, and hemorrhoids. In many instances, these problems may be far more clinically significant than those caused by hypoxia itself (for example, lightning strike will cause more disability than HARH). Often these problems will be more frequent than hypoxia-related problems (for example, cold injuries outnumber cases of HACE). Many of these problems, however, can be minimized or even eliminated by detailed planning and training prior to deployment as outlined in appendices H and I. Unlike hypobaric hypoxia,"
+ },
+ {
+  "id": "TBMED505/G-1",
+  "manual": "TBMED505",
+  "para": "G-1",
+  "chapter": "APPENDIX G",
+  "heading": "HYPERBARIC BAG TREATMENT",
+  "pages": [
+   111
+  ],
+  "text": "Bag description There are several models of portable hyperbaric chambers available. Illustrated in Figure G-1 is ? one model, the Gamow Bag (NSN: 6515-01- 504-6306), available from Chinook Medical Gear, Inc. (http://www.Chinookmed.com). The bag is constructed of durable nylon and reinforced with circular nylon straps. A lengthwise zipper permits easy access and egress for the Soldier, and four clear windows allow visual contact. The bag is pressurized with ambient air to 2 psi by use of a foot pump. ? (Gamow is a registered trademark of Portable"
+ },
+ {
+  "id": "TBMED505/G-2",
+  "manual": "TBMED505",
+  "para": "G-2",
+  "chapter": "APPENDIX G",
+  "heading": "chamber, Government model",
+  "pages": [
+   111
+  ],
+  "text": "Treatment For all portable hyperbaric bags the usual treatment protocol is to place the Soldier into the bag, pump the bag up until the pressure-relief valve hisses, then keep the pressure up by occasional pumping for the duration of the treatment. Continuous pumping is required to ventilate the bag and remove CO . Hyperbaric bag treatment durations are generally 2 2 to 4 hrs for AMS, 4 hrs for HAPE, and 6 hrs for HACE. Maximum therapeutic treatment is obtained by adding supplemental oxygen by nasal cannula or mask with the hyperbaric treatments. Hyperbaric bag treatments can be repeated as necessary until the Soldier clinically improves or is able to descend."
+ },
+ {
+  "id": "TBMED505/G-3",
+  "manual": "TBMED505",
+  "para": "G-3",
+  "chapter": "APPENDIX G",
+  "heading": "chamber, Government model",
+  "pages": [
+   111
+  ],
+  "text": "Precautions To avoid causing the Soldier to develop barotrauma in the ears or sinuses, compression and decompression of the hyperbaric bag should be done slowly. In cold temperatures, Soldiers should be placed in a sleeping bag within the hyperbaric bag. Conversely, the bag should be shielded from the sun to avoid overheating the Soldier."
+ },
+ {
+  "id": "TBMED505/H-1",
+  "manual": "TBMED505",
+  "para": "H-1",
+  "chapter": "APPENDIX H",
+  "heading": "HIGH ALTITUDE DEPLOYMENT TIPS",
+  "pages": [
+   113
+  ],
+  "text": "Prevention categories Preventing altitude injuries depends on several factors, including prior high altitude experience; proper use of clothing, equipment, and supplies; and appropriate planning for all operational scenarios. In addition to implementing these measures, Soldiers must be carefully observed for signs of distress at altitude and monitored for development of altitude illness. Clothing, shelter, nutrition, and rest/work cycles must be adjusted according to observations."
+ },
+ {
+  "id": "TBMED505/H-2",
+  "manual": "TBMED505",
+  "para": "H-2",
+  "chapter": "APPENDIX H",
+  "heading": "HIGH ALTITUDE DEPLOYMENT TIPS",
+  "pages": [
+   113
+  ],
+  "text": "Weak link rule When the first altitude casualty occurs, assess the status of the whole unit."
+ },
+ {
+  "id": "TBMED505/H-3",
+  "manual": "TBMED505",
+  "para": "H-3",
+  "chapter": "APPENDIX H",
+  "heading": "HIGH ALTITUDE DEPLOYMENT TIPS",
+  "pages": [
+   113
+  ],
+  "text": "Prior high altitude experience\na. Classroom training is not sufficient preparation for altitude deployment; Soldiers must learn to work at altitude before deployment to altitude regions.\nb. Training exercises at altitude must initially be conducted for short periods under very controlled conditions and progressively increase in duration and intensity to several days of mission-related tasks under supervision.\nc. Training sessions should be designed to provide practical experience under altitude conditions in the following: proper use of altitude equipment during both work and rest periods, efficient shelter construction, meal preparation, and use of other mission-related equipment which may function differently at altitude. Soldiers must be able to complete these tasks efficiently even when at altitude and fatigued.\n(1) Soldiers with prior altitude experience will have a better understanding of their own performance at high altitude, and be more efficient at conducting tasks at altitude.\n(2) Leadership will gain a better understanding of the capabilities of the unit and the function of equipment at altitude."
+ },
+ {
+  "id": "TBMED505/H-4",
+  "manual": "TBMED505",
+  "para": "H-4",
+  "chapter": "APPENDIX H",
+  "heading": "HIGH ALTITUDE DEPLOYMENT TIPS",
+  "pages": [
+   113
+  ],
+  "text": "Clothing, equipment, and first aid supplies\na. Soldiers must have access to proper altitude clothing, including items such as silk ? balaclavas, hiking boots, goggles, sunglasses, Gore-Tex rain gear, back-up glasses for contact ? wearers, wicking undergarments, and several changes of socks. (Gore-Tex is a registered trademark of W.L. Gore & Associates, Inc., Newark, Delaware.) ?\nb. Equipment such as a supplemental oxygen tank, pulse oximeter, i-STAT blood analyzer, ? ophthalmoscope, Gamow Bag, hiking stick, crampon, ice ax, and tent should be tested in a high altitude environment and be usable by Soldiers with reduced manual dexterity due to wearing ? gloves. (i-STAT is a registered trademark of i-STAT Corporation, East Princeton, New Jersey.)\nc. Medical supplies for a first-aid kit should include but not be limited to the following:\n(1) Non-narcotic pain relievers (that is, aspirin, acetaminophen).\n(2) Anti-inflammatories (that is, ibuprofen)."
+ },
+ {
+  "id": "TBMED505/H-5",
+  "manual": "TBMED505",
+  "para": "H-5",
+  "chapter": "APPENDIX H",
+  "heading": "TB MED 505",
+  "pages": [
+   114
+  ],
+  "text": "Operational planning Everything takes longer in an altitude environment, and this may be exacerbated by fatigued Soldiers, poor weather conditions, and exposure that is worse than expected. The weather, unit fitness, work/rest cycles, shelter and nutrition need to be considered during planning.\na. Weather.\n(1) A reliable source for evaluating elevation, cold stress, and heat stress is necessary. Any altimeter and weather-monitoring devices relied on must be tested in the altitude environment to ensure proper functioning.\n(2) Weather patterns may change abruptly; therefore planning must include contingencies for greater-than-expected exposure to cold or hot conditions.\n(3) Precipitation, winds, and thunderstorms in the mountain environment greatly increase the risk of altitude injury. Careful planning for avoiding these conditions and providing emergency evacuation are imperative."
+ },
+ {
+  "id": "TBMED505/I-1",
+  "manual": "TBMED505",
+  "para": "I-1",
+  "chapter": "APPENDIX I",
+  "heading": "NONCOMMISSIONED OFFICERS, AND INSTRUCTORS",
+  "pages": [
+   117
+  ],
+  "text": "Introduction A comprehensive altitude illness prevention and management program should follow the principles of risk management by identifying hazards, assessing the hazards in terms of severity and probability, and implementing appropriate controls to abate the hazards. Spot-checking and supervision by first-line leaders should be employed to ensure control measures are being implemented. Units train using risk management principles; therefore commanders and leaders should apply the same framework to prevent altitude illness. Altitude illness casualty prevention is a command responsibility. This appendix provides information that will assist in presenting altitude illness prevention in this format."
+ },
+ {
+  "id": "TBMED505/I-2",
+  "manual": "TBMED505",
+  "para": "I-2",
+  "chapter": "APPENDIX I",
+  "heading": "NONCOMMISSIONED OFFICERS, AND INSTRUCTORS",
+  "pages": [
+   117
+  ],
+  "text": "Identifying hazards The low partial pressure of oxygen (hypoxia) in the atmosphere is the principal characteristic of increasing altitude. Hypoxia may present a hazard if the operational environment is at or below a barometric pressure of 568 mmHg (757 mb), which is equivalent to an elevation above sea level of 2,400 m (7,875 ft). The risk of hypoxia proportionally increases with increasing altitude. Other risk factors include--\na. Rapid ascent (<1 day) from elevations below 1,200 meters (3,937 feet).\nb. No altitude acclimatization.\nc. Prior history of altitude illness.\nd. Moderate to high physical activity at altitude.\ne. Dehydration.\nf. Fatigue/sleep deprivation.\ng. Cold exposure.\nh. Little experience/training at altitude.\ni. Recent viral infection."
+ },
+ {
+  "id": "TBMED505/I-3",
+  "manual": "TBMED505",
+  "para": "I-3",
+  "chapter": "APPENDIX I",
+  "heading": "NONCOMMISSIONED OFFICERS, AND INSTRUCTORS",
+  "pages": [
+   117
+  ],
+  "text": "Assessing hazards The potential for altitude illness casualties can be assessed by determining--\na. The magnitude of altitude exposure. Use reliable measurement equipment and sources of information such as--\n(1) A calibrated barometer.\n(2) A calibrated altimeter.\n(3) Elevation from a topographic map.\n(4) Local survey marker with elevation markings."
+ },
+ {
+  "id": "TBMED505/I-4",
+  "manual": "TBMED505",
+  "para": "I-4",
+  "chapter": "APPENDIX I",
+  "heading": "TB MED 505",
+  "pages": [
+   118
+  ],
+  "text": "Developing controls The principal control for prevention of altitude illness casualties is adequate acclimatization to the operation environment. Unlike exposure to heat or cold stress, unacclimatized Soldiers ascending above an elevation of 2,400 m have few controls or interventions available that can prevent altitude illness. However, altitude illness casualties can be controlled through--\na. Education.\n(1) Soldier education, to include ?\n(a) Understanding the effects of hypoxia on the body.\n(b) Understanding the benign symptoms of hypoxia (elevated heart rate, breathing, and lightheadedness).\n(c) Understanding the symptoms of altitude illness (headache, nausea, vomiting, lightheadedness, coughing, sputum production, mental confusion, difficulty in walking).\n(d) Understanding the types of medications used to prevent or treat altitude illness and their relative risks and benefits.\n(2) Leadership education, to include ?\n(a) Supervising Soldiers who often have only a superficial understanding of altitude illness.\n(b) Evaluating the impact of altitude on the mission (for example, everything takes longer; Soldiers will be more fatigued, more likely to make mistakes).\n(c) Understanding available controls and their relative benefits and risks.\n(3) Experiential learning, to include remembering that true effectiveness in an altitude environment only comes with experience.\nb. Training.\n(1) Actual exposure and training at altitudes above 2,400 m is the most effective way to familiarize Soldiers with the effects of altitude.\n(a) To acquaint Soldiers with symptoms of AMS, training at altitude should be at least 24 hrs long."
+ },
+ {
+  "id": "TBMED505/I-5",
+  "manual": "TBMED505",
+  "para": "I-5",
+  "chapter": "APPENDIX I",
+  "heading": "TB MED 505",
+  "pages": [
+   119
+  ],
+  "text": "Implementing controls Altitude illness casualty controls can be implemented through ?\na. Developing adequate altitude acclimatization prior to ascent above 2,400 m.\nb. Identifying controls already in place (buddy checks).\nc. Maintaining adequate supplies of medications for prevention and treatment of altitude illness.\nd. Using medications that prevent/treat altitude illness.\ne. Encouraging and allowing Soldiers to speak up about any problem, especially symptoms of altitude illness (self-checks).\nf. Deciding to accept risk at the appropriate level."
+ },
+ {
+  "id": "TBMED505/I-6",
+  "manual": "TBMED505",
+  "para": "I-6",
+  "chapter": "APPENDIX I",
+  "heading": "TB MED 505",
+  "pages": [
+   119
+  ],
+  "text": "Supervising and evaluating The final step in the risk management process is the supervision and evaluation of the controls taken to prevent altitude illness casualties. Examples are as follows:\na. Ensuring all Soldiers and leaders are educated and experienced in the prevention, recognition, and treatment of altitude illness, as well as effective measures for working in an altitude environment.\nb. Delegating responsibilities (inspections, buddy checks) to ensure control measures have been implemented.\nc. Monitoring the adequacy/progress of implementation of control measures.\nd. Performing spot checks of food and drink supplies.\ne. Recording and monitoring indicators of increasing altitude illness risks, such as--\n(1) An increase in the number of altitude illness casualties.\n(2) An increase in the number of complaints/comments about altitude illness symptoms.\n(3) Observations of decreased fluid and food consumption, vomiting, unsteadiness, unusual fatigue, and other signs of altitude illness."
+ }
+]
