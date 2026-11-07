@@ -12,6 +12,7 @@
 #include "driver/rtc_io.h"
 #include "esp_sleep.h"
 #include "esp_timer.h"
+#include "esp_log.h"
 #include "soc/soc_caps.h"
 #if PIN_BAT_ADC >= 0
 #include "esp_adc/adc_oneshot.h"
@@ -84,7 +85,15 @@ battery_t power_battery(void) {
     /* Nothing wired (an open pin wanders) or a reading no LiPo can give: report
      * "unknown" so a bench board without the divider is never locked to the
      * emergency pages or put to sleep as "critical". */
-    if (hi - lo > 150 || b.mv < 2800 || b.mv > 4500) { b.mv = 0; return b; }
+    if (hi - lo > 150 || b.mv < 2800 || b.mv > 4500) {
+        static int64_t last_log_us = -60000000;          /* say why, at most once a minute */
+        int64_t t = esp_timer_get_time();
+        if (t - last_log_us > 60000000) {
+            ESP_LOGI("power", "battery reading ignored: pin %d..%d mV, battery %d mV (want 2800..4500, spread <= 150)", lo, hi, b.mv);
+            last_log_us = t;
+        }
+        b.mv = 0; return b;
+    }
     b.pct = pct_of(b.mv);
     int64_t now = esp_timer_get_time();
     if (!nhist || now - last_hist_us > 10 * 1000000LL) {
