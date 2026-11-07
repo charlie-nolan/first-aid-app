@@ -1,0 +1,2 @@
+# Spoken phrase -> the tree/node it must open. `plb test` fails if any of these drift.
+# e.g. "snake bite": snakebite/start

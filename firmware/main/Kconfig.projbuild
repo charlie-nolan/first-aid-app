@@ -1,0 +1,56 @@
+menu "Librarian"
+
+choice LIB_BOARD
+    prompt "Board"
+    default LIB_BOARD_PLAIN
+    help
+        Picks the pin map in main/board.h. sdkconfig.plain / sdkconfig.plus set this for you.
+config LIB_BOARD_PLAIN
+    bool "Plain XIAO ESP32-S3 (bench build: 3 buttons, no mic, no battery pin)"
+config LIB_BOARD_PLUS
+    bool "XIAO ESP32-S3 Plus (the real device)"
+endchoice
+
+config LIB_PLUS_WHITE_GPIO
+    int "Plus: GPIO for the 3 W white bead MOSFET"
+    depends on LIB_BOARD_PLUS
+    default 12
+    help
+        D18 = GPIO12 (hardware doc, 2026-11-07). D19 = GPIO11 drives only the
+        warm-white front light. Set 11 only for an old build where the bead
+        shares the front-light pin.
+
+config LIB_VOICE
+    bool "Push-to-talk voice (ESP-SR MultiNet, PDM mic)"
+    depends on LIB_BOARD_PLUS
+    default y
+
+config LIB_MESH_ACTIVE_LOW
+    bool "Mesh board power switch is active low"
+    depends on LIB_BOARD_PLUS
+    default n
+    help
+        n: GPIO high = mesh board on (N-FET driving the AO3401 gate).
+        y: GPIO low = on (AO3401 gate driven straight from the pin).
+
+config LIB_PANEL_FLIP
+    bool "Rotate the screen 180 degrees"
+    default n
+
+config LIB_IDLE_SECONDS
+    int "Seconds without a button press before deep sleep"
+    default 60
+
+config LIB_BAT_DIVIDER_X100
+    int "Battery divider ratio x100 (Plus ADC_BAT on GPIO10)"
+    default 200
+
+config LIB_BAT_RESERVE_MV
+    int "Battery reserve (mV): below this only emergency pages open"
+    default 3600
+
+config LIB_BAT_CRITICAL_MV
+    int "Critical battery (mV): sleep and wake every few minutes to check for cranking"
+    default 3350
+
+endmenu

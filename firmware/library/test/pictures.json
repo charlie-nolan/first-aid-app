@@ -1,0 +1,24 @@
+[
+ {
+  "id": "testcard",
+  "figure": "testcard",
+  "file": "testcard.png",
+  "w": 240,
+  "h": 86,
+  "pan": false,
+  "caption": "Test picture",
+  "source": "BENCH",
+  "citation": "Bench test cartridge, picture"
+ },
+ {
+  "id": "sleepcard",
+  "figure": "sleepcard",
+  "file": "sleepcard.png",
+  "w": 250,
+  "h": 122,
+  "pan": false,
+  "caption": "Sleep card",
+  "source": "BENCH",
+  "citation": "Bench test cartridge, sleep card"
+ }
+]

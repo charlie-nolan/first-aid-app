@@ -1,0 +1,6 @@
+build/
+sources/*.pdf
+sources/*.part
+__pycache__/
+*.egg-info/
+.pytest_cache/

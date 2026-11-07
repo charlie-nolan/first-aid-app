@@ -1,0 +1,4 @@
+# home_tree: the tree the menu opens on. sleep_picture: a figure id (e.g. ATP4-02.11/fig/2-5)
+# or a path to a PNG. Default per PLAN: the bleeding/tourniquet card.
+home_tree: null
+sleep_picture: null

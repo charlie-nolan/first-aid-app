@@ -1,0 +1,201 @@
+{
+ "trees": [
+  {
+   "id": "bench",
+   "title": "Bench test (emergency)",
+   "shelf": "test",
+   "root": 0,
+   "emergency": true
+  },
+  {
+   "id": "shelf2",
+   "title": "Second shelf (not emergency)",
+   "shelf": "test",
+   "root": 4,
+   "emergency": false
+  },
+  {
+   "id": "summer",
+   "title": "Summer-only shelf",
+   "shelf": "test",
+   "root": 8,
+   "emergency": false,
+   "tags": {
+    "season": [
+     "summer"
+    ]
+   }
+  }
+ ],
+ "nodes": [
+  {
+   "id": 0,
+   "key": "bench/start",
+   "tree": "bench",
+   "label": "Bench test",
+   "passages": [
+    "B/0"
+   ],
+   "figure": null,
+   "choices": [
+    {
+     "label": "Long page",
+     "to": 1,
+     "kind": "next"
+    },
+    {
+     "label": "Picture page",
+     "to": 2,
+     "kind": "next"
+    },
+    {
+     "label": "Two passages + look-alike",
+     "to": 3,
+     "kind": "next"
+    },
+    {
+     "label": "Second shelf",
+     "to": 4,
+     "kind": "next"
+    },
+    {
+     "label": "No-match leaf",
+     "to": 5,
+     "kind": "next"
+    },
+    {
+     "label": "Washington only",
+     "to": 6,
+     "kind": "next"
+    },
+    {
+     "label": "Winter only",
+     "to": 7,
+     "kind": "next"
+    }
+   ]
+  },
+  {
+   "id": 1,
+   "key": "bench/long",
+   "tree": "bench",
+   "label": "Long page",
+   "passages": [
+    "B/1"
+   ],
+   "figure": null,
+   "choices": [
+    {
+     "label": "Back to start",
+     "to": 0,
+     "kind": "next"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "key": "bench/picture",
+   "tree": "bench",
+   "label": "Picture page",
+   "passages": [
+    "B/2"
+   ],
+   "figure": "testcard",
+   "choices": []
+  },
+  {
+   "id": 3,
+   "key": "bench/two",
+   "tree": "bench",
+   "label": "Two passages",
+   "passages": [
+    "B/3a",
+    "B/3b"
+   ],
+   "lookalikes": [
+    "B/3c"
+   ],
+   "figure": null,
+   "choices": [
+    {
+     "label": "Yes",
+     "to": 0,
+     "kind": "yes"
+    },
+    {
+     "label": "No",
+     "to": 1,
+     "kind": "no"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "key": "shelf2/start",
+   "tree": "shelf2",
+   "label": "Second shelf",
+   "passages": [
+    "B/4"
+   ],
+   "figure": null,
+   "choices": []
+  },
+  {
+   "id": 5,
+   "key": "bench/nomatch",
+   "tree": "bench",
+   "label": "No-match leaf",
+   "passages": [
+    "B/5"
+   ],
+   "figure": null,
+   "choices": [],
+   "no_match": true
+  },
+  {
+   "id": 6,
+   "key": "shelf2/wa",
+   "tree": "shelf2",
+   "label": "Washington only",
+   "passages": [
+    "B/6"
+   ],
+   "figure": null,
+   "choices": [],
+   "tags": {
+    "region": [
+     "wa"
+    ]
+   }
+  },
+  {
+   "id": 8,
+   "key": "summer/start",
+   "tree": "summer",
+   "label": "Summer-only shelf",
+   "passages": [
+    "B/8"
+   ],
+   "figure": null,
+   "choices": []
+  },
+  {
+   "id": 7,
+   "key": "shelf2/winter",
+   "tree": "shelf2",
+   "label": "Winter only",
+   "passages": [
+    "B/7"
+   ],
+   "figure": null,
+   "choices": [],
+   "tags": {
+    "season": [
+     "winter"
+    ]
+   }
+  }
+ ],
+ "home_tree": "bench",
+ "sleep_picture": "sleepcard"
+}

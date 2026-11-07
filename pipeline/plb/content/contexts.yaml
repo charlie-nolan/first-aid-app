@@ -1,0 +1,6 @@
+# Context vocabulary for filtering (romkit FORMAT.md "Context tags"). Append-only:
+# bit order is saved on devices. Leave `region` out to use the 50 states + DC.
+season: [spring, summer, fall, winter]          # max 4
+activity: [hiking, water, vehicle, camp]        # max 8
+groups:
+  pnw: [wa, or, id]

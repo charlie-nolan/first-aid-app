@@ -1,0 +1,15 @@
+{
+ "build_id": "be4c0001",
+ "build_time": "",
+ "counts": {},
+ "errors": [],
+ "sources": [
+  {
+   "id": "BENCH",
+   "title": "Bench test cartridge",
+   "edition": "1",
+   "sha256": "",
+   "distribution": "test"
+  }
+ ]
+}

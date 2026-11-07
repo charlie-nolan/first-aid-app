@@ -1,0 +1,30 @@
+{
+"passages": {
+"B/0": 0,
+"B/1": 1,
+"B/2": 2,
+"B/3a": 3,
+"B/3b": 4,
+"B/3c": 5,
+"B/4": 6,
+"B/5": 7,
+"B/6": 8,
+"B/8": 9,
+"B/7": 10
+},
+"pictures": {
+"testcard": 0,
+"sleepcard": 1
+},
+"trees": {
+"bench": 0,
+"shelf2": 1,
+"summer": 2
+},
+"strings": [
+"DISCLAIMER",
+"NO_MATCH",
+"PLANT_WARNING",
+"WAKE_911"
+]
+}

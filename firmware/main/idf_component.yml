@@ -1,0 +1,6 @@
+dependencies:
+  idf: ">=5.3"
+  espressif/esp-sr:
+    version: "~1.9.0"
+    rules:
+      - if: "$CONFIG{LIB_VOICE} == True"

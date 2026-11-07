@@ -1,0 +1,7 @@
+# XIAO ESP32-S3 Plus (16 MB): app 2 MB, ESP-SR model ~4 MB, library 8 MB.
+# Name,    Type, SubType, Offset,   Size
+nvs,       data, nvs,     0x9000,   0x6000
+phy_init,  data, phy,     0xf000,   0x1000
+factory,   app,  factory, 0x10000,  0x1F0000
+model,     data, spiffs,  0x200000, 0x600000
+library,   data, 0x40,    0x800000, 0x800000
