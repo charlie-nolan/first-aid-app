@@ -37,6 +37,16 @@ config LIB_PANEL_FLIP
     bool "Rotate the screen 180 degrees"
     default n
 
+config LIB_FULL_REFRESH_EVERY
+    int "Full e-ink refresh after this many page turns"
+    range 1 50
+    default 15
+    help
+        Page turns use the quick (partial) refresh, which leaves faint ghosts;
+        a full refresh (the black-white flash) clears them. 15 matches CrossInk.
+        Lower is cleaner, higher flashes less. Pressing any two buttons together
+        forces a full refresh at any time.
+
 config LIB_IDLE_SECONDS
     int "Seconds without a button press before deep sleep"
     default 60

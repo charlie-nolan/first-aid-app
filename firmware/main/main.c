@@ -58,7 +58,9 @@ static void voice_follow(void) {                    /* new section or context: s
 static void show(int how) {
     if (how == RD_NONE) return;
     ui_render(&ui, &fb);
-    bool full = how == RD_FULL || ++partials >= 5;    /* a full refresh every 5 partials clears ghosting */
+    /* full refresh (the black-white flash) every N page turns clears ghosting;
+     * CrossInk's default is 15, any two buttons force one in between */
+    bool full = how == RD_FULL || ++partials >= CONFIG_LIB_FULL_REFRESH_EVERY;
     if (full) partials = 0;
     epd_show(fb_bits, full);
 }

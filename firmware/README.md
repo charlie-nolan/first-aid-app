@@ -92,7 +92,7 @@ add `menuconfig` before `flash`, then look under **Librarian**.
 | BACK | go back; at the start of a window, the library | step the front light: off, dim, bright |
 | Window L / R (Plus) | switch between the 5 windows | smaller / larger text |
 
-Quick (partial) refreshes leave faint ghosts; every 5th refresh is a full one
+Quick (partial) refreshes leave faint ghosts; every 15th refresh is a full one (menuconfig > Librarian to change it)
 (the black-white flash), and pressing any two buttons together forces one.
 The serial log prints each refresh and how long BUSY stayed high. "BUSY never
 went high" means the BUSY wire (D3) is loose; the screen then tears, so the
