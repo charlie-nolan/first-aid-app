@@ -479,13 +479,10 @@ void ui_render(ui_t *u, cart_fb_t *fb) {
 }
 
 void ui_render_sleep(ui_t *u, cart_fb_t *fb) {
-    /* built-in picture, with one line under it: the cartridge's 911 reminder */
+    /* built-in picture, with one line under it (Charlie, 2026-11-07: no 911 blurb) */
     memcpy(fb->bits, ui_sleep_art, (size_t)UI_STRIDE * UI_H);
     if (!cart_font_sizes(u->c)) return;
-    char b[96];
-    uint16_t t = cart_string(u->c, "WAKE_911");
-    if (t == CART_NONE) return;
-    T(u, t, b, sizeof b);
+    const char *b = "Press any button to wake";
     unsigned st = ST(u, 0);
     int w = cart_draw_str(u->c, st, 0, 0, 0, 0, b);
     int x = (UI_W - w) / 2; if (x < 2) x = 2;
