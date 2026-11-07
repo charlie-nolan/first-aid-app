@@ -150,6 +150,7 @@ manuals:
   sha256: c46a3cfcad68606ef641ba48579b57a643d22b4253fc50c01bb6598c5715de1b
   numbering: headings
 - id: NAVSNAKES
+  short: "Poisonous Snakes"   # tree title on the device (<= 28 chars)
   cite_as: Poisonous Snakes of the World
   title: Poisonous Snakes of the World (US Navy)
   edition: TBD
@@ -178,6 +179,7 @@ manuals:
   sha256: ca297bbc329c322ccbcb252fae7a1c89fd95f93dbf72b78b165b53cafa664026
   numbering: headings
 - id: DHS-ACTIVE-SHOOTER
+  short: "DHS Active Shooter"   # tree title on the device (<= 28 chars)
   cite_as: 'DHS Active Shooter: How to Respond'
   title: 'Active Shooter: How to Respond'
   publisher: U.S. Department of Homeland Security
@@ -193,6 +195,7 @@ manuals:
   sha256: c823497479deccf89317e89034cd91502305494da60ad13f4cb6f7dfec11665b
   numbering: headings
 - id: USAMRICD-FMCC
+  short: "Field Mgmt Chem Casualties"   # tree title on the device (<= 28 chars)
   cite_as: Field Management of Chemical Casualties
   title: Field Management of Chemical Casualties Handbook
   publisher: USAMRICD Chemical Casualty Care Division
@@ -211,6 +214,7 @@ manuals:
   skip_pages:
   - 1
 - id: USAMRICD-MMCC
+  short: "Med Mgmt Chem Casualties"   # tree title on the device (<= 28 chars)
   cite_as: Medical Management of Chemical Casualties
   title: Medical Management of Chemical Casualties Handbook
   publisher: USAMRICD Chemical Casualty Care Division

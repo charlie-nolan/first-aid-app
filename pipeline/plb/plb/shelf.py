@@ -19,11 +19,16 @@ from itertools import groupby
 from .trees import LABEL_MAX, Built, _resolve_cite, pretty_manual
 
 LIST_MAX = 40          # longest choice list we emit; longer lists get another level
+TITLE_MAX = 28         # Library row fits ~28 chars after the "Unreviewed: " prefix
 
 
-def _label(s: str) -> str:
+def _label(s: str, limit: int = LABEL_MAX) -> str:
     s = " ".join(str(s).split()) or "(untitled)"
-    return s if len(s) <= LABEL_MAX else s[:LABEL_MAX - 3].rstrip() + "..."
+    return s if len(s) <= limit else s[:limit - 3].rstrip() + "..."
+
+
+def _first_words(text: str) -> str:
+    return " ".join(text.replace("\n", " ").split()[:8])
 
 
 def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
@@ -65,14 +70,20 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
         if tid in reviewed_trees:
             continue
         title = pretty_manual(mid, manuals)
+        short = manuals.get(mid, {}).get("short") or title
         chapters = []
         for ci, (chap, group) in enumerate(groupby(secs, key=lambda s: s.get("chapter") or "")):
             group = list(group)
             leaves = []
-            for s in group:
-                pids = _resolve_cite(s["id"], {s["id"]: s}, manuals, tid, b)
-                label = f"{s['para']} {s.get('heading') or ''}"
-                leaves.append(node(tid, f"s{s['para']}", label, passages=pids))
+            # a section's label is its heading, unless neighbours share that heading:
+            # then para + first words, so a list never repeats one title
+            runs = [list(g) for _, g in groupby(group, key=lambda s: s.get("heading") or "")]
+            for run in runs:
+                for s in run:
+                    pids = _resolve_cite(s["id"], {s["id"]: s}, manuals, tid, b)
+                    head = s.get("heading") or ""
+                    label = f"{s['para']} {head if len(run) == 1 and head else _first_words(s['text'])}"
+                    leaves.append(node(tid, f"s{s['para']}", label, passages=pids))
             heads = [list(g) for _, g in groupby(zip(group, leaves),
                                                   key=lambda p: p[0].get("heading") or "")]
             chap_label = chap or ("Sections" if ci == 0 else f"Sections ({ci + 1})")
@@ -85,7 +96,8 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
                 chapters.append(chunk(tid, f"c{ci}", chap_label, leaves))
         root = chapters[0] if len(chapters) == 1 else chunk(tid, "root", title, chapters)
         # the root sits first in the tree's own node order for readers that assume it
-        b.trees.append({"id": tid, "title": _label(title), "shelf": "reference",
+        b.trees.append({"id": tid, "title": _label(short, TITLE_MAX), "full_title": title,
+                        "shelf": "reference",
                         "root": root["id"], "emergency": False, "tags": {},
                         "unreviewed": True})
     for n in b.nodes:

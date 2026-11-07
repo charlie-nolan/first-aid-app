@@ -368,3 +368,17 @@ def test_reference_shelf_pages_long_lists(repo):
     assert max(len(n["choices"]) for n in b.nodes) <= 40
     root = next(n for n in b.nodes if n["id"] == b.trees[0]["root"])
     assert [c["label"] for c in root["choices"]] == ["1-1 to 1-40", "1-41 to 1-80", "1-81 to 1-100"]
+
+
+def test_reference_shelf_labels_distinct_and_titles_short(repo):
+    from plb.shelf import TITLE_MAX, add_reference_shelf
+    from plb.trees import Built
+    b = Built()
+    secs = [{"id": f"M/1-{i}", "manual": "M", "para": f"1-{i}", "chapter": "Chapter 1",
+             "heading": "SAME HEADING", "text": f"Distinct opening words number {i} here."}
+            for i in range(1, 5)]
+    add_reference_shelf(b, {"M": secs}, {"M": {"cite_as": "A Very Long Manual Name That Will Not Fit"}})
+    labels = [n["label"] for n in b.nodes if n["passages"]]
+    assert len(set(labels)) == 4 and labels[0].startswith("1-1 Distinct opening")
+    assert len(b.trees[0]["title"]) <= TITLE_MAX
+    assert b.trees[0]["full_title"] == "A Very Long Manual Name That Will Not Fit"
