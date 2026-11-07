@@ -58,6 +58,13 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
             if p.exists():
                 by_manual[mid] = json.loads(p.read_text())
         add_reference_shelf(b, by_manual, manuals)
+    # tree table order = Library order on the device (and the n in ABOUT#n)
+    order = {tid: i for i, tid in enumerate(config.get("library_order") or [])}
+    unknown = set(order) - {t["id"] for t in b.trees}
+    if unknown:
+        pissues.append(Issue("warning", "config.yaml", f"library_order names unknown trees: "
+                                                       f"{sorted(unknown)}"))
+    b.trees.sort(key=lambda t: order.get(t["id"], len(order)))   # stable for the rest
     issues = b.issues + pissues
 
     sleep = config.get("sleep_picture")

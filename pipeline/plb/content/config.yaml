@@ -5,3 +5,26 @@ sleep_picture: null
 # Charlie 2026-11-07: ship every extracted manual as a text-only, UNREVIEWED reference shelf,
 # separate from signed-off topics (no pictures, no voice, never emergency).
 reference_shelf: true
+# Library order on the device (Charlie, 2026-11-07): first aid, then wilderness first aid,
+# survival, terrain/ops, emergencies. Trees not listed go after these, in build order.
+library_order:
+  - ref-ATP4-02.11
+  - ref-TC4-02.1
+  - bleeding
+  - ref-TBMED508
+  - ref-TBMED507
+  - ref-TBMED505
+  - ref-NAVSNAKES
+  - ref-TC4-02.3
+  - ref-SHIPSMED
+  - ref-ATP3-50.21
+  - ref-AFH10-644
+  - ref-TC21-3
+  - ref-ATP3-90.97
+  - ref-TC3-97.61
+  - ref-ATP3-90.98
+  - ref-ATP3-90.99
+  - ref-TC3-21.76
+  - ref-FEMA-CERT
+  - ref-DHS-ACTIVE-SHOOTER
+  - ref-USAMRICD-FMCC
