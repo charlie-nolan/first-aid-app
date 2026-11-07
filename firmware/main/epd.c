@@ -74,7 +74,7 @@ void epd_init(void) {
     spi_bus_config_t bus = { .mosi_io_num = PIN_EPD_MOSI, .miso_io_num = -1, .sclk_io_num = PIN_EPD_SCK,
                              .quadwp_io_num = -1, .quadhd_io_num = -1, .max_transfer_sz = 4096 };
     ESP_ERROR_CHECK(spi_bus_initialize(SPI2_HOST, &bus, SPI_DMA_CH_AUTO));
-    spi_device_interface_config_t dev = { .clock_speed_hz = 10 * 1000 * 1000, .mode = 0,
+    spi_device_interface_config_t dev = { .clock_speed_hz = 4 * 1000 * 1000   /* 4 MHz: clean edges over breadboard jumpers */, .mode = 0,
                                           .spics_io_num = PIN_EPD_CS, .queue_size = 1 };
     ESP_ERROR_CHECK(spi_bus_add_device(SPI2_HOST, &dev, &spi));
     panel_init();
@@ -106,8 +106,8 @@ void epd_show(const uint8_t *fb, bool full) {
         cmdv(0x22, (const uint8_t[]){ 0xF7 }, 1);
         cmd(0x20); wait_busy();
     } else {
-        gpio_set_level(PIN_EPD_RST, 0); vTaskDelay(pdMS_TO_TICKS(1));
-        gpio_set_level(PIN_EPD_RST, 1);
+        /* No hardware reset here: it is not needed between partials and the
+         * controller wants ~10 ms after one before it takes commands. */
         cmdv(0x3C, (const uint8_t[]){ 0x80 }, 1);
         cmdv(0x01, (const uint8_t[]){ (PH - 1) & 0xFF, (PH - 1) >> 8, 0x00 }, 3);
         cmdv(0x11, (const uint8_t[]){ 0x03 }, 1);
@@ -115,6 +115,11 @@ void epd_show(const uint8_t *fb, bool full) {
         cmdv(0x24, ram, sizeof ram);
         cmdv(0x22, (const uint8_t[]){ 0xFF }, 1);
         cmd(0x20); wait_busy();
+        /* Keep the base image (0x26) equal to what is now on the glass, so the
+         * next partial update diffs against the real screen. Without this the
+         * base stays at the last full refresh and errors build up page by page. */
+        window_full();
+        cmdv(0x26, ram, sizeof ram);
     }
 }
 
