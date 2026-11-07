@@ -110,15 +110,34 @@ typedef struct {
     int fig, nomatch, npas, per, choice_pages, total, nch;
     uint8_t pp[MAXP];                    /* pages per passage */
     uint8_t ch[64];                      /* visible choice indexes */
+    uint16_t about; int ap;              /* reference shelf: catalog line on a manual's first screen */
 } pages_t;
-enum { SEG_FIG, SEG_PAS, SEG_NOMATCH, SEG_CHOICES };
+enum { SEG_FIG, SEG_PAS, SEG_NOMATCH, SEG_CHOICES, SEG_ABOUT };
 
+static int tree_is_ref(const cart_t *c, uint16_t t);
+/* The catalog line for a reference-shelf manual, shown before its chapter list:
+ * cartridge string "ABOUT#<tree index>" (string names are at most 31 chars, so
+ * the index rather than the title). CART_NONE for anything else. */
+static uint16_t about_text(ui_t *u, uint16_t id) {
+    const cart_node_t *n = cart_node(u->c, id);
+    if (!n || !tree_is_ref(u->c, n->tree)) return CART_NONE;
+    cart_tree_t tr = cart_tree(u->c, n->tree);
+    if (tr.root != id) return CART_NONE;
+    char name[16]; snprintf(name, sizeof name, "ABOUT#%u", (unsigned)n->tree);
+    return cart_string(u->c, name);
+}
 static void node_pages(ui_t *u, uint16_t id, pages_t *P) {
     lay_t l = layout(u);
     memset(P, 0, sizeof *P);
     P->n = cart_node(u->c, id);
     if (!P->n) { P->total = 1; return; }
     P->fig = P->n->figure != CART_NONE;
+    P->about = about_text(u, id);
+    if (P->about != CART_NONE) {
+        int k = cart_page(u->c, P->about, ST(u, u->s->font), 0, 0, 4, l.body_y, UI_W - 8, l.body_h, u->scratch, sizeof u->scratch);
+        P->ap = k < 1 ? 1 : k;
+        P->total += P->ap;
+    }
     P->nomatch = (P->n->flags & CART_NODE_NO_MATCH) != 0;
     P->npas = P->n->n_passages + P->n->n_lookalikes; if (P->npas > MAXP) P->npas = MAXP;
     for (int i = 0; i < P->npas; i++) {
@@ -134,6 +153,7 @@ static void node_pages(ui_t *u, uint16_t id, pages_t *P) {
     if (!P->total) P->total = 1;
 }
 static int locate(const pages_t *P, int page, int *index, int *sub) {
+    if (P->ap) { if (page < P->ap) { *index = 0; *sub = page; return SEG_ABOUT; } page -= P->ap; }
     if (P->fig) { if (page == 0) { *index = 0; *sub = 0; return SEG_FIG; } page--; }
     for (int i = 0; i < P->npas; i++) { if (page < P->pp[i]) { *index = i; *sub = page; return SEG_PAS; } page -= P->pp[i]; }
     if (P->nomatch) { if (page == 0) { *index = 0; *sub = 0; return SEG_NOMATCH; } page--; }
@@ -390,7 +410,10 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
         return;
     }
     int idx, sub, seg = locate(&P, w->page, &idx, &sub);
-    if (seg == SEG_FIG) {
+    if (seg == SEG_ABOUT) {
+        cart_page(u->c, P.about, ST(u, u->s->font), sub, fb, 4, l.body_y, UI_W - 8, l.body_h, u->scratch, sizeof u->scratch);
+        footer(u, fb, REF_MARK " reference shelf: not signed off");
+    } else if (seg == SEG_FIG) {
         cart_pic_t p = {0};
         draw_pic(u, fb, P.n->figure, l.body_y, l.body_h, &p);
         char cap[64]; T(u, p.caption, cap, sizeof cap); T(u, p.citation, lab, sizeof lab);
