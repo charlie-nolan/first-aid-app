@@ -1,0 +1,24 @@
+# OS / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build output
+build/
+dist/
+.pio/
+
+# Large model weights (track with Git LFS or keep out of the repo)
+*.gguf
+*.safetensors
+*.bin
+
+# Old experiments
+qwen work/
