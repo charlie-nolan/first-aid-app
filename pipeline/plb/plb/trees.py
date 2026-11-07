@@ -109,8 +109,21 @@ def pretty_manual(manual_id: str, manuals: dict[str, dict]) -> str:
     return m.get("cite_as") or re.sub(r"^([A-Z]+)(\d)", r"\1 \2", manual_id)
 
 
-def citation_for(manual_id: str, para: str, manuals: dict[str, dict]) -> str:
-    return f"{pretty_manual(manual_id, manuals)}, para {para}"
+def citation_for(manual_id: str, para: str, manuals: dict[str, dict],
+                 sec: dict | None = None) -> str:
+    """'ATP 4-02.11, para 4-37'. Heading-only sections ("2.h1") have no real paragraph
+    number, so they cite their place instead: 'front matter, Preface' or 'Ch 2, <heading>'."""
+    book = pretty_manual(manual_id, manuals)
+    if ".h" not in para:
+        return f"{book}, para {para}"
+    sec = sec or {}
+    head = " ".join(re.sub(r"^[\s*#\-]+", "", sec.get("heading") or "").split())
+    head = head.title() if head.isupper() else head
+    head = head if len(head) <= 40 else head[:37].rstrip() + "..."
+    m = re.match(r"^(chapter|appendix)\s+(\S+?)[.:]?(\s|$)", sec.get("chapter") or "", flags=re.I)
+    where = ((("Ch " if m.group(1).lower() == "chapter" else "App ") + m.group(2)) if m
+             else (sec.get("chapter") or "front matter"))
+    return f"{book}, {where}, {head}" if head else f"{book}, {where}"
 
 
 def load_trees(tree_dir: Path) -> list[tuple[Path, dict]]:
@@ -149,14 +162,14 @@ def _resolve_cite(c, sections, manuals, where, b: Built) -> list[str]:
         pid = f"{ref}#{i}-{i + len(text)}"
     if pid not in b.passages:
         b.passages[pid] = Passage(pid, sec["manual"], sec["para"], sec.get("heading", ""),
-                                  citation_for(sec["manual"], sec["para"], manuals), text)
+                                  citation_for(sec["manual"], sec["para"], manuals, sec), text)
     out = [pid]
     for i, nt in enumerate(sec.get("notices") or [], 1):
         kind = str(nt.get("kind", "NOTE")).upper()
         nid = f"{ref}~{kind.lower()}{i}"
         if nid not in b.passages:
             b.passages[nid] = Passage(nid, sec["manual"], sec["para"], kind,
-                                      citation_for(sec["manual"], sec["para"], manuals),
+                                      citation_for(sec["manual"], sec["para"], manuals, sec),
                                       f"## {kind}\n{nt['text']}")
         out.append(nid)
     return out

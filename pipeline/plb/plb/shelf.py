@@ -20,6 +20,7 @@ from itertools import groupby
 from .trees import LABEL_MAX, Built, _resolve_cite, pretty_manual
 
 LIST_MAX = 40          # longest choice list we emit; longer lists get another level
+COVER_MIN = 400        # front-matter heading sections shorter than this are cover boilerplate
 TITLE_MAX = 28         # Library row fits ~28 chars after the "Unreviewed: " prefix
 
 
@@ -107,6 +108,13 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
         ordered = []
         for k in sorted(buckets, key=_chap_sort):
             ordered += [s for _, s in sorted(buckets[k], key=lambda p: ((p[1].get("pages") or [0])[0], p[0]))]
+        n_chaps = len(buckets)
+        if n_chaps > 1 and "" in buckets:
+            # cover-page fragments (date, "Headquarters...", distribution line, signature
+            # block) are heading-only sections in the front matter with almost no text
+            ordered = [s for s in ordered if _chap_key(s.get("chapter")) or ".h" not in s["para"]
+                       or len(s["text"]) + sum(len(n.get("text", "")) for n in s.get("notices") or [])
+                       >= COVER_MIN]
         secs_eff = ordered
         for ci, (_, group) in enumerate(groupby(secs_eff, key=lambda s: _chap_key(s.get("chapter")))):
             group = list(group)
@@ -144,7 +152,8 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
             chap_short = (("Ch " if m_num.group(1).lower() == "chapter" else "App ") + m_num.group(2)
                           if m_num else chap)
             chap_label = (f"{chap_short} {first.title() if first.isupper() else first}" if chap else
-                          ("Sections" if ci == 0 else f"Sections ({ci + 1})"))
+                          ("Front matter" if n_chaps > 1 else "Sections") if ci == 0
+                          else f"Sections ({ci + 1})")
             if len(leaves) > list_max and 1 < len(heads) <= list_max * list_max:
                 kids = [chunk(tid, f"c{ci}h{hi}", f"{h[0][1]['label'].split(' ')[0]} "
                               f"{h[0][0].get('heading') or ''}", [l for _, l in h])
