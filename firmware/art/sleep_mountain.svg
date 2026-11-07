@@ -43,30 +43,35 @@
  <g fill="#000">
   <ellipse cx="104" cy="105" rx="2.6" ry="1.4"/><ellipse cx="114" cy="101" rx="2.6" ry="1.4"/>
   <ellipse cx="124" cy="105" rx="2.6" ry="1.4"/><ellipse cx="134" cy="101" rx="2.6" ry="1.4"/>
-  <ellipse cx="144" cy="105" rx="2.6" ry="1.4"/><ellipse cx="154" cy="101" rx="2.6" ry="1.4"/><ellipse cx="164" cy="105" rx="2.6" ry="1.4"/>
+  <ellipse cx="144" cy="105" rx="2.6" ry="1.4"/><ellipse cx="154" cy="101" rx="2.6" ry="1.4"/>
  </g>
- <!-- SASQUATCH: tiptoeing right, finger to lips, dragging the campers' cooler -->
- <g transform="translate(176,58)">
-  <g fill="#000">
-   <path d="M10,13 L11,5 L15,0 L20,3 L23,8 L22,13 Z"/>
-   <path d="M7,13 L24,13 L28,22 L26,34 L21,39 L9,39 L4,33 L1,30 L4,28 L1,24 L4,22 L2,17 L5,16 Z"/>
-  </g>
-  <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
-   <polyline points="24,16 30,19 25,9" stroke-width="4.2"/>
-   <polyline points="6,17 -1,25 -6,31" stroke-width="4.2"/>
-   <polyline points="10,37 6,44 1,47" stroke-width="5"/>
-   <polyline points="19,37 24,42 27,47" stroke-width="5"/>
-  </g>
-  <g fill="#000"><ellipse cx="0" cy="48" rx="4" ry="1.8"/><ellipse cx="30" cy="48" rx="5" ry="2"/></g>
-  <circle cx="19" cy="6" r="1.1" fill="#fff"/>
-  <g stroke="#000" stroke-width="1.1" fill="none"><path d="M31,4 q2,-2 4,0"/><path d="M34,0 q2,-2 4,0"/></g>
+ <!-- SASQUATCH: classic side-view stride (walking right, toward the trees), cooler swinging behind -->
+ <g transform="translate(172,54) scale(0.34)" fill="#000" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
+  <!-- back arm (behind the body) holding the cooler -->
+  <polyline points="46,32 30,54 16,74" fill="none" stroke-width="12"/>
+  <!-- back leg pushing off, heel up -->
+  <polyline points="44,86 32,116 14,140" fill="none" stroke-width="17"/>
+  <path d="M18,136 L8,152 L-8,155 L-4,146 Z" stroke-width="3"/>
+  <!-- head: crest at the back, heavy brow, jaw forward -->
+  <path d="M46,24 L48,8 L54,1 L62,4 L68,12 L71,18 L70,24 L66,28 L54,30 Z" stroke-width="2"/>
+  <!-- torso: hunched back, deep chest -->
+  <path d="M46,20 Q30,34 32,58 Q32,78 38,92 L62,94 Q70,74 70,52 Q70,34 64,26 Z" stroke-width="2"/>
+  <!-- front leg striding forward -->
+  <polyline points="56,86 76,114 86,146" fill="none" stroke-width="18"/>
+  <path d="M78,144 L104,147 L106,155 L76,156 Z" stroke-width="3"/>
+  <!-- front arm swinging forward -->
+  <polyline points="58,32 76,52 90,72" fill="none" stroke-width="12"/>
+  <!-- fur tufts on back, elbows, calves -->
+  <path d="M33,44 L26,48 L32,52 Z M31,62 L25,68 L32,70 Z M33,58 L28,60 L32,64 Z  M30,58 L24,62 L30,64 Z" stroke-width="1"/>
  </g>
+ <!-- eye glint (glancing back at the camp) -->
+ <circle cx="193" cy="58" r="0.9" fill="#fff"/>
  <!-- the stolen cooler -->
- <rect x="158" y="90" width="13" height="10" rx="1.5" fill="#fff" stroke="#000" stroke-width="1.5"/>
- <line x1="158" y1="93.5" x2="171" y2="93.5" stroke="#000" stroke-width="1.2"/>
+ <rect x="167" y="78" width="13" height="10" rx="1.5" fill="#fff" stroke="#000" stroke-width="1.5"/>
+ <line x1="167" y1="81.5" x2="180" y2="81.5" stroke="#000" stroke-width="1.2"/>
  <!-- right pines -->
  <g fill="#000">
-  <path d="M214,108 L224,62 L234,108 Z"/>
+  <path d="M216,108 L226,62 L236,108 Z"/>
   <path d="M230,108 L240,72 L250,108 Z"/>
  </g>
  <!-- bottom band for the firmware's text line -->
