@@ -8,7 +8,7 @@ Voice: bleeding, bleeding wont stop, heavy bleeding, severe bleeding, bad bleedi
 
 **ATP 4-02.11, para 4-5**
 
-> The priority in caring for a casualty, should be to identify and stop life-threatening bleeding and prevent them from bleeding to death. Bleeding is considered life-threatening when --
+> The priority in caring for a casualty, should be to identify and stop life-threatening bleeding and prevent them from bleeding to death. Bleeding is considered life-threatening when--
 > - There is pulsing or steady bleeding from the wound.
 > - The overlying clothes are soaked with blood.
 > - Blood is pooling on the ground.
@@ -30,7 +30,7 @@ Voice: bleeding arm, bleeding leg, arm bleeding, leg bleeding
 
 **ATP 4-02.11, para 4-9**
 
-> During CUF, if a casualty shows to have massive bleeding, from an extremity, a hasty TQ is applied " high and tight " on the injured extremity and then cover should be acquired as quickly as possible. The equipment in the casualty's first aid kit should be used and not that of the responder. Do not put a TQ directly over the knee or elbow, over a holster, or cargo pocket that contains bulky items.
+> During CUF, if a casualty shows to have massive bleeding, from an extremity, a hasty TQ is applied "high and tight" on the injured extremity and then cover should be acquired as quickly as possible. The equipment in the casualty's first aid kit should be used and not that of the responder. Do not put a TQ directly over the knee or elbow, over a holster, or cargo pocket that contains bulky items.
 
 - [kit] Yes, have a tourniquet -> `bleeding/tq`
 - [nothing] No tourniquet -> `bleeding/pack`
@@ -117,26 +117,44 @@ Voice: no tourniquet, pack a wound, wound packing, how to pack a wound, direct p
 
 > If a TQ is not available, pack the wound and hold direct pressure over the source of the heaviest bleed, FIRST. If this fails to control the bleeding in an arm or leg, only then consider an alternate improvised TQ.
 
+**ATP 4-02.11, para 4-51**
+
+> Depending on the nature of the injuries, the first responder may need to pack wounds and apply a pressure bandage. Hemostatic dressings, containing special clotting agents, are ideal for wound packing to promote blood clotting. If hemostatic dressings are unavailable, gauze bandage can be used to pack wounds.
+
+**ATP 4-02.11, para 4-51** (WARNING)
+
+> ## WARNING
+> Avoid packing wounds in the chest or abdomen.
+
+**ATP 4-02.11, para 4-54**
+
+> Hemostatic dressings are only applied during the TFC phase. The steps for wound packing and pressure bandage are as follows:
+> - Expose the wound, if not previously exposed.
+> - Remove clothing and equipment as required.
+> - Locate the source of the most active bleeding and apply direct pressure.
+> - Remove the hemostatic dressing from its sterile package.
+> - If a hemostatic dressing is not available, use gauze or clean, dry cloth material.
+> - Pack the hemostatic dressing tightly into the wound directly over the site that has the most active bleeding. Note. Fill and pack the whole wound cavity tightly while keeping firm pressure on the wound. More than one hemostatic dressing or gauze may be required to stop the blood flow. Note. If the hemostatic dressing or gauze does not extend 1 to 2 inches above the skin, place additional hemostatic dressing or gauze.
+> - After packing, continue to apply firm, manual pressure until the bleeding stops. Hold continuous direct pressure for a minimum of 3 minutes.
+> - Reassess to ensure bleeding has been controlled while maintaining pressure. Note: Ensure blood is not seeping through or around the hemostatic dressing. If bleeding has stopped, leave the hemostatic dressing in place while still maintaining pressure.
+> - If bleeding has not been controlled and packed initially with a hemostatic dressing, remove the ineffective hemostatic dressing and repack starting at step three of this skill.
+> - If the wound was previously packed with gauze or other materials, apply additional gauze or materials and pressure (for another 3 minutes) until bleeding has stopped.
+> - Remove the pressure bandage from its package.
+> - Place the pad (bandage) directly over the wound on the previously applied hemostatic dressing while continuing to apply direct pressure.
+> - Wrap the pressure/elastic bandage tightly around the extremity, focusing pressure over the wound and ensuring that the edges of the pad are covered. Note: If the bandage has a pressure bar, insert the elastic wrap completely into the pressure bar, pull the bandage tight, and reverse it back over the top of the pressure bar forcing it down onto the pad.
+> - Secure the hooking ends of the hood and loop straps or closure bar onto the last wrap of the bandage.
+> - Check for circulation below the pressure bandage by feeling for a distal pulse.
+> - Document all findings and treatments on a DD Form 1380 and attach it to the casualty. Note. If the skin below the pressure bandage becomes cool to touch, bluish, or numb, or if the distal pulse is no longer present, the pressure bandage may be too tight and should be loosened and reapplied. If bleeding reoccurs you may need to apply a limb or junctional tourniquet.
+
+**ATP 4-02.11, para 4-54** (CAUTION)
+
+> ## CAUTION
+> If a penetrating object is lodged in the casualty's body, bandage it in place. Do not remove the object.
+> - Ensure the hemostatic dressing or gauze extends 1-2 inches above the skin.
+
 **ATP 4-02.11, para 4-66**
 
 > After packing the wound with a hemostatic dressing or gauze, hold direct pressure for three minutes. Direct pressure can and should be used as a temporary measure until a TQ or dressing is in place. It is difficult to use direct pressure alone to control significant bleeding, or while moving the casualty. While packing a wound, maintain constant, direct pressure, at the source of the bleeding to be effective.
-
-**ATP 4-02.11, para 4-68**
-
-> Wound packing:
-> - Identify and expose the wound.
-> - Locate the source of the most active bleeding and apply direct pressure, while preparing the hemostatic dressing.
-> - Remove the hemostatic dressing from its sterile package and pack it into the wound tightly, directly over the site of the most active bleeding.
-> - Fill and pack the whole wound cavity tightly while keeping firm pressure on the wound.
-> - Ensure the hemostatic dressing extends one to two inches above the skin.
-> - Hold continuous direct pressure for a minimum of three minutes.
-> - Reassess the wound to ensure that the bleeding has stopped.
-> - Apply a pressure bandage over the hemostatic dressing to secure it in place.
-> - Reassess the wound to ensure that the bleeding has stopped. If blood is seeping through or around the hemostatic dressing, the bleeding is not controlled, and the following steps should be applied:
-> - If extra hemostatic dressings are available, remove the initial, ineffective hemostatic dressing and replace them with new hemostatic dressings.
-> - If extra hemostatic dressings are unavailable, leave initial, ineffective hemostatic dressing in place and add extra gauze over the wound tract.
-> - If roller or compressed gauze was used initially, due to unavailability of hemostatic dressings, leave initial, ineffective roller or compressed gauze in place and add extra gauze over the wound tract.
-> - Once bleeding has been controlled, apply a pressure bandage over the wound packing material to secure it in place. Note. More than one hemostatic dressing may be required to stop the blood flow.
 
 - [improvised] Still bleeding, improvise -> `bleeding/improv_tq`
 - [nothing] Keep holding pressure -> `bleeding/pressure`
@@ -153,9 +171,18 @@ Voice: improvised tourniquet, make a tourniquet, homemade tourniquet, tourniquet
 
 > Using one of the CoTCCC-recommended TQs is the safe and preferred procedure for hemorrhage control. Improvised TQs are much less effective than commercially available TQs discussed in paragraph 4-37 on page 48. Improvised TQs are difficult to make and apply without extensive practice, however they may be needed in situations where commercially produced TQs are unavailable, or supplies have been exhausted.
 
+**ATP 4-02.11, para 4-79** (CAUTION)
+
+> ## CAUTION
+> The risks associated with using improvised TQs include:
+> - Damage may occur to the skin if the band is too narrow.
+> - Bleeding may worsen.
+> - Bleeding may not be completely controlled.
+> - Likely to loosen overtime from not being properly secured.
+
 **ATP 4-02.11, para 4-81**
 
-> An alternate improvised TQ uses other materials on hand. In constructing one, it is recommended that you fold a cravat (or other pliable material) to a width of approximately 1 1?2 to 2 inches and tighten it with some sort of windlass rod (a straight rod that can be used to twist the material tighter). Then secure the rod to ensure it does not loosen. Note. The cravat is included in the JFAK, however it is not part of the Army IFAK Generation 1 or 2. To resource the cravat for the Army IFAK, the nomenclature is: Sterile Burn Dressing Cravat, NSN: 6510-01-587-6579; Muslin Compressed Bandage NSN: 6510-00-201-1755.
+> An alternate improvised TQ uses other materials on hand. In constructing one, it is recommended that you fold a cravat (or other pliable material) to a width of approximately 1 1/2 to 2 inches and tighten it with some sort of windlass rod (a straight rod that can be used to twist the material tighter). Then secure the rod to ensure it does not loosen. Note. The cravat is included in the JFAK, however it is not part of the Army IFAK Generation 1 or 2. To resource the cravat for the Army IFAK, the nomenclature is: Sterile Burn Dressing Cravat, NSN: 6510-01-587-6579; Muslin Compressed Bandage NSN: 6510-00-201-1755.
 
 **ATP 4-02.11, para 4-83**
 
@@ -187,6 +214,15 @@ Picture: Figure 4-6. Junctional Anatomy (ATP 4-02.11, figure 4-6, 408x278, pans)
 
 > Junctional pressure is an alternative method to control bleeding. This method uses pressure to press at the site or point where a main artery supplying the wounded area lies near the skin surface or over bone (see figure 4-6 on page 55). These areas are known as junctional areas and are difficult to stop the bleeding even though the vessels are larger than in the extremities. Junctional areas are located at the junction of the extremities and neck with the torso.
 
+**ATP 4-02.11, para 4-45**
+
+> Hemostatic dressings serve as effective tools for controlling bleeding in areas where a TQ cannot be applied effectively, such as the groin, armpit, or neck. These dressings should be applied with direct and firm pressure and held for at least three minutes.
+
+**ATP 4-02.11, para 4-45** (CAUTION)
+
+> ## CAUTION
+> Do not pack hemostatic dressings into the abdomen or chest.
+
 - [next] Neck -> `bleeding/neck`
 - [next] Armpit -> `bleeding/armpit`
 - [next] Groin -> `bleeding/groin`
@@ -205,7 +241,7 @@ Voice: neck bleeding, bleeding from the neck, cut throat
 > - Consider body substance isolation
 > - Expose the injury and assess the bleeding source.
 > - Apply direct pressure to the bleeding source, use dressing from the casualty's IFAK or JFAK.
-> - Pack wound tightly with the hemostatic gauze until the wound cavity is filled. Note . These steps should be performed within 90 seconds.
+> - Pack wound tightly with the hemostatic gauze until the wound cavity is filled. Note. These steps should be performed within 90 seconds.
 > - Ensure that the gauze extends 1 to 2 inches above the skin.
 > - Hold pressure for a minimum of three minutes.
 > - Reassess to ensure bleeding has been controlled while maintaining pressure.
@@ -214,10 +250,10 @@ Voice: neck bleeding, bleeding from the neck, cut throat
 > - If packed with gauze or initially packed with hemostatic dressing and no more hemostatic dressing is available, apply additional gauze and pressure (for three minutes) until the bleeding stops.
 > - Place an elastic bandage over the dressing leaving enough tail to tie it into a knot.
 > - While maintaining pressure, wrap diagonally across the chest under the opposite arm (armpit) around the back to the neck and back over the wound.
-> - Wrap the bandage (no less than 1 1?2 times) over the packing material covering it completely.
+> - Wrap the bandage (no less than 1 1/2 times) over the packing material covering it completely.
 > - Wrap around the neck and under the arm (on alternating sides of the tail, while maintaining tension/pressure), pulling elastic bandage tightly for pressure, covering the packing material. Note. Do not use the pressure bar on the neck.
 > - Secure the dressing by tying a non-slip knot with the end of the elastic bandage and its tail.
-> - Secure the elastic bandage tails with tape, wrapping a minimum of 1 1?2 times around the knot.
+> - Secure the elastic bandage tails with tape, wrapping a minimum of 1 1/2 times around the knot.
 > - Swath the upper arm (of the injured side) to the chest using a bandage.
 > - Continue to assess the wound for further bleeding.
 > - Document all findings and treatments on DD Form 1380.
@@ -234,7 +270,7 @@ Voice: armpit bleeding, bleeding from the armpit, bleeding shoulder
 > - Consider body substance isolation.
 > - Cut away any clothing (to expose injury) and lift the arm to assess the bleeding source.
 > - Apply direct pressure to the most active bleed. Prepare hemostatic dressing.
-> - Extend the casualty's arm at a 90 -degree angle by placing it on your shoulder.
+> - Extend the casualty's arm at a 90-degree angle by placing it on your shoulder.
 > - Pack the wound tightly with the hemostatic gauze until the wound cavity is filled. Note. These steps should be performed within 90 seconds.
 > - Ensure that the gauze extends 1 to 2 inches above the skin.
 > - Hold pressure for a minimum of three minutes.
@@ -244,7 +280,7 @@ Voice: armpit bleeding, bleeding from the armpit, bleeding shoulder
 > - While maintaining pressure on the dressing/gauze, wrap the pressure (or elastic) bandage around the injured shoulder twice to ensure the gauze underneath is completely covered.
 > - Wrap the elastic bandage across, back and under the opposite armpit, anchoring around the opposite shoulder in a "figure 8" pattern.
 > - Depending on the bandage used, secure with the closure bar of tie tails of elastic bandage with a nonslip knot.
-> - Secure the pressure (elastic) bandage tails and knot using tape, wrapping a minimum of 1 1?2 times around the knot.
+> - Secure the pressure (elastic) bandage tails and knot using tape, wrapping a minimum of 1 1/2 times around the knot.
 > - Swat the upper arm to the side of the chest using a cravat.
 > - Continue to assess the wound for further bleeding.
 
@@ -264,7 +300,7 @@ Voice: groin bleeding, bleeding from the groin, inner thigh bleeding
 
 **ATP 4-02.11, para 4-86**
 
-> The PDD is then secured with a TQ, which is wrapped over the hips with the windlass or ratchet placed directly over the improvised device and tightened to add additional pressure. Two TQs placed together may be needed when improvising a PDD. Note . Junctional hemorrhages involve larger blood vessels requiring more pressure (and targeted pressure) than can be applied with a pressure dressing alone.
+> The PDD is then secured with a TQ, which is wrapped over the hips with the windlass or ratchet placed directly over the improvised device and tightened to add additional pressure. Two TQs placed together may be needed when improvising a PDD. Note. Junctional hemorrhages involve larger blood vessels requiring more pressure (and targeted pressure) than can be applied with a pressure dressing alone.
 
 **ATP 4-02.11, para 4-87**
 
@@ -281,7 +317,7 @@ Voice: groin bleeding, bleeding from the groin, inner thigh bleeding
 > - Select a TQ that can wrap around the casualty's waist/hip area or connect the two tourniquets together.
 > - Place the windlass or ratchet TQ directly over the middle of the pressure delivery device; ensure that the routing buckle is located towards the middle of the body.
 > - Remove all slack from the band or strap using a pushing motion across the casualty's body before tightening the TQ.
-> - Tighten the TQ and ensure that the bleeding is still controlled, and the distal pulse is absent. Note . If the bleeding is not controlled and the distal pulse (a pulse located below the TQ) is present, remove any remaining slack in the strapping (if possible) and twist or ratchet the TQ device until bleeding is controlled and/or a distal pulse is absent.
+> - Tighten the TQ and ensure that the bleeding is still controlled, and the distal pulse is absent. Note. If the bleeding is not controlled and the distal pulse (a pulse located below the TQ) is present, remove any remaining slack in the strapping (if possible) and twist or ratchet the TQ device until bleeding is controlled and/or a distal pulse is absent.
 > - Visually inspect the placement of the equipment, ensuring that the pressure delivery device is in place and the windlass or ratchet is properly positioned over the device.
 > - Document all findings and treatments on DD Form 1380.
 
@@ -297,7 +333,7 @@ Voice: pressure bandage, pressure dressing, bandage too tight, check the bandage
 
 **ATP 4-02.11, para 4-71**
 
-> Pressure bandages should not have a TQ effect. If there is no pulse below the pressure bandage, it has been applied too tightly and will need to be loosened and retied. Another sign that the pressure bandage has been applied too tightly is the color of the skin. The skin will have a bluish tint and may be cool to the touch. The casualty will complain of numbness in the extremity below the bandage. All bandages should be reassessed by --
+> Pressure bandages should not have a TQ effect. If there is no pulse below the pressure bandage, it has been applied too tightly and will need to be loosened and retied. Another sign that the pressure bandage has been applied too tightly is the color of the skin. The skin will have a bluish tint and may be cool to the touch. The casualty will complain of numbness in the extremity below the bandage. All bandages should be reassessed by--
 > - Checking for circulation BELOW the pressure bandage by feeling for a distal pulse (a pulse below the bandage).
 > - Checking the skin BELOW the pressure bandage ensures the skin is not cool to the touch, has a bluish tint, or is numb.
 > - Checking every time a casualty is moved.
@@ -305,6 +341,15 @@ Voice: pressure bandage, pressure dressing, bandage too tight, check the bandage
 **ATP 4-02.11, para 4-72**
 
 > The pressure dressing is too tight if the pulse below the pressure dressing is no longer present, or the skin is cool. If circulation is blocked or stopped, loosen, and re-tie the bandage. Dressings and bandages should be reassessed and checked routinely.
+
+**ATP 4-02.11, para 4-46**
+
+> After the bleeding has been controlled, it's crucial to check for a distal pulse to ensure the dressing hasn't been applied too tightly. Adjust the dressing if a pulse is not felt to restore circulation.
+
+**ATP 4-02.11, para 4-46** (WARNING)
+
+> ## WARNING
+> The emergency bandage must be loosened if the skin distal to the injury becomes cool, blue, numb, or pulseless.
 
 **ATP 4-02.11, para 7-8**
 

@@ -63,7 +63,7 @@ nodes:
 
   pack:
     label: No tourniquet
-    cite: [ATP4-02.11/4-80, ATP4-02.11/4-66, ATP4-02.11/4-68]
+    cite: [ATP4-02.11/4-80, ATP4-02.11/4-51, ATP4-02.11/4-54, ATP4-02.11/4-66]
     phrases: [no tourniquet, pack a wound, wound packing, how to pack a wound, direct pressure]
     choices:
       - {label: "Still bleeding, improvise", to: improv_tq, kind: improvised}
@@ -85,7 +85,7 @@ nodes:
 
   junctional:
     label: Neck, armpit or groin
-    cite: [ATP4-02.11/4-73]
+    cite: [ATP4-02.11/4-73, ATP4-02.11/4-45]
     figure: ATP4-02.11/fig/4-6
     phrases: [junctional bleeding]
     choices:
@@ -116,5 +116,5 @@ nodes:
 
   dressing:
     label: Pressure dressing and checks
-    cite: [ATP4-02.11/4-70, ATP4-02.11/4-71, ATP4-02.11/4-72, ATP4-02.11/7-8]
+    cite: [ATP4-02.11/4-70, ATP4-02.11/4-71, ATP4-02.11/4-72, ATP4-02.11/4-46, ATP4-02.11/7-8]
     phrases: [pressure bandage, pressure dressing, bandage too tight, check the bandage]
