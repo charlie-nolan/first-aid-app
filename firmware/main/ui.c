@@ -191,6 +191,37 @@ static int vis_trees(ui_t *u, uint8_t *out) {
     return k;
 }
 
+/* Library folders: a tree with a cartridge string "GROUP#<tree index>" belongs to
+ * the folder of that name. The top level lists folders (in order of their first
+ * tree) and any ungrouped trees; a folder lists its trees. A folder entry is
+ * LIB_FOLDER + its first tree's index. Cartridges without GROUP# strings get the
+ * old flat list. */
+#define LIB_FOLDER 0x100
+static int tree_group(ui_t *u, unsigned t, char *b, size_t cap) {
+    char name[16]; snprintf(name, sizeof name, "GROUP#%u", t);
+    uint16_t id = cart_string(u->c, name);
+    if (id == CART_NONE) { if (cap) b[0] = 0; return 0; }
+    cart_text(u->c, id, 0, b, cap);
+    return b[0] != 0;
+}
+static int lib_entries(ui_t *u, uint16_t *out) {
+    uint8_t v[VIS_MAX]; int k = vis_trees(u, v), n = 0;
+    char g[40], h[40];
+    if (u->lib_folder != 0xFF) {
+        tree_group(u, u->lib_folder, h, sizeof h);
+        for (int i = 0; i < k; i++)
+            if (tree_group(u, v[i], g, sizeof g) && !strcmp(g, h)) out[n++] = v[i];
+        return n;
+    }
+    for (int i = 0; i < k; i++) {
+        if (!tree_group(u, v[i], g, sizeof g)) { out[n++] = v[i]; continue; }
+        int seen = 0;
+        for (int j = 0; j < i && !seen; j++) if (tree_group(u, v[j], h, sizeof h) && !strcmp(g, h)) seen = 1;
+        if (!seen) out[n++] = (uint16_t)(LIB_FOLDER + v[i]);
+    }
+    return n;
+}
+
 void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s) {
     u->c = c; u->s = s;
     int fresh = 0;
@@ -209,9 +240,10 @@ void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s) {
     unsigned nf = cart_font_sizes(c);
     if (nf && s->font >= nf) s->font = (uint8_t)(nf - 1);
     if (s->family >= cart_font_families(c)) s->family = 0;
-    /* No separate wake screen: open where the reader left off, or on the Library
-     * the first time (the 911 line lives on the sleep picture instead). */
-    u->mode = fresh ? M_LIBRARY : M_READ; u->back_mode = M_READ; u->list_sel = 0;
+    /* Home is the Library's top level (its folders), on every boot and wake
+     * (Charlie, 2026-11-07); there is no wake screen. */
+    (void)fresh;
+    u->mode = M_LIBRARY; u->back_mode = M_READ; u->list_sel = 0; u->lib_folder = 0xFF;
 }
 
 static void clamp_page(ui_t *u) {
@@ -346,9 +378,17 @@ static void lbl_choice(ui_t *u, int i, char *b, size_t cap) {
     T(u, ch.label, b, cap);
 }
 static void lbl_tree(ui_t *u, int i, char *b, size_t cap) {
-    uint8_t v[VIS_MAX]; vis_trees(u, v);
-    char t[64]; T(u, cart_tree(u->c, v[i]).title, t, sizeof t);
-    snprintf(b, cap, "%s%s", tree_is_ref(u->c, v[i]) ? REF_MARK ": " : "", t);
+    uint16_t e[VIS_MAX]; lib_entries(u, e);
+    if (e[i] >= LIB_FOLDER) {                                   /* folder: name and how many inside */
+        char g[40]; tree_group(u, e[i] - LIB_FOLDER, g, sizeof g);
+        uint8_t keep = u->lib_folder; u->lib_folder = (uint8_t)(e[i] - LIB_FOLDER);
+        uint16_t in[VIS_MAX]; int n = lib_entries(u, in);
+        u->lib_folder = keep;
+        snprintf(b, cap, "%s (%d)", g, n);
+        return;
+    }
+    char t[64]; T(u, cart_tree(u->c, e[i]).title, t, sizeof t);
+    snprintf(b, cap, "%s%s", tree_is_ref(u->c, e[i]) ? REF_MARK ": " : "", t);
 }
 /* context picker: a dimension's values are "Any" then each labelled bit */
 static int ctx_values(ui_t *u, uint8_t *out) {          /* out[0] = 0xFF ("Any"), then bits */
@@ -468,7 +508,13 @@ void ui_render(ui_t *u, cart_fb_t *fb) {
     switch (u->mode) {
     case M_WAKE: render_wake(u, fb); break;
     case M_READ: render_read(u, fb); break;
-    case M_LIBRARY: { uint8_t v[VIS_MAX]; draw_list(u, fb, "Library", 0, vis_trees(u, v), u->list_sel, lbl_tree, 0); break; }
+    case M_LIBRARY: {
+        uint16_t e[VIS_MAX]; int n = lib_entries(u, e);
+        char t[40] = "Library";
+        if (u->lib_folder != 0xFF) tree_group(u, u->lib_folder, t, sizeof t);
+        draw_list(u, fb, t, 0, n, u->list_sel, lbl_tree, 0);
+        break;
+    }
     case M_CTX_DIMS: draw_list(u, fb, "Where and when", 0, (int)cart_ctx_dims(u->c), u->list_sel, lbl_dim, "Pages that don't fit are hidden"); break;
     case M_CTX_VALUES: { uint8_t v[97]; draw_list(u, fb, "Pick one", 0, ctx_values(u, v), u->list_sel, lbl_value, 0); break; }
     case M_MENU: { int it[LIST_MAX]; draw_list(u, fb, "Menu", 0, menu_items(u, it), u->list_sel, lbl_menu, "Hold BACK: front light"); break; }
@@ -514,11 +560,17 @@ static void list_step(ui_t *u, int n, int dir) {
     u->list_sel = (uint8_t)s;
 }
 static void open_menu(ui_t *u) { u->back_mode = u->mode == M_WAKE ? M_READ : u->mode; u->mode = M_MENU; u->list_sel = 0; }
-static void open_library(ui_t *u) {
-    u->mode = M_LIBRARY; u->list_sel = 0;
+static void open_library(ui_t *u) {                       /* opens on the folder holding the current topic */
+    u->mode = M_LIBRARY; u->list_sel = 0; u->lib_folder = 0xFF;
     const cart_node_t *n = cart_node(u->c, W(u)->node);
-    uint8_t v[VIS_MAX]; int k = vis_trees(u, v);
-    for (int i = 0; n && i < k; i++) if (v[i] == n->tree) u->list_sel = (uint8_t)i;
+    if (!n) return;
+    char g[40], h[40];
+    if (tree_group(u, n->tree, g, sizeof g)) {
+        uint8_t v[VIS_MAX]; int k = vis_trees(u, v);
+        for (int i = 0; i < k; i++) if (tree_group(u, v[i], h, sizeof h) && !strcmp(g, h)) { u->lib_folder = v[i]; break; }
+    }
+    uint16_t e[VIS_MAX]; int k = lib_entries(u, e);
+    for (int i = 0; i < k; i++) if (e[i] == n->tree) u->list_sel = (uint8_t)i;
 }
 static void talk_short(ui_t *u) {
     ui_window_t *w = W(u);
@@ -611,13 +663,21 @@ ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
     case M_LIBRARY: case M_MENU: case M_PICK: {
         int it[LIST_MAX];
         uint8_t v[VIS_MAX];
-        int n = u->mode == M_LIBRARY ? vis_trees(u, v) : u->mode == M_MENU ? menu_items(u, it) : u->npicks;
+        uint16_t e[VIS_MAX];
+        int n = u->mode == M_LIBRARY ? lib_entries(u, e) : u->mode == M_MENU ? menu_items(u, it) : u->npicks;
+        (void)v;
         if (b == B_DOWN && k == E_LONG && u->mode != M_MENU) { open_menu(u); break; }
         if (b == B_DOWN) list_step(u, n, +1);
         else if (b == B_UP) list_step(u, n, -1);
+        else if (b == B_BACK && u->mode == M_LIBRARY && u->lib_folder != 0xFF) {   /* up out of a folder */
+            uint8_t f = u->lib_folder; u->lib_folder = 0xFF; u->list_sel = 0;
+            int m = lib_entries(u, e);
+            for (int i = 0; i < m; i++) if (e[i] == LIB_FOLDER + f) u->list_sel = (uint8_t)i;
+        }
         else if (b == B_BACK) u->mode = u->mode == M_MENU ? u->back_mode : M_READ;
         else if (b == B_TALK && n) {
-            if (u->mode == M_LIBRARY) go_node(u, cart_tree(u->c, v[u->list_sel]).root);
+            if (u->mode == M_LIBRARY && e[u->list_sel] >= LIB_FOLDER) { u->lib_folder = (uint8_t)(e[u->list_sel] - LIB_FOLDER); u->list_sel = 0; }
+            else if (u->mode == M_LIBRARY) { W(u)->nhist = 0; W(u)->node = CART_NONE; go_node(u, cart_tree(u->c, e[u->list_sel]).root); W(u)->nhist = 0; }   /* BACK from a topic's first page returns to its folder */
             else if (u->mode == M_PICK) go_node(u, u->picks[u->list_sel]);
             else a = menu_select(u, a);
         } else a.redraw = RD_NONE;

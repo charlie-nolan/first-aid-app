@@ -66,6 +66,7 @@ typedef struct {
     ui_saved_t *s;
     ui_mode_t mode, back_mode;
     uint8_t list_sel, listening, talk_armed, ctx_dim;
+    uint8_t lib_folder;             /* Library: 0xFF = top level, else the first tree of the open folder */
     uint16_t picks[3]; uint8_t npicks;
     const char *msg;
     char scratch[4096];
