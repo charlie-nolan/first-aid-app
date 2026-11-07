@@ -72,7 +72,9 @@ static void window_full(void) {
 }
 static void panel_init(void) {
     reset(); wait_busy();
-    cmd(0x12); wait_busy();                                      /* software reset */
+    cmd(0x12);                                                   /* software reset */
+    vTaskDelay(pdMS_TO_TICKS(20));      /* datasheet: 10 ms before the next command, even if BUSY reads low */
+    wait_busy();
     cmdv(0x01, (const uint8_t[]){ (PH - 1) & 0xFF, (PH - 1) >> 8, 0x00 }, 3);   /* gate lines */
     cmdv(0x11, (const uint8_t[]){ 0x03 }, 1);                    /* X+, Y+ */
     window_full();
