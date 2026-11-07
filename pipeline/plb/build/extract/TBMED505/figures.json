@@ -64,6 +64,38 @@
   "dpi": 200
  },
  {
+  "id": "TBMED505/fig/3-1",
+  "manual": "TBMED505",
+  "num": "3-1",
+  "title": "Recommended staging altitude and duration combinations to produce effective",
+  "page": 33,
+  "bbox": [
+   68.0,
+   219.79999999999995,
+   543.64,
+   499.472
+  ],
+  "png": "TBMED505_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/3-2",
+  "manual": "TBMED505",
+  "num": "3-2",
+  "title": "Recommended graded ascent profiles to produce effective altitude acclimatization",
+  "page": 34,
+  "bbox": [
+   68.0,
+   330.19999999999993,
+   543.46,
+   610.5919
+  ],
+  "png": "TBMED505_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
   "id": "TBMED505/fig/4-1",
   "manual": "TBMED505",
   "num": "4-1",

@@ -1,1 +1,370 @@
-[]
+[
+ {
+  "id": "ATP3-90.98/fig/1-1",
+  "manual": "ATP3-90.98",
+  "num": "1-1",
+  "title": "Jungle and savanna regions of the world",
+  "page": 11,
+  "bbox": [
+   94.5,
+   421.281,
+   535.502,
+   703.7089800000002
+  ],
+  "png": "ATP3-90.98_fig_1-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/1-2",
+  "manual": "ATP3-90.98",
+  "num": "1-2",
+  "title": "Primary jungle",
+  "page": 12,
+  "bbox": [
+   93.134,
+   313.904,
+   500.86600000000004,
+   707.39606
+  ],
+  "png": "ATP3-90.98_fig_1-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/1-3",
+  "manual": "ATP3-90.98",
+  "num": "1-3",
+  "title": "Secondary jungle",
+  "page": 13,
+  "bbox": [
+   112.934,
+   409.36400000000003,
+   517.066,
+   641.7614400000001
+  ],
+  "png": "ATP3-90.98_fig_1-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/1-4",
+  "manual": "ATP3-90.98",
+  "num": "1-4",
+  "title": "Savanna",
+  "page": 14,
+  "bbox": [
+   76.934,
+   124.72399999999993,
+   517.126,
+   415.87132
+  ],
+  "png": "ATP3-90.98_fig_1-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/2-1",
+  "manual": "ATP3-90.98",
+  "num": "2-1",
+  "title": "Cyberspace in a multiple domain battlefield",
+  "page": 39,
+  "bbox": [
+   84.584,
+   43.40003999999999,
+   545.5360000000001,
+   516.69366
+  ],
+  "png": "ATP3-90.98_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/3-1",
+  "manual": "ATP3-90.98",
+  "num": "3-1",
+  "title": "Marine air-ground task force",
+  "page": 55,
+  "bbox": [
+   94.934,
+   113.20399999999995,
+   535.126,
+   375.551248
+  ],
+  "png": "ATP3-90.98_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/3-2",
+  "manual": "ATP3-90.98",
+  "num": "3-2",
+  "title": "Overcoming jungle communications challenges",
+  "page": 58,
+  "bbox": [
+   77.0,
+   101.79999999999995,
+   517.002,
+   436.77138400000007
+  ],
+  "png": "ATP3-90.98_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/3-3",
+  "manual": "ATP3-90.98",
+  "num": "3-3",
+  "title": "Jungle movement technique",
+  "page": 62,
+  "bbox": [
+   76.934,
+   410.804,
+   517.126,
+   663.1212360000001
+  ],
+  "png": "ATP3-90.98_fig_3-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/3-4",
+  "manual": "ATP3-90.98",
+  "num": "3-4",
+  "title": "Computing the correction in deviation",
+  "page": 75,
+  "bbox": [
+   84.584,
+   43.40003999999999,
+   545.5360000000001,
+   359.11326
+  ],
+  "png": "ATP3-90.98_fig_3-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/3-5",
+  "manual": "ATP3-90.98",
+  "num": "3-5",
+  "title": "Computing the correction in range",
+  "page": 76,
+  "bbox": [
+   66.584,
+   43.40003999999999,
+   527.5360000000001,
+   305.11316000000005
+  ],
+  "png": "ATP3-90.98_fig_3-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/5-1",
+  "manual": "ATP3-90.98",
+  "num": "5-1",
+  "title": "Y-shaped perimeter defense",
+  "page": 125,
+  "bbox": [
+   94.934,
+   147.70399999999995,
+   535.126,
+   598.0801039999999
+  ],
+  "png": "ATP3-90.98_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/5-2",
+  "manual": "ATP3-90.98",
+  "num": "5-2",
+  "title": "Reverse slope defense",
+  "page": 127,
+  "bbox": [
+   84.584,
+   43.40003999999999,
+   545.5360000000001,
+   515.61356
+  ],
+  "png": "ATP3-90.98_fig_5-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/6-1",
+  "manual": "ATP3-90.98",
+  "num": "6-1",
+  "title": "Sample jungle SWEAT-MSO lines of effort",
+  "page": 138,
+  "bbox": [
+   76.934,
+   411.764,
+   517.126,
+   649.439156
+  ],
+  "png": "ATP3-90.98_fig_6-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/7-1",
+  "manual": "ATP3-90.98",
+  "num": "7-1",
+  "title": "Poncho shelters",
+  "page": 150,
+  "bbox": [
+   76.934,
+   101.68399999999997,
+   517.126,
+   616.20178
+  ],
+  "png": "ATP3-90.98_fig_7-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/A-1",
+  "manual": "ATP3-90.98",
+  "num": "A-1",
+  "title": "Pace table",
+  "page": 156,
+  "bbox": [
+   112.5,
+   453.15196000000003,
+   481.442,
+   668.643448
+  ],
+  "png": "ATP3-90.98_fig_A-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/A-2",
+  "manual": "ATP3-90.98",
+  "num": "A-2",
+  "title": "Resection by indirect fire",
+  "page": 157,
+  "bbox": [
+   94.934,
+   255.22400000000005,
+   535.126,
+   434.6114119999999
+  ],
+  "png": "ATP3-90.98_fig_A-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/A-3",
+  "manual": "ATP3-90.98",
+  "num": "A-3",
+  "title": "Offset method",
+  "page": 158,
+  "bbox": [
+   55.574,
+   85.18399999999997,
+   293.986,
+   276.31316000000004
+  ],
+  "png": "ATP3-90.98_fig_A-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/A-4",
+  "manual": "ATP3-90.98",
+  "num": "A-4",
+  "title": "Attack point method",
+  "page": 158,
+  "bbox": [
+   300.374,
+   85.18399999999997,
+   538.7860000000001,
+   276.31316000000004
+  ],
+  "png": "ATP3-90.98_fig_A-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/B-1",
+  "manual": "ATP3-90.98",
+  "num": "B-1",
+  "title": "Common knots",
+  "page": 165,
+  "bbox": [
+   84.584,
+   43.40003999999999,
+   545.5360000000001,
+   619.92376
+  ],
+  "png": "ATP3-90.98_fig_B-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/B-2",
+  "manual": "ATP3-90.98",
+  "num": "B-2",
+  "title": "Poncho brush raft",
+  "page": 167,
+  "bbox": [
+   94.934,
+   572.924,
+   535.126,
+   703.559036
+  ],
+  "png": "ATP3-90.98_fig_B-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/B-3",
+  "manual": "ATP3-90.98",
+  "num": "B-3",
+  "title": "Australian poncho raft",
+  "page": 168,
+  "bbox": [
+   166.934,
+   131.25995999999998,
+   427.126,
+   568.05376
+  ],
+  "png": "ATP3-90.98_fig_B-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/B-4",
+  "manual": "ATP3-90.98",
+  "num": "B-4",
+  "title": "Determination of river width",
+  "page": 170,
+  "bbox": [
+   66.584,
+   43.40003999999999,
+   527.5360000000001,
+   449.13346
+  ],
+  "png": "ATP3-90.98_fig_B-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-90.98/fig/B-5",
+  "manual": "ATP3-90.98",
+  "num": "B-5",
+  "title": "Swimmer pulling rope across",
+  "page": 170,
+  "bbox": [
+   76.934,
+   524.43202,
+   517.126,
+   665.1637880000001
+  ],
+  "png": "ATP3-90.98_fig_B-5.png",
+  "restricted": false,
+  "dpi": 200
+ }
+]

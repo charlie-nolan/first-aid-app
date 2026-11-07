@@ -16,6 +16,9 @@ from pathlib import Path
 import yaml
 
 PUBLIC_RELEASE = "approved for public release"
+# US Government works with no distribution statement printed (older or civilian titles) are
+# public domain under 17 USC 105; they are allowed once someone has checked the cover.
+US_GOV_WORK = "17 usc 105"
 
 
 @dataclass
@@ -135,6 +138,8 @@ def verify(root: Path, manifest: Path) -> list[str]:
             problems.append(f"{m.id}: hash not pinned (run plb ingest)")
         elif sha256_file(p) != m.sha256:
             problems.append(f"{m.id}: file changed since it was pinned")
-        if PUBLIC_RELEASE not in m.distribution.lower() and "unlimited" not in m.distribution.lower():
+        dist = m.distribution.lower()
+        if PUBLIC_RELEASE not in dist and "unlimited" not in dist and "no releasability" not in dist \
+                and US_GOV_WORK not in dist:
             problems.append(f"{m.id}: distribution not confirmed public release ({m.distribution})")
     return problems
