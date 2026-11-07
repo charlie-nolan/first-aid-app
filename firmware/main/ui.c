@@ -153,6 +153,17 @@ static int vis_choices(ui_t *u, const cart_node_t *n, uint8_t *out) {
         if (cart_node_visible(u->c, cart_node_choice(u->c, n, i).to, &u->s->ctx)) out[k++] = (uint8_t)i;
     return k;
 }
+/* Reference shelf: trees packed with shelf "reference" are whole manuals that no
+ * one has signed off for first aid yet. They are listed and read like any tree,
+ * but every page says "Unreviewed", and they never fill the default windows. */
+static int tree_is_ref(const cart_t *c, uint16_t t) {
+    if (t >= c->n_trees) return 0;
+    cart_tree_t tr = cart_tree(c, t);
+    if (tr.shelf == CART_NONE) return 0;
+    char b[16]; cart_text(c, tr.shelf, 0, b, sizeof b);
+    return strcmp(b, "reference") == 0;
+}
+#define REF_MARK "Unreviewed"
 static int vis_trees(ui_t *u, uint8_t *out) {
     int k = 0;
     for (unsigned t = 0; t < u->c->n_trees && k < VIS_MAX; t++)
@@ -165,9 +176,12 @@ void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s) {
     if (s->magic != UI_SAVED_MAGIC || s->build_id != c->build_id || s->cur >= UI_WINDOWS) {
         memset(s, 0, sizeof *s);
         s->magic = UI_SAVED_MAGIC; s->build_id = c->build_id; s->font = 0;            /* smallest size: most text per page */
-        for (int i = 0; i < UI_WINDOWS; i++) {            /* window 1 = home tree, then the other trees in order */
-            int t = c->n_trees ? (c->home_tree + i) % c->n_trees : 0;
+        /* window 1 = home tree, then the other trees in order, skipping the reference shelf */
+        int t = c->n_trees ? c->home_tree % c->n_trees : 0;
+        for (int i = 0; i < UI_WINDOWS; i++) {
+            for (unsigned k = 0; i && k < c->n_trees && tree_is_ref(c, (uint16_t)t); k++) t = (t + 1) % c->n_trees;
             s->win[i].node = c->n_trees ? cart_tree(c, (uint16_t)t).root : 0;
+            if (c->n_trees) t = (t + 1) % c->n_trees;
         }
     }
     unsigned nf = cart_font_sizes(c);
@@ -283,7 +297,11 @@ static void lbl_choice(ui_t *u, int i, char *b, size_t cap) {
     cart_choice_t ch = cart_node_choice(u->c, cart_node(u->c, W(u)->node), (unsigned)i);
     T(u, ch.label, b, cap);
 }
-static void lbl_tree(ui_t *u, int i, char *b, size_t cap) { uint8_t v[VIS_MAX]; vis_trees(u, v); T(u, cart_tree(u->c, v[i]).title, b, cap); }
+static void lbl_tree(ui_t *u, int i, char *b, size_t cap) {
+    uint8_t v[VIS_MAX]; vis_trees(u, v);
+    char t[64]; T(u, cart_tree(u->c, v[i]).title, t, sizeof t);
+    snprintf(b, cap, "%s%s", tree_is_ref(u->c, v[i]) ? REF_MARK ": " : "", t);
+}
 /* context picker: a dimension's values are "Any" then each labelled bit */
 static int ctx_values(ui_t *u, uint8_t *out) {          /* out[0] = 0xFF ("Any"), then bits */
     uint16_t nm; unsigned sh, wd; int k = 0;
@@ -329,6 +347,7 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
     char left[64], right[16], lab[48], cite[96];
     pages_t P; node_pages(u, w->node, &P);
     if (!P.n) { header(u, fb, "Bad node", 0); return; }
+    int ref = tree_is_ref(u->c, P.n->tree);
     if (P.choice_pages && w->page >= first_choice_page(&P))     /* keep the page in step with the highlight */
         w->page = (uint8_t)(first_choice_page(&P) + w->sel / P.per);
     T(u, P.n->label, lab, sizeof lab);
@@ -357,7 +376,8 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
             cart_draw_str(u->c, ST(u, 0), 1, fb, 4, base_of(u, 0, y), "LOOK-ALIKE:");
         }
         cart_page(u->c, ps.text, ST(u, u->s->font), sub, fb, 4, y, UI_W - 8, h, u->scratch, sizeof u->scratch);
-        footer(u, fb, T(u, ps.citation, cite, sizeof cite));
+        if (ref) { char c2[80]; T(u, ps.citation, c2, sizeof c2); snprintf(cite, sizeof cite, REF_MARK " - %s", c2); footer(u, fb, cite); }
+        else footer(u, fb, T(u, ps.citation, cite, sizeof cite));
     } else if (seg == SEG_NOMATCH) {
         draw_wrap(u, fb, 2, 6, l.body_y, UI_W - 12, l.body_h, T(u, cart_string(u->c, "NO_MATCH"), cite, sizeof cite));
         footer(u, fb, T(u, cart_string(u->c, "DISCLAIMER"), cite, sizeof cite));
@@ -371,7 +391,8 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
             draw_fit(u, fb, size, 0, 6, base_of(u, size, y), UI_W - 12, b);
             if (i == w->sel) fb_xor_rect(fb, 2, y, UI_W - 4, lh);
         }
-        footer(u, fb, T(u, cart_string(u->c, "DISCLAIMER"), cite, sizeof cite));
+        if (ref) footer(u, fb, REF_MARK " reference shelf: not signed off");
+        else footer(u, fb, T(u, cart_string(u->c, "DISCLAIMER"), cite, sizeof cite));
     }
 }
 
