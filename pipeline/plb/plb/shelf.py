@@ -14,6 +14,7 @@ tree. Every node and tree carries `unreviewed: true` so firmware can mark the pa
 """
 from __future__ import annotations
 
+import re
 from itertools import groupby
 
 from .trees import LABEL_MAX, Built, _resolve_cite, pretty_manual
@@ -70,7 +71,10 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
         if tid in reviewed_trees:
             continue
         title = pretty_manual(mid, manuals)
-        short = manuals.get(mid, {}).get("short") or title
+        m = manuals.get(mid, {})
+        short = m.get("topic") or m.get("short") or title
+        about = " ".join(x for x in [m.get("about") or "",
+                                     f"{title}, {str(m.get('edition')).split(' (')[0]}." if str(m.get("edition") or "TBD") != "TBD" else f"{title}."] if x)
         chapters = []
         for ci, (chap, group) in enumerate(groupby(secs, key=lambda s: s.get("chapter") or "")):
             group = list(group)
@@ -86,7 +90,11 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
                     leaves.append(node(tid, f"s{s['para']}", label, passages=pids))
             heads = [list(g) for _, g in groupby(zip(group, leaves),
                                                   key=lambda p: p[0].get("heading") or "")]
-            chap_label = chap or ("Sections" if ci == 0 else f"Sections ({ci + 1})")
+            first = next((s.get("heading") for s in group if s.get("heading")
+                          and "contents" not in s.get("heading", "").lower()), "")
+            chap_short = re.sub(r"^chapter\s+", "Ch ", chap, flags=re.I)
+            chap_label = (f"{chap_short} {first.title() if first.isupper() else first}" if chap else
+                          ("Sections" if ci == 0 else f"Sections ({ci + 1})"))
             if len(leaves) > list_max and 1 < len(heads) <= list_max * list_max:
                 kids = [chunk(tid, f"c{ci}h{hi}", f"{h[0][1]['label'].split(' ')[0]} "
                               f"{h[0][0].get('heading') or ''}", [l for _, l in h])
@@ -96,8 +104,9 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
                 chapters.append(chunk(tid, f"c{ci}", chap_label, leaves))
         root = chapters[0] if len(chapters) == 1 else chunk(tid, "root", title, chapters)
         # the root sits first in the tree's own node order for readers that assume it
-        b.trees.append({"id": tid, "title": _label(short, TITLE_MAX), "full_title": title,
-                        "shelf": "reference",
+        b.trees.append({"id": tid, "title": _label(short, TITLE_MAX),
+                        "full_title": m.get("title") and f"{title}: {m['title']}" or title,
+                        "about": about, "shelf": "reference",
                         "root": root["id"], "emergency": False, "tags": {},
                         "unreviewed": True})
     for n in b.nodes:

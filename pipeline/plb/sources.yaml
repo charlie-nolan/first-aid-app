@@ -1,5 +1,7 @@
 manuals:
 - id: ATP4-02.11
+  topic: "Army First Aid (2026)"   # shelf title on the device (<= 28 chars)
+  about: "US Army first aid and casualty care manual (2026): bleeding, airway, breathing, circulation, hypothermia, eye and head injuries, burns, moving casualties."   # catalog line, not passage text
   title: Casualty Response, Tactical Combat Casualty Care, and First Aid
   publisher: Headquarters, Department of the Army
   edition: 2026-03-23 (released; supersedes TC 4-02.1)
@@ -11,6 +13,8 @@ manuals:
   file: sources/ATP_4-02.11.pdf
   sha256: a4a0650f5bb14c1c7163b9b1e9f08bcc012fb3fe49ea4432f0ccaffb9af86542
 - id: TC4-02.1
+  topic: "Army First Aid (2016)"   # shelf title on the device (<= 28 chars)
+  about: "Older US Army first aid manual (2016, replaced by ATP 4-02.11): evaluating a casualty, airway, chest wounds, bleeding, burns, shock, bites and stings, heat and cold injuries."   # catalog line, not passage text
   title: First Aid
   publisher: Headquarters, Department of the Army
   edition: January 2016, with Change 1 and Change 2 (December 2018)
@@ -22,6 +26,8 @@ manuals:
   file: sources/TC_4-02.1.pdf
   sha256: 03a9505bd7fa1f5a13b2ea89b18d9ac1d0d2f9bdd50b0806eb1c692b19004791
 - id: ATP3-50.21
+  topic: "Army Survival"   # shelf title on the device (<= 28 chars)
+  about: "US Army survival manual (2018): survival medicine, water, food, fire, shelter, clothing, travel and navigation, equipment, knots and rope."   # catalog line, not passage text
   title: Survival
   publisher: Headquarters, Department of the Army
   edition: September 2018
@@ -32,6 +38,8 @@ manuals:
   file: sources/ATP_3-50.21.pdf
   sha256: 817746b13262e9e26e8ac7d25bf879790df369c2aa0a2600f69158ec4090461c
 - id: FM21-76
+  topic: "Army Survival (1992)"   # shelf title on the device (<= 28 chars)
+  about: "Older US Army survival manual (1992), replaced by ATP 3-50.21."   # catalog line, not passage text
   title: Survival
   publisher: Headquarters, Department of the Army
   edition: June 1992
@@ -41,6 +49,8 @@ manuals:
   file: sources/FM_21-76.pdf
   sha256: null
 - id: AFH10-644
+  topic: "Air Force Survival (SERE)"   # shelf title on the device (<= 28 chars)
+  about: "US Air Force survival, evasion, resistance and escape handbook (2017): survival needs, survival medicine, and living in different climates and at sea."   # catalog line, not passage text
   title: Survival, Evasion, Resistance, Escape (SERE) Operations
   publisher: Department of the Air Force
   edition: 27 March 2017
@@ -53,6 +63,8 @@ manuals:
   sha256: 7618a1b3e77ed50b3fb057e18517f83940d67b4b3fef1dd5b89cc4146f2a4bc0
   numbering: decimal
 - id: ATP3-90.97
+  topic: "Mountain & Cold Weather Ops"   # shelf title on the device (<= 28 chars)
+  about: "US Army mountain and cold weather operations (2016): mountain terrain and weather, planning, mountaineering skills, high altitude illnesses."   # catalog line, not passage text
   title: Mountain Warfare and Cold Weather Operations
   edition: April 2016
   distribution: Approved for public release. Distribution is unlimited.
@@ -62,6 +74,8 @@ manuals:
   file: sources/ATP_3-90.97.pdf
   sha256: c9863d2ded0f3ac7aed29293d6ae2171113b9ad9ef6870743eea551ddd8ba30c
 - id: TC21-3
+  topic: "Cold Weather Survival"   # shelf title on the device (<= 28 chars)
+  about: "US Army soldier's handbook for living and surviving in cold weather areas (1986)."   # catalog line, not passage text
   title: Soldier's Handbook for Individual Operations and Survival in Cold-Weather Areas
   edition: '1986'
   distribution: Approved for public release; distribution is unlimited.
@@ -70,6 +84,8 @@ manuals:
   file: sources/TC_21-3.pdf
   sha256: 2a689fd7717b9f42babbaca23b720c03dca0c5a0d9fb8abcab82a02c790ef570
 - id: ATP3-90.98
+  topic: "Jungle Operations"   # shelf title on the device (<= 28 chars)
+  about: "US Army/Marine Corps jungle operations (2020): jungle regions, operating and moving in the jungle, navigation, obstacles."   # catalog line, not passage text
   title: Jungle Operations
   edition: September 2020
   distribution: Approved for public release; distribution is unlimited. (cover checked by eye 2026-11-07;
@@ -79,6 +95,8 @@ manuals:
   file: sources/ATP_3-90.98.pdf
   sha256: bc6382ccba3b552bec79e7a8c4ed32d5d9101388d3ccd356645169fe39cd7a21
 - id: ATP3-90.99
+  topic: "Desert Operations"   # shelf title on the device (<= 28 chars)
+  about: "US Army/Marine Corps desert operations (2021): desert types and conditions, operating in the desert, notable deserts, driving."   # catalog line, not passage text
   title: Desert Operations
   edition: April 2021
   distribution: Approved for public release; distribution is unlimited.
@@ -87,6 +105,8 @@ manuals:
   file: sources/ATP_3-90.99.pdf
   sha256: 7efa43dd8dd6e0bf65c26c47025ca515bc1a6ffa22c856aabbfb0f2d9a4db63b
 - id: TC3-97.61
+  topic: "Military Mountaineering"   # shelf title on the device (<= 28 chars)
+  about: "US Army military mountaineering (2025): mountain terrain and hazards, avalanches, movement, rock climbing, rope and knots."   # catalog line, not passage text
   title: Military Mountaineering
   edition: November 2025 (supersedes 26 July 2012)
   distribution: Approved for public release; distribution is unlimited.
@@ -96,6 +116,8 @@ manuals:
   file: sources/TC_3-97.61.pdf
   sha256: 9cdc483c35ebcbb9b25add51be60fffab2f13eef024b075d14c0d56b7d47ad39
 - id: TC3-21.76
+  topic: "Ranger Handbook"   # shelf title on the device (<= 28 chars)
+  about: "US Army Ranger Handbook (2017): small-unit leading, equipment, movement, patrols, and field skills."   # catalog line, not passage text
   title: Ranger Handbook
   edition: April 2017
   distribution: Approved for public release; distribution is unlimited.
@@ -104,6 +126,8 @@ manuals:
   file: sources/TC_3-21.76.pdf
   sha256: 90a46458783d4782c08407d2dda2ecddc0c270918b15ea3368c86811fe1dd91c
 - id: TBMED507
+  topic: "Heat Illness"   # shelf title on the device (<= 28 chars)
+  about: "US Army technical bulletin on heat stress and heat illness (2022): how the body responds to heat, managing heat stress, heat illness."   # catalog line, not passage text
   cite_as: TB MED 507
   title: Heat Stress Control and Heat Casualty Management
   edition: April 2022
@@ -113,6 +137,8 @@ manuals:
   file: sources/TB_MED_507.pdf
   sha256: 913b9c9c54942a62a303faa0a754f82adf978085f1d99f780df58432dd4fac16
 - id: TBMED508
+  topic: "Cold Injuries"   # shelf title on the device (<= 28 chars)
+  about: "US Army technical bulletin on cold weather injuries: how the body responds to cold, managing cold stress, cold injuries, cold weather clothing."   # catalog line, not passage text
   cite_as: TB MED 508
   title: Prevention and Management of Cold-Weather Injuries
   edition: '2005'
@@ -123,6 +149,8 @@ manuals:
   file: sources/TB_MED_508.pdf
   sha256: 8583dbf92741d8e78a9079eaa793ddd0cbc9599cdccbcba0c0ce7c5752f3b106
 - id: TBMED505
+  topic: "Altitude Illness"   # shelf title on the device (<= 28 chars)
+  about: "US Army technical bulletin on altitude (2010): acclimatization, altitude risk, performance at altitude, high altitude illnesses."   # catalog line, not passage text
   cite_as: TB MED 505
   title: Altitude Acclimatization and Illness Management
   edition: '2010'
@@ -132,6 +160,8 @@ manuals:
   file: sources/TB_MED_505.pdf
   sha256: 6fc1da94070c0ce3d53f935a30174cfbf87da01ae9a8c41d1ad33989ef1d334a
 - id: TC4-02.3
+  topic: "Field Hygiene & Water"   # shelf title on the device (<= 28 chars)
+  about: "US Army field hygiene and sanitation (2015): preventing disease and injury in the field, insects and rodents, water disinfection."   # catalog line, not passage text
   title: Field Hygiene and Sanitation
   edition: May 2015
   distribution: Approved for public release; distribution is unlimited.
@@ -140,6 +170,8 @@ manuals:
   file: sources/TC_4-02.3.pdf
   sha256: e024b79ca8c638355eb70f33bb62bccc8070ab2d669bcfa9ad9e5c1ad9e43732
 - id: SHIPSMED
+  topic: "Medicine at Sea"   # shelf title on the device (<= 28 chars)
+  about: "US government guide to medical care aboard ships, far from a doctor (The Ship's Medicine Chest and Medical Aid at Sea)."   # catalog line, not passage text
   cite_as: Ship's Medicine Chest
   title: The Ship's Medicine Chest and Medical Aid at Sea
   edition: '2003'
@@ -150,7 +182,8 @@ manuals:
   sha256: c46a3cfcad68606ef641ba48579b57a643d22b4253fc50c01bb6598c5715de1b
   numbering: headings
 - id: NAVSNAKES
-  short: "Poisonous Snakes"   # tree title on the device (<= 28 chars)
+  topic: "Venomous Snakes"   # shelf title on the device (<= 28 chars)
+  about: "US Navy guide to venomous snakes of the world, by region."   # catalog line, not passage text
   cite_as: Poisonous Snakes of the World
   title: Poisonous Snakes of the World (US Navy)
   edition: TBD
@@ -161,6 +194,8 @@ manuals:
   sha256: a8273ae593e356fde5cecbbb85911991da003c7fbf96c709f1f7ac58bf7c6def
   numbering: headings
 - id: FEMA-AYR
+  topic: "Disaster Preparedness"   # shelf title on the device (<= 28 chars)
+  about: "FEMA guide to preparing for natural and man-made disasters."   # catalog line, not passage text
   cite_as: FEMA Are You Ready?
   title: Are You Ready? An In-depth Guide to Citizen Preparedness
   edition: TBD
@@ -169,6 +204,8 @@ manuals:
   file: sources/FEMA_Are_You_Ready.pdf
   sha256: null
 - id: FEMA-CERT
+  topic: "Disaster Response (CERT)"   # shelf title on the device (<= 28 chars)
+  about: "FEMA Community Emergency Response Team basic training manual: disaster preparedness, disaster medical operations, light search and rescue."   # catalog line, not passage text
   cite_as: FEMA CERT Basic
   title: CERT Basic Training Participant Manual
   edition: 2019 update (FEMA P-2057)
@@ -179,7 +216,8 @@ manuals:
   sha256: ca297bbc329c322ccbcb252fae7a1c89fd95f93dbf72b78b165b53cafa664026
   numbering: headings
 - id: DHS-ACTIVE-SHOOTER
-  short: "DHS Active Shooter"   # tree title on the device (<= 28 chars)
+  topic: "Active Shooter Response"   # shelf title on the device (<= 28 chars)
+  about: "Department of Homeland Security booklet on how to respond to an active shooter."   # catalog line, not passage text
   cite_as: 'DHS Active Shooter: How to Respond'
   title: 'Active Shooter: How to Respond'
   publisher: U.S. Department of Homeland Security
@@ -195,7 +233,8 @@ manuals:
   sha256: c823497479deccf89317e89034cd91502305494da60ad13f4cb6f7dfec11665b
   numbering: headings
 - id: USAMRICD-FMCC
-  short: "Field Mgmt Chem Casualties"   # tree title on the device (<= 28 chars)
+  topic: "Chemical Casualties"   # shelf title on the device (<= 28 chars)
+  about: "US Army course reading on field management of chemical casualties."   # catalog line, not passage text
   cite_as: Field Management of Chemical Casualties
   title: Field Management of Chemical Casualties Handbook
   publisher: USAMRICD Chemical Casualty Care Division
@@ -214,7 +253,8 @@ manuals:
   skip_pages:
   - 1
 - id: USAMRICD-MMCC
-  short: "Med Mgmt Chem Casualties"   # tree title on the device (<= 28 chars)
+  topic: "Chemical Casualties (Med)"   # shelf title on the device (<= 28 chars)
+  about: "US Army handbook on medical management of chemical casualties."   # catalog line, not passage text
   cite_as: Medical Management of Chemical Casualties
   title: Medical Management of Chemical Casualties Handbook
   publisher: USAMRICD Chemical Casualty Care Division
@@ -226,6 +266,8 @@ manuals:
   file: sources/USAMRICD_MMCC.pdf
   sha256: null
 - id: ATP4-02.7
+  topic: "ATP 4-02.7"   # shelf title on the device (<= 28 chars)
+  about: ""   # catalog line, not passage text
   title: Multi-Service TTP for Health Service Support in a CBRN Environment
   publisher: Headquarters, Department of the Army
   edition: 15 March 2016

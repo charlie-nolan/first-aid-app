@@ -119,6 +119,11 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
     ph.write_phrases_txt(cmds, out / "phrases.txt")
     ph.write_phrases_h(cmds, out / "phrases.h")
     (out / "pictures.json").write_text(json.dumps(pics, indent=1))
+    # catalog lines for the reference shelf, readable by name in the current cartridge
+    strings = dict(strings or {})
+    for t in b.trees:
+        if t.get("about"):
+            strings[f"ABOUT:{t['id']}"] = t["about"]
     (out / "strings.json").write_text(json.dumps(strings, indent=1))
     (out / "contexts.json").write_text(json.dumps(contexts, indent=1))
 
