@@ -262,13 +262,37 @@ static void menu_label(const ui_t *u, int item, char *b, size_t cap) {
 }
 
 /* ------------------------------------------------------------- rendering */
+/* Battery outline 15 x 8 with a nub, filled in 11 steps; a charging bolt is
+ * cut out of the fill. Drawn right-aligned at xr, centred in a header of height
+ * hh. Returns its width. */
+static int battery_icon(cart_fb_t *fb, int xr, int hh, int pct, int charging) {
+    const int w = 15, h = 8, x0 = xr - w + 1, y0 = (hh - h) / 2;
+    fb_hline(fb, x0, x0 + w - 3, y0); fb_hline(fb, x0, x0 + w - 3, y0 + h - 1);
+    for (int y = y0; y < y0 + h; y++) { fb_px(fb, x0, y); fb_px(fb, x0 + w - 3, y); }
+    for (int y = y0 + 2; y < y0 + h - 2; y++) { fb_px(fb, x0 + w - 2, y); fb_px(fb, x0 + w - 1, y); }
+    int fw = (pct * 10 + 50) / 100; if (pct > 0 && fw < 1) fw = 1;     /* inside is 10 px wide */
+    for (int y = y0 + 2; y < y0 + h - 2; y++) fb_hline(fb, x0 + 2, x0 + 1 + fw, y);
+    if (charging) {                                     /* small bolt, XOR so it shows on fill and on blank */
+        static const int8_t bolt[][2] = { {6,0},{5,1},{4,2},{5,2},{6,2},{6,3},{5,4},{4,5} };
+        for (unsigned i = 0; i < sizeof bolt / sizeof bolt[0]; i++) {
+            int x = x0 + 1 + bolt[i][0], y = y0 + 1 + bolt[i][1];
+            if (x >= 0 && y >= 0 && x < fb->w && y < fb->h) fb->bits[y * fb->stride + (x >> 3)] ^= 0x80 >> (x & 7);
+        }
+    }
+    return w;
+}
 static void header(ui_t *u, cart_fb_t *fb, const char *left, const char *right) {
     lay_t l = layout(u);
     char r[40];
     int base = base_of(u, 0, 0);
+    int xr = UI_W - 2;
+    if (u->battery_pct >= 0) {                          /* battery icon at the far right, % to its left */
+        xr -= battery_icon(fb, xr, l.hdr_h, u->battery_pct, u->charging) + 3;
+        char p[8]; snprintf(p, sizeof p, "%d%%", u->battery_pct);
+        xr -= draw_right(u, fb, 0, 0, xr, base, p) + 6;
+    }
     snprintf(r, sizeof r, "%s%s", u->listening ? "MIC  " : "", right ? right : "");
-    if (u->battery_pct >= 0) snprintf(r + strlen(r), sizeof r - strlen(r), "  %d%%%s", u->battery_pct, u->charging ? "+" : "");
-    int rw = draw_right(u, fb, 0, 0, UI_W - 2, base, r);
+    int rw = draw_right(u, fb, 0, 0, xr, base, r) + (UI_W - 2 - xr);
     draw_fit(u, fb, 0, 1, 2, base, UI_W - 10 - rw, left);
     fb_hline(fb, 0, UI_W - 1, l.hdr_h);
 }

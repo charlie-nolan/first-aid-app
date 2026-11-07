@@ -31,6 +31,7 @@
 #define PIN_MIC_DATA  41   /* D14 */
 #define PIN_MIC_CLK   42   /* D15 */
 #define PIN_BAT_ADC   10   /* ADC1 channel 9 */
+#define BAT_ADC_CH    ADC_CHANNEL_9
 #define HAS_WINDOW_KEYS 1
 #else
 /* Plain XIAO ESP32-S3 bench build. It has only D0..D10: five go to the e-ink,
@@ -45,12 +46,18 @@
 #define PIN_BTN_UP    PIN_NONE
 #define PIN_FRONT     5    /* D4: white (front light + flashlight + SOS share it, as on the Plus) */
 #define PIN_WHITE     5
+#if CONFIG_LIB_PLAIN_BAT_D5
+#define PIN_IR        PIN_NONE
+#define PIN_BAT_ADC   6    /* D5 = GPIO6, ADC1 channel 5: BAT+ -> R -> D5 -> R -> GND */
+#define BAT_ADC_CH    ADC_CHANNEL_5
+#else
 #define PIN_IR        6    /* D5 */
+#define PIN_BAT_ADC   PIN_NONE
+#endif
 #define PIN_MESH_PWR  PIN_NONE
 #define PIN_MIC_PWR   PIN_NONE
 #define PIN_MIC_DATA  PIN_NONE
 #define PIN_MIC_CLK   PIN_NONE
-#define PIN_BAT_ADC   PIN_NONE
 #define HAS_WINDOW_KEYS 0
 #endif
 

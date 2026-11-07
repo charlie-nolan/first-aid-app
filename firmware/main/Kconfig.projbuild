@@ -33,6 +33,15 @@ config LIB_MESH_ACTIVE_LOW
         n: GPIO high = mesh board on (N-FET driving the AO3401 gate).
         y: GPIO low = on (AO3401 gate driven straight from the pin).
 
+config LIB_PLAIN_BAT_D5
+    bool "Plain: read the battery on D5 (instead of the IR LED)"
+    depends on LIB_BOARD_PLAIN
+    default y
+    help
+        Two equal resistors: BAT+ -> R -> D5 -> R -> GND (100k each is ideal).
+        The IR output moves off D5. With nothing on D5 the reading is noisy or
+        out of range and is ignored, so the header just shows no battery.
+
 config LIB_PANEL_FLIP
     bool "Rotate the screen 180 degrees"
     default n
@@ -52,7 +61,7 @@ config LIB_IDLE_SECONDS
     default 60
 
 config LIB_BAT_DIVIDER_X100
-    int "Battery divider ratio x100 (Plus ADC_BAT on GPIO10)"
+    int "Battery divider ratio x100 (Plus ADC_BAT on GPIO10, plain D5)"
     default 200
 
 config LIB_BAT_RESERVE_MV
