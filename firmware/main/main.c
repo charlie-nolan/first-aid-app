@@ -128,6 +128,12 @@ static bool open_library(void) {
 
 static void update_battery(void) {
     battery_t b = power_battery();
+    static int8_t last_pct = -2;
+    if (b.pct != last_pct) {                            /* log changes only, so serial shows what the header shows */
+        if (b.pct < 0) ESP_LOGI(TAG, "battery: not measured (no divider on this board, or reading out of range)");
+        else ESP_LOGI(TAG, "battery: %d mV, %d%%%s%s", b.mv, b.pct, b.charging ? ", charging" : "", b.reserve ? ", reserve" : "");
+        last_pct = b.pct;
+    }
     ui.battery_pct = b.pct; ui.charging = b.charging; ui.low_battery = b.reserve;
     if (b.critical && !b.charging && !lights_signal_active()) {
         ESP_LOGW(TAG, "battery critical (%d mV): sleeping, will check again in 5 min", b.mv);
