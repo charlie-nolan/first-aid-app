@@ -86,8 +86,8 @@
   "title": "Cold strain risk management process",
   "page": 26,
   "bbox": [
-   104.0269596036626,
-   94.88467760413243,
+   131.0,
+   292.7940414475001,
    544.0449289345022,
    666.0441198009996
   ],
@@ -140,22 +140,6 @@
    337.9825878005
   ],
   "png": "TBMED508_fig_3-4.png",
-  "restricted": false,
-  "dpi": 200
- },
- {
-  "id": "TBMED508/fig/3-5",
-  "manual": "TBMED508",
-  "num": "3-5",
-  "title": "Time in minutes until the occurrence of cheek frostbite in the most susceptible 5",
-  "page": 36,
-  "bbox": [
-   44.96,
-   569.4946737381838,
-   567.0400000000001,
-   646.8615409406079
-  ],
-  "png": "TBMED508_fig_3-5.png",
   "restricted": false,
   "dpi": 200
  },
@@ -307,12 +291,12 @@
   "id": "TBMED508/fig/D-1",
   "manual": "TBMED508",
   "num": "D-1",
-  "title": "Lightweight long underwear Figure D-2. Expedition-weight long underwear",
+  "title": "Lightweight long underwear",
   "page": 85,
   "bbox": [
    198.20035118470395,
    379.99930787724804,
-   413.80069699983994,
+   274.00047155238394,
    596.3196354352261
   ],
   "png": "TBMED508_fig_D-1.png",
@@ -320,18 +304,50 @@
   "dpi": 200
  },
  {
+  "id": "TBMED508/fig/D-2",
+  "manual": "TBMED508",
+  "num": "D-2",
+  "title": "Expedition-weight long underwear",
+  "page": 85,
+  "bbox": [
+   342.20059134550394,
+   379.99930787724804,
+   413.80069699983994,
+   596.3196354352261
+  ],
+  "png": "TBMED508_fig_D-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
   "id": "TBMED508/fig/D-3",
   "manual": "TBMED508",
   "num": "D-3",
-  "title": "Fleece-layered jacket and trousers Figure D-4. Polyester batting jacket and",
+  "title": "Fleece-layered jacket and trousers",
   "page": 86,
   "bbox": [
    180.3125,
+   123.46704,
+   251.66992,
+   323.5812737994999
+  ],
+  "png": "TBMED508_fig_D-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/D-4",
+  "manual": "TBMED508",
+  "num": "D-4",
+  "title": "Polyester batting jacket and",
+  "page": 86,
+  "bbox": [
+   360.30518,
    123.22704999999996,
    431.6626,
    323.5812737994999
   ],
-  "png": "TBMED508_fig_D-3.png",
+  "png": "TBMED508_fig_D-4.png",
   "restricted": false,
   "dpi": 200
  },

@@ -1,0 +1,3906 @@
+[
+ {
+  "id": "TC3-97.61/fig/10-3",
+  "manual": "TC3-97.61",
+  "num": "10-3",
+  "title": "Simultaneous climbing: two Soldiers climbing together with intermediate",
+  "page": 13,
+  "bbox": [
+   44.96,
+   448.517,
+   567.0400000000001,
+   453.077
+  ],
+  "png": "TC3-97.61_fig_10-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/1-1",
+  "manual": "TC3-97.61",
+  "num": "1-1",
+  "title": "Soldiers in mountainous terrain",
+  "page": 22,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   698.50496
+  ],
+  "png": "TC3-97.61_fig_1-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/1-2",
+  "manual": "TC3-97.61",
+  "num": "1-2",
+  "title": "Terrain levels",
+  "page": 30,
+  "bbox": [
+   68.0,
+   428.0,
+   526.0,
+   664.42496
+  ],
+  "png": "TC3-97.61_fig_1-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/4-1",
+  "manual": "TC3-97.61",
+  "num": "4-1",
+  "title": "Individual caloric requirements",
+  "page": 64,
+  "bbox": [
+   87.92,
+   623.12,
+   506.08000000000004,
+   667.54496
+  ],
+  "png": "TC3-97.61_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/4-2",
+  "manual": "TC3-97.61",
+  "num": "4-2",
+  "title": "Modular cold-weather glove system",
+  "page": 68,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   447.94496000000004
+  ],
+  "png": "TC3-97.61_fig_4-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/4-3",
+  "manual": "TC3-97.61",
+  "num": "4-3",
+  "title": "Mountaineering boots",
+  "page": 70,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   542.50496
+  ],
+  "png": "TC3-97.61_fig_4-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/4-4",
+  "manual": "TC3-97.61",
+  "num": "4-4",
+  "title": "Extended cold-weather clothing system",
+  "page": 71,
+  "bbox": [
+   85.5,
+   387.4,
+   544.387,
+   605.5618400000003
+  ],
+  "png": "TC3-97.61_fig_4-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/4-5",
+  "manual": "TC3-97.61",
+  "num": "4-5",
+  "title": "Floorless shelter (10-man arctic tent)",
+  "page": 78,
+  "bbox": [
+   76.5,
+   345.578,
+   516.887,
+   556.2204800000002
+  ],
+  "png": "TC3-97.61_fig_4-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/4-6",
+  "manual": "TC3-97.61",
+  "num": "4-6",
+  "title": "Poncho lean-to",
+  "page": 79,
+  "bbox": [
+   94.5,
+   457.639,
+   534.9,
+   676.06496
+  ],
+  "png": "TC3-97.61_fig_4-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/4-7",
+  "manual": "TC3-97.61",
+  "num": "4-7",
+  "title": "Snow-cave shelter",
+  "page": 81,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_4-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-1",
+  "manual": "TC3-97.61",
+  "num": "5-1",
+  "title": "Movement through avalanche terrain",
+  "page": 84,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   456.94496000000004
+  ],
+  "png": "TC3-97.61_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-2",
+  "manual": "TC3-97.61",
+  "num": "5-2",
+  "title": "Snowpack layers",
+  "page": 85,
+  "bbox": [
+   94.5,
+   160.22900000000004,
+   535.8,
+   487.9232000000002
+  ],
+  "png": "TC3-97.61_fig_5-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-3",
+  "manual": "TC3-97.61",
+  "num": "5-3",
+  "title": "Slope angle",
+  "page": 87,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_5-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-4",
+  "manual": "TC3-97.61",
+  "num": "5-4",
+  "title": "Slope shape",
+  "page": 88,
+  "bbox": [
+   76.5,
+   112.79700000000003,
+   517.4490000000001,
+   387.95468
+  ],
+  "png": "TC3-97.61_fig_5-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-5",
+  "manual": "TC3-97.61",
+  "num": "5-5",
+  "title": "Avalanche problem types",
+  "page": 90,
+  "bbox": [
+   67.5,
+   408.675,
+   525.985,
+   646.3304000000002
+  ],
+  "png": "TC3-97.61_fig_5-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-6",
+  "manual": "TC3-97.61",
+  "num": "5-6",
+  "title": "Avalanche danger scale",
+  "page": 91,
+  "bbox": [
+   94.5,
+   339.681,
+   536.0,
+   565.31744
+  ],
+  "png": "TC3-97.61_fig_5-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-7",
+  "manual": "TC3-97.61",
+  "num": "5-7",
+  "title": "Avalanche problems",
+  "page": 92,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   240.94495999999992
+  ],
+  "png": "TC3-97.61_fig_5-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-8",
+  "manual": "TC3-97.61",
+  "num": "5-8",
+  "title": "Individual avalanche equipment",
+  "page": 96,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   434.50496000000004
+  ],
+  "png": "TC3-97.61_fig_5-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-9",
+  "manual": "TC3-97.61",
+  "num": "5-9",
+  "title": "Signal search",
+  "page": 98,
+  "bbox": [
+   76.5,
+   136.51300000000003,
+   518.187,
+   416.1642800000001
+  ],
+  "png": "TC3-97.61_fig_5-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-10",
+  "manual": "TC3-97.61",
+  "num": "5-10",
+  "title": "Probing",
+  "page": 99,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_5-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/5-11",
+  "manual": "TC3-97.61",
+  "num": "5-11",
+  "title": "Shoveling",
+  "page": 100,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   434.50496000000004
+  ],
+  "png": "TC3-97.61_fig_5-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-1",
+  "manual": "TC3-97.61",
+  "num": "6-1",
+  "title": "Foot placement",
+  "page": 106,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   650.50496
+  ],
+  "png": "TC3-97.61_fig_6-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-2",
+  "manual": "TC3-97.61",
+  "num": "6-2",
+  "title": "The rest step",
+  "page": 108,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   639.94496
+  ],
+  "png": "TC3-97.61_fig_6-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-3",
+  "manual": "TC3-97.61",
+  "num": "6-3",
+  "title": "Rock-climbing specific footwear",
+  "page": 111,
+  "bbox": [
+   95.25,
+   340.079,
+   535.2,
+   463.70732000000027
+  ],
+  "png": "TC3-97.61_fig_6-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-4",
+  "manual": "TC3-97.61",
+  "num": "6-4",
+  "title": "Climbing helmets",
+  "page": 112,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   381.94496000000004
+  ],
+  "png": "TC3-97.61_fig_6-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-5",
+  "manual": "TC3-97.61",
+  "num": "6-5",
+  "title": "Downward or counterpressure",
+  "page": 114,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_6-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-6",
+  "manual": "TC3-97.61",
+  "num": "6-6",
+  "title": "Counterbalance",
+  "page": 115,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   467.50496000000004
+  ],
+  "png": "TC3-97.61_fig_6-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-7",
+  "manual": "TC3-97.61",
+  "num": "6-7",
+  "title": "Footholds",
+  "page": 116,
+  "bbox": [
+   76.5,
+   187.79100000000005,
+   517.4100000000001,
+   351.96920000000006
+  ],
+  "png": "TC3-97.61_fig_6-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-8",
+  "manual": "TC3-97.61",
+  "num": "6-8",
+  "title": "Handhold techniques",
+  "page": 116,
+  "bbox": [
+   76.5,
+   187.79100000000005,
+   517.463,
+   621.7258400000001
+  ],
+  "png": "TC3-97.61_fig_6-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-9",
+  "manual": "TC3-97.61",
+  "num": "6-9",
+  "title": "Slab body position",
+  "page": 117,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   293.50496000000004
+  ],
+  "png": "TC3-97.61_fig_6-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-10",
+  "manual": "TC3-97.61",
+  "num": "6-10",
+  "title": "Rest or shake out",
+  "page": 118,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   632.50496
+  ],
+  "png": "TC3-97.61_fig_6-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-11",
+  "manual": "TC3-97.61",
+  "num": "6-11",
+  "title": "Mantling",
+  "page": 119,
+  "bbox": [
+   94.5,
+   239.78700000000003,
+   534.797,
+   412.9443200000001
+  ],
+  "png": "TC3-97.61_fig_6-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-12",
+  "manual": "TC3-97.61",
+  "num": "6-12",
+  "title": "Stemming",
+  "page": 120,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   464.50496000000004
+  ],
+  "png": "TC3-97.61_fig_6-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-13",
+  "manual": "TC3-97.61",
+  "num": "6-13",
+  "title": "Underclinging",
+  "page": 121,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   518.50496
+  ],
+  "png": "TC3-97.61_fig_6-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-14",
+  "manual": "TC3-97.61",
+  "num": "6-14",
+  "title": "Liebacking",
+  "page": 122,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   462.94496000000004
+  ],
+  "png": "TC3-97.61_fig_6-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-15",
+  "manual": "TC3-97.61",
+  "num": "6-15",
+  "title": "Mixed face and crack climbing",
+  "page": 123,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   524.50496
+  ],
+  "png": "TC3-97.61_fig_6-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-16",
+  "manual": "TC3-97.61",
+  "num": "6-16",
+  "title": "Hand jams",
+  "page": 124,
+  "bbox": [
+   76.5,
+   350.781,
+   517.0,
+   597.4931600000002
+  ],
+  "png": "TC3-97.61_fig_6-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-17",
+  "manual": "TC3-97.61",
+  "num": "6-17",
+  "title": "Fist jams",
+  "page": 125,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   245.50495999999998
+  ],
+  "png": "TC3-97.61_fig_6-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-18",
+  "manual": "TC3-97.61",
+  "num": "6-18",
+  "title": "Finger jams",
+  "page": 125,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   441.70700000000005
+  ],
+  "png": "TC3-97.61_fig_6-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-19",
+  "manual": "TC3-97.61",
+  "num": "6-19",
+  "title": "Foot jams",
+  "page": 125,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   699.59132
+  ],
+  "png": "TC3-97.61_fig_6-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-20",
+  "manual": "TC3-97.61",
+  "num": "6-20",
+  "title": "Toe jams",
+  "page": 126,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   234.94495999999992
+  ],
+  "png": "TC3-97.61_fig_6-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-21",
+  "manual": "TC3-97.61",
+  "num": "6-21",
+  "title": "Arm bar and chicken wing",
+  "page": 126,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   480.70796
+  ],
+  "png": "TC3-97.61_fig_6-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-22",
+  "manual": "TC3-97.61",
+  "num": "6-22",
+  "title": "Stemming in a dihedral",
+  "page": 127,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   548.50496
+  ],
+  "png": "TC3-97.61_fig_6-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-23",
+  "manual": "TC3-97.61",
+  "num": "6-23",
+  "title": "Stemming in a chimney",
+  "page": 128,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   536.50496
+  ],
+  "png": "TC3-97.61_fig_6-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-24",
+  "manual": "TC3-97.61",
+  "num": "6-24",
+  "title": "Chimney climbing technique",
+  "page": 129,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   590.50496
+  ],
+  "png": "TC3-97.61_fig_6-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-25",
+  "manual": "TC3-97.61",
+  "num": "6-25",
+  "title": "Hand traverse",
+  "page": 130,
+  "bbox": [
+   76.5,
+   135.79499999999996,
+   517.9,
+   397.43660000000006
+  ],
+  "png": "TC3-97.61_fig_6-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-26",
+  "manual": "TC3-97.61",
+  "num": "6-26",
+  "title": "Gaining ledges",
+  "page": 131,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   402.94496000000004
+  ],
+  "png": "TC3-97.61_fig_6-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-27",
+  "manual": "TC3-97.61",
+  "num": "6-27",
+  "title": "Down climbing",
+  "page": 132,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   518.50496
+  ],
+  "png": "TC3-97.61_fig_6-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-28",
+  "manual": "TC3-97.61",
+  "num": "6-28",
+  "title": "Alpine touring skis",
+  "page": 134,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   431.50496000000004
+  ],
+  "png": "TC3-97.61_fig_6-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-29",
+  "manual": "TC3-97.61",
+  "num": "6-29",
+  "title": "Snowshoes",
+  "page": 135,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   561.94496
+  ],
+  "png": "TC3-97.61_fig_6-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-30",
+  "manual": "TC3-97.61",
+  "num": "6-30",
+  "title": "Ahkio sleds",
+  "page": 136,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   270.9449599999999
+  ],
+  "png": "TC3-97.61_fig_6-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-31",
+  "manual": "TC3-97.61",
+  "num": "6-31",
+  "title": "Crampons",
+  "page": 136,
+  "bbox": [
+   67.5,
+   379.092,
+   526.5,
+   633.2399600000001
+  ],
+  "png": "TC3-97.61_fig_6-31.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-32",
+  "manual": "TC3-97.61",
+  "num": "6-32",
+  "title": "Mountain axes",
+  "page": 137,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   407.50496000000004
+  ],
+  "png": "TC3-97.61_fig_6-32.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-33",
+  "manual": "TC3-97.61",
+  "num": "6-33",
+  "title": "Ice tools",
+  "page": 138,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_6-33.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-34",
+  "manual": "TC3-97.61",
+  "num": "6-34",
+  "title": "Step cutting",
+  "page": 140,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   441.94496000000004
+  ],
+  "png": "TC3-97.61_fig_6-34.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-35",
+  "manual": "TC3-97.61",
+  "num": "6-35",
+  "title": "Glissading",
+  "page": 141,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   354.94496000000004
+  ],
+  "png": "TC3-97.61_fig_6-35.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-36",
+  "manual": "TC3-97.61",
+  "num": "6-36",
+  "title": "Flatfooting",
+  "page": 142,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   303.94496000000004
+  ],
+  "png": "TC3-97.61_fig_6-36.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-37",
+  "manual": "TC3-97.61",
+  "num": "6-37",
+  "title": "Ice axe uses in low-angle terrain",
+  "page": 142,
+  "bbox": [
+   76.5,
+   448.24,
+   517.95,
+   684.3663200000001
+  ],
+  "png": "TC3-97.61_fig_6-37.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-38",
+  "manual": "TC3-97.61",
+  "num": "6-38",
+  "title": "Flatfooting with axe in cross-body position",
+  "page": 143,
+  "bbox": [
+   201.0,
+   233.78700000000003,
+   428.85,
+   498.51068000000015
+  ],
+  "png": "TC3-97.61_fig_6-38.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-39",
+  "manual": "TC3-97.61",
+  "num": "6-39",
+  "title": "Flatfooting with axe in anchor position",
+  "page": 143,
+  "bbox": [
+   95.25,
+   572.083,
+   535.182,
+   704.8022000000002
+  ],
+  "png": "TC3-97.61_fig_6-39.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-40",
+  "manual": "TC3-97.61",
+  "num": "6-40",
+  "title": "Front pointing",
+  "page": 144,
+  "bbox": [
+   76.5,
+   181.79100000000005,
+   517.8430000000001,
+   491.4191600000001
+  ],
+  "png": "TC3-97.61_fig_6-40.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-41",
+  "manual": "TC3-97.61",
+  "num": "6-41",
+  "title": "Front pointing with axe in dagger positions",
+  "page": 145,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   417.94496000000004
+  ],
+  "png": "TC3-97.61_fig_6-41.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-42",
+  "manual": "TC3-97.61",
+  "num": "6-42",
+  "title": "Front pointing with axe in anchor positions",
+  "page": 145,
+  "bbox": [
+   94.5,
+   491.595,
+   534.8910000000001,
+   696.2273600000001
+  ],
+  "png": "TC3-97.61_fig_6-42.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-43",
+  "manual": "TC3-97.61",
+  "num": "6-43",
+  "title": "Front pointing using axes in ice climbing",
+  "page": 146,
+  "bbox": [
+   67.5,
+   124.29600000000005,
+   526.544,
+   652.92056
+  ],
+  "png": "TC3-97.61_fig_6-43.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-44",
+  "manual": "TC3-97.61",
+  "num": "6-44",
+  "title": "Descending steep slopes",
+  "page": 148,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   242.50495999999998
+  ],
+  "png": "TC3-97.61_fig_6-44.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-45",
+  "manual": "TC3-97.61",
+  "num": "6-45",
+  "title": "Self-arrest",
+  "page": 149,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   548.50496
+  ],
+  "png": "TC3-97.61_fig_6-45.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-46",
+  "manual": "TC3-97.61",
+  "num": "6-46",
+  "title": "Waterfall ice",
+  "page": 150,
+  "bbox": [
+   76.5,
+   175.39300000000003,
+   517.45,
+   369.59372
+  ],
+  "png": "TC3-97.61_fig_6-46.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-47",
+  "manual": "TC3-97.61",
+  "num": "6-47",
+  "title": "Alpine ice",
+  "page": 151,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   423.94496000000004
+  ],
+  "png": "TC3-97.61_fig_6-47.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-48",
+  "manual": "TC3-97.61",
+  "num": "6-48",
+  "title": "Ice tool grip",
+  "page": 153,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   447.94496000000004
+  ],
+  "png": "TC3-97.61_fig_6-48.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-49",
+  "manual": "TC3-97.61",
+  "num": "6-49",
+  "title": "Basic body position",
+  "page": 154,
+  "bbox": [
+   76.5,
+   268.78499999999997,
+   517.4680000000001,
+   698.4278000000002
+  ],
+  "png": "TC3-97.61_fig_6-49.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/6-50",
+  "manual": "TC3-97.61",
+  "num": "6-50",
+  "title": "Climbing over bulges",
+  "page": 155,
+  "bbox": [
+   94.5,
+   390.926,
+   536.0,
+   607.6172000000004
+  ],
+  "png": "TC3-97.61_fig_6-50.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-1",
+  "manual": "TC3-97.61",
+  "num": "8-1",
+  "title": "Kernmantle rope construction",
+  "page": 169,
+  "bbox": [
+   94.5,
+   517.119,
+   534.823,
+   709.81112
+  ],
+  "png": "TC3-97.61_fig_8-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-2",
+  "manual": "TC3-97.61",
+  "num": "8-2",
+  "title": "Types of webbing: tubular joined with a knot and a sewn webbing",
+  "page": 171,
+  "bbox": [
+   94.5,
+   164.793,
+   535.8430000000001,
+   474.4871600000002
+  ],
+  "png": "TC3-97.61_fig_8-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-3",
+  "manual": "TC3-97.61",
+  "num": "8-3",
+  "title": "Slings and runners",
+  "page": 172,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_8-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-4",
+  "manual": "TC3-97.61",
+  "num": "8-4",
+  "title": "Carabiner components",
+  "page": 173,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   428.50496000000004
+  ],
+  "png": "TC3-97.61_fig_8-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-5",
+  "manual": "TC3-97.61",
+  "num": "8-5",
+  "title": "Improper carabiner loading",
+  "page": 174,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   467.50496000000004
+  ],
+  "png": "TC3-97.61_fig_8-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-6",
+  "manual": "TC3-97.61",
+  "num": "8-6",
+  "title": "Examples of rope-tying terminology",
+  "page": 176,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   398.50496000000004
+  ],
+  "png": "TC3-97.61_fig_8-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-7",
+  "manual": "TC3-97.61",
+  "num": "8-7",
+  "title": "Overhand and inline figure eight",
+  "page": 178,
+  "bbox": [
+   76.5,
+   255.48800000000006,
+   517.46,
+   602.6318
+  ],
+  "png": "TC3-97.61_fig_8-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-8",
+  "manual": "TC3-97.61",
+  "num": "8-8",
+  "title": "Figure-eight slip knot",
+  "page": 179,
+  "bbox": [
+   94.5,
+   216.24599999999998,
+   535.4739999999999,
+   572.3986400000003
+  ],
+  "png": "TC3-97.61_fig_8-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-9",
+  "manual": "TC3-97.61",
+  "num": "8-9",
+  "title": "Figure eight on a bight",
+  "page": 180,
+  "bbox": [
+   76.5,
+   222.89300000000003,
+   517.5,
+   383.9918000000002
+  ],
+  "png": "TC3-97.61_fig_8-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-10",
+  "manual": "TC3-97.61",
+  "num": "8-10",
+  "title": "Rerouted figure-eight knot",
+  "page": 181,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   324.94496000000004
+  ],
+  "png": "TC3-97.61_fig_8-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-11",
+  "manual": "TC3-97.61",
+  "num": "8-11",
+  "title": "Two-loop figure eight",
+  "page": 182,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   390.94496000000004
+  ],
+  "png": "TC3-97.61_fig_8-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-12",
+  "manual": "TC3-97.61",
+  "num": "8-12",
+  "title": "Directional figure eight",
+  "page": 183,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   386.50496000000004
+  ],
+  "png": "TC3-97.61_fig_8-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-13",
+  "manual": "TC3-97.61",
+  "num": "8-13",
+  "title": "Alpine butterfly knot",
+  "page": 184,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   513.94496
+  ],
+  "png": "TC3-97.61_fig_8-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-14",
+  "manual": "TC3-97.61",
+  "num": "8-14",
+  "title": "Figure-eight bend",
+  "page": 185,
+  "bbox": [
+   95.0000076,
+   150.66528319999998,
+   534.979336,
+   587.2770800000002
+  ],
+  "png": "TC3-97.61_fig_8-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-15",
+  "manual": "TC3-97.61",
+  "num": "8-15",
+  "title": "Water knot",
+  "page": 186,
+  "bbox": [
+   76.5,
+   211.394,
+   517.7,
+   657.5967200000001
+  ],
+  "png": "TC3-97.61_fig_8-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-16",
+  "manual": "TC3-97.61",
+  "num": "8-16",
+  "title": "Flat overhand",
+  "page": 187,
+  "bbox": [
+   85.5,
+   296.409,
+   544.9,
+   640.5435200000002
+  ],
+  "png": "TC3-97.61_fig_8-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-17",
+  "manual": "TC3-97.61",
+  "num": "8-17",
+  "title": "Double fisherman's knot",
+  "page": 188,
+  "bbox": [
+   67.5,
+   264.826,
+   526.55,
+   661.4445200000002
+  ],
+  "png": "TC3-97.61_fig_8-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-18",
+  "manual": "TC3-97.61",
+  "num": "8-18",
+  "title": "Square knot",
+  "page": 190,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   602.50496
+  ],
+  "png": "TC3-97.61_fig_8-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-19",
+  "manual": "TC3-97.61",
+  "num": "8-19",
+  "title": "Bowline knot",
+  "page": 191,
+  "bbox": [
+   94.5,
+   258.826,
+   535.102,
+   583.4445200000001
+  ],
+  "png": "TC3-97.61_fig_8-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-20",
+  "manual": "TC3-97.61",
+  "num": "8-20",
+  "title": "Triple bowline",
+  "page": 192,
+  "bbox": [
+   67.5,
+   258.826,
+   526.111,
+   625.4495600000002
+  ],
+  "png": "TC3-97.61_fig_8-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-21",
+  "manual": "TC3-97.61",
+  "num": "8-21",
+  "title": "Bowline on a bight",
+  "page": 193,
+  "bbox": [
+   94.5,
+   254.76199999999994,
+   535.462,
+   612.4740800000002
+  ],
+  "png": "TC3-97.61_fig_8-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-22",
+  "manual": "TC3-97.61",
+  "num": "8-22",
+  "title": "Girth hitch",
+  "page": 194,
+  "bbox": [
+   76.5,
+   199.89499999999998,
+   516.823,
+   392.51132
+  ],
+  "png": "TC3-97.61_fig_8-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-23",
+  "manual": "TC3-97.61",
+  "num": "8-23",
+  "title": "Middle-of-the-rope prusik knot",
+  "page": 195,
+  "bbox": [
+   94.5,
+   113.51499999999999,
+   535.473,
+   454.66676000000007
+  ],
+  "png": "TC3-97.61_fig_8-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-24",
+  "manual": "TC3-97.61",
+  "num": "8-24",
+  "title": "End-of-the-rope prusik knot",
+  "page": 196,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   419.50496000000004
+  ],
+  "png": "TC3-97.61_fig_8-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-25",
+  "manual": "TC3-97.61",
+  "num": "8-25",
+  "title": "Autoblock knot",
+  "page": 197,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_8-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-26",
+  "manual": "TC3-97.61",
+  "num": "8-26",
+  "title": "Klemheist hitch",
+  "page": 198,
+  "bbox": [
+   76.5,
+   180.313,
+   517.8,
+   498.9536000000003
+  ],
+  "png": "TC3-97.61_fig_8-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-27",
+  "manual": "TC3-97.61",
+  "num": "8-27",
+  "title": "Bachmann hitch",
+  "page": 199,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   309.94496000000004
+  ],
+  "png": "TC3-97.61_fig_8-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-28",
+  "manual": "TC3-97.61",
+  "num": "8-28",
+  "title": "Middle-of-the-rope clove hitch",
+  "page": 200,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   372.94496000000004
+  ],
+  "png": "TC3-97.61_fig_8-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-29",
+  "manual": "TC3-97.61",
+  "num": "8-29",
+  "title": "End-of-the-rope clove hitch",
+  "page": 201,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   346.06496
+  ],
+  "png": "TC3-97.61_fig_8-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-30",
+  "manual": "TC3-97.61",
+  "num": "8-30",
+  "title": "Munter hitch",
+  "page": 202,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   293.50496000000004
+  ],
+  "png": "TC3-97.61_fig_8-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-31",
+  "manual": "TC3-97.61",
+  "num": "8-31",
+  "title": "Super Munter hitch",
+  "page": 202,
+  "bbox": [
+   76.5,
+   524.623,
+   517.5,
+   691.8042800000002
+  ],
+  "png": "TC3-97.61_fig_8-31.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-32",
+  "manual": "TC3-97.61",
+  "num": "8-32",
+  "title": "Munter mule knot using cord",
+  "page": 204,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   483.94496000000004
+  ],
+  "png": "TC3-97.61_fig_8-32.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-33",
+  "manual": "TC3-97.61",
+  "num": "8-33",
+  "title": "Munter mule knot using installation rope",
+  "page": 204,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   701.2622
+  ],
+  "png": "TC3-97.61_fig_8-33.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-34",
+  "manual": "TC3-97.61",
+  "num": "8-34",
+  "title": "Garda hitch",
+  "page": 205,
+  "bbox": [
+   94.5,
+   306.473,
+   535.463,
+   557.6327600000001
+  ],
+  "png": "TC3-97.61_fig_8-34.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-35",
+  "manual": "TC3-97.61",
+  "num": "8-35",
+  "title": "Big honking knot",
+  "page": 206,
+  "bbox": [
+   67.5,
+   179.59500000000003,
+   526.557,
+   597.2388800000002
+  ],
+  "png": "TC3-97.61_fig_8-35.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-36",
+  "manual": "TC3-97.61",
+  "num": "8-36",
+  "title": "Field expedient harness",
+  "page": 208,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   584.50496
+  ],
+  "png": "TC3-97.61_fig_8-36.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-37",
+  "manual": "TC3-97.61",
+  "num": "8-37",
+  "title": "Butterfly coil with farmer's tie off",
+  "page": 211,
+  "bbox": [
+   85.5,
+   177.442,
+   544.721,
+   605.6451200000001
+  ],
+  "png": "TC3-97.61_fig_8-37.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/8-38",
+  "manual": "TC3-97.61",
+  "num": "8-38",
+  "title": "Mountain coil",
+  "page": 212,
+  "bbox": [
+   76.5,
+   176.29200000000003,
+   518.067,
+   349.4493200000001
+  ],
+  "png": "TC3-97.61_fig_8-38.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-1",
+  "manual": "TC3-97.61",
+  "num": "9-1",
+  "title": "Opposite and opposed carabiners",
+  "page": 216,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_9-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-2",
+  "manual": "TC3-97.61",
+  "num": "9-2",
+  "title": "Single-point webbing anchors: single loop, double bight, and girth hitch",
+  "page": 217,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   413.50496000000004
+  ],
+  "png": "TC3-97.61_fig_9-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-3",
+  "manual": "TC3-97.61",
+  "num": "9-3",
+  "title": "Single and double basket hitch",
+  "page": 218,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   563.50496
+  ],
+  "png": "TC3-97.61_fig_9-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-4",
+  "manual": "TC3-97.61",
+  "num": "9-4",
+  "title": "Single and double basket hitch with master point",
+  "page": 219,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   575.50496
+  ],
+  "png": "TC3-97.61_fig_9-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-5",
+  "manual": "TC3-97.61",
+  "num": "9-5",
+  "title": "Ideal angle required between anchor points to reduce force",
+  "page": 220,
+  "bbox": [
+   76.5,
+   155.59400000000005,
+   517.65,
+   699.2440399999999
+  ],
+  "png": "TC3-97.61_fig_9-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-6",
+  "manual": "TC3-97.61",
+  "num": "9-6",
+  "title": "Self-equalizing anchor",
+  "page": 222,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   686.50496
+  ],
+  "png": "TC3-97.61_fig_9-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-7",
+  "manual": "TC3-97.61",
+  "num": "9-7",
+  "title": "Pre-equalized anchor",
+  "page": 223,
+  "bbox": [
+   94.5,
+   408.098,
+   535.1,
+   695.3397200000002
+  ],
+  "png": "TC3-97.61_fig_9-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-8",
+  "manual": "TC3-97.61",
+  "num": "9-8",
+  "title": "Anchoring a rope to a single-point tree anchor",
+  "page": 225,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   410.50496000000004
+  ],
+  "png": "TC3-97.61_fig_9-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-9",
+  "manual": "TC3-97.61",
+  "num": "9-9",
+  "title": "High-strength anchor",
+  "page": 226,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   438.94496000000004
+  ],
+  "png": "TC3-97.61_fig_9-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-10",
+  "manual": "TC3-97.61",
+  "num": "9-10",
+  "title": "Boulders and protrusions used as anchors",
+  "page": 227,
+  "bbox": [
+   94.5,
+   135.79499999999996,
+   535.85,
+   418.4422400000001
+  ],
+  "png": "TC3-97.61_fig_9-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-11",
+  "manual": "TC3-97.61",
+  "num": "9-11",
+  "title": "Chockstone used in a construction",
+  "page": 228,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   438.94496000000004
+  ],
+  "png": "TC3-97.61_fig_9-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-12",
+  "manual": "TC3-97.61",
+  "num": "9-12",
+  "title": "Natural tunnel or hole in the rock",
+  "page": 229,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   623.50496
+  ],
+  "png": "TC3-97.61_fig_9-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-13",
+  "manual": "TC3-97.61",
+  "num": "9-13",
+  "title": "Examples of piton",
+  "page": 231,
+  "bbox": [
+   85.5,
+   124.29600000000005,
+   544.85,
+   499.9150400000001
+  ],
+  "png": "TC3-97.61_fig_9-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-14",
+  "manual": "TC3-97.61",
+  "num": "9-14",
+  "title": "Hero-loop",
+  "page": 232,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   536.50496
+  ],
+  "png": "TC3-97.61_fig_9-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-15",
+  "manual": "TC3-97.61",
+  "num": "9-15",
+  "title": "Piton removal",
+  "page": 233,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   548.50496
+  ],
+  "png": "TC3-97.61_fig_9-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-16",
+  "manual": "TC3-97.61",
+  "num": "9-16",
+  "title": "Expansion bolt",
+  "page": 235,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_9-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-17",
+  "manual": "TC3-97.61",
+  "num": "9-17",
+  "title": "Glue-in bolt",
+  "page": 236,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   518.50496
+  ],
+  "png": "TC3-97.61_fig_9-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-18",
+  "manual": "TC3-97.61",
+  "num": "9-18",
+  "title": "Chock pick",
+  "page": 237,
+  "bbox": [
+   93.75,
+   271.08500000000004,
+   535.5699999999999,
+   402.2667200000001
+  ],
+  "png": "TC3-97.61_fig_9-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-19",
+  "manual": "TC3-97.61",
+  "num": "9-19",
+  "title": "Chocks",
+  "page": 238,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   359.50496000000004
+  ],
+  "png": "TC3-97.61_fig_9-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-20",
+  "manual": "TC3-97.61",
+  "num": "9-20",
+  "title": "Spring-loaded camming device placement",
+  "page": 241,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   552.94496
+  ],
+  "png": "TC3-97.61_fig_9-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-21",
+  "manual": "TC3-97.61",
+  "num": "9-21",
+  "title": "Cord anchor with multiple points",
+  "page": 242,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   518.50496
+  ],
+  "png": "TC3-97.61_fig_9-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-22",
+  "manual": "TC3-97.61",
+  "num": "9-22",
+  "title": "Ice pillar",
+  "page": 243,
+  "bbox": [
+   85.5,
+   141.79499999999996,
+   544.5,
+   611.9949200000001
+  ],
+  "png": "TC3-97.61_fig_9-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-23",
+  "manual": "TC3-97.61",
+  "num": "9-23",
+  "title": "Long ice core protruding from screw indicates good ice quality",
+  "page": 244,
+  "bbox": [
+   67.5,
+   170.29200000000003,
+   526.902,
+   471.0111200000002
+  ],
+  "png": "TC3-97.61_fig_9-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-24",
+  "manual": "TC3-97.61",
+  "num": "9-24",
+  "title": "Multipoint ice anchor construction",
+  "page": 245,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   438.94496000000004
+  ],
+  "png": "TC3-97.61_fig_9-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-25",
+  "manual": "TC3-97.61",
+  "num": "9-25",
+  "title": "Ice screw placement",
+  "page": 246,
+  "bbox": [
+   76.5,
+   234.288,
+   517.444,
+   483.97904000000005
+  ],
+  "png": "TC3-97.61_fig_9-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-26",
+  "manual": "TC3-97.61",
+  "num": "9-26",
+  "title": "V-thread anchors",
+  "page": 247,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   270.9449599999999
+  ],
+  "png": "TC3-97.61_fig_9-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-27",
+  "manual": "TC3-97.61",
+  "num": "9-27",
+  "title": "Constructing a V-thread anchor",
+  "page": 248,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   282.94496000000004
+  ],
+  "png": "TC3-97.61_fig_9-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-28",
+  "manual": "TC3-97.61",
+  "num": "9-28",
+  "title": "Picket holdfast",
+  "page": 249,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   419.50496000000004
+  ],
+  "png": "TC3-97.61_fig_9-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-29",
+  "manual": "TC3-97.61",
+  "num": "9-29",
+  "title": "Snow picket placement",
+  "page": 250,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   356.50496000000004
+  ],
+  "png": "TC3-97.61_fig_9-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-30",
+  "manual": "TC3-97.61",
+  "num": "9-30",
+  "title": "Multipoint snow anchor",
+  "page": 251,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   504.94496000000004
+  ],
+  "png": "TC3-97.61_fig_9-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-31",
+  "manual": "TC3-97.61",
+  "num": "9-31",
+  "title": "Deadman anchor/T-trench anchor in snow with ice axe",
+  "page": 252,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   356.50496000000004
+  ],
+  "png": "TC3-97.61_fig_9-31.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/9-32",
+  "manual": "TC3-97.61",
+  "num": "9-32",
+  "title": "Snow bollard anchor",
+  "page": 253,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   476.50496000000004
+  ],
+  "png": "TC3-97.61_fig_9-32.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-1",
+  "manual": "TC3-97.61",
+  "num": "10-1",
+  "title": "Soldier moving unroped",
+  "page": 256,
+  "bbox": [
+   76.5,
+   317.184,
+   517.7919999999999,
+   634.3313600000001
+  ],
+  "png": "TC3-97.61_fig_10-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-2",
+  "manual": "TC3-97.61",
+  "num": "10-2",
+  "title": "Aid climbing",
+  "page": 259,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   543.94496
+  ],
+  "png": "TC3-97.61_fig_10-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-4",
+  "manual": "TC3-97.61",
+  "num": "10-4",
+  "title": "Short roping",
+  "page": 262,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   446.50496000000004
+  ],
+  "png": "TC3-97.61_fig_10-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-5",
+  "manual": "TC3-97.61",
+  "num": "10-5",
+  "title": "Hasty belay",
+  "page": 263,
+  "bbox": [
+   94.5,
+   101.298,
+   535.453,
+   485.9909600000001
+  ],
+  "png": "TC3-97.61_fig_10-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-6",
+  "manual": "TC3-97.61",
+  "num": "10-6",
+  "title": "Kiwi coil",
+  "page": 264,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   428.50496000000004
+  ],
+  "png": "TC3-97.61_fig_10-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-7",
+  "manual": "TC3-97.61",
+  "num": "10-7",
+  "title": "Top rope climbing",
+  "page": 265,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   548.50496
+  ],
+  "png": "TC3-97.61_fig_10-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-8",
+  "manual": "TC3-97.61",
+  "num": "10-8",
+  "title": "High-angle mountaineering kit harness tie-in",
+  "page": 267,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_10-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-9",
+  "manual": "TC3-97.61",
+  "num": "10-9",
+  "title": "Top rope climbing set up",
+  "page": 269,
+  "bbox": [
+   94.5,
+   361.78,
+   535.087,
+   642.9617600000001
+  ],
+  "png": "TC3-97.61_fig_10-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-10",
+  "manual": "TC3-97.61",
+  "num": "10-10",
+  "title": "Top rope belay with tube-style device",
+  "page": 271,
+  "bbox": [
+   94.5,
+   111.36500000000001,
+   535.5,
+   563.51252
+  ],
+  "png": "TC3-97.61_fig_10-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-11",
+  "manual": "TC3-97.61",
+  "num": "10-11",
+  "title": "Tubular device belay action",
+  "page": 272,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   234.94495999999992
+  ],
+  "png": "TC3-97.61_fig_10-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-12",
+  "manual": "TC3-97.61",
+  "num": "10-12",
+  "title": "Munter belay technique",
+  "page": 273,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   459.34496
+  ],
+  "png": "TC3-97.61_fig_10-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-13",
+  "manual": "TC3-97.61",
+  "num": "10-13",
+  "title": "Climbing harness tie-in and equipment racking",
+  "page": 275,
+  "bbox": [
+   94.5,
+   241.75900000000001,
+   535.4590000000001,
+   474.96044000000023
+  ],
+  "png": "TC3-97.61_fig_10-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-14",
+  "manual": "TC3-97.61",
+  "num": "10-14",
+  "title": "Rock-climbing shoes",
+  "page": 277,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   661.78496
+  ],
+  "png": "TC3-97.61_fig_10-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-15",
+  "manual": "TC3-97.61",
+  "num": "10-15",
+  "title": "Belaying the lead climber",
+  "page": 279,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   548.50496
+  ],
+  "png": "TC3-97.61_fig_10-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-16",
+  "manual": "TC3-97.61",
+  "num": "10-16",
+  "title": "Use of runners to extend and reduce rope drag",
+  "page": 281,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   312.94496000000004
+  ],
+  "png": "TC3-97.61_fig_10-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-17",
+  "manual": "TC3-97.61",
+  "num": "10-17",
+  "title": "Proper extension of cams and chocks using runners",
+  "page": 282,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_10-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-18",
+  "manual": "TC3-97.61",
+  "num": "10-18",
+  "title": "Proper clipping techniques",
+  "page": 283,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   410.50496000000004
+  ],
+  "png": "TC3-97.61_fig_10-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-19",
+  "manual": "TC3-97.61",
+  "num": "10-19",
+  "title": "Belaying using a Munter hitch",
+  "page": 285,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_10-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-20",
+  "manual": "TC3-97.61",
+  "num": "10-20",
+  "title": "Belaying a climber using an autolocking device in guide mode",
+  "page": 286,
+  "bbox": [
+   76.5,
+   196.03999999999996,
+   517.2,
+   604.9049600000001
+  ],
+  "png": "TC3-97.61_fig_10-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-21",
+  "manual": "TC3-97.61",
+  "num": "10-21",
+  "title": "Hip belay",
+  "page": 289,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   548.50496
+  ],
+  "png": "TC3-97.61_fig_10-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-22",
+  "manual": "TC3-97.61",
+  "num": "10-22",
+  "title": "Shoulder belay",
+  "page": 290,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   495.94496000000004
+  ],
+  "png": "TC3-97.61_fig_10-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-23",
+  "manual": "TC3-97.61",
+  "num": "10-23",
+  "title": "Terrain belay",
+  "page": 291,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   345.94496000000004
+  ],
+  "png": "TC3-97.61_fig_10-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-24",
+  "manual": "TC3-97.61",
+  "num": "10-24",
+  "title": "Clipping to a cow's tail and end roping",
+  "page": 292,
+  "bbox": [
+   76.5,
+   176.29200000000003,
+   517.8969999999999,
+   447.0075200000001
+  ],
+  "png": "TC3-97.61_fig_10-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-25",
+  "manual": "TC3-97.61",
+  "num": "10-25",
+  "title": "Parallel climbing two stands",
+  "page": 293,
+  "bbox": [
+   94.5,
+   141.79499999999996,
+   535.05,
+   409.43840000000006
+  ],
+  "png": "TC3-97.61_fig_10-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/10-26",
+  "manual": "TC3-97.61",
+  "num": "10-26",
+  "title": "Belaying two climbers with an autolocking device",
+  "page": 293,
+  "bbox": [
+   94.5,
+   141.79499999999996,
+   536.05,
+   628.19984
+  ],
+  "png": "TC3-97.61_fig_10-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-1",
+  "manual": "TC3-97.61",
+  "num": "11-1",
+  "title": "Simple fixed rope use in easy terrain",
+  "page": 296,
+  "bbox": [
+   76.5,
+   385.677,
+   517.5,
+   683.28992
+  ],
+  "png": "TC3-97.61_fig_11-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-2",
+  "manual": "TC3-97.61",
+  "num": "11-2",
+  "title": "Simple fixed-rope attachments in moderate terrain",
+  "page": 298,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   368.50496000000004
+  ],
+  "png": "TC3-97.61_fig_11-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-3",
+  "manual": "TC3-97.61",
+  "num": "11-3",
+  "title": "Intermediate anchors in moderate terrain, example",
+  "page": 299,
+  "bbox": [
+   85.5,
+   265.586,
+   544.644,
+   597.7232000000001
+  ],
+  "png": "TC3-97.61_fig_11-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-4",
+  "manual": "TC3-97.61",
+  "num": "11-4",
+  "title": "Two personal safeties attachment",
+  "page": 300,
+  "bbox": [
+   76.5,
+   229.438,
+   517.5,
+   681.6200000000002
+  ],
+  "png": "TC3-97.61_fig_11-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-5",
+  "manual": "TC3-97.61",
+  "num": "11-5",
+  "title": "Ascender-carabiner method",
+  "page": 301,
+  "bbox": [
+   94.5,
+   252.937,
+   535.5,
+   705.1355600000002
+  ],
+  "png": "TC3-97.61_fig_11-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-6",
+  "manual": "TC3-97.61",
+  "num": "11-6",
+  "title": "Prusik ascent",
+  "page": 303,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   566.50496
+  ],
+  "png": "TC3-97.61_fig_11-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-7",
+  "manual": "TC3-97.61",
+  "num": "11-7",
+  "title": "Double-ascender ascent",
+  "page": 305,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   548.50496
+  ],
+  "png": "TC3-97.61_fig_11-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-8",
+  "manual": "TC3-97.61",
+  "num": "11-8",
+  "title": "Etrier styles",
+  "page": 307,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_11-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-9",
+  "manual": "TC3-97.61",
+  "num": "11-9",
+  "title": "Tagline retrievable rappel using a tagline",
+  "page": 310,
+  "bbox": [
+   76.5,
+   370.231,
+   517.44,
+   679.9196000000001
+  ],
+  "png": "TC3-97.61_fig_11-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-10",
+  "manual": "TC3-97.61",
+  "num": "11-10",
+  "title": "Hasty rappel",
+  "page": 312,
+  "bbox": [
+   76.5,
+   130.29600000000005,
+   517.5,
+   582.4734800000001
+  ],
+  "png": "TC3-97.61_fig_11-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-11",
+  "manual": "TC3-97.61",
+  "num": "11-11",
+  "title": "Munter hitch rappel",
+  "page": 313,
+  "bbox": [
+   94.5,
+   147.79499999999996,
+   535.4680000000001,
+   569.9936
+  ],
+  "png": "TC3-97.61_fig_11-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-12",
+  "manual": "TC3-97.61",
+  "num": "11-12",
+  "title": "Figure-eight descender",
+  "page": 314,
+  "bbox": [
+   76.5,
+   112.79700000000003,
+   517.5,
+   564.95384
+  ],
+  "png": "TC3-97.61_fig_11-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-13",
+  "manual": "TC3-97.61",
+  "num": "11-13",
+  "title": "Rappelling with a tube-style device",
+  "page": 315,
+  "bbox": [
+   94.5,
+   141.79499999999996,
+   535.5,
+   593.9972
+  ],
+  "png": "TC3-97.61_fig_11-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-14",
+  "manual": "TC3-97.61",
+  "num": "11-14",
+  "title": "Extended device and hands-free break",
+  "page": 317,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_11-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-15",
+  "manual": "TC3-97.61",
+  "num": "11-15",
+  "title": "Assisted braking device",
+  "page": 320,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   260.50496
+  ],
+  "png": "TC3-97.61_fig_11-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/11-16",
+  "manual": "TC3-97.61",
+  "num": "11-16",
+  "title": "Rapid ascent and descent method",
+  "page": 321,
+  "bbox": [
+   94.5,
+   130.29600000000005,
+   535.812,
+   441.4697600000001
+  ],
+  "png": "TC3-97.61_fig_11-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-1",
+  "manual": "TC3-97.61",
+  "num": "12-1",
+  "title": "T-Method for simple 2:1 system",
+  "page": 325,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_12-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-2",
+  "manual": "TC3-97.61",
+  "num": "12-2",
+  "title": "T-Method for simple 3:1 system",
+  "page": 326,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   518.50496
+  ],
+  "png": "TC3-97.61_fig_12-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-3",
+  "manual": "TC3-97.61",
+  "num": "12-3",
+  "title": "Simple 2:1 hauling system",
+  "page": 327,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   374.50496000000004
+  ],
+  "png": "TC3-97.61_fig_12-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-4",
+  "manual": "TC3-97.61",
+  "num": "12-4",
+  "title": "Simple 3:1 hauling system",
+  "page": 327,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   698.26472
+  ],
+  "png": "TC3-97.61_fig_12-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-5",
+  "manual": "TC3-97.61",
+  "num": "12-5",
+  "title": "Simple 5:1 hauling system",
+  "page": 328,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   285.94496000000004
+  ],
+  "png": "TC3-97.61_fig_12-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-6",
+  "manual": "TC3-97.61",
+  "num": "12-6",
+  "title": "Compound 6:1 hauling system",
+  "page": 328,
+  "bbox": [
+   76.5,
+   381.547,
+   517.05,
+   635.7441200000001
+  ],
+  "png": "TC3-97.61_fig_12-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-7",
+  "manual": "TC3-97.61",
+  "num": "12-7",
+  "title": "Compound 9:1 hauling system",
+  "page": 329,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   299.50496000000004
+  ],
+  "png": "TC3-97.61_fig_12-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-8",
+  "manual": "TC3-97.61",
+  "num": "12-8",
+  "title": "Types of pulleys",
+  "page": 330,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   290.50496000000004
+  ],
+  "png": "TC3-97.61_fig_12-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-9",
+  "manual": "TC3-97.61",
+  "num": "12-9",
+  "title": "High directional",
+  "page": 331,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_12-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-10",
+  "manual": "TC3-97.61",
+  "num": "12-10",
+  "title": "Vertical haul line",
+  "page": 332,
+  "bbox": [
+   76.5,
+   187.79100000000005,
+   517.726,
+   590.4116000000001
+  ],
+  "png": "TC3-97.61_fig_12-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-11",
+  "manual": "TC3-97.61",
+  "num": "12-11",
+  "title": "A-frame or master point",
+  "page": 333,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   563.50496
+  ],
+  "png": "TC3-97.61_fig_12-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-12",
+  "manual": "TC3-97.61",
+  "num": "12-12",
+  "title": "Redirected and offset compound hauling system",
+  "page": 334,
+  "bbox": [
+   76.5,
+   146.39499999999998,
+   517.5,
+   598.5575600000001
+  ],
+  "png": "TC3-97.61_fig_12-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-13",
+  "manual": "TC3-97.61",
+  "num": "12-13",
+  "title": "Terrain lower",
+  "page": 336,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_12-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-14",
+  "manual": "TC3-97.61",
+  "num": "12-14",
+  "title": "Munter hitch",
+  "page": 337,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_12-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-15",
+  "manual": "TC3-97.61",
+  "num": "12-15",
+  "title": "Redirected belay device",
+  "page": 338,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_12-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-16",
+  "manual": "TC3-97.61",
+  "num": "12-16",
+  "title": "Friction hitch on load strand (releasable)",
+  "page": 339,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   495.94496000000004
+  ],
+  "png": "TC3-97.61_fig_12-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-17",
+  "manual": "TC3-97.61",
+  "num": "12-17",
+  "title": "Friction hitch on brake strand of Munter hitch",
+  "page": 340,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_12-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-18",
+  "manual": "TC3-97.61",
+  "num": "12-18",
+  "title": "Friction hitch on brake strand of redirected belay device",
+  "page": 341,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   518.50496
+  ],
+  "png": "TC3-97.61_fig_12-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/12-19",
+  "manual": "TC3-97.61",
+  "num": "12-19",
+  "title": "Isolating a damaged section of rope",
+  "page": 342,
+  "bbox": [
+   77.25,
+   135.79499999999996,
+   517.385,
+   280.4364800000001
+  ],
+  "png": "TC3-97.61_fig_12-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/13-1",
+  "manual": "TC3-97.61",
+  "num": "13-1",
+  "title": "Individual crossing",
+  "page": 345,
+  "bbox": [
+   94.5,
+   471.374,
+   535.4300000000001,
+   677.5730000000003
+  ],
+  "png": "TC3-97.61_fig_13-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/13-2",
+  "manual": "TC3-97.61",
+  "num": "13-2",
+  "title": "Chain method for stream crossing",
+  "page": 346,
+  "bbox": [
+   76.5,
+   287.184,
+   517.4300000000001,
+   493.3271600000001
+  ],
+  "png": "TC3-97.61_fig_13-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/13-3",
+  "manual": "TC3-97.61",
+  "num": "13-3",
+  "title": "Insert side view, top view, and traveling",
+  "page": 347,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   285.94496000000004
+  ],
+  "png": "TC3-97.61_fig_13-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/13-4",
+  "manual": "TC3-97.61",
+  "num": "13-4",
+  "title": "Belay with handline",
+  "page": 349,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   318.94496000000004
+  ],
+  "png": "TC3-97.61_fig_13-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/13-5",
+  "manual": "TC3-97.61",
+  "num": "13-5",
+  "title": "Moving on handline with belay",
+  "page": 350,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   519.94496
+  ],
+  "png": "TC3-97.61_fig_13-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-1",
+  "manual": "TC3-97.61",
+  "num": "14-1",
+  "title": "Glacier features",
+  "page": 355,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   447.94496000000004
+  ],
+  "png": "TC3-97.61_fig_14-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-2",
+  "manual": "TC3-97.61",
+  "num": "14-2",
+  "title": "Two-person rope team",
+  "page": 358,
+  "bbox": [
+   76.5,
+   401.379,
+   517.4069999999999,
+   606.0220400000003
+  ],
+  "png": "TC3-97.61_fig_14-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-3",
+  "manual": "TC3-97.61",
+  "num": "14-3",
+  "title": "Three-person rope team",
+  "page": 359,
+  "bbox": [
+   94.5,
+   101.298,
+   534.85,
+   283.4244800000001
+  ],
+  "png": "TC3-97.61_fig_14-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-4",
+  "manual": "TC3-97.61",
+  "num": "14-4",
+  "title": "Preparation chest harness, rucksack removal sling",
+  "page": 360,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.38496
+  ],
+  "png": "TC3-97.61_fig_14-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-5",
+  "manual": "TC3-97.61",
+  "num": "14-5",
+  "title": "Using prusik to belay other Soldiers",
+  "page": 361,
+  "bbox": [
+   94.5,
+   187.79100000000005,
+   535.5,
+   639.97256
+  ],
+  "png": "TC3-97.61_fig_14-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-6",
+  "manual": "TC3-97.61",
+  "num": "14-6",
+  "title": "Crossing perpendicular to crevasses",
+  "page": 364,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   584.50496
+  ],
+  "png": "TC3-97.61_fig_14-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-7",
+  "manual": "TC3-97.61",
+  "num": "14-7",
+  "title": "End running crevasses",
+  "page": 365,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   206.50495999999998
+  ],
+  "png": "TC3-97.61_fig_14-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-8",
+  "manual": "TC3-97.61",
+  "num": "14-8",
+  "title": "Using a snow bridge",
+  "page": 365,
+  "bbox": [
+   94.5,
+   333.241,
+   535.847,
+   639.9633200000001
+  ],
+  "png": "TC3-97.61_fig_14-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-9",
+  "manual": "TC3-97.61",
+  "num": "14-9",
+  "title": "Echelon formation",
+  "page": 366,
+  "bbox": [
+   76.5,
+   296.235,
+   517.067,
+   586.4418800000001
+  ],
+  "png": "TC3-97.61_fig_14-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-10",
+  "manual": "TC3-97.61",
+  "num": "14-10",
+  "title": "Stopping a crevasse fall",
+  "page": 368,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_14-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-11",
+  "manual": "TC3-97.61",
+  "num": "14-11",
+  "title": "Construct the anchor and transfer the load",
+  "page": 369,
+  "bbox": [
+   94.5,
+   135.79499999999996,
+   535.46,
+   371.9987600000001
+  ],
+  "png": "TC3-97.61_fig_14-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-12",
+  "manual": "TC3-97.61",
+  "num": "14-12",
+  "title": "Direct haul using a 3:1 hauling system",
+  "page": 370,
+  "bbox": [
+   76.5,
+   256.88800000000003,
+   517.5,
+   709.0812800000001
+  ],
+  "png": "TC3-97.61_fig_14-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/14-13",
+  "manual": "TC3-97.61",
+  "num": "14-13",
+  "title": "Drop-loop rescue system (2:1)",
+  "page": 371,
+  "bbox": [
+   94.5,
+   200.44000000000005,
+   535.5,
+   652.5766400000002
+  ],
+  "png": "TC3-97.61_fig_14-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-1",
+  "manual": "TC3-97.61",
+  "num": "15-1",
+  "title": "Webbing or rope carry",
+  "page": 376,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_15-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-2",
+  "manual": "TC3-97.61",
+  "num": "15-2",
+  "title": "Rope coil carry",
+  "page": 377,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_15-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-3",
+  "manual": "TC3-97.61",
+  "num": "15-3",
+  "title": "Tandem rappel rigging",
+  "page": 378,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_15-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-4",
+  "manual": "TC3-97.61",
+  "num": "15-4",
+  "title": "Rope litter drag",
+  "page": 380,
+  "bbox": [
+   76.5,
+   461.571,
+   517.9970000000001,
+   681.3010400000003
+  ],
+  "png": "TC3-97.61_fig_15-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-5",
+  "manual": "TC3-97.61",
+  "num": "15-5",
+  "title": "Litter rigged for vertical orientation",
+  "page": 381,
+  "bbox": [
+   94.5,
+   345.18,
+   535.472,
+   522.8622800000003
+  ],
+  "png": "TC3-97.61_fig_15-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-6",
+  "manual": "TC3-97.61",
+  "num": "15-6",
+  "title": "Basket litter rigged for vertical orientation",
+  "page": 382,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   350.50496000000004
+  ],
+  "png": "TC3-97.61_fig_15-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-7",
+  "manual": "TC3-97.61",
+  "num": "15-7",
+  "title": "Litter rigged for lowering with long-tailed bowline and attendant attached",
+  "page": 383,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_15-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-8",
+  "manual": "TC3-97.61",
+  "num": "15-8",
+  "title": "Litter rigged horizontal orientation with hoist straps",
+  "page": 385,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   302.50496000000004
+  ],
+  "png": "TC3-97.61_fig_15-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-9",
+  "manual": "TC3-97.61",
+  "num": "15-9",
+  "title": "Basket litter rigged for horizontal orientation",
+  "page": 385,
+  "bbox": [
+   95.25,
+   330.099,
+   535.454,
+   566.26568
+  ],
+  "png": "TC3-97.61_fig_15-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-10",
+  "manual": "TC3-97.61",
+  "num": "15-10",
+  "title": "Interlocking long tail bowlines",
+  "page": 387,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   374.50496000000004
+  ],
+  "png": "TC3-97.61_fig_15-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/15-11",
+  "manual": "TC3-97.61",
+  "num": "15-11",
+  "title": "Tandem prusik belay",
+  "page": 388,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   368.50496000000004
+  ],
+  "png": "TC3-97.61_fig_15-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-1",
+  "manual": "TC3-97.61",
+  "num": "16-1",
+  "title": "Transport tightening system",
+  "page": 392,
+  "bbox": [
+   76.5,
+   312.884,
+   517.5,
+   552.0009200000002
+  ],
+  "png": "TC3-97.61_fig_16-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-2",
+  "manual": "TC3-97.61",
+  "num": "16-2",
+  "title": "Mule knot secured with an overhand knot",
+  "page": 393,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_16-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-3",
+  "manual": "TC3-97.61",
+  "num": "16-3",
+  "title": "Round turn around anchor and two half hitches on a bight",
+  "page": 394,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   377.50496000000004
+  ],
+  "png": "TC3-97.61_fig_16-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-4",
+  "manual": "TC3-97.61",
+  "num": "16-4",
+  "title": "High strength tie off (tensionless hitch)",
+  "page": 394,
+  "bbox": [
+   77.25,
+   405.099,
+   517.437,
+   557.26304
+  ],
+  "png": "TC3-97.61_fig_16-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-5",
+  "manual": "TC3-97.61",
+  "num": "16-5",
+  "title": "Litter rigging",
+  "page": 397,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_16-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-6",
+  "manual": "TC3-97.61",
+  "num": "16-6",
+  "title": "Artificial height (A-frame) used with high line",
+  "page": 398,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   411.94496000000004
+  ],
+  "png": "TC3-97.61_fig_16-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-7",
+  "manual": "TC3-97.61",
+  "num": "16-7",
+  "title": "A-frame horizontal and vertical wraps",
+  "page": 399,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   530.50496
+  ],
+  "png": "TC3-97.61_fig_16-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-8",
+  "manual": "TC3-97.61",
+  "num": "16-8",
+  "title": "A-frame spreader",
+  "page": 400,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   303.94496000000004
+  ],
+  "png": "TC3-97.61_fig_16-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-9",
+  "manual": "TC3-97.61",
+  "num": "16-9",
+  "title": "Anchoring the A-frame to the installation rope",
+  "page": 400,
+  "bbox": [
+   76.5,
+   408.893,
+   517.85,
+   699.0023600000002
+  ],
+  "png": "TC3-97.61_fig_16-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-10",
+  "manual": "TC3-97.61",
+  "num": "16-10",
+  "title": "Carrying sling",
+  "page": 402,
+  "bbox": [
+   76.5,
+   167.09299999999996,
+   517.816,
+   475.20380000000006
+  ],
+  "png": "TC3-97.61_fig_16-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/16-11",
+  "manual": "TC3-97.61",
+  "num": "16-11",
+  "title": "Guiding lines",
+  "page": 403,
+  "bbox": [
+   94.5,
+   228.288,
+   535.5,
+   528.9783200000002
+  ],
+  "png": "TC3-97.61_fig_16-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/B-1",
+  "manual": "TC3-97.61",
+  "num": "B-1",
+  "title": "Munter route table, example (with basic navigation information)",
+  "page": 411,
+  "bbox": [
+   84.56,
+   43.27999999999997,
+   545.44,
+   282.94496000000004
+  ],
+  "png": "TC3-97.61_fig_B-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/B-2",
+  "manual": "TC3-97.61",
+  "num": "B-2",
+  "title": "Munter calculation formula and modifier guide",
+  "page": 411,
+  "bbox": [
+   89.12,
+   415.16,
+   540.88,
+   474.34496
+  ],
+  "png": "TC3-97.61_fig_B-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC3-97.61/fig/B-3",
+  "manual": "TC3-97.61",
+  "num": "B-3",
+  "title": "Munter route table, example (completed)",
+  "page": 412,
+  "bbox": [
+   66.56,
+   43.27999999999997,
+   527.44,
+   291.94496000000004
+  ],
+  "png": "TC3-97.61_fig_B-3.png",
+  "restricted": false,
+  "dpi": 200
+ }
+]

@@ -35,7 +35,7 @@ Marker images are matched to "Figure X-Y." captions in its markdown. Images with
 ## Rules the builder enforces
 - No text of our own on screen: passages are verbatim from a pinned manual. The only exceptions are navigation labels (at most 40 chars) and `content/strings.yaml`.
 - Every node cites manual + paragraph, and every kit/improvised branch has a "nothing" fallback.
-- Manuals must say "Approved for public release". Figures captioned as copyrighted or "used with permission" are refused.
+- Manuals must say "Approved for public release", or be US Government works with no statement printed, recorded as "US Government work (17 USC 105)". Figures captioned as copyrighted or "used with permission" are refused.
 - Plant shelf: no mushrooms or fungi. Leaves are a species page with look-alikes, or "no match".
 
 Sources and download links: `SOURCES.md`. Licence: GPL-3.0-or-later.

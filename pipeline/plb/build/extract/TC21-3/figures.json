@@ -320,22 +320,6 @@
   "dpi": 200
  },
  {
-  "id": "TC21-3/fig/7-1",
-  "manual": "TC21-3",
-  "num": "7-1",
-  "title": "Location of tent (continued).",
-  "page": 47,
-  "bbox": [
-   205.21999,
-   95.71994000000007,
-   406.71999,
-   241.35199999999998
-  ],
-  "png": "TC21-3_fig_7-1.png",
-  "restricted": false,
-  "dpi": 200
- },
- {
   "id": "TC21-3/fig/7-2",
   "manual": "TC21-3",
   "num": "7-2",
@@ -778,22 +762,6 @@
    67.94000000000005,
    492.21999,
    679.1119
-  ],
-  "png": "TC21-3_fig_C-3.png",
-  "restricted": false,
-  "dpi": 200
- },
- {
-  "id": "TC21-3/fig/C-3",
-  "manual": "TC21-3",
-  "num": "C-3",
-  "title": "Standard aircraft acknowledgements, cont.",
-  "page": 76,
-  "bbox": [
-   157.21999,
-   68.0,
-   454.71996,
-   346.29212
   ],
   "png": "TC21-3_fig_C-3.png",
   "restricted": false,

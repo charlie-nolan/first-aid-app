@@ -17,7 +17,15 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 PARA_RE = re.compile(r"^(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})\.\s+(?P<rest>.*)$")
+# Air Force handbooks number paragraphs "4.7.3." instead (numbering: decimal in sources.yaml)
+DECIMAL_RE = re.compile(r"^(?P<num>\d{1,2}(?:\.\d{1,3}){1,4})\.\s+(?P<rest>.*)$")
+# CAUTION / WARNING / NOTE / DANGER boxes: the keyword alone on a line, or "NOTE: text"
+NOTICE_RE = re.compile(r"^(?P<kind>CAUTION|WARNING|NOTE|DANGER)S?\b\s*[:.]?\s*(?P<rest>.*)$")
+NOTICE_WORD_RE = re.compile(r"\b(CAUTION|WARNING|NOTE|DANGER)S?\b")
 FIG_RE = re.compile(r"^Figure\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})\.\s*(?P<title>.*)$")
+FIG_SPLIT_RE = re.compile(r"Figure\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})\.\s*")
+# list-of-figures entries: "Windlass and Ratchet Tourniquets ........ 48"
+TOC_TITLE_RE = re.compile(r"(\.\s*){3,}|\s\d{1,3}$")
 TABLE_RE = re.compile(r"^Table\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})\.\s*(?P<title>.*)$")
 CHAPTER_RE = re.compile(r"^(Chapter\s+\d+|Appendix\s+[A-Z])\b", re.I)
 
@@ -28,11 +36,15 @@ will should may when has have into which all one two any other them than then th
 
 LIGATURES = {"ﬁ": "fi", "ﬂ": "fl", "ﬀ": "ff", "ﬃ": "ffi", "ﬄ": "ffl",
              "‘": "'", "’": "'", "“": '"', "”": '"', "–": "-",
-             "—": "--", "•": "*", "©": "(C)", " ": " ", "°": " degrees "}
+             "—": "--", "•": "*", "©": "(C)", " ": " ", "°": " degrees ",
+             "⁄": "/", "∕": "/"}
+FRACTIONS = {"½": "1/2", "¼": "1/4", "¾": "3/4", "⅓": "1/3", "⅔": "2/3", "⅛": "1/8"}
 
 
 def normalize(text: str) -> str:
     """Map to the plain ASCII the e-ink font can draw. Anything unmappable becomes '?'."""
+    for k, v in FRACTIONS.items():                      # NFKD would give "1?2"
+        text = re.sub(rf"(\d){k}", rf"\1 {v}", text).replace(k, v)
     for k, v in LIGATURES.items():
         text = text.replace(k, v)
     text = unicodedata.normalize("NFKD", text)
@@ -47,6 +59,30 @@ def english_ratio(s: str) -> float:
 
 def unshift(s: str, k: int) -> str:
     return "".join(chr(ord(c) + k) if 33 <= ord(c) + k < 127 and c != " " else c for c in s)
+
+
+CID_RE = re.compile(r"\(cid:(\d+)\)")
+
+
+def _cid_sub(t: str, k: int) -> str:
+    return CID_RE.sub(lambda m: chr(int(m[1]) + k) if 32 <= int(m[1]) + k < 127 else "", t)
+
+
+def decode_cids(texts: list[str]) -> list[str]:
+    """Some PDFs (e.g. ATP 3-90.98) have no unicode map at all, so every glyph comes out
+    as "(cid:N)". When most of a page is like that, N is a fixed offset from ASCII; pick the
+    offset that reads as English. Pages with only the odd bullet glyph are left alone."""
+    blob = " ".join(texts)
+    if len(CID_RE.findall(blob)) < 40 or len(CID_RE.sub("", blob).strip()) > len(blob) * 0.2:
+        return texts
+    best, best_k = 0.0, None
+    for k in (29, 31, 0, 3, -3):
+        r = english_ratio(_cid_sub(blob, k))
+        if r > best:
+            best, best_k = r, k
+    if best_k is None or best < 0.1:
+        return texts
+    return [_cid_sub(t, best_k) for t in texts]
 
 
 def page_shift(lines: list[str]) -> int:
@@ -81,6 +117,7 @@ class Section:
     heading: str
     pages: list[int] = field(default_factory=list)
     text: str = ""
+    notices: list[dict] = field(default_factory=list)   # [{"kind": "CAUTION", "text": ...}]
 
 
 @dataclass
@@ -96,6 +133,38 @@ class Figure:
     dpi: int = 200
 
 
+def group_rows(words: list[dict]) -> list[list[dict]]:
+    """Group words into lines by vertical overlap, so a large small-caps initial ("A" of
+    "APPLICATION") lands on the same line as the rest of its word."""
+    rows: list[list[dict]] = []
+    bounds: list[list[float]] = []
+    for w in sorted(words, key=lambda w: (w["top"], w["x0"])):
+        hw = w["bottom"] - w["top"]
+        for r, b in zip(rows, bounds):
+            ov = min(b[1], w["bottom"]) - max(b[0], w["top"])
+            if ov > 0.5 * min(hw, b[1] - b[0]):
+                r.append(w)
+                b[0], b[1] = min(b[0], w["top"]), max(b[1], w["bottom"])
+                break
+        else:
+            rows.append([w])
+            bounds.append([w["top"], w["bottom"]])
+    for r in rows:
+        r.sort(key=lambda w: w["x0"])
+    return sorted(rows, key=lambda r: min(w["top"] for w in r))
+
+
+def join_words(ws: list[dict]) -> str:
+    """Words that touch (gap under 0.3 pt) are one word split by a font change ("A" +
+    "PPLICATION"). Real spaces can be as narrow as 0.8 pt (TC 4-02.1)."""
+    out = ""
+    for i, w in enumerate(ws):
+        if i and w["x0"] - ws[i - 1]["x1"] >= 0.3:
+            out += " "
+        out += w["text"]
+    return out
+
+
 def read_lines(pdf_path: Path, margin_top: float = 0.07, margin_bottom: float = 0.07):
     """Yield (page_obj, [Line]) skipping running headers/footers."""
     import pdfplumber
@@ -105,18 +174,18 @@ def read_lines(pdf_path: Path, margin_top: float = 0.07, margin_bottom: float = 
             h = page.height
             words = page.extract_words(extra_attrs=["fontname", "size"], keep_blank_chars=False,
                                        use_text_flow=True)
-            rows: dict[int, list] = {}
-            for w in words:
-                if w["top"] < h * margin_top or w["bottom"] > h * (1 - margin_bottom):
-                    continue
-                rows.setdefault(round(w["top"] / 2), []).append(w)
+            # size-1 words are invisible labels ("62B") left by the typesetter
+            words = [w for w in words
+                     if w["top"] >= h * margin_top and w["bottom"] <= h * (1 - margin_bottom)
+                     and w["size"] >= 3]
+            rows = group_rows(words)
+            raw = decode_cids([join_words(ws) for ws in rows])
             lines = []
-            for _, ws in sorted(rows.items()):
-                ws.sort(key=lambda w: w["x0"])
-                text = normalize(" ".join(w["text"] for w in ws))
-                # glyphs with no unicode mapping come out as "(cid:N)"; at line start they
-                # are almost always bullets, elsewhere they are dropped
-                text = re.sub(r"^\(cid:\d+\)\s*", "* ", text)
+            for ws, text in zip(rows, raw):
+                text = normalize(text)
+                # glyphs with no unicode mapping come out as "(cid:N)" or a bare "?"; at line
+                # start they are almost always bullets, elsewhere they are dropped
+                text = re.sub(r"^(\(cid:\d+\)\s*|\?\s+)", "* ", text)
                 text = re.sub(r"\(cid:\d+\)", "", text)
                 bold = sum("bold" in w["fontname"].lower() for w in ws) > len(ws) / 2
                 lines.append(Line(pno, min(w["top"] for w in ws), max(w["bottom"] for w in ws),
@@ -151,62 +220,113 @@ def join_text(parts: list[str]) -> str:
     return "\n".join(lines)
 
 
+JUNK_HEADING_RE = re.compile(r"^[\dA-Z\-.]{1,8}$")   # page / figure labels such as "209B"
+
+
 def is_heading(line: Line, body_size: float) -> bool:
     t = line.text.strip()
     if not t or len(t) > 80 or PARA_RE.match(t) or FIG_RE.match(t) or t.endswith("."):
+        return False
+    if NOTICE_RE.match(t) or (JUNK_HEADING_RE.match(t) and any(c.isdigit() for c in t)):
         return False
     return line.bold or line.size > body_size + 0.5 or (t.isupper() and len(t) > 3)
 
 
 def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
-            dpi: int = 200) -> tuple[list[Section], list[Figure]]:
+            dpi: int = 200, numbering: str = "dash") -> tuple[list[Section], list[Figure]]:
+    """numbering: "dash" (Army "2-15."), "decimal" (Air Force "4.7.3.") or "headings"
+    (no paragraph numbers: each heading starts a section, numbered "<page>.<n>")."""
     out_dir.mkdir(parents=True, exist_ok=True)
     fig_dir = out_dir / "figures"
+    para_re = DECIMAL_RE if numbering == "decimal" else PARA_RE
     sections: list[Section] = []
     figs: list[Figure] = []
     cur: Section | None = None
     buf: list[str] = []
     chapter, heading = "", ""
+    notice: dict | None = None      # box being read: kind, parts, bottom, page
+    pending: list[dict] = []        # boxes seen before the paragraph they belong to
+    keyword_lines = 0               # CAUTION/WARNING/NOTE/DANGER words seen, for the audit
+    per_page: dict[int, int] = {}
+
+    def end_notice():
+        nonlocal notice
+        if notice is not None:
+            rec = {"kind": notice["kind"], "text": join_text(notice["parts"])}
+            (cur.notices if cur is not None else pending).append(rec)
+            notice = None
 
     def flush():
         nonlocal cur, buf
+        end_notice()
         if cur is not None:
             cur.text = join_text(buf)
             sections.append(cur)
         cur, buf = None, []
+
+    def start(sec: Section, first: str):
+        nonlocal cur, buf
+        cur, buf = sec, [first] if first else []
+        cur.notices.extend(pending)
+        pending.clear()
 
     for page, lines in read_lines(pdf_path):
         sizes = sorted(l.size for l in lines) or [10.0]
         body = sizes[len(sizes) // 2]
         for i, ln in enumerate(lines):
             t = ln.text.strip()
+            keyword_lines += len(NOTICE_WORD_RE.findall(t))
+            if notice is not None:
+                gap = ln.top - notice["bottom"] if ln.page == notice["page"] else 99
+                if (gap > 1.8 * max(ln.bottom - ln.top, 6) or CHAPTER_RE.match(t)
+                        or FIG_RE.match(t) or para_re.match(t) or NOTICE_RE.match(t)):
+                    end_notice()
+                else:
+                    notice["parts"].append(t)
+                    notice["bottom"], notice["page"] = ln.bottom, ln.page
+                    continue
+            nm = NOTICE_RE.match(t)
+            if nm:
+                notice = {"kind": nm["kind"], "parts": [nm["rest"]] if nm["rest"] else [],
+                          "bottom": ln.bottom, "page": ln.page}
+                continue
             if CHAPTER_RE.match(t):
                 flush()
                 chapter, heading = t, ""
                 continue
-            fm = FIG_RE.match(t)
-            if fm:
-                if figures:
-                    figs.append(_crop_figure(page, lines, i, manual_id, fm, fig_dir, dpi))
+            if FIG_RE.match(t):
+                caps = split_captions(t)
+                for k, cap in enumerate(caps):
+                    if not figures or TOC_TITLE_RE.search(cap["title"]):
+                        continue
+                    w = page.width / len(caps)              # captions side by side share the row
+                    xr = (k * w, (k + 1) * w) if len(caps) > 1 else None
+                    figs.append(_crop_figure(page, lines, i, manual_id, cap, fig_dir, dpi, xr))
                 continue
             if TABLE_RE.match(t):
                 continue
-            pm = PARA_RE.match(t)
+            pm = para_re.match(t) if numbering != "headings" else None
             if pm:
                 flush()
-                cur = Section(f"{manual_id}/{pm['num']}", manual_id, pm["num"], chapter, heading,
-                              [ln.page])
-                buf = [pm["rest"]]
+                start(Section(f"{manual_id}/{pm['num']}", manual_id, pm["num"], chapter, heading,
+                              [ln.page]), pm["rest"])
                 continue
             if is_heading(ln, body):
                 flush()
                 heading = t
+                if numbering == "headings":
+                    n = per_page[ln.page] = per_page.get(ln.page, 0) + 1
+                    num = f"{ln.page}.{n}"
+                    start(Section(f"{manual_id}/{num}", manual_id, num, chapter, heading,
+                                  [ln.page]), "")
                 continue
             if cur is not None:
                 if ln.page not in cur.pages:
                     cur.pages.append(ln.page)
                 buf.append(t)
     flush()
+    if pending and sections:
+        sections[-1].notices.extend(pending)
 
     # Keep the first occurrence of a paragraph number (TOC/index false hits come later
     # and are short); warn on duplicates rather than guessing.
@@ -216,13 +336,42 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             seen[s.id] = s
     sections = list(seen.values())
 
+    if numbering == "headings":
+        sections = [s for s in sections if s.text or s.notices]
+    uniq: dict[str, Figure] = {}
+    for f in figs:
+        uniq.setdefault(f.id, f)
+    figs = list(uniq.values())
     (out_dir / "sections.json").write_text(json.dumps([asdict(s) for s in sections], indent=1))
+    # every CAUTION/WARNING/NOTE/DANGER word should be a notice's own keyword or sit inside
+    # a notice's text; anything else may be a box the extractor missed
+    kept = sum(len(s.notices) for s in sections)
+    inside = sum(len(NOTICE_WORD_RE.findall(n["text"])) for s in sections for n in s.notices)
+    (out_dir / "notices_audit.json").write_text(json.dumps(
+        {"keyword_lines": keyword_lines, "notices_kept": kept,
+         "missing": max(0, keyword_lines - kept - inside), "figure_gaps": figure_gaps(figs)}, indent=1))
     (out_dir / "figures.json").write_text(json.dumps([asdict(f) for f in figs], indent=1))
     return sections, figs
 
 
+def split_captions(t: str) -> list[dict]:
+    """"Figure 4-1. Carotid pulse Figure 4-2. Femoral pulse" -> two captions."""
+    ms = list(FIG_SPLIT_RE.finditer(t))
+    return [{"num": m["num"], "title": t[m.end(): ms[k + 1].start() if k + 1 < len(ms) else None]}
+            for k, m in enumerate(ms)]
+
+
+def figure_gaps(figs: list[Figure]) -> list[str]:
+    """Figure numbers missing inside a chapter ("4-1, 4-3" -> "4-2")."""
+    by_ch: dict[str, list[int]] = {}
+    for f in figs:
+        ch, n = f.num.split("-")
+        by_ch.setdefault(ch, []).append(int(n))
+    return [f"{ch}-{n}" for ch, ns in by_ch.items() for n in range(1, max(ns)) if n not in ns]
+
+
 def _crop_figure(page, lines: list[Line], idx: int, manual_id: str, m, fig_dir: Path,
-                 dpi: int) -> Figure:
+                 dpi: int, xr: tuple[float, float] | None = None) -> Figure:
     """Army figures sit above their caption. Take the graphics above the caption, down to
     the last body-text line, and render that box."""
     cap = lines[idx]
@@ -232,12 +381,15 @@ def _crop_figure(page, lines: list[Line], idx: int, manual_id: str, m, fig_dir: 
     prev_text = max((l.bottom for l in lines[:idx]
                      if l.bottom <= cap.top and len(l.text) > 60), default=page.height * 0.06)
     above = [o for o in above if o["top"] >= prev_text - 2]
+    if xr:
+        above = [o for o in above if o["x0"] >= xr[0] - 2 and o["x1"] <= xr[1] + 2]
     if above:
         x0 = min(o["x0"] for o in above)
         x1 = max(o["x1"] for o in above)
         top = min(o["top"] for o in above)
     else:
-        x0, x1, top = page.width * 0.08, page.width * 0.92, prev_text
+        x0, x1 = xr if xr else (page.width * 0.08, page.width * 0.92)
+        top = prev_text
     bbox = [max(0, x0 - 4), max(0, top - 4), min(page.width, x1 + 4), cap.top - 1]
     fig_dir.mkdir(parents=True, exist_ok=True)
     png = fig_dir / f"{manual_id}_fig_{m['num']}.png"
