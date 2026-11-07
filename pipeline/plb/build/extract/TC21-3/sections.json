@@ -1,5 +1,29 @@
 [
  {
+  "id": "TC21-3/0.h1",
+  "manual": "TC21-3",
+  "para": "0.h1",
+  "chapter": "",
+  "heading": "HEADQUARTERS, DEPARTMENT OF THE ARMY",
+  "pages": [
+   1
+  ],
+  "text": "DISTRIBUTION RESTRICTION: Approved for public release; distribution is unlimited.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/0.h2",
+  "manual": "TC21-3",
+  "para": "0.h2",
+  "chapter": "",
+  "heading": "TABLE OF CONTENTS",
+  "pages": [
+   2
+  ],
+  "text": "PREFACE.",
+  "notices": []
+ },
+ {
   "id": "TC21-3/1-1",
   "manual": "TC21-3",
   "para": "1-1",
@@ -523,12 +547,7 @@
    43
   ],
   "text": "HEAT EXHAUSTION Heat exhaustion is caused by dehydration and loss of body salt from extreme physical activity in a cold-wet environment. It is possible to experience heat exhaustion in a coldweather environment when undergoing extreme physical exertion.",
-  "notices": [
-   {
-    "kind": "NOTE",
-    "text": "Do not give the saltwater to a soldier who has an upset stomach. Have him drink a canten of unsalted water."
-   }
-  ]
+  "notices": []
  },
  {
   "id": "TC21-3/7-1",
@@ -540,12 +559,7 @@
    45
   ],
   "text": "GENERAL The essential requirements for survival and mission accomplishment in the cold/arctic environment are warmth, food, and shelter. As covered in Chapter 3, you are provided with tents that can be erected quickly. Tents can be lost or destroyed and separated from the ahkio groups in the confusion of combat. When this occurs, timber and snow, which are usually available, will be used for shelters. A detailed explanation of the bivouac routine should be contained in the unit SOP.",
-  "notices": [
-   {
-    "kind": "NOTE",
-    "text": "Do not administer salt if the soldier has an upset stomach. Have him drink a canteen of unsalted water."
-   }
-  ]
+  "notices": []
  },
  {
   "id": "TC21-3/7-2",
@@ -848,6 +862,1313 @@
    69
   ],
   "text": "USEFUL KNOTS A rope is only a limp coil of hemp or nylon. It is useful only when you are able to attach it to itself or another object. The six basic knots described below will fit all your needs for tying rope together or onto equipment or personnel.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/C.h1",
+  "manual": "TC21-3",
+  "para": "C.h1",
+  "chapter": "APPENDIX C. VISUAL EMERGENCY SIGNALS C-1",
+  "heading": "PREFACE",
+  "pages": [
+   5
+  ],
+  "text": "This handbook is an aid for soldiers in cold climates. However, expertise in dealing with cold-weather operations cannot be gained just from reading this handbook. To develop successful cold-weather field techniques, application training and operational experience are necessary. Additional information is available in FM 31-70, FM 31-71, FM 90-11 (TBP), and FM 9-207. Military history of operations in northern areas shows that man's success or failure is measured by his regard for the dominant characteristics of a cold-weather environment. For a soldier to become a cold-weather expert, he must learn the techniques and rules needed to fight and live in a cold-weather climate. The proponent of this publication is HQ TRADOC. Submit changes for improving this publication on DA Form 2028 (Recommended Changes to Publications and Blank Forms) and forward it to Commandant, US Army Infantry School, ATTN: ATSH-B, Fort Benning, Georgia 31905-5593. Unless otherwise stated, whenever the masculine gender is used, both men and women are included.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/1.h1",
+  "manual": "TC21-3",
+  "para": "1.h1",
+  "chapter": "CHAPTER 1",
+  "heading": "COLD-WET",
+  "pages": [
+   6
+  ],
+  "text": "Cold-wet conditions occur when temperatures are near freezing and high and low temperatures cause alternate freezing and thawing. These conditions can be accompanied by wet snow and rain, causing the ground to become slushy and muddy. Soldiers need clothing that has a waterproof or water-repellent, wind-resistant outer layer, and an inner layer with insulation that provide protection in moderately cold weather (above 14oF). Waterproof footwear is essential.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/1.h2",
+  "manual": "TC21-3",
+  "para": "1.h2",
+  "chapter": "CHAPTER 1",
+  "heading": "COLD-DRY",
+  "pages": [
+   6
+  ],
+  "text": "Cold-dry conditions occur when average temperatures are lower than 14oF. The ground is usually frozen and the snow dry. Low temperatures plus wind increase the need for protection of the entire body. For these conditions, soldiers need clothing that will provide insulation for a wind-chill factor of -80oF. For temperatures below 14oF, white vapor barrier (VB) boots effective down to temperatures of -50oF must be worn.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/1.h3",
+  "manual": "TC21-3",
+  "para": "1.h3",
+  "chapter": "CHAPTER 1",
+  "heading": "WIND CHILL",
+  "pages": [
+   6
+  ],
+  "text": "Wind chill is a measure of the combined effects of wind and temperature. Temperature alone does not give a true indication of the impact of the cold. In order to effectively gauge the difference between temperature and the impact of the cold, a wind-chill scale must be used. The chart in Appendix A is a simple and practical guide showing the conditions under which cold weather is dangerous and when exposed flesh is likely to freeze. Soldiers must be familiar with the wind-chill chart to recognize these dangers.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/1.h4",
+  "manual": "TC21-3",
+  "para": "1.h4",
+  "chapter": "CHAPTER 1",
+  "heading": "COCOON-LIKE EXISTENCE",
+  "pages": [
+   7
+  ],
+  "text": "Many soldiers, when wearing several layers of clothing and with their heads covered, tend to withdraw within themselves and assume a cocoon-like existence. When so clothed, many soldiers' hearing and field of vision are restricted; they tend not to notice their surroundings. Their thinking and reasoning become sluggish.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/1.h5",
+  "manual": "TC21-3",
+  "para": "1.h5",
+  "chapter": "CHAPTER 1",
+  "heading": "INDIVIDUAL AND GROUP HIBERNATION",
+  "pages": [
+   7
+  ],
+  "text": "This process is characterized by individuals seeking the comfort of sleeping bags, and by the group remaining in tents or other shelter. Guard and security measures may be neglected, jeopardizing the security and safety of the unit.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/1.h6",
+  "manual": "TC21-3",
+  "para": "1.h6",
+  "chapter": "CHAPTER 1",
+  "heading": "KEEP IN SHAPE",
+  "pages": [
+   7
+  ],
+  "text": "Cold-weather clothing and equipment are heavy, and add weight to your normal equipment load. This hinders movement in snow and uses too much energy. The importance of being in excellent physical condition cannot be overemphasized. Your unit must have a tough, challenging, demanding physical training program.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/1.h7",
+  "manual": "TC21-3",
+  "para": "1.h7",
+  "chapter": "CHAPTER 1",
+  "heading": "DRINK PLENTY OF WATER",
+  "pages": [
+   7
+  ],
+  "text": "Water may be hard to get, so you may drink less than you need or only when you are thirsty. This will not give you the water needed to avoid dehydration. Drink plenty of water (at least 3.5 quarts per day) to avoid dehydration and fatigue. DO NOT eat snow as a water substitute; it will lower your body's core temperature.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/1.h8",
+  "manual": "TC21-3",
+  "para": "1.h8",
+  "chapter": "CHAPTER 1",
+  "heading": "EAT TO KEEP FIT",
+  "pages": [
+   7
+  ],
+  "text": "Regular, nutritious hot food is needed for top performance. You must eat, even when you are not hungry.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/1.h9",
+  "manual": "TC21-3",
+  "para": "1.h9",
+  "chapter": "CHAPTER 1",
+  "heading": "KEEP A GOOD ATTITUDE",
+  "pages": [
+   7
+  ],
+  "text": "You will meet many new challenges, but none that cannot be overcome. Your attitude toward the cold will reflect those of your leaders.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h1",
+  "manual": "TC21-3",
+  "para": "2.h1",
+  "chapter": "CHAPTER 2",
+  "heading": "INSULATE",
+  "pages": [
+   9
+  ],
+  "text": "Insulation material reduces the amount of heat loss. By regulating the amount of insulation, an individual can regulate the amount of heat lost or retained.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h2",
+  "manual": "TC21-3",
+  "para": "2.h2",
+  "chapter": "CHAPTER 2",
+  "heading": "LAYER",
+  "pages": [
+   9
+  ],
+  "text": "Several layers of clothing provide more insulation and movement than one heavy garment, even if the heavy garment is as thick as the combined layers. Air pockets trapped between the layers provide insulation and warmth.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h3",
+  "manual": "TC21-3",
+  "para": "2.h3",
+  "chapter": "CHAPTER 2",
+  "heading": "VENTILATE",
+  "pages": [
+   9
+  ],
+  "text": "Ventilation helps maintain a comfortable body temperature by allowing excess heat and moisture to escape.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h4",
+  "manual": "TC21-3",
+  "para": "2.h4",
+  "chapter": "CHAPTER 2",
+  "heading": "KEEP CLOTHING CLEAN",
+  "pages": [
+   10
+  ],
+  "text": "Dirty clothes are cold clothes. Dirt and grease clog the air spaces in clothing and reduce insulation.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h5",
+  "manual": "TC21-3",
+  "para": "2.h5",
+  "chapter": "CHAPTER 2",
+  "heading": "AVOID OVERHEATING",
+  "pages": [
+   10
+  ],
+  "text": "Select comfortable clothing and do not overdress. In cold weather, it is better to be a little cool rather than risk being overheated.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h6",
+  "manual": "TC21-3",
+  "para": "2.h6",
+  "chapter": "CHAPTER 2",
+  "heading": "WEAR IT LOOSE",
+  "pages": [
+   10
+  ],
+  "text": "All items of the cold-weather uniform are large enough to allow wearing of the appropriate number of layers. Your field jacket may appear too large without all of the layers designed to fit under it. If the uniform items do not fit loosely, the insulation that keeps you warm will be greatly reduced.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h7",
+  "manual": "TC21-3",
+  "para": "2.h7",
+  "chapter": "CHAPTER 2",
+  "heading": "KEEP IT DRY",
+  "pages": [
+   10
+  ],
+  "text": "It is important to keep clothing dry, since wet clothing conducts heat away from the body more quickly than dry clothing. Moisture soaks into clothing from two directions: the inside and the outside. From the outside you must guard against melting snow; from the inside you must guard against sweating. Brush snow and frost from clothing before entering any heated shelter or vehicle, and avoid overheating.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h8",
+  "manual": "TC21-3",
+  "para": "2.h8",
+  "chapter": "CHAPTER 2",
+  "heading": "COLD-WET COLD-DRY",
+  "pages": [
+   11
+  ],
+  "text": "OR DOWN TO 14oF BELOW 14oF",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h9",
+  "manual": "TC21-3",
+  "para": "2.h9",
+  "chapter": "CHAPTER 2",
+  "heading": "FIRST LAYER",
+  "pages": [
+   13
+  ],
+  "text": "This consists of polypropylene undershirt and shorts. They are worn next to the skin. They are designed to draw moisture away from the skin, thereby reducing conductive heat loss. You must make sure that no other item is placed between these items and your skin.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h10",
+  "manual": "TC21-3",
+  "para": "2.h10",
+  "chapter": "CHAPTER 2",
+  "heading": "SECOND LAYER",
+  "pages": [
+   13
+  ],
+  "text": "The second layer contains a synthetic fiber pile (SFP) shirt and polyester batting trouser liners. The SFP shirt and trouser liners provide insulation. The shirt is designed to dry quickly if it becomes wet and to provide a high degree of insulation. It should not be worn as an exterior garment in wet or windy conditions, since the loose weave provides little protection against wind chill. If the shirt gets wet, it will reduce the insulation value. The trouser liners are designed to be worn during little or no activity. They should not be worn during heavy activity such as skiing or snowshoeing.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h11",
+  "manual": "TC21-3",
+  "para": "2.h11",
+  "chapter": "CHAPTER 2",
+  "heading": "THIRD LAYER",
+  "pages": [
+   13
+  ],
+  "text": "This consists of polyester batting field jacket liner and field trousers. The jacket liner should only be used for extra insulation during periods of little activity. This liner is designed to be used as a separate jacket; it should not be attached to the parka. The trousers provide a durable wind-resistant, water-repellent layer to protect the insulating underpants and trouser liners.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h12",
+  "manual": "TC21-3",
+  "para": "2.h12",
+  "chapter": "CHAPTER 2",
+  "heading": "FOURTH LAYER",
+  "pages": [
+   13
+  ],
+  "text": "Windproof, waterproof parka and trousers make up this layer. The parka and trousers provide windproof and waterproof shell garments to protect the first three layers. The parka should be the outer garment, which is always worn when doing any activity outside a shelter. It is waterproof, yet the fabric is breathable so that body moisture can escape. The hood is designed to give full protection from wind and snow and does not prevent your seeing the area around you. It has underarm zippers to allow air to circulate during heavy activity. The trousers are made of the same material as the parka and are very warm. They should be worn only when necessary to prevent the field trousers from becoming wet.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h13",
+  "manual": "TC21-3",
+  "para": "2.h13",
+  "chapter": "CHAPTER 2",
+  "heading": "FIFTH LAYER",
+  "pages": [
+   14
+  ],
+  "text": "This consists of standard camouflage overwhites.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h14",
+  "manual": "TC21-3",
+  "para": "2.h14",
+  "chapter": "CHAPTER 2",
+  "heading": "DRYING WET CLOTHING",
+  "pages": [
+   14
+  ],
+  "text": "Hang items separately from drying lines inside the tent. Do not place anything too close to a stove or over steaming pots; steam will cause further dampness.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h15",
+  "manual": "TC21-3",
+  "para": "2.h15",
+  "chapter": "CHAPTER 2",
+  "heading": "DRYING DAMP CLOTHING",
+  "pages": [
+   14
+  ],
+  "text": "Damp items can be hung on the rucksack during movement. Pin damp socks to loadcarrying equipment or shirt during movement or just inside the last layer of clothing. Do not place damp clothing in sleeping bags. This will only make sleeping bags wet, and they are harder to dry than clothing. Small items can be placed between the sleeping bag and the sleeping mat under your legs. When washing clothes without soap, dry-rub and air clothing and sleeping bags. Never warm your feet next to an open fire. The boots will melt and burn because of their insulation before the feet become warm. Try never to wear VB boots in a sleeping bag. Sometimes the tactical situation is such that boots must be worn while sleeping. If so, the feet must be dried and massaged with foot powder, and dry socks must be put on. Wearing the VB boot while sleeping does not let your feet dry out. After VB boots have dried, place them underneath your sleeping bag on top of your sleep pad when temperatures are below 0oF.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h16",
+  "manual": "TC21-3",
+  "para": "2.h16",
+  "chapter": "CHAPTER 2",
+  "heading": "PACKING YOUR RUCKSACK",
+  "pages": [
+   16
+  ],
+  "text": "When you load your rucksack for skiing or climbing, pack heavy items at the bottom and next to the frame. This places the weight on your hips, which is necessary for good balance. Place hard or sharp objects inside the load where they will not rub on the bag and your back. When walking or snowshoeing, raise the center of gravity and take more of the load on your shoulders. Articles that are often needed are placed in the outside pockets for easy reach. Keep maps and other flat objects in the flap pocket.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h17",
+  "manual": "TC21-3",
+  "para": "2.h17",
+  "chapter": "CHAPTER 2",
+  "heading": "ADJUSTMENT",
+  "pages": [
+   16
+  ],
+  "text": "Adjust the straps so that you can move the top part of your body and swing your arms freely. Adjust the shoulder straps so that the lower back straps fit just above the belt line.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h18",
+  "manual": "TC21-3",
+  "para": "2.h18",
+  "chapter": "CHAPTER 2",
+  "heading": "SNOWSHOES",
+  "pages": [
+   17
+  ],
+  "text": "Snowshoes consist of a white magnesium frame laced with nylon-coated steel cable. They are about 48 inches by 12 inches weigh 3.3 pounds with bindings. When properly adjusted, the toe of the boot will be about halfway across the opening in the snowshoe; the toe strap should be firm, but not tight enough to restrict circulation; and the heel straps should permit some side-to-side movement. When used correctly, snowshoes provide better mobility than walking. In most instances, skis are preferred over snowshoes. When using snowshoes, you cannot back up or swim; be careful when moving over thin ice. The traction needed to ascend or descend with snowshoes can be increased by waxing. The use of ski poles with snowshoes aids movement and reduces fatigue.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h19",
+  "manual": "TC21-3",
+  "para": "2.h19",
+  "chapter": "CHAPTER 2",
+  "heading": "SKIS",
+  "pages": [
+   18
+  ],
+  "text": "The standard military skis are about 208 centimeters (82 inches) in length, and have a hole in the tip for towing, a groove in the heel for attaching mohair climbers, and metal edges.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h20",
+  "manual": "TC21-3",
+  "para": "2.h20",
+  "chapter": "CHAPTER 2",
+  "heading": "SKI POLES",
+  "pages": [
+   18
+  ],
+  "text": "Ski poles can be very useful in steep terrain. The military ski pole consists of a steel shaft with rubber handgrips and baskets, and a leather wrist strap. The poles come in three lengths: 130 centimeters (51 inches), 137 centimeters (54 inches), and 147 centimeters (58 inches). When fitting the poles, you should stand on the floor and place the pole at your side; it should come to the point of your shoulder (about 1 inch below the top of the shoulder).",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h21",
+  "manual": "TC21-3",
+  "para": "2.h21",
+  "chapter": "CHAPTER 2",
+  "heading": "MOHAIR SKI CLIMBERS",
+  "pages": [
+   19
+  ],
+  "text": "The mohair climbers are attached to the bottom of the skis for added grip when climbing steep slopes. The climbers consist of a cotton-backed mohair pile and are attached to the skis by five web straps.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h22",
+  "manual": "TC21-3",
+  "para": "2.h22",
+  "chapter": "CHAPTER 2",
+  "heading": "SUNGLASSES",
+  "pages": [
+   19
+  ],
+  "text": "Polarized sunglasses should always be worn on bright days when the ground is covered by snow. Failure to wear the sunglasses, even on overcast days when the need seems less, may result in blindness.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h23",
+  "manual": "TC21-3",
+  "para": "2.h23",
+  "chapter": "CHAPTER 2",
+  "heading": "PROTECTIVE MASK",
+  "pages": [
+   19
+  ],
+  "text": "There is an M4 cold-weather winterization kit available for your protective mask. Make sure you install this winterization kit for operations in the northern environment.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/2.h24",
+  "manual": "TC21-3",
+  "para": "2.h24",
+  "chapter": "CHAPTER 2",
+  "heading": "CANTEENS",
+  "pages": [
+   19
+  ],
+  "text": "In cold weather the plastic canteen will freeze very quickly if carried in the standard fabric carrier. Since the canteen cannot be placed directly on heat, there is no quick method for thawing. Whenever possible, the canteen should be carried in one of the interior uniform pockets, or wrapped in clothing and placed in the rucksack to ride against your back. In extreme cold, do not fill the canteen over two-thirds full; this allows for expansion if the water freezes. The insulated canteen is a one-quart capacity stainless steel vacuum bottle. It is provided with a cotton duck cover and a stainless steel cup. A new arctic canteen will keep water from freezing at -40oF for 6 hours. The following are some tips in using the arctic canteen:\n- Fill the canteen using your canteen cup.\n- Fill to within half an inch of the neck.\n- Do not drop or dent.\n- Put it in your sleeping bag at night.\n- Carry the canteen in an M60 bandoleer near your body.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/4.h1",
+  "manual": "TC21-3",
+  "para": "4.h1",
+  "chapter": "CHAPTER 4",
+  "heading": "AMMUNITION",
+  "pages": [
+   30,
+   31
+  ],
+  "text": "Small arms ammunition should be kept at the same temperature as your weapon. Ammunition clips and magazines must be cleaned of all oil and preservative and checked often. All ice, snow, and condensation must be removed. Ammunition boxes must be kept closed in order to keep out snow and ice. Stored ammunition should be kept in packed boxes, raised off the surface by placing them on boughs, cardboard, or other similar material, and covered to protect them from the snow. Ammunition should be well marked for easy location and identification in case it becomes covered with snow. Ammunition resupply may become restricted. Everyone must be aware of the necessity for ammunition economy and fire discipline. Loaded clips, magazines, or single rounds dropped in the snow become quickly lost; therefore, careful handling of ammunition is essential. Never waste your ammunition. Make every round count. When contact with the enemy is imminent, troop compartments and aircraft should be kept as close to freezing as possible to avoid condensation. However, many munitions have limitations at lower temperatures, which must be recognized in training.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h1",
+  "manual": "TC21-3",
+  "para": "6.h1",
+  "chapter": "CHAPTER 6",
+  "heading": "PREVENTION",
+  "pages": [
+   35
+  ],
+  "text": "To prevent hypothermia, adhere to the following:\n- Stay physically fit.\n- Keep active.\n- Use the uniform properly and keep it dry.\n- Eat properly and often.\n- Drink plenty of liquids, at least 3.5 quarts per day, when performing physically demanding work.\n- Be prepared for and know how to deal with quick changes in the weather.\n- Bivouac early before judgment is weakened by fatigue.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h2",
+  "manual": "TC21-3",
+  "para": "6.h2",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS",
+  "pages": [
+   35,
+   36
+  ],
+  "text": "Be aware of the following symptoms:\n- Shallow breathing or absence of breathing.\n- Faint or undetectable pulse.\n- Victim is first cold, then stops shivering.\n- Loss of feeling.\n- Poor coordination; victim has trouble walking.\n- Impaired speech.\n- Confusion, withdrawn appearance, depressed, and/or uncoordinated. An uncaring attitude and/or glassy stare are also clues.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h3",
+  "manual": "TC21-3",
+  "para": "6.h3",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT",
+  "pages": [
+   36
+  ],
+  "text": "The recommended treatment is as follows:\n- Prevent any further heat loss.\n- Get the victim out of the wind and into the best shelter available.\n- Replace any wet clothing with dry, and place the victim in a sleeping bag, if one is available.\n- Place as much insulation as possible between the victim and the ground.\n- Add heat by the best available means to the victim's neck, groin, and sides of chest. This can be done by using a hot water bottle, Yukon stove, campfire, or your own body heat.\n- Provide the victim with something warm and nutritious to drink if he is conscious. Calories may be added by using sugar in hot, sweet drinks.\n- DO NOT massage the victim.\n- DO NOT give alcohol to the victim.\n- Evacuate the victim to the nearest medical treatment facility as soon as possible. This condition is life threatening until normal body temperature is restored.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h4",
+  "manual": "TC21-3",
+  "para": "6.h4",
+  "chapter": "CHAPTER 6",
+  "heading": "WIND CHILL",
+  "pages": [
+   36
+  ],
+  "text": "The combination of wind and low temperatures creates a condition known as wind chill. For example, with the wind calm and a temperature of -20oF there is little danger of wind chill. If the temperature is -20oF and there is a wind of 20 knots, the equivalent chill temperature is -75oF! Under these conditions there is GREAT DANGER and your exposed skin can freeze within 30 seconds. You also create your own wind when you walk, run, or ski. As examples, walking creates a wind speed of about 5 mph and running 10 mph. Wind is also created by moving vehicles, aircraft propellers, and rotors. The wind-chill chart is provided to show how wind and temperature combine to create wind chill; use it. Cold injury can disable you like an enemy bullet.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h5",
+  "manual": "TC21-3",
+  "para": "6.h5",
+  "chapter": "CHAPTER 6",
+  "heading": "PREVENTION",
+  "pages": [
+   37
+  ],
+  "text": "Frostbite is preventable if the individual soldier takes care of himself. It seldom occurs in people who are maintaining enough body heat. It is most commonly associated with an overall body heat loss resulting from poor equipment, reduced food intake, dehydration (water loss), overtiring, injury, or a combination of these factors. The feet, hands, ears, and exposed areas of the face are most easily hurt by frostbite and must receive constant care. The following are rules to help prevent frostbite:\n- Do not wear tight boots and socks.\n- Use the \"buddy system\" to check exposed areas, especially when wind is present.\n- Carry extra socks and mitten liners.\n- Do not stay still for long periods.\n- Use caution when cold and wind are combined.\n- Check feet during halts.\n- Ensure that you eat well and have hot drinks as often as possible.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h6",
+  "manual": "TC21-3",
+  "para": "6.h6",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS OF SUPERFICIAL FROSTBITE",
+  "pages": [
+   37
+  ],
+  "text": "Redness occurs, followed by powdery flaking of the skin. Affected areas of dark-skinned soldiers may appear dull and grayish. Blister formation occurs 24 to 30 hours after exposure, followed by flaking of superficial skin.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h7",
+  "manual": "TC21-3",
+  "para": "6.h7",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS OF DEEP FROSTBITE",
+  "pages": [
+   37,
+   38
+  ],
+  "text": "Common symptoms are as follows:\n- Loss of feeling occurs in the affected area, leaving it pale yellow and waxy looking.\n- When the frostbitten area thaws, it is painful.\n- Frozen tissue may feel solid or \"wooden\" to the touch.\n- When exposed to inside temperatures, blisters may appear in 12 to 36 hours.\n- Discoloration (red-violet) appears 1 to 5 days after the injury.\n- Gangrene usually results.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h8",
+  "manual": "TC21-3",
+  "para": "6.h8",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT FOR FROSTBITE",
+  "pages": [
+   38
+  ],
+  "text": "Determine whether the frostbite is superficial or deep. If the exposure time was short, the frostbite will probably be superficial. If the exposure time was long, the frostbite will probably be deep. The following is a recommended treatment for frostbite:\n- Move the casualty to a warm and sheltered area.\n- Do not rub the frostbitten area with snow or apply cold water soaks.\n- Do not rewarm the affected area by massaging or exposing it to open fire.\n- Rewarm the face, nose, or ears by placing your hands on the frozen area. Rewarm frostbitten hands by placing them under clothing and against the body.\n- Close the clothing to prevent further loss of body heat.\n- Rewarm the feet by removing the boots and socks. Place the bare feet under the clothing and against the abdomen of a buddy. Once the feet are warmed, put on dry socks and boots, if available. If the victim must wear the wet socks and boots, he should exercise his feet by wiggling his toes.\n- Loosen tight clothing and remove jewelry.\n- Improve circulation by exercise.\n- Do not allow the victim to use alcohol or tobacco. Alcohol increases loss of body heat; tobacco causes narrowing of blood vessels in the arms and legs.\n- Reassure the victim.\n- Protect frozen tissue from further cold or trauma, and evacuate the casualty to the nearest medical treatment facility. Deep frostbite is most common and harmful to the feet and less common to the hands and ears. When deep frostbite does occur, the victim should be moved to a sheltered area and evacuated to a medical treatment facility immediately. If possible, do not allow the victim to walk if his feet are frozen and avoid treating or thawing the affected area. Thawing of deep frostbite in the field increase pain and invites infection, greater damage, and gangrene. Do not try to thaw deep frostbite; let the physician do it.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h9",
+  "manual": "TC21-3",
+  "para": "6.h9",
+  "chapter": "CHAPTER 6",
+  "heading": "PREVENTION",
+  "pages": [
+   39
+  ],
+  "text": "The following are suggestions to prevent dehydration:\n- The minimum daily liquid requirement for personnel performing demanding physical work in the cold is 3.5 quarts per day.\n- By the time you feel thirsty you are already dehydrated. Drink whenever possible, particularly during halts.\n- Ensure that canteens are full before any type of movement.\n- During periods when water is scarce, do not drink coffee in large quantities. It will pass through you quickly. Water should be the first choice.\n- Check your urine spots in the snow. Dark yellow or brown indicates dehydration.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h10",
+  "manual": "TC21-3",
+  "para": "6.h10",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS",
+  "pages": [
+   39
+  ],
+  "text": "Common symptoms are as follows:\n- Red indicates a severe condition needing immediate medical evacuation to the nearest medical treatment facility.\n- Lack of appetite.\n- Dry mouth, tongue, and throat.\n- Stomach cramps and/or vomiting.\n- Headaches.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h11",
+  "manual": "TC21-3",
+  "para": "6.h11",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT",
+  "pages": [
+   39
+  ],
+  "text": "Recommended treatment is as follows:\n- Keep the victim warm.\n- Give him plenty of liquids.\n- Make him rest.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h12",
+  "manual": "TC21-3",
+  "para": "6.h12",
+  "chapter": "CHAPTER 6",
+  "heading": "PREVENTION",
+  "pages": [
+   39,
+   40
+  ],
+  "text": "The following are suggestions to prevent carbon monoxide poisoning:\n- Use stoves and lanterns in well-ventilated areas and tents.\n- Ensure that stoves and lanterns are functioning properly.\n- Do not let personnel warm themselves by engine exhaust.\n- Always have windows cracked in vehicles with a heater in use.\n- Use a tent guard or shut the stove off when sleeping.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h13",
+  "manual": "TC21-3",
+  "para": "6.h13",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS",
+  "pages": [
+   40
+  ],
+  "text": "Common symptoms are as follows:\n- Headache, dizziness, confusion, yawning, weariness, nausea, and ringing in the ears.\n- Bright red color on lips and skin.\n- Victim may become drowsy and collapse suddenly.\n- If personnel are found unconscious in an enclosed shelter, carbon monoxide poisoning should be suspected.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h14",
+  "manual": "TC21-3",
+  "para": "6.h14",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT",
+  "pages": [
+   40
+  ],
+  "text": "Adhere to the following for proper treatment:\n- Move the victim to open air.\n- Keep the victim still and warm.\n- If the victim is not breathing, administer mouth-to-mouth resuscitation.\n- Administer cardiopulmonary resuscitation, if necessary.\n- Immediately evacuate the victim to the nearest medical treatment facility.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h15",
+  "manual": "TC21-3",
+  "para": "6.h15",
+  "chapter": "CHAPTER 6",
+  "heading": "PREVENTION",
+  "pages": [
+   40
+  ],
+  "text": "Prevention is easy; wear your issued sunglasses. If sunglasses are not available, make slitted glasses from cardboard, thin wood, tree bark, or similar material.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h16",
+  "manual": "TC21-3",
+  "para": "6.h16",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS",
+  "pages": [
+   41
+  ],
+  "text": "Common symptoms are as follows:\n- A scratchy, sandy feeling under your eyelids.\n- Redness and watering of the eyes.\n- A headache.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h17",
+  "manual": "TC21-3",
+  "para": "6.h17",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT",
+  "pages": [
+   41
+  ],
+  "text": "Adhere to the following for proper treatment:\n- Blindfold the patient using a dark cloth.\n- Reassure the patient.\n- Evacuate the patient to a medical treatment facility.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h18",
+  "manual": "TC21-3",
+  "para": "6.h18",
+  "chapter": "CHAPTER 6",
+  "heading": "PREVENTION",
+  "pages": [
+   41
+  ],
+  "text": "Require soldiers to use a sunscreen and lip balm.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h19",
+  "manual": "TC21-3",
+  "para": "6.h19",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS",
+  "pages": [
+   41
+  ],
+  "text": "Redness of skin with slight swelling is one symptom of sunburn. Prolonged exposure to the sun may cause pain and blistering and, in severe cases, chills, fever, and headaches.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h20",
+  "manual": "TC21-3",
+  "para": "6.h20",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT",
+  "pages": [
+   41
+  ],
+  "text": "Soothing skin creams may be helpful if the swelling is not severe.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h21",
+  "manual": "TC21-3",
+  "para": "6.h21",
+  "chapter": "CHAPTER 6",
+  "heading": "PREVENTION",
+  "pages": [
+   42
+  ],
+  "text": "The following helps prevent trench foot or immersion foot:\n- Change to dry socks at least twice daily.\n- Dry and massage your feet regularly with foot powder.\n- Wear VB boots and change socks regularly.\n- If leather boots are worn, dry them whenever possible.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h22",
+  "manual": "TC21-3",
+  "para": "6.h22",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS",
+  "pages": [
+   42
+  ],
+  "text": "In early stages, the feet and toes are cold, numb, and still, and walking becomes challenging. The feet swell and become painful.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h23",
+  "manual": "TC21-3",
+  "para": "6.h23",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT",
+  "pages": [
+   42
+  ],
+  "text": "In early stages, keep the feet dry, clean, and exposed to the air. In later stages, evacuate the victim to a medical facility.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h24",
+  "manual": "TC21-3",
+  "para": "6.h24",
+  "chapter": "CHAPTER 6",
+  "heading": "PREVENTION",
+  "pages": [
+   42
+  ],
+  "text": "Eat fresh or canned fruit and eat regularly. Drink plenty of liquids. Try to have a daily bowel movement at your normal time.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h25",
+  "manual": "TC21-3",
+  "para": "6.h25",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS",
+  "pages": [
+   42
+  ],
+  "text": "Some common symptoms are stomach cramps, dizziness, and headaches.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h26",
+  "manual": "TC21-3",
+  "para": "6.h26",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT",
+  "pages": [
+   42
+  ],
+  "text": "Prevention is the best treatment. If symptoms persist, get medical help.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h27",
+  "manual": "TC21-3",
+  "para": "6.h27",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS",
+  "pages": [
+   43
+  ],
+  "text": "The soldier experiences muscle cramps in his arms, legs, and/or stomach. He is pale and has wet skin and is experiencing dizziness and extreme thirst.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h28",
+  "manual": "TC21-3",
+  "para": "6.h28",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT",
+  "pages": [
+   43
+  ],
+  "text": "Have the soldier drink one fourth of a canteen of water. Give the soldier one canteen of water with one packet of salt stirred in. Have him drink the canteen of salted water over a 30-minute period. If cramping of muscles continues, evacuate the soldier to the nearest medical treatment facility.",
+  "notices": [
+   {
+    "kind": "NOTE",
+    "text": "Do not give the saltwater to a soldier who has an upset stomach. Have him drink a canten of unsalted water."
+   }
+  ]
+ },
+ {
+  "id": "TC21-3/6.h29",
+  "manual": "TC21-3",
+  "para": "6.h29",
+  "chapter": "CHAPTER 6",
+  "heading": "SYMPTOMS",
+  "pages": [
+   43
+  ],
+  "text": "The soldier may feel dizzy, weak, and/or faint. The skin feels cool and moist to the touch. He may feel nauseated or have a headache.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/6.h30",
+  "manual": "TC21-3",
+  "para": "6.h30",
+  "chapter": "CHAPTER 6",
+  "heading": "TREATMENT",
+  "pages": [
+   43,
+   44
+  ],
+  "text": "The following is a recommended treatment for heat exhaustion:\n- Have the soldier drink one canteen of water to relieve the symptoms.\n- If he complains of cramps, give him one canteen of water with one packet of salt stirred in. Have him drink the salt solution over a 30-minute period.\n- Loosen all tight-fitting clothes.\n- Elevate the feet above the level of the heart.\n- If the soldier is unable to drink water due to an upset stomach or if the symptoms have not improved within 20 minutes, evacuate the soldier to the nearest medical treatment facility.",
+  "notices": [
+   {
+    "kind": "NOTE",
+    "text": "Do not administer salt if the soldier has an upset stomach. Have him drink a canteen of unsalted water."
+   }
+  ]
+ },
+ {
+  "id": "TC21-3/7.h1",
+  "manual": "TC21-3",
+  "para": "7.h1",
+  "chapter": "CHAPTER 7",
+  "heading": "FORESTED AREAS",
+  "pages": [
+   46
+  ],
+  "text": "Forests provide excellent sites. Camouflage is easy and building materials, firewood, and wood for insulation are readily available. Although forests provide the best bivouac site, temperatures there will normally be colder than those in open areas.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/7.h2",
+  "manual": "TC21-3",
+  "para": "7.h2",
+  "chapter": "CHAPTER 7",
+  "heading": "MARSHY GROUND",
+  "pages": [
+   46
+  ],
+  "text": "In winter, good sites are frozen swampy areas, the banks of streams, and the shores of lakes. Some swampy areas may not freeze because of warm springs or marsh gases. Deep valleys should be avoided since colder air gathers there.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/7.h3",
+  "manual": "TC21-3",
+  "para": "7.h3",
+  "chapter": "CHAPTER 7",
+  "heading": "OPEN AREAS",
+  "pages": [
+   46
+  ],
+  "text": "Avoid open areas because of strong winds, drifting snow, and poor concealment. If avoidance is not possible, then pitch tents where they can be sheltered by natural windbreaks. These are normally found in depressions or behind ridges of ice on lakes. In areas where natural wind falls do not exist, build snow walls to provide wind protection. In areas with high winds, snow gathers on the lee side, making it necessary to clear the side and tops of the tents, often to prevent the weight of the drifting snow from collapsing the tent.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/7.h4",
+  "manual": "TC21-3",
+  "para": "7.h4",
+  "chapter": "CHAPTER 7",
+  "heading": "MOUNTAINOUS AREAS",
+  "pages": [
+   46,
+   47
+  ],
+  "text": "Mountainous terrain is characterized by strong winds, cold, and a general lack of concealment above the timberline. The wind over head creates extensive lees near cliffs and steep rock faces. Avalanches can occur on steep slopes; avoid their likely path. Signs to look for are:\n- Heavy snow overlaying a crust of ice (usually the result of a freeze at the end of a period of thaw).\n- New snow on steep slopes if the temperature is rising.\n- Evidence of avalanches in previous years; an area cut through the trees (branches stripped off, and/or broken tree stumps at different heights) or a smooth clear strip of ground down the mountainside. When contact with the enemy is likely, the unit SOP will identify specific considerations when selecting the site for a tactical bivouac. For example:\n- The location of the enemy.\n- Enemy patrol habits.\n- The air threat.\n- Dominating features that identify enemy avenues of approach.\n- The wind direction that can carry sounds of movement (the bivouac site should be downwind of likely enemy avenues of approach, especially when wind speeds are low).\n- Availability of natural camouflage.\n- Amount of moonlight and weather conditions. In good weather or bright moonlight, the bivouac site must be in an area of deep shadow (in the middle of the woods or on the northern slope of a ridge) or the tents will be silhouetted.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/8.h1",
+  "manual": "TC21-3",
+  "para": "8.h1",
+  "chapter": "CHAPTER 8",
+  "heading": "USE SKIS WHEN:",
+  "pages": [
+   51
+  ],
+  "text": "- Speed is essential.\n- Long distance must be traveled.\n- Stealth is necessary.\n- Conditions allow.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/8.h2",
+  "manual": "TC21-3",
+  "para": "8.h2",
+  "chapter": "CHAPTER 8",
+  "heading": "USE SNOW SHOES WHEN:",
+  "pages": [
+   51
+  ],
+  "text": "- Moving through heavy brush.\n- Speed is not essential.\n- Troops are not proficient on skis.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/9.h1",
+  "manual": "TC21-3",
+  "para": "9.h1",
+  "chapter": "CHAPTER 9",
+  "heading": "PACING",
+  "pages": [
+   54
+  ],
+  "text": "In temperate zones, pacing is the simplest method of measuring distance. In cold-weather areas, snow cover and the use of skis and snowshoes make pacing challenging, and it must be practiced repeatedly.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/9.h2",
+  "manual": "TC21-3",
+  "para": "9.h2",
+  "chapter": "CHAPTER 9",
+  "heading": "USE OF FIELD WIRE",
+  "pages": [
+   54
+  ],
+  "text": "The best method for accurate ground measurement is for two men to use a piece of salvage field wire 50 meters long. The lead man marches off in the desired direction trailing the wire behind him. The second man signals by jerking the wire when the first has gone 50 meters and then moves forward to the first man's position. The first man marks the spot and continues forward for another 50 meters. This is repeated until the desired distance is reached.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/9.h3",
+  "manual": "TC21-3",
+  "para": "9.h3",
+  "chapter": "CHAPTER 9",
+  "heading": "ESTIMATION",
+  "pages": [
+   54
+  ],
+  "text": "If no other method of measurement is available, the length of time spent in steady progress along a route may be used to estimate the distance traveled. The accuracy of this method depends on how well you know your marching speed over all types of terrain on foot, skis, or snowshoes.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/9.h4",
+  "manual": "TC21-3",
+  "para": "9.h4",
+  "chapter": "CHAPTER 9",
+  "heading": "COMPASS",
+  "pages": [
+   54
+  ],
+  "text": "The use of the compass is the most common way to determine direction. The magnetic field becomes weaker as you get nearer to the magnetic poles and can be easily affected by other objects. It is important to make sure that the compass is not affected by iron fragments in the ground, vehicles, or metal objects on you.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/9.h5",
+  "manual": "TC21-3",
+  "para": "9.h5",
+  "chapter": "CHAPTER 9",
+  "heading": "THE SUN",
+  "pages": [
+   54
+  ],
+  "text": "There are two ways to determine direction by the sun:\n- At noon, in the northern hemisphere, shadows fall to the north of objects; in the southern hemisphere, to the south of objects.\n- Estimate direction by using a watch and the sun. In northern latitudes the hour hand is pointed toward the sun. An imaginary line halfway between the hour hand and 1200 will point south. In southern latitudes the procedure is different. Then point the 1200 toward the sun. An imaginary line halfway between the hour hand and 1200 will point north.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/9.h6",
+  "manual": "TC21-3",
+  "para": "9.h6",
+  "chapter": "CHAPTER 9",
+  "heading": "NATURE",
+  "pages": [
+   55
+  ],
+  "text": "Nature will help in determining direction as in the following samples:\n- Single evergreen trees, growing away from other trees, will always be more bushy on the south side.\n- The bark of birch and poplar trees is whitest on the south side and darkest on the north.\n- You should know from which direction the prevailing winds blow. Trees will be bent in the direction the wind is blowing or expected to blow.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/9.h7",
+  "manual": "TC21-3",
+  "para": "9.h7",
+  "chapter": "CHAPTER 9",
+  "heading": "THE STARS",
+  "pages": [
+   55
+  ],
+  "text": "The North Star may be used to determine true north. This star can be easily found by its position relative to the Big Dipper. In latitudes under 70 degrees when traveling north, the North Star makes a good steering mark since its bearing is usually only 1 degree from true north and is never more than 2 1/2 degrees away. In higher latitudes above 70 degrees, the North Star is too high in the sky to indicate good direction. A star near the horizon can be used with a bearing within 2 degrees of your compass course. However, it will only be good for up to 30 minutes when you are traveling north and only 15 minutes when traveling south. After these intervals, select another star. South of the equator, the constellation Southern Cross will help you locate the general direction of south and any other direction. This group of four bright stars is shaped like a cross that is tilted to one side. The two stars forming the long axis, or stem, of the cross are called pointers. From the foot of the cross, extend the stem five times its length to an imaginary point. This point is in the general direction of south. From this point, look straight down to the horizon and select a steering point.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/9.h8",
+  "manual": "TC21-3",
+  "para": "9.h8",
+  "chapter": "CHAPTER 9",
+  "heading": "EQUIPMENT FOR DEAD RECKONING",
+  "pages": [
+   56
+  ],
+  "text": "- Maps are used for choosing the route and for plotting the route taken as the march progresses.\n- Aerial photographs are usually used in addition to maps. They must be vertical photos taken during the same season in which they are to be used.\n- The compass is used as the main direction-finding instrument.\n- The protractor is necessary in dead reckoning for plotting direction and distance on the map, aerial photo, or chart. When using it, remember to convert magnetic azimuth to grid azimuth.\n- A route card is used to outline the plan of the proposed march. Keeping a log is mandatory. It is used to record the distance and direction.\n- The log is a written record of where the soldier has started, the distance and direction traveled, and his position at any time in relation to the planned route, destination, and starting point.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/9.h9",
+  "manual": "TC21-3",
+  "para": "9.h9",
+  "chapter": "CHAPTER 9",
+  "heading": "THE DRILL OF DEAD RECKONING",
+  "pages": [
+   56
+  ],
+  "text": "Know the starting point and destination and, having examined the map or aerial photo for the best route, prepare a route card. This describes each leg of the proposed route in terms of distance and direction. As the march continues, keep a careful record of each bearing taken and the distance, and record this in the log. There may be a change to the planned route because of terrain or enemy action. Therefore, the necessary changes are made using the map or aerial photo as a guide, and they are recorded in the log.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h1",
+  "manual": "TC21-3",
+  "para": "10.h1",
+  "chapter": "CHAPTER 10",
+  "heading": "WHEN LOST WITHIN A KNOWN LOCALITY",
+  "pages": [
+   58
+  ],
+  "text": "If all is quiet and there are no battle sounds or aircraft to guide you to friendly lines, go back to the last known position. If you cannot go back, consider carefully the journey already made and the distances and directions from the starting point. Opinions should be taken from the group. Search parties should be sent out to find the next known steering mark. Trails must be marked carefully so that the search party can return to guide the main group forward or to rejoin the group, should their search be unproductive. Meanwhile, the rest of the group should seek shelter. If the search party fails to find any known location, perform the steps below, but remember to think clearly and keep calm.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h2",
+  "manual": "TC21-3",
+  "para": "10.h2",
+  "chapter": "CHAPTER 10",
+  "heading": "CONDUCT WHEN LOST",
+  "pages": [
+   58,
+   59
+  ],
+  "text": "When you are certain that you are lost:\n- Stay together. Meet your emergency as a group; don't wander off as individuals; never allow stragglers.\n- Take shelter. If you have a tent, set it up and get in it. If you do not have a tent, build one of the improvised shelters. The type of shelter is not important as long as you protect yourself from the weather.\n- Keep warm. If you are lost in a forest, light a fire (depending on the enemy situation). If you are lost in an area where there are no trees, do not use your gasoline stove to heat your shelter. Use your stove only to prepare hot food and drinks. Conserve your fuel supply; you won't get any more. Get into your sleeping bag to stay warm.\n- Check food supply. All the food and water in the group should be collected and rationed systematically. Supplement the food supply by shooting large animals and trapping or snaring small ones.\n- Check communications. If you have a radio set, use it to contact your parent unit for help. If you are in a forest, prepare fires to attract search planes. Smoke is better by day and flame at night. Mirrors, ground signals, etc., are helpful in attracting search parties. Arrange necessary ground/air signals for search planes.\n- Rest. The more you rest the less energy you expend and the less food you need.\n- Adhere to survival tips. Carry safety matches inside the butt plate of your rifle or in your pockets. Carry candles, which are easy to light, provide heat and light, and help in starting a fire. If you have no matches, fire may be produced by striking the flint on your waterproof match box with the blade of a knife and collecting sparks in dry tinder. Dry moss and bark make good tinder to start your fire. Fires should be built in layers with sticks being laid out like the spokes of a wheel.\n- Carry a two-cell flashlight. It can be seen from the air or on the ground as far as line-of-sight will permit.\n- Ground/air signals can be made with small fires to form the identification characters (see Appendix C).\n- Survival depends on clear thinking and resourcefulness. The main things to remember are to keep calm, think, try to help each other, keep together, and keep warm.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h3",
+  "manual": "TC21-3",
+  "para": "10.h3",
+  "chapter": "CHAPTER 10",
+  "heading": "PONCHO SHELTERS",
+  "pages": [
+   60
+  ],
+  "text": "The simplest type of shelter can be made by pulling the poncho over your sleeping bag. For additional comfort, various types of shelters and lean-tos can be made by attaching your poncho to trees, tree branches, or poles. To build a one-man shelter from one poncho, spread the poncho on the ground, hood side up. The hood opening must be tightly closed by adjusting and tying the drawstrings. The poncho is raised in the middle of its short dimension to form a ridge, with the stake out at the corners and sides. Snow, sod, or branches are used to seal the side and one end of the shelter to provide additional protection from the wind and to retain heat. A two man shelter can be made from two ponchos. Spread the ponchos on the ground with the hood side up and the long sides together so that the snap fastener studs of one poncho may be snapped into those of the other poncho, The ponchos are raised where they are joined to form a ridge. The shelter is then staked out at the sides and corners. A third poncho may be snapped into the other ponchos to form a ground cloth.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h4",
+  "manual": "TC21-3",
+  "para": "10.h4",
+  "chapter": "CHAPTER 10",
+  "heading": "LEAN-TO SHELTER",
+  "pages": [
+   60,
+   61
+  ],
+  "text": "The lean-to shelter is built in forested areas and is made of trees and tree limbs. A poncho, a piece of canvas, or a parachute, in addition to boughs, may be used for covering. Depending on the number of people to be sheltered, two types of lean-tos (single and double) are built. Boughs should be laid in the shelter like overlapping shingles (the same as on a live tree). To save time and energy, use two trees the right distance apart and sturdy enough to support the crosspiece. If suitable trees are not available, use two forked poles or build two A-frames to hold the crosspiece. A large log is laid at the back for added height. Stringers about 3 meters long and 10 centimeters in diameter are then placed 45 centimeters apart from the crosspiece over the top of the log in the rear. Available coverings, ponchos, boughs, and so forth are then placed on top of the stringers. A double lean-to is made by building two single lean-tos facing each other with the fire in between. Any kind of an open fire can be used to heat the lean-to. The best kind for a large lean-to is the log fire. Precautions must be taken to prevent the fire from burning too hot and burning down the shelter. A fire reflector may be built of green logs or poles to reflect the heat into the shelter and to serve as a windbreak to keep the fire burning steadily.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h5",
+  "manual": "TC21-3",
+  "para": "10.h5",
+  "chapter": "CHAPTER 10",
+  "heading": "TREE SHELTERS",
+  "pages": [
+   61
+  ],
+  "text": "In wooded areas, the tree-pit shelter furnishes temporary protection. Select a large tree with thick lower branches and surrounded with deep snow. Enlarge the natural pit around the tree. The walls and floor are lined with branches and boughs. Try not to disturb the snow that may be on the branches. An emergency shelter for one man can be built by cutting down a coniferous tree at a point about 1 meter from the ground. After the tree has fallen, the branches on the underside are trimmed away and the cut material used for insulation on the ground.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h6",
+  "manual": "TC21-3",
+  "para": "10.h6",
+  "chapter": "CHAPTER 10",
+  "heading": "WIGWAM",
+  "pages": [
+   62
+  ],
+  "text": "A wigwam or tepee can be built in wooded areas by tying a number of poles near the top and spreading them at the bottom to form a large circle. This framework is then covered with ponchos, a parachute, or any other suitable material.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h7",
+  "manual": "TC21-3",
+  "para": "10.h7",
+  "chapter": "CHAPTER 10",
+  "heading": "SNOW WALL",
+  "pages": [
+   62
+  ],
+  "text": "In open terrain with snow and ice, a snow wall may be built for protection from strong winds. Blocks of compact snow and ice are used to build a windbreak. Be careful not to get covered up by drifting snow, which may accumulate on the lee side of the wall.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h8",
+  "manual": "TC21-3",
+  "para": "10.h8",
+  "chapter": "CHAPTER 10",
+  "heading": "SNOW TRENCH",
+  "pages": [
+   62
+  ],
+  "text": "A snow trench provides shelter quickly. It is built by burrowing into a snowdrift or by digging a trench in the snow and making a roof of ponchos or ice and snow blocks supported by skis, ski poles, or snowshoes. Boughs can be used for covering the roof and for the bed. Figure 10-6 shows one method of roofing over the trench by leaning snow blocks against each other.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h9",
+  "manual": "TC21-3",
+  "para": "10.h9",
+  "chapter": "CHAPTER 10",
+  "heading": "SNOW CAVES",
+  "pages": [
+   63,
+   64
+  ],
+  "text": "A snow cave can be used as an improvised shelter in the open areas where deep and compacted snow is available. Normally, a suitable site can be located on the lee side of a steep ridge or riverbank where drifted snow collects, and it is wind packed. The tunnel entrance must give access to the lowest level of the chamber. This is the bottom of the pit, where cooking is done and equipment is stored. The snow cave must be high enough to provide comfortable sitting space. The sleeping area must be on a higher level than the highest point of the tunnel entrance, where there is warmer air. The roof must be arched for strength so that drops of water forming on the inside will not fall on the floor. This water will follow along the curvature of the roof and sides, glazing over the walls when frozen. The roof must be at least 30 centimeters thick. The size of the snow cave depends upon the number of men that will occupy it. A large cave is usually warmer and more practical to build and maintain than several small caves. The shape of the snow cave can be varied to suit conditions. When the main cave is built, short side tunnels are dug to make one- or two-man sleeping rooms, storage space, latrine, or kitchen space. In building the snow cave, locate a deep snowdrift at least 3 meters deep. Newly fallen, powdery, or loose snow should not be used. The depth of a snowdrift may be tested with a sharpened branch or young tree about 4 meters long, or with the ski or shorter ski pole. The entrance must be chosen carefully so that wind will not blow into the cave or block the entrance by drifting snow. The entrance should be built so that it is about 45 degrees from the downwind side. A small tunnel is burrowed directly into the side of the snowdrift for 1 meter. A chamber is excavated from this tunnel. Excavation is done to the right and left, so that the length of the chamber is at right angles to the tunnel entrance. Personnel doing the digging will become wet from perspiration and from the snow inside the cave. They should wear the minimum amount of clothing to ensure that they have a change of dry clothing when finished. The cave can be heated with the one-burner gasoline stove or with candles. The fires should be put out when personnel inside the cave are sleeping, thus reducing the danger of fire, asphyxiation, or carbon monoxide poisoning. If the weather is severe and it is necessary to have a fire while sleeping, an alert fire guard must be posted in each cave. The ventilation holes must be inspected every 2 or 3 hours to ensure that they have not become clogged by snow or ice. To ensure that the cave is warm, the entrance should be blocked with a rucksack, poncho, or snow block when not in use. All available material such as ponchos, cardboard from ration boxes, brush, and boughs should be used for ground insulation. Walking on the roof may cause it to collapse. At least two ventilator holes are used, one in the roof and one in the door. A ski pole can be stuck through the roof ventilator to clear it from the inside. Extra care must be taken to keep air in the cave fresh when cooking or heating. The entrance should be marked by placing a pair of skis, or other equipment, upright on each side of the entry way. Building a snow cave requires practice. Large shelters are usually more efficient for squad-size units and larger units. The most critical decision is when and where to stop and build the shelter.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h10",
+  "manual": "TC21-3",
+  "para": "10.h10",
+  "chapter": "CHAPTER 10",
+  "heading": "INDIVIDUAL SNOW HOUSE",
+  "pages": [
+   64
+  ],
+  "text": "If you are alone and have need of a shelter quickly, you can build a small individual snow house. It is box-shaped, and the only building materials needed are snow blocks. Cut snow blocks 40 by 40 by 80 centimeters. Lay them on edge to a length of 2.5 meters and a width of 1 meter. Build the walls up to a height of about 1 meter. When you have the walls built, make an A-shaped roof by leaning together pairs of blocks. Fill in the ends with snow blocks and chink all the crevices with soft snow. Cut a hole in the end of the leeward side large enough to crawl into. When you are inside, make one or two small holes near the top for ventilation. Block up the end with a snow block or with your rucksack.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h11",
+  "manual": "TC21-3",
+  "para": "10.h11",
+  "chapter": "CHAPTER 10",
+  "heading": "SNOW HOUSE OR IGLOO",
+  "pages": [
+   64,
+   65
+  ],
+  "text": "An igloo makes an excellent shelter in snow and glacier areas when other materials are not available or when the snow is so hard that it can be cut into blocks. Cracks in the igloo are then covered with loose snow. To increase the head room and to prevent water droplets from forming inside the igloo, the corners of the blocks may be cut off to form a round and smooth interior. A shelter may be built over the entrance in the same manner as the igloo, and it should be 1 to 2 meters long and about 1 meter wide and 1 meter high. This shelter provides more protection and warmth inside the igloo and a place to store equipment. Blocks of snow or other material may be placed at both the outside and the inside entrances of the tunnel for more warmth. Make a ventilation hole near the top and at the same height as the fifth or sixth row of snow blocks. The hole can be kept open by placing a ski pole or long stick into it and clearing it out as needed. The igloo is heated with a one-burner stove or with candles.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h12",
+  "manual": "TC21-3",
+  "para": "10.h12",
+  "chapter": "CHAPTER 10",
+  "heading": "STORAGE AND PRESERVATION",
+  "pages": [
+   65
+  ],
+  "text": "If a large animal is killed or a large number of small game are found, you should store or preserve some of the meat for future use. Freezing is the best way to preserve fresh meat or fish. It may be necessary to protect your supplies from small animals. This can be done by hanging these supplies about 2 meters from the ground.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h13",
+  "manual": "TC21-3",
+  "para": "10.h13",
+  "chapter": "CHAPTER 10",
+  "heading": "FISH",
+  "pages": [
+   65,
+   66
+  ],
+  "text": "There are few poisonous fish in cold-weather areas, but some fish, like the sculpin, lay poisonous eggs. The black mussel may be poisonous at any season and is as deadly as strychnine. In cold regions do not eat shark meat; it is poisonous. In coastal streams and rivers, salmon moving upstream to spawn may be plentiful; however, their flesh deteriorates as they travel away from the coast, making them unfit to eat except in an emergency. A salmon that has been in fresh water long enough to turn a brilliant red is decaying and may be unfit to eat. Coastal waters are rich in all seafood. Grayling, trout, white fish, burbot, and pike are common to the lakes, ponds, and arctic coastal plains of North America and Asia. River snails or freshwater periwinkles are plentiful in the rivers, streams, and lakes. Fish can be speared, shot, netted, hooked, caught by hand, or stunned by a rock or club. Fish hooks can be improvised from pins, pieces of wire, or any other metal object that can be bent into a hook. Pieces of meat, insects, or minnows can be used for bait. Some fish will nibble at any small object that hits the water. Cod will swim up to investigate strips of cloth or bits of metal or bone, and they are easily caught. A net can be made out of stout twine or from the inner strands of parachute suspension lines. These strands can also serve as fishing lines.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h14",
+  "manual": "TC21-3",
+  "para": "10.h14",
+  "chapter": "CHAPTER 10",
+  "heading": "LAND ANIMALS",
+  "pages": [
+   66,
+   67
+  ],
+  "text": "Deer, caribou, reindeer, musk-oxen, moose, elks, mountain sheep, goats, bears, and other such animals are found in most cold-weather areas. Tundra animals include rabbits, mice, lemmings, ground squirrels, wolves, and foxes. Where there are trees, the porcupine is often encountered. The porcupine can be easily clubbed or shaken out of trees. Pick up a porcupine only after it is dead. Hunting is better during the early morning or late evening when the animals are moving to and from feeding and bedding grounds and water. Large game such as moose and caribou should be shot just back of the front shoulder or, if the range is short and you are sure of your shot, in the neck. These large animals are fairly easy to stalk and kill, and their skins are also useful for survival. Bears should be shot just forward of the front shoulder to stop them or, if you are sure of your shot, in the neck. To successfully hunt these land animals you should know something of their characteristics:\n- Caribou or reindeer are usually very curious. It is possible to attract them near enough for a shot by waving a cloth and moving slowly toward them on hands and knees.\n- The technique of imitating a four-legged animal may also cause a wolf to come closer to a hunter.\n- Moose may be found in heavy brush or around the shoreline of lakes.\n- Mountain goats and sheep are cautious and hard to approach. They can be surprised, however, by moving quietly downwind while they are feeding. If possible, stay on higher ground than they are on.\n- Musk oxen leave cattle-like tracks and droppings. When alarmed, they group together in a circle with their heads facing out and remain in that position unless approached, then one or more bulls may charge.\n- Bears are always dangerous. A wounded bear is most dangerous and should not be followed into cover. The polar bear is a tireless, clever hunter with good sight and an extraordinary sense of smell. Be careful that you don't become the hunted instead of the hunter.\n- Rabbits often run in circles and return to the same place when they are frightened. A running rabbit can sometimes be stopped by whistling. Snares made of wire and placed on small game trails, arranged so that the animal will place his head through the loop, are an excellent means of catching rabbits.\n- The quick-kill method can be used on most small animals and sometimes on larger animals after they have been shot and are on the ground. The method is simple and consists of cutting the animal's throat with a sharp knife. This system not only kills the animal but bleeds him at the same time.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h15",
+  "manual": "TC21-3",
+  "para": "10.h15",
+  "chapter": "CHAPTER 10",
+  "heading": "SEA ANIMALS",
+  "pages": [
+   67,
+   68
+  ],
+  "text": "During winter and spring, sea mammals -- seals, walruses, and polar bears -- are found on the frozen pack ice and on floes in open water. Seals are hard to approach but can be stalked. Keep downwind and avoid sudden moves. A white camouflage suit will help. Advance only when the animal is sleeping. Do not eat the liver of the bearded seal, because its high vitamin A content may cause you to be sick. Walruses are found on pack ice and must be approached by boat. Because of its large size and boldness, the walrus is one of the most dangerous animals in the arctic. Polar bears are found in almost all arctic regions but rarely appear on land. Avoid them if possible. If it is necessary to kill one for food, do not eat the liver. The liver is high in vitamin A, which may cause you to be sick. Never eat any bear meat unless it is cooked; it is always diseased.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h16",
+  "manual": "TC21-3",
+  "para": "10.h16",
+  "chapter": "CHAPTER 10",
+  "heading": "BIRDS",
+  "pages": [
+   68
+  ],
+  "text": "The breeding ground of many birds is in the arctic. Ducks and geese build their nests near ponds on the coastal plains during the summer and provide an important source of food. Grouse and ptarmigan live in mountainous terrain and brush-covered areas in arctic and subarctic areas. Sea birds may be found on cliffs or small islands on the coast. Sea birds, ravens, and owls are useful for food. In winter, owls, ravens, grouse, and ptarmigans are the only birds available. Ptarmigans and grouse are easily approached and are very tame. Although they are hard to locate because of the protective coloring, they provide a good source of food because they can be killed with a stone or a club.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h17",
+  "manual": "TC21-3",
+  "para": "10.h17",
+  "chapter": "CHAPTER 10",
+  "heading": "PLANTFOOD",
+  "pages": [
+   68
+  ],
+  "text": "Most plants that grow in cold regions can be eaten. The water hemlock and the baneberry are the only poisonous plants. The water hemlock is one of the world's most poisonous plants. It can be recognized by where it grows, always in wet ground, and by the following characteristics: a hollow, partitioned bulb at the base of a hollow stem, spindleshaped roots, and a foul odor, which is very noticeable in the root and bulb. The water hemlock is abundant in marshes near southern beaches and around marshy lakes in interior river valleys. It is never found on hillsides or dry ground. The baneberry is normally found on hillsides or in forested bog areas. Some mushrooms are poisonous and should not be eaten. Although the cold-region areas have many kinds of berries that are edible, most will not be available in the winter.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h18",
+  "manual": "TC21-3",
+  "para": "10.h18",
+  "chapter": "CHAPTER 10",
+  "heading": "THE HALF HITCH",
+  "pages": [
+   69
+  ],
+  "text": "The half hitch is used to secure the end of a rope to some other object or to secure other knots.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h19",
+  "manual": "TC21-3",
+  "para": "10.h19",
+  "chapter": "CHAPTER 10",
+  "heading": "THE OVERHAND KNOT",
+  "pages": [
+   70
+  ],
+  "text": "The overhand knot is used to make a knotted rope for a handline or to temporarily whip the end of a rope to keep it from unraveling.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h20",
+  "manual": "TC21-3",
+  "para": "10.h20",
+  "chapter": "CHAPTER 10",
+  "heading": "THE SQUARE KNOT",
+  "pages": [
+   70
+  ],
+  "text": "The square knot is used to tie the ends of two ropes of equal width together. The knot should be secured by tying a half hitch on each side of the knot. If properly tied, the square knot will not slip or jam. Be careful to follow Figure 10-16 or you may end up with a \"granny knot,\" which can slip and jam.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h21",
+  "manual": "TC21-3",
+  "para": "10.h21",
+  "chapter": "CHAPTER 10",
+  "heading": "THE CLOVE HITCH",
+  "pages": [
+   70
+  ],
+  "text": "The clove hitch is the most useful of the hitches. It can be used to tie the end of a rope to a post or eye, or it can be used to secure the middle of a rope without using the ends.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h22",
+  "manual": "TC21-3",
+  "para": "10.h22",
+  "chapter": "CHAPTER 10",
+  "heading": "THE DOUBLE SHEET BEND",
+  "pages": [
+   71
+  ],
+  "text": "The double sheet bend is used for tying two ropes together of different width.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/10.h23",
+  "manual": "TC21-3",
+  "para": "10.h23",
+  "chapter": "CHAPTER 10",
+  "heading": "THE BOWLINE",
+  "pages": [
+   71
+  ],
+  "text": "The bowline is used to form a loop on the end of the rope that will not slip. Remember the qualities of a good knot: it is easy to tie, it does not jam and become hard to untie, and it does not slip when weight is put on it.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/B.h1",
+  "manual": "TC21-3",
+  "para": "B.h1",
+  "chapter": "APPENDIX B",
+  "heading": "Factors",
+  "pages": [
+   73
+  ],
+  "text": "Multiply By To Obtain Centimeters .03 Feet Centimeters .4 Inches Meters 3.3 Feet Meters 40.0 Inches Meters 1.1 Yards Kilometers .6 Miles Knots 1.2 MPH Inches 2.5 Centimeters Feet 30.0 Centimeters Yards .9 Meters Miles 1.6 Kilometers MPH .9 Knots For ease in conversion the above factors have been rounded off.",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/C.h2",
+  "manual": "TC21-3",
+  "para": "C.h2",
+  "chapter": "APPENDIX C",
+  "heading": "Suggested Readings",
+  "pages": [
+   77
+  ],
+  "text": "DA Pam 20-201 Military Improvisations During the Russian Campaign DA Pam 20-203 Russian Combat Methods in World War II DA Pam 20-231 Combat in Russian Forests and Swamps DA Pam 20-234 Operations of Encircled Forces: German Experiences in Russia DA Pam 20-236 Night Combat DA Pam 20-240 Rear Area Security in Russia: The Soviet Second Front Behind the German Lines DA Pam 20-269 Small Unit Actions During the German Campaign in Russia DA Pam 20-271 The German Northern Theater of Operations, 1940-1945 DA Pam 20-290 Terrain Factors in the Russian Campaign DA Pam 20-292 Warfare in the Far North FM 9-207 Operation and Maintenance of Ordnance Materiel in Cold Weather (0o to -65oF) FM 31-70 Basic Cold Weather Manual FM 31-71 Northern Operations FM 90-6 Mountain Operations FM 90-11 Winter Operations",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/C.h3",
+  "manual": "TC21-3",
+  "para": "C.h3",
+  "chapter": "APPENDIX C",
+  "heading": "(TBP)",
+  "pages": [
+   77
+  ],
+  "text": "TC 90-11-1 Military Skiing \"Perhaps the most valuable result of all education is the ability to make yourself do the things you have to do when it ought to be done, whether you like it or not.\"",
+  "notices": []
+ },
+ {
+  "id": "TC21-3/C.h4",
+  "manual": "TC21-3",
+  "para": "C.h4",
+  "chapter": "APPENDIX C",
+  "heading": "Glossary",
+  "pages": [
+   78
+  ],
+  "text": "ALICE all-purpose lightweight individual carrying equipment C Celsius CLP cleaner lubricant preservative ECWCS extended cold-weather clothing system F Fahrenheit FM field manual GP general purpose SFP synthetic fiber pile SOP standing operating procedure TBP to be published VB vapor barrier",
   "notices": []
  }
 ]

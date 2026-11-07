@@ -181,12 +181,16 @@ def group_rows(words: list[dict]) -> list[list[dict]]:
     return sorted(rows, key=lambda r: min(w["top"] for w in r))
 
 
+JOIN_GAP = 0.03       # x font size: closer than this is one word (0.3 pt at 10 pt)
+
+
 def join_words(ws: list[dict]) -> str:
-    """Words that touch (gap under 0.3 pt) are one word split by a font change ("A" +
-    "PPLICATION"). Real spaces can be as narrow as 0.8 pt (TC 4-02.1)."""
+    """Words that touch (gap under 3% of the font size) are one word split by a font change
+    ("A" + "PPLICATION"). Real spaces can be as narrow as 0.8 pt at 10 pt (TC 4-02.1)."""
     out = ""
     for i, w in enumerate(ws):
-        if i and w["x0"] - ws[i - 1]["x1"] >= 0.3:
+        size = min(w.get("size", 10.0), ws[i - 1].get("size", 10.0)) if i else 0
+        if i and w["x0"] - ws[i - 1]["x1"] >= JOIN_GAP * size:
             out += " "
         out += w["text"]
     return out
@@ -200,7 +204,7 @@ def read_lines(pdf_path: Path, margin_top: float = 0.07, margin_bottom: float = 
         for pno, page in enumerate(doc.pages, start=1):
             h = page.height
             words = page.extract_words(extra_attrs=["fontname", "size"], keep_blank_chars=False,
-                                       use_text_flow=True)
+                                       use_text_flow=True, x_tolerance_ratio=0.1)
             # size-1 words are invisible labels ("62B") left by the typesetter
             words = [w for w in words
                      if w["top"] >= h * margin_top and w["bottom"] <= h * (1 - margin_bottom)
@@ -250,6 +254,12 @@ def join_text(parts: list[str]) -> str:
 JUNK_HEADING_RE = re.compile(r"^[\dA-Z\-.]{1,8}$")   # page / figure labels such as "209B"
 
 
+def chapter_key(chapter: str) -> str:
+    """"Chapter 2" -> "2", "Appendix A" -> "A", no chapter yet -> "0"."""
+    m = re.match(r"^(?:chapter|appendix)\s+(\d+|[A-Z])", chapter, re.I)
+    return m[1] if m else "0"
+
+
 def is_heading(line: Line, body_size: float) -> bool:
     t = line.text.strip()
     if not t or len(t) > 80 or PARA_RE.match(t) or FIG_RE.match(t) or t.endswith("."):
@@ -277,6 +287,7 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
     pending: list[dict] = []        # boxes seen before the paragraph they belong to
     keyword_lines = 0               # CAUTION/WARNING/NOTE/DANGER words seen, for the audit
     per_page: dict[int, int] = {}
+    per_chapter: dict[str, int] = {}    # unnumbered stretches inside a numbered manual
 
     def end_notice():
         nonlocal notice
@@ -354,6 +365,14 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
                     start(Section(f"{manual_id}/{num}", manual_id, num, chapter, heading,
                                   [ln.page]), "")
                 continue
+            if cur is None and numbering != "headings" and heading and not TOC_LEADER_RE.search(t):
+                # Text under a heading with no paragraph number (ATP 3-50.21 chapter 2 is
+                # all like this). Keep it as a heading-numbered section, "2.h1", "2.h2"...
+                # so it can't collide with real paragraph numbers.
+                key = chapter_key(chapter)
+                n = per_chapter[key] = per_chapter.get(key, 0) + 1
+                num = f"{key}.h{n}"
+                start(Section(f"{manual_id}/{num}", manual_id, num, chapter, heading, [ln.page]), "")
             if cur is not None:
                 if ln.page not in cur.pages:
                     cur.pages.append(ln.page)

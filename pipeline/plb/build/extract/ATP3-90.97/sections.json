@@ -1,5 +1,67 @@
 [
  {
+  "id": "ATP3-90.97/0.h1",
+  "manual": "ATP3-90.97",
+  "para": "0.h1",
+  "chapter": "",
+  "heading": "APRIL 2016",
+  "pages": [
+   1
+  ],
+  "text": "DISTRIBUTION RESTRICTION: Approved for public release. Distribution is unlimited. This publication supersedes FM 3-97.6, dated 28 November 2000 and ATTP 3-97.11, dated 28 January 2011.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/0.h2",
+  "manual": "ATP3-90.97",
+  "para": "0.h2",
+  "chapter": "",
+  "heading": "Headquarters Department of the Army",
+  "pages": [
+   2
+  ],
+  "text": "This publication is available at Army Knowledge Online (https://armypubs.us.army.mil/doctrine/index.html). To receive publishing updates, please subscribe at http://www.apd.army.mil/AdminPubs/new_subscribe.asp",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/0.h3",
+  "manual": "ATP3-90.97",
+  "para": "0.h3",
+  "chapter": "",
+  "heading": "ATP 3-90.97",
+  "pages": [
+   3
+  ],
+  "text": "Army Techniques Publication Headquarters No. 3-90.97 Department of the Army Washington, DC,",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h1",
+  "manual": "ATP3-90.97",
+  "para": "E.h1",
+  "chapter": "Appendix E MILITARY MOUNTAINEERING EQUIPMENT .................................................. E-1",
+  "heading": "Preface",
+  "pages": [
+   7,
+   8
+  ],
+  "text": "The purpose of ATP 3-90.97 is the Army's doctrinal publication for operations in mountain warfare and cold weather operations. It provides doctrinal guidance and direction for how United States (U.S.) forces conduct mountain and cold weather operations and is to arm leaders and Soldiers with the information necessary to operate in mountain and cold weather environments. The information contained in this manual applies to all Soldiers, regardless of rank or job specialty. This manual is designed to work in conjunction with and complement Training Circular on military mountaineering (TC) 3-97.61 and Army Tactics and Techniques Publication (ATTP) 3-21.50. This manual will enable leaders and Soldiers to understand mountain and cold weather environments, their effects on military weapons and equipment, impacts these environments have on personnel, and most importantly, how units employ the elements of combat power in mountain and cold weather environments. The principal audience for this publication is all members of the profession of arms. Commanders and staffs of Army headquarters serving as joint task force or multinational headquarters should also refer to applicable joint or multinational doctrine concerning the range of military operations and joint or multinational forces. Trainers and educators throughout the Army will also use this publication. This publication provides the conceptual framework for conventional forces to conduct mountain and cold weather operations across the range of military operations. It addresses mountain and cold weather operations at operational and tactical levels. See ATTP 3-21.50 for lower level information. Commanders, staffs, and subordinates ensure that their decisions and actions comply with applicable United States, international, and in some cases host-nation laws and regulations. Commanders at all levels ensure that their Soldiers operate in accordance with the law of war and the rules of engagement. (See FM 27-10.) This publication uses joint terms where applicable. Selected joint and Army terms and definitions appear in both the glossary and the text. Terms for which this publication is the proponent publication (the authority) are italicized in the text and are marked with an asterisk (*) in the glossary. Terms and definitions for which this publication is the proponent publication are boldfaced in the text. For other definitions shown in the text, the term is italicized and the number of the proponent publication follows the definition. ATP 3-90.97 applies to the Active Army, Army National Guard/Army National Guard of the United States and United States Army Reserve unless otherwise stated. The proponent of publication is the United States Army Combined Arms Center. The preparing agency is the Combined Arms Doctrine Directorate, United States Army Combined Arms Center. Send comments and recommendations on DA Form 2028 (Recommended Changes to Publications and Blank Forms) to Commander, United States Army Combined Arms Center and Fort Leavenworth, ATTN: ATZL-MCD, 300 McPherson Avenue, Fort Leavenworth, KS 66027-2337; by e-mail to usarmy.leavenworth.mccoe.mbx.cadd-orgmailbox@mail.mil; or submit an electronic DA Form 2028. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h2",
+  "manual": "ATP3-90.97",
+  "para": "E.h2",
+  "chapter": "Appendix E MILITARY MOUNTAINEERING EQUIPMENT .................................................. E-1",
+  "heading": "Introduction",
+  "pages": [
+   9,
+   10
+  ],
+  "text": "When conducting military operations in mountains or cold weather environments, leaders and Soldiers must plan to fight two enemies: the environment and the opposing force. Despite the difficulties that mountain and cold weather pose, there are armies that have and can conduct large-scale, sustained operations in mountain and cold environments. In contrast, few U.S. military units or personnel have trained extensively in mountain and cold weather operations. For those trained in how to operate in mountain and cold weather environments effectively, they will not only survive but prosper when their training is used as a combat multiplier. Mountain and cold weather can be extremely intimidating, however, Soldiers, can fight and win in these environments with proper preparation and training. Preparation includes understanding the environment and its effects on Soldiers and equipment and ensuring that U.S. forces have the proper clothing and equipment to accomplish their tasks. Although the military's equipment is among the best in the world for use in mountain and cold weather, training must include knowing how to use that equipment and how to adapt operations. Mountains and cold weather present unique challenges for the sustainment forces. Realistic and challenging training can prepare Soldiers for the rigors of mountain and cold weather warfare, allowing them the opportunity to develop the discipline and confidence that operating in the mountains or cold demands. While Soldiers can train on some base skills and knowledge in the classroom or through self-study, experiential-based training in the terrain and weather are the only way to develop the skill set required to operate successfully. These environments place high demands upon troops, leaders, and equipment. Training requires the use of specialized clothing, equipment, and procedures to combat the effects of complex, compartmentalized mountainous terrain, cold weather, and high altitudes. Units develop robust training programs to prepare Soldiers for this environment. Soldiers train at the Northern Warfare Training Center in Fort Wainwright, Alaska and the Army Mountain Warfare School in Camp Ethan Allen, Vermont. Additionally, limited training opportunities may exist at the Marine Corps Mountain Warfare Training Center (MCMWTC) in Bridgeport, California for individual Soldiers and Army units up to a brigade in both mountain and cold weather warfare. The FM 3-97.6 chapters of 1. Intelligence, 2. Command and Control, 3. Firepower and Protection of the Force, 4. Maneuver, 5. Logistics and Combat Service Support have been replaced with the following ATP 3- 90.97 ten chapters: Chapter 1 addresses the severe environmental conditions associated with the mountain and cold region environments and their effect on units and individuals and discusses mountain and cold region terrain and weather characteristics that impact military operations. Chapter 2 discusses specific effects of mountainous environments on intelligence operations by concentrating on two areas of the intelligence process; plan and direct, and collect. These activities are most impacted by mountainous environments, such as when the environment limits communication. Chapter 3 addresses operations in mountains and their characteristics. Considerations for the size of units, formations, and detailed planning are addressed. Additionally, risk management considerations are introduced. Chapter 4 focuses on how complex and compartmentalized terrain, the time of year, weather conditions, and an adversary's actions influence movement and maneuver in the mountains. Chapter 5 looks at considerations for conducting engineering operations in mountain and cold region environments. Specific challenges for engineers in this environment and planning considerations to cope with them are discussed. Chapter 6 covers a broad spectrum of planning considerations for sustainment in support of operations conducted in mountains and cold regions. Chapter 7 covers the functions of military aviation in support of mountain operations. The unique considerations and limitations associated with military aviation in mountain operations, and how to minimize their effects, are addressed. Chapter 8 addresses considerations for indirect fires in mountain operations. While the basic tactical principles for artillery remain valid in mountains, they are subject to the limitations imposed by the terrain and weather addressed in this chapter. Considerations for targeting, mortars, and air support are also discussed. Chapter 9 covers the unique challenges that the mountainous environment poses when trying to employ communications equipment. Chapter 10 focuses on training for mountain and cold region operations, both individually and collectively. Training standards, programs, and expectations are discussed. Specific training venues and standards are addressed to ensure that the Army maintains a high level of interoperability and to enhance units' warfighting capability in these challenging environments.",
+  "notices": []
+ },
+ {
   "id": "ATP3-90.97/1-1",
   "manual": "ATP3-90.97",
   "para": "1-1",
@@ -749,6 +811,18 @@
   "notices": []
  },
  {
+  "id": "ATP3-90.97/1.h1",
+  "manual": "ATP3-90.97",
+  "para": "1.h1",
+  "chapter": "Chapter 1",
+  "heading": "Level Description",
+  "pages": [
+   23
+  ],
+  "text": "I Bottoms of valleys and main lines of communication II Ridges, slopes, and passes that overlook valleys III Dominant terrain of the summit region",
+  "notices": []
+ },
+ {
   "id": "ATP3-90.97/1-63",
   "manual": "ATP3-90.97",
   "para": "1-63",
@@ -794,6 +868,18 @@
    23
   ],
   "text": "When conducting mountain operations, commanders clearly understand the effect the operational terrain level has on dismounted movement. Therefore, in addition to the general mobility classifications contained in ATP 2-01.3/MCRP 2-3A,--unrestricted, restricted, severely restricted--mountainous terrain may be categorized into five classes based on the type of individual movement skill required (see Table 1- 3). Operations conducted in the first two classes require little to no mountaineering skills but operations in the other three require a higher level of mountaineering skills for safe and efficient movement. Commanders plan and prepare for mountain operations largely based on this type of terrain analysis, particularly noting that class 4 terrain kills more people than any other class because the risk the terrain poses is less obvious than class 5 terrain.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/1.h2",
+  "manual": "ATP3-90.97",
+  "para": "1.h2",
+  "chapter": "Chapter 1",
+  "heading": "Class Terrain Mobility Requirements Skill Level Required",
+  "pages": [
+   23
+  ],
+  "text": "1 Gentler slopes/trails Walking techniques Unskilled (with some assistance) and 2 Steeper/rugged terrain Some use of hands basic mountaineers 3 Easy climbing Fixed ropes where exposed Basic mountaineers (with assistance from 4 Steep/exposed climbing Fixed ropes required assault climbers) 5 Near vertical Technical climbing required Assault climbers",
   "notices": []
  },
  {
@@ -2478,6 +2564,30 @@
    48
   ],
   "text": "If dismounted troops deploy into column (wedge) formation outside the file formation, the unit will move more slowly. With no one breaking the trail, all personnel must now move through undisturbed snow. In temperate regions, column formation is ideal since it maximizes fields of fire and supports the exercise of mission command. However, when operating in a snow-covered environment, the ideal formation is the file formation. Leaders only deploy into column formation if enemy contact is imminent because the rate of movement is so constrained. Table 4-1 shows dismounted movement rates of march in the mountains. This is just a rough guide. As slope angle increases, the amount of time is likely to exponentially increase as well.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/4.h1",
+  "manual": "ATP3-90.97",
+  "para": "4.h1",
+  "chapter": "Chapter 4",
+  "heading": "Movement Mode Unbroken Trail Broken Trail",
+  "pages": [
+   48
+  ],
+  "text": "On foot, no ski or snowshoe 1.5 to 3 kph 2 to 3 kph Less than 1 foot of snow On foot, no ski or snowshoe 0.5 to 1 kph 2 to 3 kph More than 1 foot of snow Snowshoe 1.5 to 3 kph 3 to 4 kph Skiing 1.5 to 5 kph 5 to 6 kph Skijoring NA 8 to 24 kph (for safety, 15 kph is the highest recommended speed)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/4.h2",
+  "manual": "ATP3-90.97",
+  "para": "4.h2",
+  "chapter": "Chapter 4",
+  "heading": "Legend",
+  "pages": [
+   48
+  ],
+  "text": "kph - kilometers per hour NA - not applicable Time/distance formula: Add one hour for every 305 meters (1,000 feet) of ascent and one hour for every 610 meters (2,000 feet) of descent.",
   "notices": []
  },
  {
@@ -6491,6 +6601,18 @@
   "notices": []
  },
  {
+  "id": "ATP3-90.97/9.h1",
+  "manual": "ATP3-90.97",
+  "para": "9.h1",
+  "chapter": "Chapter 9",
+  "heading": "# Requirement",
+  "pages": [
+   106
+  ],
+  "text": "1 Identify critical communications nodes and support requirements based on mission analysis 2 Identify requirements for each node (power, electronics, network connections, data, equipment, and personnel) 3 Determine capabilities and limitations of equipment, given terrain and weather 4 Develop plans to mitigate effects of terrain and weather 5 Develop various communication courses of action to support the concept of operations and provide for redundant capabilities by combining them if required 6 Estimate timelines for installing communications networks, including timelines for different insertion techniques in the event weather or terrain preclude the primary option 7 Submit satellite access, ground access, frequency, and equipment and personnel augmentation requests (situationally dependent from scratch) to higher and supporting headquarters and agencies as soon as possible 8 Inform the commander about courses of action that are not feasible without the assignment of additional personnel and equipment 9 Identify shortfalls and aspects of warfighting functions that cannot be supported from a mission command perspective",
+  "notices": []
+ },
+ {
   "id": "ATP3-90.97/9-3",
   "manual": "ATP3-90.97",
   "para": "9-3",
@@ -6758,6 +6880,42 @@
   "notices": []
  },
  {
+  "id": "ATP3-90.97/9.h2",
+  "manual": "ATP3-90.97",
+  "para": "9.h2",
+  "chapter": "Chapter 9",
+  "heading": "Systems",
+  "pages": [
+   109
+  ],
+  "text": "Works best when stationary Requires more training than VHF or UHF High Frequency (HF) HF radios support long-range communications Affected by terrain masking Greatly affected by terrain masking Single-channel ground and airborne radio Limited to near LOS employment Very High Frequency systems are highly capable tactical radios due (VHF) to their built in communications security and electronic countermeasures capabilities A LOS study will maximize the potential of VHF communications Ultrahigh Frequency Not restricted to LOS and can bend somewhat Absorbed by intervening terrain (UHF) over mountain tops",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/9.h3",
+  "manual": "ATP3-90.97",
+  "para": "9.h3",
+  "chapter": "Chapter 9",
+  "heading": "Systems",
+  "pages": [
+   110
+  ],
+  "text": "Geosynchronous satellite can be masked by mountainous terrain Some are small and lightweight Tactical Satellite More susceptible to electronic warfare and",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/9.h4",
+  "manual": "ATP3-90.97",
+  "para": "9.h4",
+  "chapter": "Chapter 9",
+  "heading": "(TACSAT)",
+  "pages": [
+   110
+  ],
+  "text": "Flexible and reliable interference Limited number of assigned satellites Small and lightweight Most are flexible and reliable Limited data transfer Distributed Tactical DTCS radios provide position location More susceptible to electronic warfare and Communications interference System (DTCS) Can send preformatted text messages Non-geosynchronous, low orbiting satellites are not masked by mountainous or urban terrain Enhanced Position Because it is a LOS UHF radio, it is best Location Reporting Transmits position location suited for flat terrain and a battlefield that is System heavily populated with units Transmits position location by geosynchronous satellite Must have LOS to the geosynchronous Provides a reliable data communications link satellite Blue Force Tracking for sending preformatted and free text messages Vehicle mounted Satellite based, making it an ideal system for the mountains More logistical and operating requirements than SCR systems Multichannel Radio Small and lightweight, broadband MUXs use (MUX) frequencies in the UHF, SHF, and EHF bands Communications between MUX communications nodes will not be possible if there is intervening terrain between the nodes Subject to enemy detection Does not rely on an electrical power Audio may be drowned out by competing Can be employed during dismounted noises Audio, Visual, and movements Physical Signals Visual and physical signals may be May be the only form of communication obscured by fog, haze, or blowing snow available within line of sight in mountain operations Visual and physical signals difficult to see in limited visibility May be the only form of communication Slow. Messenger available beyond line of sight in mountain operations Messengers must be dispatched in pairs.",
+  "notices": []
+ },
+ {
   "id": "ATP3-90.97/10-1",
   "manual": "ATP3-90.97",
   "para": "10-1",
@@ -6791,6 +6949,54 @@
    111
   ],
   "text": "The Army recognizes three levels of military mountaineering skill sets. Table10-1 highlights the method the Army's NWTC and AMWS use to train Soldiers for mountainous environments and build the requisite skill sets in units so an institutional memory can be maintained.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h1",
+  "manual": "ATP3-90.97",
+  "para": "10.h1",
+  "chapter": "Chapter 10",
+  "heading": "Recommended Individual Military Mountaineering Training Strategy",
+  "pages": [
+   111
+  ],
+  "text": "Training Combat effects of the environment Leverage environment against enemy Focus Training Base - Orientation Level I - Basic Level II - Advanced Level III - Master Level Mountain Leader Course Title Mountain Warfare Basic Military Advanced (Certified and Orientation Course Mountaineer (SQI Mountaineer (Assault Mountaineering Qualification (No qualification) E) Climber) Instructor) Target All unit personnel 1-2 per platoon 2 per battalion 1 per brigade Audience Basic mobility skills Basic technical Advanced technical Advanced technical skills skills skills and experience Basic understanding of Trains Soldiers and Advisor to the Advisor to the brigade Individual the fundamentals leaders in basic battalion commander commander Capability for operating in a mobility skills mountainous region Unit trainer and Unit trainer and Assists in planning planner of mountain planner of mountain mountain sustainment training sustainment training operations and operations and operations Training 4-5 days 15 days 15 days 2+ years Time",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h2",
+  "manual": "ATP3-90.97",
+  "para": "10.h2",
+  "chapter": "Chapter 10",
+  "heading": "Recommended Individual Military Mountaineering Training Strategy",
+  "pages": [
+   112
+  ],
+  "text": "AMWS AMWS Fully qualified current Training NWTC AMWS or former Military",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h3",
+  "manual": "ATP3-90.97",
+  "para": "10.h3",
+  "chapter": "Chapter 10",
+  "heading": "NWTC",
+  "pages": [
+   112
+  ],
+  "text": "Provider Unit Military NWTC Mountaineering Mountaineer MCMWTC Instructor Unit Basic: Soldiers, planners, leaders trained Advanced: Advanced technical skills capability Operational capability built and applied built and applied Capability",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h4",
+  "manual": "ATP3-90.97",
+  "para": "10.h4",
+  "chapter": "Chapter 10",
+  "heading": "Legend",
+  "pages": [
+   112
+  ],
+  "text": "AMWS - Army Mountain Warfare School MCMWTC - Marine Corps Mountain Warfare Training Center NWTC - Northern Warfare Training Center SQI - Special Qualification Identifier",
   "notices": []
  },
  {
@@ -7186,6 +7392,103 @@
   "notices": []
  },
  {
+  "id": "ATP3-90.97/10.h5",
+  "manual": "ATP3-90.97",
+  "para": "10.h5",
+  "chapter": "Chapter 10",
+  "heading": "Course Name Location Duration Level Equivalent",
+  "pages": [
+   118
+  ],
+  "text": "TRST MCMWTC, SOTGs 15 days 1 Basic mountaineer BMS NWTC 15 days 1 Marine Corps TRST BMS AMWS 14 days 1 Marine Corps TRST Assault climber USA assault climber (TRST is first 2 MCMWTC, SOTGs 4 weeks 2 (summer) weeks) Assault climber NWTC 15 days (+BMS) 2 ACC Assault climber, summer AMWS 14 days (+BMS) 2 ACC (prerequisite is",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h6",
+  "manual": "ATP3-90.97",
+  "para": "10.h6",
+  "chapter": "Chapter 10",
+  "heading": "BMS)",
+  "pages": [
+   118
+  ],
+  "text": "USA basic Mountain leaders mountaineer and MCMWTC 6 weeks 3 course (summer) assault climber (summer) SF senior 10th SF Group TRST portion of 6 weeks 2 mountaineer Instructor Cadre SMLC SF master 10th SF Group Alpine portion of 3 weeks 3 mountaineering Instructor Cadre SMLC Mountain MCMWTC 15 days S None communications 10th SF Mountain Animal packers MCMWTC 18 days S Animal Packers Course Mountain scout MCMWTC 17 days S None snipers Mountain operations staff MCMWTC 8 days S None planners Mountain medicine MCMWTC 12 days S None Summer mountain MCMWTC 21 days S None engineers Mountain machine MCMWTC 14 days S None gunners",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h7",
+  "manual": "ATP3-90.97",
+  "para": "10.h7",
+  "chapter": "Chapter 10",
+  "heading": "Legend",
+  "pages": [
+   118
+  ],
+  "text": "ACC - assault climber course AMWS - Army Mountain Warfare School BMS - basic mountaineer, summer MCMWTC - Marine Corps Mountain Warfare Training Center NWTC - Northern Warfare Training Center S - supporting (specialized training for a certain MOS or unique skill) SF - Special Forces SMLC - Summer Mountain Leader Course SOTG - Special Operations Training Group TRST - tactical rope suspension technician USA - United States Army",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h8",
+  "manual": "ATP3-90.97",
+  "para": "10.h8",
+  "chapter": "Chapter 10",
+  "heading": "Course Name Location Duration Level Equivalent",
+  "pages": [
+   119
+  ],
+  "text": "BMW AMWS 14 days 1 Portion of WMLC Assault climber, winter (prerequisite AMWS 14 days (+BMW) 2 Portion of SMLC is BMW) AMWS and NWTC basic mountaineer WMLC MCMWTC 6 weeks 3 and assault climber, winter Scout skier MCMWTC 14 days 1 USA CW leaders CW orientation NWTC 4 days 1 PET CW leaders NWTC 13 days S Scout skiers Winter mountain MCMWTC 21 days S None engineer CW medicine MCMWTC 12 days S None SEAL Detachment, Portion of WMLC, SEAL CW maritime 28 days S Kodiak, AK maritime is unique",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h9",
+  "manual": "ATP3-90.97",
+  "para": "10.h9",
+  "chapter": "Chapter 10",
+  "heading": "Legend",
+  "pages": [
+   119
+  ],
+  "text": "AMWS - Army Mountain Warfare School BMW - basic mountaineer, winter CW - cold weather MCMWTC - Marine Corps Mountain Warfare Training Center NWTC - Northern Warfare Training Center PET - pre-environmental training S - supporting (specialized training for a certain MOS or unique skill) SEAL - sea -air-land team SMLC - Summer Mountain Leader Course USA - United States Army WMLC - Winter Mountain Leader Course",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h10",
+  "manual": "ATP3-90.97",
+  "para": "10.h10",
+  "chapter": "Chapter 10",
+  "heading": "Course Name Location Duration Equivalent",
+  "pages": [
+   119
+  ],
+  "text": "PET MCMWTC 3 days None Basic mobility training MCMWTC 9 days None Field exercise MCMWTC 9-15 days None",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h11",
+  "manual": "ATP3-90.97",
+  "para": "10.h11",
+  "chapter": "Chapter 10",
+  "heading": "Legend",
+  "pages": [
+   119
+  ],
+  "text": "MCMWTC - Marine Corps Mountain Warfare Training Center PET - pre-environmental training",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/10.h12",
+  "manual": "ATP3-90.97",
+  "para": "10.h12",
+  "chapter": "Chapter 10",
+  "heading": "Course Name Location Duration Equivalent",
+  "pages": [
+   119,
+   120
+  ],
+  "text": "Power Management High Altitude Training 7 days None Mountain Qualification Site This page intentionally left blank.",
+  "notices": []
+ },
+ {
   "id": "ATP3-90.97/A-1",
   "manual": "ATP3-90.97",
   "para": "A-1",
@@ -7255,6 +7558,30 @@
    121
   ],
   "text": "All troops are susceptible to high altitude illness. A staged or graded ascent that allows time for Soldiers to acclimate to altitude can help prevent AMS. Limiting operations to a lower altitude, can also prevent AMS. Leaders consider these factors when planning operations in mountainous terrain.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/A.h1",
+  "manual": "ATP3-90.97",
+  "para": "A.h1",
+  "chapter": "Appendix A",
+  "heading": "Altitude Approximate Elevation Effects of Acute Altitude Exposure",
+  "pages": [
+   122
+  ],
+  "text": "Low Sea Level - 1,200 m (4,000 ft.) None Mild altitude illness and decreased performance may Moderate 1,200-2,400 m (4,000-7,870 ft.) occur Altitude illness and performance decrements are more High 2,400-4,000 m (7,870-13,125 ft.) common and greater Very High 4,000-5,500 m (13,125-18,000 ft.) Altitude illness and decreased performance is the rule With acclimatization, humans can function for short Extreme 5,500 m (18,000 ft.) and higher periods of time",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/A.h2",
+  "manual": "ATP3-90.97",
+  "para": "A.h2",
+  "chapter": "Appendix A",
+  "heading": "Legend",
+  "pages": [
+   122
+  ],
+  "text": "ft. - feet m - meters",
   "notices": []
  },
  {
@@ -7768,6 +8095,18 @@
   "notices": []
  },
  {
+  "id": "ATP3-90.97/B.h1",
+  "manual": "ATP3-90.97",
+  "para": "B.h1",
+  "chapter": "Appendix B",
+  "heading": "Cold Temperature Categories",
+  "pages": [
+   127
+  ],
+  "text": "Wet Cold +39 degrees F to +20 degrees F Dry Cold +19 degrees F to -4 degrees F Intense Cold -5 degrees F to -25 degrees F Extreme Cold 26 degrees F to -40 degrees F Hazardous Cold below -40 degrees F",
+  "notices": []
+ },
+ {
   "id": "ATP3-90.97/B-2",
   "manual": "ATP3-90.97",
   "para": "B-2",
@@ -7852,6 +8191,479 @@
   "notices": []
  },
  {
+  "id": "ATP3-90.97/C.h1",
+  "manual": "ATP3-90.97",
+  "para": "C.h1",
+  "chapter": "Appendix C",
+  "heading": "Consideration",
+  "pages": [
+   129,
+   130
+  ],
+  "text": "Clothing Layer ECWCS Generation II ECWCS Generation III\n- Lightweight Lightweight cold polypropylene top and weather undershirt bottom and and drawers and Base\n- Mid-weight Mid-weight cold polypropylene top and weather bottom shirt/drawers\n- Shirt, cold weather, Green fleece jacket black fleece and Insulating\n- Liner, cold weather, coat\n- Generation II GORE- Wind cold weather TEX? jacket jacket (wind shirt) Available Personal Clothing and Generation II GORE- Extreme cold/wet Equipment Outer TEX? trousers weather(hard shell)jacket\n- Extreme cold/wet weather trousers (hard shell) Other\n- Issued GORE-TEX? gloves with Balaclava and neck gaiter liners Suspenders\n- Issued wool socks with synthetic Knife liner sock\n- Arctic necklace (lighter and\n- Temperate boots; cold weather lip balm worn around neck) boots recommended (Belleville 795, Danner Ft. Lewis 400g Tan Military Boots) Table C-1 Temperature Zone 1: 55 degrees F (15 degrees C) to 33 degrees F (0 degrees C) (continued)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h2",
+  "manual": "ATP3-90.97",
+  "para": "C.h2",
+  "chapter": "Appendix C",
+  "heading": "Consideration",
+  "pages": [
+   130
+  ],
+  "text": "- Knowledge of mountain and cold weather environmental hazards\n- Knowledge of cold weather clothing capabilities and limitations Training Skill to use cold weather clothing and equipment to provide protection from the elements\n- Skill to prevent, recognize, and treat cold injuries\n- Meals ready to eat\n- One hot meal daily as mission dictates Food and Water\n- 3.5-5 quarts of water per day\n- Water filter (recommend: first need portable water filter)\n- Patrol bag\n- GORE-TEX? bivouac cover Shelter and Heat Sleeping mat\n- Poncho\n- Poncho liner (optional) Additional Control Water re-supply plan Measures Sanitation plan",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h3",
+  "manual": "ATP3-90.97",
+  "para": "C.h3",
+  "chapter": "Appendix C",
+  "heading": "Legend",
+  "pages": [
+   130,
+   131
+  ],
+  "text": "C - Celsius ECWCS - Extreme Cold Weather Clothing System F - Fahrenheit g - gram Table C-2 Temperature Zone 2: 32 degrees F (0 degrees C) to 14 degrees F (-10 degrees C)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h4",
+  "manual": "ATP3-90.97",
+  "para": "C.h4",
+  "chapter": "Appendix C",
+  "heading": "Layer",
+  "pages": [
+   131
+  ],
+  "text": "- Polypropylene Lightweight cold undershirt and weather undershirt drawers and drawers",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h5",
+  "manual": "ATP3-90.97",
+  "para": "C.h5",
+  "chapter": "Appendix C",
+  "heading": "Base  Drawers cold  Mid-weight cold",
+  "pages": [
+   131
+  ],
+  "text": "weather, polyester, weather brown lightweight shirt/drawers undershirt and drawers\n- Shirt and overalls, Green fleece jacket cold weather, black",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h6",
+  "manual": "ATP3-90.97",
+  "para": "C.h6",
+  "chapter": "Appendix C",
+  "heading": "Insulating fleece and",
+  "pages": [
+   131
+  ],
+  "text": "- Liner, cold weather, coat and trousers\n- Generation II GORE- Wind cold weather TEX? jacket jacket (wind shirt)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h7",
+  "manual": "ATP3-90.97",
+  "para": "C.h7",
+  "chapter": "Appendix C",
+  "heading": "Outer  Extreme cold/wet",
+  "pages": [
+   131
+  ],
+  "text": "weather trousers (hard shell)\n- Extreme cold weather parka (puffy Jacket)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h8",
+  "manual": "ATP3-90.97",
+  "para": "C.h8",
+  "chapter": "Appendix C",
+  "heading": "Other",
+  "pages": [
+   131
+  ],
+  "text": "- Issued GORE-TEX? gloves Trigger finger mittens with with liners extra trigger finger liners\n- Issued wool socks with Suspenders synthetic liner sock Contact gloves\n- Cold weather boots (Belleville Knife 795, Danner Ft. Lewis 400g Balaclava and neck gaiter Tan Military Boots) Ski goggles\n- Arctic necklace (lighter and lip balm worn around neck)\n- Northern Warfare Training Center Arctic Light Individual Training",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h9",
+  "manual": "ATP3-90.97",
+  "para": "C.h9",
+  "chapter": "Appendix C",
+  "heading": "Training Program or similar program",
+  "pages": [
+   131
+  ],
+  "text": "- Meal, cold weather (MCW) 1 3.5-5 quarts of water per day bag = 1 meal which provides One stove per team to heat about 1500 calories water for rations and melt",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h10",
+  "manual": "ATP3-90.97",
+  "para": "C.h10",
+  "chapter": "Appendix C",
+  "heading": "Food and Water  34 ounces of heated water are snow for water",
+  "pages": [
+   131,
+   132
+  ],
+  "text": "required to hydrate one MCW\n- Two hot meals per day as mission dictates Table C-2 Temperature Zone 2: 32 degrees F (0 degrees C) to 14 degrees F (-10 degrees C) (continued)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h11",
+  "manual": "ATP3-90.97",
+  "para": "C.h11",
+  "chapter": "Appendix C",
+  "heading": "Individual: Squad:",
+  "pages": [
+   132
+  ],
+  "text": "- MSS, all components Ahkio group complete (see",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h12",
+  "manual": "ATP3-90.97",
+  "para": "C.h12",
+  "chapter": "Appendix C",
+  "heading": "Shelter and Heat  Sleeping mat, poncho and Appendix B)",
+  "pages": [
+   132
+  ],
+  "text": "poncho liner Arctic 10-man tent\n- Space heater arctic\n- Begin leader/medic checks for Contact gloves must be worn cold injuries; 2-3 times daily at when working outdoors minimum POL gloves must be worn\n- Water re-supply and storage when working with fuel",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h13",
+  "manual": "ATP3-90.97",
+  "para": "C.h13",
+  "chapter": "Appendix C",
+  "heading": "Measures freezing) man shelters for personnel",
+  "pages": [
+   132
+  ],
+  "text": "- Sanitation plan that work away from support\n- No skin camouflage below 32 base degrees F (0 oC)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h14",
+  "manual": "ATP3-90.97",
+  "para": "C.h14",
+  "chapter": "Appendix C",
+  "heading": "Legend",
+  "pages": [
+   132,
+   133
+  ],
+  "text": "C - Celsius ECWCS - Extreme Cold Weather Clothing System F - Fahrenheit g - gram MCW - meal, cold weather MSS - medium shelter systems POL - petroleum, oil, and lubricants Table C-3 Temperature Zone 3: 14 degrees F (-10 degrees C) to -19 degrees F (-20 degrees C)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h15",
+  "manual": "ATP3-90.97",
+  "para": "C.h15",
+  "chapter": "Appendix C",
+  "heading": "Area of Consideration Special Requirements and Recommended Actions",
+  "pages": [
+   133,
+   134
+  ],
+  "text": "Clothing Layer ECWCS Generation II ECWCS Generation III\n- Polypropylene Lightweight cold undershirt and weather undershirt drawers and drawers\n- Drawers cold Mid-weight cold Base weather, polyester, weather shirt/drawers brown lightweight undershirt and drawers\n- Shirt and overalls, Green fleece jacket cold weather, black Insulating fleece and\n- Liner, cold weather, coat and trousers\n- Generation II GORE- Wind cold weather TEX? jacket and jacket (wind shirt)\n- Generation II GORE- Soft shell cold TEX? trousers weather jacket (soft Available Personal shell) Clothing and Equipment\n- Soft shell cold Outer weather trousers (soft shell)\n- Extreme cold weather parka (puffy jacket)\n- Extreme cold weather trousers Other:\n- Suspenders Contact gloves\n- Issued wool socks with Issued GORE-TEX? gloves synthetic liner sock with liners\n- Cold weather boots (Belleville Balaclava and neck gaiter 795, Danner Ft. Lewis 400g Arctic mittens Tan Military Boot) for short\n- Knife duration outdoor work\n- Arctic necklace (lighter and lip\n- White vapor barrier boots balm worn around neck)\n- Trigger finger mittens with extra\n- Ski goggles TF liners Northern Warfare Training Center Arctic Light Individual Training Program or Training similar program\n- Meal, cold weather (MCW) 1 3.5-5 quarts of water per day bag = 1 meal which provides One stove per team to heat about 1500 calories water for rations and melt Food and Water 34 ounces of heated water are snow for water required to hydrate one MCW\n- Two hot meals per day as mission dictates Table C-3 Temperature Zone 3: 14 degrees F (-10 degrees C) to -19 degrees F (-20 degrees C) (continued)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h16",
+  "manual": "ATP3-90.97",
+  "para": "C.h16",
+  "chapter": "Appendix C",
+  "heading": "Area of Consideration Special Requirements and Recommended Actions",
+  "pages": [
+   134
+  ],
+  "text": "Individual: Squad:\n- MSS, all components Ahkio group complete (see Shelter and Heat Sleeping mat, poncho and Appendix B) poncho liner Arctic 10-man tent\n- Space heater arctic\n- Implement all control measures Provide warm tents and from Temperature zone 2 and vehicles for Soldiers change/add: Provide four-season shelters Additional Control Increase frequency of for personnel that work away Measures leader/medic checks for cold from support base injuries\n- Rotate Soldiers in static positions frequently",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h17",
+  "manual": "ATP3-90.97",
+  "para": "C.h17",
+  "chapter": "Appendix C",
+  "heading": "Legend",
+  "pages": [
+   134
+  ],
+  "text": "C - Celsius ECWCS - Extreme Cold Weather Clothing System F - Fahrenheit g - gram MCW - meal, cold weather865 MSS - medium shelter systems",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h18",
+  "manual": "ATP3-90.97",
+  "para": "C.h18",
+  "chapter": "Appendix C",
+  "heading": "Layer",
+  "pages": [
+   135
+  ],
+  "text": "- Polypropylene Lightweight cold undershirt and weather undershirt drawers and drawers",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h19",
+  "manual": "ATP3-90.97",
+  "para": "C.h19",
+  "chapter": "Appendix C",
+  "heading": "Base  Drawers cold weather,  Mid-weight cold",
+  "pages": [
+   135
+  ],
+  "text": "polyester, brown weather lightweight undershirt shirt/drawers and drawers\n- Shirt and overalls, Green fleece jacket cold weather, black",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h20",
+  "manual": "ATP3-90.97",
+  "para": "C.h20",
+  "chapter": "Appendix C",
+  "heading": "Insulating fleece and",
+  "pages": [
+   135
+  ],
+  "text": "- Liner, cold weather, coat and trousers\n- Generation II GORE- Wind cold weather TEX? jacket jacket (wind shirt)\n- Generation II GORE- Soft shell cold TEX? trousers weather jacket (soft",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h21",
+  "manual": "ATP3-90.97",
+  "para": "C.h21",
+  "chapter": "Appendix C",
+  "heading": "Equipment Outer Shell weather trousers",
+  "pages": [
+   135
+  ],
+  "text": "(soft shell)\n- Extreme cold weather parka (puffy jacket)\n- Extreme cold weather trousers",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h22",
+  "manual": "ATP3-90.97",
+  "para": "C.h22",
+  "chapter": "Appendix C",
+  "heading": "Other:",
+  "pages": [
+   135
+  ],
+  "text": "- Suspenders Contact Gloves\n- Issued wool socks with Issued GORE-TEX? gloves synthetic liner sock with liners\n- Cold weather boots (Belleville Trigger finger mittens with 795, Danner Ft. Lewis 400g extra TF liners Tan Military Boot) for short Arctic mittens duration outdoor work Knife\n- Black or white vapor barrier Arctic necklace (lighter and lip boots in the field balm worn around neck)\n- Balaclava and neck gaiter Ski goggles",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h23",
+  "manual": "ATP3-90.97",
+  "para": "C.h23",
+  "chapter": "Appendix C",
+  "heading": "Training NWTC ALIT Program or similar program",
+  "pages": [
+   135
+  ],
+  "text": "- Meal, cold weather (MCW) 1 3.5-5 quarts of water per day bag = 1 meal which provides One stove per team to heat about 1500 calories water for rations and melt",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h24",
+  "manual": "ATP3-90.97",
+  "para": "C.h24",
+  "chapter": "Appendix C",
+  "heading": "Food and Water  34 ounces of heated water are snow for water",
+  "pages": [
+   135
+  ],
+  "text": "required to hydrate one MCW\n- Two hot meals per day as mission dictates",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h25",
+  "manual": "ATP3-90.97",
+  "para": "C.h25",
+  "chapter": "Appendix C",
+  "heading": "Individual: Squad:",
+  "pages": [
+   136
+  ],
+  "text": "- MSS, all components Ahkio group complete (see",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h26",
+  "manual": "ATP3-90.97",
+  "para": "C.h26",
+  "chapter": "Appendix C",
+  "heading": "Shelter and Heat  Sleeping mat, poncho and Appendix B)",
+  "pages": [
+   136
+  ],
+  "text": "poncho liner Arctic 10-man tent\n- Space heater arctic\n- Implement all control measures Perform hourly leader/medic from Temperature zone 3 and checks for cold injuries",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h27",
+  "manual": "ATP3-90.97",
+  "para": "C.h27",
+  "chapter": "Appendix C",
+  "heading": "Measures  Limit outdoor operations and  Cover all exposed skin",
+  "pages": [
+   136
+  ],
+  "text": "training; closely scrutinize\n- Avoid static duty operations and training by leaders",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h28",
+  "manual": "ATP3-90.97",
+  "para": "C.h28",
+  "chapter": "Appendix C",
+  "heading": "Legend",
+  "pages": [
+   136
+  ],
+  "text": "ALIT - Arctic Light Individual Training ECWCS - Extreme Cold Weather Clothing System F - Fahrenheit g - gram MCW - meal, cold weather MSS - medium shelter systems NWTC - Northern Warfare Training Center",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h29",
+  "manual": "ATP3-90.97",
+  "para": "C.h29",
+  "chapter": "Appendix C",
+  "heading": "Layer",
+  "pages": [
+   137
+  ],
+  "text": "- Polypropylene Lightweight cold undershirt and weather undershirt drawers and drawers and",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h30",
+  "manual": "ATP3-90.97",
+  "para": "C.h30",
+  "chapter": "Appendix C",
+  "heading": "Base  Drawers cold  Mid-weight cold",
+  "pages": [
+   137
+  ],
+  "text": "weather, polyester, weather brown lightweight shirt/drawers undershirt and drawers\n- Shirt and overalls, Green fleece jacket cold weather, black",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h31",
+  "manual": "ATP3-90.97",
+  "para": "C.h31",
+  "chapter": "Appendix C",
+  "heading": "Insulating fleece and",
+  "pages": [
+   137
+  ],
+  "text": "- Liner, cold weather, coat and trousers\n- Generation II GORE- Wind cold weather TEX? jacket jacket (wind shirt)\n- Generation II GORE- Soft shell cold",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h32",
+  "manual": "ATP3-90.97",
+  "para": "C.h32",
+  "chapter": "Appendix C",
+  "heading": "Outer weather trousers",
+  "pages": [
+   137
+  ],
+  "text": "(soft shell)\n- Extreme cold weather parka (puffy jacket)\n- Extreme cold weather trousers",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h33",
+  "manual": "ATP3-90.97",
+  "para": "C.h33",
+  "chapter": "Appendix C",
+  "heading": "Other",
+  "pages": [
+   137
+  ],
+  "text": "- Suspenders Contact gloves\n- Issued wool socks with Issued GORE-TEX? gloves synthetic liner sock with liners\n- Cold weather boots (Belleville Trigger finger mittens with 795, Danner Ft. Lewis 400g extra TF liners Tan Military Boot) for short Arctic mittens duration outdoor work Knife\n- Black or white vapor barrier Arctic necklace (lighter and lip boots in the field balm worn around neck)\n- Balaclava and neck gaiter",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h34",
+  "manual": "ATP3-90.97",
+  "para": "C.h34",
+  "chapter": "Appendix C",
+  "heading": "Training NWTC ALIT Program or similar program",
+  "pages": [
+   137
+  ],
+  "text": "- Meal, cold weather (MCW) 1 3.5-5 quarts of water per day bag = 1 meal which provides Two hot meals per day as about 1,500 calories mission dictates",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h35",
+  "manual": "ATP3-90.97",
+  "para": "C.h35",
+  "chapter": "Appendix C",
+  "heading": "Food and Water  34 ounces of heated water are  One stove per team to heat",
+  "pages": [
+   137
+  ],
+  "text": "required to hydrate one MCW water for rations and melt snow for water",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h36",
+  "manual": "ATP3-90.97",
+  "para": "C.h36",
+  "chapter": "Appendix C",
+  "heading": "Individual: Squad:",
+  "pages": [
+   138
+  ],
+  "text": "- MSS, all components Ahkio group complete (see",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h37",
+  "manual": "ATP3-90.97",
+  "para": "C.h37",
+  "chapter": "Appendix C",
+  "heading": "Shelter and Heat  sleeping mat, poncho and Appendix B)",
+  "pages": [
+   138
+  ],
+  "text": "poncho liner Arctic 10-man tent\n- Space heater arctic\n- Implement all control Limit outdoor operations and measures from Temperature training to critical life support",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h38",
+  "manual": "ATP3-90.97",
+  "para": "C.h38",
+  "chapter": "Appendix C",
+  "heading": "Measures",
+  "pages": [
+   138
+  ],
+  "text": "- Recognize risk level is Warm tents and vehicles for extremely high all personnel",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/C.h39",
+  "manual": "ATP3-90.97",
+  "para": "C.h39",
+  "chapter": "Appendix C",
+  "heading": "Legend",
+  "pages": [
+   138
+  ],
+  "text": "ALIT - Arctic Light Individual Training C - Celsius ECWCS - Extreme Cold Weather Clothing System F - Fahrenheit g - gram MCW - meal, cold weather MSS - medium shelter systems NWTC - Northern Warfare Training Center",
+  "notices": []
+ },
+ {
   "id": "ATP3-90.97/D-1",
   "manual": "ATP3-90.97",
   "para": "D-1",
@@ -7876,6 +8688,90 @@
   "notices": []
  },
  {
+  "id": "ATP3-90.97/D.h1",
+  "manual": "ATP3-90.97",
+  "para": "D.h1",
+  "chapter": "Appendix D",
+  "heading": "Item Description Item Description",
+  "pages": [
+   139
+  ],
+  "text": "Heater, Tent Space Heater Small (UH68ODH)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h2",
+  "manual": "ATP3-90.97",
+  "para": "D.h2",
+  "chapter": "Appendix D",
+  "heading": "4520-01-478-9207 PN 168325",
+  "pages": [
+   139
+  ],
+  "text": "16\"L x 9\"W x 14\"H 30\"L x 11\"W x 24\"H 32 pounds 125 pounds 12,000 BTU/Hr. 60,000 BTU/Hr. 110 VAC, 450 Watts Large Capacity Field Heater Space Heater Arctic 4520-01-500-1534 4520-01-444-2375 62\"L x 40\"H x 17\"L x 9\"W x 17\"H 44.5\"W 41 pounds 622 pounds 25,000 BTU/Hr. 400,000 BTU/Hr. Self-Powered, Diesel Engine Multi-fuel Tent H45 Space Heater Heater (MTH150)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h3",
+  "manual": "ATP3-90.97",
+  "para": "D.h3",
+  "chapter": "Appendix D",
+  "heading": "4520-01-329-3451 PN 15000",
+  "pages": [
+   139
+  ],
+  "text": "18\" diameter x 24\" H 56\"L x 26\"W x 31\"H 65 pounds 200 pounds 45,000 BTU/Hr. 120,000 BTU/Hr. 110 VAC, 12 amps",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h4",
+  "manual": "ATP3-90.97",
+  "para": "D.h4",
+  "chapter": "Appendix D",
+  "heading": "Item Description Item Description",
+  "pages": [
+   140
+  ],
+  "text": "Space Heater CBRNE Multi-fuel Convective Tent Heater",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h5",
+  "manual": "ATP3-90.97",
+  "para": "D.h5",
+  "chapter": "Appendix D",
+  "heading": "4520-01-431-8927 PN 15000-1",
+  "pages": [
+   140
+  ],
+  "text": "40\"L x 14\"W x 18\"H 56\"L x 26\"W x 31\"H 74 pounds 200 pounds 35,000 BTU/Hr. 120,000 BTU/Hr. Self-Powered 110 VAC, 12 amps Space Heater Convective MV60S-1 Space Heater",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h6",
+  "manual": "ATP3-90.97",
+  "para": "D.h6",
+  "chapter": "Appendix D",
+  "heading": "PN 53457-1",
+  "pages": [
+   140
+  ],
+  "text": "4520-01-520-6477 51\"L x 16.5\"W x 44 3/4\"L x 17\"H 25\"H x19\"W 115 pounds 98 pounds 60,000 BTU/Hr. 60,000 BTU/Hr. 110VAC, 4.75 amps Self-Powered UH68G1 Space A20 Space Heater Heater/CBH 4520-01-203-4410 4250-01-396-2826 26\"L x 22\"H x 10\"W 27\"L x 8\"diameter 110 pounds 38 pounds 60,000 BTU/Hr. 60,000 BTU/Hr. 110 VAC, 450 Watts 24 VDC, 20 amps",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h7",
+  "manual": "ATP3-90.97",
+  "para": "D.h7",
+  "chapter": "Appendix D",
+  "heading": "Legend",
+  "pages": [
+   140
+  ],
+  "text": "BTU - British Thermal United States Army H -- height Hr. - hour L - length PN - part number VAC - volt, alternating current W - width",
+  "notices": []
+ },
+ {
   "id": "ATP3-90.97/D-3",
   "manual": "ATP3-90.97",
   "para": "D-3",
@@ -7885,6 +8781,90 @@
    140
   ],
   "text": "Tables D-2 and D-3 list the different shelters available. Table D-2 lists the smaller shelters whereas Table D-3 lists the larger shelters. These tables include the abbreviated name of each shelter, a brief description, and the floor dimensions. Tables D-4 and D-5 use the abbreviated names.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h8",
+  "manual": "ATP3-90.97",
+  "para": "D.h8",
+  "chapter": "Appendix D",
+  "heading": "Soldier Crew Tent SCT",
+  "pages": [
+   140
+  ],
+  "text": "100 sq. ft.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h9",
+  "manual": "ATP3-90.97",
+  "para": "D.h9",
+  "chapter": "Appendix D",
+  "heading": "Five Man Arctic 5 Man Arctic",
+  "pages": [
+   140
+  ],
+  "text": "200 sq. ft.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h10",
+  "manual": "ATP3-90.97",
+  "para": "D.h10",
+  "chapter": "Appendix D",
+  "heading": "Ten Man Arctic 10 man Arctic",
+  "pages": [
+   140
+  ],
+  "text": "306 sq. ft.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h11",
+  "manual": "ATP3-90.97",
+  "para": "D.h11",
+  "chapter": "Appendix D",
+  "heading": "Shelter Type",
+  "pages": [
+   141
+  ],
+  "text": "Modular Command Post System Modular General Purpose Tent System, Medium Modular General Purpose Tent System, Small Tent, General Purpose, Medium Tent, General Purpose, Small Small Shelter System Tent, Extendable Modular Personnel Base-X Expeditionary Shelter",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h12",
+  "manual": "ATP3-90.97",
+  "para": "D.h12",
+  "chapter": "Appendix D",
+  "heading": "Legend",
+  "pages": [
+   141
+  ],
+  "text": "ft. - feet sq. - square",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h13",
+  "manual": "ATP3-90.97",
+  "para": "D.h13",
+  "chapter": "Appendix D",
+  "heading": "Shelter Type",
+  "pages": [
+   141
+  ],
+  "text": "Modular General Purpose Tent System, Large Medium Shelter System Lightweight Maintenance Enclosure Base-X Expeditionary Shelter",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h14",
+  "manual": "ATP3-90.97",
+  "para": "D.h14",
+  "chapter": "Appendix D",
+  "heading": "Legend",
+  "pages": [
+   141
+  ],
+  "text": "ft. - feet sq. - square",
   "notices": []
  },
  {
@@ -7900,6 +8880,90 @@
   "notices": []
  },
  {
+  "id": "ATP3-90.97/D.h15",
+  "manual": "ATP3-90.97",
+  "para": "D.h15",
+  "chapter": "Appendix D",
+  "heading": "Arctic",
+  "pages": [
+   141
+  ],
+  "text": "Space Heater, 1 N/A N/A N/A Small",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h16",
+  "manual": "ATP3-90.97",
+  "para": "D.h16",
+  "chapter": "Appendix D",
+  "heading": "(total square feet)",
+  "pages": [
+   141
+  ],
+  "text": "11' x 11'",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h17",
+  "manual": "ATP3-90.97",
+  "para": "D.h17",
+  "chapter": "Appendix D",
+  "heading": "MCPS",
+  "pages": [
+   141
+  ],
+  "text": "121 sq. ft. MGPTS 36' x 18' Medium 648 sq. ft. 18' x 18' MGPTS Small 324 sq. ft. 32' x 16' GP Medium 512 sq. ft. 17'6\" x 17'6\" GP Small 306 sq. ft. 20' x 32' SSS 650 sq. ft. 32' x 20'",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h18",
+  "manual": "ATP3-90.97",
+  "para": "D.h18",
+  "chapter": "Appendix D",
+  "heading": "TEMPER",
+  "pages": [
+   141
+  ],
+  "text": "640 sq. ft. 18' x 25' 305 450 sq. ft.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h19",
+  "manual": "ATP3-90.97",
+  "para": "D.h19",
+  "chapter": "Appendix D",
+  "heading": "(total square feet)",
+  "pages": [
+   141
+  ],
+  "text": "18' x 54' MGPTS Large 972 sq. ft. 52' x 29.5' MSS 1500 sq. ft. 32' x 25' LME 800 sq. ft. 27' x 31' 6D31 Dome 615 sq. ft. smaller shelter types. In the table, the number 1 means shelter. The number 2 means that two heaters are required",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h20",
+  "manual": "ATP3-90.97",
+  "para": "D.h20",
+  "chapter": "Appendix D",
+  "heading": "Arctic",
+  "pages": [
+   142
+  ],
+  "text": "Space Heater, N/A 1 N/A N/A N/A N/A N/A N/A N/A N/A Arctic",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h21",
+  "manual": "ATP3-90.97",
+  "para": "D.h21",
+  "chapter": "Appendix D",
+  "heading": "Legend",
+  "pages": [
+   142
+  ],
+  "text": "SCT - Soldier Crew Tent MCPS - Modular Command Post System MGPTS - Modular General Purpose Tent System GP - General Purpose SSS - Small Shelter System",
+  "notices": []
+ },
+ {
   "id": "ATP3-90.97/D-5",
   "manual": "ATP3-90.97",
   "para": "D-5",
@@ -7909,6 +8973,42 @@
    142
   ],
   "text": "Larger shelters consist of tents, hard shelters, and vehicles. Table D-5 lists the heater types and compatibility with the larger and mobile shelter types.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h22",
+  "manual": "ATP3-90.97",
+  "para": "D.h22",
+  "chapter": "Appendix D",
+  "heading": "Shelter",
+  "pages": [
+   142
+  ],
+  "text": "Large Capacity",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h23",
+  "manual": "ATP3-90.97",
+  "para": "D.h23",
+  "chapter": "Appendix D",
+  "heading": "X X X X N/A N/A N/A N/A N/A",
+  "pages": [
+   142
+  ],
+  "text": "Field Heater",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/D.h24",
+  "manual": "ATP3-90.97",
+  "para": "D.h24",
+  "chapter": "Appendix D",
+  "heading": "Legend",
+  "pages": [
+   142
+  ],
+  "text": "MGPTS - Modular General Purpose Tent System MSS - Modular Sleep System LME - Lightweight Maintenance Enclosure CBRN - Chemical, Biological, Radiological, Nuclear",
   "notices": []
  },
  {
@@ -7958,6 +9058,277 @@
    144
   ],
   "text": "The Squad Mountain Leader Kit supports a Special Forces mountain team of 12 personnel. It contains a large variety of equipment from the other kits as well as pitons, additional ice screws, and mountaineering pulleys. The NSN is 8465-01-604-6406. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h3",
+  "manual": "ATP3-90.97",
+  "para": "E.h3",
+  "chapter": "Appendix E",
+  "heading": "SECTION I - ACRONYMS AND ABBREVIATIONS",
+  "pages": [
+   145,
+   146
+  ],
+  "text": "AMS acute mountain sickness AMWS Army Mountain Warfare School BCT brigade combat team CAB combat aviation brigade CAS close air support CASEVAC casualty evacuation CDS container delivery system COP combat outpost FAC forward air controller FAC(A) forward air controller (airborne) FARP forward arming and refueling point FDC fire direction center FET female engagement teams FOB forward operating base FSR first strike ration GPS Global Positioning System HACE high altitude cerebral edema HAPE high altitude pulmonary edema HF high frequency IED improvised explosive device IPB intelligence preparation of the battlefield/battlespace ISB intermediate staging base JTAC joint terminal attack controller LAW lubricating oil arctic-weapons LNO liaison officer LOC line of communications LOS line of sight LZ landing zone MAGTF Marine air-ground task force MCMWTC Marine Corps Mountain Warfare Training Center MEDEVAC medical evacuation METT-TC mission, enemy, terrain and weather, troops and support available, time available and civil considerations [mission variables] (Army) MOS military occupational specialty MRE meal, ready to eat MSR main supply route MTSQ mechanical time super quick NCO noncommissioned officer NSN national stock number NTTP Navy tactics, techniques, and procedures NWTC Northern Warfare Training Center PZ pickup zone SATCOM satellite communications SCR single-channel radio SIGINT signals intelligence SUSV small unit support vehicle TACSAT tactical satellite TOE table of organization and equipment TRST tactical rope suspension technician TTP tactics, techniques, and procedures UAS unmanned aircraft system UHF ultrahigh frequency U.S. United States USASOC United States Army Special Operations Command VHF very high frequency",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h4",
+  "manual": "ATP3-90.97",
+  "para": "E.h4",
+  "chapter": "Appendix E",
+  "heading": "logistics",
+  "pages": [
+   146
+  ],
+  "text": "Planning and executing the movement and support of forces. It includes those aspects of military operations that deal with: design and development, acquisition, storage, movement, distribution, maintenance, evacuation and disposition of materiel, acquisition or construction, maintenance, operation, and disposition of facilities, and acquisition or furnishing of services. (ADP 4-0)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h5",
+  "manual": "ATP3-90.97",
+  "para": "E.h5",
+  "chapter": "Appendix E",
+  "heading": "maneuver",
+  "pages": [
+   146
+  ],
+  "text": "(DOD) 1. A movement to place ships, aircraft, or land forces in a position of advantage over the enemy. 2. A tactical exercise carried out at sea, in the air, on the ground, or on a map in imitation of war. 3. The operation of a ship, aircraft, or vehicle, to cause it to perform desired movements. 4. Employment of forces in the operational area through movement in combination with fires to achieve a position of advantage in respect to the enemy. (JP 3 0)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h6",
+  "manual": "ATP3-90.97",
+  "para": "E.h6",
+  "chapter": "Appendix E",
+  "heading": "stability operations",
+  "pages": [
+   146
+  ],
+  "text": "(DOD) An overarching term encompassing various military missions, tasks, and activities conducted outside the United States in coordination with other instruments of national power to maintain or reestablish a safe and secure environment, provide essential government services, emergency infrastructure reconstruction, and humanitarian relief. (JP 3-0)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h7",
+  "manual": "ATP3-90.97",
+  "para": "E.h7",
+  "chapter": "Appendix E",
+  "heading": "tempo",
+  "pages": [
+   146
+  ],
+  "text": "The relative speed and rhythm of military operations over time with respect to the enemy. (ADRP 3-0)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h8",
+  "manual": "ATP3-90.97",
+  "para": "E.h8",
+  "chapter": "Appendix E",
+  "heading": "REQUIRED PUBLICATIONS",
+  "pages": [
+   147
+  ],
+  "text": "These documents must be available to intended users of this publication. ADRP 1-02. Operational Terms and Military Symbols. 7 December 2015. JP 1-02. Department of Defense Dictionary of Military and Associated Terms. 8 November 2010.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h9",
+  "manual": "ATP3-90.97",
+  "para": "E.h9",
+  "chapter": "Appendix E",
+  "heading": "RELATED PUBLICATIONS",
+  "pages": [
+   147
+  ],
+  "text": "These documents contain relevant supplemental information.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h10",
+  "manual": "ATP3-90.97",
+  "para": "E.h10",
+  "chapter": "Appendix E",
+  "heading": "JOINT PUBLICATIONS",
+  "pages": [
+   147
+  ],
+  "text": "Most joint publications are available online: http://www.dtic.mil/doctrine/index.html JP 3-0. Joint Operations. 11 August 2011. JP 3-09.3. Close Air Support. 25 November 2014. JP 3-13. Information Operations. 27 November 2012. JP 3-34. Joint Engineer Operations. 06 January 2016.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h11",
+  "manual": "ATP3-90.97",
+  "para": "E.h11",
+  "chapter": "Appendix E",
+  "heading": "ARMY PUBLICATIONS",
+  "pages": [
+   147,
+   148
+  ],
+  "text": "Most Army doctrinal publications are available online at www.apd.army.mil ADP 4-0. Sustainment. 31 July 2012. ADRP 3-0. Unified Land Operations. 16 May 2012. ADRP 3-07. Stability. 31 August 2012. ADRP 3-90. Offense and Defense. 31 August 2012. AR 5-25, Army Weather Functional Activities. 2 July 2013. AR 70-38. Research, Development, Test and Evaluation of Material for Extreme Climatic Conditions. 15 September 1979. AR 95-1. Flight Regulations. 11 March 2014. AR 750-1. Army Materiel Maintenance Policy. 12 September 2013. ATP 2-01. Plan Requirements and Assess Collection. 19 August 2014. ATP 2-19.4. Brigade Combat Team Intelligence Techniques. 10 February 2015. ATP 3-04.94. Army Techniques Publication for Forward Arming and Refueling Points. 26 January 2012. ATP 3-09.02. Field Artillery Survey. 16 February 2016. ATP 3-09.12. Field Artillery Target Acquisition. 24 July 2015. ATP 3-09.50. The Field Artillery Cannon Battery. 7 July 2015. ATP 3-34.20. Countering Explosive Hazards. 21 January 2016. ATP 3-34.81. Engineer Reconnaissance. 01 March 2016. ATP 3-36. Electronic Warfare Techniques. 16 December 2014. ATP 3-37.34. Survivability Operations. 28 June 2013. ATP 3-90.8. Combined Arms Countermobility Operations. 17 September 2014. ATP 4-02.1. Army Medical Logistics. 29 October 2015. ATP 4-33. Maintenance Operations. 14 April 2014. ATP 4-44. Water Support Operations. 2 October 2015. ATP 4-46. Contingency Fatality Operations. 17 December 2014. ATTP 3-21.50. Infantry Small-Unit Mountain Operations. 28 February 2011. FM 2-0. Intelligence Operations. 15 April 2014. FM 3-04.111. Aviation Brigades. 7 December 2007. FM 3-04.126. Attack Reconnaissance Helicopter Operations. 16 February 2007. FM 3-04.155. Army Unmanned Aircraft System Operations. 29 July 2009. FM 3-14. Army Space Operations. 19 August 2014. FM 3-21.8. The Infantry Rifle Platoon and Squad. 28 March 2007. FM 3-21.38. Pathfinder Operations. 25 April 2006 FM 3-22.90. Mortars. 7 December 2007. FM 3-99. Airborne and Air Assault Operations. 06 March 2015 FM 7-22. Army Physical Readiness Training. 26 October 2012. TC 3-97.61. Military Mountaineering. 26 July 2012. TM 4-33.31. Operations and Maintenance of Ordnance Materiel in Cold Weather. 5 July 2013.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h12",
+  "manual": "ATP3-90.97",
+  "para": "E.h12",
+  "chapter": "Appendix E",
+  "heading": "DEPARTMENT OF DEFENSE ISSUANCE",
+  "pages": [
+   148
+  ],
+  "text": "Military Detail [MIL-DTL] Specification 85470, Inhibitor, Icing, Fuel System, High Flash, 15 March 2006. https://assist.dla.mil (date accessed 26 April 2016)",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h13",
+  "manual": "ATP3-90.97",
+  "para": "E.h13",
+  "chapter": "Appendix E",
+  "heading": "NAVY/MARINE CORPS DEPARTMENTAL PUBLICATIONS",
+  "pages": [
+   148
+  ],
+  "text": "Marine Corps Intelligence Activity, MCIA-1586-001-05. Marine Corps Midrange Threat Estimate: 2005-2015. 1 March 2006. Defense Technical Institute http://oai.dtic.mil/oai/oai?&verb=getRecord&metadataPrefix=html&identifier=ADA446044",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h14",
+  "manual": "ATP3-90.97",
+  "para": "E.h14",
+  "chapter": "Appendix E",
+  "heading": "MULTI-SERVICE PUBLICATIONS",
+  "pages": [
+   148,
+   149
+  ],
+  "text": "AR 115-10/AFI 15-157 (IP). Weather Support and Services for the U.S. Army. 10 September 2015. ATP 2-01.3/MCRP 2-3A. Intelligence Preparation of the Battlefield/Battlespace. 10 November 2014. ATP 3-04.64/MCRP 3-42.1A/NTTP 3-55.14/AFTTP 3-2.64. UAS Multi-Service Tactics, Techniques, and Procedures for the Tactical Employment of Unmanned Aircraft Systems. 22 January 2015. ATP 3-09.12/MCRP 3-16.1A. Field Artillery Target Acquisition. 24 July 2015. ATP 3-09.32/MCRP 3-16.6A/NTTP 3-09.2/AFTTP (I) 3-2.6, JFIRE Multi-Service Tactics, Techniques, and Procedures for the Joint Application of Firepower, 21 January 2016. ATP 3-09.50/MCWP 3-1.6.23. The Field Artillery Cannon Battery. 7 July 2015. ATP 3-11.37/MCWP 3-37.4/NTTP 3-11.29/AFTTP (I) 3-2.44, Multiservice Tactics, Techniques, and Procedures for Chemical, Biological, Radiological, and Nuclear Reconnaissance and Surveillance. 08 March 2016 ATP 3-90.4/MCWP 3-17.8. Combined Arms Mobility Operations. 08 March 2016. ATP 4-02.7/MCRP 4-11.1F/NTTP 4-02.7/AFTTP 3-42.3. Multi-Service Tactics, Techniques, and Procedures for Health Service Support in a Chemical, Biological, Radiological, and Nuclear Environment. 15 March 2016. ATP 4-31/MCRP 4-11.4A. Recovery and Battle Damage Assessment and Repair (BDAR). 27 August 2014. ATTP 3-21.90/MCWP 3-15.2. Tactical Employment of Mortars. 4 April 2011. FM 3-99. Airborne and Air Assault Operations. 06 March 2015. TC 3-09.71/MCWP 3-1.6.19. Tactics, Techniques, and Procedures for the Field Artillery Manual Cannon Gunnery. 01 March 2016. TC 3-09.81. Field Artillery Manual Cannon Gunnery. 01 March 2016. TM 3-34.22/MCRP 3-17.1B. Military Nonstandard Fixed Bridging. 17 October 2013. TM 10-8465-237-10/Tm 11770a/11771a-Oi/1. Military Mountaineering Kits (MMKS). 15 January 2015.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h15",
+  "manual": "ATP3-90.97",
+  "para": "E.h15",
+  "chapter": "Appendix E",
+  "heading": "OTHER PUBLICATIONS",
+  "pages": [
+   149
+  ],
+  "text": "This section contains no entries.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h16",
+  "manual": "ATP3-90.97",
+  "para": "E.h16",
+  "chapter": "Appendix E",
+  "heading": "RECOMMENDED READINGS",
+  "pages": [
+   149
+  ],
+  "text": "ATP 2-22.7. Geospatial Intelligence. 26 March 2015. FM 3-50. Army Personnel Recovery. 2 September 2014 TB MED 505. Altitude Acclimatization and Illness Management. 30 September 2010. armypubs.army.mil TB MED 508. Prevention and Management of Cold-Weather Injuries. 1 April 2005. armypubs.army.mil",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h17",
+  "manual": "ATP3-90.97",
+  "para": "E.h17",
+  "chapter": "Appendix E",
+  "heading": "WEB SITES",
+  "pages": [
+   149
+  ],
+  "text": "Central Intelligence Agency (CIA). The World Factbook is available on the CIA Web site at https://www.cia.gov/library/publications/the-world-factbook/ (access date 8 March 2016).",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h18",
+  "manual": "ATP3-90.97",
+  "para": "E.h18",
+  "chapter": "Appendix E",
+  "heading": "PRESCRIBED FORMS",
+  "pages": [
+   149
+  ],
+  "text": "This section contains no entries.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h19",
+  "manual": "ATP3-90.97",
+  "para": "E.h19",
+  "chapter": "Appendix E",
+  "heading": "REFERENCED FORMS",
+  "pages": [
+   149,
+   150
+  ],
+  "text": "Unless otherwise indicated, DA forms are available on the Army Publishing Directorate web site at http://www.apd.army.mil/ (access date 8 March 2016). DA Form 2028. Recommended Changes to Publications and Blank Forms. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h20",
+  "manual": "ATP3-90.97",
+  "para": "E.h20",
+  "chapter": "Appendix E",
+  "heading": "Index",
+  "pages": [
+   151,
+   152,
+   153,
+   154
+  ],
+  "text": "acquisition and observation, 8-13 container distribution system fire support coordination measures, attack reconnaissance helicopter drops, 6-84 8-45- 8-46 operations, 7-7- 7-8 continental zones, 1-20 fires integration, 7-17- 7-18 attack, 3-26- 3-28 convoy planning, 4-11- 4-12 fog, 1-82 audio, visual, and physical signals, coordination with support ground food and water (class i), 6-16- 6-25 9-20- 9-23 forces, 7-3- 7-4 fords,4-34- 4-36 aurora borealis, 1-56 counter-improvised explosive forms of maneuver, 3-37 avalanches, 5-28- 5-29 device/mine operations, 5-12 forward arming and refueling avenues of approach, 1-32 counter-mobility, 5-24 points, 7-54- 7-55 aviation ground support planning cover and concealment, 1-35 forward operating base and considerations, 7-53 cueing and tactical deployment, 8- forward arming and refueling aviation logistic support in a 64 point locations, 7-46 mountainous environment deep air support, 7-51 forward operating base locations, planning considerations, 7-57- dehydration, A-42- A-44 7-56 7-58 demonstrations and feints, 3-35 forward operating base site aviation support, 6-12- 6-13 deployment, 7-2 selection, 5-33 battlefield illumination, 7-30 dismounted mobility classification, fouling from snow and ice, 8-54 behavioral effects, A-36? A-37 1-66 frontal attack, 3-38 blizzard, 1-49- 1-50 dismounted movement, 4-16 fuel, 5-56 blue force tracking, 9-15 displacement, 3-9- 3-11 gap crossing, 5-8 boreal forests, 1-23 disseminate, 2-15- 2-18 general considerations, 4-42- 4-44 breakage and malfunctions, 8-56- distribution and transportation, 6- general engineering, 5-35 8-57 64- 6-65 general planning considerations, 6breaking trails for dismounted driving, 4-10 1 movement, 4-24- 4-25 dry cold, B-3 geometry of fires, 7-49 breaking trails for mounted dry gaps, 5-10 glaciers, 1-11 movement, 4-13- 4-14 effects on material and equipment glaciers, 1-27 carbon monoxide poisoning, A-28- from extreme cold, 6-37- 6-37 global positioning system A-29 effects on metals from extreme limitations and considerations, casualty collection and evacuation, cold, 6-38 8-22 6-91- 6-93 effects on rubber and plastics from gray-out, 1-52 casualty evacuation4-41 extreme cold, 6-39 ground based air defense cell phones, 9-19 electronic attack, 7-39 considerations, 8-60 chemical, biological, radiological, electronic protect, 7-41 ground distribution, 6-66 nuclear reconnaissance, 4-53 electronic warfare support, 7-40 ground/long-range surveillance, 4chinook winds, 1-55 electronic warfare, 7-36 57?- 4-58 civil considerations, 3-69- 3-72 elevation of forward operating hard starting, 5-58 climate influences, 1-71- 1-72 bases/combat outposts in hazardous cold, B-6 clothing, individual equipment, and relation to surrounding terrain, heat injuries, A-22 tents (class ii), 6-26- 6-30 5-31 heavy equipment, 5-57 coalition training in mountain elevation, 1-60- 1-65 high altitude cerebral edema, Awarfare, 10-33- 10-34 emplacement issues, 8-58 11- A-14 cold environment, 1-12- 1-13 engineer ground reconnaissance, high- altitude illnesses, A-1- A-2 cold injuries, A-21 5-22 high altitude operational impacts, cold weather categories, B-1 engineer reconnaissance, 4-51- 4- A-32 cold weather characteristics, 1-36- 52 high altitude pulmonary edema, A- 1-45 engineer reconnaissance, 5-18- 5- 7- A-10 collect, 2-5- 2-12 20 high altitude retinal hemorrhaging, collective training, 10-12- 10-13 enhanced position location A-16 combat search and rescue and reporting system, 9-14 high altitude systemic edema, A-15 tactical recovery of aircraft and envelopments and turning high angle fire, 8-31 personnel, 7-23- 7-25 movements, 3-39 high angle mountaineering kit, E-2 command posts, 3-8 environmental threats, A-19 high explosive munitions, 8-27- 8commercial satellite terminals, 9-11 excavation and earthmoving, 5-61 29 communications systems exploitation and pursuit, 3-36 high frequency, 9-6 comparison, 9-3 extreme cold, B-5 horizontal construction, 5-36 communications, 8-61 field maintenance, 6-60- 6-63 host-nation vehicles, 6-69- 6-71 condensation, 8-53 ice bridge, 4-30- 4-31 ice fog, 1-46- 1-48 military personnel (man-packing), offensive air support icecaps, 1-22 6-76- 6-77 pA1:A287lanning individual loads, 4-26- 4-27 military vehicles, 6-67- 6-68 considerations planning individual training, 10-17 mines and improvised explosive considerations, 7-43- 7-44 infectious diseases, A-30- A-31 devices, 4-15 offensive tasks infiltration, 3-40- 3-41 mines, 5-27 operational advantages and influence of oceans and land mission command considerations, disadvantages, 3-73- 3-75 masses, 1-18 3-5 operational considerations, 4-49 information operations, 8-43- 8-44 mobile defense, 3-61- 3-62 ordnance selection, 7-47 injuries caused by sunlight, A-23 mobility, 5-7 ordnance versus fuel, 7-45 intense cold, B-4 mobility, 8-62 organization for artillery, 8-1- 8-3 interagency training, 10-32 mortars, 8-33- 8-34 organization, 5-1 intermediate staging bases , 6-4 mountain and cold weather medical other supplies, 6-40 interoperability, 6-7 training, 10-21 overflow ice, 1-29 joint engineer support element, 5-3 mountain classifications, 1-59 overhead cover, 5-32 key terrain, 1-33 mountain communicators, 10-23 pack animals, 6-72- 6-73 landing zone considerations, 7-31- mountain influenced cold region, 1- penetration 3-46 7-32 17 permafrost, 1-25 landing zones, 5-39- 5-41 mountain leader (company grade petroleum, oils, and lubricants laser range finders and laser officers and staff (class III), 6-31- 6-34 designators usage for laser noncommissioned officers), phase 1: pre-environmental guided munitions, 8-20 10-29 training, 10-14 leadership, 3-6- 3-7 mountain machine gunners, 10-26 phase II: basic mobility training, 10- Level I: basic mountaineer, 10-4 mountain operations staff planners, 15 Level II: advanced mountaineer, 10-25 phase III: marine expeditionary 10-5 mountain scout snipers, 10-24 brigade/marine expeditionary Level III: mountain leader, 10-6 mountainous environment, 1-3- 1- unit field exercise, 10-16 liaison officers, 6-5 4 pickets, 4-59- 4-60 light data, 1-57- 1-58 mountainous terrain, 1-5- 1-10 plan and direct, 2-1- 2-4 limited assembly/construction area, mounted movement, 4-2- 4-9 planning an attack, 3-29- 3-30 5-9 movement and positioning, 8-4 poor wound healing, A-18 logistic cross-training, 6-6 movement in one group along one porters, 6-74- 6-75 logistic support concept, 6-2 axis, 3-43 position selection, 8-7- 8-9 logistic support elements, 6-3 movement in small groups along potable water, 5-50- 5-55 logistics, 8-63 multiple axes, 3-44- 3-45 precipitation, 1-77- 1-78 looming, 1-54 movement in small groups along precipitation, B-7 low-cost low-altitude delivery one axis, 3-42 present imperative for mountain system, 6-85 movement to contact, 3-22- 3-25 doctrine, 1-1- 1-2 maintenance personnel, 6-58 movement, 8-5 preventive maintenance and repair, major end items (class vii), 6-42 multichannel radios, 9-13 6-59 Marine Corps Mountain Warfare Multiple Launch Rocket position prime base engineer emergency Training Center, 10-11 considerations, 8-10- 8-11 force, 5-6 maritime zone, 1-19 munitions, 8-26 produce, 2-13- 2-14 material storage and handling muskeg, 1-26 psychological effects, A-34 considerations, 6-35 naval construction force, 5-4 radar considerations, 8-12- 8-14 material to support nonmilitary naval surface fires, 8-41 raid and ambush, 3-34 programs (class x), 6-45 navy sea-air-land (seal) team cold rain and snow, 1-79 medical evacuation, 6-94 weather maritime course, 10- rapid engineer deployable heavy medical supplies (class viii 30 operational repair squadron including medical repair parts), non-battle injuries, A-20 engineer, 5-5 6-43 nonlethal effects, 8-42 reconnaissance and surveillance, medical support considerations, 6- non-standard bridging, 5-11 4-45- 4-48 87- 6-90 northern warfare training center, reconnaissance in force, 4-50 medical, casualty, and air 10-8 reconnaissance, 7-5- 7-6 evacuations, 7-26 nutrition, A-45- A-46 reconnaissance, selection, and messenger, 9-24 obscurants, 8-30 occupation of a position8-4 metal detectors, 5-16 observation and fields of fire, 1-31 reduced physical performance, Ameteorological message space observer considerations, 8-15- 8- 33 and time validity, 8-23 19 reduced power available, 7-48 military mountaineering skill sets, obstacles, 1-34 reduced-velocity and range of 10-1- 10-3 obstacles, 3-33 projectiles, 8-59 obstacles, 5-25- 5-26 repair parts (class ix), 6-44 requirements identification, 9-2 summer mountain engineers, 10- training considerations, 7-42 retrograde 3-67 27 training considerations, 7-52 reverse slope defense3-65- 3-66 sunburn, A-24 training considerations, 7-59- 7-60 ring routes, 6-83 supply, 6-15 training considerations, 8-66 river distribution, 6-78 suppression of enemy air defenses traveling storms, 1-81 rivers, 1-28 and air-to-air planning tundra, 1-24 roads, 5-37 considerations, 8-65 ultrahigh frequency, 9-8- 9-9 route planning, 4-17- 4-22 survey operations, 8-21 underground construction and route security6-11 survivability, 5-30 confined spaces, 5-62 route selection, 5-21 sustainment challenges, 6-8- 6-10 unmanned aircraft system planning route sweep formations, 5-15 swift waters, 4-32- 4-33 considerations, 7-11- 7-13 scout skier, 10-20 tactical electrical, 5-46- 5-49 unmanned aircraft systems, 7-9- 7secondary roads, 5-38 tactical rope suspension 10 single-channel radio, 9-4- 9-5 technicians, 10-18 utilities, 5-45 sleep disturbances, A-39- A-41 tactical satellite radio, 9-10 vehicle and equipment operator sluggishness, 8-52 targeting, 8-24- 8-25 considerations, 6-46 small arms, 8-51 task organization, 5-2 vehicle loading, 6-47 snow and ice mobility kit, E-3 technological considerations, 5-17 vehicle maintenance, 6-57 snow and ice, 5-23 temperate region, 1-16 vehicle operation, 6-48- 6-52 snow blindness, A-25- A-26 temperature inversions, 1-53 vehicle recovery, 6-54- 6-56 snow laid mines, 5-14 temperature, 1-73 vehicle rollover, 6-53 snow removal, 5-60 terrain analysis, 1-30 vertical construction, 5-42- 5-44 snow removal/drainage, 5-34 terrain analysis, 4-28 very high frequency, 9-7 snow-covered terrain, 7-33 terrain characteristics, 1-21 visibility issues, 8-55 special forces command terrain injuries, A-27 vision, A-35 mountaineering warfare terrain, 3-31 water routes, 4-37- 4-40 training detachment, 10-10 the defense, 3-47- 3-60 weather terrain, 7-37 special purpose systems, 9-12 the offense, 3-13- 3-20 weather, 1-67- 1-70 speedball technique, 6-86 thermobaric weapons, 8-32 weather, 3-32 squad mountain leader kit (SMLK), thunderstorms, 1-80 weather, 7-50 E-4 time on station, 7-38 wet cold, B-2 stability operations, 3-68 tire chains, 5-59 whiteout, 1-51 streams and fords, 4-29 toxins, A-47 wind, 1-74- 1-76 sub-acute mountain sickness, A-17 training charts, 10-35 winter mountain engineers, 10-28 subarctic region, 1-15 training considerations, 10-1- 10-2 winterization, 6-14 This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h21",
+  "manual": "ATP3-90.97",
+  "para": "E.h21",
+  "chapter": "Appendix E",
+  "heading": "*",
+  "pages": [
+   155
+  ],
+  "text": "By Order of the Secretary of the Army",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h22",
+  "manual": "ATP3-90.97",
+  "para": "E.h22",
+  "chapter": "Appendix E",
+  "heading": "*",
+  "pages": [
+   155
+  ],
+  "text": "General, United States Army Chief of Staff Official:",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h23",
+  "manual": "ATP3-90.97",
+  "para": "E.h23",
+  "chapter": "Appendix E",
+  "heading": "GERALD B. O'KEEFE",
+  "pages": [
+   155
+  ],
+  "text": "Administrative Assistant to the Secretary of the Army *",
+  "notices": []
+ },
+ {
+  "id": "ATP3-90.97/E.h24",
+  "manual": "ATP3-90.97",
+  "para": "E.h24",
+  "chapter": "Appendix E",
+  "heading": "DISTRIBUTION:",
+  "pages": [
+   155
+  ],
+  "text": "Active Army, Army National Guard, and United States Army Reserve: Distributed in electronic media only (EMO).",
   "notices": []
  }
 ]

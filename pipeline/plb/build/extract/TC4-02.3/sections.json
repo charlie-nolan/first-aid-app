@@ -1,5 +1,89 @@
 [
  {
+  "id": "TC4-02.3/0.h1",
+  "manual": "TC4-02.3",
+  "para": "0.h1",
+  "chapter": "",
+  "heading": "May 2015",
+  "pages": [
+   1
+  ],
+  "text": "DISTRIBUTION RESTRICTION: Approved for public release; distribution is unlimited.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/0.h2",
+  "manual": "TC4-02.3",
+  "para": "0.h2",
+  "chapter": "",
+  "heading": "Headquarters, Department of the Army",
+  "pages": [
+   2
+  ],
+  "text": "This publication is available at Army Knowledge Online (https://armypubs.us.army.mil/doctrine/index.html). To receive publishing updates, please subscribe at http://www.apd.army.mil/AdminPubs/new_subscribe.asp.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/0.h3",
+  "manual": "TC4-02.3",
+  "para": "0.h3",
+  "chapter": "",
+  "heading": "*TC 4-02.3",
+  "pages": [
+   3
+  ],
+  "text": "Training Circular (TC) Headquarters No. 4-02.3 Department of the Army Washington, DC, 6 May 2015",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3.h1",
+  "manual": "TC4-02.3",
+  "para": "3.h1",
+  "chapter": "Chapter 3 UNIT-LEVEL PREVENTIVE MEDICINE MEASURES ....................................... 3-1",
+  "heading": "Contents",
+  "pages": [
+   4
+  ],
+  "text": "Plan for and Enforce Preventive Measures for Carbon Monoxide Poisoning and Fire Prevention ............................................................................................. 3-6 Plan for and Enforce Preventive Measures for Toxic Industrial Materials .......... 3-7 Plan for and Enforce Protective Measures for Noise Hazards ............................ 3-7 Plan for and Enforce Sleep Discipline ................................................................. 3-7 Ensure Welfare, Safety, and Health of the Unit .................................................. 3-8",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h1",
+  "manual": "TC4-02.3",
+  "para": "A.h1",
+  "chapter": "Appendix A TECHNIQUES AND PROCEDURES FOR DISINFECTING WATER ............... A-1",
+  "heading": "Preface",
+  "pages": [
+   5
+  ],
+  "text": "Training Circular (TC) 4-02.3 provides hygiene and sanitation guidance for Soldiers in the field and while deployed. The publication outlines individual and leader responsibilities and describes individual and leader preventive medicine measures and guidance for Soldiers. Implementation of the techniques presented in this publication enable individual Soldiers to remain healthy in the field and enable commanders to maintain a fit and healthy force capable of accomplishing the mission in any environment. The principal audience for TC 4-02.3 is commanders, subordinate leaders, individual Soldiers, Department of Defense (DOD) civilians and contractors. Commanders, staffs, and subordinates ensure their decisions and actions comply with applicable United States (U.S.), international, and, in some cases, host-nation laws and regulations. Commanders at all levels ensure their Soldiers operate in accordance with the law of war and the rules of engagement. (See Field Manual [FM] 27-10.) This publication is in consonance with the following North Atlantic Treaty Organization Standardization Agreements:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h2",
+  "manual": "TC4-02.3",
+  "para": "A.h2",
+  "chapter": "Appendix A TECHNIQUES AND PROCEDURES FOR DISINFECTING WATER ............... A-1",
+  "heading": "Standardization Agreements",
+  "pages": [
+   5
+  ],
+  "text": "Requirement for Training in First-Aid, Emergency Care in Combat 2122 Situations and Basic Hygiene for All Military Personnel Requirements for Water Potability During Field Operations and in 2136 Emergency Situations--Allied Medical Publication-4.9 Emergency Supply of Water in Operations 2885 Protection of Hearing 2899 Essential Field Sanitary Requirements 2982 This publication uses joint terms where applicable. Selected joint and Army terms and definitions appear in both the glossary and the text. This publication is not the proponent for any Army terms. Unless otherwise stated in this publication, the use of masculine nouns and pronouns does not refer exclusively to men. Training Circular 4-02.3 applies to the Active Army, Army National Guard/Army National Guard of the United States, and United States Army Reserve unless otherwise stated. The proponent and the preparing agency of this publication is the United States Army Medical Department Center and School, United States Army Health Readiness Center of Excellence. Send comments and recommendations on a DA Form 2028 (Recommended Changes to Publications and Blank Forms) to Commander, United States Army Medical Department Center and School, United States Army Health Readiness Center of Excellence, ATTN: MCCS-FC-DL (TC 4-02.3), 2377 Greeley Road, Building 4011, Suite D, JBSA Fort Sam Houston, Texas 78234-7731; by e-mail to usarmy.jbsa.medcomameddcs.mbx.ameddcs-medical-doctrine@mail.mil; or submit an electronic DA Form 2028. Recommended changes should be keyed to the specific page, paragraph, and line number. A rationale for each proposed change is required to aid in the evaluation and adjudication of each comment.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h3",
+  "manual": "TC4-02.3",
+  "para": "A.h3",
+  "chapter": "Appendix A TECHNIQUES AND PROCEDURES FOR DISINFECTING WATER ............... A-1",
+  "heading": "Introduction",
+  "pages": [
+   6
+  ],
+  "text": "Training Circular 4-02.3 remains generally consistent with FM 21-10/MCRP 4-11.1D on key topics while adopting updated terminology and concepts as necessary. It is designed to be used in conjunction with Army Techniques Publication (ATP) 4-25.12. The material presented in this publication reflects enduring practices of field hygiene, sanitation, and preventive medicine measures. Implementation of these techniques and procedures enable commanders to preserve the health of their Soldiers in order for them to accomplish the units' mission. Additionally the discussion contained in this text is designed as a quick reference and ready resource for the individual Soldiers to employ appropriate preventive medicine measures to protect themselves from health threats commonly encountered while in the field or deployed. Summary of changes include-- The revision of FM 21-10/MCRP 4-11.1D includes designating this publication as a TC and renumbering it as TC 4-02.3 in compliance with the Army's Doctrine 2015 Initiative. Training Circular 4-02.3 consists of three chapters and one appendix as follows: Chapter 1 provides a brief history of disease in military operations, identifies health threats confronted by Soldiers while in the field or deployed, and introduces preventive medicine measures. Chapter 2 identifies individual preventive medicine measures and responsibilities. Chapter 3 identifies leader responsibilities and collective preventive medicine measures. Appendix A provides information on water purification techniques for individual water storage systems.",
+  "notices": []
+ },
+ {
   "id": "TC4-02.3/1-1",
   "manual": "TC4-02.3",
   "para": "1-1",
@@ -1505,6 +1589,42 @@
   "notices": []
  },
  {
+  "id": "TC4-02.3/A.h4",
+  "manual": "TC4-02.3",
+  "para": "A.h4",
+  "chapter": "Appendix A",
+  "heading": "1 mg/L 2 mg/L 5 mg/L 10 mg/L 100 mg/L",
+  "pages": [
+   35
+  ],
+  "text": "6 dp 0.75 mL 1.9 mL 3.8 mL 8 tsp",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h5",
+  "manual": "TC4-02.3",
+  "para": "A.h5",
+  "chapter": "Appendix A",
+  "heading": "1 mg/L 2 mg/L 5 mg/L 10 mg/L 100 mg/L",
+  "pages": [
+   35
+  ],
+  "text": "0.9 mL 1.7 mL 4.1 mL 8.3 mL 0.25 tsp",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h6",
+  "manual": "TC4-02.3",
+  "para": "A.h6",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   35
+  ],
+  "text": "dp drops mg/L milligrams per liter mL milliliters tsp teaspoons",
+  "notices": []
+ },
+ {
   "id": "TC4-02.3/A-10",
   "manual": "TC4-02.3",
   "para": "A-10",
@@ -1514,6 +1634,42 @@
    35
   ],
   "text": "Table A-2 identifies equivalent volumes for use by Soldiers when determining how much disinfectant is needed to produce potable water.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h7",
+  "manual": "TC4-02.3",
+  "para": "A.h7",
+  "chapter": "Appendix A",
+  "heading": "dp mL tsp tbsp oz cp pt qt L gal",
+  "pages": [
+   35
+  ],
+  "text": "dp 1 0.067 0.013 0.004 0.002 mL 15 1 0.200 0.067 0.033 0.0042 0.0021 0.0011 0.0010 tsp 74 5 1 0.333 0.167 0.021 0.010 0.005 0.005 0.001 tbsp 222 15 3 1 0.500 0.063 0.031 0.016 0.015 0.004 oz 444 30 6 2 1 0.125 0.063 0.031 0.030 0.008 cp 3550 237 48 16 8 1 0.500 0.250 0.240 0.063 pt 7100 473 96 32 16 2 1 0.500 0.480 0.125 qt 14200 946 192 64 32 4 2 1 0.960 0.25",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h8",
+  "manual": "TC4-02.3",
+  "para": "A.h8",
+  "chapter": "Appendix A",
+  "heading": "L 15000 1000 203 68 34 4.2 2.1 1.06 1 0.26",
+  "pages": [
+   35
+  ],
+  "text": "gal 56775 3785 768 256 128 16 8 4 3.785 1",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h9",
+  "manual": "TC4-02.3",
+  "para": "A.h9",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   35
+  ],
+  "text": "cp cups oz ounce dp drops pt pint gal gallon qt quart L liter tbsp tablespoon mL milliliter tsp teaspoon",
   "notices": []
  },
  {
@@ -1554,6 +1710,90 @@
   "notices": []
  },
  {
+  "id": "TC4-02.3/A.h10",
+  "manual": "TC4-02.3",
+  "para": "A.h10",
+  "chapter": "Appendix A",
+  "heading": "Step 1",
+  "pages": [
+   37
+  ],
+  "text": "half full. A different clean container can be used if the water treatment bag is not available. Using the guide provided in the instructions and shown in the legend below, add one or two",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h11",
+  "manual": "TC4-02.3",
+  "para": "A.h11",
+  "chapter": "Appendix A",
+  "heading": "Step 2",
+  "pages": [
+   37
+  ],
+  "text": "tablets/powder sachets to the water in the bag. Step 3 Fold the bag top tightly three times and fold the tabs in. Step 4 Shake the bag for about 1 minute or until the tablet(s) or powder dissolves completely. Step 5 Let the bag sit for 3 minutes. Step 6 Swirl the water in the bag for 30 seconds. Let the bag sit for either 7 or 15 minutes based on the water temperature, as described in the",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h12",
+  "manual": "TC4-02.3",
+  "para": "A.h12",
+  "chapter": "Appendix A",
+  "heading": "Step 7",
+  "pages": [
+   37
+  ],
+  "text": "instructions and shown in the legend below. If the water is still cloudy, add an additional half tablet or one-half powder sachet and repeat",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h13",
+  "manual": "TC4-02.3",
+  "para": "A.h13",
+  "chapter": "Appendix A",
+  "heading": "Step 8",
+  "pages": [
+   37
+  ],
+  "text": "beginning with Step 4. Being careful not to disturb the settled material, pour the clear water above the settled material through the cloth filter (provided in the kit) into a clean canteen or other container. Avoid Step 9 pouring settled material onto the filter cloth. Do not drink the water from the treatment bag without filtering it. If the filter cloth from the kit is unavailable, a clean cotton T-shirt can be used. Rinse the filter and treatment bag with treated water so they can be reused. Always filter the",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h14",
+  "manual": "TC4-02.3",
+  "para": "A.h14",
+  "chapter": "Appendix A",
+  "heading": "Step 10",
+  "pages": [
+   37
+  ],
+  "text": "water through the same side of the filter cloth. Instructions for using the chlorination kit (water purification) for hydration system reservoirs Personal hydration systems require additional tablets/powder sachets based on the volume of water they hold. When using 70- and 72-ounce (two liter) reservoirs double the number of",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h15",
+  "manual": "TC4-02.3",
+  "para": "A.h15",
+  "chapter": "Appendix A",
+  "heading": "Step 1",
+  "pages": [
+   37
+  ],
+  "text": "tablets described in the instructions, and when using 100- and 102-ounce (three liter) reservoirs triple the number of tablets/sachets. Step 2 Fill a separate clean container with the amount of water to be treated. Follow directions outlined in Steps 2 through 9 (above), and add the treated water to the",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h16",
+  "manual": "TC4-02.3",
+  "para": "A.h16",
+  "chapter": "Appendix A",
+  "heading": "Step 3",
+  "pages": [
+   37
+  ],
+  "text": "hydration system. Note: The chlorination kit (water purification) should not be used in the reservoir itself, skipping the filtration step, because of the location of the drinking tube at the bottom of the reservoir. This is where all the flocculent will settle which greatly affects the quality of the water drawn into the straw during consumption.",
+  "notices": []
+ },
+ {
   "id": "TC4-02.3/A-14",
   "manual": "TC4-02.3",
   "para": "A-14",
@@ -1563,6 +1803,30 @@
    38
   ],
   "text": "Table A-4 identifies the number of tablets or powder sachets that are required to purify a specific volume of water within a given temperature range.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h17",
+  "manual": "TC4-02.3",
+  "para": "A.h17",
+  "chapter": "Appendix A",
+  "heading": "1 quart (1 liter) (2 liter) bladder (3 liter) for Step 7",
+  "pages": [
+   38
+  ],
+  "text": "77 degrees F (25 degrees C) 1 2 3 7 58 degrees F (15 degrees C) 1 2 3 15 50 degrees F (10 degrees C) 1 2 3 15 41 degrees F (5 degrees C) 2 4 6 15",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h18",
+  "manual": "TC4-02.3",
+  "para": "A.h18",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   38
+  ],
+  "text": "degrees C degrees Celsius degrees F degrees Fahrenheit",
   "notices": []
  },
  {
@@ -1684,6 +1948,321 @@
    40
   ],
   "text": "Another source of potential contamination if not properly cleaned is the delivery tube and bite valve. To properly clean the tube and valve follow these steps:\n- First, pull the valve off of the tube end. Alternatively, if Soldiers just want to clean debris out of the diaphragm core, the valve body may be left on the tube's end.\n- Second, grasp the rib at the valve's face and roll it backwards. This exposes the core piece with the slit opening.\n- Third, pull the core off of the ribbed post. Then clean the valve parts with a cotton swab or toothbrush and some soapy water.\n- Finish by rinsing all parts thoroughly and repositioning the valve core on the center post of the valve body. Then roll the outer sleeve forward again to complete the job.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h19",
+  "manual": "TC4-02.3",
+  "para": "A.h19",
+  "chapter": "Appendix A",
+  "heading": "Glossary",
+  "pages": [
+   41
+  ],
+  "text": "The glossary lists acronyms and terms with Army or joint definitions. This publication is not the proponent for any terms.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h20",
+  "manual": "TC4-02.3",
+  "para": "A.h20",
+  "chapter": "Appendix A",
+  "heading": "SECTION I - ACRONYMS AND ABBREVIATIONS",
+  "pages": [
+   41,
+   42
+  ],
+  "text": "ATP Army techniques publication ATTP Army tactics, techniques, and procedures DNBI disease and nonbattle injury DOD Department of Defense FM field manual JBSA Joint Base San Antonio MCRP Marine Corps reference publication TC training circular U.S. United States This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h21",
+  "manual": "TC4-02.3",
+  "para": "A.h21",
+  "chapter": "Appendix A",
+  "heading": "REQUIRED PUBLICATIONS",
+  "pages": [
+   43
+  ],
+  "text": "These documents must be available to the intended users of this publication. This publication is available online at http://www.apd.army.mil. Accessed on 3 April 2015. ADRP 1-02, Terms and Military Symbols, 2 February 2015. This publication is available online at http://www.dtic.mil/doctrine. Accessed on 3 April 2015. JP 1-02, Department of Defense Dictionary of Military and Associated Terms, 8 November 2010.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h22",
+  "manual": "TC4-02.3",
+  "para": "A.h22",
+  "chapter": "Appendix A",
+  "heading": "RELATED PUBLICATIONS",
+  "pages": [
+   43
+  ],
+  "text": "These documents contain relevant supplemental information.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h23",
+  "manual": "TC4-02.3",
+  "para": "A.h23",
+  "chapter": "Appendix A",
+  "heading": "NORTH ATLANTIC TREATY ORGANIZATION STANDARDIZATION AGREEMENTS",
+  "pages": [
+   43
+  ],
+  "text": "These publications are available online: http://nso.nato.int/nso/. Accessed on 13 April 2015. STANAG 2122, Requirement for Training in First-Aid, Emergency Care in Combat Situations and Basic Hygiene for All Military Personnel, Edition 3, 11 November 2010. STANAG 2136, Requirements for Water Potability During Field Operations and in Emergency Situations-Allied Medical Publication-4.9, Edition 6, 21 March 2014. STANAG 2885, Emergency Supply of Water in Operations, Edition 5, 13 January 2010. STANAG 2899, Protection of Hearing, Edition 3, 7 August 2001. STANAG 2982, Essential Field Sanitary Requirements, Edition 1, 26 August 1994.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h24",
+  "manual": "TC4-02.3",
+  "para": "A.h24",
+  "chapter": "Appendix A",
+  "heading": "DEPARTMENT OF DEFENSE PUBLICATIONS",
+  "pages": [
+   43
+  ],
+  "text": "These publications are available online as indicated. Armed Forces Pest Management Board Technical Guide Number 36, Personal Protective Measures Against Insects and Other Arthropods of Military Significance, October 2009. (http://www.afpmb.org/sites/default/files/pubs/techguides/tg36.pdf) Accessed on 3 April 2015.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h25",
+  "manual": "TC4-02.3",
+  "para": "A.h25",
+  "chapter": "Appendix A",
+  "heading": "MULTISERVICE PUBLICATIONS",
+  "pages": [
+   43
+  ],
+  "text": "Most multiservice publications are available online: http://www.apd.army.mil. Accessed on 3 April 2015. ATTP 3-97.11/MCRP 3-35.1D, Cold Region Operations, 28 January 2011.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h26",
+  "manual": "TC4-02.3",
+  "para": "A.h26",
+  "chapter": "Appendix A",
+  "heading": "ARMY PUBLICATIONS",
+  "pages": [
+   43,
+   44
+  ],
+  "text": "Most Army doctrinal publications are available online: http://www.apd.army.mil. Accessed on 3 April 2015. AR 40-5, Preventive Medicine, 25 May 2007. ATP 4-25.12, Unit Field Sanitation Teams, 30 April 2014. FM 6-22.5, Combat and Operational Stress Control Manual for Leaders and Soldiers, 18 March 2009. FM 7-22, Army Physical Readiness Training, 26 October 2012. FM 27-10, The Law of Land Warfare, 18 July 1956. TM 10-7200-200-13, Operator, Organizational and Direct Support Maintenance Manual (Including Repair Parts and Special Tools List) for Can, Gasoline, Military, Steel, 5-Gallon (FSN 7240- 222-2088); Can, Water, Military, Steel, 5-Gallon (7240-242-6153); Can, Water, Aluminum; 5-Gallon (7240-242-3767); Can, Water, Military, Plastic, 5-Gallon (7240-089-3827); Case, Military, Water Can (7240-125-9061) (Reprinted w/Basic Incl C1-2) (This item is included on EM 0087), 15 February 1974. (https://www.logsa.army.mil/etms/online.cfm) Accessed on 13 April 2015.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h27",
+  "manual": "TC4-02.3",
+  "para": "A.h27",
+  "chapter": "Appendix A",
+  "heading": "RECOMMENDED READINGS",
+  "pages": [
+   44
+  ],
+  "text": "These sources contain relevant supplemental information. These documents are available online as indicated. All Army Activities (ALARACT) 170/2013, Update of ALARACT 289/2012 Factory Treated Army Combat Uniforms with Permethrin (ACU Permethrin), July 2013. (http://phc.amedd.army.mil/topics/envirohealth/epm/Pages/PermethrinFactory- TreatedArmyCombatUniforms(ACUPermethrin).aspx) Accessed on 13 April 2015. All Army Activities (ALARACT) 352/2011. Rabies Exposure, Identification, Notification, Evaluation, and Treatment Program, 15 September 2011. (https://www.us.army.mil/suite/doc/34613551) Accessed on 3 April 2015. Armed Forces Pest Management Board Technical Guide No. 41, Protection from Rodent-Borne Diseases, December 2013. (http://www.afpmb.org/sites/default/files/pubs/techguides/tg41.pdf) Accessed on 3 April 2015. DODI 4150.07, DOD Pest Management Program, 29 May 2008. (http://www.dtic.mil/whs/directives/corres/pdf/415007p.pdf) Accessed on 13 April 2015. DODI 4715.19, Use of Open-Air Burn Pits in Contingency Operations, 15 February 2011. (http://www.dtic.mil/whs/directives/corres/pdf/471519p.pdf) Accessed on 13 April 2015. DODI 6490.03, Deployment Health, 11 August 2006. (http://www.dtic.mil/whs/directives/corres/pdf/649003p.pdf) Accessed on 13 April 2015. Joint Chiefs of Staff Memorandum MCM 0028-07, Procedures for Deployment Health Surveillance, 2 November 2007. (http://www.dtic.mil/cjcs_directives/cjcs/general.htm) Accessed on 3 April 2015. TB MED 507/AFPAM 48-152 (I), Heat Stress Control and Heat Casualty Management, 7 March 2003. (http://www.apd.army.mil) Accessed on 3 April 2015. TB MED 508, Prevention and Management of Cold-Weather Injuries, 1 April 2005. (http://www.apd.army.mil) Accessed on 3 April 2015. TB MED 577/NAVMED P-5010-10/AFMAN 48-138_IP, Sanitary Control and Surveillance of Field Water Supplies, 1 May 2010. (http://www.apd.army.mil) Accessed on 3 April 2015. TB MED 593, Guidelines for Field Waste Management. 15 September 2006. (http://www.apd.army.mil) Accessed on 3 April 2015. United States Army Public Health Command Training Aid (TA-010-0711), Warning Signs and Symptoms of Heat Stress and Illness, July 2011. (http://usaphcapps.amedd.army.mil/hioshoppingcart/viewItem.aspx?id=54) Accessed on 3 April 2015.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h28",
+  "manual": "TC4-02.3",
+  "para": "A.h28",
+  "chapter": "Appendix A",
+  "heading": "PRESCRIBED FORMS",
+  "pages": [
+   44
+  ],
+  "text": "None.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h29",
+  "manual": "TC4-02.3",
+  "para": "A.h29",
+  "chapter": "Appendix A",
+  "heading": "REFERENCED FORMS",
+  "pages": [
+   44
+  ],
+  "text": "Unless otherwise indicated, DA Forms are available on the Army Publishing Directorate (APD) Web site (www.apd.army.mil). Accessed on 3 April 2015. DA Form 2028, Recommended Changes to Publications and Blank Forms.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h30",
+  "manual": "TC4-02.3",
+  "para": "A.h30",
+  "chapter": "Appendix A",
+  "heading": "Index",
+  "pages": [
+   45
+  ],
+  "text": "References are to paragraph numbers except where otherwise specified.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h31",
+  "manual": "TC4-02.3",
+  "para": "A.h31",
+  "chapter": "Appendix A",
+  "heading": "A H P",
+  "pages": [
+   45
+  ],
+  "text": "acclimatization, 2-45, 3-14 hand washing and sanitizing, personal hygiene, 1-6, 2-2--9, arthropods, 2-36, 2-40--41, 2-12--15 3-2, 3-4--5, 3-14 3-10, 3-12, 3-19 health threats, Chapter 1, physical fitness, 2-33--34, 2-36--37, 3-19 3-6--7, 3-14, 3-37",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h32",
+  "manual": "TC4-02.3",
+  "para": "A.h32",
+  "chapter": "Appendix A",
+  "heading": "3-18, 3-20 3-14, A-11, A-22",
+  "pages": [
+   45
+  ],
+  "text": "bed nets, 2-40--41, 3-10 preventive medicine measures, biological",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h33",
+  "manual": "TC4-02.3",
+  "para": "A.h33",
+  "chapter": "Appendix A",
+  "heading": "waste, 2-57 I 1-9--11",
+  "pages": [
+   45
+  ],
+  "text": "individual, Chapter 2 hazards, 2-52 immersion syndrome, 3-24 unit level, Chapter 3 bleach, household, Table A-1, immunization and A-24 chemoprophylaxis, 2-42--",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h34",
+  "manual": "TC4-02.3",
+  "para": "A.h34",
+  "chapter": "Appendix A",
+  "heading": "C individual water storage rodent, 2-36, 3-10, 3-12",
+  "pages": [
+   45
+  ],
+  "text": "calcium hypochlorite, A-1--2, systems, A-6, A-21--22",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h35",
+  "manual": "TC4-02.3",
+  "para": "A.h35",
+  "chapter": "Appendix A",
+  "heading": "A-5, A-7--9, Table A-1, iodine tablets, A-4--5, A-16-- S",
+  "pages": [
+   45
+  ],
+  "text": "A-12 20 sanitation, 2-21--22 chlorination kit (water Soldier responsibilities, 2-1",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h36",
+  "manual": "TC4-02.3",
+  "para": "A.h36",
+  "chapter": "Appendix A",
+  "heading": "purification), 3-8, A-3, L",
+  "pages": [
+   45
+  ],
+  "text": "A-13--14,A-19 Tables A-3--4, latrines,improvised,1-6 2-27 sleep2-61--66,deprivation,3-25 1-4, 1-7, cleaning and sanitizing portable, 2-26",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h37",
+  "manual": "TC4-02.3",
+  "para": "A.h37",
+  "chapter": "Appendix A",
+  "heading": "individual water storage leader responsibilities, 3-1--2 T",
+  "pages": [
+   45
+  ],
+  "text": "system, A-21--22 toxic industrial materials, 1-4, personal hydration systems, 1-8, 2-52--57, 3-28--30",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h38",
+  "manual": "TC4-02.3",
+  "para": "A.h38",
+  "chapter": "Appendix A",
+  "heading": "cold injury, 2-1, 2-46--51, noise hazards, 2-58--60, W",
+  "pages": [
+   45
+  ],
+  "text": "3-21--25 3-31--32 waste management, 2-23--29 nonpotable water, 2-15, A-1 water",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h39",
+  "manual": "TC4-02.3",
+  "para": "A.h39",
+  "chapter": "Appendix A",
+  "heading": "disease and nonbattle injuries, O chlorination kit, 3-8, A-3,",
+  "pages": [
+   45
+  ],
+  "text": "1-1--3, 1-5, 1-11 oral hygiene, 2-16, 2-18 A-13--14, Tables",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h40",
+  "manual": "TC4-02.3",
+  "para": "A.h40",
+  "chapter": "Appendix A",
+  "heading": "F individual water storage",
+  "pages": [
+   45,
+   46
+  ],
+  "text": "system, A-21--22 field sanitation teams, 1-3, 1-10, 3-1, 3-10--14, 3-21 waterborne and foodborne illness, 2-35 This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h41",
+  "manual": "TC4-02.3",
+  "para": "A.h41",
+  "chapter": "Appendix A",
+  "heading": "6 May 2015",
+  "pages": [
+   47
+  ],
+  "text": "By Order of the Secretary of the Army",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h42",
+  "manual": "TC4-02.3",
+  "para": "A.h42",
+  "chapter": "Appendix A",
+  "heading": "RAYMOND T. ODIERNO",
+  "pages": [
+   47
+  ],
+  "text": "General, United States Army Chief of Staff Official:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h43",
+  "manual": "TC4-02.3",
+  "para": "A.h43",
+  "chapter": "Appendix A",
+  "heading": "GERALD B. O'KEEFE",
+  "pages": [
+   47
+  ],
+  "text": "Administrative Assistant to the Secretary of the Army 1512505",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h44",
+  "manual": "TC4-02.3",
+  "para": "A.h44",
+  "chapter": "Appendix A",
+  "heading": "DISTRIBUTION:",
+  "pages": [
+   47
+  ],
+  "text": "Active Army, Army National Guard, and United States Army Reserve: Distributed in electronic media only (EMO).",
   "notices": []
  }
 ]
