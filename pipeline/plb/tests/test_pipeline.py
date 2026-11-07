@@ -393,3 +393,16 @@ def test_reference_shelf_labels_distinct_and_titles_short(repo):
 def test_chapter_heading_vs_cross_reference(line, is_chapter):
     from plb.extract import CHAPTER_RE
     assert bool(CHAPTER_RE.match(line)) is is_chapter
+
+
+def test_library_groups_order_and_strings(repo):
+    (repo / "content" / "config.yaml").write_text(yaml.safe_dump({
+        "reference_shelf": True,
+        "library_groups": {"First aid": [f"ref-{FIX_ID}", "demo"]}}))
+    write_tree(repo, GOOD_TREE)
+    out, issues = build(repo)
+    assert errors(issues) == []
+    trees = json.loads((out / "trees.json").read_text())["trees"]
+    assert [t["id"] for t in trees] == [f"ref-{FIX_ID}", "demo"]
+    s = json.loads((out / "strings.json").read_text())
+    assert s["GROUP#0"] == s["GROUP#1"] == "First aid"

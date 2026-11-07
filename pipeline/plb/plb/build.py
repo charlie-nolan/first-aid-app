@@ -59,7 +59,13 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
                 by_manual[mid] = json.loads(p.read_text())
         add_reference_shelf(b, by_manual, manuals)
     # tree table order = Library order on the device (and the n in ABOUT#n)
-    order = {tid: i for i, tid in enumerate(config.get("library_order") or [])}
+    groups = config.get("library_groups") or {}
+    group_of = {tid: g for g, tids in groups.items() for tid in tids}
+    flat = [tid for tids in groups.values() for tid in tids] or (config.get("library_order") or [])
+    order = {tid: i for i, tid in enumerate(flat)}
+    ungrouped = [t["id"] for t in b.trees if groups and t["id"] not in group_of]
+    if ungrouped:
+        pissues.append(Issue("warning", "config.yaml", f"trees in no library folder: {ungrouped}"))
     unknown = set(order) - {t["id"] for t in b.trees}
     if unknown:
         pissues.append(Issue("warning", "config.yaml", f"library_order names unknown trees: "
@@ -134,6 +140,10 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
         if t.get("about"):
             strings[f"ABOUT:{t['id']}"[:31]] = t["about"]
             strings[f"ABOUT#{i}"] = t["about"]
+    for i, t in enumerate(b.trees):
+        if t["id"] in group_of:
+            t["group"] = group_of[t["id"]]
+            strings[f"GROUP#{i}"] = group_of[t["id"]]
     (out / "strings.json").write_text(json.dumps(strings, indent=1))
     (out / "contexts.json").write_text(json.dumps(contexts, indent=1))
 
