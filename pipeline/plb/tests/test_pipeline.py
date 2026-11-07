@@ -335,3 +335,36 @@ def test_notices_follow_their_paragraph(repo):
     pj = out / "passages.jsonl"
     pj.write_text(pj.read_text().replace("Placeholder caution box", "Made up"))
     assert any("not verbatim" in e for e in errors(run_checks(repo, out, issues)))
+
+
+def test_reference_shelf(repo):
+    (repo / "content" / "config.yaml").write_text("reference_shelf: true\n")
+    write_tree(repo, GOOD_TREE)
+    p = repo / "build" / "extract" / FIX_ID / "sections.json"
+    secs = json.loads(p.read_text())
+    secs[1]["notices"] = [{"kind": "WARNING", "text": "Placeholder warning."}]
+    p.write_text(json.dumps(secs))
+    out, issues = build(repo)
+    assert errors(run_checks(repo, out, issues)) == []
+    t = json.loads((out / "trees.json").read_text())
+    ref = [x for x in t["trees"] if x["shelf"] == "reference"]
+    assert len(ref) == 1 and ref[0]["unreviewed"] and not ref[0]["emergency"]
+    assert not [x for x in t["trees"] if x["shelf"] != "reference"][0]["unreviewed"]
+    nodes = {n["id"]: n for n in t["nodes"]}
+    leaves = [n for n in nodes.values() if n["tree"] == ref[0]["id"] and n["passages"]]
+    assert len(leaves) == len(secs) and all(n["unreviewed"] and not n["figure"] for n in leaves)
+    assert any(pid.endswith("~warning1") for n in leaves for pid in n["passages"])
+    ph = json.loads((out / "phrases.json").read_text())
+    assert not any(nodes[c["node"]]["unreviewed"] for c in ph)
+
+
+def test_reference_shelf_pages_long_lists(repo):
+    from plb.shelf import add_reference_shelf
+    from plb.trees import Built
+    b = Built()
+    secs = [{"id": f"M/1-{i}", "manual": "M", "para": f"1-{i}", "chapter": "Chapter 1",
+             "heading": "", "text": f"t{i}"} for i in range(1, 101)]
+    add_reference_shelf(b, {"M": secs}, {}, list_max=40)
+    assert max(len(n["choices"]) for n in b.nodes) <= 40
+    root = next(n for n in b.nodes if n["id"] == b.trees[0]["root"])
+    assert [c["label"] for c in root["choices"]] == ["1-1 to 1-40", "1-41 to 1-80", "1-81 to 1-100"]

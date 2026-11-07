@@ -2,3 +2,6 @@
 # or a path to a PNG. Default per PLAN: the bleeding/tourniquet card.
 home_tree: null
 sleep_picture: null
+# Charlie 2026-11-07: ship every extracted manual as a text-only, UNREVIEWED reference shelf,
+# separate from signed-off topics (no pictures, no voice, never emergency).
+reference_shelf: true

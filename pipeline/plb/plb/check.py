@@ -48,6 +48,17 @@ def run_checks(root: Path, inter: Path, build_issues: list[Issue],
             elif key_of.get(c["node"]) != want:
                 issues.append(Issue("error", "expect.yaml",
                                     f"{spoken!r} opens {key_of.get(c['node'])}, expected {want}"))
+    unrev = {n["id"] for n in trees["nodes"] if n.get("unreviewed")}
+    by_id = {n["id"]: n for n in trees["nodes"]}
+    for c in cmds:
+        if c["node"] in unrev:
+            issues.append(Issue("error", "phrases", f"{c['phrase']!r} opens unreviewed text"))
+    for n in trees["nodes"]:
+        if n.get("unreviewed") and (n["figure"] or n.get("emergency")):
+            issues.append(Issue("error", n["key"], "unreviewed node has a picture or is emergency"))
+        for ch in n["choices"]:
+            if not n.get("unreviewed") and by_id[ch["to"]].get("unreviewed"):
+                issues.append(Issue("error", n["key"], "reviewed topic links into unreviewed text"))
     for c in cmds:
         if c["node"] not in key_of:
             issues.append(Issue("error", "phrases", f"cmd {c['cmd_id']} points at missing node"))
@@ -66,7 +77,8 @@ def run_checks(root: Path, inter: Path, build_issues: list[Issue],
         if not p.get("citation"):
             issues.append(Issue("error", p["id"], "passage has no citation"))
     for n in trees["nodes"]:
-        if not n["passages"] and not n["no_match"]:
+        index_only = n.get("unreviewed") and n["choices"] and not n["passages"]
+        if not n["passages"] and not n["no_match"] and not index_only:
             issues.append(Issue("error", n["key"], "node has no sourced passage"))
         for pid in n["passages"] + n["lookalikes"]:
             if pid not in by_pid:

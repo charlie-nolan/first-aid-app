@@ -44,6 +44,7 @@ import yaml
 
 KINDS = {"kit", "improvised", "nothing", "next"}
 SHELVES = {"first-aid", "survival", "bushcraft", "plants", "fire", "traps", "weather"}
+# "reference" is reserved for the generated, unreviewed manual shelf (plb/shelf.py)
 LABEL_MAX = 40
 BANNED_PLANT = re.compile(r"\b(mushroom|fung(us|i)|toadstool|morel|chanterelle|puffball)", re.I)
 

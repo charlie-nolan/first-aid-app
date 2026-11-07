@@ -50,6 +50,14 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
         contexts.update(yaml.safe_load((root / "content" / "contexts.yaml").read_text()) or {})
     b = build_trees(tree_dir, sections, figures, manuals, contexts)
     cmds, pissues = ph.build_commands(b.node_phrases, max_phrases=max_phrases)
+    if config.get("reference_shelf"):
+        from .shelf import add_reference_shelf
+        by_manual = {}
+        for mid in manuals:                       # sources.yaml order, file order inside
+            p = extract_dir / mid / "sections.json"
+            if p.exists():
+                by_manual[mid] = json.loads(p.read_text())
+        add_reference_shelf(b, by_manual, manuals)
     issues = b.issues + pissues
 
     sleep = config.get("sleep_picture")
@@ -100,6 +108,7 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
     for n in b.nodes:
         nodes.append({**{k: n[k] for k in ("id", "key", "tree", "label", "passages", "lookalikes",
                                            "choices", "species", "no_match", "emergency", "tags")},
+                      "unreviewed": n.get("unreviewed", False),
                       "figure": pic_id(n["figure"]) if n["figure"] else None})
     trees = {"trees": b.trees, "nodes": nodes, "home_tree": home,
              "sleep_picture": ("sleep" if sleep and sleep not in figures else
