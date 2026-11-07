@@ -92,6 +92,12 @@ add `menuconfig` before `flash`, then look under **Librarian**.
 | BACK | go back; at the start of a window, the library | step the front light: off, dim, bright |
 | Window L / R (Plus) | switch between the 5 windows | smaller / larger text |
 
+Quick (partial) refreshes leave faint ghosts; every 5th refresh is a full one
+(the black-white flash), and pressing any two buttons together forces one.
+The serial log prints each refresh and how long BUSY stayed high. "BUSY never
+went high" means the BUSY wire (D3) is loose; the screen then tears, so the
+firmware falls back to fixed waits until it is fixed.
+
 4. After 60 s without a press, it draws the sleep card and deep-sleeps. Any
    button wakes it back to the wake screen; the windows are where you left them.
 

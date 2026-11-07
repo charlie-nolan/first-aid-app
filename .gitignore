@@ -25,3 +25,6 @@ qwen work/
 
 # Keep the small test cartridge so the bench build can flash without running the tools
 !firmware/library/library.bin
+
+# ESP-IDF build folders
+firmware/build-*/
