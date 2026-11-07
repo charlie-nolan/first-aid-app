@@ -20,12 +20,20 @@ PARA_RE = re.compile(r"^(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})\.\s+(?P<rest>.*)$")
 # Air Force handbooks number paragraphs "4.7.3." instead (numbering: decimal in sources.yaml)
 DECIMAL_RE = re.compile(r"^(?P<num>\d{1,2}(?:\.\d{1,3}){1,4})\.\s+(?P<rest>.*)$")
 # CAUTION / WARNING / NOTE / DANGER boxes: the keyword alone on a line, or "NOTE: text"
-NOTICE_RE = re.compile(r"^(?P<kind>CAUTION|WARNING|NOTE|DANGER)S?\b\s*[:.]?\s*(?P<rest>.*)$")
+# Table notes number them: "5. CAUTION: Hourly fluid intake should not exceed 1 1/2 qt." (TB MED 507)
+NOTICE_RE = re.compile(r"^(?:\d{1,2}\.\s+(?=(?:CAUTION|WARNING|NOTE|DANGER)S?:))?"
+                       r"(?P<kind>CAUTION|WARNING|NOTE|DANGER)S?\b\s*[:.]?\s*(?P<rest>.*)$")
 NOTICE_WORD_RE = re.compile(r"\b(CAUTION|WARNING|NOTE|DANGER)S?\b")
-FIG_RE = re.compile(r"^Figure\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})\.\s*(?P<title>.*)$")
-FIG_SPLIT_RE = re.compile(r"Figure\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})\.\s*")
-# list-of-figures entries: "Windlass and Ratchet Tourniquets ........ 48"
-TOC_TITLE_RE = re.compile(r"(\.\s*){3,}|\s\d{1,3}$")
+# "... tissue lost. NOTE: Use of a band ..." or "(NOTE: ...)": a note inside the paragraph's
+# own sentences, not a box; it stays in the text and the audit lists it for review
+INLINE_NOTE_RE = re.compile(r"\(?(CAUTION|WARNING|NOTE|DANGER):")
+FIG_RE = re.compile(r"^Figure\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})(?:[.\-]\s*|\s+(?=[A-Z]))"
+                    r"(?P<title>.*)$")
+FIG_SPLIT_RE = re.compile(r"Figure\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})(?:[.\-]\s*|\s+(?=[A-Z]))")
+# list-of-figures entries: "Windlass and Ratchet Tourniquets ........ 48", or a page of
+# captions that all end in page numbers
+TOC_LEADER_RE = re.compile(r"(\.\s*){3,}")
+TOC_PAGENO_RE = re.compile(r"\s\d{1,3}$")
 TABLE_RE = re.compile(r"^Table\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})\.\s*(?P<title>.*)$")
 CHAPTER_RE = re.compile(r"^(Chapter\s+\d+|Appendix\s+[A-Z])\b", re.I)
 
@@ -133,6 +141,22 @@ class Figure:
     dpi: int = 200
 
 
+def split_columns(words: list[dict], width: float) -> list[list[dict]]:
+    """Two-column pages (Poisonous Snakes of the World) would otherwise interleave the
+    columns line by line. Call it two columns when almost no word crosses the middle and
+    both halves hold real text."""
+    mid = width / 2
+    if len(words) < 60:
+        return [words]
+    cross = sum(w["x0"] < mid < w["x1"] for w in words)
+    left = [w for w in words if w["x1"] <= mid]
+    right = [w for w in words if w["x0"] >= mid]
+    if cross > len(words) * 0.02 or min(len(left), len(right)) < len(words) * 0.3:
+        return [words]
+    rest = [w for w in words if w["x0"] < mid < w["x1"]]
+    return [left + rest, right]
+
+
 def group_rows(words: list[dict]) -> list[list[dict]]:
     """Group words into lines by vertical overlap, so a large small-caps initial ("A" of
     "APPLICATION") lands on the same line as the rest of its word."""
@@ -178,7 +202,7 @@ def read_lines(pdf_path: Path, margin_top: float = 0.07, margin_bottom: float = 
             words = [w for w in words
                      if w["top"] >= h * margin_top and w["bottom"] <= h * (1 - margin_bottom)
                      and w["size"] >= 3]
-            rows = group_rows(words)
+            rows = [r for col in split_columns(words, page.width) for r in group_rows(col)]
             raw = decode_cids([join_words(ws) for ws in rows])
             lines = []
             for ws, text in zip(rows, raw):
@@ -233,9 +257,11 @@ def is_heading(line: Line, body_size: float) -> bool:
 
 
 def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
-            dpi: int = 200, numbering: str = "dash") -> tuple[list[Section], list[Figure]]:
+            dpi: int = 200, numbering: str = "dash",
+            skip_pages: tuple[int, ...] = ()) -> tuple[list[Section], list[Figure]]:
     """numbering: "dash" (Army "2-15."), "decimal" (Air Force "4.7.3.") or "headings"
-    (no paragraph numbers: each heading starts a section, numbered "<page>.<n>")."""
+    (no paragraph numbers: each heading starts a section, numbered "<page>.<n>").
+    skip_pages: 1-based pages that are not part of the publication (a reseller's note)."""
     out_dir.mkdir(parents=True, exist_ok=True)
     fig_dir = out_dir / "figures"
     para_re = DECIMAL_RE if numbering == "decimal" else PARA_RE
@@ -271,8 +297,12 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
         pending.clear()
 
     for page, lines in read_lines(pdf_path):
+        if page.page_number in skip_pages:
+            continue
         sizes = sorted(l.size for l in lines) or [10.0]
         body = sizes[len(sizes) // 2]
+        toc_page = sum(bool(FIG_RE.match(l.text) and TOC_PAGENO_RE.search(l.text))
+                       for l in lines) >= 3
         for i, ln in enumerate(lines):
             t = ln.text.strip()
             keyword_lines += len(NOTICE_WORD_RE.findall(t))
@@ -297,7 +327,8 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             if FIG_RE.match(t):
                 caps = split_captions(t)
                 for k, cap in enumerate(caps):
-                    if not figures or TOC_TITLE_RE.search(cap["title"]):
+                    if not figures or TOC_LEADER_RE.search(cap["title"]) or (
+                            toc_page and TOC_PAGENO_RE.search(cap["title"])):
                         continue
                     w = page.width / len(caps)              # captions side by side share the row
                     xr = (k * w, (k + 1) * w) if len(caps) > 1 else None
@@ -347,9 +378,16 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
     # a notice's text; anything else may be a box the extractor missed
     kept = sum(len(s.notices) for s in sections)
     inside = sum(len(NOTICE_WORD_RE.findall(n["text"])) for s in sections for n in s.notices)
+    inline = [f"{s.id}: ...{s.text[max(0, m.start() - 30): m.end() + 40]}..."
+              for s in sections for m in INLINE_NOTE_RE.finditer(s.text)]
+    other = [f"{s.id} ({f}): {getattr(s, f)[max(0, m.start() - 30): m.end() + 30]}"
+             for s in sections for f in ("text", "heading")
+             for m in NOTICE_WORD_RE.finditer(getattr(s, f))
+             if not (f == "text" and INLINE_NOTE_RE.match(s.text, m.start()))]
     (out_dir / "notices_audit.json").write_text(json.dumps(
         {"keyword_lines": keyword_lines, "notices_kept": kept,
-         "missing": max(0, keyword_lines - kept - inside), "figure_gaps": figure_gaps(figs)}, indent=1))
+         "missing": max(0, keyword_lines - kept - inside),
+         "inline_notes": inline, "keyword_elsewhere": other, "figure_gaps": figure_gaps(figs)}, indent=1))
     (out_dir / "figures.json").write_text(json.dumps([asdict(f) for f in figs], indent=1))
     return sections, figs
 

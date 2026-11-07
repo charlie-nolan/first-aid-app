@@ -182,7 +182,8 @@ manuals:
   title: 'Active Shooter: How to Respond'
   publisher: U.S. Department of Homeland Security
   edition: October 2008
-  distribution: NOT FOUND - check the cover by hand
+  distribution: US Government work (17 USC 105), no statement printed; kept under Charlie's 2026-11-07
+    rule
   tier: 5
   urls:
   - https://www.dhs.gov/xlibrary/assets/active_shooter_booklet.pdf
@@ -196,15 +197,19 @@ manuals:
   title: Field Management of Chemical Casualties Handbook
   publisher: USAMRICD Chemical Casualty Care Division
   edition: Second edition, July 2000
-  distribution: NOT FOUND - check the cover by hand
+  distribution: US Government work (17 USC 105), no statement printed; kept under Charlie's 2026-11-07
+    rule
   tier: 5
   urls:
   - https://govinfo.gov/content/pkg/GOVPUB-D101-PURL-LPS76481/pdf/GOVPUB-D101-PURL-LPS76481.pdf
-  notes: GPO copy taken from a commercial "book-on-a-disc"; page 1 is that publisher's note, not the handbook.
-    The handbook says it is course reading, not official doctrine.
+  notes: GPO copy taken from a commercial "book-on-a-disc"; page 1 is that publisher's note and is skipped.
+    The handbook is course reading, not official doctrine (its own disclaimer, p.3); cite it as supplemental
+    only.
   file: sources/USAMRICD_FMCC.pdf
   sha256: e0f0c3d4c6998f5afd5fd4f5f4ef5b5fafa3c36430244b6bf0cd0dc1c1426075
   numbering: headings
+  skip_pages:
+  - 1
 - id: USAMRICD-MMCC
   cite_as: Medical Management of Chemical Casualties
   title: Medical Management of Chemical Casualties Handbook

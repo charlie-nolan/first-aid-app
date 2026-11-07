@@ -1,5 +1,21 @@
 [
  {
+  "id": "AFH10-644/fig/1-1",
+  "manual": "AFH10-644",
+  "num": "1-1",
+  "title": "Elements of Surviving",
+  "page": 9,
+  "bbox": [
+   82.2499924,
+   306.1855163,
+   531.2373774,
+   694.66928
+  ],
+  "png": "AFH10-644_fig_1-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
   "id": "AFH10-644/fig/1-2",
   "manual": "AFH10-644",
   "num": "1-2",
@@ -12,6 +28,8614 @@
    480.2839999999996
   ],
   "png": "AFH10-644_fig_1-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/2-1",
+  "manual": "AFH10-644",
+  "num": "2-1",
+  "title": "Five Basic Conditions",
+  "page": 12,
+  "bbox": [
+   79.2251205,
+   242.38867189999996,
+   534.275124,
+   666.94928
+  ],
+  "png": "AFH10-644_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/2-2",
+  "manual": "AFH10-644",
+  "num": "2-2",
+  "title": "Harsh Climates",
+  "page": 13,
+  "bbox": [
+   105.6800079,
+   265.0399781,
+   504.51993280000005,
+   580.66928
+  ],
+  "png": "AFH10-644_fig_2-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/2-3",
+  "manual": "AFH10-644",
+  "num": "2-3",
+  "title": "Terrain",
+  "page": 14,
+  "bbox": [
+   65.9599991,
+   109.03997809999998,
+   550.1199885,
+   285.10918000000004
+  ],
+  "png": "AFH10-644_fig_2-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/2-4",
+  "manual": "AFH10-644",
+  "num": "2-4",
+  "title": "Life Forms",
+  "page": 14,
+  "bbox": [
+   65.9599991,
+   427.9999695,
+   551.0799884,
+   683.62928
+  ],
+  "png": "AFH10-644_fig_2-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/2-5",
+  "manual": "AFH10-644",
+  "num": "2-5",
+  "title": "IP's Condition",
+  "page": 15,
+  "bbox": [
+   193.1750488,
+   312.9823913,
+   420.3250458,
+   504.82918
+  ],
+  "png": "AFH10-644_fig_2-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/2-6",
+  "manual": "AFH10-644",
+  "num": "2-6",
+  "title": "Code of Conduct",
+  "page": 18,
+  "bbox": [
+   142.3999786,
+   67.4000244,
+   468.0399678,
+   494.02928
+  ],
+  "png": "AFH10-644_fig_2-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/3-1",
+  "manual": "AFH10-644",
+  "num": "3-1",
+  "title": "IP Needs",
+  "page": 20,
+  "bbox": [
+   93.6799927,
+   231.79998780000005,
+   516.5199269999999,
+   532.4292800000001
+  ],
+  "png": "AFH10-644_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/3-2",
+  "manual": "AFH10-644",
+  "num": "3-2",
+  "title": "Personal Protection",
+  "page": 21,
+  "bbox": [
+   78.6799927,
+   67.4000244,
+   531.2798979,
+   380.02928
+  ],
+  "png": "AFH10-644_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/3-3",
+  "manual": "AFH10-644",
+  "num": "3-3",
+  "title": "Shelter",
+  "page": 22,
+  "bbox": [
+   110.2399979,
+   67.4000244,
+   499.4799112,
+   342.58928000000003
+  ],
+  "png": "AFH10-644_fig_3-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/3-4",
+  "manual": "AFH10-644",
+  "num": "3-4",
+  "title": "Fire",
+  "page": 22,
+  "bbox": [
+   177.6799774,
+   416.47994989999995,
+   431.7999724,
+   700.54928
+  ],
+  "png": "AFH10-644_fig_3-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/3-5",
+  "manual": "AFH10-644",
+  "num": "3-5",
+  "title": "Evasion Sustenance",
+  "page": 23,
+  "bbox": [
+   65.9599991,
+   241.4000244,
+   529.3598996000001,
+   469.54928
+  ],
+  "png": "AFH10-644_fig_3-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/3-6",
+  "manual": "AFH10-644",
+  "num": "3-6",
+  "title": "Self Aid",
+  "page": 24,
+  "bbox": [
+   172.3999786,
+   67.39996340000005,
+   437.4399635,
+   359.02928
+  ],
+  "png": "AFH10-644_fig_3-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/3-7",
+  "manual": "AFH10-644",
+  "num": "3-7",
+  "title": "Travel",
+  "page": 24,
+  "bbox": [
+   65.9600143,
+   513.9199218,
+   549.9999222,
+   698.98928
+  ],
+  "png": "AFH10-644_fig_3-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/3-8",
+  "manual": "AFH10-644",
+  "num": "3-8",
+  "title": "Return",
+  "page": 25,
+  "bbox": [
+   89.7500153,
+   413.4979858,
+   522.2499885,
+   688.3063999999999
+  ],
+  "png": "AFH10-644_fig_3-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/4-1",
+  "manual": "AFH10-644",
+  "num": "4-1",
+  "title": "Al Qaeda Linked Terrorists",
+  "page": 27,
+  "bbox": [
+   105.6800079,
+   67.39996330000008,
+   504.99995800000005,
+   332.02928
+  ],
+  "png": "AFH10-644_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/4-2",
+  "manual": "AFH10-644",
+  "num": "4-2",
+  "title": "F-15E",
+  "page": 28,
+  "bbox": [
+   103.3999939,
+   287.23999019999997,
+   505.95998510000004,
+   563.3864
+  ],
+  "png": "AFH10-644_fig_4-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/4-3",
+  "manual": "AFH10-644",
+  "num": "4-3",
+  "title": "Will to Survive",
+  "page": 29,
+  "bbox": [
+   137.1199951,
+   142.4000244,
+   472.35994890000006,
+   371.98928
+  ],
+  "png": "AFH10-644_fig_4-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/4-4",
+  "manual": "AFH10-644",
+  "num": "4-4",
+  "title": "Psychological Aspects",
+  "page": 32,
+  "bbox": [
+   132.6799774,
+   469.9999695,
+   476.79994869999996,
+   701.14976
+  ],
+  "png": "AFH10-644_fig_4-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/4-5",
+  "manual": "AFH10-644",
+  "num": "4-5",
+  "title": "Thirst",
+  "page": 34,
+  "bbox": [
+   164.9599915,
+   520.7599182,
+   446.7999541,
+   707.38928
+  ],
+  "png": "AFH10-644_fig_4-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/4-6",
+  "manual": "AFH10-644",
+  "num": "4-6",
+  "title": "Cold",
+  "page": 35,
+  "bbox": [
+   117.6800003,
+   291.4399719,
+   493.23998320000004,
+   562.0692799999999
+  ],
+  "png": "AFH10-644_fig_4-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/4-7",
+  "manual": "AFH10-644",
+  "num": "4-7",
+  "title": "Fatigue",
+  "page": 38,
+  "bbox": [
+   135.6799927,
+   259.039978,
+   474.51994790000003,
+   495.10918000000004
+  ],
+  "png": "AFH10-644_fig_4-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-1",
+  "manual": "AFH10-644",
+  "num": "5-1",
+  "title": "POW Medicine",
+  "page": 48,
+  "bbox": [
+   178.3999786,
+   286.7599793,
+   431.0799458,
+   609.3416
+  ],
+  "png": "AFH10-644_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-2",
+  "manual": "AFH10-644",
+  "num": "5-2",
+  "title": "Survival Medicine",
+  "page": 49,
+  "bbox": [
+   161.9599762,
+   487.8799439,
+   449.07996019999996,
+   707.0264
+  ],
+  "png": "AFH10-644_fig_5-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-3",
+  "manual": "AFH10-644",
+  "num": "5-3",
+  "title": "Bedding",
+  "page": 53,
+  "bbox": [
+   197.1199799,
+   535.6399841,
+   414.5199733,
+   706.78496
+  ],
+  "png": "AFH10-644_fig_5-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-4",
+  "manual": "AFH10-644",
+  "num": "5-4",
+  "title": "Fracture",
+  "page": 63,
+  "bbox": [
+   137.2399902,
+   125.59997550000003,
+   472.9599634,
+   383.7464
+  ],
+  "png": "AFH10-644_fig_5-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-5",
+  "manual": "AFH10-644",
+  "num": "5-5",
+  "title": "Splinting",
+  "page": 64,
+  "bbox": [
+   181.3999939,
+   456.43997190000005,
+   430.8399885,
+   653.14496
+  ],
+  "png": "AFH10-644_fig_5-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-6",
+  "manual": "AFH10-644",
+  "num": "5-6",
+  "title": "Burns",
+  "page": 66,
+  "bbox": [
+   134.1199799,
+   67.4000244,
+   476.07997839999996,
+   303.10736
+  ],
+  "png": "AFH10-644_fig_5-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-7",
+  "manual": "AFH10-644",
+  "num": "5-7",
+  "title": "Eye Injuries",
+  "page": 69,
+  "bbox": [
+   106.4000015,
+   139.39996339999993,
+   502.9599072,
+   397.5464
+  ],
+  "png": "AFH10-644_fig_5-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-8",
+  "manual": "AFH10-644",
+  "num": "5-8",
+  "title": "Blisters and Abrasions",
+  "page": 70,
+  "bbox": [
+   158.1199799,
+   67.4000244,
+   452.5599843,
+   293.9883200000001
+  ],
+  "png": "AFH10-644_fig_5-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-9",
+  "manual": "AFH10-644",
+  "num": "5-9",
+  "title": "Frostbite",
+  "page": 75,
+  "bbox": [
+   138.6799774,
+   67.39996330000008,
+   471.519959,
+   298.5478400000001
+  ],
+  "png": "AFH10-644_fig_5-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-10",
+  "manual": "AFH10-644",
+  "num": "5-10",
+  "title": "Trench Foot or Immersion Foot",
+  "page": 75,
+  "bbox": [
+   152.2399902,
+   444.1999511,
+   457.35998359999996,
+   658.78496
+  ],
+  "png": "AFH10-644_fig_5-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-11",
+  "manual": "AFH10-644",
+  "num": "5-11",
+  "title": "Black Widow and Brown Recluse",
+  "page": 78,
+  "bbox": [
+   65.9599991,
+   67.4000244,
+   550.1199885,
+   256.54064000000017
+  ],
+  "png": "AFH10-644_fig_5-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-12",
+  "manual": "AFH10-644",
+  "num": "5-12",
+  "title": "Jewelweed Plant",
+  "page": 79,
+  "bbox": [
+   156.6799774,
+   122.5999756,
+   452.7999817,
+   412.91168
+  ],
+  "png": "AFH10-644_fig_5-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-13",
+  "manual": "AFH10-644",
+  "num": "5-13",
+  "title": "Sharks",
+  "page": 80,
+  "bbox": [
+   116.9599991,
+   421.6399536,
+   493.2399909,
+   706.78496
+  ],
+  "png": "AFH10-644_fig_5-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-14",
+  "manual": "AFH10-644",
+  "num": "5-14",
+  "title": "Sea Wasp Jellyfish",
+  "page": 82,
+  "bbox": [
+   161.9599762,
+   275.5999755,
+   448.59997369999996,
+   592.18496
+  ],
+  "png": "AFH10-644_fig_5-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-15",
+  "manual": "AFH10-644",
+  "num": "5-15",
+  "title": "Blue Ringed Octopus",
+  "page": 84,
+  "bbox": [
+   151.3999786,
+   371.8399658,
+   458.3199618,
+   622.4264
+  ],
+  "png": "AFH10-644_fig_5-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-16",
+  "manual": "AFH10-644",
+  "num": "5-16",
+  "title": "Venomous Spine Fish and Snails",
+  "page": 86,
+  "bbox": [
+   67.2799988,
+   65.9600218999999,
+   554.4398883,
+   383.98640000000006
+  ],
+  "png": "AFH10-644_fig_5-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-17",
+  "manual": "AFH10-644",
+  "num": "5-17",
+  "title": "Fish With Poisonous Flesh",
+  "page": 87,
+  "bbox": [
+   92.7251205,
+   68.0,
+   520.7751127,
+   345.10352000000006
+  ],
+  "png": "AFH10-644_fig_5-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-18",
+  "manual": "AFH10-644",
+  "num": "5-18",
+  "title": "Aloe Vera",
+  "page": 88,
+  "bbox": [
+   153.6799927,
+   67.39996340000005,
+   455.7999532,
+   286.5473600000001
+  ],
+  "png": "AFH10-644_fig_5-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-19",
+  "manual": "AFH10-644",
+  "num": "5-19",
+  "title": "Cayenne Chili",
+  "page": 88,
+  "bbox": [
+   152.1199799,
+   360.3199768,
+   457.3599917,
+   573.34496
+  ],
+  "png": "AFH10-644_fig_5-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-20",
+  "manual": "AFH10-644",
+  "num": "5-20",
+  "title": "Common Plantain",
+  "page": 89,
+  "bbox": [
+   98.1199875,
+   67.39996329999997,
+   512.0799298,
+   321.1025600000001
+  ],
+  "png": "AFH10-644_fig_5-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-21",
+  "manual": "AFH10-644",
+  "num": "5-21",
+  "title": "Dandelion",
+  "page": 89,
+  "bbox": [
+   67.3999939,
+   408.5599671,
+   542.3199870999999,
+   611.14496
+  ],
+  "png": "AFH10-644_fig_5-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-22",
+  "manual": "AFH10-644",
+  "num": "5-22",
+  "title": "Dog Rose",
+  "page": 90,
+  "bbox": [
+   74.9599991,
+   67.39996340000005,
+   534.7599364,
+   283.5444800000001
+  ],
+  "png": "AFH10-644_fig_5-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-23",
+  "manual": "AFH10-644",
+  "num": "5-23",
+  "title": "Garlic",
+  "page": 90,
+  "bbox": [
+   113.2399979,
+   357.1999817,
+   496.95993469999996,
+   604.9064
+  ],
+  "png": "AFH10-644_fig_5-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-24",
+  "manual": "AFH10-644",
+  "num": "5-24",
+  "title": "Mullein",
+  "page": 91,
+  "bbox": [
+   88.4000015,
+   67.39996339999993,
+   521.6799884,
+   258.10832000000005
+  ],
+  "png": "AFH10-644_fig_5-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-25",
+  "manual": "AFH10-644",
+  "num": "5-25",
+  "title": "Onions",
+  "page": 91,
+  "bbox": [
+   92.9599915,
+   331.7599487,
+   518.0799894,
+   612.34496
+  ],
+  "png": "AFH10-644_fig_5-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-26",
+  "manual": "AFH10-644",
+  "num": "5-26",
+  "title": "White Willow",
+  "page": 92,
+  "bbox": [
+   120.679985,
+   67.39996339999993,
+   489.2799566,
+   307.54544000000004
+  ],
+  "png": "AFH10-644_fig_5-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-27",
+  "manual": "AFH10-644",
+  "num": "5-27",
+  "title": "Yarrow",
+  "page": 92,
+  "bbox": [
+   131.9599762,
+   401.1199646,
+   478.35995979999996,
+   693.58496
+  ],
+  "png": "AFH10-644_fig_5-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/5-28",
+  "manual": "AFH10-644",
+  "num": "5-28",
+  "title": "Sweet Gum",
+  "page": 93,
+  "bbox": [
+   137.9599762,
+   145.39996340000005,
+   471.5199599,
+   359.98496
+  ],
+  "png": "AFH10-644_fig_5-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-1",
+  "manual": "AFH10-644",
+  "num": "6-1",
+  "title": "Air Transfer (Daytime/Nighttime)",
+  "page": 96,
+  "bbox": [
+   169.1599884,
+   244.1599731,
+   441.7599845,
+   520.30928
+  ],
+  "png": "AFH10-644_fig_6-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-2",
+  "manual": "AFH10-644",
+  "num": "6-2",
+  "title": "Thunderstorms",
+  "page": 98,
+  "bbox": [
+   135.6799927,
+   136.64001469999994,
+   474.1599468,
+   377.26928000000004
+  ],
+  "png": "AFH10-644_fig_6-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-3",
+  "manual": "AFH10-644",
+  "num": "6-3",
+  "title": "Tornado",
+  "page": 99,
+  "bbox": [
+   151.3999786,
+   151.39996340000005,
+   458.0799593,
+   362.98496
+  ],
+  "png": "AFH10-644_fig_6-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-4",
+  "manual": "AFH10-644",
+  "num": "6-4",
+  "title": "Winter Storm",
+  "page": 100,
+  "bbox": [
+   44.96,
+   43.519999999999996,
+   567.0400000000001,
+   73.55264000000011
+  ],
+  "png": "AFH10-644_fig_6-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-5",
+  "manual": "AFH10-644",
+  "num": "6-5",
+  "title": "Hurricanes",
+  "page": 100,
+  "bbox": [
+   162.6799927,
+   355.39996329999997,
+   447.1599865,
+   574.5464
+  ],
+  "png": "AFH10-644_fig_6-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-6",
+  "manual": "AFH10-644",
+  "num": "6-6",
+  "title": "Clouds that form above 20,000 feet",
+  "page": 101,
+  "bbox": [
+   68.9599915,
+   224.3599853999999,
+   541.8398972,
+   373.42928
+  ],
+  "png": "AFH10-644_fig_6-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-7",
+  "manual": "AFH10-644",
+  "num": "6-7",
+  "title": "Clouds that form between 7,000 and 20,000 feet",
+  "page": 101,
+  "bbox": [
+   65.9600067,
+   509.3599243,
+   556.9599511,
+   661.4292800000001
+  ],
+  "png": "AFH10-644_fig_6-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-8",
+  "manual": "AFH10-644",
+  "num": "6-8",
+  "title": "Clouds that form below 7,000 feet",
+  "page": 102,
+  "bbox": [
+   69.4999924,
+   165.37689209999996,
+   550.2901323,
+   310.54448
+  ],
+  "png": "AFH10-644_fig_6-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-9",
+  "manual": "AFH10-644",
+  "num": "6-9",
+  "title": "Cumulonimbus",
+  "page": 102,
+  "bbox": [
+   103.4000015,
+   425.83996579999996,
+   506.7999496,
+   676.90928
+  ],
+  "png": "AFH10-644_fig_6-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-10",
+  "manual": "AFH10-644",
+  "num": "6-10",
+  "title": "Rings around Moon and Sun",
+  "page": 103,
+  "bbox": [
+   167.1199799,
+   265.0399781,
+   443.79995510000003,
+   492.10918000000004
+  ],
+  "png": "AFH10-644_fig_6-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-11",
+  "manual": "AFH10-644",
+  "num": "6-11",
+  "title": "Red Sunset",
+  "page": 104,
+  "bbox": [
+   198.6799774,
+   68.96002199999998,
+   413.3199744,
+   230.02927999999997
+  ],
+  "png": "AFH10-644_fig_6-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/6-12",
+  "manual": "AFH10-644",
+  "num": "6-12",
+  "title": "Smoke Inversion",
+  "page": 105,
+  "bbox": [
+   101.9600067,
+   115.03997800000002,
+   508.7199335,
+   385.66918000000004
+  ],
+  "png": "AFH10-644_fig_6-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/7-1",
+  "manual": "AFH10-644",
+  "num": "7-1",
+  "title": "Composite of Mountains",
+  "page": 106,
+  "bbox": [
+   65.9600143,
+   351.559967,
+   553.239918,
+   704.74928
+  ],
+  "png": "AFH10-644_fig_7-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/7-2",
+  "manual": "AFH10-644",
+  "num": "7-2",
+  "title": "Gorges and Valleys",
+  "page": 107,
+  "bbox": [
+   65.9600067,
+   128.8400269,
+   573.2799458,
+   400.90928
+  ],
+  "png": "AFH10-644_fig_7-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/7-3",
+  "manual": "AFH10-644",
+  "num": "7-3",
+  "title": "Plateau",
+  "page": 107,
+  "bbox": [
+   164.1199799,
+   531.5599366,
+   446.7999853,
+   707.62928
+  ],
+  "png": "AFH10-644_fig_7-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/7-4",
+  "manual": "AFH10-644",
+  "num": "7-4",
+  "title": "Pack Ice",
+  "page": 108,
+  "bbox": [
+   163.3999786,
+   310.3999634,
+   447.5199614,
+   506.98928
+  ],
+  "png": "AFH10-644_fig_7-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/7-5",
+  "manual": "AFH10-644",
+  "num": "7-5",
+  "title": "Valleys",
+  "page": 110,
+  "bbox": [
+   161.1199799,
+   298.6399536,
+   448.2399639,
+   503.14928000000003
+  ],
+  "png": "AFH10-644_fig_7-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/7-6",
+  "manual": "AFH10-644",
+  "num": "7-6",
+  "title": "Erosion",
+  "page": 111,
+  "bbox": [
+   127.3999939,
+   67.39996340000005,
+   482.79997030000004,
+   255.58928000000003
+  ],
+  "png": "AFH10-644_fig_7-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/7-7",
+  "manual": "AFH10-644",
+  "num": "7-7",
+  "title": "Sand Dunes",
+  "page": 111,
+  "bbox": [
+   127.3999939,
+   67.39996340000005,
+   482.79997030000004,
+   490.06928000000005
+  ],
+  "png": "AFH10-644_fig_7-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-1",
+  "manual": "AFH10-644",
+  "num": "8-1",
+  "title": "Global Climate Bands",
+  "page": 114,
+  "bbox": [
+   68.1200027,
+   238.39996339999993,
+   544.2399455,
+   547.42496
+  ],
+  "png": "AFH10-644_fig_8-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-2",
+  "manual": "AFH10-644",
+  "num": "8-2",
+  "title": "Rain Forest",
+  "page": 117,
+  "bbox": [
+   65.9599991,
+   332.0,
+   550.1199885,
+   519.5848599999999
+  ],
+  "png": "AFH10-644_fig_8-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-3",
+  "manual": "AFH10-644",
+  "num": "8-3",
+  "title": "Shrub and Thorn Forest",
+  "page": 118,
+  "bbox": [
+   135.6799927,
+   320.959961,
+   474.3999853,
+   573.46928
+  ],
+  "png": "AFH10-644_fig_8-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-4",
+  "manual": "AFH10-644",
+  "num": "8-4",
+  "title": "Savanna",
+  "page": 119,
+  "bbox": [
+   110.9599991,
+   369.9199524,
+   500.07999060000003,
+   643.55456
+  ],
+  "png": "AFH10-644_fig_8-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-5",
+  "manual": "AFH10-644",
+  "num": "8-5",
+  "title": "Desert Scrub and Waste Areas",
+  "page": 123,
+  "bbox": [
+   120.679985,
+   190.03997809999998,
+   489.5199238,
+   441.10918000000004
+  ],
+  "png": "AFH10-644_fig_8-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-6",
+  "manual": "AFH10-644",
+  "num": "8-6",
+  "title": "The Sahara",
+  "page": 124,
+  "bbox": [
+   130.3999786,
+   308.2399902,
+   479.0799602,
+   541.30928
+  ],
+  "png": "AFH10-644_fig_8-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-7",
+  "manual": "AFH10-644",
+  "num": "8-7",
+  "title": "The Gobi",
+  "page": 125,
+  "bbox": [
+   110.1200027,
+   412.27999869999996,
+   500.79992699999997,
+   663.46928
+  ],
+  "png": "AFH10-644_fig_8-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-8",
+  "manual": "AFH10-644",
+  "num": "8-8",
+  "title": "Composite of American Deserts",
+  "page": 127,
+  "bbox": [
+   70.4000168,
+   67.4000244,
+   558.6399553,
+   326.02928
+  ],
+  "png": "AFH10-644_fig_8-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-9",
+  "manual": "AFH10-644",
+  "num": "8-9",
+  "title": "Marine West Coast Climate",
+  "page": 130,
+  "bbox": [
+   98.2399902,
+   67.39996339999993,
+   512.6799073,
+   312.46928
+  ],
+  "png": "AFH10-644_fig_8-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-10",
+  "manual": "AFH10-644",
+  "num": "8-10",
+  "title": "Plains",
+  "page": 131,
+  "bbox": [
+   116.9599991,
+   364.1600037,
+   493.2399909,
+   630.22928
+  ],
+  "png": "AFH10-644_fig_8-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-11",
+  "manual": "AFH10-644",
+  "num": "8-11",
+  "title": "Coniferous Forest",
+  "page": 132,
+  "bbox": [
+   103.3999939,
+   280.6399536,
+   507.5199271,
+   567.70928
+  ],
+  "png": "AFH10-644_fig_8-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-12",
+  "manual": "AFH10-644",
+  "num": "8-12",
+  "title": "Hardwood (Seasonal)",
+  "page": 134,
+  "bbox": [
+   125.9599915,
+   67.39996340000005,
+   483.8799837,
+   323.02928
+  ],
+  "png": "AFH10-644_fig_8-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-13",
+  "manual": "AFH10-644",
+  "num": "8-13",
+  "title": "Steppes",
+  "page": 134,
+  "bbox": [
+   127.3999939,
+   467.3599549,
+   484.47994900000003,
+   707.98928
+  ],
+  "png": "AFH10-644_fig_8-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-14",
+  "manual": "AFH10-644",
+  "num": "8-14",
+  "title": "Evergreen Scrub Forest",
+  "page": 135,
+  "bbox": [
+   142.3999786,
+   471.67996220000003,
+   469.9599668,
+   707.86928
+  ],
+  "png": "AFH10-644_fig_8-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-15",
+  "manual": "AFH10-644",
+  "num": "8-15",
+  "title": "Tundra",
+  "page": 138,
+  "bbox": [
+   126.67999270000001,
+   251.23999019999997,
+   484.35996420000004,
+   505.30928
+  ],
+  "png": "AFH10-644_fig_8-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-16",
+  "manual": "AFH10-644",
+  "num": "8-16",
+  "title": "Summer and Winter Tundra",
+  "page": 139,
+  "bbox": [
+   65.9600067,
+   67.40002449999997,
+   546.5199497,
+   272.02927999999997
+  ],
+  "png": "AFH10-644_fig_8-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/8-17",
+  "manual": "AFH10-644",
+  "num": "8-17",
+  "title": "Arctic Climate",
+  "page": 139,
+  "bbox": [
+   70.4000092,
+   375.0799561,
+   540.5199563,
+   696.70928
+  ],
+  "png": "AFH10-644_fig_8-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-1",
+  "manual": "AFH10-644",
+  "num": "9-1",
+  "title": "Ocean Currents",
+  "page": 144,
+  "bbox": [
+   65.9599991,
+   150.4400025,
+   550.3599243,
+   409.06928000000005
+  ],
+  "png": "AFH10-644_fig_9-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-2",
+  "manual": "AFH10-644",
+  "num": "9-2",
+  "title": "Collecting Water from Spray Shield",
+  "page": 146,
+  "bbox": [
+   101.9600067,
+   67.39996339999993,
+   507.9999535,
+   344.02928
+  ],
+  "png": "AFH10-644_fig_9-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-3",
+  "manual": "AFH10-644",
+  "num": "9-3",
+  "title": "Rescue from Water",
+  "page": 151,
+  "bbox": [
+   65.9599991,
+   214.39996339999993,
+   550.3599243,
+   365.98928
+  ],
+  "png": "AFH10-644_fig_9-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-4",
+  "manual": "AFH10-644",
+  "num": "9-4",
+  "title": "HELP Position",
+  "page": 153,
+  "bbox": [
+   173.9599915,
+   320.23999030000004,
+   435.8799858,
+   509.74928
+  ],
+  "png": "AFH10-644_fig_9-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-5",
+  "manual": "AFH10-644",
+  "num": "9-5",
+  "title": "Huddling for Temperature Conservation",
+  "page": 154,
+  "bbox": [
+   151.3999786,
+   67.39996339999993,
+   458.0799593,
+   287.02928
+  ],
+  "png": "AFH10-644_fig_9-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-6",
+  "manual": "AFH10-644",
+  "num": "9-6",
+  "title": "One-Man Raft with Spray Shield",
+  "page": 156,
+  "bbox": [
+   69.6800156,
+   67.39996339999993,
+   543.5199258,
+   437.02928
+  ],
+  "png": "AFH10-644_fig_9-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-7",
+  "manual": "AFH10-644",
+  "num": "9-7",
+  "title": "Boarding One-Man Raft",
+  "page": 157,
+  "bbox": [
+   65.9599991,
+   67.39996330000008,
+   550.3599243,
+   210.58928000000003
+  ],
+  "png": "AFH10-644_fig_9-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-8",
+  "manual": "AFH10-644",
+  "num": "9-8",
+  "title": "Sea Anchor",
+  "page": 158,
+  "bbox": [
+   92.1199951,
+   67.40002449999997,
+   517.2399858,
+   243.46928000000003
+  ],
+  "png": "AFH10-644_fig_9-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-9",
+  "manual": "AFH10-644",
+  "num": "9-9",
+  "title": "Deployment of the Sea Anchor",
+  "page": 158,
+  "bbox": [
+   92.1199951,
+   67.40002449999997,
+   517.2399858,
+   441.58928000000003
+  ],
+  "png": "AFH10-644_fig_9-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-10",
+  "manual": "AFH10-644",
+  "num": "9-10",
+  "title": "Seven-Man Raft",
+  "page": 159,
+  "bbox": [
+   95.1199951,
+   68.96002199999998,
+   516.8799859000001,
+   353.02928
+  ],
+  "png": "AFH10-644_fig_9-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-11",
+  "manual": "AFH10-644",
+  "num": "9-11",
+  "title": "Method of Righting Raft",
+  "page": 159,
+  "bbox": [
+   95.1199951,
+   68.96002199999998,
+   516.8799859000001,
+   591.58928
+  ],
+  "png": "AFH10-644_fig_9-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-12",
+  "manual": "AFH10-644",
+  "num": "9-12",
+  "title": "Method of Boarding Seven-Man Raft",
+  "page": 160,
+  "bbox": [
+   119.1199799,
+   67.4000244,
+   490.7199233,
+   372.58928000000003
+  ],
+  "png": "AFH10-644_fig_9-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-13",
+  "manual": "AFH10-644",
+  "num": "9-13",
+  "title": "Inflating the Raft",
+  "page": 160,
+  "bbox": [
+   155.9599915,
+   475.519989,
+   455.799985,
+   666.70928
+  ],
+  "png": "AFH10-644_fig_9-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-14",
+  "manual": "AFH10-644",
+  "num": "9-14",
+  "title": "Sail Construction",
+  "page": 161,
+  "bbox": [
+   83.2400055,
+   397.03994750000004,
+   527.4399228,
+   667.66928
+  ],
+  "png": "AFH10-644_fig_9-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-17",
+  "manual": "AFH10-644",
+  "num": "9-17",
+  "title": "Boarding 20-Man Raft",
+  "page": 163,
+  "bbox": [
+   65.9599991,
+   94.03997800000002,
+   550.3599243,
+   606.58928
+  ],
+  "png": "AFH10-644_fig_9-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/9-18",
+  "manual": "AFH10-644",
+  "num": "9-18",
+  "title": "Diagram of Wave Patterns about an Island",
+  "page": 165,
+  "bbox": [
+   97.4000015,
+   67.39996339999993,
+   512.7999265,
+   308.02928
+  ],
+  "png": "AFH10-644_fig_9-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/10-1",
+  "manual": "AFH10-644",
+  "num": "10-1",
+  "title": "Local People",
+  "page": 167,
+  "bbox": [
+   163.3999786,
+   230.95996089999994,
+   446.079984,
+   470.324
+  ],
+  "png": "AFH10-644_fig_10-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/11-1",
+  "manual": "AFH10-644",
+  "num": "11-1",
+  "title": "Wind Chill Chart",
+  "page": 171,
+  "bbox": [
+   119.3599854,
+   433.2799683,
+   491.07992049999996,
+   707.74928
+  ],
+  "png": "AFH10-644_fig_11-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/11-2",
+  "manual": "AFH10-644",
+  "num": "11-2",
+  "title": "Life Expectancy Following Cold-Water Immersion (without protective clothing)",
+  "page": 172,
+  "bbox": [
+   70.28,
+   358.16,
+   541.72,
+   382.78928
+  ],
+  "png": "AFH10-644_fig_11-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/11-3",
+  "manual": "AFH10-644",
+  "num": "11-3",
+  "title": "Life Expectancy Following Cold Water Immersion",
+  "page": 173,
+  "bbox": [
+   63.56,
+   197.72000000000003,
+   548.5600000000001,
+   423.40400000000005
+  ],
+  "png": "AFH10-644_fig_11-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/11-4",
+  "manual": "AFH10-644",
+  "num": "11-4",
+  "title": "Heat Transfer",
+  "page": 173,
+  "bbox": [
+   157.3999786,
+   527.4799194,
+   455.0799794,
+   706.54928
+  ],
+  "png": "AFH10-644_fig_11-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-1",
+  "manual": "AFH10-644",
+  "num": "12-1",
+  "title": "CLO Chart",
+  "page": 179,
+  "bbox": [
+   161.6,
+   164.60000000000002,
+   450.4,
+   309.22928
+  ],
+  "png": "AFH10-644_fig_12-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-2",
+  "manual": "AFH10-644",
+  "num": "12-2",
+  "title": "CLO Value Per Layer",
+  "page": 179,
+  "bbox": [
+   161.6,
+   403.28,
+   450.4,
+   551.86928
+  ],
+  "png": "AFH10-644_fig_12-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-3",
+  "manual": "AFH10-644",
+  "num": "12-3",
+  "title": "Colder Principle",
+  "page": 180,
+  "bbox": [
+   120.679985,
+   173.0,
+   489.5199238,
+   341.1463
+  ],
+  "png": "AFH10-644_fig_12-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-4",
+  "manual": "AFH10-644",
+  "num": "12-4",
+  "title": "Thermogram of Body Heat Loss",
+  "page": 181,
+  "bbox": [
+   65.9599991,
+   314.1199646,
+   589.8399469,
+   536.74928
+  ],
+  "png": "AFH10-644_fig_12-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-5",
+  "manual": "AFH10-644",
+  "num": "12-5",
+  "title": "Proper Wear of Parka",
+  "page": 183,
+  "bbox": [
+   132.4399872,
+   269.7199707,
+   478.1199723,
+   577.54928
+  ],
+  "png": "AFH10-644_fig_12-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-6",
+  "manual": "AFH10-644",
+  "num": "12-6",
+  "title": "Improvised Goggles",
+  "page": 184,
+  "bbox": [
+   91.4000015,
+   67.39996340000005,
+   519.3999921,
+   251.02927999999997
+  ],
+  "png": "AFH10-644_fig_12-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-7",
+  "manual": "AFH10-644",
+  "num": "12-7",
+  "title": "Layer System for Hands",
+  "page": 184,
+  "bbox": [
+   100.4000015,
+   324.9199524,
+   509.9199502,
+   612.10928
+  ],
+  "png": "AFH10-644_fig_12-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-8",
+  "manual": "AFH10-644",
+  "num": "12-8",
+  "title": "Sleeping System",
+  "page": 185,
+  "bbox": [
+   65.9599991,
+   318.4399719,
+   550.3599243,
+   551.50928
+  ],
+  "png": "AFH10-644_fig_12-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-9",
+  "manual": "AFH10-644",
+  "num": "12-9",
+  "title": "Insect Protection",
+  "page": 186,
+  "bbox": [
+   201.1999817,
+   380.5999756,
+   409.59995860000004,
+   580.42496
+  ],
+  "png": "AFH10-644_fig_12-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-10",
+  "manual": "AFH10-644",
+  "num": "12-10",
+  "title": "Donning Anti-Exposure Suit",
+  "page": 188,
+  "bbox": [
+   68.9599915,
+   370.8799744,
+   557.7998928,
+   699.94928
+  ],
+  "png": "AFH10-644_fig_12-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-11",
+  "manual": "AFH10-644",
+  "num": "12-11",
+  "title": "Protective Desert Clothing",
+  "page": 190,
+  "bbox": [
+   71.1200104,
+   266.4799805,
+   540.1599462,
+   574.66928
+  ],
+  "png": "AFH10-644_fig_12-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-12",
+  "manual": "AFH10-644",
+  "num": "12-12",
+  "title": "Issued Mukluks",
+  "page": 191,
+  "bbox": [
+   82.4000092,
+   209.83996579999996,
+   527.7999486,
+   543.46928
+  ],
+  "png": "AFH10-644_fig_12-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-13",
+  "manual": "AFH10-644",
+  "num": "12-13",
+  "title": "Gaiters",
+  "page": 192,
+  "bbox": [
+   140.1199799,
+   128.83996579999996,
+   469.9599852,
+   363.34928
+  ],
+  "png": "AFH10-644_fig_12-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-14",
+  "manual": "AFH10-644",
+  "num": "12-14",
+  "title": "Hudson Bay Duffel",
+  "page": 192,
+  "bbox": [
+   110.1199951,
+   551.5999909,
+   501.51992809999996,
+   706.78928
+  ],
+  "png": "AFH10-644_fig_12-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/12-15",
+  "manual": "AFH10-644",
+  "num": "12-15",
+  "title": "Double Socks",
+  "page": 193,
+  "bbox": [
+   95.9600067,
+   225.08001710000008,
+   516.5199531,
+   489.70928000000004
+  ],
+  "png": "AFH10-644_fig_12-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-1",
+  "manual": "AFH10-644",
+  "num": "13-1",
+  "title": "Natural Shelters",
+  "page": 196,
+  "bbox": [
+   79.4000015,
+   344.3599548,
+   563.7999267,
+   523.54928
+  ],
+  "png": "AFH10-644_fig_13-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-2",
+  "manual": "AFH10-644",
+  "num": "13-2",
+  "title": "Immediate Action Shelters",
+  "page": 199,
+  "bbox": [
+   65.9599991,
+   67.39996339999993,
+   550.3599243,
+   248.02927999999997
+  ],
+  "png": "AFH10-644_fig_13-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-3",
+  "manual": "AFH10-644",
+  "num": "13-3",
+  "title": "Improvised Sleeping Bag",
+  "page": 199,
+  "bbox": [
+   91.4000092,
+   420.07995600000004,
+   520.9599251,
+   696.884
+  ],
+  "png": "AFH10-644_fig_13-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-4",
+  "manual": "AFH10-644",
+  "num": "13-4",
+  "title": "A-Frame Shelters",
+  "page": 200,
+  "bbox": [
+   66.6799927,
+   237.4400025,
+   542.9198953,
+   592.0692799999999
+  ],
+  "png": "AFH10-644_fig_13-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-5",
+  "manual": "AFH10-644",
+  "num": "13-5",
+  "title": "Lean-To Shelters",
+  "page": 202,
+  "bbox": [
+   104.1200027,
+   497.3599853,
+   510.1599495,
+   697.54928
+  ],
+  "png": "AFH10-644_fig_13-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-6",
+  "manual": "AFH10-644",
+  "num": "13-6",
+  "title": "Raised Platform Shelter",
+  "page": 203,
+  "bbox": [
+   101.9600067,
+   395.8399659,
+   508.2399355,
+   682.90928
+  ],
+  "png": "AFH10-644_fig_13-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-7",
+  "manual": "AFH10-644",
+  "num": "13-7",
+  "title": "Raised Paraplatform Shelter",
+  "page": 204,
+  "bbox": [
+   117.6800079,
+   142.6399536,
+   492.5199614,
+   408.70928000000004
+  ],
+  "png": "AFH10-644_fig_13-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-8",
+  "manual": "AFH10-644",
+  "num": "13-8",
+  "title": "Parahammock",
+  "page": 205,
+  "bbox": [
+   94.4000015,
+   67.4000244,
+   516.2799288,
+   615.58928
+  ],
+  "png": "AFH10-644_fig_13-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-9",
+  "manual": "AFH10-644",
+  "num": "13-9",
+  "title": "Debris Nest",
+  "page": 206,
+  "bbox": [
+   76.4000092,
+   561.7999268,
+   535.9599529,
+   699.9464
+  ],
+  "png": "AFH10-644_fig_13-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-12",
+  "manual": "AFH10-644",
+  "num": "13-12",
+  "title": "No-Pole Tepee",
+  "page": 210,
+  "bbox": [
+   147.6799774,
+   142.6399536,
+   462.5199669,
+   465.70928000000004
+  ],
+  "png": "AFH10-644_fig_13-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-13",
+  "manual": "AFH10-644",
+  "num": "13-13",
+  "title": "Banana Leaf A-Frame",
+  "page": 211,
+  "bbox": [
+   65.9599991,
+   263.23999030000004,
+   550.3599243,
+   445.30928
+  ],
+  "png": "AFH10-644_fig_13-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-14",
+  "manual": "AFH10-644",
+  "num": "13-14",
+  "title": "Improvised Natural Shade Shelters",
+  "page": 212,
+  "bbox": [
+   65.9599991,
+   434.5999756,
+   550.3599243,
+   616.78928
+  ],
+  "png": "AFH10-644_fig_13-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-15",
+  "manual": "AFH10-644",
+  "num": "13-15",
+  "title": "Shade Shelter",
+  "page": 213,
+  "bbox": [
+   103.3999939,
+   67.39996339999993,
+   505.95998510000004,
+   344.02928
+  ],
+  "png": "AFH10-644_fig_13-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-16",
+  "manual": "AFH10-644",
+  "num": "13-16",
+  "title": "Molded Dome",
+  "page": 215,
+  "bbox": [
+   83.9600143,
+   67.4000244,
+   552.5199802,
+   274.54688
+  ],
+  "png": "AFH10-644_fig_13-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-17",
+  "manual": "AFH10-644",
+  "num": "13-17",
+  "title": "Snow Cave",
+  "page": 215,
+  "bbox": [
+   65.9599915,
+   67.4000244,
+   552.5199802,
+   662.86928
+  ],
+  "png": "AFH10-644_fig_13-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-18",
+  "manual": "AFH10-644",
+  "num": "13-18",
+  "title": "Fighter Trench",
+  "page": 216,
+  "bbox": [
+   76.4000092,
+   132.20001219999995,
+   535.3599736,
+   353.26928000000004
+  ],
+  "png": "AFH10-644_fig_13-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-19",
+  "manual": "AFH10-644",
+  "num": "13-19",
+  "title": "Thermal A-Frame",
+  "page": 216,
+  "bbox": [
+   69.5,
+   519.6362304,
+   551.4150772,
+   703.4292800000001
+  ],
+  "png": "AFH10-644_fig_13-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-20",
+  "manual": "AFH10-644",
+  "num": "13-20",
+  "title": "Double Lean-To",
+  "page": 217,
+  "bbox": [
+   65.9599991,
+   104.0,
+   565.2399881,
+   441.58928000000003
+  ],
+  "png": "AFH10-644_fig_13-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-21",
+  "manual": "AFH10-644",
+  "num": "13-21",
+  "title": "Fan Shelter",
+  "page": 217,
+  "bbox": [
+   65.9599991,
+   104.0,
+   565.2399881,
+   707.38928
+  ],
+  "png": "AFH10-644_fig_13-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-22",
+  "manual": "AFH10-644",
+  "num": "13-22",
+  "title": "Willow Frame Shelter",
+  "page": 218,
+  "bbox": [
+   65.9599991,
+   104.0,
+   519.5199247,
+   371.14928000000003
+  ],
+  "png": "AFH10-644_fig_13-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-23",
+  "manual": "AFH10-644",
+  "num": "13-23",
+  "title": "Tree Well Shelter",
+  "page": 218,
+  "bbox": [
+   65.9599991,
+   104.0,
+   519.5199247,
+   661.54928
+  ],
+  "png": "AFH10-644_fig_13-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-24",
+  "manual": "AFH10-644",
+  "num": "13-24",
+  "title": "Snow Cave Shelter Living",
+  "page": 220,
+  "bbox": [
+   100.4000015,
+   257.23999019999997,
+   509.0799237,
+   532.30928
+  ],
+  "png": "AFH10-644_fig_13-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/13-25",
+  "manual": "AFH10-644",
+  "num": "13-25",
+  "title": "Boughs",
+  "page": 222,
+  "bbox": [
+   89.7500076,
+   150.9942016,
+   522.2114346000001,
+   302.80400000000003
+  ],
+  "png": "AFH10-644_fig_13-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-1",
+  "manual": "AFH10-644",
+  "num": "14-1",
+  "title": "Stages of a Fire",
+  "page": 224,
+  "bbox": [
+   68.9599991,
+   68.96002190000002,
+   551.6799885,
+   378.764
+  ],
+  "png": "AFH10-644_fig_14-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-2",
+  "manual": "AFH10-644",
+  "num": "14-2",
+  "title": "Fire Reflector",
+  "page": 226,
+  "bbox": [
+   172.3999786,
+   511.1599427,
+   438.7599716,
+   706.9639999999999
+  ],
+  "png": "AFH10-644_fig_14-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-3",
+  "manual": "AFH10-644",
+  "num": "14-3",
+  "title": "Feather Stick",
+  "page": 228,
+  "bbox": [
+   164.1199799,
+   113.35998530000006,
+   447.2799811,
+   347.38496
+  ],
+  "png": "AFH10-644_fig_14-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-4",
+  "manual": "AFH10-644",
+  "num": "14-4",
+  "title": "Fire Bundles",
+  "page": 228,
+  "bbox": [
+   135.6799774,
+   534.199936,
+   476.07996549999996,
+   696.524
+  ],
+  "png": "AFH10-644_fig_14-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-5",
+  "manual": "AFH10-644",
+  "num": "14-5",
+  "title": "Fire Starting with Flint and Steel",
+  "page": 229,
+  "bbox": [
+   65.9599991,
+   401.23999030000004,
+   550.3599243,
+   561.044
+  ],
+  "png": "AFH10-644_fig_14-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-6",
+  "manual": "AFH10-644",
+  "num": "14-6",
+  "title": "Fire Starting With Batteries",
+  "page": 230,
+  "bbox": [
+   108.6800156,
+   341.83996590000004,
+   500.7999613,
+   617.0840000000001
+  ],
+  "png": "AFH10-644_fig_14-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-7",
+  "manual": "AFH10-644",
+  "num": "14-7",
+  "title": "Fire Starting With Burning Glass",
+  "page": 231,
+  "bbox": [
+   113.1199951,
+   199.27996830000006,
+   498.5199293,
+   413.084
+  ],
+  "png": "AFH10-644_fig_14-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-8",
+  "manual": "AFH10-644",
+  "num": "14-8",
+  "title": "Fire Starting With Flashlight Reflector",
+  "page": 231,
+  "bbox": [
+   130.3999786,
+   517.1599731,
+   481.2399807,
+   700.9639999999999
+  ],
+  "png": "AFH10-644_fig_14-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-9",
+  "manual": "AFH10-644",
+  "num": "14-9",
+  "title": "Bamboo Fire Saw",
+  "page": 232,
+  "bbox": [
+   108.44,
+   414.67996209999995,
+   503.44,
+   707.564
+  ],
+  "png": "AFH10-644_fig_14-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-10",
+  "manual": "AFH10-644",
+  "num": "14-10",
+  "title": "Bow and Drill",
+  "page": 234,
+  "bbox": [
+   77.9599915,
+   68.95996089999994,
+   534.5199487,
+   381.764
+  ],
+  "png": "AFH10-644_fig_14-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-11",
+  "manual": "AFH10-644",
+  "num": "14-11",
+  "title": "Fire Thong",
+  "page": 235,
+  "bbox": [
+   212.1199799,
+   463.87997429999996,
+   399.2799561,
+   695.684
+  ],
+  "png": "AFH10-644_fig_14-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/14-12",
+  "manual": "AFH10-644",
+  "num": "14-12",
+  "title": "Fire Lays",
+  "page": 237,
+  "bbox": [
+   128.9599915,
+   417.44000239999997,
+   482.6799431,
+   707.324
+  ],
+  "png": "AFH10-644_fig_14-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-1",
+  "manual": "AFH10-644",
+  "num": "15-1",
+  "title": "Knife Sharpening (Draw)",
+  "page": 240,
+  "bbox": [
+   101.1199951,
+   384.6799621,
+   509.0799247,
+   671.924
+  ],
+  "png": "AFH10-644_fig_15-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-2",
+  "manual": "AFH10-644",
+  "num": "15-2",
+  "title": "Knife Sharpening (Circular)",
+  "page": 241,
+  "bbox": [
+   77.9599991,
+   142.6399536,
+   531.6399551,
+   459.884
+  ],
+  "png": "AFH10-644_fig_15-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-3",
+  "manual": "AFH10-644",
+  "num": "15-3",
+  "title": "Sharpening Axe",
+  "page": 242,
+  "bbox": [
+   140.2399902,
+   109.03997800000002,
+   469.83998299999996,
+   571.844
+  ],
+  "png": "AFH10-644_fig_15-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-4",
+  "manual": "AFH10-644",
+  "num": "15-4",
+  "title": "Removing Broken Axe Handle",
+  "page": 243,
+  "bbox": [
+   68.9599915,
+   217.64001469999994,
+   541.8398972,
+   521.4439
+  ],
+  "png": "AFH10-644_fig_15-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-5",
+  "manual": "AFH10-644",
+  "num": "15-5",
+  "title": "Whittling",
+  "page": 244,
+  "bbox": [
+   85.4000015,
+   67.4000244,
+   524.7999024,
+   374.204
+  ],
+  "png": "AFH10-644_fig_15-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-6",
+  "manual": "AFH10-644",
+  "num": "15-6",
+  "title": "Trimming Branches",
+  "page": 244,
+  "bbox": [
+   75.6800079,
+   67.4000244,
+   534.0399262,
+   692.684
+  ],
+  "png": "AFH10-644_fig_15-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-7",
+  "manual": "AFH10-644",
+  "num": "15-7",
+  "title": "Cutting Through a Piece of Wood",
+  "page": 245,
+  "bbox": [
+   129.6799774,
+   128.84002680000003,
+   480.1599851,
+   377.084
+  ],
+  "png": "AFH10-644_fig_15-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-8",
+  "manual": "AFH10-644",
+  "num": "15-8",
+  "title": "Fine Trimming",
+  "page": 245,
+  "bbox": [
+   139.3999786,
+   467.3599549,
+   472.2399602,
+   706.604
+  ],
+  "png": "AFH10-644_fig_15-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-9",
+  "manual": "AFH10-644",
+  "num": "15-9",
+  "title": "Clearing Brush from Cutting Area",
+  "page": 246,
+  "bbox": [
+   101.1199951,
+   156.4400025,
+   508.2399496,
+   442.244
+  ],
+  "png": "AFH10-644_fig_15-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-10",
+  "manual": "AFH10-644",
+  "num": "15-10",
+  "title": "Felling Cuts",
+  "page": 247,
+  "bbox": [
+   71.9599991,
+   67.4000244,
+   538.3599889,
+   393.764
+  ],
+  "png": "AFH10-644_fig_15-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-11",
+  "manual": "AFH10-644",
+  "num": "15-11",
+  "title": "Splitting Wood",
+  "page": 248,
+  "bbox": [
+   121.3999863,
+   67.4000244,
+   489.1598884,
+   327.764
+  ],
+  "png": "AFH10-644_fig_15-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-12",
+  "manual": "AFH10-644",
+  "num": "15-12",
+  "title": "Cutting Poles",
+  "page": 248,
+  "bbox": [
+   121.3999863,
+   67.4000244,
+   489.1598884,
+   606.524
+  ],
+  "png": "AFH10-644_fig_15-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-13",
+  "manual": "AFH10-644",
+  "num": "15-13",
+  "title": "Parachute Diagram",
+  "page": 250,
+  "bbox": [
+   65.9599991,
+   67.40002449999997,
+   550.3599243,
+   399.764
+  ],
+  "png": "AFH10-644_fig_15-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-14",
+  "manual": "AFH10-644",
+  "num": "15-14",
+  "title": "Cutting the Parachute",
+  "page": 251,
+  "bbox": [
+   66.6800156,
+   67.4000244,
+   543.3999517,
+   389.204
+  ],
+  "png": "AFH10-644_fig_15-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-15",
+  "manual": "AFH10-644",
+  "num": "15-15",
+  "title": "Backstitch",
+  "page": 253,
+  "bbox": [
+   78.6800003,
+   420.1999511,
+   531.6399904,
+   573.3464
+  ],
+  "png": "AFH10-644_fig_15-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-16",
+  "manual": "AFH10-644",
+  "num": "15-16",
+  "title": "Whipstitch",
+  "page": 254,
+  "bbox": [
+   69.6800003,
+   298.3999939,
+   539.91999,
+   507.71264
+  ],
+  "png": "AFH10-644_fig_15-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-17",
+  "manual": "AFH10-644",
+  "num": "15-17",
+  "title": "Palm Thimble",
+  "page": 255,
+  "bbox": [
+   65.9599991,
+   67.4000244,
+   543.8799885999999,
+   283.72400000000005
+  ],
+  "png": "AFH10-644_fig_15-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-18",
+  "manual": "AFH10-644",
+  "num": "15-18",
+  "title": "Improvised Trail Snowshoes",
+  "page": 255,
+  "bbox": [
+   128.9599915,
+   406.0399781,
+   482.0799838,
+   654.284
+  ],
+  "png": "AFH10-644_fig_15-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-19",
+  "manual": "AFH10-644",
+  "num": "15-19",
+  "title": "Improvised Bear Paws",
+  "page": 256,
+  "bbox": [
+   143.9599762,
+   114.79998780000005,
+   466.4799554,
+   356.564
+  ],
+  "png": "AFH10-644_fig_15-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-20",
+  "manual": "AFH10-644",
+  "num": "15-20",
+  "title": "Bough Snowshoes",
+  "page": 256,
+  "bbox": [
+   104.9600067,
+   114.79998780000005,
+   504.5199531,
+   668.324
+  ],
+  "png": "AFH10-644_fig_15-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-21",
+  "manual": "AFH10-644",
+  "num": "15-21",
+  "title": "Buck Saw",
+  "page": 258,
+  "bbox": [
+   130.3999786,
+   67.4000244,
+   479.7999634,
+   344.204
+  ],
+  "png": "AFH10-644_fig_15-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-22",
+  "manual": "AFH10-644",
+  "num": "15-22",
+  "title": "Cooking Utensils",
+  "page": 258,
+  "bbox": [
+   74.2399979,
+   432.9199524,
+   536.3199878,
+   630.164
+  ],
+  "png": "AFH10-644_fig_15-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-23",
+  "manual": "AFH10-644",
+  "num": "15-23",
+  "title": "Elements of Ropes and Knots",
+  "page": 259,
+  "bbox": [
+   114.6800003,
+   142.6399536,
+   496.119992,
+   435.884
+  ],
+  "png": "AFH10-644_fig_15-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-24",
+  "manual": "AFH10-644",
+  "num": "15-24",
+  "title": "Whipping the End of a Rope",
+  "page": 261,
+  "bbox": [
+   65.9599991,
+   67.39996339999993,
+   580.3599878,
+   318.764
+  ],
+  "png": "AFH10-644_fig_15-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-25",
+  "manual": "AFH10-644",
+  "num": "15-25",
+  "title": "Overhand Knot",
+  "page": 261,
+  "bbox": [
+   140.1199799,
+   440.9599915,
+   470.0799502,
+   702.764
+  ],
+  "png": "AFH10-644_fig_15-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-26",
+  "manual": "AFH10-644",
+  "num": "15-26",
+  "title": "Figure-Eight Knot",
+  "page": 262,
+  "bbox": [
+   135.6799774,
+   170.23999019999997,
+   473.7999773,
+   438.04400000000004
+  ],
+  "png": "AFH10-644_fig_15-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-27",
+  "manual": "AFH10-644",
+  "num": "15-27",
+  "title": "Square Knot",
+  "page": 263,
+  "bbox": [
+   68.2400131,
+   67.39996340000005,
+   541.5999486000001,
+   209.20399999999995
+  ],
+  "png": "AFH10-644_fig_15-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-28",
+  "manual": "AFH10-644",
+  "num": "15-28",
+  "title": "Granny and Thief Knots",
+  "page": 263,
+  "bbox": [
+   68.2400131,
+   67.39996340000005,
+   541.5999486000001,
+   492.524
+  ],
+  "png": "AFH10-644_fig_15-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-29",
+  "manual": "AFH10-644",
+  "num": "15-29",
+  "title": "Single Sheet Bend",
+  "page": 264,
+  "bbox": [
+   68.2400055,
+   67.4000244,
+   542.5599466,
+   212.20399999999995
+  ],
+  "png": "AFH10-644_fig_15-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-30",
+  "manual": "AFH10-644",
+  "num": "15-30",
+  "title": "Double Sheet Bend",
+  "page": 264,
+  "bbox": [
+   122.1199799,
+   328.519989,
+   487.9599032,
+   596.324
+  ],
+  "png": "AFH10-644_fig_15-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-31",
+  "manual": "AFH10-644",
+  "num": "15-31",
+  "title": "Bowline",
+  "page": 265,
+  "bbox": [
+   109.4000015,
+   109.03997800000002,
+   500.1999254,
+   424.84400000000005
+  ],
+  "png": "AFH10-644_fig_15-31.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-32",
+  "manual": "AFH10-644",
+  "num": "15-32",
+  "title": "Double Bowline",
+  "page": 266,
+  "bbox": [
+   116.9599991,
+   67.4000244,
+   492.519982,
+   335.204
+  ],
+  "png": "AFH10-644_fig_15-32.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-33",
+  "manual": "AFH10-644",
+  "num": "15-33",
+  "title": "Boatswain's Chair",
+  "page": 266,
+  "bbox": [
+   116.9599991,
+   67.4000244,
+   492.519982,
+   703.9639999999999
+  ],
+  "png": "AFH10-644_fig_15-33.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-34",
+  "manual": "AFH10-644",
+  "num": "15-34",
+  "title": "Butterfly",
+  "page": 267,
+  "bbox": [
+   93.6800079,
+   170.23999030000004,
+   515.7999281,
+   452.92400000000004
+  ],
+  "png": "AFH10-644_fig_15-34.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-35",
+  "manual": "AFH10-644",
+  "num": "15-35",
+  "title": "Half Hitch, Timber Hitch",
+  "page": 268,
+  "bbox": [
+   65.9599991,
+   67.39996339999993,
+   550.3599243,
+   324.764
+  ],
+  "png": "AFH10-644_fig_15-35.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-37",
+  "manual": "AFH10-644",
+  "num": "15-37",
+  "title": "Round Turn and Two Half Hitches",
+  "page": 269,
+  "bbox": [
+   65.9599991,
+   512.3599244,
+   550.3599243,
+   661.124
+  ],
+  "png": "AFH10-644_fig_15-37.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-38",
+  "manual": "AFH10-644",
+  "num": "15-38",
+  "title": "Fisherman's Bend",
+  "page": 270,
+  "bbox": [
+   65.9599991,
+   184.03997800000002,
+   550.3599243,
+   322.84400000000005
+  ],
+  "png": "AFH10-644_fig_15-38.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-39",
+  "manual": "AFH10-644",
+  "num": "15-39",
+  "title": "Sheep Shank",
+  "page": 270,
+  "bbox": [
+   71.9599991,
+   425.3599549,
+   538.3599889,
+   700.604
+  ],
+  "png": "AFH10-644_fig_15-39.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-40",
+  "manual": "AFH10-644",
+  "num": "15-40",
+  "title": "Square Lash",
+  "page": 271,
+  "bbox": [
+   65.9599991,
+   278.83996579999996,
+   550.3599243,
+   479.084
+  ],
+  "png": "AFH10-644_fig_15-40.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-41",
+  "manual": "AFH10-644",
+  "num": "15-41",
+  "title": "Diagonal Lash",
+  "page": 272,
+  "bbox": [
+   65.9599991,
+   67.39996330000008,
+   550.3599243,
+   254.20399999999995
+  ],
+  "png": "AFH10-644_fig_15-41.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-42",
+  "manual": "AFH10-644",
+  "num": "15-42",
+  "title": "Shear Lash",
+  "page": 272,
+  "bbox": [
+   68.0,
+   371.09179689999996,
+   543.9110264999999,
+   601.004
+  ],
+  "png": "AFH10-644_fig_15-42.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-43",
+  "manual": "AFH10-644",
+  "num": "15-43",
+  "title": "Tensile Strength",
+  "page": 273,
+  "bbox": [
+   44.96,
+   308.53762,
+   567.0400000000001,
+   331.06928000000005
+  ],
+  "png": "AFH10-644_fig_15-43.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-44",
+  "manual": "AFH10-644",
+  "num": "15-44",
+  "title": "Twisting Fibers",
+  "page": 275,
+  "bbox": [
+   65.9599991,
+   67.4000244,
+   550.3599243,
+   254.20399999999995
+  ],
+  "png": "AFH10-644_fig_15-44.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-45",
+  "manual": "AFH10-644",
+  "num": "15-45",
+  "title": "Three-Stranded Braid",
+  "page": 277,
+  "bbox": [
+   77.9599915,
+   67.4000243999999,
+   532.9599276,
+   257.20399999999995
+  ],
+  "png": "AFH10-644_fig_15-45.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/15-46",
+  "manual": "AFH10-644",
+  "num": "15-46",
+  "title": "Four-Strand Braid",
+  "page": 277,
+  "bbox": [
+   75.6800003,
+   454.1599731,
+   536.0799541,
+   702.524
+  ],
+  "png": "AFH10-644_fig_15-46.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-1",
+  "manual": "AFH10-644",
+  "num": "16-1",
+  "title": "Beach Well",
+  "page": 281,
+  "bbox": [
+   65.9599991,
+   217.6399536,
+   548.6799885,
+   390.884
+  ],
+  "png": "AFH10-644_fig_16-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-2",
+  "manual": "AFH10-644",
+  "num": "16-2",
+  "title": "Methods of Procuring Water",
+  "page": 282,
+  "bbox": [
+   65.9599991,
+   67.4000244,
+   547.2399885,
+   365.02928
+  ],
+  "png": "AFH10-644_fig_16-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-3",
+  "manual": "AFH10-644",
+  "num": "16-3",
+  "title": "Water Machine",
+  "page": 283,
+  "bbox": [
+   75.6800156,
+   68.96002199999998,
+   535.5999544,
+   362.02928
+  ],
+  "png": "AFH10-644_fig_16-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-4",
+  "manual": "AFH10-644",
+  "num": "16-4",
+  "title": "Water Collectors",
+  "page": 284,
+  "bbox": [
+   82.4000092,
+   278.8399658,
+   527.7999486,
+   465.46928
+  ],
+  "png": "AFH10-644_fig_16-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-5",
+  "manual": "AFH10-644",
+  "num": "16-5",
+  "title": "Water Vines and Bamboo",
+  "page": 285,
+  "bbox": [
+   205.3999786,
+   231.4400025,
+   404.6799524,
+   520.06928
+  ],
+  "png": "AFH10-644_fig_16-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-6",
+  "manual": "AFH10-644",
+  "num": "16-6",
+  "title": "Water from Banana Plant",
+  "page": 286,
+  "bbox": [
+   116.9599991,
+   341.8399963,
+   492.6399909,
+   597.46928
+  ],
+  "png": "AFH10-644_fig_16-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-7",
+  "manual": "AFH10-644",
+  "num": "16-7",
+  "title": "Water Tree",
+  "page": 287,
+  "bbox": [
+   65.9599991,
+   285.0799561,
+   550.3599243,
+   415.7864
+  ],
+  "png": "AFH10-644_fig_16-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-8",
+  "manual": "AFH10-644",
+  "num": "16-8",
+  "title": "Collecting Water from Slanted Tree",
+  "page": 288,
+  "bbox": [
+   208.3999786,
+   68.95996089999994,
+   403.3599661,
+   351.58928000000003
+  ],
+  "png": "AFH10-644_fig_16-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-9",
+  "manual": "AFH10-644",
+  "num": "16-9",
+  "title": "Dry Stream Bed",
+  "page": 288,
+  "bbox": [
+   74.1199951,
+   459.439972,
+   537.6399849000001,
+   704.50928
+  ],
+  "png": "AFH10-644_fig_16-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-10",
+  "manual": "AFH10-644",
+  "num": "16-10",
+  "title": "Vegetation Bag",
+  "page": 289,
+  "bbox": [
+   67.9999924,
+   593.1601410000001,
+   543.4941327,
+   695.26928
+  ],
+  "png": "AFH10-644_fig_16-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-11",
+  "manual": "AFH10-644",
+  "num": "16-11",
+  "title": "Transpiration Bag",
+  "page": 290,
+  "bbox": [
+   110.1199875,
+   171.6799926,
+   501.3999306,
+   388.30928
+  ],
+  "png": "AFH10-644_fig_16-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-12",
+  "manual": "AFH10-644",
+  "num": "16-12",
+  "title": "Sediment Hole",
+  "page": 291,
+  "bbox": [
+   68.9599991,
+   386.3599853,
+   547.9599198999999,
+   637.06496
+  ],
+  "png": "AFH10-644_fig_16-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/16-13",
+  "manual": "AFH10-644",
+  "num": "16-13",
+  "title": "Water Filter",
+  "page": 292,
+  "bbox": [
+   171.6799774,
+   68.96002190000002,
+   440.07998140000007,
+   419.02928
+  ],
+  "png": "AFH10-644_fig_16-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-1",
+  "manual": "AFH10-644",
+  "num": "17-1",
+  "title": "Food and Caloric Chart",
+  "page": 296,
+  "bbox": [
+   73.4000015,
+   228.79998780000005,
+   538.9599267,
+   602.8783999999999
+  ],
+  "png": "AFH10-644_fig_17-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-2",
+  "manual": "AFH10-644",
+  "num": "17-2",
+  "title": "Slingshot",
+  "page": 300,
+  "bbox": [
+   86.1199951,
+   519.0799256,
+   526.1199854,
+   695.26928
+  ],
+  "png": "AFH10-644_fig_17-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-3",
+  "manual": "AFH10-644",
+  "num": "17-3",
+  "title": "Funneling",
+  "page": 301,
+  "bbox": [
+   88.4000015,
+   456.4400025,
+   520.9599326,
+   620.50928
+  ],
+  "png": "AFH10-644_fig_17-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-4",
+  "manual": "AFH10-644",
+  "num": "17-4",
+  "title": "Mangle",
+  "page": 302,
+  "bbox": [
+   217.3999939,
+   142.63995369999998,
+   392.4399902,
+   401.26928000000004
+  ],
+  "png": "AFH10-644_fig_17-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-5",
+  "manual": "AFH10-644",
+  "num": "17-5",
+  "title": "Apache Foot Snare",
+  "page": 302,
+  "bbox": [
+   65.9599991,
+   516.5599365,
+   550.3599243,
+   697.18928
+  ],
+  "png": "AFH10-644_fig_17-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-6",
+  "manual": "AFH10-644",
+  "num": "17-6",
+  "title": "Box Trap",
+  "page": 303,
+  "bbox": [
+   65.9599991,
+   73.27996829999995,
+   550.3599243,
+   264.82928000000004
+  ],
+  "png": "AFH10-644_fig_17-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-7",
+  "manual": "AFH10-644",
+  "num": "17-7",
+  "title": "Locking Loop and Setting Noose",
+  "page": 303,
+  "bbox": [
+   65.9599991,
+   435.31994629999997,
+   550.3599243,
+   614.38928
+  ],
+  "png": "AFH10-644_fig_17-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-8",
+  "manual": "AFH10-644",
+  "num": "17-8",
+  "title": "Squirrel Pole",
+  "page": 304,
+  "bbox": [
+   65.9599915,
+   67.4000244,
+   550.4799488,
+   246.46928000000003
+  ],
+  "png": "AFH10-644_fig_17-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-9",
+  "manual": "AFH10-644",
+  "num": "17-9",
+  "title": "Two-Pin Toggle",
+  "page": 304,
+  "bbox": [
+   72.6800003,
+   387.6799622,
+   537.399951,
+   637.18928
+  ],
+  "png": "AFH10-644_fig_17-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-10",
+  "manual": "AFH10-644",
+  "num": "17-10",
+  "title": "Figure \"H\"",
+  "page": 305,
+  "bbox": [
+   65.9600143,
+   115.03997800000002,
+   547.4799217,
+   373.54928
+  ],
+  "png": "AFH10-644_fig_17-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-11",
+  "manual": "AFH10-644",
+  "num": "17-11",
+  "title": "Canadian Ace",
+  "page": 305,
+  "bbox": [
+   100.3999939,
+   435.1999512,
+   510.63998489999994,
+   701.38928
+  ],
+  "png": "AFH10-644_fig_17-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-12",
+  "manual": "AFH10-644",
+  "num": "17-12",
+  "title": "Three-Pin Toggle",
+  "page": 306,
+  "bbox": [
+   101.9600067,
+   157.88000490000002,
+   510.5199556,
+   368.50928000000005
+  ],
+  "png": "AFH10-644_fig_17-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-13",
+  "manual": "AFH10-644",
+  "num": "17-13",
+  "title": "Twitch Up",
+  "page": 306,
+  "bbox": [
+   68.9599991,
+   485.35995479999997,
+   553.1199885,
+   707.98928
+  ],
+  "png": "AFH10-644_fig_17-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-14",
+  "manual": "AFH10-644",
+  "num": "17-14",
+  "title": "Twist Stick and Noose Stick",
+  "page": 307,
+  "bbox": [
+   93.6800003,
+   157.88000490000002,
+   518.799991,
+   347.50928000000005
+  ],
+  "png": "AFH10-644_fig_17-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-15",
+  "manual": "AFH10-644",
+  "num": "17-15",
+  "title": "Baited Fishhook",
+  "page": 307,
+  "bbox": [
+   68.9599915,
+   506.72000119999996,
+   517.9599023999999,
+   699.044
+  ],
+  "png": "AFH10-644_fig_17-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-16",
+  "manual": "AFH10-644",
+  "num": "17-16",
+  "title": "Ojibwa Bird Snare",
+  "page": 308,
+  "bbox": [
+   65.9599991,
+   309.1999512,
+   550.3599243,
+   598.9639999999999
+  ],
+  "png": "AFH10-644_fig_17-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-17",
+  "manual": "AFH10-644",
+  "num": "17-17",
+  "title": "Ants",
+  "page": 309,
+  "bbox": [
+   68.9599991,
+   383.8399658,
+   542.9199490000001,
+   649.7239999999999
+  ],
+  "png": "AFH10-644_fig_17-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-18",
+  "manual": "AFH10-644",
+  "num": "17-18",
+  "title": "Fishing Places",
+  "page": 311,
+  "bbox": [
+   112.3999863,
+   68.96002199999998,
+   498.879909,
+   264.58928000000003
+  ],
+  "png": "AFH10-644_fig_17-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-19",
+  "manual": "AFH10-644",
+  "num": "17-19",
+  "title": "Making a Gill Net",
+  "page": 311,
+  "bbox": [
+   68.9599991,
+   408.9199524,
+   553.2399206,
+   703.54928
+  ],
+  "png": "AFH10-644_fig_17-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-20",
+  "manual": "AFH10-644",
+  "num": "17-20",
+  "title": "Making a Gill Net with Shuttle and Spacer",
+  "page": 312,
+  "bbox": [
+   66.6800156,
+   67.4000244,
+   543.5199504,
+   680.02928
+  ],
+  "png": "AFH10-644_fig_17-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-21",
+  "manual": "AFH10-644",
+  "num": "17-21",
+  "title": "Setting the Gill Net",
+  "page": 313,
+  "bbox": [
+   65.9599991,
+   67.4000244,
+   550.1199885,
+   395.02928
+  ],
+  "png": "AFH10-644_fig_17-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-22",
+  "manual": "AFH10-644",
+  "num": "17-22",
+  "title": "Maze-type Fish Traps",
+  "page": 314,
+  "bbox": [
+   65.9600067,
+   67.40002449999997,
+   548.0799465,
+   285.58928000000003
+  ],
+  "png": "AFH10-644_fig_17-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-23",
+  "manual": "AFH10-644",
+  "num": "17-23",
+  "title": "Derris",
+  "page": 315,
+  "bbox": [
+   220.2251129,
+   530.1659851,
+   391.77511730000003,
+   707.98928
+  ],
+  "png": "AFH10-644_fig_17-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-24",
+  "manual": "AFH10-644",
+  "num": "17-24",
+  "title": "Barringtonia",
+  "page": 316,
+  "bbox": [
+   122.1199951,
+   67.39996339999993,
+   491.67996999999997,
+   378.46928
+  ],
+  "png": "AFH10-644_fig_17-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-25",
+  "manual": "AFH10-644",
+  "num": "17-25",
+  "title": "Water Hemlock",
+  "page": 319,
+  "bbox": [
+   98.1199951,
+   67.4000244,
+   511.5999056,
+   398.02928
+  ],
+  "png": "AFH10-644_fig_17-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-26",
+  "manual": "AFH10-644",
+  "num": "17-26",
+  "title": "Agave",
+  "page": 321,
+  "bbox": [
+   127.3999786,
+   391.7599488,
+   484.7199168,
+   697.90928
+  ],
+  "png": "AFH10-644_fig_17-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-27",
+  "manual": "AFH10-644",
+  "num": "17-27",
+  "title": "Edible Parts of Plants",
+  "page": 322,
+  "bbox": [
+   69.5,
+   132.1953125,
+   545.4999814,
+   444.3464
+  ],
+  "png": "AFH10-644_fig_17-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-28",
+  "manual": "AFH10-644",
+  "num": "17-28",
+  "title": "Bamboo",
+  "page": 323,
+  "bbox": [
+   208.3999786,
+   493.7599792,
+   402.9999663,
+   708.94928
+  ],
+  "png": "AFH10-644_fig_17-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-29",
+  "manual": "AFH10-644",
+  "num": "17-29",
+  "title": "Breadfruit",
+  "page": 325,
+  "bbox": [
+   167.3600006,
+   374.7199707,
+   454.8399783,
+   701.74496
+  ],
+  "png": "AFH10-644_fig_17-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-30",
+  "manual": "AFH10-644",
+  "num": "17-30",
+  "title": "Grains",
+  "page": 326,
+  "bbox": [
+   82.4000092,
+   245.95996089999994,
+   527.7999486,
+   465.58928000000003
+  ],
+  "png": "AFH10-644_fig_17-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-31",
+  "manual": "AFH10-644",
+  "num": "17-31",
+  "title": "Edible Nuts",
+  "page": 327,
+  "bbox": [
+   104.9600067,
+   67.4000244,
+   504.5199531,
+   340.54928
+  ],
+  "png": "AFH10-644_fig_17-31.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-32",
+  "manual": "AFH10-644",
+  "num": "17-32",
+  "title": "Edible Invertebrates",
+  "page": 329,
+  "bbox": [
+   185.1199799,
+   95.23999030000004,
+   424.7199708,
+   392.86928
+  ],
+  "png": "AFH10-644_fig_17-32.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-33",
+  "manual": "AFH10-644",
+  "num": "17-33",
+  "title": "Citrus Fruit Tree",
+  "page": 331,
+  "bbox": [
+   119.2399826,
+   379.3999939,
+   491.67989750000004,
+   664.54496
+  ],
+  "png": "AFH10-644_fig_17-33.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-34",
+  "manual": "AFH10-644",
+  "num": "17-34",
+  "title": "Taro Plant",
+  "page": 332,
+  "bbox": [
+   68.1200027,
+   139.39996340000005,
+   542.3199195,
+   370.5464
+  ],
+  "png": "AFH10-644_fig_17-34.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-35",
+  "manual": "AFH10-644",
+  "num": "17-35",
+  "title": "Wild Pineapple",
+  "page": 332,
+  "bbox": [
+   155.9599915,
+   503.9599304,
+   455.799985,
+   700.54496
+  ],
+  "png": "AFH10-644_fig_17-35.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-36",
+  "manual": "AFH10-644",
+  "num": "17-36",
+  "title": "Yams",
+  "page": 333,
+  "bbox": [
+   179.1199799,
+   156.4400025,
+   431.0799577,
+   382.06928000000005
+  ],
+  "png": "AFH10-644_fig_17-36.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-37",
+  "manual": "AFH10-644",
+  "num": "17-37",
+  "title": "Ginger",
+  "page": 333,
+  "bbox": [
+   165.6799774,
+   487.8799438,
+   446.079966,
+   707.0264
+  ],
+  "png": "AFH10-644_fig_17-37.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-38",
+  "manual": "AFH10-644",
+  "num": "17-38",
+  "title": "Coconut Palm",
+  "page": 334,
+  "bbox": [
+   65.9599991,
+   239.23999019999997,
+   559.1199208,
+   470.74928
+  ],
+  "png": "AFH10-644_fig_17-38.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-39",
+  "manual": "AFH10-644",
+  "num": "17-39",
+  "title": "Papaya",
+  "page": 335,
+  "bbox": [
+   65.9599991,
+   67.4000244,
+   550.3599243,
+   294.58928000000003
+  ],
+  "png": "AFH10-644_fig_17-39.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-40",
+  "manual": "AFH10-644",
+  "num": "17-40",
+  "title": "Cassava",
+  "page": 335,
+  "bbox": [
+   134.9599762,
+   441.7999572,
+   476.79996070000004,
+   708.82496
+  ],
+  "png": "AFH10-644_fig_17-40.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-41",
+  "manual": "AFH10-644",
+  "num": "17-41",
+  "title": "Edible Ferns",
+  "page": 336,
+  "bbox": [
+   85.4000015,
+   156.4400023999999,
+   524.0799444,
+   542.50928
+  ],
+  "png": "AFH10-644_fig_17-41.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-42",
+  "manual": "AFH10-644",
+  "num": "17-42",
+  "title": "Sweet Sops",
+  "page": 337,
+  "bbox": [
+   72.6800079,
+   67.4000244,
+   537.2799254,
+   419.98784000000006
+  ],
+  "png": "AFH10-644_fig_17-42.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-43",
+  "manual": "AFH10-644",
+  "num": "17-43",
+  "title": "Star Apple",
+  "page": 337,
+  "bbox": [
+   86.1199951,
+   553.3999328,
+   525.519896,
+   707.98496
+  ],
+  "png": "AFH10-644_fig_17-43.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-44",
+  "manual": "AFH10-644",
+  "num": "17-44",
+  "title": "Prickly Pear",
+  "page": 339,
+  "bbox": [
+   65.9599991,
+   67.39996339999993,
+   555.7599479,
+   344.98208000000005
+  ],
+  "png": "AFH10-644_fig_17-44.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-45",
+  "manual": "AFH10-644",
+  "num": "17-45",
+  "title": "Acacia",
+  "page": 340,
+  "bbox": [
+   65.9600067,
+   67.4000244,
+   543.1599209,
+   349.5416000000001
+  ],
+  "png": "AFH10-644_fig_17-45.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-46",
+  "manual": "AFH10-644",
+  "num": "17-46",
+  "title": "Wild Desert Gourd",
+  "page": 341,
+  "bbox": [
+   84.6800079,
+   67.4000244,
+   524.9199294,
+   380.98928
+  ],
+  "png": "AFH10-644_fig_17-46.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-47",
+  "manual": "AFH10-644",
+  "num": "17-47",
+  "title": "Wild Rose Hips",
+  "page": 346,
+  "bbox": [
+   68.9599991,
+   68.96002199999998,
+   544.2398921,
+   258.10832000000005
+  ],
+  "png": "AFH10-644_fig_17-47.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-48",
+  "manual": "AFH10-644",
+  "num": "17-48",
+  "title": "Baneberry",
+  "page": 346,
+  "bbox": [
+   159.6799927,
+   442.0399475,
+   452.7999863,
+   702.22928
+  ],
+  "png": "AFH10-644_fig_17-48.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-49",
+  "manual": "AFH10-644",
+  "num": "17-49",
+  "title": "Buttercup",
+  "page": 347,
+  "bbox": [
+   65.9599915,
+   67.39996339999993,
+   560.4399455,
+   282.46928
+  ],
+  "png": "AFH10-644_fig_17-49.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-50",
+  "manual": "AFH10-644",
+  "num": "17-50",
+  "title": "Death Camas",
+  "page": 347,
+  "bbox": [
+   65.9599915,
+   67.39996339999993,
+   560.4399455,
+   486.58928000000003
+  ],
+  "png": "AFH10-644_fig_17-50.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-51",
+  "manual": "AFH10-644",
+  "num": "17-51",
+  "title": "False Hellebore",
+  "page": 347,
+  "bbox": [
+   65.9599915,
+   67.39996339999993,
+   562.5999882,
+   693.70928
+  ],
+  "png": "AFH10-644_fig_17-51.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-52",
+  "manual": "AFH10-644",
+  "num": "17-52",
+  "title": "Monkshood and Larkspur",
+  "page": 348,
+  "bbox": [
+   65.9600067,
+   67.4000244,
+   562.7199168999999,
+   294.58928000000003
+  ],
+  "png": "AFH10-644_fig_17-52.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-53",
+  "manual": "AFH10-644",
+  "num": "17-53",
+  "title": "Lupine",
+  "page": 348,
+  "bbox": [
+   65.9600067,
+   67.4000244,
+   562.7199168999999,
+   522.70928
+  ],
+  "png": "AFH10-644_fig_17-53.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-54",
+  "manual": "AFH10-644",
+  "num": "17-54",
+  "title": "Vetch and Locoweed",
+  "page": 348,
+  "bbox": [
+   65.9599991,
+   67.4000244,
+   562.7199168999999,
+   696.82928
+  ],
+  "png": "AFH10-644_fig_17-54.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-55",
+  "manual": "AFH10-644",
+  "num": "17-55",
+  "title": "Poison Hemlock",
+  "page": 349,
+  "bbox": [
+   65.9600143,
+   67.39996340000005,
+   564.159917,
+   231.58928000000003
+  ],
+  "png": "AFH10-644_fig_17-55.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-56",
+  "manual": "AFH10-644",
+  "num": "17-56",
+  "title": "White Spruce",
+  "page": 349,
+  "bbox": [
+   68.9599991,
+   471.7999878,
+   553.2399206,
+   699.82496
+  ],
+  "png": "AFH10-644_fig_17-56.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-57",
+  "manual": "AFH10-644",
+  "num": "17-57",
+  "title": "Dwarf Birch",
+  "page": 350,
+  "bbox": [
+   65.9599991,
+   131.59997550000003,
+   550.3599243,
+   416.74496
+  ],
+  "png": "AFH10-644_fig_17-57.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-58",
+  "manual": "AFH10-644",
+  "num": "17-58",
+  "title": "Arctic Willow",
+  "page": 350,
+  "bbox": [
+   65.9599991,
+   504.4399414,
+   550.3599243,
+   706.0692799999999
+  ],
+  "png": "AFH10-644_fig_17-58.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-59",
+  "manual": "AFH10-644",
+  "num": "17-59",
+  "title": "Edible Green Seaweeds",
+  "page": 351,
+  "bbox": [
+   162.6799774,
+   477.6799926,
+   449.67997320000006,
+   700.30928
+  ],
+  "png": "AFH10-644_fig_17-59.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-60",
+  "manual": "AFH10-644",
+  "num": "17-60",
+  "title": "Edible Brown Seaweeds",
+  "page": 352,
+  "bbox": [
+   155.9599915,
+   344.2399598,
+   454.359985,
+   587.86928
+  ],
+  "png": "AFH10-644_fig_17-60.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-61",
+  "manual": "AFH10-644",
+  "num": "17-61",
+  "title": "Edible Red Seaweeds",
+  "page": 353,
+  "bbox": [
+   66.6799927,
+   312.4400024,
+   544.2399492,
+   464.50928000000005
+  ],
+  "png": "AFH10-644_fig_17-61.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-62",
+  "manual": "AFH10-644",
+  "num": "17-62",
+  "title": "Big Game Skinning",
+  "page": 356,
+  "bbox": [
+   158.9599915,
+   325.8800049,
+   453.0399851,
+   707.50928
+  ],
+  "png": "AFH10-644_fig_17-62.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-63",
+  "manual": "AFH10-644",
+  "num": "17-63",
+  "title": "Field Dressing",
+  "page": 358,
+  "bbox": [
+   78.6800003,
+   67.4000244,
+   531.5199267,
+   368.02928
+  ],
+  "png": "AFH10-644_fig_17-63.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-64",
+  "manual": "AFH10-644",
+  "num": "17-64",
+  "title": "Glove Skinning",
+  "page": 359,
+  "bbox": [
+   68.9600143,
+   68.95996089999994,
+   542.1999505,
+   288.58928000000003
+  ],
+  "png": "AFH10-644_fig_17-64.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-65",
+  "manual": "AFH10-644",
+  "num": "17-65",
+  "title": "Small Animal Skinning",
+  "page": 359,
+  "bbox": [
+   68.9600143,
+   419.1199646,
+   547.5999218,
+   539.74928
+  ],
+  "png": "AFH10-644_fig_17-65.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-66",
+  "manual": "AFH10-644",
+  "num": "17-66",
+  "title": "Filleting a Fish",
+  "page": 360,
+  "bbox": [
+   65.9599991,
+   454.6399536,
+   550.3599243,
+   659.26928
+  ],
+  "png": "AFH10-644_fig_17-66.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-67",
+  "manual": "AFH10-644",
+  "num": "17-67",
+  "title": "Cattails",
+  "page": 362,
+  "bbox": [
+   182.9599915,
+   246.67999269999996,
+   429.5199862,
+   505.30928
+  ],
+  "png": "AFH10-644_fig_17-67.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-68",
+  "manual": "AFH10-644",
+  "num": "17-68",
+  "title": "Water Lilies",
+  "page": 363,
+  "bbox": [
+   68.9599991,
+   68.95996089999994,
+   553.1199885,
+   311.02928
+  ],
+  "png": "AFH10-644_fig_17-68.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-69",
+  "manual": "AFH10-644",
+  "num": "17-69",
+  "title": "Boiling",
+  "page": 364,
+  "bbox": [
+   80.9600067,
+   321.6799622,
+   531.1599549,
+   497.86928
+  ],
+  "png": "AFH10-644_fig_17-69.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-70",
+  "manual": "AFH10-644",
+  "num": "17-70",
+  "title": "Baking",
+  "page": 365,
+  "bbox": [
+   91.4000015,
+   67.40002449999997,
+   518.0799276,
+   363.46928
+  ],
+  "png": "AFH10-644_fig_17-70.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-71",
+  "manual": "AFH10-644",
+  "num": "17-71",
+  "title": "Clam Baking",
+  "page": 365,
+  "bbox": [
+   91.4000015,
+   67.40002449999997,
+   518.0799276,
+   683.14928
+  ],
+  "png": "AFH10-644_fig_17-71.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-72",
+  "manual": "AFH10-644",
+  "num": "17-72",
+  "title": "Broiling and Roasting",
+  "page": 366,
+  "bbox": [
+   104.1199875,
+   430.2799683,
+   506.91990139999996,
+   706.90928
+  ],
+  "png": "AFH10-644_fig_17-72.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-73",
+  "manual": "AFH10-644",
+  "num": "17-73",
+  "title": "Planking",
+  "page": 367,
+  "bbox": [
+   65.9599991,
+   142.6399536,
+   550.3599243,
+   377.26928000000004
+  ],
+  "png": "AFH10-644_fig_17-73.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/17-74",
+  "manual": "AFH10-644",
+  "num": "17-74",
+  "title": "Sun-Drying",
+  "page": 368,
+  "bbox": [
+   83.9599991,
+   382.9999695,
+   526.8399893999999,
+   694.0692799999999
+  ],
+  "png": "AFH10-644_fig_17-74.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-1",
+  "manual": "AFH10-644",
+  "num": "18-1",
+  "title": "Topographical Map",
+  "page": 371,
+  "bbox": [
+   86.2400131,
+   67.4000244,
+   524.1999559000001,
+   623.02928
+  ],
+  "png": "AFH10-644_fig_18-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-2",
+  "manual": "AFH10-644",
+  "num": "18-2",
+  "title": "TPC Map",
+  "page": 375,
+  "bbox": [
+   81.8999176,
+   68.0,
+   530.4144031,
+   386.38918
+  ],
+  "png": "AFH10-644_fig_18-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-3",
+  "manual": "AFH10-644",
+  "num": "18-3",
+  "title": "DOD Evasion Chart",
+  "page": 377,
+  "bbox": [
+   86.9599991,
+   193.27996829999995,
+   525.5199895000001,
+   426.46928
+  ],
+  "png": "AFH10-644_fig_18-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-5",
+  "manual": "AFH10-644",
+  "num": "18-5",
+  "title": "Area Viewed from Ground Position",
+  "page": 382,
+  "bbox": [
+   65.9599991,
+   346.87997440000004,
+   550.3599243,
+   590.50928
+  ],
+  "png": "AFH10-644_fig_18-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-6",
+  "manual": "AFH10-644",
+  "num": "18-6",
+  "title": "Prime Meridian and Equator",
+  "page": 384,
+  "bbox": [
+   143.0019531,
+   245.78710939999996,
+   470.1019741,
+   543.58928
+  ],
+  "png": "AFH10-644_fig_18-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-7",
+  "manual": "AFH10-644",
+  "num": "18-7",
+  "title": "Reference Lines",
+  "page": 385,
+  "bbox": [
+   122.0,
+   68.0,
+   491.4858236,
+   355.18928
+  ],
+  "png": "AFH10-644_fig_18-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-8",
+  "manual": "AFH10-644",
+  "num": "18-8",
+  "title": "Plotting Geographic Coordinates",
+  "page": 386,
+  "bbox": [
+   111.6799927,
+   67.4000244,
+   498.51991050000004,
+   463.54064
+  ],
+  "png": "AFH10-644_fig_18-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-96",
+  "manual": "AFH10-644",
+  "num": "18-96",
+  "title": "Estimating Elevation and Contour Lines",
+  "page": 391,
+  "bbox": [
+   71.1199875,
+   102.55999760000009,
+   540.5199208,
+   341.14496
+  ],
+  "png": "AFH10-644_fig_18-96.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-70",
+  "manual": "AFH10-644",
+  "num": "18-70",
+  "title": "Uniform Gentle Slope",
+  "page": 392,
+  "bbox": [
+   83.9600067,
+   185.4799805,
+   527.6799522,
+   336.10918000000004
+  ],
+  "png": "AFH10-644_fig_18-70.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-81",
+  "manual": "AFH10-644",
+  "num": "18-81",
+  "title": "Uniform Steep Slope",
+  "page": 392,
+  "bbox": [
+   82.3999939,
+   185.4799805,
+   529.839902,
+   516.34928
+  ],
+  "png": "AFH10-644_fig_18-81.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-92",
+  "manual": "AFH10-644",
+  "num": "18-92",
+  "title": "Concave Slope",
+  "page": 392,
+  "bbox": [
+   78.6800156,
+   185.4799805,
+   532.9599259,
+   699.46928
+  ],
+  "png": "AFH10-644_fig_18-92.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-103",
+  "manual": "AFH10-644",
+  "num": "18-103",
+  "title": "Convex Slope",
+  "page": 393,
+  "bbox": [
+   79.4000092,
+   68.95996089999994,
+   532.1199515000001,
+   212.02927999999997
+  ],
+  "png": "AFH10-644_fig_18-103.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-114",
+  "manual": "AFH10-644",
+  "num": "18-114",
+  "title": "Hill",
+  "page": 393,
+  "bbox": [
+   103.3999939,
+   349.5199585,
+   507.63993070000004,
+   543.70928
+  ],
+  "png": "AFH10-644_fig_18-114.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-147",
+  "manual": "AFH10-644",
+  "num": "18-147",
+  "title": "Saddle",
+  "page": 395,
+  "bbox": [
+   68.9599991,
+   68.96002199999998,
+   553.2399206,
+   234.58928000000003
+  ],
+  "png": "AFH10-644_fig_18-147.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-158",
+  "manual": "AFH10-644",
+  "num": "18-158",
+  "title": "Depression",
+  "page": 395,
+  "bbox": [
+   68.9599991,
+   277.2799988,
+   553.2399206,
+   445.90928
+  ],
+  "png": "AFH10-644_fig_18-158.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-160",
+  "manual": "AFH10-644",
+  "num": "18-160",
+  "title": "Cliff",
+  "page": 396,
+  "bbox": [
+   68.9599991,
+   68.96002199999998,
+   553.2399206,
+   224.02927999999997
+  ],
+  "png": "AFH10-644_fig_18-160.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-171",
+  "manual": "AFH10-644",
+  "num": "18-171",
+  "title": "Graphic Bar Scale",
+  "page": 397,
+  "bbox": [
+   65.9599991,
+   67.39996339999993,
+   550.3599243,
+   260.02927999999997
+  ],
+  "png": "AFH10-644_fig_18-171.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-182",
+  "manual": "AFH10-644",
+  "num": "18-182",
+  "title": "Measuring Straight Line Map Distance",
+  "page": 397,
+  "bbox": [
+   65.9599991,
+   375.31997679999995,
+   550.3599243,
+   567.94928
+  ],
+  "png": "AFH10-644_fig_18-182.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-193",
+  "manual": "AFH10-644",
+  "num": "18-193",
+  "title": "Measuring Curved Line Distances",
+  "page": 398,
+  "bbox": [
+   68.9599991,
+   68.96002199999998,
+   553.2399206,
+   221.02927999999997
+  ],
+  "png": "AFH10-644_fig_18-193.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-204",
+  "manual": "AFH10-644",
+  "num": "18-204",
+  "title": "Types of Protractors",
+  "page": 398,
+  "bbox": [
+   68.9599991,
+   405.0799866,
+   553.2399206,
+   689.14928
+  ],
+  "png": "AFH10-644_fig_18-204.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-215",
+  "manual": "AFH10-644",
+  "num": "18-215",
+  "title": "Measuring Azimuth on a Map using a Protractor",
+  "page": 399,
+  "bbox": [
+   68.9599991,
+   239.35998540000003,
+   553.2399206,
+   466.54928
+  ],
+  "png": "AFH10-644_fig_18-215.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-226",
+  "manual": "AFH10-644",
+  "num": "18-226",
+  "title": "Plotting an Azimuth on a Map using a Protractor",
+  "page": 400,
+  "bbox": [
+   68.9599991,
+   68.95996100000002,
+   553.2399206,
+   281.02928
+  ],
+  "png": "AFH10-644_fig_18-226.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-237",
+  "manual": "AFH10-644",
+  "num": "18-237",
+  "title": "Floating Needle Compass",
+  "page": 401,
+  "bbox": [
+   65.9599991,
+   225.4400023999999,
+   550.3599243,
+   535.0692799999999
+  ],
+  "png": "AFH10-644_fig_18-237.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-248",
+  "manual": "AFH10-644",
+  "num": "18-248",
+  "title": "Map Orientation by Inspection",
+  "page": 402,
+  "bbox": [
+   88.4000015,
+   68.96002199999998,
+   523.4799334,
+   314.02928
+  ],
+  "png": "AFH10-644_fig_18-248.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-29",
+  "manual": "AFH10-644",
+  "num": "18-29",
+  "title": "Determining Time and Direction by Shadow",
+  "page": 403,
+  "bbox": [
+   65.9599991,
+   67.39996339999993,
+   550.3599243,
+   216.58928000000003
+  ],
+  "png": "AFH10-644_fig_18-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-250",
+  "manual": "AFH10-644",
+  "num": "18-250",
+  "title": "Equal Shadow Method of Determining Direction",
+  "page": 404,
+  "bbox": [
+   163.3999786,
+   338.23995980000007,
+   446.7999749,
+   517.30928
+  ],
+  "png": "AFH10-644_fig_18-250.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-261",
+  "manual": "AFH10-644",
+  "num": "18-261",
+  "title": "Determination of Direction by Using the Stars",
+  "page": 405,
+  "bbox": [
+   65.9599915,
+   67.39996340000005,
+   551.3198886,
+   294.58928000000003
+  ],
+  "png": "AFH10-644_fig_18-261.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-272",
+  "manual": "AFH10-644",
+  "num": "18-272",
+  "title": "Directions Using a Watch",
+  "page": 405,
+  "bbox": [
+   68.9599991,
+   411.3199768,
+   553.2399206,
+   626.50928
+  ],
+  "png": "AFH10-644_fig_18-272.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-283",
+  "manual": "AFH10-644",
+  "num": "18-283",
+  "title": "Azimuth, Biangulation, and Triangulation",
+  "page": 406,
+  "bbox": [
+   68.9599991,
+   323.47995000000003,
+   553.2399206,
+   550.66928
+  ],
+  "png": "AFH10-644_fig_18-283.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-294",
+  "manual": "AFH10-644",
+  "num": "18-294",
+  "title": "Deliberate Offset",
+  "page": 408,
+  "bbox": [
+   65.9599991,
+   191.83996579999996,
+   550.3599243,
+   502.90928
+  ],
+  "png": "AFH10-644_fig_18-294.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-305",
+  "manual": "AFH10-644",
+  "num": "18-305",
+  "title": "Detour Around Enemy Position",
+  "page": 409,
+  "bbox": [
+   65.9599991,
+   67.39996339999993,
+   550.3599243,
+   344.02928
+  ],
+  "png": "AFH10-644_fig_18-305.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-316",
+  "manual": "AFH10-644",
+  "num": "18-316",
+  "title": "Finding Direction from the Rising or Setting Sun",
+  "page": 410,
+  "bbox": [
+   101.1199951,
+   68.96002199999998,
+   511.35998609999996,
+   540.58928
+  ],
+  "png": "AFH10-644_fig_18-316.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-327",
+  "manual": "AFH10-644",
+  "num": "18-327",
+  "title": "Determining Latitude by Noon Sun",
+  "page": 411,
+  "bbox": [
+   121.3999939,
+   68.95996089999994,
+   490.11994419999996,
+   467.02928
+  ],
+  "png": "AFH10-644_fig_18-327.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-338",
+  "manual": "AFH10-644",
+  "num": "18-338",
+  "title": "Nomogram",
+  "page": 412,
+  "bbox": [
+   134.9599762,
+   68.96002190000002,
+   476.43994829999997,
+   390.58928000000003
+  ],
+  "png": "AFH10-644_fig_18-338.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-39",
+  "manual": "AFH10-644",
+  "num": "18-39",
+  "title": "Stick and Shadow",
+  "page": 413,
+  "bbox": [
+   68.9599991,
+   68.95996089999994,
+   553.2399206,
+   211.54160000000002
+  ],
+  "png": "AFH10-644_fig_18-39.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-340",
+  "manual": "AFH10-644",
+  "num": "18-340",
+  "title": "Equation of Time",
+  "page": 413,
+  "bbox": [
+   65.9599991,
+   421.6399536,
+   550.3599243,
+   632.26928
+  ],
+  "png": "AFH10-644_fig_18-340.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-351",
+  "manual": "AFH10-644",
+  "num": "18-351",
+  "title": "Finding Direction from Polaris",
+  "page": 414,
+  "bbox": [
+   68.9599991,
+   382.8799743,
+   562.7199882,
+   625.0692799999999
+  ],
+  "png": "AFH10-644_fig_18-351.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-362",
+  "manual": "AFH10-644",
+  "num": "18-362",
+  "title": "Finding Direction from Southern Cross",
+  "page": 415,
+  "bbox": [
+   68.9599991,
+   185.47998039999993,
+   553.3599243,
+   417.10918000000004
+  ],
+  "png": "AFH10-644_fig_18-362.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-373",
+  "manual": "AFH10-644",
+  "num": "18-373",
+  "title": "Charts of Equatorial Stars",
+  "page": 416,
+  "bbox": [
+   65.9599991,
+   231.4400025,
+   550.3599243,
+   592.0692799999999
+  ],
+  "png": "AFH10-644_fig_18-373.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-384",
+  "manual": "AFH10-644",
+  "num": "18-384",
+  "title": "Finding Latitude by Polaris",
+  "page": 417,
+  "bbox": [
+   107.9599991,
+   67.39996340000005,
+   502.3599905,
+   593.02928
+  ],
+  "png": "AFH10-644_fig_18-384.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-395",
+  "manual": "AFH10-644",
+  "num": "18-395",
+  "title": "Stick and String Direction Finding",
+  "page": 418,
+  "bbox": [
+   113.9599991,
+   488.8399353,
+   497.5599553,
+   692.02928
+  ],
+  "png": "AFH10-644_fig_18-395.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-406",
+  "manual": "AFH10-644",
+  "num": "18-406",
+  "title": "Lensatic Compass",
+  "page": 419,
+  "bbox": [
+   68.9599991,
+   142.63995369999998,
+   541.5999887,
+   425.26928000000004
+  ],
+  "png": "AFH10-644_fig_18-406.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-417",
+  "manual": "AFH10-644",
+  "num": "18-417",
+  "title": "Holding the Compass",
+  "page": 421,
+  "bbox": [
+   83.9599915,
+   68.96002199999998,
+   527.4398995,
+   356.02928
+  ],
+  "png": "AFH10-644_fig_18-417.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-428",
+  "manual": "AFH10-644",
+  "num": "18-428",
+  "title": "Night Travel",
+  "page": 422,
+  "bbox": [
+   68.9599991,
+   68.96002199999998,
+   553.2399206,
+   393.58928000000003
+  ],
+  "png": "AFH10-644_fig_18-428.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-49",
+  "manual": "AFH10-644",
+  "num": "18-49",
+  "title": "True, Grid, and Magnetic Azimuths",
+  "page": 423,
+  "bbox": [
+   65.9599991,
+   385.6399536,
+   550.3599243,
+   579.70928
+  ],
+  "png": "AFH10-644_fig_18-49.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-430",
+  "manual": "AFH10-644",
+  "num": "18-430",
+  "title": "Azimuth Angle",
+  "page": 424,
+  "bbox": [
+   93.6800079,
+   193.27996829999995,
+   518.5599283,
+   318.46928
+  ],
+  "png": "AFH10-644_fig_18-430.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-441",
+  "manual": "AFH10-644",
+  "num": "18-441",
+  "title": "Declination Diagram (East and West)",
+  "page": 424,
+  "bbox": [
+   68.9600143,
+   474.7999878,
+   566.3199486999999,
+   700.4292800000001
+  ],
+  "png": "AFH10-644_fig_18-441.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/18-452",
+  "manual": "AFH10-644",
+  "num": "18-452",
+  "title": "Lines of Magnetic Variation",
+  "page": 425,
+  "bbox": [
+   71.9599991,
+   348.7999573,
+   538.3599889,
+   590.38496
+  ],
+  "png": "AFH10-644_fig_18-452.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-1",
+  "manual": "AFH10-644",
+  "num": "19-1",
+  "title": "Examples for Marking a Trail",
+  "page": 430,
+  "bbox": [
+   66.6800156,
+   67.39996339999993,
+   543.5199504,
+   393.10544
+  ],
+  "png": "AFH10-644_fig_19-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-2",
+  "manual": "AFH10-644",
+  "num": "19-2",
+  "title": "Slope Angle",
+  "page": 431,
+  "bbox": [
+   82.4000092,
+   346.6399536,
+   526.9599279,
+   604.7864
+  ],
+  "png": "AFH10-644_fig_19-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-3",
+  "manual": "AFH10-644",
+  "num": "19-3",
+  "title": "Profile of Slope",
+  "page": 432,
+  "bbox": [
+   83.9600143,
+   67.39996339999993,
+   525.5199825999999,
+   298.5478400000001
+  ],
+  "png": "AFH10-644_fig_19-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-4",
+  "manual": "AFH10-644",
+  "num": "19-4",
+  "title": "Snow Slides",
+  "page": 432,
+  "bbox": [
+   95.1199951,
+   472.039978,
+   516.279898,
+   695.62496
+  ],
+  "png": "AFH10-644_fig_19-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-5",
+  "manual": "AFH10-644",
+  "num": "19-5",
+  "title": "Forming Slides",
+  "page": 434,
+  "bbox": [
+   84.6800003,
+   68.96002199999998,
+   527.5599906,
+   318.0996800000001
+  ],
+  "png": "AFH10-644_fig_19-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-6",
+  "manual": "AFH10-644",
+  "num": "19-6",
+  "title": "Avalanche Warning Signs",
+  "page": 434,
+  "bbox": [
+   65.9599991,
+   491.3599244,
+   550.3599243,
+   689.50496
+  ],
+  "png": "AFH10-644_fig_19-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-7",
+  "manual": "AFH10-644",
+  "num": "19-7",
+  "title": "Typical Glacier Construction",
+  "page": 438,
+  "bbox": [
+   67.4000092,
+   67.4000244,
+   542.7999226,
+   674.9787200000001
+  ],
+  "png": "AFH10-644_fig_19-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-8",
+  "manual": "AFH10-644",
+  "num": "19-8",
+  "title": "Weight of Body Over Feet",
+  "page": 447,
+  "bbox": [
+   68.9599991,
+   151.76000980000003,
+   553.1199885,
+   301.78496
+  ],
+  "png": "AFH10-644_fig_19-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-9",
+  "manual": "AFH10-644",
+  "num": "19-9",
+  "title": "Locking Knees, Traversing, Walking Uphill, Walking Downhill",
+  "page": 447,
+  "bbox": [
+   65.9599991,
+   499.7599182,
+   550.3599243,
+   693.34496
+  ],
+  "png": "AFH10-644_fig_19-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-10",
+  "manual": "AFH10-644",
+  "num": "19-10",
+  "title": "Walking on Grassy Slopes",
+  "page": 448,
+  "bbox": [
+   195.6799927,
+   163.76000980000003,
+   416.7999879,
+   450.34496
+  ],
+  "png": "AFH10-644_fig_19-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-11",
+  "manual": "AFH10-644",
+  "num": "19-11",
+  "title": "Walking on Scree Slopes",
+  "page": 449,
+  "bbox": [
+   122.9599991,
+   67.4000244,
+   487.1199911,
+   316.54303999999996
+  ],
+  "png": "AFH10-644_fig_19-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-12",
+  "manual": "AFH10-644",
+  "num": "19-12",
+  "title": "Walking Down Scree Slopes",
+  "page": 449,
+  "bbox": [
+   122.9599991,
+   67.4000244,
+   487.1199911,
+   605.13968
+  ],
+  "png": "AFH10-644_fig_19-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-13",
+  "manual": "AFH10-644",
+  "num": "19-13",
+  "title": "Walking on Talus Slopes",
+  "page": 450,
+  "bbox": [
+   197.9599915,
+   67.39996339999993,
+   412.35998689999997,
+   304.54256000000004
+  ],
+  "png": "AFH10-644_fig_19-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-14",
+  "manual": "AFH10-644",
+  "num": "19-14",
+  "title": "Square Pack",
+  "page": 451,
+  "bbox": [
+   116.1200027,
+   324.1999511,
+   494.9199726,
+   648.3464
+  ],
+  "png": "AFH10-644_fig_19-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-15",
+  "manual": "AFH10-644",
+  "num": "19-15",
+  "title": "Horseshoe Pack",
+  "page": 452,
+  "bbox": [
+   101.1200027,
+   165.55999759999997,
+   510.0399299,
+   404.14496
+  ],
+  "png": "AFH10-644_fig_19-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-16",
+  "manual": "AFH10-644",
+  "num": "19-16",
+  "title": "Alaskan Packstrap",
+  "page": 453,
+  "bbox": [
+   71.9600143,
+   104.23999019999997,
+   540.5199802,
+   276.8249599999999
+  ],
+  "png": "AFH10-644_fig_19-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-17",
+  "manual": "AFH10-644",
+  "num": "19-17",
+  "title": "Methods of Resting",
+  "page": 454,
+  "bbox": [
+   68.9599991,
+   110.35998530000006,
+   553.2399206,
+   320.38496
+  ],
+  "png": "AFH10-644_fig_19-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-18",
+  "manual": "AFH10-644",
+  "num": "19-18",
+  "title": "The Water Knot",
+  "page": 455,
+  "bbox": [
+   65.9599991,
+   67.4000243999999,
+   550.3599243,
+   396.10832
+  ],
+  "png": "AFH10-644_fig_19-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-19",
+  "manual": "AFH10-644",
+  "num": "19-19",
+  "title": "Double Fisherman's Bend",
+  "page": 455,
+  "bbox": [
+   65.9599991,
+   455.959961,
+   550.3599243,
+   708.10496
+  ],
+  "png": "AFH10-644_fig_19-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-20",
+  "manual": "AFH10-644",
+  "num": "19-20",
+  "title": "Figure-Eight Loop",
+  "page": 456,
+  "bbox": [
+   65.9599991,
+   114.79998780000005,
+   550.3599243,
+   378.94496
+  ],
+  "png": "AFH10-644_fig_19-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-21",
+  "manual": "AFH10-644",
+  "num": "19-21",
+  "title": "Figure-Eight with Two Loops",
+  "page": 456,
+  "bbox": [
+   65.9599991,
+   114.79998780000005,
+   550.3599243,
+   563.1473599999999
+  ],
+  "png": "AFH10-644_fig_19-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-22",
+  "manual": "AFH10-644",
+  "num": "19-22",
+  "title": "Butterfly Knot",
+  "page": 457,
+  "bbox": [
+   65.9599991,
+   67.39996339999993,
+   550.3599243,
+   300.10448
+  ],
+  "png": "AFH10-644_fig_19-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-23",
+  "manual": "AFH10-644",
+  "num": "19-23",
+  "title": "Prusik Knot",
+  "page": 457,
+  "bbox": [
+   65.9599991,
+   359.959961,
+   550.3599243,
+   673.54496
+  ],
+  "png": "AFH10-644_fig_19-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-24",
+  "manual": "AFH10-644",
+  "num": "19-24",
+  "title": "Three-Loop Bowline",
+  "page": 458,
+  "bbox": [
+   72.6800003,
+   116.35998540000003,
+   538.4799231,
+   317.38496
+  ],
+  "png": "AFH10-644_fig_19-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-25",
+  "manual": "AFH10-644",
+  "num": "19-25",
+  "title": "Improvised Seat Harness",
+  "page": 458,
+  "bbox": [
+   68.9599991,
+   558.199936,
+   553.1199885,
+   703.90496
+  ],
+  "png": "AFH10-644_fig_19-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-26",
+  "manual": "AFH10-644",
+  "num": "19-26",
+  "title": "Body Position",
+  "page": 460,
+  "bbox": [
+   68.9599991,
+   552.4399262,
+   553.1199885,
+   696.58496
+  ],
+  "png": "AFH10-644_fig_19-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-27",
+  "manual": "AFH10-644",
+  "num": "19-27",
+  "title": "Push Holds",
+  "page": 461,
+  "bbox": [
+   122.9599838,
+   169.76000980000003,
+   488.91989880000006,
+   378.34928
+  ],
+  "png": "AFH10-644_fig_19-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-28",
+  "manual": "AFH10-644",
+  "num": "19-28",
+  "title": "Pull Holds",
+  "page": 461,
+  "bbox": [
+   164.9599915,
+   439.7599488,
+   446.7999541,
+   702.34928
+  ],
+  "png": "AFH10-644_fig_19-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-29",
+  "manual": "AFH10-644",
+  "num": "19-29",
+  "title": "Jam Holds",
+  "page": 462,
+  "bbox": [
+   121.3999863,
+   156.20001219999995,
+   488.7999327,
+   525.34928
+  ],
+  "png": "AFH10-644_fig_19-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-30",
+  "manual": "AFH10-644",
+  "num": "19-30",
+  "title": "Combination Holds",
+  "page": 463,
+  "bbox": [
+   133.3999786,
+   67.4000244,
+   476.7999798,
+   303.10918000000004
+  ],
+  "png": "AFH10-644_fig_19-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-31",
+  "manual": "AFH10-644",
+  "num": "19-31",
+  "title": "Lay-Back",
+  "page": 463,
+  "bbox": [
+   88.3999939,
+   371.5999756,
+   521.7999316,
+   700.18928
+  ],
+  "png": "AFH10-644_fig_19-31.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-32",
+  "manual": "AFH10-644",
+  "num": "19-32",
+  "title": "Underclings",
+  "page": 464,
+  "bbox": [
+   179.9599915,
+   83.5999756,
+   431.799986,
+   350.74928
+  ],
+  "png": "AFH10-644_fig_19-32.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-33",
+  "manual": "AFH10-644",
+  "num": "19-33",
+  "title": "Mantleshelving",
+  "page": 464,
+  "bbox": [
+   72.6799927,
+   406.9999695,
+   538.9598989,
+   705.58928
+  ],
+  "png": "AFH10-644_fig_19-33.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-34",
+  "manual": "AFH10-644",
+  "num": "19-34",
+  "title": "Chimney Climbing",
+  "page": 465,
+  "bbox": [
+   146.9599762,
+   177.5599975,
+   464.3199618,
+   689.14928
+  ],
+  "png": "AFH10-644_fig_19-34.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-35",
+  "manual": "AFH10-644",
+  "num": "19-35",
+  "title": "Friction Holds",
+  "page": 466,
+  "bbox": [
+   143.9599915,
+   261.1999511,
+   467.3199845,
+   697.78928
+  ],
+  "png": "AFH10-644_fig_19-35.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-36",
+  "manual": "AFH10-644",
+  "num": "19-36",
+  "title": "Ice Axe",
+  "page": 470,
+  "bbox": [
+   78.6800003,
+   142.39996339999993,
+   530.799923,
+   433.5464
+  ],
+  "png": "AFH10-644_fig_19-36.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-37",
+  "manual": "AFH10-644",
+  "num": "19-37",
+  "title": "Ice Axe Self-Arrest",
+  "page": 471,
+  "bbox": [
+   65.9599991,
+   67.4000244,
+   550.3599243,
+   403.53824000000003
+  ],
+  "png": "AFH10-644_fig_19-37.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-38",
+  "manual": "AFH10-644",
+  "num": "19-38",
+  "title": "Glissading",
+  "page": 472,
+  "bbox": [
+   65.9599991,
+   67.40002449999997,
+   550.3599243,
+   352.5444800000001
+  ],
+  "png": "AFH10-644_fig_19-38.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-39",
+  "manual": "AFH10-644",
+  "num": "19-39",
+  "title": "Lifting the Patient",
+  "page": 473,
+  "bbox": [
+   65.9599991,
+   420.7999573,
+   550.3599243,
+   654.94496
+  ],
+  "png": "AFH10-644_fig_19-39.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-40",
+  "manual": "AFH10-644",
+  "num": "19-40",
+  "title": "Moving the Patient",
+  "page": 474,
+  "bbox": [
+   68.9599991,
+   124.1599731,
+   553.2399206,
+   389.74496
+  ],
+  "png": "AFH10-644_fig_19-40.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/19-41",
+  "manual": "AFH10-644",
+  "num": "19-41",
+  "title": "Tying the Patient into a Stokes Litter",
+  "page": 475,
+  "bbox": [
+   68.9599991,
+   186.20001219999995,
+   553.2399206,
+   478.78496
+  ],
+  "png": "AFH10-644_fig_19-41.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-1",
+  "manual": "AFH10-644",
+  "num": "20-1",
+  "title": "One-Man Raft",
+  "page": 478,
+  "bbox": [
+   145.9250336,
+   67.99993900000004,
+   467.5750546,
+   323.02928
+  ],
+  "png": "AFH10-644_fig_20-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-2",
+  "manual": "AFH10-644",
+  "num": "20-2",
+  "title": "One-Man Raft (Paddling)",
+  "page": 478,
+  "bbox": [
+   68.9599991,
+   500.8399353,
+   553.1199885,
+   691.42496
+  ],
+  "png": "AFH10-644_fig_20-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-3",
+  "manual": "AFH10-644",
+  "num": "20-3",
+  "title": "Seven-Man Raft",
+  "page": 479,
+  "bbox": [
+   87.5012589,
+   184.59179689999996,
+   525.2375447000001,
+   526.06928
+  ],
+  "png": "AFH10-644_fig_20-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-4",
+  "manual": "AFH10-644",
+  "num": "20-4",
+  "title": "Paddle",
+  "page": 480,
+  "bbox": [
+   65.9599991,
+   239.23999019999997,
+   550.3599243,
+   382.30928
+  ],
+  "png": "AFH10-644_fig_20-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-5",
+  "manual": "AFH10-644",
+  "num": "20-5",
+  "title": "The Paddle Strokes",
+  "page": 481,
+  "bbox": [
+   65.9599991,
+   353.7199707,
+   550.3599243,
+   681.34928
+  ],
+  "png": "AFH10-644_fig_20-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-6",
+  "manual": "AFH10-644",
+  "num": "20-6",
+  "title": "Ferry",
+  "page": 482,
+  "bbox": [
+   68.9599991,
+   226.88000490000002,
+   553.2399206,
+   446.50928000000005
+  ],
+  "png": "AFH10-644_fig_20-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-7",
+  "manual": "AFH10-644",
+  "num": "20-7",
+  "title": "Bow Downstream Ferry",
+  "page": 482,
+  "bbox": [
+   68.9599991,
+   226.88000490000002,
+   553.2399206,
+   694.18928
+  ],
+  "png": "AFH10-644_fig_20-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-8",
+  "manual": "AFH10-644",
+  "num": "20-8",
+  "title": "Entering an Eddy with a Reverse Ferry",
+  "page": 483,
+  "bbox": [
+   116.1199875,
+   399.0799561,
+   495.519957,
+   609.70928
+  ],
+  "png": "AFH10-644_fig_20-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-9",
+  "manual": "AFH10-644",
+  "num": "20-9",
+  "title": "Turning the Raft to the Right or Left",
+  "page": 484,
+  "bbox": [
+   78.6800156,
+   144.08001709999996,
+   532.9599259,
+   363.70928000000004
+  ],
+  "png": "AFH10-644_fig_20-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-10",
+  "manual": "AFH10-644",
+  "num": "20-10",
+  "title": "Making the Raft Move Left and Right with Pry and Draw Stroke",
+  "page": 484,
+  "bbox": [
+   78.6800156,
+   425.3599549,
+   532.9599259,
+   629.98928
+  ],
+  "png": "AFH10-644_fig_20-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-11",
+  "manual": "AFH10-644",
+  "num": "20-11",
+  "title": "Stern Maneuvers",
+  "page": 485,
+  "bbox": [
+   73.4000015,
+   144.07995600000004,
+   539.7999913,
+   342.70928000000004
+  ],
+  "png": "AFH10-644_fig_20-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-12",
+  "manual": "AFH10-644",
+  "num": "20-12",
+  "title": "Laminar Flow",
+  "page": 486,
+  "bbox": [
+   68.9599991,
+   581.9599304999999,
+   553.1199885,
+   707.14928
+  ],
+  "png": "AFH10-644_fig_20-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-13",
+  "manual": "AFH10-644",
+  "num": "20-13",
+  "title": "Helical Flow",
+  "page": 487,
+  "bbox": [
+   68.9599991,
+   430.27999880000004,
+   553.3599243,
+   633.46928
+  ],
+  "png": "AFH10-644_fig_20-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-14",
+  "manual": "AFH10-644",
+  "num": "20-14",
+  "title": "Macroturbulence",
+  "page": 489,
+  "bbox": [
+   68.9599991,
+   68.96002199999998,
+   553.2399206,
+   338.02928
+  ],
+  "png": "AFH10-644_fig_20-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-15",
+  "manual": "AFH10-644",
+  "num": "20-15",
+  "title": "Anatomy of a River Bend",
+  "page": 489,
+  "bbox": [
+   74.9599915,
+   453.3199463,
+   535.4798959,
+   701.50928
+  ],
+  "png": "AFH10-644_fig_20-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-16",
+  "manual": "AFH10-644",
+  "num": "20-16",
+  "title": "Response to a Submerged Rock",
+  "page": 490,
+  "bbox": [
+   80.9600143,
+   171.67999269999996,
+   531.3999553,
+   374.86928
+  ],
+  "png": "AFH10-644_fig_20-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-17",
+  "manual": "AFH10-644",
+  "num": "20-17",
+  "title": "Sleeper",
+  "page": 490,
+  "bbox": [
+   68.9599991,
+   546.7999268,
+   553.2399206,
+   704.98928
+  ],
+  "png": "AFH10-644_fig_20-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-18",
+  "manual": "AFH10-644",
+  "num": "20-18",
+  "title": "Breaking Hole",
+  "page": 491,
+  "bbox": [
+   65.9599991,
+   251.23999030000004,
+   550.3599243,
+   461.86928
+  ],
+  "png": "AFH10-644_fig_20-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-19",
+  "manual": "AFH10-644",
+  "num": "20-19",
+  "title": "Suction Hole",
+  "page": 492,
+  "bbox": [
+   133.3999786,
+   68.95996089999994,
+   478.1199828,
+   314.02928
+  ],
+  "png": "AFH10-644_fig_20-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-20",
+  "manual": "AFH10-644",
+  "num": "20-20",
+  "title": "Eddies",
+  "page": 492,
+  "bbox": [
+   68.9600067,
+   456.9199829,
+   541.7199259,
+   694.54928
+  ],
+  "png": "AFH10-644_fig_20-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-21",
+  "manual": "AFH10-644",
+  "num": "20-21",
+  "title": "Two-Dimensional Eddies",
+  "page": 493,
+  "bbox": [
+   68.9600143,
+   282.0799561,
+   552.9999222,
+   417.70928000000004
+  ],
+  "png": "AFH10-644_fig_20-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-22",
+  "manual": "AFH10-644",
+  "num": "20-22",
+  "title": "Falls",
+  "page": 493,
+  "bbox": [
+   85.4000015,
+   562.1599274,
+   526.8399918,
+   703.78928
+  ],
+  "png": "AFH10-644_fig_20-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-23",
+  "manual": "AFH10-644",
+  "num": "20-23",
+  "title": "Tall Waves and Rollers",
+  "page": 494,
+  "bbox": [
+   68.9599991,
+   280.2799683,
+   563.9199487000001,
+   429.46928
+  ],
+  "png": "AFH10-644_fig_20-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-24",
+  "manual": "AFH10-644",
+  "num": "20-24",
+  "title": "Bank Roller",
+  "page": 495,
+  "bbox": [
+   72.6800079,
+   67.39996339999993,
+   536.7999227,
+   342.58928000000003
+  ],
+  "png": "AFH10-644_fig_20-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-25",
+  "manual": "AFH10-644",
+  "num": "20-25",
+  "title": "Haystack",
+  "page": 495,
+  "bbox": [
+   71.1199875,
+   67.39996339999993,
+   540.5199208,
+   602.14928
+  ],
+  "png": "AFH10-644_fig_20-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-26",
+  "manual": "AFH10-644",
+  "num": "20-26",
+  "title": "Tongue of the Rapids",
+  "page": 496,
+  "bbox": [
+   68.9599991,
+   68.96002199999998,
+   553.2399206,
+   306.58928000000003
+  ],
+  "png": "AFH10-644_fig_20-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-27",
+  "manual": "AFH10-644",
+  "num": "20-27",
+  "title": "Handling Broadside Collision with Rock",
+  "page": 497,
+  "bbox": [
+   68.9599991,
+   303.6799621,
+   553.2399206,
+   484.30928
+  ],
+  "png": "AFH10-644_fig_20-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-28",
+  "manual": "AFH10-644",
+  "num": "20-28",
+  "title": "Freeing Un-swamped Raft",
+  "page": 497,
+  "bbox": [
+   68.9599991,
+   303.6799621,
+   553.2399206,
+   697.4292800000001
+  ],
+  "png": "AFH10-644_fig_20-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-29",
+  "manual": "AFH10-644",
+  "num": "20-29",
+  "title": "Freeing a Wrapped Raft",
+  "page": 498,
+  "bbox": [
+   65.9599991,
+   334.0399781,
+   550.3599243,
+   526.6691800000001
+  ],
+  "png": "AFH10-644_fig_20-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-30",
+  "manual": "AFH10-644",
+  "num": "20-30",
+  "title": "Lining a Chute",
+  "page": 499,
+  "bbox": [
+   65.9599991,
+   67.40002449999997,
+   550.3599243,
+   360.58928000000003
+  ],
+  "png": "AFH10-644_fig_20-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-31",
+  "manual": "AFH10-644",
+  "num": "20-31",
+  "title": "Making a Rescue",
+  "page": 500,
+  "bbox": [
+   68.9599991,
+   68.95996100000002,
+   553.2399206,
+   260.02927999999997
+  ],
+  "png": "AFH10-644_fig_20-31.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-32",
+  "manual": "AFH10-644",
+  "num": "20-32",
+  "title": "Donut Raft",
+  "page": 500,
+  "bbox": [
+   68.9599991,
+   444.079956,
+   553.1199885,
+   600.70928
+  ],
+  "png": "AFH10-644_fig_20-32.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-33",
+  "manual": "AFH10-644",
+  "num": "20-33",
+  "title": "Bull Boat",
+  "page": 501,
+  "bbox": [
+   68.9600067,
+   68.95996090000006,
+   551.9199208,
+   176.02927999999997
+  ],
+  "png": "AFH10-644_fig_20-33.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-34",
+  "manual": "AFH10-644",
+  "num": "20-34",
+  "title": "Vegetation Raft",
+  "page": 501,
+  "bbox": [
+   101.1200027,
+   415.2799682,
+   510.27992459999996,
+   516.34928
+  ],
+  "png": "AFH10-644_fig_20-34.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-35",
+  "manual": "AFH10-644",
+  "num": "20-35",
+  "title": "Log Flotation",
+  "page": 501,
+  "bbox": [
+   68.9600143,
+   605.5999297999999,
+   552.9999222,
+   702.22928
+  ],
+  "png": "AFH10-644_fig_20-35.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-36",
+  "manual": "AFH10-644",
+  "num": "20-36",
+  "title": "Raft Construction",
+  "page": 502,
+  "bbox": [
+   68.9599991,
+   174.5599976000001,
+   553.2399206,
+   534.5848599999999
+  ],
+  "png": "AFH10-644_fig_20-36.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-37",
+  "manual": "AFH10-644",
+  "num": "20-37",
+  "title": "Spikes and Lashed Log Raft",
+  "page": 502,
+  "bbox": [
+   68.9599991,
+   174.5599976000001,
+   553.2399206,
+   704.26928
+  ],
+  "png": "AFH10-644_fig_20-37.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/20-38",
+  "manual": "AFH10-644",
+  "num": "20-38",
+  "title": "Fording a Treacherous Stream",
+  "page": 503,
+  "bbox": [
+   68.9599991,
+   427.6399841,
+   553.2399206,
+   692.26928
+  ],
+  "png": "AFH10-644_fig_20-38.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-1",
+  "manual": "AFH10-644",
+  "num": "21-1",
+  "title": "Signaling and Recovery",
+  "page": 504,
+  "bbox": [
+   189.6799927,
+   218.71997069999998,
+   422.7999877,
+   540.34928
+  ],
+  "png": "AFH10-644_fig_21-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-2",
+  "manual": "AFH10-644",
+  "num": "21-2",
+  "title": "Signaling",
+  "page": 505,
+  "bbox": [
+   135.6799927,
+   68.96002190000002,
+   475.7199681,
+   287.02928
+  ],
+  "png": "AFH10-644_fig_21-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-3",
+  "manual": "AFH10-644",
+  "num": "21-3",
+  "title": "Sea Dye Marker",
+  "page": 508,
+  "bbox": [
+   104.9600067,
+   204.67999269999996,
+   504.5199531,
+   482.74928
+  ],
+  "png": "AFH10-644_fig_21-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-4",
+  "manual": "AFH10-644",
+  "num": "21-4",
+  "title": "Signal Mirrors",
+  "page": 510,
+  "bbox": [
+   158.9599762,
+   163.88000490000002,
+   452.67999139999995,
+   364.06928000000005
+  ],
+  "png": "AFH10-644_fig_21-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-5",
+  "manual": "AFH10-644",
+  "num": "21-5",
+  "title": "Aiming Signal Mirror",
+  "page": 510,
+  "bbox": [
+   65.9600143,
+   574.1599274,
+   573.9999508,
+   706.78928
+  ],
+  "png": "AFH10-644_fig_21-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-6",
+  "manual": "AFH10-644",
+  "num": "21-6",
+  "title": "Aiming Signal Mirror - Stationary Object",
+  "page": 511,
+  "bbox": [
+   68.9600143,
+   191.35998530000006,
+   542.3199498,
+   434.38496
+  ],
+  "png": "AFH10-644_fig_21-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-7",
+  "manual": "AFH10-644",
+  "num": "21-7",
+  "title": "Aiming Signal Mirror - By Lying on the Ground",
+  "page": 511,
+  "bbox": [
+   68.9599991,
+   191.35998530000006,
+   553.2399206,
+   708.22928
+  ],
+  "png": "AFH10-644_fig_21-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-8",
+  "manual": "AFH10-644",
+  "num": "21-8",
+  "title": "Smoke Generator - Platform",
+  "page": 512,
+  "bbox": [
+   95.1200027,
+   487.0399475,
+   517.2399229,
+   702.22928
+  ],
+  "png": "AFH10-644_fig_21-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-9",
+  "manual": "AFH10-644",
+  "num": "21-9",
+  "title": "Smoke Generator - Ground",
+  "page": 513,
+  "bbox": [
+   111.6800003,
+   199.27996819999998,
+   499.5999618,
+   487.90928
+  ],
+  "png": "AFH10-644_fig_21-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-10",
+  "manual": "AFH10-644",
+  "num": "21-10",
+  "title": "Tree Torch",
+  "page": 514,
+  "bbox": [
+   190.3999786,
+   68.95996089999994,
+   421.959969,
+   348.58928000000003
+  ],
+  "png": "AFH10-644_fig_21-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-11",
+  "manual": "AFH10-644",
+  "num": "21-11",
+  "title": "GTAS Sizes",
+  "page": 515,
+  "bbox": [
+   184.3999939,
+   311.47994989999995,
+   428.0799886,
+   577.54928
+  ],
+  "png": "AFH10-644_fig_21-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-12",
+  "manual": "AFH10-644",
+  "num": "21-12",
+  "title": "Contrast (Snow and Boughs)",
+  "page": 516,
+  "bbox": [
+   95.1200027,
+   67.4000244,
+   514.3599241,
+   362.02928
+  ],
+  "png": "AFH10-644_fig_21-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-13",
+  "manual": "AFH10-644",
+  "num": "21-13",
+  "title": "Signal Key",
+  "page": 516,
+  "bbox": [
+   95.1199951,
+   67.4000244,
+   514.4799859,
+   658.30928
+  ],
+  "png": "AFH10-644_fig_21-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-14",
+  "manual": "AFH10-644",
+  "num": "21-14",
+  "title": "Parachute Strips",
+  "page": 517,
+  "bbox": [
+   175.3999786,
+   211.51995850000003,
+   434.7999789,
+   465.70928000000004
+  ],
+  "png": "AFH10-644_fig_21-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-15",
+  "manual": "AFH10-644",
+  "num": "21-15",
+  "title": "Pennants and Banners",
+  "page": 518,
+  "bbox": [
+   117.6799927,
+   67.39996339999993,
+   492.1599594,
+   349.54159999999996
+  ],
+  "png": "AFH10-644_fig_21-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/21-16",
+  "manual": "AFH10-644",
+  "num": "21-16",
+  "title": "Standard Aircraft Acknowledgements",
+  "page": 518,
+  "bbox": [
+   113.9599991,
+   451.0399475,
+   495.5199606,
+   697.54928
+  ],
+  "png": "AFH10-644_fig_21-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/22-1",
+  "manual": "AFH10-644",
+  "num": "22-1",
+  "title": "Recovery",
+  "page": 519,
+  "bbox": [
+   165.6799774,
+   206.35998530000006,
+   446.5599668,
+   431.98928
+  ],
+  "png": "AFH10-644_fig_22-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/22-2",
+  "manual": "AFH10-644",
+  "num": "22-2",
+  "title": "Save Chain",
+  "page": 520,
+  "bbox": [
+   68.0,
+   482.6933898,
+   543.9999911,
+   577.54928
+  ],
+  "png": "AFH10-644_fig_22-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/22-3",
+  "manual": "AFH10-644",
+  "num": "22-3",
+  "title": "Approaching Helicopter",
+  "page": 522,
+  "bbox": [
+   157.3999786,
+   67.4000244,
+   452.79995809999997,
+   471.58928000000003
+  ],
+  "png": "AFH10-644_fig_22-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/22-4",
+  "manual": "AFH10-644",
+  "num": "22-4",
+  "title": "Rescue Sling",
+  "page": 523,
+  "bbox": [
+   75.6800003,
+   365.5999756,
+   535.479954,
+   567.22928
+  ],
+  "png": "AFH10-644_fig_22-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/22-5",
+  "manual": "AFH10-644",
+  "num": "22-5",
+  "title": "Basket",
+  "page": 524,
+  "bbox": [
+   139.3999939,
+   261.5599976,
+   470.7999674,
+   551.74928
+  ],
+  "png": "AFH10-644_fig_22-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/22-6",
+  "manual": "AFH10-644",
+  "num": "22-6",
+  "title": "Forest Penetrator.",
+  "page": 525,
+  "bbox": [
+   65.9599991,
+   267.67999269999996,
+   550.3599243,
+   544.30928
+  ],
+  "png": "AFH10-644_fig_22-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/22-7",
+  "manual": "AFH10-644",
+  "num": "22-7",
+  "title": "Rope Ladder",
+  "page": 526,
+  "bbox": [
+   186.6799774,
+   304.51995850000003,
+   424.4799637,
+   672.58928
+  ],
+  "png": "AFH10-644_fig_22-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/22-8",
+  "manual": "AFH10-644",
+  "num": "22-8",
+  "title": "Reintegration",
+  "page": 529,
+  "bbox": [
+   84.6800003,
+   68.96002199999998,
+   526.4799057,
+   307.54544000000004
+  ],
+  "png": "AFH10-644_fig_22-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-1",
+  "manual": "AFH10-644",
+  "num": "23-1",
+  "title": "Avoiding Detection",
+  "page": 538,
+  "bbox": [
+   139.3999786,
+   294.7999573,
+   472.2399602,
+   521.98928
+  ],
+  "png": "AFH10-644_fig_23-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-2",
+  "manual": "AFH10-644",
+  "num": "23-2",
+  "title": "Sanitize Area",
+  "page": 539,
+  "bbox": [
+   137.1199951,
+   68.95996089999994,
+   474.3999877,
+   261.58928000000003
+  ],
+  "png": "AFH10-644_fig_23-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-3",
+  "manual": "AFH10-644",
+  "num": "23-3",
+  "title": "Camouflaging",
+  "page": 540,
+  "bbox": [
+   179.1199951,
+   313.8800049,
+   431.9199896,
+   620.50928
+  ],
+  "png": "AFH10-644_fig_23-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-4",
+  "manual": "AFH10-644",
+  "num": "23-4",
+  "title": "Direct Observation",
+  "page": 541,
+  "bbox": [
+   113.9599991,
+   292.27999880000004,
+   497.7999907,
+   486.46928
+  ],
+  "png": "AFH10-644_fig_23-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-5",
+  "manual": "AFH10-644",
+  "num": "23-5",
+  "title": "Reflections",
+  "page": 542,
+  "bbox": [
+   137.2399902,
+   278.83996579999996,
+   473.31996419999996,
+   516.34928
+  ],
+  "png": "AFH10-644_fig_23-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-6",
+  "manual": "AFH10-644",
+  "num": "23-6",
+  "title": "Movement",
+  "page": 543,
+  "bbox": [
+   134.9599762,
+   67.4000244,
+   475.3599643,
+   309.58928000000003
+  ],
+  "png": "AFH10-644_fig_23-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-7",
+  "manual": "AFH10-644",
+  "num": "23-7",
+  "title": "Position",
+  "page": 543,
+  "bbox": [
+   131.9599762,
+   383.47995000000003,
+   478.23995590000004,
+   630.10928
+  ],
+  "png": "AFH10-644_fig_23-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-8",
+  "manual": "AFH10-644",
+  "num": "23-8",
+  "title": "Shape",
+  "page": 544,
+  "bbox": [
+   91.3999939,
+   101.0,
+   518.1999582,
+   321.58486
+  ],
+  "png": "AFH10-644_fig_23-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-9",
+  "manual": "AFH10-644",
+  "num": "23-9",
+  "title": "Shadow / Shadow Breakup",
+  "page": 544,
+  "bbox": [
+   66.6800003,
+   456.5599671,
+   543.9999242,
+   627.5863999999999
+  ],
+  "png": "AFH10-644_fig_23-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-10",
+  "manual": "AFH10-644",
+  "num": "23-10",
+  "title": "Color",
+  "page": 545,
+  "bbox": [
+   119.9599838,
+   301.87997440000004,
+   492.3998987,
+   494.50928000000005
+  ],
+  "png": "AFH10-644_fig_23-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-11",
+  "manual": "AFH10-644",
+  "num": "23-11",
+  "title": "Tone",
+  "page": 546,
+  "bbox": [
+   155.1199799,
+   124.27996830000006,
+   456.5199613,
+   300.46928
+  ],
+  "png": "AFH10-644_fig_23-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-22",
+  "manual": "AFH10-644",
+  "num": "23-22",
+  "title": "Reflected Shine",
+  "page": 546,
+  "bbox": [
+   135.6799774,
+   417.1999512,
+   475.5999554,
+   630.8292799999999
+  ],
+  "png": "AFH10-644_fig_23-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-33",
+  "manual": "AFH10-644",
+  "num": "23-33",
+  "title": "Location",
+  "page": 547,
+  "bbox": [
+   152.9599762,
+   333.91998290000004,
+   456.75998189999996,
+   552.10928
+  ],
+  "png": "AFH10-644_fig_23-33.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-55",
+  "manual": "AFH10-644",
+  "num": "23-55",
+  "title": "Camouflaged Faces",
+  "page": 550,
+  "bbox": [
+   65.9599991,
+   196.03997809999998,
+   550.3599243,
+   423.10918000000004
+  ],
+  "png": "AFH10-644_fig_23-55.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-66",
+  "manual": "AFH10-644",
+  "num": "23-66",
+  "title": "Evasion in Snow Environment",
+  "page": 553,
+  "bbox": [
+   65.9599991,
+   67.4000244,
+   550.3599243,
+   405.58928000000003
+  ],
+  "png": "AFH10-644_fig_23-66.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-77",
+  "manual": "AFH10-644",
+  "num": "23-77",
+  "title": "Silhouetting",
+  "page": 554,
+  "bbox": [
+   101.2400055,
+   67.40002449999997,
+   509.4399283,
+   354.58928000000003
+  ],
+  "png": "AFH10-644_fig_23-77.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-88",
+  "manual": "AFH10-644",
+  "num": "23-88",
+  "title": "Natural Materials for Personal Camouflage",
+  "page": 555,
+  "bbox": [
+   175.3999786,
+   67.40002449999997,
+   434.31996849999996,
+   459.58928000000003
+  ],
+  "png": "AFH10-644_fig_23-88.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-19",
+  "manual": "AFH10-644",
+  "num": "23-19",
+  "title": "Dark and Light Leaves",
+  "page": 556,
+  "bbox": [
+   132.6799774,
+   67.4000244,
+   477.75996740000005,
+   312.46928
+  ],
+  "png": "AFH10-644_fig_23-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-90",
+  "manual": "AFH10-644",
+  "num": "23-90",
+  "title": "Breakup of Shape and Outline",
+  "page": 557,
+  "bbox": [
+   176.239975,
+   67.39996339999993,
+   433.719969,
+   456.58928000000003
+  ],
+  "png": "AFH10-644_fig_23-90.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-101",
+  "manual": "AFH10-644",
+  "num": "23-101",
+  "title": "Above Timberline",
+  "page": 558,
+  "bbox": [
+   181.3999786,
+   505.2799377,
+   430.2399615,
+   708.46928
+  ],
+  "png": "AFH10-644_fig_23-101.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-112",
+  "manual": "AFH10-644",
+  "num": "23-112",
+  "title": "Below Timberline",
+  "page": 559,
+  "bbox": [
+   128.0,
+   143.1953125,
+   484.7969279,
+   394.66918000000004
+  ],
+  "png": "AFH10-644_fig_23-112.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-123",
+  "manual": "AFH10-644",
+  "num": "23-123",
+  "title": "Evasion Shelter",
+  "page": 559,
+  "bbox": [
+   160.3999786,
+   497.7199402,
+   451.9599716,
+   705.34928
+  ],
+  "png": "AFH10-644_fig_23-123.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-134",
+  "manual": "AFH10-644",
+  "num": "23-134",
+  "title": "Natural Evasion Shelter",
+  "page": 560,
+  "bbox": [
+   133.3999786,
+   428.8399963,
+   476.7999798,
+   697.90928
+  ],
+  "png": "AFH10-644_fig_23-134.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-145",
+  "manual": "AFH10-644",
+  "num": "23-145",
+  "title": "Fire",
+  "page": 562,
+  "bbox": [
+   128.1199951,
+   284.8399658,
+   481.3599517,
+   535.90928
+  ],
+  "png": "AFH10-644_fig_23-145.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-156",
+  "manual": "AFH10-644",
+  "num": "23-156",
+  "title": "Dakota Hole",
+  "page": 563,
+  "bbox": [
+   65.9600067,
+   372.1999512,
+   560.0799227,
+   564.34496
+  ],
+  "png": "AFH10-644_fig_23-156.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-178",
+  "manual": "AFH10-644",
+  "num": "23-178",
+  "title": "Sustenance for Evasion",
+  "page": 564,
+  "bbox": [
+   126.67999270000001,
+   505.039978,
+   484.35996420000004,
+   705.22928
+  ],
+  "png": "AFH10-644_fig_23-178.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-29",
+  "manual": "AFH10-644",
+  "num": "23-29",
+  "title": "Fishing",
+  "page": 565,
+  "bbox": [
+   111.6800079,
+   535.2799835000001,
+   500.19993500000004,
+   700.90928
+  ],
+  "png": "AFH10-644_fig_23-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-180",
+  "manual": "AFH10-644",
+  "num": "23-180",
+  "title": "Fish Tickling",
+  "page": 566,
+  "bbox": [
+   157.3999786,
+   217.63995369999998,
+   453.5199829,
+   681.70928
+  ],
+  "png": "AFH10-644_fig_23-180.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-191",
+  "manual": "AFH10-644",
+  "num": "23-191",
+  "title": "Stealing Vegetables",
+  "page": 568,
+  "bbox": [
+   131.9599762,
+   96.08001709999996,
+   478.7199472,
+   341.14928000000003
+  ],
+  "png": "AFH10-644_fig_23-191.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-202",
+  "manual": "AFH10-644",
+  "num": "23-202",
+  "title": "Procuring Water",
+  "page": 569,
+  "bbox": [
+   182.1199799,
+   68.96002199999998,
+   429.3999722,
+   405.10592
+  ],
+  "png": "AFH10-644_fig_23-202.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-213",
+  "manual": "AFH10-644",
+  "num": "23-213",
+  "title": "Rest Safely",
+  "page": 570,
+  "bbox": [
+   65.9599991,
+   170.23999030000004,
+   550.3599243,
+   352.30928
+  ],
+  "png": "AFH10-644_fig_23-213.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-224",
+  "manual": "AFH10-644",
+  "num": "23-224",
+  "title": "Hand Signals",
+  "page": 571,
+  "bbox": [
+   96.6800003,
+   393.91998290000004,
+   515.6799301000001,
+   700.54928
+  ],
+  "png": "AFH10-644_fig_23-224.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-235",
+  "manual": "AFH10-644",
+  "num": "23-235",
+  "title": "Knowing the People",
+  "page": 572,
+  "bbox": [
+   133.3999939,
+   509.4799805,
+   478.83998640000004,
+   690.10928
+  ],
+  "png": "AFH10-644_fig_23-235.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-246",
+  "manual": "AFH10-644",
+  "num": "23-246",
+  "title": "Observing",
+  "page": 574,
+  "bbox": [
+   65.9599991,
+   67.40002449999997,
+   550.3599243,
+   360.58928000000003
+  ],
+  "png": "AFH10-644_fig_23-246.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-257",
+  "manual": "AFH10-644",
+  "num": "23-257",
+  "title": "Signs of Passage",
+  "page": 576,
+  "bbox": [
+   88.4000015,
+   67.4000244,
+   522.3999318,
+   407.02928
+  ],
+  "png": "AFH10-644_fig_23-257.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-268",
+  "manual": "AFH10-644",
+  "num": "23-268",
+  "title": "Military Crest",
+  "page": 577,
+  "bbox": [
+   106.4000015,
+   111.79998780000005,
+   503.07995000000005,
+   381.9464
+  ],
+  "png": "AFH10-644_fig_23-268.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-27",
+  "manual": "AFH10-644",
+  "num": "23-27",
+  "title": "Squad File Formation",
+  "page": 580,
+  "bbox": [
+   113.1199951,
+   415.51995850000003,
+   499.11995149999996,
+   708.70928
+  ],
+  "png": "AFH10-644_fig_23-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-280",
+  "manual": "AFH10-644",
+  "num": "23-280",
+  "title": "Squad Column Formation",
+  "page": 581,
+  "bbox": [
+   65.9599991,
+   346.0399781,
+   550.3599243,
+   706.66928
+  ],
+  "png": "AFH10-644_fig_23-280.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-291",
+  "manual": "AFH10-644",
+  "num": "23-291",
+  "title": "Squad Line Formation",
+  "page": 582,
+  "bbox": [
+   67.4000015,
+   290.83996579999996,
+   542.3199268,
+   529.9092800000001
+  ],
+  "png": "AFH10-644_fig_23-291.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-302",
+  "manual": "AFH10-644",
+  "num": "23-302",
+  "title": "Low Crawl",
+  "page": 583,
+  "bbox": [
+   134.9599762,
+   258.67999269999996,
+   476.6799866,
+   427.30928
+  ],
+  "png": "AFH10-644_fig_23-302.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-313",
+  "manual": "AFH10-644",
+  "num": "23-313",
+  "title": "High Crawl",
+  "page": 583,
+  "bbox": [
+   146.9599762,
+   544.1599274,
+   465.3999636,
+   703.78928
+  ],
+  "png": "AFH10-644_fig_23-313.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-324",
+  "manual": "AFH10-644",
+  "num": "23-324",
+  "title": "Hands and Knees Crawl",
+  "page": 584,
+  "bbox": [
+   144.6799927,
+   225.080017,
+   467.799949,
+   458.26928000000004
+  ],
+  "png": "AFH10-644_fig_23-324.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-335",
+  "manual": "AFH10-644",
+  "num": "23-335",
+  "title": "Trip Wires",
+  "page": 586,
+  "bbox": [
+   74.9599991,
+   355.2799988,
+   537.5199889,
+   589.90928
+  ],
+  "png": "AFH10-644_fig_23-335.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-346",
+  "manual": "AFH10-644",
+  "num": "23-346",
+  "title": "Electrified Fences",
+  "page": 588,
+  "bbox": [
+   133.3999939,
+   68.96002199999998,
+   478.3599864,
+   290.02928
+  ],
+  "png": "AFH10-644_fig_23-346.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-357",
+  "manual": "AFH10-644",
+  "num": "23-357",
+  "title": "Penetrating Barbed Wire Fence",
+  "page": 588,
+  "bbox": [
+   68.9599991,
+   434.4799805,
+   564.1599882,
+   603.10928
+  ],
+  "png": "AFH10-644_fig_23-357.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-368",
+  "manual": "AFH10-644",
+  "num": "23-368",
+  "title": "Penetrating Concertina Wire",
+  "page": 589,
+  "bbox": [
+   116.1199875,
+   68.95996089999994,
+   495.2799569,
+   311.02928
+  ],
+  "png": "AFH10-644_fig_23-368.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-49",
+  "manual": "AFH10-644",
+  "num": "23-49",
+  "title": "Penetrating Log Fence",
+  "page": 589,
+  "bbox": [
+   78.6800003,
+   534.9199219,
+   531.6399904,
+   706.54928
+  ],
+  "png": "AFH10-644_fig_23-49.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-370",
+  "manual": "AFH10-644",
+  "num": "23-370",
+  "title": "Manmade Barrier to Evasion",
+  "page": 590,
+  "bbox": [
+   112.3999939,
+   294.0799561,
+   499.1199854,
+   483.70928000000004
+  ],
+  "png": "AFH10-644_fig_23-370.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-381",
+  "manual": "AFH10-644",
+  "num": "23-381",
+  "title": "Crossing Roads",
+  "page": 590,
+  "bbox": [
+   112.3999939,
+   294.0799561,
+   499.1199854,
+   701.38928
+  ],
+  "png": "AFH10-644_fig_23-381.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-392",
+  "manual": "AFH10-644",
+  "num": "23-392",
+  "title": "Crossing At Culverts",
+  "page": 591,
+  "bbox": [
+   139.3999786,
+   144.08001710000008,
+   472.11996849999997,
+   327.70928000000004
+  ],
+  "png": "AFH10-644_fig_23-392.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-403",
+  "manual": "AFH10-644",
+  "num": "23-403",
+  "title": "Crawling Over Railroad Tracks",
+  "page": 591,
+  "bbox": [
+   95.1200027,
+   513.5599975,
+   517.2399229,
+   706.18928
+  ],
+  "png": "AFH10-644_fig_23-403.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-414",
+  "manual": "AFH10-644",
+  "num": "23-414",
+  "title": "Climbing Down into Drainage",
+  "page": 592,
+  "bbox": [
+   89.1199951,
+   171.6799926,
+   522.3999856,
+   386.86928
+  ],
+  "png": "AFH10-644_fig_23-414.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/23-425",
+  "manual": "AFH10-644",
+  "num": "23-425",
+  "title": "Open Terrain",
+  "page": 592,
+  "bbox": [
+   142.3999786,
+   503.5999451,
+   469.9599668,
+   693.22928
+  ],
+  "png": "AFH10-644_fig_23-425.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-1",
+  "manual": "AFH10-644",
+  "num": "24-1",
+  "title": "Urban Environment",
+  "page": 603,
+  "bbox": [
+   128.1199951,
+   339.4399719,
+   482.55997260000004,
+   611.02496
+  ],
+  "png": "AFH10-644_fig_24-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-2",
+  "manual": "AFH10-644",
+  "num": "24-2",
+  "title": "Super Surface",
+  "page": 604,
+  "bbox": [
+   126.67997740000001,
+   98.0,
+   482.79992460000005,
+   361.30870000000004
+  ],
+  "png": "AFH10-644_fig_24-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-3",
+  "manual": "AFH10-644",
+  "num": "24-3",
+  "title": "Baghdad Soccer Stadium",
+  "page": 605,
+  "bbox": [
+   144.6799927,
+   251.11999509999998,
+   467.0799857,
+   476.14486
+  ],
+  "png": "AFH10-644_fig_24-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-4",
+  "manual": "AFH10-644",
+  "num": "24-4",
+  "title": "Kabul",
+  "page": 605,
+  "bbox": [
+   144.6799927,
+   251.11999509999998,
+   467.0799857,
+   706.2957399999999
+  ],
+  "png": "AFH10-644_fig_24-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-5",
+  "manual": "AFH10-644",
+  "num": "24-5",
+  "title": "Famous Buildings Caracas, Venezuela",
+  "page": 606,
+  "bbox": [
+   83.9599991,
+   167.83996590000004,
+   526.2399270000001,
+   469.42496
+  ],
+  "png": "AFH10-644_fig_24-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-6",
+  "manual": "AFH10-644",
+  "num": "24-6",
+  "title": "Children",
+  "page": 607,
+  "bbox": [
+   185.239975,
+   67.4000244,
+   425.19993869999996,
+   421.5444800000001
+  ],
+  "png": "AFH10-644_fig_24-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-7",
+  "manual": "AFH10-644",
+  "num": "24-7",
+  "title": "Military Patrol",
+  "page": 607,
+  "bbox": [
+   152.239975,
+   67.4000244,
+   458.55995959999996,
+   669.7016000000001
+  ],
+  "png": "AFH10-644_fig_24-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-8",
+  "manual": "AFH10-644",
+  "num": "24-8",
+  "title": "Special Police",
+  "page": 608,
+  "bbox": [
+   142.3999786,
+   68.95996090000006,
+   469.8399811,
+   252.10256000000015
+  ],
+  "png": "AFH10-644_fig_24-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-9",
+  "manual": "AFH10-644",
+  "num": "24-9",
+  "title": "City Market",
+  "page": 608,
+  "bbox": [
+   142.3999786,
+   68.95996090000006,
+   469.8399811,
+   446.14160000000015
+  ],
+  "png": "AFH10-644_fig_24-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-10",
+  "manual": "AFH10-644",
+  "num": "24-10",
+  "title": "Hazards",
+  "page": 609,
+  "bbox": [
+   131.9599762,
+   68.95996089999994,
+   480.3999566,
+   283.5444800000001
+  ],
+  "png": "AFH10-644_fig_24-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-11",
+  "manual": "AFH10-644",
+  "num": "24-11",
+  "title": "Hide Site",
+  "page": 610,
+  "bbox": [
+   108.6800003,
+   173.0,
+   501.2799554,
+   473.1463
+  ],
+  "png": "AFH10-644_fig_24-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-12",
+  "manual": "AFH10-644",
+  "num": "24-12",
+  "title": "Hide Site",
+  "page": 611,
+  "bbox": [
+   146.9599915,
+   117.79998780000005,
+   463.4799482,
+   335.38496
+  ],
+  "png": "AFH10-644_fig_24-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-13",
+  "manual": "AFH10-644",
+  "num": "24-13",
+  "title": "Tactical Movement",
+  "page": 612,
+  "bbox": [
+   140.1199951,
+   68.96002190000002,
+   472.3599527,
+   295.54496
+  ],
+  "png": "AFH10-644_fig_24-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-14",
+  "manual": "AFH10-644",
+  "num": "24-14",
+  "title": "Disguise Movement",
+  "page": 612,
+  "bbox": [
+   137.1199799,
+   468.5599671,
+   475.2399798,
+   704.14496
+  ],
+  "png": "AFH10-644_fig_24-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-15",
+  "manual": "AFH10-644",
+  "num": "24-15",
+  "title": "Evasion Movement",
+  "page": 613,
+  "bbox": [
+   112.3999939,
+   376.2799683,
+   497.67998550000004,
+   670.4264000000001
+  ],
+  "png": "AFH10-644_fig_24-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-16",
+  "manual": "AFH10-644",
+  "num": "24-16",
+  "title": "Urban Extrication",
+  "page": 614,
+  "bbox": [
+   131.239975,
+   315.1999511,
+   479.1999757,
+   549.3464
+  ],
+  "png": "AFH10-644_fig_24-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-17",
+  "manual": "AFH10-644",
+  "num": "24-17",
+  "title": "Structure Verses Signaling",
+  "page": 615,
+  "bbox": [
+   134.9599915,
+   112.64001469999994,
+   474.6399841,
+   373.7864
+  ],
+  "png": "AFH10-644_fig_24-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-18",
+  "manual": "AFH10-644",
+  "num": "24-18",
+  "title": "Blend",
+  "page": 616,
+  "bbox": [
+   143.9599762,
+   67.39996340000005,
+   466.23996009999996,
+   314.98640000000006
+  ],
+  "png": "AFH10-644_fig_24-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-19",
+  "manual": "AFH10-644",
+  "num": "24-19",
+  "title": "Low Profile",
+  "page": 616,
+  "bbox": [
+   139.3999786,
+   460.3999634,
+   470.3199762,
+   691.42976
+  ],
+  "png": "AFH10-644_fig_24-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-20",
+  "manual": "AFH10-644",
+  "num": "24-20",
+  "title": "Secluded",
+  "page": 617,
+  "bbox": [
+   132.6799774,
+   292.0399781,
+   477.03995610000004,
+   527.6264
+  ],
+  "png": "AFH10-644_fig_24-20.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-21",
+  "manual": "AFH10-644",
+  "num": "24-21",
+  "title": "Homeless in Colombia",
+  "page": 619,
+  "bbox": [
+   151.3999786,
+   389.2399597,
+   458.5599527,
+   624.82496
+  ],
+  "png": "AFH10-644_fig_24-21.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-22",
+  "manual": "AFH10-644",
+  "num": "24-22",
+  "title": "Street Cleaners Russia",
+  "page": 620,
+  "bbox": [
+   208.3999786,
+   67.4000244,
+   402.51996399999996,
+   334.54928
+  ],
+  "png": "AFH10-644_fig_24-22.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-23",
+  "manual": "AFH10-644",
+  "num": "24-23",
+  "title": "Gray Person",
+  "page": 620,
+  "bbox": [
+   159.6799774,
+   416.83996579999996,
+   450.0399741,
+   640.54928
+  ],
+  "png": "AFH10-644_fig_24-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-24",
+  "manual": "AFH10-644",
+  "num": "24-24",
+  "title": "Encounters",
+  "page": 621,
+  "bbox": [
+   161.2399902,
+   111.79998780000005,
+   449.1999519,
+   344.38496
+  ],
+  "png": "AFH10-644_fig_24-24.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-25",
+  "manual": "AFH10-644",
+  "num": "24-25",
+  "title": "Using Terrain Features",
+  "page": 623,
+  "bbox": [
+   138.6799774,
+   234.1999512,
+   471.39996729999996,
+   463.78496
+  ],
+  "png": "AFH10-644_fig_24-25.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-26",
+  "manual": "AFH10-644",
+  "num": "24-26",
+  "title": "Urban Landmark",
+  "page": 624,
+  "bbox": [
+   131.9599915,
+   67.39996339999993,
+   478.3599839,
+   289.5392000000001
+  ],
+  "png": "AFH10-644_fig_24-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-27",
+  "manual": "AFH10-644",
+  "num": "24-27",
+  "title": "Direction Indicators",
+  "page": 625,
+  "bbox": [
+   139.3999786,
+   111.79998779999994,
+   470.0799666,
+   365.38496
+  ],
+  "png": "AFH10-644_fig_24-27.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-28",
+  "manual": "AFH10-644",
+  "num": "24-28",
+  "title": "Urban Plant Indicators",
+  "page": 626,
+  "bbox": [
+   151.3999939,
+   67.39996339999993,
+   458.4399872,
+   278.98496
+  ],
+  "png": "AFH10-644_fig_24-28.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-29",
+  "manual": "AFH10-644",
+  "num": "24-29",
+  "title": "Ready-Made Ladders",
+  "page": 627,
+  "bbox": [
+   123.679985,
+   206.5999756,
+   486.03989129999997,
+   484.18496
+  ],
+  "png": "AFH10-644_fig_24-29.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-30",
+  "manual": "AFH10-644",
+  "num": "24-30",
+  "title": "Structures",
+  "page": 628,
+  "bbox": [
+   85.4000015,
+   407.2399597,
+   527.0799513,
+   705.94496
+  ],
+  "png": "AFH10-644_fig_24-30.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-31",
+  "manual": "AFH10-644",
+  "num": "24-31",
+  "title": "Alternate Exits and Escape Routes",
+  "page": 629,
+  "bbox": [
+   106.3999939,
+   269.35998530000006,
+   505.35990990000005,
+   545.38496
+  ],
+  "png": "AFH10-644_fig_24-31.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-32",
+  "manual": "AFH10-644",
+  "num": "24-32",
+  "title": "City Tunnels",
+  "page": 630,
+  "bbox": [
+   104.1199951,
+   67.4000244,
+   505.2399863,
+   385.54303999999996
+  ],
+  "png": "AFH10-644_fig_24-32.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-33",
+  "manual": "AFH10-644",
+  "num": "24-33",
+  "title": "Sewer Entrance",
+  "page": 631,
+  "bbox": [
+   118.4000015,
+   176.23999019999997,
+   493.239955,
+   351.82496
+  ],
+  "png": "AFH10-644_fig_24-33.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-34",
+  "manual": "AFH10-644",
+  "num": "24-34",
+  "title": "Under-Building Entrance",
+  "page": 631,
+  "bbox": [
+   108.6800079,
+   499.039917,
+   502.9599605,
+   653.74496
+  ],
+  "png": "AFH10-644_fig_24-34.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-35",
+  "manual": "AFH10-644",
+  "num": "24-35",
+  "title": "Operations involving Vehicles",
+  "page": 632,
+  "bbox": [
+   86.9599915,
+   370.0399475,
+   524.3199242000001,
+   535.18496
+  ],
+  "png": "AFH10-644_fig_24-35.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-36",
+  "manual": "AFH10-644",
+  "num": "24-36",
+  "title": "Decoys",
+  "page": 634,
+  "bbox": [
+   101.1200027,
+   462.4400024,
+   510.5199063,
+   647.02496
+  ],
+  "png": "AFH10-644_fig_24-36.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-37",
+  "manual": "AFH10-644",
+  "num": "24-37",
+  "title": "U.S. Embassy",
+  "page": 635,
+  "bbox": [
+   104.9599991,
+   489.0799256,
+   507.0399903,
+   628.6649600000001
+  ],
+  "png": "AFH10-644_fig_24-37.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-38",
+  "manual": "AFH10-644",
+  "num": "24-38",
+  "title": "Taken Hostage",
+  "page": 636,
+  "bbox": [
+   136.3999786,
+   538.3999328,
+   475.9599693,
+   680.98496
+  ],
+  "png": "AFH10-644_fig_24-38.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-39",
+  "manual": "AFH10-644",
+  "num": "24-39",
+  "title": "Vehicle Resources",
+  "page": 637,
+  "bbox": [
+   133.3999786,
+   251.23999019999997,
+   478.9599802,
+   377.38640000000004
+  ],
+  "png": "AFH10-644_fig_24-39.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-40",
+  "manual": "AFH10-644",
+  "num": "24-40",
+  "title": "Hiding under Vehicle",
+  "page": 637,
+  "bbox": [
+   131.9599915,
+   251.23999019999997,
+   479.6799466,
+   538.54832
+  ],
+  "png": "AFH10-644_fig_24-40.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-41",
+  "manual": "AFH10-644",
+  "num": "24-41",
+  "title": "Bus Station",
+  "page": 638,
+  "bbox": [
+   123.679985,
+   339.0799866,
+   488.6799239,
+   471.2264
+  ],
+  "png": "AFH10-644_fig_24-41.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-42",
+  "manual": "AFH10-644",
+  "num": "24-42",
+  "title": "Security Measures",
+  "page": 638,
+  "bbox": [
+   122.9599838,
+   339.0799866,
+   488.6799239,
+   699.71024
+  ],
+  "png": "AFH10-644_fig_24-42.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-43",
+  "manual": "AFH10-644",
+  "num": "24-43",
+  "title": "Urban Foraging",
+  "page": 639,
+  "bbox": [
+   205.3999786,
+   269.3599854,
+   405.6399654,
+   566.38496
+  ],
+  "png": "AFH10-644_fig_24-43.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-44",
+  "manual": "AFH10-644",
+  "num": "24-44",
+  "title": "Urban Garden",
+  "page": 640,
+  "bbox": [
+   157.3999786,
+   68.95996089999994,
+   455.0799794,
+   301.53968000000003
+  ],
+  "png": "AFH10-644_fig_24-44.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-45",
+  "manual": "AFH10-644",
+  "num": "24-45",
+  "title": "Territorial Animals",
+  "page": 640,
+  "bbox": [
+   122.2399826,
+   447.1999817,
+   487.5999294,
+   697.9064
+  ],
+  "png": "AFH10-644_fig_24-45.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "AFH10-644/fig/24-46",
+  "manual": "AFH10-644",
+  "num": "24-46",
+  "title": "Urban Water Source",
+  "page": 641,
+  "bbox": [
+   182.9599915,
+   255.55993660000001,
+   429.5199862,
+   449.14486
+  ],
+  "png": "AFH10-644_fig_24-46.png",
   "restricted": false,
   "dpi": 200
  }

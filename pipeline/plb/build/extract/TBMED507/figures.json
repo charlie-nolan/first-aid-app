@@ -80,6 +80,22 @@
   "dpi": 200
  },
  {
+  "id": "TBMED507/fig/3-6",
+  "manual": "TBMED507",
+  "num": "3-6",
+  "title": "Body cooling methods for the prevention and treatment of exertional heat illness, page 23",
+  "page": 8,
+  "bbox": [
+   44.96,
+   43.519999999999996,
+   567.0400000000001,
+   106.7166400000001
+  ],
+  "png": "TBMED507_fig_3-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
   "id": "TBMED507/fig/3-7",
   "manual": "TBMED507",
   "num": "3-7",
@@ -124,6 +140,22 @@
    164.3668
   ],
   "png": "TBMED507_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED507/fig/5-1",
+  "manual": "TBMED507",
+  "num": "5-1",
+  "title": "Field treatment of heat casualties, page 44",
+  "page": 8,
+  "bbox": [
+   44.96,
+   171.44680000000005,
+   567.0400000000001,
+   187.14664000000005
+  ],
+  "png": "TBMED507_fig_5-1.png",
   "restricted": false,
   "dpi": 200
  },
@@ -236,38 +268,6 @@
    359.05679999999995
   ],
   "png": "TBMED507_fig_3-4.png",
-  "restricted": false,
-  "dpi": 200
- },
- {
-  "id": "TBMED507/fig/3-6",
-  "manual": "TBMED507",
-  "num": "3-6",
-  "title": "Body cooling methods for the prevention and treatment of exertional heat illness",
-  "page": 31,
-  "bbox": [
-   164.52,
-   102.5,
-   460.97,
-   377.79679999999996
-  ],
-  "png": "TBMED507_fig_3-6.png",
-  "restricted": false,
-  "dpi": 200
- },
- {
-  "id": "TBMED507/fig/5-1",
-  "manual": "TBMED507",
-  "num": "5-1",
-  "title": "Field treatment of heat casualties",
-  "page": 52,
-  "bbox": [
-   132.5,
-   114.0,
-   479.47,
-   427.4768
-  ],
-  "png": "TBMED507_fig_5-1.png",
   "restricted": false,
   "dpi": 200
  }

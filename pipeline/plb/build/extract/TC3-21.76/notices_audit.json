@@ -2,6 +2,10 @@
  "keyword_lines": 22,
  "notices_kept": 15,
  "missing": 3,
+ "inline_notes": [],
+ "keyword_elsewhere": [
+  "TC3-21.76/2-4 (heading): STEP 2. ISSUE A WARNING ORDER"
+ ],
  "figure_gaps": [
   "9-18",
   "10-4"

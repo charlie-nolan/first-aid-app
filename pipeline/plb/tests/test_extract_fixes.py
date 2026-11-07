@@ -129,7 +129,8 @@ def test_fractions():
 def test_figure_captions(tmp_path):
     def draw(c):
         y = lines(c, H - 100, ["Figure 1-1. Placeholder one ........ 3",
-                               "Figure 1-2. Placeholder two 4"]) - 20
+                               "Figure 1-2. Placeholder two 4",
+                               "Figure 1-4. Placeholder four 5"]) - 20
         c.rect(80, y - 100, 200, 90); c.rect(330, y - 100, 200, 90)
         y -= 115
         c.setFont("Helvetica", 10)
@@ -155,3 +156,57 @@ def test_us_gov_work_distribution_allowed(tmp_path):
         "sha256": hashlib.sha256(pdf.read_bytes()).hexdigest(),
         "distribution": "US Government work (17 USC 105), no statement printed"}]}))
     assert verify(tmp_path, man) == []
+
+
+def test_caption_without_period_and_trailing_number(tmp_path):
+    def draw(c):
+        c.rect(150, H - 200, 300, 90)
+        c.setFont("Helvetica", 10)
+        c.drawString(72, H - 215, "Figure 6-7 Snow placeholder")
+        c.rect(150, H - 350, 300, 90)
+        c.drawString(72, H - 365, "Figure 6-8. Minutes until placeholder in the most susceptible 5")
+        c.drawString(72, H - 395, "Figure 6-9 shows the placeholder in body text.")
+    _, figs, _ = run(tmp_path, draw)
+    assert [(f["num"], f["title"].strip()) for f in figs] == [
+        ("6-7", "Snow placeholder"),
+        ("6-8", "Minutes until placeholder in the most susceptible 5")]
+
+
+def test_two_column_page_reads_left_then_right(tmp_path):
+    def draw(c):
+        c.setFont("Helvetica", 10)
+        y = H - 100
+        for i in range(12):
+            c.drawString(60, y, f"Left column placeholder line {i} goes here")
+            c.drawString(330, y, f"Right column placeholder line {i} here")
+            y -= 14
+    secs, _, _ = run(tmp_path, draw, numbering="headings")
+    # headings mode with no heading keeps nothing; read the lines directly instead
+    from plb.extract import read_lines
+    texts = [l.text for _, ls in read_lines(tmp_path / "t.pdf") for l in ls]
+    assert texts[0].startswith("Left column placeholder line 0")
+    assert texts[11].startswith("Left column placeholder line 11")
+    assert texts[12].startswith("Right column placeholder line 0")
+
+
+def test_audit_lists_inline_notes(tmp_path):
+    def draw(c):
+        lines(c, H - 120, ["1-1. Alpha placeholder sentence. NOTE: Inline placeholder note",
+                           "continues in the paragraph.",
+                           "1-2. Bravo placeholder about a WARNING ORDER."])
+    secs, _, audit = run(tmp_path, draw)
+    assert "NOTE: Inline placeholder note" in secs["1-1"]["text"]
+    assert len(audit["inline_notes"]) == 1 and audit["inline_notes"][0].startswith("T/1-1")
+    assert len(audit["keyword_elsewhere"]) == 1 and "WARNING ORDER" in audit["keyword_elsewhere"][0]
+
+
+def test_numbered_table_note_is_a_notice(tmp_path):
+    def draw(c):
+        y = lines(c, H - 120, ["1-1. Alpha placeholder paragraph before a table."]) - 20
+        lines(c, y, ["5. CAUTION: Hourly placeholder should not exceed 1 1/2 units.",
+                     "6. CAUTION: Daily placeholder should not exceed 12 units."])
+    secs, _, audit = run(tmp_path, draw)
+    assert [n["text"] for n in secs["1-1"]["notices"]] == [
+        "Hourly placeholder should not exceed 1 1/2 units.",
+        "Daily placeholder should not exceed 12 units."]
+    assert audit["missing"] == 0

@@ -1120,6 +1120,38 @@
   "dpi": 200
  },
  {
+  "id": "ATP3-50.21/fig/6-7",
+  "manual": "ATP3-50.21",
+  "num": "6-7",
+  "title": "Snow Cave",
+  "page": 144,
+  "bbox": [
+   150.0,
+   318.27,
+   444.096,
+   554.1705400000001
+  ],
+  "png": "ATP3-50.21_fig_6-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-50.21/fig/6-8",
+  "manual": "ATP3-50.21",
+  "num": "6-8",
+  "title": "Tree-Pit Snow Shelter",
+  "page": 145,
+  "bbox": [
+   84.56,
+   43.40102000000002,
+   545.441,
+   320.17014
+  ],
+  "png": "ATP3-50.21_fig_6-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
   "id": "ATP3-50.21/fig/6-9",
   "manual": "ATP3-50.21",
   "num": "6-9",
@@ -1132,6 +1164,54 @@
    668.65074
   ],
   "png": "ATP3-50.21_fig_6-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-50.21/fig/6-10",
+  "manual": "ATP3-50.21",
+  "num": "6-10",
+  "title": "Field-expedient Lean-to and Fire Reflector",
+  "page": 146,
+  "bbox": [
+   127.5,
+   318.27,
+   466.244,
+   527.1705400000001
+  ],
+  "png": "ATP3-50.21_fig_6-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-50.21/fig/6-11",
+  "manual": "ATP3-50.21",
+  "num": "6-11",
+  "title": "Below Ground Desert Shelter",
+  "page": 147,
+  "bbox": [
+   152.234,
+   176.20399999999995,
+   477.301,
+   458.53034
+  ],
+  "png": "ATP3-50.21_fig_6-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-50.21/fig/6-12",
+  "manual": "ATP3-50.21",
+  "num": "6-12",
+  "title": "Swamp bed",
+  "page": 148,
+  "bbox": [
+   66.56,
+   43.40102000000002,
+   527.441,
+   275.17004
+  ],
+  "png": "ATP3-50.21_fig_6-12.png",
   "restricted": false,
   "dpi": 200
  },
@@ -1532,6 +1612,22 @@
    701.29084
   ],
   "png": "ATP3-50.21_fig_7-23.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "ATP3-50.21/fig/7-24",
+  "manual": "ATP3-50.21",
+  "num": "7-24",
+  "title": "Measure map distance--straight line",
+  "page": 177,
+  "bbox": [
+   95.25,
+   142.899,
+   534.783,
+   308.29004000000003
+  ],
+  "png": "ATP3-50.21_fig_7-24.png",
   "restricted": false,
   "dpi": 200
  },
