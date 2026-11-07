@@ -320,14 +320,14 @@
   "pages": [
    57
   ],
-  "text": "Medical problems in high mountain areas\na. Medical problems (other than ballistic injuries) in Soldiers operating in high mountain environments can be classified into three broad categories--\n(1) Problems caused by sustained hypobaric hypoxia.\n(2) Problems caused by environmental and mission factors.\n(3) Exacerbation of preexisting medical conditions (table 6-1).\nb. Problems caused by sustained hypobaric hypoxia are unique to high altitudes, and medical personnel may be unfamiliar with them. Medical personnel are more familiar with environmental injuries (such as sunburn and dehydration) and preexisting medical conditions that can occur in many different environments. Problems not directly caused by hypobaric hypoxia can be profoundly affected by it, and medical personnel must be aware of that potential.",
+  "text": "Medical problems in high mountain areas\na. Medical problems (other than ballistic injuries) in Soldiers operating in high mountain environments can be classified into three broad categories--\n(1) Problems caused by sustained hypobaric hypoxia.\n(2) Problems caused by environmental and mission factors.\n(3) Exacerbation of preexisting medical conditions (table 6-1).\nb. Problems caused by sustained hypobaric hypoxia are unique to high altitudes, and medical personnel may be unfamiliar with them. Medical personnel are more familiar with environmental injuries (such as sunburn and dehydration) and preexisting medical conditions that can occur in many different environments. Problems not directly caused by hypobaric hypoxia can be profoundly affected by it, and medical personnel must be aware of that potential. Appendix D presents a summary of treatments for some of the problems that are commonly encountered in high mountainous areas.\nc. Medical problems related to sustained hypobaric hypoxia are often termed high altitude illnesses (appendix E). They range in incidence from common to rare and in severity from benign to rapidly fatal. The incidence and severity are a function of the magnitude of the hypoxic stress as determined by the altitude, the rate of ascent, and the length of exposure (hours, days, months). Factors that contribute to the severity of symptoms include--\n(1) The level of physical exertion.\n(2) Individual susceptibility.\n(3) Body mass index.\n(4) Age.\n(5) Coexisting medical problems.\nd. The most common high altitude illnesses are AMS, HACE, HAPE, altitude-induced peripheral edema (AIPE), and high altitude retinal hemorrhage (HARH).\ne. All high altitude illnesses are related to sustained hypoxia and can be treated by raising O2 levels to the body tissues. Although this can be accomplished using supplemental O2, the preferred management for all high altitude illnesses is evacuation to a lower altitude. 49",
   "notices": []
  },
  {
   "id": "TBMED505/6-2",
   "manual": "TBMED505",
   "para": "6-2",
-  "chapter": "Appendix D presents a summary of treatments for some of the problems that are commonly",
+  "chapter": "CHAPTER 6",
   "heading": "Related Factors Medical Conditions",
   "pages": [
    58
@@ -339,7 +339,7 @@
   "id": "TBMED505/6-4",
   "manual": "TBMED505",
   "para": "6-4",
-  "chapter": "chapter 3). Because SaO2 is lowest during sleep, unacclimatized Soldiers should sleep at as low",
+  "chapter": "CHAPTER 6",
   "heading": "TB MED 505",
   "pages": [
    86
@@ -351,7 +351,7 @@
   "id": "TBMED505/6-3",
   "manual": "TBMED505",
   "para": "6-3",
-  "chapter": "chapter 3). Because SaO2 is lowest during sleep, unacclimatized Soldiers should sleep at as low",
+  "chapter": "CHAPTER 6",
   "heading": "TB MED 505",
   "pages": [
    78

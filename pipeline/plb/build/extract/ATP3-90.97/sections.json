@@ -5058,17 +5058,18 @@
   "chapter": "Chapter 7",
   "heading": "LIMITATIONS IN MOUNTAINS",
   "pages": [
-   82
+   82,
+   83
   ],
-  "text": "Mountain operations using UASs are affected by several unique planning considerations (see",
+  "text": "Mountain operations using UASs are affected by several unique planning considerations (see Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP 3-55.14/AFTTP 3-2.64/AFTTP 3-2.64, and FM 3-04.155,. The following are the most important UAS considerations in a mountainous environment:\n- Altitude, air density, and temperature. For example, the RQ-7B Shadow cannot be commanded above 4,572 meters (15,000 feet) mean sea level or operate in temperatures below -4 degrees F or above 122 degrees F.\n- Aircraft icing at the operating flight altitude, icing is often more prominent at higher mountain elevations.\n- Communication restraints are caused by mountainous terrain and line-of-sight constraints, LOS between the unmanned aircraft and the controlling station.\n- High winds typical of mountainous terrain are often channeled through valleys and mountain passes. Smaller unmanned aircraft are more affected by severe weather than their manned counterparts. High winds, turbulence, and wind shear negatively affects the flight profile of unmanned aircraft. It causes the aircraft to make wider turns, rapidly change altitude, cause erratic flight, or cause a departure from the controlled flight.\n- Climb and descent rates of most types of unmanned aircraft are affected by the higher elevations. Planners account for longer launch and recovery times for their aircraft, especially when supporting the acquisition of time-sensitive targets.",
   "notices": []
  },
  {
   "id": "ATP3-90.97/7-13",
   "manual": "ATP3-90.97",
   "para": "7-13",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
-  "heading": "",
+  "chapter": "Chapter 7",
+  "heading": "LIMITATIONS IN MOUNTAINS",
   "pages": [
    83
   ],
@@ -5079,7 +5080,7 @@
   "id": "ATP3-90.97/7-14",
   "manual": "ATP3-90.97",
   "para": "7-14",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "Airspace Management of UAS and Airframes in Mountains",
   "pages": [
    83
@@ -5091,7 +5092,7 @@
   "id": "ATP3-90.97/7-15",
   "manual": "ATP3-90.97",
   "para": "7-15",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "\"Hub and Spoke\" Operations and Unmanned Aircraft System Handoff Method",
   "pages": [
    83
@@ -5103,7 +5104,7 @@
   "id": "ATP3-90.97/7-16",
   "manual": "ATP3-90.97",
   "para": "7-16",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "\"Hub and Spoke\" Operations and Unmanned Aircraft System Handoff Method",
   "pages": [
    83
@@ -5115,7 +5116,7 @@
   "id": "ATP3-90.97/7-17",
   "manual": "ATP3-90.97",
   "para": "7-17",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "Fires Integration",
   "pages": [
    83,
@@ -5128,7 +5129,7 @@
   "id": "ATP3-90.97/7-18",
   "manual": "ATP3-90.97",
   "para": "7-18",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "Fires Integration",
   "pages": [
    84
@@ -5140,7 +5141,7 @@
   "id": "ATP3-90.97/7-19",
   "manual": "ATP3-90.97",
   "para": "7-19",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AIR ASSAULT SUPPORT",
   "pages": [
    84
@@ -5152,7 +5153,7 @@
   "id": "ATP3-90.97/7-20",
   "manual": "ATP3-90.97",
   "para": "7-20",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AIR DELIVERY",
   "pages": [
    84
@@ -5164,7 +5165,7 @@
   "id": "ATP3-90.97/7-21",
   "manual": "ATP3-90.97",
   "para": "7-21",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AIR DELIVERY",
   "pages": [
    84
@@ -5176,7 +5177,7 @@
   "id": "ATP3-90.97/7-22",
   "manual": "ATP3-90.97",
   "para": "7-22",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AIR DELIVERY",
   "pages": [
    84
@@ -5188,7 +5189,7 @@
   "id": "ATP3-90.97/7-23",
   "manual": "ATP3-90.97",
   "para": "7-23",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "COMBAT SEARCH AND RESCUE AND TACTICAL RECOVERY OF AIRCRAFT AND PERSONNEL",
   "pages": [
    84
@@ -5200,7 +5201,7 @@
   "id": "ATP3-90.97/7-24",
   "manual": "ATP3-90.97",
   "para": "7-24",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "COMBAT SEARCH AND RESCUE AND TACTICAL RECOVERY OF AIRCRAFT AND PERSONNEL",
   "pages": [
    85
@@ -5212,7 +5213,7 @@
   "id": "ATP3-90.97/7-25",
   "manual": "ATP3-90.97",
   "para": "7-25",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "COMBAT SEARCH AND RESCUE AND TACTICAL RECOVERY OF AIRCRAFT AND PERSONNEL",
   "pages": [
    85
@@ -5224,7 +5225,7 @@
   "id": "ATP3-90.97/7-26",
   "manual": "ATP3-90.97",
   "para": "7-26",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "MEDICAL, CASUALTY, AND AIR EVACUATIONS",
   "pages": [
    85
@@ -5236,7 +5237,7 @@
   "id": "ATP3-90.97/7-27",
   "manual": "ATP3-90.97",
   "para": "7-27",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AIR ASSAULT OPERATIONS",
   "pages": [
    85
@@ -5248,7 +5249,7 @@
   "id": "ATP3-90.97/7-28",
   "manual": "ATP3-90.97",
   "para": "7-28",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AIRBORNE COMMAND AND CONTROL",
   "pages": [
    85
@@ -5260,7 +5261,7 @@
   "id": "ATP3-90.97/7-29",
   "manual": "ATP3-90.97",
   "para": "7-29",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AIRBORNE COMMAND AND CONTROL",
   "pages": [
    85
@@ -5272,7 +5273,7 @@
   "id": "ATP3-90.97/7-30",
   "manual": "ATP3-90.97",
   "para": "7-30",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "BATTLEFIELD ILLUMINATION",
   "pages": [
    85,
@@ -5285,7 +5286,7 @@
   "id": "ATP3-90.97/7-31",
   "manual": "ATP3-90.97",
   "para": "7-31",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "LANDING ZONE CONSIDERATIONS",
   "pages": [
    86
@@ -5297,7 +5298,7 @@
   "id": "ATP3-90.97/7-32",
   "manual": "ATP3-90.97",
   "para": "7-32",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "LANDING ZONE CONSIDERATIONS",
   "pages": [
    86
@@ -5309,7 +5310,7 @@
   "id": "ATP3-90.97/7-33",
   "manual": "ATP3-90.97",
   "para": "7-33",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "SNOW-COVERED TERRAIN",
   "pages": [
    86
@@ -5321,7 +5322,7 @@
   "id": "ATP3-90.97/7-34",
   "manual": "ATP3-90.97",
   "para": "7-34",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AIR-GROUND INTEGRATION AND TRAINING CONSIDERATIONS",
   "pages": [
    86
@@ -5333,7 +5334,7 @@
   "id": "ATP3-90.97/7-35",
   "manual": "ATP3-90.97",
   "para": "7-35",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AIR-GROUND INTEGRATION AND TRAINING CONSIDERATIONS",
   "pages": [
    86,
@@ -5346,7 +5347,7 @@
   "id": "ATP3-90.97/7-36",
   "manual": "ATP3-90.97",
   "para": "7-36",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "ELECTRONIC WARFARE",
   "pages": [
    87
@@ -5358,7 +5359,7 @@
   "id": "ATP3-90.97/7-37",
   "manual": "ATP3-90.97",
   "para": "7-37",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "WEATHER TERRAIN",
   "pages": [
    87
@@ -5370,7 +5371,7 @@
   "id": "ATP3-90.97/7-38",
   "manual": "ATP3-90.97",
   "para": "7-38",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "TIME ON STATION",
   "pages": [
    87
@@ -5382,7 +5383,7 @@
   "id": "ATP3-90.97/7-39",
   "manual": "ATP3-90.97",
   "para": "7-39",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "ELECTRONIC ATTACK",
   "pages": [
    87
@@ -5394,7 +5395,7 @@
   "id": "ATP3-90.97/7-40",
   "manual": "ATP3-90.97",
   "para": "7-40",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "ELECTRONIC WARFARE SUPPORT",
   "pages": [
    87,
@@ -5407,7 +5408,7 @@
   "id": "ATP3-90.97/7-41",
   "manual": "ATP3-90.97",
   "para": "7-41",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "ELECTRONIC PROTECT",
   "pages": [
    88
@@ -5419,7 +5420,7 @@
   "id": "ATP3-90.97/7-42",
   "manual": "ATP3-90.97",
   "para": "7-42",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "TRAINING CONSIDERATIONS",
   "pages": [
    88
@@ -5431,7 +5432,7 @@
   "id": "ATP3-90.97/7-43",
   "manual": "ATP3-90.97",
   "para": "7-43",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "OFFENSIVE AIR SUPPORT PLANNING CONSIDERATIONS",
   "pages": [
    88
@@ -5443,7 +5444,7 @@
   "id": "ATP3-90.97/7-44",
   "manual": "ATP3-90.97",
   "para": "7-44",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "OFFENSIVE AIR SUPPORT PLANNING CONSIDERATIONS",
   "pages": [
    88
@@ -5455,7 +5456,7 @@
   "id": "ATP3-90.97/7-45",
   "manual": "ATP3-90.97",
   "para": "7-45",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "ORDNANCE VERSUS FUEL",
   "pages": [
    88
@@ -5467,7 +5468,7 @@
   "id": "ATP3-90.97/7-46",
   "manual": "ATP3-90.97",
   "para": "7-46",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "FORWARD OPERATING BASE AND FORWARD ARMING AND REFUELING POINT LOCATIONS",
   "pages": [
    88
@@ -5479,7 +5480,7 @@
   "id": "ATP3-90.97/7-47",
   "manual": "ATP3-90.97",
   "para": "7-47",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "ORDNANCE SELECTION",
   "pages": [
    89
@@ -5491,7 +5492,7 @@
   "id": "ATP3-90.97/7-48",
   "manual": "ATP3-90.97",
   "para": "7-48",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "REDUCED POWER AVAILABLE",
   "pages": [
    89
@@ -5503,7 +5504,7 @@
   "id": "ATP3-90.97/7-49",
   "manual": "ATP3-90.97",
   "para": "7-49",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "GEOMETRY OF FIRES",
   "pages": [
    89
@@ -5515,7 +5516,7 @@
   "id": "ATP3-90.97/7-50",
   "manual": "ATP3-90.97",
   "para": "7-50",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "WEATHER",
   "pages": [
    89
@@ -5527,7 +5528,7 @@
   "id": "ATP3-90.97/7-51",
   "manual": "ATP3-90.97",
   "para": "7-51",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "DEEP AIR SUPPORT",
   "pages": [
    89
@@ -5539,7 +5540,7 @@
   "id": "ATP3-90.97/7-52",
   "manual": "ATP3-90.97",
   "para": "7-52",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "TRAINING CONSIDERATIONS",
   "pages": [
    89
@@ -5551,7 +5552,7 @@
   "id": "ATP3-90.97/7-53",
   "manual": "ATP3-90.97",
   "para": "7-53",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "AVIATION GROUND SUPPORT PLANNING CONSIDERATIONS",
   "pages": [
    90
@@ -5563,7 +5564,7 @@
   "id": "ATP3-90.97/7-54",
   "manual": "ATP3-90.97",
   "para": "7-54",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "FORWARD ARMING AND REFUELING POINTS",
   "pages": [
    90
@@ -5575,7 +5576,7 @@
   "id": "ATP3-90.97/7-55",
   "manual": "ATP3-90.97",
   "para": "7-55",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "FORWARD ARMING AND REFUELING POINTS",
   "pages": [
    90
@@ -5587,7 +5588,7 @@
   "id": "ATP3-90.97/7-56",
   "manual": "ATP3-90.97",
   "para": "7-56",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "FORWARD OPERATING BASE LOCATIONS",
   "pages": [
    90
@@ -5599,7 +5600,7 @@
   "id": "ATP3-90.97/7-57",
   "manual": "ATP3-90.97",
   "para": "7-57",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "ENVIRONMENT PLANNING CONSIDERATIONS",
   "pages": [
    90
@@ -5611,7 +5612,7 @@
   "id": "ATP3-90.97/7-58",
   "manual": "ATP3-90.97",
   "para": "7-58",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "ENVIRONMENT PLANNING CONSIDERATIONS",
   "pages": [
    90,
@@ -5624,7 +5625,7 @@
   "id": "ATP3-90.97/7-59",
   "manual": "ATP3-90.97",
   "para": "7-59",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "TRAINING CONSIDERATIONS",
   "pages": [
    91
@@ -5636,7 +5637,7 @@
   "id": "ATP3-90.97/7-60",
   "manual": "ATP3-90.97",
   "para": "7-60",
-  "chapter": "Appendix C). More information on UAS considerations can be found in ATP 3-04.64/MCRP 3-42.1A/NTTP",
+  "chapter": "Chapter 7",
   "heading": "TRAINING CONSIDERATIONS",
   "pages": [
    91,
