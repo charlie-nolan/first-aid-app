@@ -34,6 +34,18 @@ def _chap_key(chap: str | None) -> str:
     return f"{m.group(1).lower()} {m.group(2).upper()}" if m else (chap or "")
 
 
+def _chap_sort(key: str):
+    """Front matter, then Chapter 1..n, then Appendix A..Z, then anything else."""
+    m = re.match(r"^(chapter|appendix) (\S+)$", key)
+    if not key:
+        return (0, 0, "")
+    if m and m.group(1) == "chapter" and m.group(2).isdigit():
+        return (1, int(m.group(2)), "")
+    if m and m.group(1) == "appendix":
+        return (2, 0, m.group(2))
+    return (3, 0, key)
+
+
 def _first_words(text: str) -> str:
     return " ".join(text.replace("\n", " ").split()[:8])
 
@@ -66,7 +78,11 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
         for i in range(0, len(kids), list_max):
             part = kids[i:i + list_max]
             first, last = part[0]["label"].split(" ")[0], part[-1]["label"].split(" ")[0]
-            blocks.append(chunk(tree, f"{key}.{i // list_max + 1}", f"{first} to {last}", part))
+            if re.match(r"^[A-Z0-9]{1,3}[-.]\d", first) and re.match(r"^[A-Z0-9]{1,3}[-.]\d", last):
+                blabel = f"{first} to {last}"            # numbered paragraphs: "2-1 to 2-40"
+            else:                                         # headings: position + first title
+                blabel = f"{i + 1}-{i + len(part)}: {part[0]['label']}"
+            blocks.append(chunk(tree, f"{key}.{i // list_max + 1}", blabel, part))
         return chunk(tree, key, label, blocks) if len(blocks) > list_max else \
             node(tree, key, label, choices=[link(k) for k in blocks])
 
@@ -82,7 +98,17 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
         about = " ".join(x for x in [m.get("about") or "",
                                      f"{title}, {str(m.get('edition')).split(' (')[0]}." if str(m.get("edition") or "TBD") != "TBD" else f"{title}."] if x)
         chapters = []
-        for ci, (_, group) in enumerate(groupby(secs, key=lambda s: _chap_key(s.get("chapter")))):
+        # Group by chapter over the whole manual (heading-only ".h" sections are emitted
+        # after the numbered ones, and TOC lines repeat chapter names), then put chapters
+        # in book order and sections in page order.
+        buckets: dict[str, list] = {}
+        for i, s in enumerate(secs):
+            buckets.setdefault(_chap_key(s.get("chapter")), []).append((i, s))
+        ordered = []
+        for k in sorted(buckets, key=_chap_sort):
+            ordered += [s for _, s in sorted(buckets[k], key=lambda p: ((p[1].get("pages") or [0])[0], p[0]))]
+        secs_eff = ordered
+        for ci, (_, group) in enumerate(groupby(secs_eff, key=lambda s: _chap_key(s.get("chapter")))):
             group = list(group)
             chap_lines = list(dict.fromkeys(s.get("chapter") or "" for s in group))
             chap = chap_lines[0]
@@ -94,7 +120,12 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
                 for s in run:
                     pids = _resolve_cite(s["id"], {s["id"]: s}, manuals, tid, b)
                     head = s.get("heading") or ""
-                    label = f"{s['para']} {head if len(run) == 1 and head else _first_words(s['text'])}"
+                    if ".h" in s["para"]:         # heading-only section: no real para number
+                        h = re.sub(r"^[\s*#\-]+", "", head).strip()
+                        label = (h.title() if h.isupper() else h) if h and len(run) == 1 \
+                            else _first_words(s["text"])
+                    else:
+                        label = f"{s['para']} {head if len(run) == 1 and head else _first_words(s['text'])}"
                     leaves.append(node(tid, f"s{s['para']}", label, passages=pids))
             heads = [list(g) for _, g in groupby(zip(group, leaves),
                                                   key=lambda p: p[0].get("heading") or "")]
@@ -108,6 +139,7 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
                         and "contents" not in s.get("heading", "").lower()
                         and plain(s["heading"]) != plain(title)]       # running headers
             first = titled[0] if titled else next((h for h in heads_ok if h.isupper()), "")
+            first = re.sub(r"\s*\.{3,}.*$", "", first).strip()          # TOC dot leaders
             m_num = re.match(r"^(chapter|appendix)\s+(\S+?)[.:]?(\s|$)", chap, flags=re.I)
             chap_short = (("Ch " if m_num.group(1).lower() == "chapter" else "App ") + m_num.group(2)
                           if m_num else chap)
