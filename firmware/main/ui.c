@@ -262,6 +262,56 @@ static void go_node(ui_t *u, uint16_t node) {
     u->mode = M_READ;
 }
 
+/* Continuous reading on the reference shelf (CrossInk-style): the sections of a
+ * manual are read in order, depth first from its root, and DOWN past the last
+ * page of one section opens the next. leaf_walk finds the section after
+ * (dir > 0), before (dir < 0) or at (dir == 0) `target`, and the menu path to it
+ * from the root, so BACK still leads to its chapter list. */
+#define WALK_DEPTH 12
+static int leaf_walk(ui_t *u, uint16_t root, uint16_t target, int dir, uint16_t *leaf, uint16_t *path, int *plen) {
+    uint16_t sn[WALK_DEPTH]; uint8_t sc[WALK_DEPTH]; int d = 0, found = 0;
+    uint16_t prev = CART_NONE, ppath[WALK_DEPTH]; int pplen = 0;
+    sn[0] = root; sc[0] = 0; d = 1;
+    while (d > 0) {
+        const cart_node_t *n = cart_node(u->c, sn[d - 1]);
+        if (!n) return 0;
+        if (n->n_choices == 0) {                                   /* a section */
+            uint16_t id = sn[d - 1];
+            if (found && dir > 0) { *leaf = id; *plen = d - 1; memcpy(path, sn, sizeof sn[0] * (d - 1)); return 1; }
+            if (id == target) {
+                if (dir == 0) { *leaf = id; *plen = d - 1; memcpy(path, sn, sizeof sn[0] * (d - 1)); return 1; }
+                if (dir < 0) { if (prev == CART_NONE) return 0; *leaf = prev; *plen = pplen; memcpy(path, ppath, sizeof ppath[0] * pplen); return 1; }
+                found = 1;
+            }
+            prev = id; pplen = d - 1; memcpy(ppath, sn, sizeof sn[0] * (d - 1));
+            d--;
+        } else if (sc[d - 1] < n->n_choices && d < WALK_DEPTH) {
+            uint16_t to = cart_node_choice(u->c, n, sc[d - 1]++).to;
+            sn[d] = to; sc[d] = 0; d++;
+        } else d--;
+    }
+    return 0;
+}
+/* Open section `leaf` with BACK history = its menu path (newest UI_HIST kept). */
+static void open_at(ui_t *u, uint16_t leaf, const uint16_t *path, int plen, int last_page) {
+    ui_window_t *w = W(u);
+    int k = plen > UI_HIST ? plen - UI_HIST : 0;
+    w->nhist = 0;
+    for (int i = k; i < plen; i++) w->hist[w->nhist++] = path[i];
+    w->node = leaf; w->page = 0; w->sel = 0;
+    if (last_page) { pages_t P; node_pages(u, leaf, &P); w->page = (uint8_t)(P.total - 1); }
+    u->mode = M_READ;
+}
+static int flow(ui_t *u, int dir) {                          /* 1 if it moved to another section */
+    ui_window_t *w = W(u);
+    const cart_node_t *n = cart_node(u->c, w->node);
+    if (!n || n->n_choices || !tree_is_ref(u->c, n->tree)) return 0;
+    uint16_t leaf, path[WALK_DEPTH]; int plen;
+    if (!leaf_walk(u, cart_tree(u->c, n->tree).root, w->node, dir, &leaf, path, &plen)) return 0;
+    open_at(u, leaf, path, plen, dir < 0);
+    return 1;
+}
+
 /* Text size or font changed: page counts change, so go to the start of the
  * passage being read instead of a page number that now means something else. */
 static int cur_passage(ui_t *u) {                 /* passage index, or -1 picture, -2 no-match, -3 choices */
@@ -436,6 +486,7 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
     pages_t P; node_pages(u, w->node, &P);
     if (!P.n) { header(u, fb, "Bad node", 0); return; }
     int ref = tree_is_ref(u->c, P.n->tree);
+    if (ref && !P.n->n_choices && P.n->tree < UI_LAST_TREES) u->s->last[P.n->tree] = w->node;   /* resume here next time */
     if (P.choice_pages && w->page >= first_choice_page(&P))     /* keep the page in step with the highlight */
         w->page = (uint8_t)(first_choice_page(&P) + w->sel / P.per);
     T(u, P.n->label, lab, sizeof lab);
@@ -548,6 +599,7 @@ static void step(ui_t *u, int dir, int wrap) {
         return;
     }
     int p = w->page + dir;
+    if ((p < 0 || p >= P.total) && !P.choice_pages && flow(u, dir < 0 ? -1 : 1)) return;   /* next/previous section */
     if (p < 0) p = 0;
     if (p >= P.total) p = wrap ? 0 : P.total - 1;
     w->page = (uint8_t)p;
@@ -677,7 +729,13 @@ ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
         else if (b == B_BACK) u->mode = u->mode == M_MENU ? u->back_mode : M_READ;
         else if (b == B_TALK && n) {
             if (u->mode == M_LIBRARY && e[u->list_sel] >= LIB_FOLDER) { u->lib_folder = (uint8_t)(e[u->list_sel] - LIB_FOLDER); u->list_sel = 0; }
-            else if (u->mode == M_LIBRARY) { W(u)->nhist = 0; W(u)->node = CART_NONE; go_node(u, cart_tree(u->c, e[u->list_sel]).root); W(u)->nhist = 0; }   /* BACK from a topic's first page returns to its folder */
+            else if (u->mode == M_LIBRARY) {
+                unsigned t = e[u->list_sel]; uint16_t root = cart_tree(u->c, (uint16_t)t).root;
+                uint16_t last = t < UI_LAST_TREES ? u->s->last[t] : 0, leaf, path[WALK_DEPTH]; int plen;
+                const cart_node_t *ln = last ? cart_node(u->c, last) : 0;
+                if (ln && ln->tree == t && leaf_walk(u, root, last, 0, &leaf, path, &plen)) open_at(u, leaf, path, plen, 0);   /* resume the manual */
+                else { W(u)->nhist = 0; W(u)->node = CART_NONE; go_node(u, root); W(u)->nhist = 0; }   /* BACK from a topic's first page returns to its folder */
+            }
             else if (u->mode == M_PICK) go_node(u, u->picks[u->list_sel]);
             else a = menu_select(u, a);
         } else a.redraw = RD_NONE;

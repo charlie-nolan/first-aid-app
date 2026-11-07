@@ -57,7 +57,7 @@ static void update(uint8_t mode, bool full) {
         busy_warned = true;
         vTaskDelay(pdMS_TO_TICKS(full ? 3000 : 800));
     }
-    ESP_LOGI(TAG, "%s refresh, BUSY high for %d ms", full ? "full" : "partial", ms);
+    ESP_LOGI(TAG, "%s refresh, BUSY high for %d ms", mode == 0xC7 ? "clean (fast)" : full ? "full" : "partial", ms);
 }
 static void reset(void) {
     gpio_set_level(PIN_EPD_RST, 1); vTaskDelay(pdMS_TO_TICKS(20));
