@@ -40,11 +40,19 @@ static cart_tags_t voice_ctx;
  * power loss and reflashing the app, until the reader picks another. */
 static void ctx_load(cart_tags_t *ctx) {
     nvs_handle_t h; size_t n = sizeof *ctx;
-    if (nvs_open("librarian", NVS_READONLY, &h) == ESP_OK) { nvs_get_blob(h, "ctx", ctx, &n); nvs_close(h); }
+    if (nvs_open("librarian", NVS_READONLY, &h) == ESP_OK) {
+        nvs_get_blob(h, "ctx", ctx, &n);
+        nvs_get_u8(h, "clean", &saved.clean);          /* clean-up interval, menu setting */
+        nvs_close(h);
+    }
 }
 static void ctx_save(const cart_tags_t *ctx) {
     nvs_handle_t h;
-    if (nvs_open("librarian", NVS_READWRITE, &h) == ESP_OK) { nvs_set_blob(h, "ctx", ctx, sizeof *ctx); nvs_commit(h); nvs_close(h); }
+    if (nvs_open("librarian", NVS_READWRITE, &h) == ESP_OK) {
+        nvs_set_blob(h, "ctx", ctx, sizeof *ctx);
+        nvs_set_u8(h, "clean", saved.clean);
+        nvs_commit(h); nvs_close(h);
+    }
 }
 static void voice_follow(void) {                    /* new section or context: swap the phrase list */
     if (!ui.has_voice) return;
@@ -55,14 +63,19 @@ static void voice_follow(void) {                    /* new section or context: s
     voice_load(t, &saved.ctx);
 }
 
+static int clean_every(void) {                  /* page turns between clean-ups (menu setting) */
+    return saved.clean ? saved.clean : CONFIG_LIB_FULL_REFRESH_EVERY;
+}
 static void show(int how) {
     if (how == RD_NONE) return;
     ui_render(&ui, &fb);
-    /* full refresh (the black-white flash) every N page turns clears ghosting;
-     * CrossInk's default is 15, any two buttons force one in between */
-    bool full = how == RD_FULL || ++partials >= CONFIG_LIB_FULL_REFRESH_EVERY;
-    if (full) partials = 0;
-    epd_show(fb_bits, full);
+    /* Page turns are quick partial refreshes; every N of them (default 15, as
+     * in CrossInk) one gentle clean-up flash clears the ghosts. Screens that
+     * ask for a full redraw get the same gentle clean. */
+    int mode = EPD_PARTIAL;
+    if (how == RD_FULL || ++partials >= clean_every()) mode = EPD_CLEAN;
+    if (mode != EPD_PARTIAL) partials = 0;
+    epd_show(fb_bits, mode);
 }
 
 /* Any two buttons pressed together = full screen refresh (clears ghosting).
@@ -79,7 +92,7 @@ static bool combo_filter(const app_msg_t *m) {
             ESP_LOGI(TAG, "two-button refresh");
             partials = 0;
             ui_render(&ui, &fb);
-            epd_show(fb_bits, true);
+            epd_show(fb_bits, EPD_FULL);             /* the deep clean, on request */
             return true;
         }
         held_mask |= bit;
@@ -94,7 +107,7 @@ static void go_to_sleep(uint32_t timer_s) {
     ESP_LOGI(TAG, "sleeping");
     voice_stop(false);
     ui_render_sleep(&ui, &fb);
-    epd_show(fb_bits, true);
+    epd_show(fb_bits, EPD_CLEAN);
     epd_sleep();
     lights_off_for_sleep();
     power_sleep(timer_s, saved.mesh_on);

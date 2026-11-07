@@ -114,15 +114,34 @@ static void build_ram(const uint8_t *fb) {
             }
 }
 
-void epd_show(const uint8_t *fb, bool full) {
-    if (!awake) { panel_init(); full = true; }
+/* Write the image to both RAMs: 0x24 (what to show) and 0x26 (the base the
+ * next partial update diffs against), so the base always matches the glass. */
+static void write_both(void) {
+    window_full();
+    cmdv(0x24, ram, sizeof ram);
+    window_full();
+    cmdv(0x26, ram, sizeof ram);
+}
+
+void epd_show(const uint8_t *fb, int mode) {
+    if (!awake) { panel_init(); mode = EPD_FULL; }
     build_ram(fb);
-    if (full) {
-        window_full();
-        cmdv(0x24, ram, sizeof ram);                 /* new image */
-        window_full();
-        cmdv(0x26, ram, sizeof ram);                 /* base image for the partial updates that follow */
+    if (mode == EPD_FULL) {
+        cmdv(0x3C, (const uint8_t[]){ 0x05 }, 1);
+        write_both();
         update(0xF7, true);
+    } else if (mode == EPD_CLEAN) {
+        /* Waveshare's 2.13" V4 "fast" refresh, the SSD1680 version of CrossInk's
+         * single-pass clean-up: tell the controller it is 100 C so it loads its
+         * short full waveform (0x22 0x91 loads it), then run that waveform alone
+         * (0xC7). One gentle flash instead of the multi-flash full refresh.
+         * The next partial (0x22 0xFF) reloads the real temperature itself. */
+        cmdv(0x3C, (const uint8_t[]){ 0x05 }, 1);
+        cmdv(0x1A, (const uint8_t[]){ 0x64, 0x00 }, 2);
+        cmdv(0x22, (const uint8_t[]){ 0x91 }, 1);
+        cmd(0x20); wait_busy();
+        write_both();
+        update(0xC7, true);
     } else {
         /* No hardware reset here: it is not needed between partials and the
          * controller wants ~10 ms after one before it takes commands. */

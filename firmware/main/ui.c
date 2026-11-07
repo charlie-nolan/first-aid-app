@@ -210,7 +210,10 @@ static void to_passage(ui_t *u, int k) {
 }
 
 /* ------------------------------------------------------------- the menu */
-enum { MI_FLASH, MI_SOS, MI_IR, MI_MESH, MI_FONT, MI_FAMILY, MI_CONTEXT, MI_LIBRARY, MI_WINDOW, MI_SIG_OFF, MI_SLEEP };
+enum { MI_FLASH, MI_SOS, MI_IR, MI_MESH, MI_FONT, MI_FAMILY, MI_CLEAN, MI_CONTEXT, MI_LIBRARY, MI_WINDOW, MI_SIG_OFF, MI_SLEEP };
+#ifndef CONFIG_LIB_FULL_REFRESH_EVERY
+#define CONFIG_LIB_FULL_REFRESH_EVERY 15
+#endif
 static int menu_items(const ui_t *u, int *out) {
     int n = 0;
     out[n++] = MI_FLASH; out[n++] = MI_SOS;
@@ -218,6 +221,7 @@ static int menu_items(const ui_t *u, int *out) {
     if (u->has_mesh) out[n++] = MI_MESH;
     out[n++] = MI_FONT;
     if (cart_font_families(u->c) > 1) out[n++] = MI_FAMILY;
+    out[n++] = MI_CLEAN;
     if (cart_ctx_dims(u->c)) out[n++] = MI_CONTEXT;
     out[n++] = MI_LIBRARY;
     if (!u->has_window_keys) out[n++] = MI_WINDOW;
@@ -234,6 +238,7 @@ static void menu_label(const ui_t *u, int item, char *b, size_t cap) {
     case MI_MESH:    snprintf(b, cap, "Mesh SOS radio%s", u->s->mesh_on ? on : ""); break;
     case MI_FONT:    snprintf(b, cap, "Text size: %s", sizes[u->s->font % 3]); break;
     case MI_FAMILY:  snprintf(b, cap, "Font: %s", cart_font_family_name(u->c, u->s->family)); break;
+    case MI_CLEAN:   snprintf(b, cap, "Clean screen every %d pages", u->s->clean ? u->s->clean : CONFIG_LIB_FULL_REFRESH_EVERY); break;
     case MI_CONTEXT: snprintf(b, cap, "Where and when..."); break;
     case MI_LIBRARY: snprintf(b, cap, "Library"); break;
     case MI_WINDOW:  snprintf(b, cap, "Next window (%d of %d)", u->s->cur + 1, UI_WINDOWS); break;
@@ -465,6 +470,12 @@ static ui_act_t menu_select(ui_t *u, ui_act_t a) {
     case MI_MESH:  u->s->mesh_on = !u->s->mesh_on; a.mesh = 1; break;
     case MI_FONT:  { int k = cur_passage(u); unsigned nf = cart_font_sizes(u->c); u->s->font = (uint8_t)((u->s->font + 1) % (nf ? nf : 1)); to_passage(u, k); return a; }
     case MI_FAMILY: { int k = cur_passage(u); u->s->family = (uint8_t)((u->s->family + 1) % cart_font_families(u->c)); to_passage(u, k); return a; }
+    case MI_CLEAN: {                               /* 5 -> 10 -> 15 -> 30 -> 5 */
+        int v = u->s->clean ? u->s->clean : CONFIG_LIB_FULL_REFRESH_EVERY;
+        u->s->clean = (uint8_t)(v < 10 ? 10 : v < 15 ? 15 : v < 30 ? 30 : 5);
+        a.ctx_changed = 1;                         /* saved to flash with the context */
+        return a;
+    }
     case MI_CONTEXT: u->mode = M_CTX_DIMS; u->list_sel = 0; return a;
     case MI_LIBRARY: open_library(u); return a;
     case MI_WINDOW: u->s->cur = (uint8_t)((u->s->cur + 1) % UI_WINDOWS); u->mode = M_READ; return a;

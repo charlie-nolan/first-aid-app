@@ -38,7 +38,9 @@ typedef struct {
     uint8_t font;                   /* 0 small, 1 medium, 2 large */
     uint8_t light;                  /* front light 0 off, 1 dim, 2 bright */
     uint8_t mesh_on;
-    uint8_t family, pad2[3];        /* font family (Lexend, Bitter, ...) */
+    uint8_t family;                 /* font family (Lexend, Bitter, ...) */
+    uint8_t clean;                  /* page turns between screen clean-ups; 0 = build default */
+    uint8_t pad2[2];
     cart_tags_t ctx;                /* sticky context: state, season, activity (also kept in NVS) */
 } ui_saved_t;
 
