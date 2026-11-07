@@ -83,11 +83,11 @@
   "id": "TBMED508/fig/3-1",
   "manual": "TBMED508",
   "num": "3-1",
-  "title": "Cold strain risk management process",
+  "title": "Cold strain risk",
   "page": 26,
   "bbox": [
-   131.0,
-   292.7940414475001,
+   104.0269596036626,
+   94.88467760413243,
    544.0449289345022,
    666.0441198009996
   ],
@@ -140,6 +140,22 @@
    337.9825878005
   ],
   "png": "TBMED508_fig_3-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/3-5",
+  "manual": "TBMED508",
+  "num": "3-5",
+  "title": "Time in minutes until the occurrence of cheek frostbite in the most susceptible 5",
+  "page": 36,
+  "bbox": [
+   44.96,
+   569.4946737381838,
+   567.0400000000001,
+   646.8615409406079
+  ],
+  "png": "TBMED508_fig_3-5.png",
   "restricted": false,
   "dpi": 200
  },

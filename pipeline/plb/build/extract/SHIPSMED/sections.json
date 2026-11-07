@@ -182,15 +182,27 @@
   "notices": []
  },
  {
-  "id": "SHIPSMED/14.3",
+  "id": "SHIPSMED/14.2",
   "manual": "SHIPSMED",
-  "para": "14.3",
+  "para": "14.2",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
   "heading": "Miriam J. Alter, PhD",
   "pages": [
    14
   ],
-  "text": "Indian Health Service Centers for Disease Control and Prevention Rockville, MD Atlanta, GA Communicating the Patient's Condition Infectious Disease",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/14.3",
+  "manual": "SHIPSMED",
+  "para": "14.3",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Nancy H. Arden, MN",
+  "pages": [
+   14
+  ],
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -198,11 +210,23 @@
   "manual": "SHIPSMED",
   "para": "14.5",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Nancy H. Arden, MN",
+  "heading": "USPHS",
   "pages": [
    14
   ],
-  "text": "US Public Health Service Centers for Disease Control and Prevention Rockville, MD Atlanta, GA Wound care, Universal Precautions Infectious Disease",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/14.6",
+  "manual": "SHIPSMED",
+  "para": "14.6",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Commander Nancy Balash, PT, CDR, USPHS",
+  "pages": [
+   14
+  ],
+  "text": "Yakima PHS Indian Health Center Indian Health Service Yakima, WA Wound Care, Universal Precautions",
   "notices": []
  },
  {
@@ -210,11 +234,11 @@
   "manual": "SHIPSMED",
   "para": "14.7",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Commander David A. Ashford, DVM, MPH, DSc,",
+  "heading": "Chris Bina, RPh",
   "pages": [
    14
   ],
-  "text": "Centers for Disease Control and Prevention",
+  "text": "Vanderbilt University School of Medicine Nashville, Tennessee Infectious Disease",
   "notices": []
  },
  {
@@ -222,11 +246,11 @@
   "manual": "SHIPSMED",
   "para": "14.8",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "USPHS",
+  "heading": "Thomas G. Boyce, MD",
   "pages": [
    14
   ],
-  "text": "Atlanta, GA Centers for Disease Control and Prevention Infectious Disease Atlanta, GA",
+  "text": "Vanderbilt University School of Medicine Nashville, Tennessee Infectious Disease",
   "notices": []
  },
  {
@@ -234,11 +258,11 @@
   "manual": "SHIPSMED",
   "para": "14.9",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Infectious Disease Steven R. Dittert, RPh",
+  "heading": "Charles A. Bowman, RPh, MBA",
   "pages": [
    14
   ],
-  "text": "Federal Bureau of Prisons",
+  "text": "Indian Health Service Bemidji, MN Prevention",
   "notices": []
  },
  {
@@ -246,11 +270,11 @@
   "manual": "SHIPSMED",
   "para": "14.10",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Commander Nancy Balash, PT, CDR, USPHS",
+  "heading": "*Captain Philip Brachman, MD, USPHS",
   "pages": [
    14
   ],
-  "text": "Butner, North Carolina Yakima PHS Indian Health Center Prevention Indian Health Service",
+  "text": "Emory University School of Public Health Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -258,11 +282,11 @@
   "manual": "SHIPSMED",
   "para": "14.11",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Yakima, WA Captain D. Peter Drotman, MD, MPH, USPHS",
+  "heading": "Captain Robert F. Breiman, MD, USPHS",
   "pages": [
    14
   ],
-  "text": "Wound Care, Universal Precautions Centers for Disease Control and Prevention Atlanta, GA",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -270,11 +294,11 @@
   "manual": "SHIPSMED",
   "para": "14.12",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Chris Bina, RPh",
+  "heading": "Captain Charles C. Bruner, PharmD, USPHS",
   "pages": [
    14
   ],
-  "text": "Infectious Disease Vanderbilt University School of Medicine",
+  "text": "U.S. Coast Guard Washington, DC Sickbay and Medicine Chest",
   "notices": []
  },
  {
@@ -282,11 +306,11 @@
   "manual": "SHIPSMED",
   "para": "14.13",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Nashville, Tennessee Captain Dean Effler, MD, USPHS",
+  "heading": "Rear Admiral Kenneth G. Castro, MD, USPHS",
   "pages": [
    14
   ],
-  "text": "Infectious Disease Indian Health Service Toppenish, WA",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -294,11 +318,11 @@
   "manual": "SHIPSMED",
   "para": "14.14",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Thomas G. Boyce, MD",
+  "heading": "*Captain James Clevenger, BSN, RN, USPHS",
   "pages": [
    14
   ],
-  "text": "Wound Care, Universal Precautions Vanderbilt University School of Medicine",
+  "text": "Indian Health Service Rockville, MD Communicating the Patient's Condition",
   "notices": []
  },
  {
@@ -306,11 +330,11 @@
   "manual": "SHIPSMED",
   "para": "14.15",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Nashville, Tennessee Commander George Foley, USPHS",
+  "heading": "Captain David Daniels, MD, USPHS",
   "pages": [
    14
   ],
-  "text": "Infectious Disease U.S. Public Health Service Rockville, MD",
+  "text": "US Public Health Service Rockville, MD Wound care, Universal Precautions",
   "notices": []
  },
  {
@@ -318,11 +342,11 @@
   "manual": "SHIPSMED",
   "para": "14.16",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Charles A. Bowman, RPh, MBA",
+  "heading": "David T. Dennis, MD, MPH",
   "pages": [
    14
   ],
-  "text": "Patient record Indian Health Service",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -330,11 +354,11 @@
   "manual": "SHIPSMED",
   "para": "14.17",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Bemidji, MN Ellen C. Frank, RPh",
+  "heading": "Steven R. Dittert, RPh",
   "pages": [
    14
   ],
-  "text": "Prevention U.S. Food and Drug Administration Rockville, MD",
+  "text": "Federal Bureau of Prisons Butner, North Carolina Prevention",
   "notices": []
  },
  {
@@ -342,11 +366,11 @@
   "manual": "SHIPSMED",
   "para": "14.18",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "*Captain Philip Brachman, MD, USPHS",
+  "heading": "Captain D. Peter Drotman, MD, MPH, USPHS",
   "pages": [
    14
   ],
-  "text": "Prevention Emory University School of Public Health",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -354,11 +378,11 @@
   "manual": "SHIPSMED",
   "para": "14.19",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Atlanta, GA Duane J. Gubler, ScD",
+  "heading": "Captain Dean Effler, MD, USPHS",
   "pages": [
    14
   ],
-  "text": "Infectious Disease Center for Disease Control and Prevention Atlanta, GA",
+  "text": "Indian Health Service Toppenish, WA Wound Care, Universal Precautions",
   "notices": []
  },
  {
@@ -366,11 +390,11 @@
   "manual": "SHIPSMED",
   "para": "14.20",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Captain Robert F. Breiman, MD, USPHS",
+  "heading": "Commander George Foley, USPHS",
   "pages": [
    14
   ],
-  "text": "Infectious Disease Centers for Disease Control and Prevention",
+  "text": "U.S. Public Health Service Rockville, MD Patient record",
   "notices": []
  },
  {
@@ -378,11 +402,11 @@
   "manual": "SHIPSMED",
   "para": "14.21",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Atlanta, GA Rear Admiral Paul J. Higgins, MD, USPHS",
+  "heading": "Ellen C. Frank, RPh",
   "pages": [
    14
   ],
-  "text": "Infectious Disease U.S. Coast Guard Washington, D.C.",
+  "text": "U.S. Food and Drug Administration Rockville, MD Prevention",
   "notices": []
  },
  {
@@ -390,11 +414,11 @@
   "manual": "SHIPSMED",
   "para": "14.22",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Captain Charles C. Bruner, PharmD, USPHS",
+  "heading": "Duane J. Gubler, ScD",
   "pages": [
    14
   ],
-  "text": "Primary Medical Care U.S. Coast Guard",
+  "text": "Center for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -402,23 +426,23 @@
   "manual": "SHIPSMED",
   "para": "14.23",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Washington, DC Rear Admiral Joyce M. Johnson, DO, MA,",
+  "heading": "Rear Admiral Paul J. Higgins, MD, USPHS",
   "pages": [
    14
   ],
-  "text": "Sickbay and Medicine Chest USPHS U.S. Coast Guard",
+  "text": "U.S. Coast Guard Washington, D.C. Primary Medical Care",
   "notices": []
  },
  {
-  "id": "SHIPSMED/14.24",
+  "id": "SHIPSMED/14.25",
   "manual": "SHIPSMED",
-  "para": "14.24",
+  "para": "14.25",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Rear Admiral Kenneth G. Castro, MD, USPHS",
+  "heading": "USPHS",
   "pages": [
    14
   ],
-  "text": "Washington, D.C. Centers for Disease Control and Prevention Substance Abuse, Infectious Disease and Atlanta, GA Terrorism Infectious Disease",
+  "text": "U.S. Coast Guard Washington, D.C. Substance Abuse, Infectious Disease and Terrorism",
   "notices": []
  },
  {
@@ -426,23 +450,11 @@
   "manual": "SHIPSMED",
   "para": "15.2",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "*Captain G. Bryan Jones, PhD, USPHS Barbara E. Mahon, MD, MPH",
+  "heading": "*Captain G. Bryan Jones, PhD, USPHS",
   "pages": [
    15
   ],
-  "text": "Substance Abuse and Mental Health Services University of Medicine and Dentistry of New Administration Jersey - Robert Wood Johnson Medical School Rockville, MD New Brunswick, New Jersey 08903-0019 Shipboard Issues Infectious Disease Captain Audrey M. Koertvelyessy, RN, MSN, FNP, Commander Calvin Marshall, RN, MPH,",
-  "notices": []
- },
- {
-  "id": "SHIPSMED/15.3",
-  "manual": "SHIPSMED",
-  "para": "15.3",
-  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "USPHS USPHS",
-  "pages": [
-   15
-  ],
-  "text": "Health Resources and Services Administration Indian Health Service Rockville, MD Gallup, New Mexico History and Physical Examination, Pain Fluid Therapy",
+  "text": "Substance Abuse and Mental Health Services Administration Rockville, MD Shipboard Issues",
   "notices": []
  },
  {
@@ -450,11 +462,23 @@
   "manual": "SHIPSMED",
   "para": "15.4",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Captain Denise Koo, MD, MPH, USPHS *Rear Admiral Carolyn Beth Lee Massella,",
+  "heading": "USPHS",
   "pages": [
    15
   ],
-  "text": "Centers for Disease Control and Prevention MSN, RN, USPHS Atlanta, GA National Institutes of Health Prevention of Communicable Disease Rockville, MD Medication Administration",
+  "text": "Health Resources and Services Administration Rockville, MD History and Physical Examination, Pain",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.5",
+  "manual": "SHIPSMED",
+  "para": "15.5",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Captain Denise Koo, MD, MPH, USPHS",
+  "pages": [
+   15
+  ],
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Prevention of Communicable Disease",
   "notices": []
  },
  {
@@ -462,23 +486,11 @@
   "manual": "SHIPSMED",
   "para": "15.6",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "U.S. Public Health Service *Captain James McCann, PhD, RN, ANP,",
+  "heading": "Sharon Kornfeld, RPh",
   "pages": [
    15
   ],
-  "text": "Rockville, MD USPHS Prevention Health Resources Services Administration Rockville, MD",
-  "notices": []
- },
- {
-  "id": "SHIPSMED/15.7",
-  "manual": "SHIPSMED",
-  "para": "15.7",
-  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Commander Emily Koumans, HA, MD, MPH,",
-  "pages": [
-   15
-  ],
-  "text": "Patient Assessment",
+  "text": "U.S. Public Health Service Rockville, MD Prevention",
   "notices": []
  },
  {
@@ -490,7 +502,7 @@
   "pages": [
    15
   ],
-  "text": "Centers for Diseases Control and Prevention Captain Janet B. McGowan, MSN, RN, USPHS Atlanta, GA Health Services Resources Administration Infectious Disease Rockville, MD Counseling, Physical Abuse and Rape",
+  "text": "Centers for Diseases Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -498,11 +510,11 @@
   "manual": "SHIPSMED",
   "para": "15.10",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "USPHS Commander Mark Miller, MD, MPH, USPHS",
+  "heading": "USPHS",
   "pages": [
    15
   ],
-  "text": "Indian Health Service Centers for Disease Control and Prevention Seattle, WA Atlanta, GA Hyperthermia Prevention of Communicable Diseases",
+  "text": "Indian Health Service Seattle, WA Hyperthermia",
   "notices": []
  },
  {
@@ -510,11 +522,11 @@
   "manual": "SHIPSMED",
   "para": "15.11",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Ann H. Lanner Commander Katherine G. Mulligan, MD,",
+  "heading": "Ann H. Lanner",
   "pages": [
    15
   ],
-  "text": "Centers for Disease Control and Prevention USPHS Atlanta, GA U.S. Coast Guard Infectious Disease New London, CT Primary Care Interventions",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -526,7 +538,19 @@
   "pages": [
    15
   ],
-  "text": "Centers for Disease Control and Prevention Captain Deborah Noyes, DMD, MS, USPHS Atlanta, GA U.S. Coast Guard Infectious Disease Washington, DC Dental Emergencies",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.13",
+  "manual": "SHIPSMED",
+  "para": "15.13",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Commander Andrew J. Litavecz, IV, RPh, USPHS",
+  "pages": [
+   15
+  ],
+  "text": "Federal Bureau of Prisons Edgefield, SC Prevention",
   "notices": []
  },
  {
@@ -534,23 +558,23 @@
   "manual": "SHIPSMED",
   "para": "15.14",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Federal Bureau of Prisons Captain Iris Obrams, MD, PhD, USPHS",
-  "pages": [
-   15
-  ],
-  "text": "Edgefield, SC U.S. Coast Guard Prevention Washington, DC Personal Preventive Practices, Women's Health",
-  "notices": []
- },
- {
-  "id": "SHIPSMED/15.15",
-  "manual": "SHIPSMED",
-  "para": "15.15",
-  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
   "heading": "Lieutenant Commander Mike Long, RPh, USPHS",
   "pages": [
    15
   ],
-  "text": "Federal Bureau of Prisons James G. Olson, PhD Butler, NC Centers for Disease Control and Prevention Prevention Atlanta, GA Infectious Disease",
+  "text": "Federal Bureau of Prisons Butler, NC Prevention",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.16",
+  "manual": "SHIPSMED",
+  "para": "15.16",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "USPHS",
+  "pages": [
+   15
+  ],
+  "text": "U.S. Coast Guard Washington, DC Terrorism",
   "notices": []
  },
  {
@@ -558,11 +582,131 @@
   "manual": "SHIPSMED",
   "para": "15.17",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "USPHS Sharon Oestereich",
+  "heading": "Barbara E. Mahon, MD, MPH",
   "pages": [
    15
   ],
-  "text": "U.S. Coast Guard Federal Bureau of Prisons Washington, DC Lexington, KY Terrorism Prevention",
+  "text": "University of Medicine and Dentistry of New Jersey - Robert Wood Johnson Medical School New Brunswick, New Jersey 08903-0019 Infectious Disease",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.19",
+  "manual": "SHIPSMED",
+  "para": "15.19",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "USPHS",
+  "pages": [
+   15
+  ],
+  "text": "Indian Health Service Gallup, New Mexico Fluid Therapy",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.21",
+  "manual": "SHIPSMED",
+  "para": "15.21",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "MSN, RN, USPHS",
+  "pages": [
+   15
+  ],
+  "text": "National Institutes of Health Rockville, MD Medication Administration",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.23",
+  "manual": "SHIPSMED",
+  "para": "15.23",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "USPHS",
+  "pages": [
+   15
+  ],
+  "text": "Health Resources Services Administration Rockville, MD Patient Assessment",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.24",
+  "manual": "SHIPSMED",
+  "para": "15.24",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Captain Janet B. McGowan, MSN, RN, USPHS",
+  "pages": [
+   15
+  ],
+  "text": "Health Services Resources Administration Rockville, MD Counseling, Physical Abuse and Rape",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.25",
+  "manual": "SHIPSMED",
+  "para": "15.25",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Commander Mark Miller, MD, MPH, USPHS",
+  "pages": [
+   15
+  ],
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Prevention of Communicable Diseases",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.27",
+  "manual": "SHIPSMED",
+  "para": "15.27",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "USPHS",
+  "pages": [
+   15
+  ],
+  "text": "U.S. Coast Guard New London, CT Primary Care Interventions",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.28",
+  "manual": "SHIPSMED",
+  "para": "15.28",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Captain Deborah Noyes, DMD, MS, USPHS",
+  "pages": [
+   15
+  ],
+  "text": "U.S. Coast Guard Washington, DC Dental Emergencies",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.29",
+  "manual": "SHIPSMED",
+  "para": "15.29",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Captain Iris Obrams, MD, PhD, USPHS",
+  "pages": [
+   15
+  ],
+  "text": "U.S. Coast Guard Washington, DC Personal Preventive Practices, Women's Health",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.30",
+  "manual": "SHIPSMED",
+  "para": "15.30",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "James G. Olson, PhD",
+  "pages": [
+   15
+  ],
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/15.31",
+  "manual": "SHIPSMED",
+  "para": "15.31",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Sharon Oestereich",
+  "pages": [
+   15
+  ],
+  "text": "Federal Bureau of Prisons Lexington, KY Prevention",
   "notices": []
  },
  {
@@ -570,11 +714,11 @@
   "manual": "SHIPSMED",
   "para": "16.2",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "John Parascandola, PhD Richard A. Spiegel, DVM, MPH",
+  "heading": "John Parascandola, PhD",
   "pages": [
    16
   ],
-  "text": "U.S. Public Health Service Centers for Disease Control and Prevention Rockville, MD Atlanta, GA Historical Perspectives Infectious Disease",
+  "text": "U.S. Public Health Service Rockville, MD Historical Perspectives",
   "notices": []
  },
  {
@@ -582,11 +726,11 @@
   "manual": "SHIPSMED",
   "para": "16.3",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Captain Bradley A. Perkins, MD, USPHS Rear Admiral Allan Steinman, MD, USPHS",
+  "heading": "Captain Bradley A. Perkins, MD, USPHS",
   "pages": [
    16
   ],
-  "text": "Centers for Disease Control and Prevention (ret) Atlanta, GA Hypothermia and Operational Medicine Infectious Disease Consultant Dupont, WA",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -598,7 +742,7 @@
   "pages": [
    16
   ],
-  "text": "Hypothermia U.S. Coast Guard",
+  "text": "U.S. Coast Guard Washington, D.C. Clinical Skills",
   "notices": []
  },
  {
@@ -606,11 +750,11 @@
   "manual": "SHIPSMED",
   "para": "16.5",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Washington, D.C. John A. Stewart, MD",
+  "heading": "Captain Kolynn Powell-Sinclair, RN, BSN, USPHS",
   "pages": [
    16
   ],
-  "text": "Clinical Skills Centers for Disease Control and Prevention Atlanta, GA",
+  "text": "Indian Health Service Yakima, WA Wound care, Universal Precautions",
   "notices": []
  },
  {
@@ -618,11 +762,11 @@
   "manual": "SHIPSMED",
   "para": "16.6",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Captain Kolynn Powell-Sinclair, RN, BSN, USPHS",
+  "heading": "D. Rebecca Prevots, PhD, MPH",
   "pages": [
    16
   ],
-  "text": "Infectious Disease Indian Health Service",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -630,11 +774,11 @@
   "manual": "SHIPSMED",
   "para": "16.7",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Yakima, WA Captain Robert V. Tauxe, MD, MPH, USPHS",
+  "heading": "*Captain Carolyn B. Przekurat, RD, USPHS",
   "pages": [
    16
   ],
-  "text": "Wound care, Universal Precautions Centers for Disease Control and Prevention Atlanta, GA",
+  "text": "Indian Health Service Albuquerque, NM Nutritional Status",
   "notices": []
  },
  {
@@ -642,11 +786,11 @@
   "manual": "SHIPSMED",
   "para": "16.8",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "D. Rebecca Prevots, PhD, MPH",
+  "heading": "Commander Laura Rabb, USPHS",
   "pages": [
    16
   ],
-  "text": "Infectious Disease Centers for Disease Control and Prevention",
+  "text": "U.S. Coast Guard Washington, D.C. Environmental Health",
   "notices": []
  },
  {
@@ -654,23 +798,11 @@
   "manual": "SHIPSMED",
   "para": "16.9",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Atlanta, GA Captain Mark J. Tedesco, MD, MPH, USPHS",
+  "heading": "Captain Steven Redd, MD, MPH, USPHS",
   "pages": [
    16
   ],
-  "text": "Infectious Disease U.S. Coast Guard Washington, DC 20593",
-  "notices": []
- },
- {
-  "id": "SHIPSMED/16.10",
-  "manual": "SHIPSMED",
-  "para": "16.10",
-  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "*Captain Carolyn B. Przekurat, RD, USPHS",
-  "pages": [
-   16
-  ],
-  "text": "Responding to Bioterrorism Agents Indian Health Service",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -678,11 +810,11 @@
   "manual": "SHIPSMED",
   "para": "16.11",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Albuquerque, NM *Chief Warrant Officer Karin Thomas, USCG",
+  "heading": "PNP, USPHS",
   "pages": [
    16
   ],
-  "text": "Nutritional Status U.S. Coast Guard Washington, DC",
+  "text": "Health Resources and Services Administration Rockville, MD Sexual Assault and Rape",
   "notices": []
  },
  {
@@ -690,11 +822,11 @@
   "manual": "SHIPSMED",
   "para": "16.12",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Commander Laura Rabb, USPHS",
+  "heading": "Charles E. Rupprecht, VMC, MS, PhD",
   "pages": [
    16
   ],
-  "text": "Substance Abuse U.S. Coast Guard Washington, D.C.",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -702,11 +834,11 @@
   "manual": "SHIPSMED",
   "para": "16.13",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "John M. Townes, MD",
+  "heading": "George P. Schmid, MD",
   "pages": [
    16
   ],
-  "text": "Environmental Health Centers for Disease Control and Prevention",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Sexually Transmitted Diseases",
   "notices": []
  },
  {
@@ -714,11 +846,11 @@
   "manual": "SHIPSMED",
   "para": "16.14",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Captain Steven Redd, MD, MPH, USPHS Atlanta, GA",
+  "heading": "Captain Lee Shackleford, DDS, USPHS",
   "pages": [
    16
   ],
-  "text": "Centers for Disease Control and Prevention Infectious Disease Atlanta, GA",
+  "text": "U.S. Public Health Service Rockville, MD Oral Hygiene",
   "notices": []
  },
  {
@@ -726,23 +858,11 @@
   "manual": "SHIPSMED",
   "para": "16.15",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Theodore F. Tsai, MD, MPH",
+  "heading": "Richard A. Spiegel, DVM, MPH",
   "pages": [
    16
   ],
-  "text": "Infectious Disease Centers for Disease Control and Prevention",
-  "notices": []
- },
- {
-  "id": "SHIPSMED/16.16",
-  "manual": "SHIPSMED",
-  "para": "16.16",
-  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Commander Catherine Rupinta, MSN, CRNP, Atlanta, GA",
-  "pages": [
-   16
-  ],
-  "text": "PNP, USPHS Infectious Disease Health Resources and Services Administration",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -750,11 +870,11 @@
   "manual": "SHIPSMED",
   "para": "16.17",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Captain Scott F. Wetterhall, MD, MPH, USPHS",
+  "heading": "(ret)",
   "pages": [
    16
   ],
-  "text": "Rockville, MD Centers for Disease Control and Prevention Sexual Assault and Rape Atlanta, GA",
+  "text": "Hypothermia and Operational Medicine Consultant Dupont, WA Hypothermia",
   "notices": []
  },
  {
@@ -762,11 +882,11 @@
   "manual": "SHIPSMED",
   "para": "16.18",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Charles E. Rupprecht, VMC, MS, PhD Communicable Diseases",
+  "heading": "John A. Stewart, MD",
   "pages": [
    16
   ],
-  "text": "Centers for Disease Control and Prevention",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -774,11 +894,11 @@
   "manual": "SHIPSMED",
   "para": "16.19",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Captain Melinda Wharton, MD, MPH, USPHS",
+  "heading": "Captain Robert V. Tauxe, MD, MPH, USPHS",
   "pages": [
    16
   ],
-  "text": "Atlanta, GA Centers for Disease Control and Prevention Infectious Disease Atlanta, GA",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -786,11 +906,11 @@
   "manual": "SHIPSMED",
   "para": "16.20",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "George P. Schmid, MD Infectious Disease",
+  "heading": "Captain Mark J. Tedesco, MD, MPH, USPHS",
   "pages": [
    16
   ],
-  "text": "Centers for Disease Control and Prevention",
+  "text": "U.S. Coast Guard Washington, DC 20593 Responding to Bioterrorism Agents",
   "notices": []
  },
  {
@@ -798,11 +918,11 @@
   "manual": "SHIPSMED",
   "para": "16.21",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Cary R. Wiemer, JD",
+  "heading": "*Chief Warrant Officer Karin Thomas, USCG",
   "pages": [
    16
   ],
-  "text": "Atlanta, GA Kirlin, Cambell, and Keating Sexually Transmitted Diseases New York, NY",
+  "text": "U.S. Coast Guard Washington, DC Substance Abuse",
   "notices": []
  },
  {
@@ -810,11 +930,11 @@
   "manual": "SHIPSMED",
   "para": "16.22",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
-  "heading": "Captain Lee Shackleford, DDS, USPHS Legal Issues",
+  "heading": "John M. Townes, MD",
   "pages": [
    16
   ],
-  "text": "U.S. Public Health Service",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -822,11 +942,59 @@
   "manual": "SHIPSMED",
   "para": "16.23",
   "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Theodore F. Tsai, MD, MPH",
+  "pages": [
+   16
+  ],
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/16.24",
+  "manual": "SHIPSMED",
+  "para": "16.24",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Captain Scott F. Wetterhall, MD, MPH, USPHS",
+  "pages": [
+   16
+  ],
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Communicable Diseases",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/16.25",
+  "manual": "SHIPSMED",
+  "para": "16.25",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Captain Melinda Wharton, MD, MPH, USPHS",
+  "pages": [
+   16
+  ],
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/16.26",
+  "manual": "SHIPSMED",
+  "para": "16.26",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
+  "heading": "Cary R. Wiemer, JD",
+  "pages": [
+   16
+  ],
+  "text": "Kirlin, Cambell, and Keating New York, NY Legal Issues",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/16.27",
+  "manual": "SHIPSMED",
+  "para": "16.27",
+  "chapter": "Appendix I Medical Reference Recommendations App. I-i",
   "heading": "Ian T. Williams, PhD, MS",
   "pages": [
    16
   ],
-  "text": "Rockville, MD Centers for Disease Control and Prevention Oral Hygiene Atlanta, GA Infectious Disease",
+  "text": "Centers for Disease Control and Prevention Atlanta, GA Infectious Disease",
   "notices": []
  },
  {
@@ -5186,35 +5354,47 @@
   "manual": "SHIPSMED",
   "para": "242.8",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "PROFICIENCY COMPETENCE COMPETENCE",
+  "heading": "PROFICIENCY",
   "pages": [
    242
   ],
-  "text": "Take immediate Assessment of needs of Assessment of evidence The manner and timing of action upon casualties and threats to own obtained from approved raising the alarm is encountering an safety instruction or during appropriate to the accident or other attendance at an circumstances of the medical Appreciation of body structure and approved course accident or medical emergency functions emergency Understanding of immediate The identification of measures to be taken in cases of probable cause, nature emergency, including the ability and extent of injuries is to: prompt and complete and the priority and sequence .1 position casualty of actions is proportional .2 apply resuscitation techniques to any potential threat to life .3 control bleeding Risk of further harm to .4 apply appropriate measures of self and casualty is basic shock management minimized at all times .5 apply appropriate measures in event of burns and scalds, including accidents caused by electric current .6 rescue and transport a casualty .7 improvise bandages and use materials in emergency kit",
+  "text": "Take immediate Assessment of needs of action upon casualties and threats to own encountering an safety accident or other medical Appreciation of body structure and emergency functions Understanding of immediate measures to be taken in cases of emergency, including the ability to: .1 position casualty .2 apply resuscitation techniques .3 control bleeding .4 apply appropriate measures of basic shock management .5 apply appropriate measures in event of burns and scalds, including accidents caused by electric current .6 rescue and transport a casualty .7 improvise bandages and use materials in emergency kit",
   "notices": []
  },
  {
-  "id": "SHIPSMED/243.3",
+  "id": "SHIPSMED/242.15",
   "manual": "SHIPSMED",
-  "para": "243.3",
+  "para": "242.15",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Column 1 Column 2 Column 3 Column 4 Column 5",
+  "heading": "COMPETENCE COMPETENCE",
+  "pages": [
+   242
+  ],
+  "text": "Assessment of evidence The manner and timing of obtained from approved raising the alarm is instruction or during appropriate to the attendance at an circumstances of the approved course accident or medical emergency The identification of probable cause, nature and extent of injuries is prompt and complete and the priority and sequence of actions is proportional to any potential threat to life Risk of further harm to self and casualty is minimized at all times",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/243.5",
+  "manual": "SHIPSMED",
+  "para": "243.5",
+  "chapter": "Appendix I identifies some specific books and generally reliable internet",
+  "heading": "and proficiency",
   "pages": [
    243
   ],
-  "text": "STCW Competence Knowledge, understanding Performance Conditions Performance Behavior Performance Standard(s) and proficiency (Mariner knowledge or action) (Criteria against which performance is",
+  "text": "Knowledge of body When given a body chart and asked structure and to identify the basic components function and describe function of each major body system when named, Knowledge of When asked in an approved written immediate measures examination to list the reasons for to take in cases of not changing the position of a emergency, patient, including the ability to: .1 position the casualty When asked in an approved written examination to list the reasons for changing the position of a patient,",
   "notices": []
  },
  {
-  "id": "SHIPSMED/243.4",
+  "id": "SHIPSMED/243.11",
   "manual": "SHIPSMED",
-  "para": "243.4",
+  "para": "243.11",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
   "heading": "measured)",
   "pages": [
    243
   ],
-  "text": "Knowledge of body When given a body chart and asked the candidate will identify and For each major body system structure and to identify the basic components describe (or select the answer that (respiratory, circulatory, lymphatic, function and describe function of each major identifies and describes) the basic nervous, musculosketetal, body system when named, components and function of each integumentary, digestive, endocrine named major body system. and genito-urinary), the candidate will identify and describe (or select the answer that identifies and describes) the system's basic function. Knowledge of When asked in an approved written the candidate will list (or select the The candidate will list (or select the immediate measures examination to list the reasons for answer that lists) the reasons for not answer that lists) the reason or to take in cases of not changing the position of a changing the position of a patient. reasons for not changing the emergency, patient, position of a patient: possibility of including the ability causing further injury or to: aggravating other internal injuries; and, possibility of the existence of a .1 position the spinal cord injury. casualty When asked in an approved written the candidate will list (or select the The candidate will list (or select the examination to list the reasons for answer that lists) the reasons for answer that lists) the reason or changing the position of a patient, positioning a patient. reasons for positioning a patient: to eliminate airway obstruction; to alter level of consciousness to recovery position; and, as part of shock management.",
+  "text": "the candidate will identify and For each major body system describe (or select the answer that (respiratory, circulatory, lymphatic, identifies and describes) the basic nervous, musculosketetal, components and function of each integumentary, digestive, endocrine named major body system. and genito-urinary), the candidate will identify and describe (or select the answer that identifies and describes) the system's basic function. the candidate will list (or select the The candidate will list (or select the answer that lists) the reasons for not answer that lists) the reason or changing the position of a patient. reasons for not changing the position of a patient: possibility of causing further injury or aggravating other internal injuries; and, possibility of the existence of a spinal cord injury. the candidate will list (or select the The candidate will list (or select the answer that lists) the reasons for answer that lists) the reason or positioning a patient. reasons for positioning a patient: to eliminate airway obstruction; to alter level of consciousness to recovery position; and, as part of shock management.",
   "notices": []
  },
  {
@@ -5338,27 +5518,27 @@
   "notices": []
  },
  {
-  "id": "SHIPSMED/249.3",
+  "id": "SHIPSMED/249.5",
   "manual": "SHIPSMED",
-  "para": "249.3",
+  "para": "249.5",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Column 1 Column 2 Column 3 Column 4 Column 5",
+  "heading": "and proficiency",
   "pages": [
    249
   ],
-  "text": "STCW Competence Knowledge, understanding Performance Conditions Performance Behavior Performance Standard(s) and proficiency (Mariner knowledge or action) (Criteria against which performance is",
+  "text": ".4 apply appropriate When asked in an approved written measures of basic examination to identify the signs shock management and symptoms of shock development, When asked in an approved written examination to describe the position for a patient in shock that does not have an injury to the spine or a lower extremity, .5 apply appropriate When asked in an approved written measures in event of examination to identify the kinds of burns and scalds, burns that can occur, including accidents by electric current",
   "notices": []
  },
  {
-  "id": "SHIPSMED/249.4",
+  "id": "SHIPSMED/249.11",
   "manual": "SHIPSMED",
-  "para": "249.4",
+  "para": "249.11",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
   "heading": "measured)",
   "pages": [
    249
   ],
-  "text": ".4 apply appropriate When asked in an approved written the candidate will identify (or select The candidate will identify (or measures of basic examination to identify the signs the answer that identifies) the signs select the answer that identifies) the shock management and symptoms of shock and symptoms of shock following sets of signs and development, development. symptoms of shock development:\n(1) rapid and shallow respiration;\n(2) thirst, nausea and vomiting; (3) weak and rapid pulse; and (4) restlessness, excitement and anxiety. When asked in an approved written the candidate will describe (or select The candidate will describe (or examination to describe the position the answer that describes) the select the answer that describes) the for a patient in shock that does not position for a patient in shock that position for a shock patient that have an injury to the spine or a does not have an injury to the spine does not have an injury to the spine lower extremity, or a lower extremity. or a lower extremity including all of the following: (1) patient lying on the floor, and (2) legs elevated. .5 apply appropriate When asked in an approved written the candidate will identify (or select The candidate will identify (or measures in event of examination to identify the kinds of the answer identifies) the kinds of select the answer that identifies) burns and scalds, burns that can occur, burns that can occur. the following kinds of burns: including accidents thermal, chemical, electrical, by electric current respiratory and radiation.",
+  "text": "the candidate will identify (or select The candidate will identify (or the answer that identifies) the signs select the answer that identifies) the and symptoms of shock following sets of signs and development. symptoms of shock development:\n(1) rapid and shallow respiration;\n(2) thirst, nausea and vomiting; (3) weak and rapid pulse; and (4) restlessness, excitement and anxiety. the candidate will describe (or select The candidate will describe (or the answer that describes) the select the answer that describes) the position for a patient in shock that position for a shock patient that does not have an injury to the spine does not have an injury to the spine or a lower extremity. or a lower extremity including all of the following: (1) patient lying on the floor, and (2) legs elevated. the candidate will identify (or select The candidate will identify (or the answer identifies) the kinds of select the answer that identifies) burns that can occur. the following kinds of burns: thermal, chemical, electrical, respiratory and radiation.",
   "notices": []
  },
  {
@@ -5699,15 +5879,27 @@
   "notices": []
  },
  {
-  "id": "SHIPSMED/273.6",
+  "id": "SHIPSMED/273.7",
   "manual": "SHIPSMED",
-  "para": "273.6",
+  "para": "273.7",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "PROFICIENCY AND PROFICIENCY COMPETENCE",
+  "heading": "Participate in External assistance, including:",
   "pages": [
    273
   ],
-  "text": "Participate in External assistance, including: Clinical examination coordinated procedures are complete Radio-medical advice schemes for and comply with instructions medical assistance received Transportation of the ill and to ships injured, including helicopter The method and preparation evacuation for evacuation is in accordance with recognized Medical care of sick seafarers procedures and is designed involving co-operation with port to maximize the welfare of health authorities or outpatient the patient wards in port Procedures for seeking radio-medical advice conform to established practice and recommendations",
+  "text": "coordinated Radio-medical advice schemes for medical assistance Transportation of the ill and to ships injured, including helicopter evacuation Medical care of sick seafarers involving co-operation with port health authorities or outpatient wards in port",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/273.10",
+  "manual": "SHIPSMED",
+  "para": "273.10",
+  "chapter": "Appendix I identifies some specific books and generally reliable internet",
+  "heading": "AND PROFICIENCY COMPETENCE",
+  "pages": [
+   273
+  ],
+  "text": "Clinical examination procedures are complete and comply with instructions received The method and preparation for evacuation is in accordance with recognized procedures and is designed to maximize the welfare of the patient Procedures for seeking radio-medical advice conform to established practice and recommendations",
   "notices": []
  },
  {
@@ -5742,23 +5934,34 @@
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
   "heading": "Demonstrations Of Skill",
   "pages": [
-   275,
-   276
+   275
   ],
-  "text": "In addition to passing a written examination, the competency entitled \"Provide medical care to the sick and injured while they remain on board\" requires a practical demonstration of skill to assess proficiency. These assessment guidelines establish the conditions under which the assessment will occur, the performance or behavior the candidate is to accomplish, and the standards against which to measure the performance. The examiner can use a checklist in conducting assessments of practical demonstrations of skill. Checklists allow a training institution or designated examiner to avoid overlooking critical tasks when evaluating a candidate's practical demonstration. Training institutions and designated examiners can develop their own checklists for use in conducting the assessments in a complete and structured manner. Specification Of Minimum Standard Of Competence For Persons In Charge Of Medical Care",
+  "text": "In addition to passing a written examination, the competency entitled \"Provide medical care to the sick and injured while they remain on board\" requires a practical demonstration of skill to assess proficiency. These assessment guidelines establish the conditions under which the assessment will occur, the performance or behavior the candidate is to accomplish, and the standards against which to measure the performance. The examiner can use a checklist in conducting assessments of practical demonstrations of skill. Checklists allow a training institution or designated examiner to avoid overlooking critical tasks when evaluating a candidate's practical demonstration. Training institutions and designated examiners can develop their own checklists for use in conducting the assessments in a complete and structured manner.",
   "notices": []
  },
  {
-  "id": "SHIPSMED/276.6",
+  "id": "SHIPSMED/276.7",
   "manual": "SHIPSMED",
-  "para": "276.6",
+  "para": "276.7",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
   "heading": "Proficiency",
+  "pages": [
+   276
+  ],
+  "text": "Provide medical Care of the casualty In a graded practical care to the sick and involving head and exercise, given a injured while they spinal injuries* patient simulating a remain on board head injury, Care of the casualty In a graded practical involving injuries to exercise, given a ear, nose, throat patient simulating a and eye* bleed from the ear, In a graded practical exercise, given a patient simulating a nose bleed,",
+  "notices": []
+ },
+ {
+  "id": "SHIPSMED/276.9",
+  "manual": "SHIPSMED",
+  "para": "276.9",
+  "chapter": "Appendix I identifies some specific books and generally reliable internet",
+  "heading": "Performance Behavior Performance Standards",
   "pages": [
    276,
    277
   ],
-  "text": "Provide medical Care of the casualty In a graded practical the candidate will The candidate correctly care to the sick and involving head and exercise, given a demonstrate the demonstrates the following injured while they spinal injuries* patient simulating a techniques for assessment techniques and states the remain on board head injury, conducting a significance of each finding: neurological assessment. 1. pupillary reaction; 2. level of consciousness; 3. verbal communication; and 4. sensory motor status. Care of the casualty In a graded practical the candidate will use The candidate correctly: involving injuries to exercise, given a external bandages to 1. demonstrates the proper ear, nose, throat patient simulating a control bleeding from procedures for self-protection and eye* bleed from the ear, the ear. against the transmission of blood-borne pathogens; 2. applies an external bandage to stem bleeding of the ear; and 3. does not pack the ear. In a graded practical the candidate will The candidate: exercise, given a demonstrate the proper 1. demonstrates the proper patient simulating a techniques to stop procedures for self-protection nose bleed, bleeding from the nose. against the transmission of blood-borne pathogens; Specification Of Minimum Standard Of Competence For Persons In Charge Of Medical Care",
+  "text": "the candidate will The candidate correctly demonstrate the demonstrates the following techniques for assessment techniques and states the conducting a significance of each finding: neurological assessment. 1. pupillary reaction; 2. level of consciousness; 3. verbal communication; and 4. sensory motor status. the candidate will use The candidate correctly: external bandages to 1. demonstrates the proper control bleeding from procedures for self-protection the ear. against the transmission of blood-borne pathogens; 2. applies an external bandage to stem bleeding of the ear; and 3. does not pack the ear. the candidate will The candidate: demonstrate the proper 1. demonstrates the proper techniques to stop procedures for self-protection bleeding from the nose. against the transmission of blood-borne pathogens; Specification Of Minimum Standard Of Competence For Persons In Charge Of Medical Care",
   "notices": []
  },
  {
@@ -5935,7 +6138,7 @@
    291,
    292
   ],
-  "text": "Comply with Types of emergency which Assessment of evidence Initial action on emergency may occur, such as collision, obtained from approved becoming aware of an procedures fire, foundering instruction or during emergency conforms to attendance at an approved established emergency Knowledge of shipboard course response procedures contingency plans for response to emergencies Information given on raising alarm is prompt, Emergency signals and specific accurate, complete and duties allocated to crew clear members in the muster list; muster stations; correct use of personal safety equipment Action to take on discovering potential emergency, including fire, collision, foundering and ingress of water into the ship Action to take on hearing emergency alarm signals Value of training and drills Knowledge of escape routes and internal communication and alarm systems Take precautions to Effects of operational or Assessment of evidence Organizational prevent pollution of accidental pollution of the obtained from approved procedures designed to the marine marine environment instruction or during safeguard the marine environment attendance at an approved environment are Basic environmental protection course observed at all times procedures",
+  "text": "Comply with Types of emergency which Assessment of evidence Initial action on emergency may occur, such as collision, obtained from approved becoming aware of an procedures fire, foundering instruction or during emergency conforms to attendance at an approved established emergency Knowledge of shipboard course response procedures contingency plans for response to emergencies Information given on raising alarm is prompt, Emergency signals and specific accurate, complete and duties allocated to crew clear members in the muster list; muster stations; correct use of personal safety equipment Action to take on discovering potential emergency, including fire, collision, foundering and ingress of water into the ship Action to take on hearing emergency alarm signals Value of training and drills Knowledge of escape routes and internal communication and alarm systems Take precautions to Effects of operational or prevent pollution of accidental pollution of the the marine marine environment environment Basic environmental protection procedures",
   "notices": []
  },
  {
@@ -5943,47 +6146,47 @@
   "manual": "SHIPSMED",
   "para": "292.3",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "PROFICIENCY COMPETENCE COMPETENCE",
+  "heading": "PROFICIENCY",
   "pages": [
    292
   ],
-  "text": "Observe safe Importance of adhering to safe Assessment of evidence Safe working practices working practices working practices at all times obtained from approved are observed and instruction or during appropriate safety and Safety and protective devices attendance at an approved protective equipment is available to protect against course correctly used at all potential hazards aboard ship times Precautions to be taken prior to entering enclosed spaces Familiarization with international measures concerning accident prevention and occupational health* Understand orders Ability to understand orders Assessment of evidence Communications are and be understood in and to communicate with obtained from approved clear and effective at all relation to shipboard others in relation to shipboard instruction or during times duties duties attendance at an approved course Contribute to Importance of maintaining Assessment of evidence Expected standards of effective human good human and working obtained from approved work and behavior are relationships on relationships aboard ship instruction or during observed at all times board ship attendance at an approved Social responsibilities; course employment conditions; individual rights and obligations; dangers of drug and alcohol abuse",
+  "text": "Observe safe Importance of adhering to safe working practices working practices at all times Safety and protective devices available to protect against potential hazards aboard ship Precautions to be taken prior to entering enclosed spaces Familiarization with international measures concerning accident prevention and occupational health* Understand orders Ability to understand orders and be understood in and to communicate with relation to shipboard others in relation to shipboard duties duties Contribute to Importance of maintaining effective human good human and working relationships on relationships aboard ship board ship Social responsibilities; employment conditions; individual rights and obligations; dangers of drug and alcohol abuse Assessment of evidence Organizational obtained from approved procedures designed to instruction or during safeguard the marine attendance at an approved environment are course observed at all times",
   "notices": []
  },
  {
-  "id": "SHIPSMED/293.1",
+  "id": "SHIPSMED/292.6",
   "manual": "SHIPSMED",
-  "para": "293.1",
+  "para": "292.6",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Coast Guard Assessment Guidelines for TABLE A-VI/1-4",
+  "heading": "COMPETENCE COMPETENCE",
   "pages": [
-   293
+   292
   ],
-  "text": "Specification for minimum standard of competency in Personal Safety and Social Responsibility",
+  "text": "Assessment of evidence Safe working practices obtained from approved are observed and instruction or during appropriate safety and attendance at an approved protective equipment is course correctly used at all times Assessment of evidence Communications are obtained from approved clear and effective at all instruction or during times attendance at an approved course Assessment of evidence Expected standards of obtained from approved work and behavior are instruction or during observed at all times attendance at an approved course",
   "notices": []
  },
  {
-  "id": "SHIPSMED/293.2",
+  "id": "SHIPSMED/293.6",
   "manual": "SHIPSMED",
-  "para": "293.2",
+  "para": "293.6",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Column 1 Column 2 Column 3 Column 4 Column 5",
+  "heading": "proficiency",
   "pages": [
    293
   ],
-  "text": "STCW Knowledge, Performance Condition(s) Performance Behavior Performance Standard(s) Competence understanding and (Mariner knowledge or action) (Criteria against which",
+  "text": "Comply with Knowledge of types When asked to describe the types of emergency of emergencies emergencies which may occur, procedures which may occur Knowledge of When asked to state the location of emergency signals station bills and forecastle card, and and specific duties describe the information they allocated to crew contain, members in the muster list; muster stations; correct use of personal safety equipment When asked to state the purpose, location, and circumstances requiring lifejackets, exposure suits, hardhats, goggles, respirators, emergency escape breathing device, hearing protection, safety shoes and lumbar support belt,",
   "notices": []
  },
  {
-  "id": "SHIPSMED/293.3",
+  "id": "SHIPSMED/293.12",
   "manual": "SHIPSMED",
-  "para": "293.3",
+  "para": "293.12",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "proficiency performance is measured)",
+  "heading": "performance is measured)",
   "pages": [
    293
   ],
-  "text": "Comply with Knowledge of types When asked to describe the types of the candidate will describe in The candidate will correctly emergency of emergencies emergencies which may occur, writing the types of emergencies describe at least 70% (4) of the procedures which may occur that may occur. following emergencies: (1) collision, (2) fire, (3) foundering,\n(4) grounding and (5) weather related emergencies. Knowledge of When asked to state the location of the candidate will state in writing The candidate will state the location emergency signals station bills and forecastle card, and the location of station bills and of station bills and forecastle card, and specific duties describe the information they forecastle card, and describe the and describe all of the following allocated to crew contain, information they contain. information they contain: (1) fire members in the alarm signal; (2) actions to be taken muster list; muster by crew and passengers upon stations; correct use hearing the general alarm; (3) of personal safety abandon ship signal; and, (4) duties equipment assigned to each member of the crew along with the location of their lifeboat station. When asked to state the purpose, the candidate will state in writing The candidate will correctly state location, and circumstances the purpose, location, and the purpose, location, and requiring lifejackets, exposure suits, circumstances requiring lifejackets, circumstances requiring lifejackets, hardhats, goggles, respirators, exposure suits, hardhats, goggles, exposure suits, hardhats, goggles, emergency escape breathing device, respirators, emergency escape respirators, emergency escape hearing protection, safety shoes and breathing device, hearing breathing device, hearing lumbar support belt, protection, safety shoes and lumbar protection, safety shoes and lumbar support belt. support belt.",
+  "text": "the candidate will describe in The candidate will correctly writing the types of emergencies describe at least 70% (4) of the that may occur. following emergencies: (1) collision, (2) fire, (3) foundering,\n(4) grounding and (5) weather related emergencies. the candidate will state in writing The candidate will state the location the location of station bills and of station bills and forecastle card, forecastle card, and describe the and describe all of the following information they contain. information they contain: (1) fire alarm signal; (2) actions to be taken by crew and passengers upon hearing the general alarm; (3) abandon ship signal; and, (4) duties assigned to each member of the crew along with the location of their lifeboat station. the candidate will state in writing The candidate will correctly state the purpose, location, and the purpose, location, and circumstances requiring lifejackets, circumstances requiring lifejackets, exposure suits, hardhats, goggles, exposure suits, hardhats, goggles, respirators, emergency escape respirators, emergency escape breathing device, hearing breathing device, hearing protection, safety shoes and lumbar protection, safety shoes and lumbar support belt. support belt.",
   "notices": []
  },
  {
@@ -6047,27 +6250,27 @@
   "notices": []
  },
  {
-  "id": "SHIPSMED/296.1",
+  "id": "SHIPSMED/296.4",
   "manual": "SHIPSMED",
-  "para": "296.1",
+  "para": "296.4",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Column 1 Column 2 Column 3 Column 4 Column 5",
+  "heading": "proficiency",
   "pages": [
    296
   ],
-  "text": "STCW Knowledge, Performance Condition(s) Performance Behavior Performance Standard(s) Competence understanding and (Mariner knowledge or action) (Criteria against which",
+  "text": "When a shipboard communication device is named by the assessor and asked to describe its location and operation, When a shipboard alarm system in named and then, asked to describe its location, purpose and actions to be taken for its alarm, Take Know the effects of When asked to describe the short precautions to operational or and long term effects of pollution prevent accidental pollution on water, the shoreline and marine pollution of of the marine life, the marine environment. environment",
   "notices": []
  },
  {
-  "id": "SHIPSMED/296.2",
+  "id": "SHIPSMED/296.8",
   "manual": "SHIPSMED",
-  "para": "296.2",
+  "para": "296.8",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "proficiency performance is measured)",
+  "heading": "performance is measured)",
   "pages": [
    296
   ],
-  "text": "When a shipboard communication device the candidate will describe in writing the The candidate will, in 1 minutes or is named by the assessor and asked to location and operation of each shipboard less for each device, describe the describe its location and operation, communication device named by the location and operation of all of the assessor. following shipboard communication devices named by the assessor: (1) internal phone system; (2) sound powered phone system; (3) intercoms; (4) voice tubes; and, (5) hand held radios. When a shipboard alarm system in the candidate will describe in The candidate will, for each system, named and then, asked to describe writing the locations, purpose and correctly describe the locations, its location, purpose and actions to actions to be taken for each of the purpose and actions to be taken be taken for its alarm, shipboard alarm systems named. when each of the following shipboard alarm systems is named by the assessor: (1) general alarms;\n(2) ship's whistle; (3) ship's bell;\n(4) CO2 alarm; and, (5) engineer's call alarm. Take Know the effects of When asked to describe the short the candidate will in writing the candidate wil correctly describe precautions to operational or and long term effects of pollution describe the short and long-term in writing the short and long-term prevent accidental pollution on water, the shoreline and marine effects of pollution on water, the effects of pollution on each of the pollution of of the marine life, shoreline and marine life. following: water, shoreline and the marine environment. marine life. environment",
+  "text": "the candidate will describe in writing the The candidate will, in 1 minutes or location and operation of each shipboard less for each device, describe the communication device named by the location and operation of all of the assessor. following shipboard communication devices named by the assessor: (1) internal phone system; (2) sound powered phone system; (3) intercoms; (4) voice tubes; and, (5) hand held radios. the candidate will describe in The candidate will, for each system, writing the locations, purpose and correctly describe the locations, actions to be taken for each of the purpose and actions to be taken shipboard alarm systems named. when each of the following shipboard alarm systems is named by the assessor: (1) general alarms;\n(2) ship's whistle; (3) ship's bell;\n(4) CO2 alarm; and, (5) engineer's call alarm. the candidate will in writing the candidate wil correctly describe describe the short and long-term in writing the short and long-term effects of pollution on water, the effects of pollution on each of the shoreline and marine life. following: water, shoreline and marine life.",
   "notices": []
  },
  {
@@ -6131,39 +6334,27 @@
   "notices": []
  },
  {
-  "id": "SHIPSMED/299.1",
+  "id": "SHIPSMED/299.6",
   "manual": "SHIPSMED",
-  "para": "299.1",
+  "para": "299.6",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Coast Guard Assessment Guidelines for TABLE A-VI/1-4",
+  "heading": "proficiency",
   "pages": [
    299
   ],
-  "text": "Specification for minimum standard of competency in Personal Safety and Social Responsibility",
+  "text": "When asked to list procedures to take prior to entry into an enclosed space, Familiarization with When asked to identify dangerous international conditions, safety hazards or other measures concerning non-conformities, accident prevention and occupational health. Understand Ability to understand When asked to describe the orders and be orders and to importance of understanding and understood in communicate with obeying orders and communicating relation to others in relation to with others in carrying out their shipboard shipboard duties. shipboard duties, duties",
   "notices": []
  },
  {
-  "id": "SHIPSMED/299.2",
+  "id": "SHIPSMED/299.12",
   "manual": "SHIPSMED",
-  "para": "299.2",
+  "para": "299.12",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Column 1 Column 2 Column 3 Column 4 Column 5",
+  "heading": "performance is measured)",
   "pages": [
    299
   ],
-  "text": "STCW Knowledge, Performance Condition(s) Performance Behavior Performance Standard(s) Competence understanding and (Mariner knowledge or action) (Criteria against which",
-  "notices": []
- },
- {
-  "id": "SHIPSMED/299.3",
-  "manual": "SHIPSMED",
-  "para": "299.3",
-  "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "proficiency performance is measured)",
-  "pages": [
-   299
-  ],
-  "text": "When asked to list procedures to the candidate will list in writing The candidate will correctly list all take prior to entry into an enclosed procedures to take prior to entry of the following procedures to take space, into an enclosed space. prior to entry into an enclosed space: (1) open and ventilate space;\n(2) test atmosphere; (3) obtain entry approval; (4) have available and use proper entry equipment; and, (5) continue to monitor atmosphere and entry personnel. Familiarization with When asked to identify dangerous the candidate will identify in writing The candidate will correctly identify international conditions, safety hazards or other dangerous conditions, safety dangerous conditions, safety measures concerning non-conformities, hazards or other non-conformities hazards or other non-conformities. accident prevention as noted in applicable national or and occupational international standards. health. Understand Ability to understand When asked to describe the the candidate will describe in The candidate will describe the orders and be orders and to importance of understanding and writing the importance of importance of understanding and understood in communicate with obeying orders and communicating understanding and obeying orders obeying orders and communicating relation to others in relation to with others in carrying out their and communicating with others in with others in carrying out their shipboard shipboard duties. shipboard duties, carrying out their shipboard duties. shipboard duties. duties",
+  "text": "the candidate will list in writing The candidate will correctly list all procedures to take prior to entry of the following procedures to take into an enclosed space. prior to entry into an enclosed space: (1) open and ventilate space;\n(2) test atmosphere; (3) obtain entry approval; (4) have available and use proper entry equipment; and, (5) continue to monitor atmosphere and entry personnel. the candidate will identify in writing The candidate will correctly identify dangerous conditions, safety dangerous conditions, safety hazards or other non-conformities hazards or other non-conformities. as noted in applicable national or international standards. the candidate will describe in The candidate will describe the writing the importance of importance of understanding and understanding and obeying orders obeying orders and communicating and communicating with others in with others in carrying out their carrying out their shipboard duties. shipboard duties.",
   "notices": []
  },
  {
@@ -6191,39 +6382,27 @@
   "notices": []
  },
  {
-  "id": "SHIPSMED/301.1",
+  "id": "SHIPSMED/301.6",
   "manual": "SHIPSMED",
-  "para": "301.1",
+  "para": "301.6",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Coast Guard Assessment Guidelines for TABLE A-VI/1-4",
+  "heading": "proficiency",
   "pages": [
    301
   ],
-  "text": "Specification for minimum standard of competency in Personal Safety and Social Responsibility",
+  "text": "Contribute to Know the When asked to describe why effective importance of cooperation is necessary, and why human maintaining good interpersonal problems should be relationships human and working reported before they escalate, on board ship relationships aboard ship. When asked to state the circumstances when harassment against another person is permitted, When asked to give examples of verbal, physical and sexual harassment,",
   "notices": []
  },
  {
-  "id": "SHIPSMED/301.2",
+  "id": "SHIPSMED/301.12",
   "manual": "SHIPSMED",
-  "para": "301.2",
+  "para": "301.12",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Column 1 Column 2 Column 3 Column 4 Column 5",
+  "heading": "performance is measured)",
   "pages": [
    301
   ],
-  "text": "STCW Knowledge, Performance Condition(s) Performance Behavior Performance Standard(s) Competence understanding and (Mariner knowledge or action) (Criteria against which",
-  "notices": []
- },
- {
-  "id": "SHIPSMED/301.3",
-  "manual": "SHIPSMED",
-  "para": "301.3",
-  "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "proficiency performance is measured)",
-  "pages": [
-   301
-  ],
-  "text": "Contribute to Know the When asked to describe why the candidate will describe in The candidate will describe why effective importance of cooperation is necessary, and why writing why cooperation is cooperation is necessary, and why human maintaining good interpersonal problems should be necessary, and why interpersonal interpersonal problems should be relationships human and working reported before they escalate, problems should be reported before reported before they escalate by on board ship relationships aboard they escalate. stating any of the following ship. concepts as: (1) harmony and teamwork are essential to crew effectiveness; (2) good interpersonal relations foster teamwork and harmony; (3) the unique circumstances of operational stress and being confined to a vessel make good interpersonal relationships vital; (4) seeking help is one of the most effective means toward resolving interpersonal problems. When asked to state the the candidate will state in writing The candidate will state that there circumstances when harassment the circumstances when harassment are no circumstances when against another person is permitted, against another person is permitted. harassment against another person is permitted. When asked to give examples of the candidate will give in writing The candidate will give at least one verbal, physical and sexual examples of verbal, physical and example each for verbal, physical harassment, sexual harassment. and sexual harassment.",
+  "text": "the candidate will describe in The candidate will describe why writing why cooperation is cooperation is necessary, and why necessary, and why interpersonal interpersonal problems should be problems should be reported before reported before they escalate by they escalate. stating any of the following concepts as: (1) harmony and teamwork are essential to crew effectiveness; (2) good interpersonal relations foster teamwork and harmony; (3) the unique circumstances of operational stress and being confined to a vessel make good interpersonal relationships vital; (4) seeking help is one of the most effective means toward resolving interpersonal problems. the candidate will state in writing The candidate will state that there the circumstances when harassment are no circumstances when against another person is permitted. harassment against another person is permitted. the candidate will give in writing The candidate will give at least one examples of verbal, physical and example each for verbal, physical sexual harassment. and sexual harassment.",
   "notices": []
  },
  {
@@ -6251,39 +6430,27 @@
   "notices": []
  },
  {
-  "id": "SHIPSMED/303.1",
+  "id": "SHIPSMED/303.6",
   "manual": "SHIPSMED",
-  "para": "303.1",
+  "para": "303.6",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Coast Guard Assessment Guidelines for TABLE A-VI/1-4",
+  "heading": "proficiency",
   "pages": [
    303
   ],
-  "text": "Specification for minimum standard of competency in Personal Safety and Social Responsibility",
+  "text": "When asked if performing assigned duties while under the influence of alcohol or illicit drugs is a violation of federal law and why,\n- These competencies are knowledge based. The assessment of the required knowledge minimum-passing grade of 80%.",
   "notices": []
  },
  {
-  "id": "SHIPSMED/303.2",
+  "id": "SHIPSMED/303.12",
   "manual": "SHIPSMED",
-  "para": "303.2",
+  "para": "303.12",
   "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "Column 1 Column 2 Column 3 Column 4 Column 5",
+  "heading": "performance is measured)",
   "pages": [
    303
   ],
-  "text": "STCW Knowledge, Performance Condition(s) Performance Behavior Performance Standard(s) Competence understanding and (Mariner knowledge or action) (Criteria against which",
-  "notices": []
- },
- {
-  "id": "SHIPSMED/303.3",
-  "manual": "SHIPSMED",
-  "para": "303.3",
-  "chapter": "Appendix I identifies some specific books and generally reliable internet",
-  "heading": "proficiency performance is measured)",
-  "pages": [
-   303
-  ],
-  "text": "When asked if performing assigned the candidate will state in writing The candidate will state that duties while under the influence of whether performing assigned duties performing assigned duties while alcohol or illicit drugs is a violation while under the influence of alcohol under the influence of alcohol or of federal law and why, or illicit drugs is a violation of illicit drugs is a violation of federal federal law and explain why. law because these chemicals severely impair judgment, speech and emotional stability.\n- These competencies are knowledge based. The assessment of the required knowledge may be a written multiple-choice examination. The student must achieve a minimum-passing grade of 80%.",
+  "text": "the candidate will state in writing The candidate will state that whether performing assigned duties performing assigned duties while while under the influence of alcohol under the influence of alcohol or or illicit drugs is a violation of illicit drugs is a violation of federal federal law and explain why. law because these chemicals severely impair judgment, speech and emotional stability.",
   "notices": []
  },
  {

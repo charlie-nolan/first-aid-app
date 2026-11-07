@@ -1,5 +1,21 @@
 [
  {
+  "id": "TC3-21.76/fig/5-7",
+  "manual": "TC3-21.76",
+  "num": "5-7",
+  "title": "Minimum safe distance for charges over 500",
+  "page": 7,
+  "bbox": [
+   23.36,
+   366.866,
+   318.64,
+   375.146
+  ],
+  "png": "TC3-21.76_fig_5-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
   "id": "TC3-21.76/fig/5-8",
   "manual": "TC3-21.76",
   "num": "5-8",
@@ -460,22 +476,6 @@
    288.69
   ],
   "png": "TC3-21.76_fig_5-6.png",
-  "restricted": false,
-  "dpi": 200
- },
- {
-  "id": "TC3-21.76/fig/5-7",
-  "manual": "TC3-21.76",
-  "num": "5-7",
-  "title": "Minimum safe distance for charges over 500 pounds",
-  "page": 118,
-  "bbox": [
-   50.1,
-   81.82,
-   291.95,
-   310.77
-  ],
-  "png": "TC3-21.76_fig_5-7.png",
   "restricted": false,
   "dpi": 200
  },
@@ -1088,6 +1088,22 @@
   "dpi": 200
  },
  {
+  "id": "TC3-21.76/fig/9-26",
+  "manual": "TC3-21.76",
+  "num": "9-26",
+  "title": "April 2017. Body belay",
+  "page": 207,
+  "bbox": [
+   20.5,
+   57.10000000000002,
+   321.6,
+   371.63599999999997
+  ],
+  "png": "TC3-21.76_fig_9-26.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
   "id": "TC3-21.76/fig/9-19",
   "manual": "TC3-21.76",
   "num": "9-19",
@@ -1196,22 +1212,6 @@
    360.116
   ],
   "png": "TC3-21.76_fig_9-25.png",
-  "restricted": false,
-  "dpi": 200
- },
- {
-  "id": "TC3-21.76/fig/9-26",
-  "manual": "TC3-21.76",
-  "num": "9-26",
-  "title": "Body rappel",
-  "page": 218,
-  "bbox": [
-   20.5,
-   57.10000000000002,
-   321.6,
-   316.2
-  ],
-  "png": "TC3-21.76_fig_9-26.png",
   "restricted": false,
   "dpi": 200
  },

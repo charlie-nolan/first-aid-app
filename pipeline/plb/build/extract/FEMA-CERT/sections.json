@@ -698,11 +698,11 @@
   "manual": "FEMA-CERT",
   "para": "28.2",
   "chapter": "",
-  "heading": "Food Items",
+  "heading": "Food",
   "pages": [
    28
   ],
-  "text": "- Ready-to-eat canned meats, fruits, * High-energy foods (Peanut butter, jelly, and vegetables crackers, granola bars, trail mix)\n- Canned, juices, milk, soup (if * Foods for infants, elderly persons, or powdered, store extra water) persons on special diets\n- Sugar, salt, pepper * Comfort and stress foods (Cookies, hard candy, sweetened cereals, lollipops, instant coffee, tea bags)",
+  "text": "- Ready-to-eat canned meats, fruits, and vegetables\n- Canned, juices, milk, soup (if powdered, store extra water)\n- Sugar, salt, pepper",
   "notices": []
  },
  {
@@ -710,11 +710,11 @@
   "manual": "FEMA-CERT",
   "para": "28.3",
   "chapter": "",
-  "heading": "Kitchen Items",
+  "heading": "Kitchen",
   "pages": [
    28
   ],
-  "text": "- Manual can opener * Trash bags\n- Mess kits or paper cups, plates, and * Household liquid bleach to treat plastic utensils drinking water\n- All-purpose knife * Aluminum foil and plastic wrap\n- Small cooking stove and a can of cooking fuel",
+  "text": "- Manual can opener\n- Mess kits or paper cups, plates, and plastic utensils\n- All-purpose knife\n- Small cooking stove and a can of cooking fuel",
   "notices": []
  },
  {
@@ -722,11 +722,47 @@
   "manual": "FEMA-CERT",
   "para": "28.4",
   "chapter": "",
-  "heading": "Disaster Kit First Aid Items",
+  "heading": "Disaster Kit First",
   "pages": [
    28
   ],
-  "text": "- First aid manual * Four-inch sterile gauze pads (4-6)\n- Two-inch sterile gauze pads (4-6) * Triangular bandages (3)\n- Hypoallergenic adhesive tape * Moistened towelettes\n- Needle * Thermometer\n- Antibacterial ointment * Tube of petroleum jelly or other\n- Tongue depressors (2) lubricant\n- Assorted sizes of safety pins * Cleaning agent/soap\n- Non-latex exam gloves (2 pairs) * Cotton balls\n- Four-inch sterile roller bandages (3 * Three-inch sterile roller bandages (3\n- rolls) rolls)\n- Sunscreen * Scissors\n- Tweezers * Hot and cold compress\n- Aspirin or non-aspirin pain reliever * Anti-diarrhea medication\n- Antacid (for upset stomach) * Allergy medication and, if necessary,\n- Laxative epinephrine\n- Sterile adhesive bandages in assorted * Activated charcoal sizes",
+  "text": "- First aid manual\n- Two-inch sterile gauze pads (4-6)\n- Hypoallergenic adhesive tape\n- Needle\n- Antibacterial ointment\n- Tongue depressors (2)\n- Assorted sizes of safety pins\n- Non-latex exam gloves (2 pairs)\n- Four-inch sterile roller bandages (3\n- rolls)\n- Sunscreen\n- Tweezers\n- Aspirin or non-aspirin pain reliever\n- Antacid (for upset stomach)\n- Laxative\n- Sterile adhesive bandages in assorted sizes",
+  "notices": []
+ },
+ {
+  "id": "FEMA-CERT/28.6",
+  "manual": "FEMA-CERT",
+  "para": "28.6",
+  "chapter": "",
+  "heading": "Items",
+  "pages": [
+   28
+  ],
+  "text": "- High-energy foods (Peanut butter, jelly, crackers, granola bars, trail mix)\n- Foods for infants, elderly persons, or persons on special diets\n- Comfort and stress foods (Cookies, hard candy, sweetened cereals, lollipops, instant coffee, tea bags)",
+  "notices": []
+ },
+ {
+  "id": "FEMA-CERT/28.7",
+  "manual": "FEMA-CERT",
+  "para": "28.7",
+  "chapter": "",
+  "heading": "Items",
+  "pages": [
+   28
+  ],
+  "text": "- Trash bags\n- Household liquid bleach to treat drinking water\n- Aluminum foil and plastic wrap",
+  "notices": []
+ },
+ {
+  "id": "FEMA-CERT/28.8",
+  "manual": "FEMA-CERT",
+  "para": "28.8",
+  "chapter": "",
+  "heading": "Aid Items",
+  "pages": [
+   28
+  ],
+  "text": "- Four-inch sterile gauze pads (4-6)\n- Triangular bandages (3)\n- Moistened towelettes\n- Thermometer\n- Tube of petroleum jelly or other lubricant\n- Cleaning agent/soap\n- Cotton balls\n- Three-inch sterile roller bandages (3 rolls)\n- Scissors\n- Hot and cold compress\n- Anti-diarrhea medication\n- Allergy medication and, if necessary, epinephrine\n- Activated charcoal",
   "notices": []
  },
  {
@@ -734,11 +770,11 @@
   "manual": "FEMA-CERT",
   "para": "29.1",
   "chapter": "",
-  "heading": "Disaster Kit Tools",
+  "heading": "Disaster Kit",
   "pages": [
    29
   ],
-  "text": "- Emergency preparedness manual* * Non-sparking shutoff wrench to turn off\n- Battery-operated weather radio and household gas and water extra batteries * Pliers\n- Tube tent * Compass*\n- Duct tape * Fire extinguisher (small canister, ABC\n- Matches in a waterproof container type)\n- Plastic storage containers * Signal flare(s)*\n- Paper, pencil* * Needles, thread\n- Work gloves * Medicine dropper\n- Flashlight and extra batteries* * Whistle\n- Fuel for vehicle and generator * Landline telephone\n- Plastic sheeting",
+  "text": "- Emergency preparedness manual*\n- Battery-operated weather radio and extra batteries\n- Tube tent\n- Duct tape\n- Matches in a waterproof container\n- Plastic storage containers\n- Paper, pencil*\n- Work gloves\n- Flashlight and extra batteries*\n- Fuel for vehicle and generator\n- Plastic sheeting",
   "notices": []
  },
  {
@@ -746,11 +782,11 @@
   "manual": "FEMA-CERT",
   "para": "29.2",
   "chapter": "",
-  "heading": "Personal Sanitation Items",
+  "heading": "Personal Sanitation",
   "pages": [
    29
   ],
-  "text": "- Toilet paper, towelettes* * Soap, liquid detergent*\n- Feminine supplies* * Personal hygiene items*\n- Household chlorine bleach * Plastic bucket with tight lid\n- Disinfectant * Liquid hand sanitizer\n- Plastic garbage bags, ties",
+  "text": "- Toilet paper, towelettes*\n- Feminine supplies*\n- Household chlorine bleach\n- Disinfectant\n- Plastic garbage bags, ties",
   "notices": []
  },
  {
@@ -762,7 +798,7 @@
   "pages": [
    29
   ],
-  "text": "- Medication and medical records * Food, potable water, bowls, cat litter, (stored in a waterproof container) pan, can opener\n- Current photos of your pet in case * Pet beds and toys, if easily they get lost transportable\n- The name and number of your * Information on feeding schedules, veterinarian in case you have to foster medical conditions, and behavior or board your pets problems\n- Sturdy leashes, harnesses, and/or * Pet first aid kit carriers to transport pets safely and ensure that your animals can't escape",
+  "text": "- Medication and medical records (stored in a waterproof container)\n- Current photos of your pet in case they get lost\n- The name and number of your veterinarian in case you have to foster or board your pets\n- Sturdy leashes, harnesses, and/or carriers to transport pets safely and ensure that your animals can't escape",
   "notices": []
  },
  {
@@ -770,11 +806,47 @@
   "manual": "FEMA-CERT",
   "para": "29.4",
   "chapter": "",
-  "heading": "Clothing and Bedding Supplies",
+  "heading": "Clothing and Bedding",
   "pages": [
    29
   ],
-  "text": "- Sturdy shoes or boots* * Rain gear*\n- Blankets or sleeping bags* * Hats and gloves*\n- Thermal underwear * Sunglasses*\n- One complete change of clothing and * Remember to cycle clothing for footwear per person different seasons",
+  "text": "- Sturdy shoes or boots*\n- Blankets or sleeping bags*\n- Thermal underwear\n- One complete change of clothing and footwear per person",
+  "notices": []
+ },
+ {
+  "id": "FEMA-CERT/29.5",
+  "manual": "FEMA-CERT",
+  "para": "29.5",
+  "chapter": "",
+  "heading": "Tools",
+  "pages": [
+   29
+  ],
+  "text": "- Non-sparking shutoff wrench to turn off household gas and water\n- Pliers\n- Compass*\n- Fire extinguisher (small canister, ABC type)\n- Signal flare(s)*\n- Needles, thread\n- Medicine dropper\n- Whistle\n- Landline telephone",
+  "notices": []
+ },
+ {
+  "id": "FEMA-CERT/29.6",
+  "manual": "FEMA-CERT",
+  "para": "29.6",
+  "chapter": "",
+  "heading": "Items",
+  "pages": [
+   29
+  ],
+  "text": "- Soap, liquid detergent*\n- Personal hygiene items*\n- Plastic bucket with tight lid\n- Liquid hand sanitizer\n- Food, potable water, bowls, cat litter, pan, can opener\n- Pet beds and toys, if easily transportable\n- Information on feeding schedules, medical conditions, and behavior problems\n- Pet first aid kit",
+  "notices": []
+ },
+ {
+  "id": "FEMA-CERT/29.7",
+  "manual": "FEMA-CERT",
+  "para": "29.7",
+  "chapter": "",
+  "heading": "Supplies",
+  "pages": [
+   29
+  ],
+  "text": "- Rain gear*\n- Hats and gloves*\n- Sunglasses*\n- Remember to cycle clothing for different seasons",
   "notices": []
  },
  {

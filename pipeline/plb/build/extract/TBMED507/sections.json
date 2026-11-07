@@ -153,7 +153,24 @@
    30
   ],
   "text": "Body cooling approaches\na. The single greatest contributing factor to body heat storage and exertional heat illness risk is activity, or work (see paragraph 2-2). The single best way to decrease the rate of heat storage and reduce exertional heat illness risk is to stop activity, or rest. For prevention, rest in a cool environment (for example, air conditioning) may be all that is necessary to promote heat loss and recovery from heat stress, but in the absence of a cool environment, other strategies are needed. To improve heat loss at rest in a hot environment, reduce clothing, seek shade, and take advantage of all body cooling options available. If in MOPP or other enclosed PPE/gear, reduced clothing should occur immediately/at the same time that the activity is stopped.\nb. The amount of body heat that can be removed using any particular cooling method depends on several factors. Biophysical factors include the amount and location of body surface area being cooled, the coolant medium (air, water, ice) and temperature, and the efficiency of the cooling method. All of these will interact to determine the potential cooling power. For example, about 6 1/2 pounds of crushed ice has the potential to absorb ~260 W of body heat as it melts to a temperature of 99 degrees F. However, when applied to major arteries in an attempt to reduce body temperature, the actual heat removal is ~120 W (~46% efficient) due to small body surface area contact, vasoconstriction, and ambient heat gain. The removal of 120 W of body heat would theoretically reduce body core temperature by ~1.2 degrees F over 20 minutes. Practical factors include size, cost, maintenance, portability, and any power requirements of the cooling method. No single body cooling method is appropriate for all circumstances.\nc. Figure 3-6 illustrates different cooling methods categorized by use, potential body cooling power, and practicality. In general, methods to the right possess the greatest potential body cooling power but are limited to small numbers of users, require significant manpower and resources, or both. These cooling methods are for treating exertional heat illness, which is further discussed in paragraph",
-  "notices": []
+  "notices": [
+   {
+    "kind": "CAUTION",
+    "text": "Hourly fluid intake should not exceed 1 1/2 qt."
+   },
+   {
+    "kind": "CAUTION",
+    "text": "Daily fluid intake should not exceed 12 qt. 7. If wearing heavy protective clothing (CBRN, JSLIST), add 10 0F to WBGT index for easy work and 20 0F to WBGT index for moderate and heavy work."
+   },
+   {
+    "kind": "CAUTION",
+    "text": "Hourly fluid intake should not exceed 1 1/2 qt."
+   },
+   {
+    "kind": "CAUTION",
+    "text": "Daily fluid intake should not exceed 12 qt."
+   }
+  ]
  },
  {
   "id": "TBMED507/5-1",
@@ -201,7 +218,16 @@
    39
   ],
   "text": "Electrolyte (salt) replacement\na. Water is not the only substance lost in sweat; sodium, chloride and other electrolytes (potassium, calcium, and magnesium) are lost in sweat also. Sweat sodium concentrations can range from 0.75 to 1.50 grams (g) per quart, depending on diet, sweating rate, and heat acclimatization status. Heat acclimatization can reduce sweat sodium concentrations by half, but higher sweating rates make net sodium losses about 30 to 40% less. If we assume that 1 g of sodium is contained in each quart of sweat (~2.5 g salt), then the typical ranges of sweat losses discussed above would result in sodium losses ranging from 3 to 10 g per day. Potassium losses range from 0.5 to 2.0 g per day. Other mineral losses are of little consequence.\nb. The Military Dietary Reference Intakes (MDRI) for sodium (3.6 to 5.0 g per day) cover the needs of most Service members living and training in warm or hot environments. The MDRI for potassium (2.5 to 3.2 g per day) also covers sweat potassium losses.\nc. Daily electrolyte consumption for garrison dining ranges widely because of food preferences (see Combat Rations Database), but can easily meet the needs described above. Each meal, ready to eat (MRE) contains an average of 3.6 g of sodium (2.0 g in food and 1.6 g in salt packet). If three MREs are consumed, Service members would consume a maximum of 10.8 g of sodium (6.0 g if the salt packets are not eaten). Therefore, Service members should try to consume as much of their MRE ration as possible, to include salt packets, during periods of strenuous physical work in the heat.\nd. Increases or decreases in body sodium stores are usually corrected through hormonal and appetite adjustments. Physical activity increases hunger, and the associated increased food consumption usually covers the additional sodium required. If Service members perceive that they need additional sodium, such as the first several days of hot weather exposure, this can be achieved by salting food to taste. Salt tablets are not recommended as their misuse has resulted in gastrointestinal discomfort and incapacitating nausea.\ne. One quart of a sports drink usually provides a flavorful 0.4 g of sodium and 250 carbohydrate calories, which makes it a desirable beverage before and during prolonged, strenuous exercise, particularly if food will not be available. A variety of commercial sports drinks are available to purchase with subsistence funds. (Note: Commanders are authorized to purchase commercial sports drinks only from the Defense Logistics Agency catalog.) Regardless of the brand, sports drinks generally meet the following criteria per quart: sodium 0.3 to 0.7 g, potassium 0.08 to 0.20 g, and carbohydrate 50 to 100 g. The type of carbohydrate (for example, glucose, sucrose, or polymers) will meet the energy requirement, although high fructose corn syrup should be avoided as it may cause gastrointestinal side effects.\nf. Canteens and hydration systems containing carbohydrate (sugar) solutions increase the growth of harmful bacteria, which increases the incidence of gastrointestinal upset. Additional canteen sanitation is needed when sugar-containing beverages are added. Canteens and hydration systems containing carbohydrate solutions should be rinsed with water daily and treated with a hypochlorite solution every 2 or 3 days. The frequency of these sanitation actions depends on the quality of water, liquid temperature, and composition of the beverage. Flavoring reduces the effectiveness of chlorine to fight microbial growth, so these beverages should be added to already purified water and consumed within several hours. Ideally, carbohydrate solutions should not be added to hydration systems due to added sanitation difficulties.\ng. In most training environments, adherence to water intake doctrine and majority consumption of rations (garrison dining or MREs) will provide adequate water and electrolyte replacement. However, for 31",
-  "notices": []
+  "notices": [
+   {
+    "kind": "CAUTION",
+    "text": "Hourly fluid intake should not exceed 1 1/2 qt."
+   },
+   {
+    "kind": "CAUTION",
+    "text": "Daily fluid intake should not exceed 12 qt. 9. If wearing heavy protective clothing (CBRN, JSLIST), add 100F to WBGT index for easy work and 20 0F to WBGT index for moderate and hard work."
+   }
+  ]
  },
  {
   "id": "TBMED507/4-1",

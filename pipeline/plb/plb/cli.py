@@ -77,7 +77,8 @@ def main(argv=None) -> int:
                 continue
             out = root / "build" / "extract" / m.id
             secs, figs = extract(pdf, m.id, out, figures=not (a.no_figures or a.figure_cmd),
-                                 numbering=m.raw.get("numbering", "dash"))
+                                 numbering=m.raw.get("numbering", "dash"),
+                                 skip_pages=tuple(m.raw.get("skip_pages") or ()))
             if a.figure_cmd:
                 subprocess.run(shlex.split(a.figure_cmd) + [str(pdf), str(out)], check=True)
                 figs = json.loads((out / "figures.json").read_text())
