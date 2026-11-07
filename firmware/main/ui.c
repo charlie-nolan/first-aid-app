@@ -342,7 +342,8 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
         cart_pic_t p = {0};
         draw_pic(u, fb, P.n->figure, l.body_y, l.body_h, &p);
         char cap[64]; T(u, p.caption, cap, sizeof cap); T(u, p.citation, lab, sizeof lab);
-        snprintf(cite, sizeof cite, "%s%s%s", cap, cap[0] && lab[0] ? " - " : "", lab);
+        /* caption and citation are capped so both fit in cite[96]; the footer cuts to its width anyway */
+        snprintf(cite, sizeof cite, "%.48s%s%.44s", cap, cap[0] && lab[0] ? " - " : "", lab);
         footer(u, fb, cite);
     } else if (seg == SEG_PAS) {
         cart_passage_t ps = cart_node_passage(u->c, P.n, (unsigned)idx);
