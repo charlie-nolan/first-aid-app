@@ -6,6 +6,7 @@
     plb build                      trees + sections -> build/intermediate/ (the packer's input)
     plb test [--reader-cmd CMD]    build, then run every check; non-zero exit on any error
     plb pack --packer CMD          build + test, then hand build/intermediate to the packer
+    plb review [--out DIR]         build, then write one Markdown review page per tree
     plb show SECTION_ID            print an extracted section (to pick citations)
     plb grep WORDS                 search extracted sections (to find what to cite)
 """
@@ -51,6 +52,7 @@ def main(argv=None) -> int:
     p = sub.add_parser("pack"); p.add_argument("--packer", required=True,
                                                help="CMD INTERMEDIATE_DIR OUT.bin")
     p.add_argument("--out", default="build/library.bin")
+    rv = sub.add_parser("review"); rv.add_argument("--out", default="content/review")
     s = sub.add_parser("show"); s.add_argument("section")
     g = sub.add_parser("grep"); g.add_argument("words", nargs="+")
     a = ap.parse_args(argv)
@@ -94,6 +96,12 @@ def main(argv=None) -> int:
             r = subprocess.run(shlex.split(a.packer) + [str(out), str(root / a.out)])
             return r.returncode
         return rc
+    if a.cmd == "review":
+        from .review import write_review
+        out, issues = build(root)
+        for f in write_review(out, root / a.out):
+            print(f)
+        return _report(issues)
     if a.cmd in ("show", "grep"):
         secs = load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir()))
         if a.cmd == "show":

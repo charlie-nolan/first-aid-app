@@ -23,7 +23,7 @@ from . import phrases as ph
 from .extract import load_figures, load_sections
 from .pictures import build_picture
 from .sources import load_manifest
-from .trees import DEFAULT_CONTEXTS, Issue, build_trees
+from .trees import DEFAULT_CONTEXTS, Issue, build_trees, pretty_manual
 
 
 def pic_id(fig_id: str) -> str:
@@ -88,7 +88,7 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
         pics.append({"id": pic_id(fid), "figure": fid, "file": f"pictures/{dst.name}", "w": pic.w,
                      "h": pic.h, "pan": pic.pan, "caption": f"Figure {fg['num']}. {fg['title']}" if "/fig/" in fid else "",
                      "source": fg["manual"],
-                     "citation": f"{m.get('cite_as') or fg['manual']}, " + (
+                     "citation": f"{pretty_manual(fg['manual'], manuals)}, " + (
                          f"figure {fg['num']}" if "/fig/" in fid else f"page {fg['page']}")})
     if sleep and sleep not in figures and (root / str(sleep)).exists():
         dst = out / "pictures" / "sleep.png"

@@ -315,3 +315,23 @@ def test_marker_adapter_maps_captions(repo, tmp_path):
     write_tree(repo, t)
     out3, issues = build(repo)
     assert any("used with permission" in e for e in errors(issues))
+
+
+def test_notices_follow_their_paragraph(repo):
+    p = repo / "build" / "extract" / FIX_ID / "sections.json"
+    secs = json.loads(p.read_text())
+    for s in secs:
+        if s["para"] == "1-2":
+            s["notices"] = [{"kind": "CAUTION", "text": "Placeholder caution box text."}]
+    p.write_text(json.dumps(secs))
+    write_tree(repo, GOOD_TREE)                      # kit node cites an excerpt of 1-2
+    out, issues = build(repo)
+    assert errors(run_checks(repo, out, issues)) == []
+    nodes = {n["key"]: n for n in json.loads((out / "trees.json").read_text())["nodes"]}
+    assert nodes["demo/kit"]["passages"][-1] == f"{FIX_ID}/1-2~caution1"
+    ps = {json.loads(l)["id"]: json.loads(l) for l in (out / "passages.jsonl").read_text().splitlines()}
+    assert ps[f"{FIX_ID}/1-2~caution1"]["text"] == "## CAUTION\nPlaceholder caution box text."
+    # tampering with a notice is caught by the verbatim check
+    pj = out / "passages.jsonl"
+    pj.write_text(pj.read_text().replace("Placeholder caution box", "Made up"))
+    assert any("not verbatim" in e for e in errors(run_checks(repo, out, issues)))

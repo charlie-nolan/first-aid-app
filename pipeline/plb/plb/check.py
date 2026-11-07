@@ -55,9 +55,11 @@ def run_checks(root: Path, inter: Path, build_issues: list[Issue],
     # 4. passages verbatim + ASCII + coverage
     sections = load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir()))
     for p in passages:
-        base = p["id"].split("#")[0]
+        base = p["id"].split("#")[0].split("~")[0]
         sec = sections.get(base)
-        if sec is None or p["text"] not in sec["text"]:
+        pool = [] if sec is None else [sec["text"]] + [
+            f"## {str(n.get('kind', 'NOTE')).upper()}\n{n['text']}" for n in sec.get("notices") or []]
+        if not any(p["text"] in t for t in pool):
             issues.append(Issue("error", p["id"], "passage text is not verbatim from its section"))
         if any(not (c == "\n" or 32 <= ord(c) < 127) for c in p["text"]):
             issues.append(Issue("error", p["id"], "passage has non-ASCII characters"))
