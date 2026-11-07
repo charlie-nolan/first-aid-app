@@ -12,6 +12,7 @@
 #define UI_W 250            /* landscape, 2.13" panel */
 #define UI_H 122
 #define UI_STRIDE 32        /* bytes per framebuffer row (256 px) */
+extern const uint8_t ui_sleep_art[];   /* sleep_art.c: built-in sleep picture */
 #define UI_WINDOWS 5
 #define UI_HIST 8
 #define UI_SAVED_MAGIC 0x4C494231u   /* "LIB1" */

@@ -173,7 +173,9 @@ static int vis_trees(ui_t *u, uint8_t *out) {
 
 void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s) {
     u->c = c; u->s = s;
+    int fresh = 0;
     if (s->magic != UI_SAVED_MAGIC || s->build_id != c->build_id || s->cur >= UI_WINDOWS) {
+        fresh = 1;
         memset(s, 0, sizeof *s);
         s->magic = UI_SAVED_MAGIC; s->build_id = c->build_id; s->font = 0;            /* smallest size: most text per page */
         /* window 1 = home tree, then the other trees in order, skipping the reference shelf */
@@ -187,7 +189,9 @@ void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s) {
     unsigned nf = cart_font_sizes(c);
     if (nf && s->font >= nf) s->font = (uint8_t)(nf - 1);
     if (s->family >= cart_font_families(c)) s->family = 0;
-    u->mode = M_WAKE; u->back_mode = M_READ;
+    /* No separate wake screen: open where the reader left off, or on the Library
+     * the first time (the 911 line lives on the sleep picture instead). */
+    u->mode = fresh ? M_LIBRARY : M_READ; u->back_mode = M_READ; u->list_sel = 0;
 }
 
 static void clamp_page(ui_t *u) {
@@ -452,9 +456,17 @@ void ui_render(ui_t *u, cart_fb_t *fb) {
 }
 
 void ui_render_sleep(ui_t *u, cart_fb_t *fb) {
-    fb_clear(fb);
-    if (u->c->sleep_picture != CART_NONE && u->c->sleep_picture < u->c->n_pics) draw_pic(u, fb, u->c->sleep_picture, 0, UI_H, 0);
-    else { ui_mode_t m = u->mode; u->mode = M_WAKE; ui_render(u, fb); u->mode = m; }
+    /* built-in picture, with one line under it: the cartridge's 911 reminder */
+    memcpy(fb->bits, ui_sleep_art, (size_t)UI_STRIDE * UI_H);
+    if (!cart_font_sizes(u->c)) return;
+    char b[96];
+    uint16_t t = cart_string(u->c, "WAKE_911");
+    if (t == CART_NONE) return;
+    T(u, t, b, sizeof b);
+    unsigned st = ST(u, 0);
+    int w = cart_draw_str(u->c, st, 0, 0, 0, 0, b);
+    int x = (UI_W - w) / 2; if (x < 2) x = 2;
+    cart_draw_str(u->c, st, 0, fb, x, UI_H - 2, b);
 }
 
 /* --------------------------------------------------------------- events */
