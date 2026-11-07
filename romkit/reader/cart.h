@@ -13,6 +13,7 @@ enum { CK_NEXT, CK_KIT, CK_IMPROVISED, CK_NOTHING, CK_YES, CK_NO };   /* choice 
 #define CART_NODE_EMERGENCY 1u   /* readable from the battery reserve */
 #define CART_NODE_SPECIES   2u
 #define CART_NODE_NO_MATCH  4u   /* show cart_string("NO_MATCH") */
+#define CART_NODE_UNREVIEWED 8u  /* reference shelf: show an "Unreviewed" header */
 #define CART_TXT_HEADING 0x01   /* at line start */
 #define CART_TXT_BULLET  0x02   /* at line start */
 
@@ -26,7 +27,7 @@ typedef struct {               /* 16 bytes, as stored */
 
 typedef struct { uint16_t to, label; uint8_t kind; } cart_choice_t;
 typedef struct { uint16_t text, citation, source; } cart_passage_t;
-typedef struct { uint16_t title, root, shelf; uint8_t emergency; } cart_tree_t;
+typedef struct { uint16_t title, root, shelf; uint8_t emergency, unreviewed; } cart_tree_t;
 typedef struct { uint16_t w, h; uint8_t codec, pan; uint16_t caption, citation;
                  const uint8_t *data; size_t len; } cart_pic_t;
 
@@ -36,8 +37,8 @@ typedef struct {
     const uint8_t *syms, *huff, *tidx, *text, *pasg, *node, *npas,
                   *choi, *tree, *cmds, *srcs, *picx, *picd, *strs;
     const uint8_t *font;          /* optional FONT chunk, 0 if absent */
-    const uint8_t *ntag, *tagn, *phrs;   /* optional context + voice-list chunks */
-    uint16_t n_phrs;
+    const uint8_t *tagp, *tagi, *tagn, *phrs;   /* optional context + voice-list chunks */
+    uint16_t n_phrs; uint32_t n_tagi;
     uint32_t build_id;
     uint16_t n_syms, n_strs, n_cmds, n_pics, n_passages, n_trees;
 } cart_t;
@@ -47,6 +48,7 @@ const cart_node_t *cart_node(const cart_t *c, uint16_t id);   /* direct, 16-byte
 cart_passage_t cart_node_passage(const cart_t *c, const cart_node_t *n, unsigned i); /* i < n_passages + n_lookalikes */
 cart_choice_t  cart_node_choice(const cart_t *c, const cart_node_t *n, unsigned i);
 cart_tree_t    cart_tree(const cart_t *c, uint16_t id);
+int            cart_node_unreviewed(const cart_t *c, uint16_t node);   /* 1 = reference shelf */
 uint16_t cart_cmd_node(const cart_t *c, uint16_t cmd_id);    /* voice command -> node */
 uint16_t cart_source_title(const cart_t *c, uint16_t source); /* -> text id */
 uint16_t cart_string(const cart_t *c, const char *name);    /* "WAKE_911" -> text id */
@@ -78,7 +80,7 @@ int  cart_draw_str(const cart_t *c, unsigned style, int bold, cart_fb_t *fb, int
 int  cart_page(const cart_t *c, uint16_t id, unsigned style, int page, cart_fb_t *fb,
                int x, int y, int w, int h, char *scratch, size_t scratch_len);
 
-/* ---- context: state / season / activity (optional NTAG, TAGN, PHRS chunks) ----
+/* ---- context: state / season / activity (optional TAGP, TAGI, TAGN, PHRS chunks) ----
  * Tags and contexts are 96 bits: region bits 0-63 (default: 50 US states + DC by postal
  * code, alphabetical), season 64-67, activity 68-75. Untagged content is global and shows
  * in every state. The firmware keeps the chosen context (in NVS) until the person changes
