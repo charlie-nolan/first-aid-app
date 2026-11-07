@@ -1,5 +1,29 @@
 [
  {
+  "id": "AFH10-644/0.h1",
+  "manual": "AFH10-644",
+  "para": "0.h1",
+  "chapter": "",
+  "heading": "(SERE) Operations",
+  "pages": [
+   1
+  ],
+  "text": "27 March 2017",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/0.h2",
+  "manual": "AFH10-644",
+  "para": "0.h2",
+  "chapter": "",
+  "heading": "COMPLIANCE WITH THIS PUBLICATION IS MANDATORY",
+  "pages": [
+   2
+  ],
+  "text": "______________________________________________________________________________ ACCESSIBILITY: Publications and forms are available on e-Publishing website at www.e-publishing.af.mil for downloading or ordering. RELEASABILITY: There are no releasability restrictions on this publication. ______________________________________________________________________________ OPR: HAF/A3XX (CMSgt Filby) Certified by: HAF/A3 (Lt Gen MARK C. NOWLAND) Supersedes: AFH10-644, 21 March 2017 Pages: 644 ______________________________________________________________________________ This handbook describes the various environmental conditions affecting human survival, and describes isolated personnel (IP) activities necessary to survive during successful evasion or isolating events leading to successful recovery. It is the fundamental reference document providing guidance for any USAF service member who has the potential to become isolated; deviations require sound judgment and careful consideration. This publication provides considerations to be used in planning and execution for effective mission accomplishment of formal USAF Survival, Evasion, Resistance, and Escape (SERE) training, environmentally specific SERE training, and combat survival continuation training programs. The tactics, techniques, and procedures in this publication are recognized best practices presenting a solid foundation to assist USAF service members to maintain life and return with honor from isolating events. This handbook also applies to US Air Force Reserve and Air National Guard units and members. Refer recommended changes and questions about this publication to the office of primary responsibility (OPR) using the AF Form 847, Recommendation for Change of Publication; route the AF Form 847 from the field through major command (MAJCOM) publications/forms managers. Ensure that all records created as a result of processes prescribed in this publication are maintained IAW Air Force Manual (AFMAN) 33-363, Management of Records, and disposed of IAW the Air Force Records Disposition Schedule (RDS) in the Air Force Records Information Management System (AFRIMS). The use of the name or mark of any specific manufacturer, commercial product, commodity, or service in this publication does not imply endorsement by the Air Force. See Attachment 1 and Attachment 2 for glossary and acronyms.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/1.1",
   "manual": "AFH10-644",
   "para": "1.1",
@@ -56,7 +80,7 @@
   "pages": [
    3
   ],
-  "text": "Elements................................................................................................................................................. 3 2.Conditions Affecting Survival .................................................................................................................. 4",
+  "text": "Elements................................................................................................................................................. 3 2. Conditions Affecting Survival .................................................................................................................. 4",
   "notices": []
  },
  {
@@ -759,7 +783,7 @@
   "pages": [
    4
   ],
-  "text": "Summary .............................................................................................................................................. 97 7.Environment............................................................................................................................................ 98",
+  "text": "Summary .............................................................................................................................................. 97 7. Environment............................................................................................................................................ 98",
   "notices": []
  },
  {
@@ -831,7 +855,7 @@
   "pages": [
    4
   ],
-  "text": "Effects of Climate and Terrain on Life Forms ................................................................................... 104 8.Global Climate Characteristics ............................................................................................................. 106",
+  "text": "Effects of Climate and Terrain on Life Forms ................................................................................... 104 8. Global Climate Characteristics ............................................................................................................. 106",
   "notices": []
  },
  {
@@ -879,7 +903,7 @@
   "pages": [
    4
   ],
-  "text": "Snow and Ice Climates........................................................................................................................129 9.Open Seas.............................................................................................................................................. 135",
+  "text": "Snow and Ice Climates........................................................................................................................129 9. Open Seas.............................................................................................................................................. 135",
   "notices": []
  },
  {
@@ -1506,7 +1530,7 @@
   "pages": [
    5
   ],
-  "text": "Fire Lays .......................................................................................................................................... 229 15.Equipment ........................................................................................................................................... 231",
+  "text": "Fire Lays .......................................................................................................................................... 229 15. Equipment ........................................................................................................................................... 231",
   "notices": []
  },
  {
@@ -1561,7 +1585,7 @@
   "id": "AFH10-644/15.5",
   "manual": "AFH10-644",
   "para": "15.5",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    278
@@ -2435,7 +2459,7 @@
   "pages": [
    7
   ],
-  "text": "Reintegration .................................................................................................................................... 520 23.Evasion................................................................................................................................................ 522",
+  "text": "Reintegration .................................................................................................................................... 520 23. Evasion................................................................................................................................................ 522",
   "notices": []
  },
  {
@@ -2937,6 +2961,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/1.h1",
+  "manual": "AFH10-644",
+  "para": "1.h1",
+  "chapter": "Chapter 1",
+  "heading": "1. Mission",
+  "pages": [
+   9
+  ],
+  "text": "An isolating event ends one mission-for the individual, but starts another-to successfully return from the event. Are they prepared? Can they handle the new mission, not knowing what it entails? Unfortunately, many Isolated Personnel (IP) are not fully aware of this new mission or are not fully prepared to carry it out. All instructors teaching survival, evasion, resistance, and escape (SERE) must prepare the IP to face and successfully complete this new mission (Figure 1-1).",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/1.1.1",
   "manual": "AFH10-644",
   "para": "1.1.1",
@@ -2970,6 +3006,18 @@
    10
   ],
   "text": "Return Early and in Good Physical and Mental Condition The final phase of the mission is \"to return early and in good physical and mental condition.\" A key factor in successful completion of this part of the mission may be the will to survive. This will is present, in varying degrees, in all human beings. Although successful survival is based on many factors, those who maintain this important attribute will increase their chances of success.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/2.h1",
+  "manual": "AFH10-644",
+  "para": "2.h1",
+  "chapter": "Chapter 2",
+  "heading": "2. Conditions Affecting Survival",
+  "pages": [
+   12
+  ],
+  "text": "Five basic conditions affect every isolating event (Figure 2-1). These conditions may vary in importance or degree of influence from one event to another and from individual to individual. At the onset, these conditions can be considered to be neutral-being neither an advantage nor a disadvantage for the IP. The IP may succumb to their effects-or use them to their best advantage. These conditions exist in each isolating event, and they will have great bearing on the IP's every need, decision and action.",
   "notices": []
  },
  {
@@ -3229,6 +3277,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/3.h1",
+  "manual": "AFH10-644",
+  "para": "3.h1",
+  "chapter": "Chapter 3",
+  "heading": "3. The IP's Needs",
+  "pages": [
+   20
+  ],
+  "text": "The three fundamental goals of an IP are to 1) maintain life, 2) maintain honor, and 3) return. This may be further divided into nine basic needs which include: 1) personal protection, 2) sustenance, 3) health, 4) travel, 5) communications, 6) recovery, 7) evasion, 8) resistance, and 9) escape. Meeting the individual's needs during the isolating event is essential to achieving the IP's fundamental goals (Figure 3-1).",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/3.1.1.1",
   "manual": "AFH10-644",
   "para": "3.1.1.1",
@@ -3346,6 +3406,18 @@
    25
   ],
   "text": "The Need to Resist Exploitation The captive's need to resist exploitation is self-evident. This need is both a moral and a legal obligation. Resistance is much more than refusing to divulge information. Resistance is made up of two distinctly separate behaviors expected of the captive:\n- Complying with legal and authorized requirements.\n- Preventing exploitation. This includes the captive doing such things as disrupting enemy activity through resisting, refusing to divulge information, subtle harassment, and distracting enemy guards who could be used on the front lines. For a captive, escape is the ultimate form of resistance.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/4.h1",
+  "manual": "AFH10-644",
+  "para": "4.h1",
+  "chapter": "Chapter 4",
+  "heading": "PSYCHOLOGICAL ASPECTS OF SERE",
+  "pages": [
+   26
+  ],
+  "text": "4. The Psychological Aspects of SEREThe psychological aspects of SERE involve the will to survive, emotional reactions, and many other contributing factors. An IP's attitude and mental strength have a considerable influence on their ability to survive an isolating event. The will to survive is defined as the desire to live despite seemingly insurmountable mental and/or physical obstacles. The tools for survival are furnished by the military, the individual, and the environment. The training for SERE comes from training publications, instruction, and the individual's own efforts. But tools and training are not enough without a will to survive. In fact, the records prove that will alone have been the deciding factor in many survival cases. While these accounts are not classic examples of how to survive, they illustrate that a single-minded IP with a powerful will to survive can overcome most hardships. There are cases where people have eaten their belts for nourishment, boiled water in their boots to drink as broth, or have eaten human flesh - though this certainly wasn't their cultural instinct.",
   "notices": []
  },
  {
@@ -4091,6 +4163,18 @@
    47
   ],
   "text": "Compromise Since many situations cannot be dealt with successfully by either withdrawal or direct attack, it may be necessary to work out a compromise solution. The action may entail changing an IP's method of operation or accepting substitute goals.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/5.h1",
+  "manual": "AFH10-644",
+  "para": "5.h1",
+  "chapter": "Chapter 5",
+  "heading": "5. SERE Medicine",
+  "pages": [
+   48
+  ],
+  "text": "Among the many things which can compromise an IP's ability to return are medical problems encountered during the isolating event. Although military members are provided with Self Aid- Buddy Care (SABC) instruction, SERE medicine addresses the use of expedient techniques which can aid survival in a field or captivity environment when more traditional methods are unavailable. An IP's situational awareness will help determine the appropriate treatment based on their situation. The procedures in this chapter must be viewed in the reality of a true isolating event. The results of treatment may be substandard when compared with present medical standards. However, these procedures will not compromise professional medical care which becomes available following recovery. Moreover, in the context of an isolating event, they may represent the best available treatment to extend the individual's life expectancy.",
   "notices": []
  },
  {
@@ -6099,6 +6183,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/6.h1",
+  "manual": "AFH10-644",
+  "para": "6.h1",
+  "chapter": "Chapter 6",
+  "heading": "6. Weather",
+  "pages": [
+   95
+  ],
+  "text": "History shows that the prepared IP will be more successful. This is especially true when an IP understands the hardships caused by the environment. Understanding weather patterns and being prepared for the climatic conditions likely to be encountered are extremely important to the IP.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/6.3.1",
   "manual": "AFH10-644",
   "para": "6.3.1",
@@ -6450,6 +6546,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/7.h1",
+  "manual": "AFH10-644",
+  "para": "7.h1",
+  "chapter": "Chapter 7",
+  "heading": "7. Environment",
+  "pages": [
+   106
+  ],
+  "text": "The more IP know about environmental conditions (i.e., terrain, life forms, and climate), the better they can help themselves in a survival situation. Pre-mission planning and research of these components will better prepare the potential IP for land navigation, evasion, and meeting their other SERE needs. This chapter provides a brief introduction to these topics.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/7.1.1",
   "manual": "AFH10-644",
   "para": "7.1.1",
@@ -6738,6 +6846,18 @@
    113
   ],
   "text": "The Affect of Temperature on the Behavior of Animals Temperature also affects the behavior of animals. For example, animals may burrow to protect themselves from extreme heat or extreme cold or will be more active at night in hot, dry regions. Animals also respond physiologically to temperature extremes. During extreme cold, some species of mammals enter into a state of winter dormancy (hibernation). It is a special case of temperature regulation in which animals lower the setting of their \"thermostats\" to maintain lower than normal body temperatures in order to save energy while maintaining minimum body functions essential for survival. This is important since their normal food supply is not always available during the winter. During periods of excessive heat, some species of fish, reptiles, mammals, and amphibians will enter into a \"summer sleep\" called estivation. Estivation is a state in which the animal's body functions and activities are greatly reduced. Estivation and hibernation are not merely a result of temperature regulation but rather are methods by which the organisms survive unfavorable periods.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/8.h1",
+  "manual": "AFH10-644",
+  "para": "8.h1",
+  "chapter": "Chapter 8",
+  "heading": "8. Global Climate Characteristics",
+  "pages": [
+   114
+  ],
+  "text": "Most IP will not have a choice of survival location. The ease or difficulty in maintaining life and honor and returning are dependent on the types and extremes of the climate, terrain, and life forms in the immediate area. The four major climate groups are designated as Tropical, Dry, Warm Temperate, and Snow and Ice Climates. Additionally, from a SERE perspective, IP may need to deal with specific circumstances within each climate such as open sea, costal, urban, evasion, and captivity.\n- Tropical Climates. Average temperature of each month is above 64.4 degrees F. These climates have no winter season. Annual rainfall is large and exceeds annual evaporation.\n- Dry Climates. Potential evaporation exceeds precipitation on the average throughout the year. No water surplus; hence, no permanent streams originate in dry climate zones.\n- Warm Temperate Climates. Coldest month has an average temperature under 64.4 degrees F. but above 26.6 degrees F. The warm temperate climates thus have both a summer and winter season.\n- Snow and Ice Climates. Snow climates coldest month has an average temperature under 26.6 degrees F. Average temperature of warmest month is above 50 degrees F. Ice Climates average temperature of warmest month is below 50 degrees F. These climates have no true summer.",
   "notices": []
  },
  {
@@ -7904,6 +8024,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/9.h1",
+  "manual": "AFH10-644",
+  "para": "9.h1",
+  "chapter": "Chapter 9",
+  "heading": "9. Open Seas",
+  "pages": [
+   143
+  ],
+  "text": "A system of climate classification was used to describe the environmental characteristics of the landmasses in previous chapters. However, this system is not used to categorize the largest area of the world-the oceans. They are simply divided by their names and locations. All limits of oceans, seas, etc., are arbitrary, as there is only one global sea. The terms \"sea\" and \"ocean\" are often used interchangeably in reference to saltwater. However, from a geographic point of view, a sea is a body of water that is substantially smaller than an ocean or is part of an ocean.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/9.2.1",
   "manual": "AFH10-644",
   "para": "9.2.1",
@@ -8879,6 +9011,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/10.h1",
+  "manual": "AFH10-644",
+  "para": "10.h1",
+  "chapter": "Chapter 10",
+  "heading": "10. Local People",
+  "pages": [
+   167
+  ],
+  "text": "One evader concluded with the following advice: \"My advice is, 'When in Rome, do as the Romans do!' Show interest in their country, and they will go overboard to help you!\" One of the most frequently given bits of advice is to accept, respect, and adapt to the ways of the people among whom IP find themselves. Expect challenges as you put this advice into practice (Figure 10-1 Local People).",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/10.1.1",
   "manual": "AFH10-644",
   "para": "10.1.1",
@@ -9013,6 +9157,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/11.h1",
+  "manual": "AFH10-644",
+  "para": "11.h1",
+  "chapter": "Chapter 11",
+  "heading": "11. Proper Body Temperature",
+  "pages": [
+   171
+  ],
+  "text": "In an isolating event, the two key requirements for personal protection are maintenance of proper body temperature and prevention of injury. The means for providing personal protection are many and varied, and include clothing, shelter, equipment, and fire (which are all covered in detail in separate chapters). These individual items are not necessary for survival in every situation; however, all four are essential in some environments. Conditions which affect the body temperature, the physical principles of heat transfer, and the methods of coping with these conditions are addressed below.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/11.1.1",
   "manual": "AFH10-644",
   "para": "11.1.1",
@@ -9037,6 +9193,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/11.h2",
+  "manual": "AFH10-644",
+  "para": "11.h2",
+  "chapter": "Chapter 11",
+  "heading": "clothing",
+  "pages": [
+   172
+  ],
+  "text": "0.3 32.5 Under 2 min. Under 15 min. Under 15 to 45 min. 0.3 to 4.5 32.5 - 40 Under 3 min. 15 to 30 min. 30 to 90 min. 4.5 to 10 40 - 50 Under 5 min. 30 to 60 min. 1 to 3 hrs. 10 to 15.5 50 - 60 10 to 15 min. 1 to 2 hrs. 1 to 6 hrs. 15.5 to 21 60 - 70 30 to 40 min. 2 to 7 hrs. 2 to 40 hrs. 21 to 26.5 70 - 80 1 to 2 hrs. 2 to 12 hrs. 3 hrs. to indefinite Over 26.5 Over 80 2 to 12 hrs. Indefinite Indefinite",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/11.3.1",
   "manual": "AFH10-644",
   "para": "11.3.1",
@@ -9047,6 +9215,18 @@
    173
   ],
   "text": "Predicted Survival Time Based on the US Navy study, this aircrew member would have a predicted immersed survival time of 175 minutes or 2.9 hours in 35 degree Fahrenheit water. The same individual dressed in standard flight clothing of underwear, flight suit, socks, boots and flight helmet would have a predicted immersed survival time of well under 30 minutes. As you can see, dressing appropriately could easily be the difference between survival and fatality (Figure 11-3).",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/11.h3",
+  "manual": "AFH10-644",
+  "para": "11.h3",
+  "chapter": "Chapter 11",
+  "heading": "helmet and boots",
+  "pages": [
+   173
+  ],
+  "text": "175 lbs, 19.2% 35 175 minutes 175 minutes 30 minutes 40 220 minutes 220 minutes 40 minutes 45 295 minutes 280 minutes 60 minutes 50 360 minutes 360 minutes (indefinite; test 80 minutes (indefinite; test ended) ended) 55 360 minutes 360 minutes (indefinite; test 100 minutes (indefinite; test ended) ended) 60 360 minutes 360 minutes (indefinite; test 160 minutes (indefinite; test ended) ended) 68 360 minutes 360 minutes (indefinite; test 340 minutes (indefinite; test ended) ended)",
   "notices": []
  },
  {
@@ -9119,6 +9299,18 @@
    175
   ],
   "text": "Respiration The respiration of air in the lungs is also a way of transferring heat. It works on the combined processes of convection, evaporation, and radiation. When breathing, the air inhaled is rarely the same temperature as the lungs. Consequently, heat is either inhaled or expelled with each breath. A person's breath can be seen in the cold as heat is lost to the outside.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/12.h1",
+  "manual": "AFH10-644",
+  "para": "12.h1",
+  "chapter": "Chapter 12",
+  "heading": "12. Clothing",
+  "pages": [
+   176
+  ],
+  "text": "Clothing is an important asset to IP and is the most immediate form of protection. Clothing is important in staying alive, especially if food, water, shelter, and fire are limited or unobtainable. This is especially true in the first stages of an emergency situation because IP must work to satisfy other needs. If IP are not properly clothed, they may not survive long enough to build a shelter or fire, to find food, or to be rescued.",
   "notices": []
  },
  {
@@ -9351,6 +9543,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/12.h2",
+  "manual": "AFH10-644",
+  "para": "12.h2",
+  "chapter": "Chapter 12",
+  "heading": "TEMPERATURE RANGE CLO REQUIRED",
+  "pages": [
+   179
+  ],
+  "text": "86 to 68 degrees F 1 - Lightweight 68 to 50 degrees F 2 - Intermediate Weight 50 to 32 degrees F 3 - Intermediate Weight 32 to 14 degrees F 3.5 - Heavyweight 14 to -4 degrees F 4.0 - Heavyweight -4 to -40 degrees F 4.0 - Heavyweight",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/12.3.6",
   "manual": "AFH10-644",
   "para": "12.3.6",
@@ -9360,6 +9564,42 @@
    179
   ],
   "text": "Clo Value Per Fabric Layer The amount of Clo value per layer of fabric is determined by the loft (distance between the inner and outer surfaces) and the amount of dead air held within the fabric. Some examples of the Clo",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/12.h3",
+  "manual": "AFH10-644",
+  "para": "12.h3",
+  "chapter": "Chapter 12",
+  "heading": "LAYERS CLO Value",
+  "pages": [
+   179
+  ],
+  "text": "1 - Fire Retardant underwear",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/12.h4",
+  "manual": "AFH10-644",
+  "para": "12.h4",
+  "chapter": "Chapter 12",
+  "heading": "0.6 CLO",
+  "pages": [
+   179
+  ],
+  "text": "(1 layer) 2 - Fire Retardant underwear",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/12.h5",
+  "manual": "AFH10-644",
+  "para": "12.h5",
+  "chapter": "Chapter 12",
+  "heading": "1.5 CLO",
+  "pages": [
+   179
+  ],
+  "text": "(2 layers) 3 - Quilted liners 1.9 CLO 4 - Nomex Flight suit 0.6 CLO 6 - Nomex jacket 1.9 CLO",
   "notices": []
  },
  {
@@ -9928,6 +10168,18 @@
    193
   ],
   "text": "Double Socks Double Socks are made by inserting cushion padding, feathers, dry grass, or fur between the layers of socks, and the wrapping parachute or other fabric around the feet, and tying above the ankles (Figure 12-15).",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/13.h1",
+  "manual": "AFH10-644",
+  "para": "13.h1",
+  "chapter": "Chapter 13",
+  "heading": "13. Shelter",
+  "pages": [
+   194
+  ],
+  "text": "Shelter is anything that provides protection from environmental hazards. The environment influences shelter site selection and factors which IP must consider before constructing an adequate shelter. The techniques and procedures for constructing shelters for various types of protection are also presented.",
   "notices": []
  },
  {
@@ -11083,6 +11335,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/14.h1",
+  "manual": "AFH10-644",
+  "para": "14.h1",
+  "chapter": "Chapter 14",
+  "heading": "14. Firecraft",
+  "pages": [
+   223
+  ],
+  "text": "Fire is used for warmth, light, drying clothes, signaling, making tools, cooking, and water purification. When using fire for warmth, the body uses fewer calories for heat and consequently requires less food. Having a fire to sit by can also be used as a morale booster. Also, smoke from a fire can be used to discourage insects.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/14.2.1",
   "manual": "AFH10-644",
   "para": "14.2.1",
@@ -11748,6 +12012,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/15.h1",
+  "manual": "AFH10-644",
+  "para": "15.h1",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
+  "pages": [
+   239
+  ],
+  "text": "IP in a survival situation have needs which must be met including food, water, clothing, shelters, etc. The survival kit contains equipment which can be used to satisfy these needs. Quite often, however, this equipment may not be available due to damage or loss. This chapter will address the care and use of issued equipment and improvising the needed equipment when not available. The uses of some issued items are covered in appropriate places throughout this handbook. The care and use of equipment (not covered elsewhere) will be addressed here.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/15.1.1",
   "manual": "AFH10-644",
   "para": "15.1.1",
@@ -12072,15 +12348,15 @@
    248,
    249
   ],
-  "text": "Five Basic Rules of Improvising IP should follow five basic rules of improvising to meet their needs using a logical problem solving technique. The five rules are: 1. Determine the need. Needs are determined by the IP's situation and prioritization (see",
+  "text": "Five Basic Rules of Improvising IP should follow five basic rules of improvising to meet their needs using a logical problem solving technique. The five rules are: 1. Determine the need. Needs are determined by the IP's situation and prioritization (see chapter 1, 2, 3). 2. Inventory materials, both manmade and natural. Consider using abundant natural materials and avoid wasting limited materials. 3. Consider alternatives (brainstorm and list possible solutions). 4. Select the best alternative based on time, energy, and materials. 5. Plan and construct making the best use of materials and insuring it is safe and durable.",
   "notices": []
  },
  {
   "id": "AFH10-644/15.1.6.2",
   "manual": "AFH10-644",
   "para": "15.1.6.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    249
   ],
@@ -12091,8 +12367,8 @@
   "id": "AFH10-644/15.1.6.3",
   "manual": "AFH10-644",
   "para": "15.1.6.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    249
   ],
@@ -12103,8 +12379,8 @@
   "id": "AFH10-644/15.1.7",
   "manual": "AFH10-644",
   "para": "15.1.7",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    249
   ],
@@ -12115,8 +12391,8 @@
   "id": "AFH10-644/15.2.1",
   "manual": "AFH10-644",
   "para": "15.2.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    249
   ],
@@ -12127,8 +12403,8 @@
   "id": "AFH10-644/15.2.2",
   "manual": "AFH10-644",
   "para": "15.2.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    249
   ],
@@ -12139,8 +12415,8 @@
   "id": "AFH10-644/15.2.3",
   "manual": "AFH10-644",
   "para": "15.2.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    249
   ],
@@ -12151,8 +12427,8 @@
   "id": "AFH10-644/15.2.4",
   "manual": "AFH10-644",
   "para": "15.2.4",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    250
   ],
@@ -12163,8 +12439,8 @@
   "id": "AFH10-644/15.2.4.1",
   "manual": "AFH10-644",
   "para": "15.2.4.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    250
   ],
@@ -12175,8 +12451,8 @@
   "id": "AFH10-644/15.2.4.2",
   "manual": "AFH10-644",
   "para": "15.2.4.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    250
   ],
@@ -12187,8 +12463,8 @@
   "id": "AFH10-644/15.2.4.3",
   "manual": "AFH10-644",
   "para": "15.2.4.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    251
   ],
@@ -12199,8 +12475,8 @@
   "id": "AFH10-644/15.2.4.4",
   "manual": "AFH10-644",
   "para": "15.2.4.4",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    251,
    252
@@ -12212,8 +12488,8 @@
   "id": "AFH10-644/15.2.4.5",
   "manual": "AFH10-644",
   "para": "15.2.4.5",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    252
   ],
@@ -12224,8 +12500,8 @@
   "id": "AFH10-644/15.2.4.5.1",
   "manual": "AFH10-644",
   "para": "15.2.4.5.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    252
   ],
@@ -12236,8 +12512,8 @@
   "id": "AFH10-644/15.2.4.5.2",
   "manual": "AFH10-644",
   "para": "15.2.4.5.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    252
   ],
@@ -12248,8 +12524,8 @@
   "id": "AFH10-644/15.2.4.5.3",
   "manual": "AFH10-644",
   "para": "15.2.4.5.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    253
   ],
@@ -12260,8 +12536,8 @@
   "id": "AFH10-644/15.2.4.5.4",
   "manual": "AFH10-644",
   "para": "15.2.4.5.4",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    253
   ],
@@ -12272,8 +12548,8 @@
   "id": "AFH10-644/15.2.4.5.5",
   "manual": "AFH10-644",
   "para": "15.2.4.5.5",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    253
   ],
@@ -12284,8 +12560,8 @@
   "id": "AFH10-644/15.2.4.5.6",
   "manual": "AFH10-644",
   "para": "15.2.4.5.6",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    253,
    254
@@ -12297,8 +12573,8 @@
   "id": "AFH10-644/15.2.4.5.7",
   "manual": "AFH10-644",
   "para": "15.2.4.5.7",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    254
   ],
@@ -12309,8 +12585,8 @@
   "id": "AFH10-644/15.3.1",
   "manual": "AFH10-644",
   "para": "15.3.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    255
   ],
@@ -12321,8 +12597,8 @@
   "id": "AFH10-644/15.3.2",
   "manual": "AFH10-644",
   "para": "15.3.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    255,
    256
@@ -12334,8 +12610,8 @@
   "id": "AFH10-644/15.3.2.1",
   "manual": "AFH10-644",
   "para": "15.3.2.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    257
   ],
@@ -12346,8 +12622,8 @@
   "id": "AFH10-644/15.3.2.2",
   "manual": "AFH10-644",
   "para": "15.3.2.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    257
   ],
@@ -12358,8 +12634,8 @@
   "id": "AFH10-644/15.3.3",
   "manual": "AFH10-644",
   "para": "15.3.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    257
   ],
@@ -12370,8 +12646,8 @@
   "id": "AFH10-644/15.3.4",
   "manual": "AFH10-644",
   "para": "15.3.4",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    257
   ],
@@ -12382,8 +12658,8 @@
   "id": "AFH10-644/15.3.5",
   "manual": "AFH10-644",
   "para": "15.3.5",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    258
   ],
@@ -12394,8 +12670,8 @@
   "id": "AFH10-644/15.4.1",
   "manual": "AFH10-644",
   "para": "15.4.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    258,
    259
@@ -12407,8 +12683,8 @@
   "id": "AFH10-644/15.4.2",
   "manual": "AFH10-644",
   "para": "15.4.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    259
   ],
@@ -12419,8 +12695,8 @@
   "id": "AFH10-644/15.4.2.1",
   "manual": "AFH10-644",
   "para": "15.4.2.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    259
   ],
@@ -12431,8 +12707,8 @@
   "id": "AFH10-644/15.4.2.2",
   "manual": "AFH10-644",
   "para": "15.4.2.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    259
   ],
@@ -12443,8 +12719,8 @@
   "id": "AFH10-644/15.4.2.3",
   "manual": "AFH10-644",
   "para": "15.4.2.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    259
   ],
@@ -12455,8 +12731,8 @@
   "id": "AFH10-644/15.4.2.4",
   "manual": "AFH10-644",
   "para": "15.4.2.4",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    259
   ],
@@ -12467,8 +12743,8 @@
   "id": "AFH10-644/15.4.2.5",
   "manual": "AFH10-644",
   "para": "15.4.2.5",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    259
   ],
@@ -12479,8 +12755,8 @@
   "id": "AFH10-644/15.4.2.6",
   "manual": "AFH10-644",
   "para": "15.4.2.6",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    260
   ],
@@ -12491,8 +12767,8 @@
   "id": "AFH10-644/15.4.2.7",
   "manual": "AFH10-644",
   "para": "15.4.2.7",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    260
   ],
@@ -12503,8 +12779,8 @@
   "id": "AFH10-644/15.4.2.8",
   "manual": "AFH10-644",
   "para": "15.4.2.8",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    260
   ],
@@ -12515,8 +12791,8 @@
   "id": "AFH10-644/15.4.2.9",
   "manual": "AFH10-644",
   "para": "15.4.2.9",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    260
   ],
@@ -12527,8 +12803,8 @@
   "id": "AFH10-644/15.4.2.10",
   "manual": "AFH10-644",
   "para": "15.4.2.10",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    260
   ],
@@ -12539,8 +12815,8 @@
   "id": "AFH10-644/15.4.2.11",
   "manual": "AFH10-644",
   "para": "15.4.2.11",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    260
   ],
@@ -12551,8 +12827,8 @@
   "id": "AFH10-644/15.4.2.12",
   "manual": "AFH10-644",
   "para": "15.4.2.12",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    260
   ],
@@ -12563,8 +12839,8 @@
   "id": "AFH10-644/15.4.2.13",
   "manual": "AFH10-644",
   "para": "15.4.2.13",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    260
   ],
@@ -12575,8 +12851,8 @@
   "id": "AFH10-644/15.4.2.14",
   "manual": "AFH10-644",
   "para": "15.4.2.14",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    260
   ],
@@ -12587,8 +12863,8 @@
   "id": "AFH10-644/15.4.3",
   "manual": "AFH10-644",
   "para": "15.4.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    261
   ],
@@ -12599,8 +12875,8 @@
   "id": "AFH10-644/15.4.3.1",
   "manual": "AFH10-644",
   "para": "15.4.3.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    261
   ],
@@ -12611,8 +12887,8 @@
   "id": "AFH10-644/15.4.3.2",
   "manual": "AFH10-644",
   "para": "15.4.3.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    262
   ],
@@ -12623,8 +12899,8 @@
   "id": "AFH10-644/15.4.4",
   "manual": "AFH10-644",
   "para": "15.4.4",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    262
   ],
@@ -12635,8 +12911,8 @@
   "id": "AFH10-644/15.4.4.1",
   "manual": "AFH10-644",
   "para": "15.4.4.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    262
   ],
@@ -12647,8 +12923,8 @@
   "id": "AFH10-644/15.4.4.2",
   "manual": "AFH10-644",
   "para": "15.4.4.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    263
   ],
@@ -12659,8 +12935,8 @@
   "id": "AFH10-644/15.4.4.3",
   "manual": "AFH10-644",
   "para": "15.4.4.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    264
   ],
@@ -12671,8 +12947,8 @@
   "id": "AFH10-644/15.4.5",
   "manual": "AFH10-644",
   "para": "15.4.5",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    264
   ],
@@ -12683,8 +12959,8 @@
   "id": "AFH10-644/15.4.5.1",
   "manual": "AFH10-644",
   "para": "15.4.5.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    264,
    265
@@ -12696,8 +12972,8 @@
   "id": "AFH10-644/15.4.5.2",
   "manual": "AFH10-644",
   "para": "15.4.5.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    265
   ],
@@ -12708,8 +12984,8 @@
   "id": "AFH10-644/15.4.5.3",
   "manual": "AFH10-644",
   "para": "15.4.5.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    267
   ],
@@ -12720,8 +12996,8 @@
   "id": "AFH10-644/15.4.6",
   "manual": "AFH10-644",
   "para": "15.4.6",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    267
   ],
@@ -12732,8 +13008,8 @@
   "id": "AFH10-644/15.4.6.1",
   "manual": "AFH10-644",
   "para": "15.4.6.1",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    267
   ],
@@ -12744,8 +13020,8 @@
   "id": "AFH10-644/15.4.6.2",
   "manual": "AFH10-644",
   "para": "15.4.6.2",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    268
   ],
@@ -12756,8 +13032,8 @@
   "id": "AFH10-644/15.4.6.3",
   "manual": "AFH10-644",
   "para": "15.4.6.3",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    268
   ],
@@ -12768,8 +13044,8 @@
   "id": "AFH10-644/15.4.6.4",
   "manual": "AFH10-644",
   "para": "15.4.6.4",
-  "chapter": "chapter 1, 2, 3).",
-  "heading": "",
+  "chapter": "Chapter 15",
+  "heading": "15. Equipment",
   "pages": [
    268
   ],
@@ -12780,7 +13056,7 @@
   "id": "AFH10-644/15.4.6.5",
   "manual": "AFH10-644",
   "para": "15.4.6.5",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    269
@@ -12792,7 +13068,7 @@
   "id": "AFH10-644/15.4.6.6",
   "manual": "AFH10-644",
   "para": "15.4.6.6",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    269
@@ -12804,7 +13080,7 @@
   "id": "AFH10-644/15.4.6.7",
   "manual": "AFH10-644",
   "para": "15.4.6.7",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    270
@@ -12816,7 +13092,7 @@
   "id": "AFH10-644/15.4.6.8",
   "manual": "AFH10-644",
   "para": "15.4.6.8",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    270
@@ -12828,7 +13104,7 @@
   "id": "AFH10-644/15.4.7",
   "manual": "AFH10-644",
   "para": "15.4.7",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    271
@@ -12840,7 +13116,7 @@
   "id": "AFH10-644/15.4.7.1",
   "manual": "AFH10-644",
   "para": "15.4.7.1",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    271
@@ -12852,7 +13128,7 @@
   "id": "AFH10-644/15.4.7.2",
   "manual": "AFH10-644",
   "para": "15.4.7.2",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    271
@@ -12864,7 +13140,7 @@
   "id": "AFH10-644/15.4.7.3",
   "manual": "AFH10-644",
   "para": "15.4.7.3",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    272
@@ -12876,7 +13152,7 @@
   "id": "AFH10-644/15.4.8",
   "manual": "AFH10-644",
   "para": "15.4.8",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    272
@@ -12888,7 +13164,7 @@
   "id": "AFH10-644/15.4.8.1",
   "manual": "AFH10-644",
   "para": "15.4.8.1",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "15-36 Clove Hitch",
   "pages": [
    273
@@ -12897,15 +13173,15 @@
   "notices": []
  },
  {
-  "id": "AFH10-644/15.4.8.2",
+  "id": "AFH10-644/15.h2",
   "manual": "AFH10-644",
-  "para": "15.4.8.2",
-  "chapter": "chapter 1, 2, 3).",
+  "para": "15.h2",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    273
   ],
-  "text": "Principles of Rope-making Materials To discover whether a material is suitable for rope making, it must have four qualities: 1. It must be reasonably long in the fiber. 2. It must have \"strength.\" 3. It must be pliable. 4. It must have \"grip\" so the fibers will \"bite\" onto one another.",
+  "text": "Green Grass -100 lbs to 250 lbs Bark Fiber 200 lbs to 1,500 lbs Palm Fiber 650 lbs to 2,000 lbs Sedges 2,000 lbs to 2,500 lbs Monkey Rope (Lianas) -56 lbs to 700 lbs Lawyer Vine (Calamus) -1,200 lbs %-inch diameter",
   "notices": [
    {
     "kind": "NOTE",
@@ -12914,10 +13190,22 @@
   ]
  },
  {
+  "id": "AFH10-644/15.4.8.2",
+  "manual": "AFH10-644",
+  "para": "15.4.8.2",
+  "chapter": "Chapter 15",
+  "heading": "MATERIAL TENSILE STRENGTH",
+  "pages": [
+   273
+  ],
+  "text": "Principles of Rope-making Materials To discover whether a material is suitable for rope making, it must have four qualities: 1. It must be reasonably long in the fiber. 2. It must have \"strength.\" 3. It must be pliable. 4. It must have \"grip\" so the fibers will \"bite\" onto one another.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/15.4.8.3",
   "manual": "AFH10-644",
   "para": "15.4.8.3",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    273
@@ -12929,7 +13217,7 @@
   "id": "AFH10-644/15.4.8.4",
   "manual": "AFH10-644",
   "para": "15.4.8.4",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    273
@@ -12941,7 +13229,7 @@
   "id": "AFH10-644/15.4.8.5",
   "manual": "AFH10-644",
   "para": "15.4.8.5",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    273,
@@ -12954,7 +13242,7 @@
   "id": "AFH10-644/15.4.8.6",
   "manual": "AFH10-644",
   "para": "15.4.8.6",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    274
@@ -12966,7 +13254,7 @@
   "id": "AFH10-644/15.4.8.6.1",
   "manual": "AFH10-644",
   "para": "15.4.8.6.1",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    274
@@ -12978,7 +13266,7 @@
   "id": "AFH10-644/15.4.8.6.2",
   "manual": "AFH10-644",
   "para": "15.4.8.6.2",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    274
@@ -12990,7 +13278,7 @@
   "id": "AFH10-644/15.4.8.6.3",
   "manual": "AFH10-644",
   "para": "15.4.8.6.3",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    274
@@ -13002,7 +13290,7 @@
   "id": "AFH10-644/15.4.8.7",
   "manual": "AFH10-644",
   "para": "15.4.8.7",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    274
@@ -13014,7 +13302,7 @@
   "id": "AFH10-644/15.4.8.7.1",
   "manual": "AFH10-644",
   "para": "15.4.8.7.1",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    274
@@ -13026,7 +13314,7 @@
   "id": "AFH10-644/15.4.8.7.2",
   "manual": "AFH10-644",
   "para": "15.4.8.7.2",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    274
@@ -13038,7 +13326,7 @@
   "id": "AFH10-644/15.4.8.7.3",
   "manual": "AFH10-644",
   "para": "15.4.8.7.3",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    275
@@ -13050,7 +13338,7 @@
   "id": "AFH10-644/15.4.8.7.4",
   "manual": "AFH10-644",
   "para": "15.4.8.7.4",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    275
@@ -13062,7 +13350,7 @@
   "id": "AFH10-644/15.4.8.7.5",
   "manual": "AFH10-644",
   "para": "15.4.8.7.5",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    275
@@ -13074,7 +13362,7 @@
   "id": "AFH10-644/15.4.8.8",
   "manual": "AFH10-644",
   "para": "15.4.8.8",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    275
@@ -13086,7 +13374,7 @@
   "id": "AFH10-644/15.4.8.9",
   "manual": "AFH10-644",
   "para": "15.4.8.9",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    275,
@@ -13099,7 +13387,7 @@
   "id": "AFH10-644/15.4.8.10",
   "manual": "AFH10-644",
   "para": "15.4.8.10",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    276
@@ -13111,7 +13399,7 @@
   "id": "AFH10-644/15.4.8.11",
   "manual": "AFH10-644",
   "para": "15.4.8.11",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    276
@@ -13123,7 +13411,7 @@
   "id": "AFH10-644/15.4.9",
   "manual": "AFH10-644",
   "para": "15.4.9",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    276
@@ -13135,7 +13423,7 @@
   "id": "AFH10-644/15.4.9.1",
   "manual": "AFH10-644",
   "para": "15.4.9.1",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    276
@@ -13147,7 +13435,7 @@
   "id": "AFH10-644/15.4.9.2",
   "manual": "AFH10-644",
   "para": "15.4.9.2",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    277
@@ -13159,7 +13447,7 @@
   "id": "AFH10-644/15.5.1",
   "manual": "AFH10-644",
   "para": "15.5.1",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    278
@@ -13171,7 +13459,7 @@
   "id": "AFH10-644/15.5.2",
   "manual": "AFH10-644",
   "para": "15.5.2",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    278
@@ -13183,12 +13471,24 @@
   "id": "AFH10-644/15.5.2.1",
   "manual": "AFH10-644",
   "para": "15.5.2.1",
-  "chapter": "chapter 1, 2, 3).",
+  "chapter": "Chapter 15",
   "heading": "MATERIAL TENSILE STRENGTH",
   "pages": [
    278
   ],
   "text": "Items that can be Packed in a Small Container Examples of items which can be packed into a small container include:\n- Matches.\n- Safety pins (varied sizes).\n- Fishhooks and line.\n- Knife or Multi-tool (small, multi-bladed).\n- Button compass.\n- Prophylactic (for water container).\n- Snare wire.\n- Water purification tablets.\n- Signal mirror.\n- Needles with thread.\n- Band-Aids.\n- Aluminum foil.\n- Insect repellent stick.\n- Lip Balm.\n- Soap (Antiseptic).\n- Super Glue\n- Duct Tape",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/16.h1",
+  "manual": "AFH10-644",
+  "para": "16.h1",
+  "chapter": "Chapter 16",
+  "heading": "16. Water",
+  "pages": [
+   279
+  ],
+  "text": "Nearly every isolating event details the need IP have for water. Many ingenious methods of locating, procuring, purifying, and storing water are included in the recorded experiences of IP. Whether isolated in temperate, tropic, or dry climates, water may be one of their first and most important needs. The priority of finding water over that of obtaining food must be emphasized to potential IP. Individuals may be able to live for weeks without food, depending on the temperature and amount of energy being exerted, but a person who has no water can be expected to die within days. Even in cold climate areas or places where water is abundant, IP should attempt to keep their body fluids at a level that will maintain them in the best possible state of health. Even in relatively cold climates, the body needs two quarts of water per day to remain efficient.",
   "notices": []
  },
  {
@@ -13710,6 +14010,18 @@
    293
   ],
   "text": "Storing Water for Later Consumption After water is found and purified, IP may wish to store it for later consumption. The following make good containers, but may need to be washed or rinsed out before using:\n- Water bag and Canteen.\n- Tarp, sheet of plastic, or an EVC.\n- Plastic Bag\n- Prophylactic (placed inside a sock for protection of bladder).\n- Segment of bamboo.\n- Birch bark and pitch canteen.\n- LPU bladder.\n- Hood from anti-exposure suit.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/17.h1",
+  "manual": "AFH10-644",
+  "para": "17.h1",
+  "chapter": "Chapter 17",
+  "heading": "17. Food",
+  "pages": [
+   294
+  ],
+  "text": "Except for the water they drink and the oxygen they breathe, IP must meet their physical needs through the intake of food. This chapter will explore the relationship of proper nutrition to physical and mental efficiency. It is extremely important that IP maintain a proper diet at all times. A nutritionally sound body stands a much better chance of surviving. Improper diet over a long period of time may lead to a lack of stamina, slower reactions, lower resistance to illness, and reduced mental alertness, all of which can cost IP their lives in a survival situation. Knowledge of the body's nutritional requirements will help IP select foods to supplement their rations.",
   "notices": []
  },
  {
@@ -16532,6 +16844,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/18.h1",
+  "manual": "AFH10-644",
+  "para": "18.h1",
+  "chapter": "Chapter 18",
+  "heading": "18. Land Navigation",
+  "pages": [
+   370
+  ],
+  "text": "IP must know their location in order to intelligently decide if they should wait for rescue or if they should determine a destination and (or) route to travel. If the decision is to stay, IP need to know their location in order to radio the information to rescue personnel. If the decision is to travel, IP must be able to use navigational tools to determine the best routes of travel, location of possible food and water, and hazardous areas which they should avoid. This chapter provides background information in the use of the maps, compasses, and other navigational tools.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/18.1.1",
   "manual": "AFH10-644",
   "para": "18.1.1",
@@ -16662,6 +16986,18 @@
    373
   ],
   "text": "Special Purpose Map A special purpose map is one that has been designed or modified to give information not covered on a standard map or to elaborate on standard map data. Special purpose maps are usually in the form of an overprint. Overprints may be in the form of individual sheets or combined and bound into a study of an area. A few of the items covered include:\n- Landform\n- Drainage characteristics\n- Vegetation\n- Climate\n- Coast and landing beaches\n- Railroads\n- Airfields\n- Urban areas\n- Electric power\n- Fuels\n- Surface water resources\n- Ground water resources\n- Natural construction materials\n- Cross-country movement\n- Suitability for airfield construction\n- Airborne operations",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/18.h2",
+  "manual": "AFH10-644",
+  "para": "18.h2",
+  "chapter": "Chapter 18",
+  "heading": "CHART SCALE CODE",
+  "pages": [
+   373
+  ],
+  "text": "USAF Global Navigation and 1:5,000,000 GNC Planning Chart USAF Jet Navigation Chart 1:3,000,000 JNC-A USAF Operational 1: 1,000,000 ONC Navigation Chart USAF Tactical Pilotage Chart 1:500,000 TPC USAF Jet Navigation Chart 1:2,000,000 JN Joint Operations Graphic 1:250,000 JOG",
   "notices": []
  },
  {
@@ -17530,6 +17866,43 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/18.h3",
+  "manual": "AFH10-644",
+  "para": "18.h3",
+  "chapter": "Chapter 18",
+  "heading": "Figure 18-125 (A) Valley, (B) Drainage",
+  "pages": [
+   394
+  ],
+  "text": "- Ridge. A range of hills or mountains with normally minor variations along its crest (Figure 18-16). The ridge is not simply a line of hills; all points of the ridge crest are appreciably higher than the ground on both sides of the ridge.\n- Finger Ridge. A ridgeline of elevation projecting from or subordinate to the main body of a mountain or mountain range (Figure 18-16). A finger ridge is often formed by two roughly parallel streams cutting drainages down the side of a ridge.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/18.h4",
+  "manual": "AFH10-644",
+  "para": "18.h4",
+  "chapter": "Chapter 18",
+  "heading": "Figure 18-136 (A) Ridge Line, (B) Finger Ridge",
+  "pages": [
+   394,
+   395
+  ],
+  "text": "- Saddle. A dip or low point along the crest of a ridge. A saddle is not necessarily the lower ground between two hilltops; it may simply be a dip or break along an otherwise level ridge crest (Figure 18-17).\n- Depression. A low point or sinkhole surrounded on all sides by higher ground (Figure 18-18).\n- Cuts and Fills. Manmade features like the bed of a road or railroad which is graded or leveled by cutting through high areas (Figure 18-19) and filling in low areas.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/18.h5",
+  "manual": "AFH10-644",
+  "para": "18.h5",
+  "chapter": "Chapter 18",
+  "heading": "Figure 18-19 (A) Cut, (B) Fill",
+  "pages": [
+   395
+  ],
+  "text": "- Cliff. A vertical or near vertical slope (Figure 18-20). When a slope is so steep that it cannot be shown at the contour interval without the contours fusing, it is shown by a ticked \"carrying\" contour(s). The ticks always point toward lower ground.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/18.7.1",
   "manual": "AFH10-644",
   "para": "18.7.1",
@@ -18302,6 +18675,18 @@
    425
   ],
   "text": "Relative Position The relative position of the directions is obtained from the diagram, but the numerical value should not be measured from it. For example, if the amount of declination from grid north to magnetic north is 1o, the arc shown in the diagram may be exaggerated if measured, having an actual value of 5'. The position of the three prongs in relation to each other varies according to the declination data for each map.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/19.h1",
+  "manual": "AFH10-644",
+  "para": "19.h1",
+  "chapter": "Chapter 19",
+  "heading": "19. Land Travel",
+  "pages": [
+   426
+  ],
+  "text": "In any isolating situation following an aircraft or vehicular emergency, a decision must be made to either move or remain as close as possible to the aircraft, parachute, or vehicle crash site. In this chapter, land travel will be discussed and the various considerations that IP should address before determining if travel is or is not a necessity. As an IP, the ability to walk effectively is important in conserving energy and safety. Additionally, in rough terrain, travel may need to be done with the aid of a rope. The techniques of ascending and descending steep terrain are fundamental to understanding and performing rescue from rough terrain. These techniques, as well as techniques for snow travel, are covered. Travel may not be easy, but knowledgeable IP can travel safely and effectively while saving time and energy.",
   "notices": []
  },
  {
@@ -19907,6 +20292,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/20.h1",
+  "manual": "AFH10-644",
+  "para": "20.h1",
+  "chapter": "Chapter 20",
+  "heading": "20. River Travel",
+  "pages": [
+   476
+  ],
+  "text": "The techniques of river travel may be adapted to other water features such as swamps and lakes. Information provided in the open sea chapter may be adapted to enhance an IP's survival during river travel. A thorough knowledge of water travel techniques will greatly increase an IP's chances of success.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/20.1.1",
   "manual": "AFH10-644",
   "para": "20.1.1",
@@ -20170,6 +20567,18 @@
    485
   ],
   "text": "The Captain and Crew River travel requires fast, decisive action. Therefore, a paddle raft needs a captain to coordinate the crew's actions by the use of commands or signals. Communications between captain and crew are crucial; all members must agree on a set of short, clear commands. The following are suggested",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/20.h2",
+  "manual": "AFH10-644",
+  "para": "20.h2",
+  "chapter": "Chapter 20",
+  "heading": "COMMANDS:",
+  "pages": [
+   485
+  ],
+  "text": "Forward Crew paddles forward. Back paddle Crew does backstroke. Turn right Left side paddles forward, right side does the backstroke. Turn left Right side paddles forward, left side does the backstroke. Draw right Right side uses draw stroke, left side uses pry stroke. Draw left Left side uses draw stroke, right side uses pry stroke Stop Paddlers relax.",
   "notices": []
  },
  {
@@ -20642,6 +21051,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/21.h1",
+  "manual": "AFH10-644",
+  "para": "21.h1",
+  "chapter": "Chapter 21",
+  "heading": "21. Signaling and Communication",
+  "pages": [
+   504
+  ],
+  "text": "Most successful recoveries have resulted primarily because IP were able to assist in their own recovery. Many rescue efforts failed because IP lacked the knowledge and ability necessary to assist. When needed, this knowledge and ability could have made the difference between life or death, freedom or captivity (Figure 21-1).",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/21.5.1",
   "manual": "AFH10-644",
   "para": "21.5.1",
@@ -21055,6 +21476,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/22.h1",
+  "manual": "AFH10-644",
+  "para": "22.h1",
+  "chapter": "Chapter 22",
+  "heading": "22. Recovery",
+  "pages": [
+   519
+  ],
+  "text": "The success of a rescue effort depends on many factors, such as the availability of rescue forces, the proximity of enemy forces, and current weather conditions. Above all, an IP's knowledge of what to do in the rescue effort may make the difference between success and failure (Figure 22-1).",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/22.2.1",
   "manual": "AFH10-644",
   "para": "22.2.1",
@@ -21297,6 +21730,18 @@
    529
   ],
   "text": "IP Reintegration Responsibilities IP reintegration is the final piece of the IP's mission to \"return to friendly control without giving aid or comfort to the enemy, and to return early and in good physical and mental condition\". It is the hot-wash and conclusion to their isolating event. The returned IP is the critical member of the reintegration process. The IP's responsibilities to the reintegration process include:\n- Understanding of the importance of the information they provide. It may save lives, provide time critical intelligence, and lead to successful execution of future missions.\n- Honesty - when telling their story, giving the best detail and insight they can provide.\n- Communicate openly with the reintegration team. Let them know problems, concerns, and any possible barriers to communication.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/23.h1",
+  "manual": "AFH10-644",
+  "para": "23.h1",
+  "chapter": "Chapter 23",
+  "heading": "23. Evasion",
+  "pages": [
+   530
+  ],
+  "text": "IP who encounter traumatic circumstances must be prepared to survive and evade the enemy to return to friendly control. An active commitment to solving problems and to individual survival (the \"will to survive\") is essential. IP must be prepared to exert extreme effort, both mental and physical, to successfully evade capture.",
   "notices": []
  },
  {
@@ -23948,6 +24393,18 @@
   "notices": []
  },
  {
+  "id": "AFH10-644/24.h1",
+  "manual": "AFH10-644",
+  "para": "24.h1",
+  "chapter": "Chapter 24",
+  "heading": "24. Urban",
+  "pages": [
+   603
+  ],
+  "text": "The United Nations estimates that each day 150,000 people move into or around cities, so by 2025, nearly two-thirds of the world's population will live in or around cities. In regard to future trends, it is estimated 93 percent of urban growth will occur in developing nations, with 80 percent of urban growth occurring in Asia and Africa. This has led military analysts to determine that open battlefields of the past are increasingly shifting to the more complex environments of the city. The IP's determination of a course of action and TTPs during urban conflicts should be guided by the root causes of the conflict such as political, social, cultural, religious, ethnic, or tribal. An urban isolating event could involve any of the non-permissive factors of wartime, peacetime, governmental, terrorists groups, insurgents, and/or criminal organizations.",
+  "notices": []
+ },
+ {
   "id": "AFH10-644/24.1.1",
   "manual": "AFH10-644",
   "para": "24.1.1",
@@ -24853,7 +25310,132 @@
   "pages": [
    641
   ],
-  "text": "Purify Water As in any water procurement opportunity, the IP should purify the water whenever possible (see",
+  "text": "Purify Water As in any water procurement opportunity, the IP should purify the water whenever possible (see chapter 16 \"Water\"). MARK C. NOWLAND, Lt Gen, USAF Deputy Chief of Staff, Operations",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h2",
+  "manual": "AFH10-644",
+  "para": "24.h2",
+  "chapter": "Chapter 24",
+  "heading": "References",
+  "pages": [
+   642,
+   643
+  ],
+  "text": "Air Force Doctrine Document 3-2, Irregular Warfare, 12 July 2016. Air Force Pamphlet 11-216, Air Navigation, 1 Mar 2001. AFTTP 3-2.26, Multi-Service Tactics, Techniques, and Procedures for Survival Evasion, and Recovery, 11 Sep 2012. JP 1-02, Department of Defense Dictionary of Military and Associated Terms, 8 Nov 2010 (As Amended Through 15 Feb 2016). JP 3-11, Operations in Chemical, Biological, Radiological, and Nuclear Environments, 04 October 2013. JP 3-50, Personnel Recovery, 2 Oct 15. Army Field Manual 3-04.513, Aircraft Recovery Operations, Jul 2008 Army Field Manual 3-05.70, Survival, 17 May 2002. Army Field Manual 3-50, Army Personnel Recovery, 02 Sep 2014.Training Circular 4-02.3, Field Hygiene and Sanitation, 6 May 2015. Army Field Manual 27-10, The Law of Land Warfare, 18 July 1956. Army Field Manual 90-5, Jungle Operations, 16 August 1982.GTA 80-01-003, Survival, Evasion, and Recovery Tactics, Techniques, and Procedures, 01 May 2015. Army Field Manual 21-60, Visual Signals, 30 September 1987. Army Field Manual 90-3, Desert Operations, 24 August 1993. Army Training Circular, Map Reading and Land Navigation, 15 November 2013. Army Training Circular 3-21.75, The Warrior Ethos and Soldier Combat Skills, 13 August 2013. Army Training Circular 3-97.61, Military Mountaineering, 26 July 2012. Army Training Circular 21-3, Soldier's Handbook for Individual Operations and Survival in Cold Weather Areas, 17 March 1986. Army Techniques Publications 3-37.34, Survivability Options, 28 June 2013. Army Techniques Publications 3-90.97, Mountain Warfare and Cold Weather Operation, 29 April 2016. Army Techniques Publications 3-90.4, Combined Arms Mobility, 08 March 2016. Army Techniques Publications 3-50.3, Multi-Service Tactics, Techniques, and Procedures for Survival, Evasion, and Recovery (MCRP 3-02H; NTTP 3-50.3; AFTTP 3-2.26), 11 September 2012. The Department of Defense Law of War Manual, 12 June 2015 (Updated December 2016). The Geneva Conventions of 1949 and their Additional Protocols. Uniform Code of Military Justice (UCMJ).",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h3",
+  "manual": "AFH10-644",
+  "para": "24.h3",
+  "chapter": "Chapter 24",
+  "heading": "Commercial Publications:",
+  "pages": [
+   643,
+   644,
+   645
+  ],
+  "text": "Abel, Michael, Backpacking Made Easy. Happ Camp CA: Naturegraph Publishers Inc. 1975. Aleith, R.C., Basic Rock Climbing. New York: Charles Scribner's Sons, 1975. Baird, P.D., The Polar World. New York: John Wiley and Son's Inc., 1964. Benton, Allen and William Werner, Field Biology and Ecology. New York: McGraw, Hill Book Company, 1966. Bergamini, David, The Universe. New York: Life Nature Library, Time Inc., 1966. Birkby, Robert C., 10th Edition, Bou Scout Handbook. New Jersey: Boy Scouts of America, 1992. Brower, Kenneth, \"A Galaxy of Life Fills the Night,\" National Geographic, Vol 160 No. 6 (December 1981), 834-847. Bruemmer, F. Encounter with Arctic Animals. Toronto, Canada: McGraw-Hill Reyerson, Ltd Clark PH.D. BusinessDictionary.com, http://www.businessdictionary.com/definition/clo.html. (Accessed 21 January 2012). Carlson, Kurt (1986) One American Must Die: A Hostage's Personal Account of the Hijacking of Flight 847. Smithmark Pub. ISBN 0865531617. Cousteau, Jacques-Yves, \"The Ocean,\" National Geographic, Vol 160 No. 6 (December 1981), 780-791. Darvill, Fred T., Jr., M.P., Mountaineering Medicine. Skagit Mountain Rescue Unit, Inc., 1969. Dodge, Natt N., Poisonous Dwellers of the Desert. Arizona: Southwest Parks and Monuments Association, 1972. Dwight D. Eisenhower: First Inaugural Address; Tuesday, January 20, 1953 http://www.britannica.com/presidents/article-9116870. (Accessed 21 January 2012). Engel, Leonard, The Sea. New York: Life Nature Library, Time Inc., 1961. Eugenie. \"The Strangest Sea,\" National Geographic, Vol. 148 No. 3, (September 1975), 388-365. Faub, P., Ecology. New York: Life Nature Library, Time Inc., 1963. Fear, Gene, Surviving the Unexpected Wilderness Emergency. Tacoma, Washington: Survival Education Association, 1973. Fear, Gene, Wilderness Emergency, Tacoma, Washington, Survival Education Association, 1975. Fear, G. and J. Mitchel, Fundamentals of Outdoor Enjoyment. Tacoma, Washington: Survival Education Association, 1977. Franklin, Kevin (27 June 1996). \"Out There: Hot Summer Reading\". Tucson Weekly. Archived from the original on 16 May 2008. http://web.archive.org/web/20080516083042/http://www.tucsonweekly.com/tw/06-27- 96/outthere.htm. (Accessed 21 January 2012). Freeman, Otio W. and H.F. Ranp, Essentials of Geography. New York: McGraw-Hill Book Company, 1959. Gibson, C.E., Handbook of Knots and Splices. Emerson Books, 1972. Glasstone, Samuel and Dolan, Philip J., The Effects of Nuclear Weapons. United States Department of Defense and the United States Department of Energy, 1977. Gore, Rick, A Bad Time to be a Crocodile. National Geographic, Vol 153, No. 1 (January 1978), 90-115. Halstead, B.W., Dangerous Marine Animals. Cornell Maritime Press, 1959. Halstead, Bruce W., Poisonous and Venomous Marine Animals of the World. Princeton, New Jersey: Darwin Press, Inc., 1978. Hanuritz, Bernard and Austin, James, Climatology. New York: McGraw-Hill Book Company, 1944. Kaplan, M.D. Harold I., Freedman, M.D. Alfred M., Sadock, M.D. Benjamin J., Comprehensive Textbook of Psychiatry/III. Baltimore, Maryland: Williams and Wilkins Company, 1980. Kasmenn, Bryan, The needle concept, July 2003 http://findarticles.com/p/articles/mi_m0IBT/is_6_59/ai_105656746/?tag=content;col1. (Accessed 21 January 2012). Kearny, Cresson H., Nuclear War Survival. Oregon: NWS Research Bureau Coos Bay. Kjellstorm, Bjorn, Map and Compass, The Orienteering Handbook. American Orienteering Service, New York, 1955. Kuhue, Cecil, River Rafting. World Publication Inc., Mt View, California 1979. Lathrop, Theodore, M.D., Hypothermia: The Killer of the Unexpected. Portland, Oregon, 1972. Ley, Willy, The Poles. New York: Life Nature Library, Time Inc., 1962. Leopold, Starker A., The Desert. New York: Life Nature Library, Time Inc., 1962. Lounsbury, John F. and Lawrence Ogden, Earth Science. New York: Harper and Row, 1969. Matthews, Samuel W., New World of the Ocean, National Geographic, Vol 160 No. 6 (December 1981), 792-833. May, W., Mountain Search and Rescue Techniques. Bolder CO: Rocky Mountain Rescue Group, Inc., 1973. McGinnis, William, White Water Rafting. Time Books New York, NY, 1978. Mountaineering, The Freedom of the Hills, Fourth Edition. Seattle, Washington: The Mountaineers, 1982. Nickelsbury, Janet, Ecology: Habitats, Niches, and Food Chain. New York: J.B. Lippincott Company, 1969. Ormond, C., Complete Book of Outdoor Lore, Outdoor Life. New York: Harper and Row, 1964. Peterson, Roger Tory., The Birds. New York: Life Nature Library, Time Inc., 1963. Shanks, Bernard, Wilderness Survival. New York: Universe Books, 1980. Stephenson, V., Arctic Manual. New York: Greenwood Press, Publishers, Reprinted, 1974. Stephenson, V., The Friendly Arctic. New York: Greenwood Press, Publishers, Reprint of 1943 Edition. Strahler, Arthur N., Physical Geography. New York: John Wiley and Sons, Inc., Third Edition 1969. Strahler, Arthur N., Introduction to Physical Geography. New York: John Wiley and Sons, Inc., 1973. Stuung, Norman: Curtis, Sl, Perry E., White Water. Collier, McMillam Publishers, New York, NY, 1976. Tucker, Todd (2006). The Great Starvation Experiment: Ancel Keys and the Men Who Starved for Science. New York: Free Press. ISBN 0743270304. Van Dorn, William G., Oceanography and Seamanship. New York: Dodd, Mead, and Company 1974, 79-94, and 111-128. Washburn, Bradford, Frostbite. Boston, Museum of Science, 1978. Watson, Peter, War on the Mind. New York: Basic Books, Inc., Publishers 1978. Weiner, Michael A., Earth Medicine - Earth Food. New York: MacMillan Publishing Co., Inc., 1980. Wirth, Eve R., Survival Sense Emergency (May 1982) 38 and 66. Wolf, A.V., Thirst. Springfield IL: C.C. Thomas, 1958. American Wilderness, Time Life Books, Time Life Inc., 1972. Encyclopedia Britannica, Inc., Encyclopedia, William Benton, Publisher, 1972. National School of Conservation, Conservation of Natural Resources, Vo1 1, Tools and Techniques of Resource Management, Lesson 5. National School of Conservation Inc., Washington, D.C., 1973. Publication No. 40, Wild, Edible and Poisonous Plants of Alaska. Fairbanks AK: Cooperative Extension Service, University of Alaska. Special Scientific Reports, Project Mint Julep Part II. Maxwell Air Force Base, Alabama. Research Studies Institute, May 1955. FAA-H-8083-258, Private Pilot's Handbook of Aeronautical Knowledge, 2016.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h4",
+  "manual": "AFH10-644",
+  "para": "24.h4",
+  "chapter": "Chapter 24",
+  "heading": "Other Selected References:",
+  "pages": [
+   645,
+   646
+  ],
+  "text": "AALTDR 64-23, Project Cold Case, AD 462767, February 1965. AALTN 57-16, Emergency Food Value of Alaskan Wild Plants. AD 293-31, July 1957. ADTIC Publication A- 103, Down in the North. Maxwell Air Force Base, Alabama. Research Studies Institute, 1976. ADTIC Publication A-105, Glossary of Arctic and Subarctic Terms. Maxwell Air Force Base, Alabama. Air University, 1955. ADTIC Publication A-107, Man in the Arctic. Maxwell Air Force Base, Alabama. Research Studies Institute, January 1962. ADTIC Publication D-100, Afoot in the Desert. Maxwell Air Force Base, Alabama. Research Studies Institute, October 1980. ADTIC Publication D-102, Sun, Sand and Survival. Maxwell Air Force Base, Alabama. Research Studies Institute, 1974. AGARD Report No. 620, The Physiology of Cold Weather Survival. AD 784-268, April 1973. Air Force CDC 20450 Intelligence Operations Specialist Vol 2, Maps and Charts. Extension Course Institute, Air Training Command, Gunter AFS, Alabama 36118, March 1979. AFP 110-31: International Law-The Conduct Of Armed Conflict And Air Operations http://www.cna.org/documents/5500045700.pdf. (Accessed 21 January 2012). Dayna Curry and Heather Mercer, from the book, Prisoners of Hope . Publisher Doubleday. 2002.",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h5",
+  "manual": "AFH10-644",
+  "para": "24.h5",
+  "chapter": "Chapter 24",
+  "heading": "ISBN 0-385-50783-6",
+  "pages": [
+   646,
+   647
+  ],
+  "text": "EID Bulletin No. l, Sharks. Maxwell Air Force- Base, Alabama. Aerospace Studies Institute EID Bulletin No.2., Poisonous Snakes of North America. Maxwell Air Force Base, Alabama. Aerospace Studies Institute. EID Bulletin No. 3, Poisonous Snakes of Central and South America. Maxwell Air Force Base, Alabama. Aerospace Studies Institute. EID Bulletin No. 7, Water Resources. Maxwell Air Force Base, Alabama. Environmental Information Division, July 1969. EID Bulletin No. 7a, Plant Sources of Water in Southern Asia. Maxwell Air Force Base, Alabama. Aerospace Studies Institute, August 1969. EID Bulletin, No. 8, Survival Nutrition. Maxwell Air Force Base, Alabama. Environmental Information Division. EID Bulletin No. 13, Edible And Hazardous Marine Life. Maxwell Air Force Base, Alabama. Aerospace Studies Institute, April 1976. EID Publication G-104, Airman Against the Sea. Maxwell Air Force Base, Alabama. Aerospace Studies Institute. EID Publication G- 105, Analysis of Survival Equipment. Maxwell Air Force Base, Alabama. Aerospace Studies Institute, 1957. EID Publication G-107, Water Survival Field Tests. Maxwell Air Force Base, Alabama. Aerospace Studies Institute, June 1958. EID Publication T-l00, 999 Survived. AD 727-726, Maxwell Air Force Base, Alabama. Aerospace Studies Institute. Know Your Knots, Missile Hazard Control Section ATC Sheppard Air Force Base, Texas. Guerrilla Hostage: 810 Days in Captivity. Publisher Fleming H. Revell. 1999. ISBN 0-8007-5693- 2 Laboratory Note CRL-LN-55-21 1, The Will to Survive. Reno, USAF Survival Training School, 1955. P.O.W.: A Definitive History of the American Prisoner-Of-War Experience in Vietnam, 1964- 1973. Publisher: Mcgraw-Hill (Tx); First edition (October 1976). ISBN-10: 0070308314 She Went to War The Rhonda Cornum Story, Publisher Presidio Press, 1992, ISBN 0-9141-463- 0 Synopsis of Survival Medicine, Fairchild Air Force Base, Washington, USAF Survival School, 1969. The Engineering Toolbox. http://www.engineeringtoolbox.com/clo-clothing-thermal-insulation-d_732.html. (Accessed 21 January 2012).",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h6",
+  "manual": "AFH10-644",
+  "para": "24.h6",
+  "chapter": "Chapter 24",
+  "heading": "Acronym Definition",
+  "pages": [
+   647
+  ],
+  "text": "5 A's Anchor Assistance Air Accessory Bag Assessment ABCCC Airborne Battlefield Command and Control Center ACDE Aircrew Chemical Defense Ensemble ADF Automatic Direction Finding AGL Above Ground Level AIR Area(s) Identified for Recovery AO Area of Operations AOR Area of Responsibility AUTO A - Around/Avoid U - Under T - Through O - Over AVPU Alert, Verbal, Pain, Unconscious BFT Blue-Force Tracker BLISS (Acronym for Urban) B - Blend into the background L - Low profile I - Irregular S - Survive",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h7",
+  "manual": "AFH10-644",
+  "para": "24.h7",
+  "chapter": "Chapter 24",
+  "heading": "Acronym Definition",
+  "pages": [
+   648
+  ],
+  "text": "S - Secluded BMI Body Mass Index C2 Command and Control C2ISR Command, Control, Intelligence, Surveillance, and Reconnaissance CAC Conduct after Capture CALICS Communication, Authentication, Location, Intentions, Condition, Situation CAP Crisis Action Plan CBRNE Chemical, Biological, Radiological, Nuclear, and High Yield Explosives CD Chemical Defense CIAT International Center for Tropical Agriculture CII Critical Information Item CIK Crypto Ignition Key CJCSI Chairman of the Joint Chiefs of Staff Instruction COA Course of Action CoC Code of Conduct COCOM Combatant Command CONOPS Concept of Operations CONUS Continental United States COSPAS Cosmicheskaya Sistyema Poiska Avariynich Sudov (Russian space system for search of vessels in distress) CPR Cardiopulmonary Resuscitation CRO Combat Rescue Officer CSAR Combat Search and Rescue CSEL Combat Survivor Evader Locator CSI Contingency SERE Indoctrination CST Combat Survival Training DAR Directed Area for Recovery",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h8",
+  "manual": "AFH10-644",
+  "para": "24.h8",
+  "chapter": "Chapter 24",
+  "heading": "Acronym Definition",
+  "pages": [
+   649
+  ],
+  "text": "DDES Distance, Direction, Elevation, and Shape DF Direction Finding DIA Defense Intelligence Agency DME Distance Measuring Equipment DOD Department of Defense DPMO Defense Prisoner of War/Missing Personnel Office DRC Disposition Record Card E&E Evasion and Escape E&R Evasion and Recovery EAI Executive Agent Instruction EAP Emergency Action Plan ECAC Evasion and Conduct After Capture ELT Emergency Locator Transmitter EMSEC Emanations Security EPA Evasion Plan of Action ESR External Supported Recovery EVC Evasion Chart FEBA Forward Edge of the Battle Area GNC Global Navigation Chart GPRS Global Personal Recovery System GPS Global Positioning System GPW Geneva Conventions Relative to the Treatment of Prisoners of War GTAS Ground-to-Air Signals HUMINT Human Intelligence IAD Immediate Action Drill ICRC International Committee of the Red Cross IFAK Individual First Aid Kit",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h9",
+  "manual": "AFH10-644",
+  "para": "24.h9",
+  "chapter": "Chapter 24",
+  "heading": "Acronym Definition",
+  "pages": [
+   650
+  ],
+  "text": "IFF Identification, Friend or Foe INMARSAT International Maritime Satellite IP Isolated Personnel IPG Isolated Personnel Guidance IR Infrared ISOPREP Isolated Personnel Report ISR Intelligence, Surveillance, and Reconnaissance JAOC Joint Air Operations Center JNC Jet Navigation Chart JOG Joint Operational Graphic JPRC Joint Personnel Recovery Center JPRCC Joint Personnel Recovery Coordination Center JPRSP Joint Personnel Recovery Support Product JRCC Joint Reception Coordination Center JSRC Joint Search and Rescue Center JTTP Joint Tactics, Techniques, and Procedures LEU Low Earth Orbit LIMFAC Limiting Factor LOAC Law of Armed conflict LOC Line of Communications LOP Line of Position LOS Line of Sight LPE Low Probability of Exploitation LPU Life Preserver Unit LUT Local User Terminal LZ Landing Zone MAJCOM Major Command MCC Mission Coordination Center",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h10",
+  "manual": "AFH10-644",
+  "para": "24.h10",
+  "chapter": "Chapter 24",
+  "heading": "Acronym Definition",
+  "pages": [
+   651
+  ],
+  "text": "MCW Modulated Continuous Wave MGRS Military Grid Reference System mIRC Microsoft Internet Relay Chat MOA Memorandum of Agreement MOB Main Operating Base MOOTW Military Operations Other Than War MOPP Mission-Oriented Protective Posture MSL Mean-Sea-Level NAR Nonconventional Assisted Recovery NGO Nongovernmental Organization NSRP National Search and Rescue Plan NVD Night Vision Device NVG Night Vision Goggle(s) OGA Other Government Agency ONC Operational Navigation Chart OPCON Operational Control OPLAN Operation Plan OPORD Operation Order OPR Office of Primary Responsibility OPS Operations PAR Primary Area of Recovery PET Polyethylene Terephthalate PFD Personal Flotation Device PLB Personal Locator Beacon PLS Personal Locator System PR Personnel Recovery PRK Personnel Recovery Kits PRO Personnel Recovery Officer",
+  "notices": []
+ },
+ {
+  "id": "AFH10-644/24.h11",
+  "manual": "AFH10-644",
+  "para": "24.h11",
+  "chapter": "Chapter 24",
+  "heading": "Acronym Definition",
+  "pages": [
+   652
+  ],
+  "text": "PSK Personal Survival Kit PTT Push-to-Talk PW Prisoner of War RCC Rescue Coordination Center RM Recovery Mechanism ROE Rules of Engagement RSA Radio Set Adapter RT Recovery Team SA Situational Awareness SAFE Selected Area For Evasion SAR Search and Rescue SERE Survival, Evasion, Resistance, and Escape SODIS Safe Drinking Water in 6 Hours SOFA Status of Forces Agreement SPINS Special Instructions TIG Thermal Insulating Garment TPC Tactical Pilotage Chart TTP Tactics, Techniques, and Procedures UAR Unconventional Assisted Recovery UARM Unconventional Assisted Recovery Mechanism UAV Unarmed Aerial Vehicle UCMJ Uniform Code of Military Justice UHF Ultra-high Frequency USG United States Government UTM Universal Transverse Mercator VHF Very High Frequency",
   "notices": []
  }
 ]

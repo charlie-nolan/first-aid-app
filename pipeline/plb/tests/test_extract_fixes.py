@@ -210,3 +210,40 @@ def test_numbered_table_note_is_a_notice(tmp_path):
         "Hourly placeholder should not exceed 1 1/2 units.",
         "Daily placeholder should not exceed 12 units."]
     assert audit["missing"] == 0
+
+
+def test_unnumbered_stretch_in_numbered_manual(tmp_path):
+    def draw(c):
+        y = lines(c, H - 100, ["Chapter 2"], "Helvetica-Bold", 14) - 6
+        y = lines(c, y, ["PLACEHOLDER MEDICINE"], "Helvetica-Bold", 11)
+        y = lines(c, y, ["Unnumbered placeholder text that opens the chapter", "and carries on here."])
+        y = lines(c, y, ["SECOND PLACEHOLDER HEADING"], "Helvetica-Bold", 11)
+        y = lines(c, y, ["More unnumbered placeholder text."])
+        lines(c, y, ["2-1. First numbered placeholder paragraph."])
+    secs, _, _ = run(tmp_path, draw)
+    assert secs["2.h1"]["heading"] == "PLACEHOLDER MEDICINE"
+    assert secs["2.h1"]["text"] == "Unnumbered placeholder text that opens the chapter and carries on here."
+    assert secs["2.h2"]["text"] == "More unnumbered placeholder text."
+    assert secs["2-1"]["text"] == "First numbered placeholder paragraph."
+    assert secs["2-1"]["heading"] == "SECOND PLACEHOLDER HEADING"
+
+
+def test_words_without_a_space_character_are_split(tmp_path):
+    # Some PDFs (ATP 3-50.21) position words with no space glyph between them; a gap of
+    # about 2 pt at 10 pt used to be merged ("personnelmust").
+    def draw(c):
+        c.setFont("Helvetica", 10)
+        x = 72
+        for w in ["1-1.", "Isolated", "personnel", "must", "understand."]:
+            c.drawString(x, H - 120, w)
+            x += stringWidth(w, "Helvetica", 10) + 2.0
+    secs, _, _ = run(tmp_path, draw)
+    assert secs["1-1"]["text"] == "Isolated personnel must understand."
+
+
+def test_join_words_gap_scales_with_size():
+    from plb.extract import join_words
+    w = lambda t, x0, x1, size: {"text": t, "x0": x0, "x1": x1, "size": size}
+    assert join_words([w("A", 0, 8.66, 12), w("PPLICATION", 8.64, 60, 9.5)]) == "APPLICATION"
+    assert join_words([w("Direct", 0, 24.85, 10), w("pressure.", 25.68, 61, 10)]) == "Direct pressure."
+    assert join_words([w("big", 0, 30, 40), w("type", 30.8, 70, 40)]) == "bigtype"     # 0.8 pt at 40 pt

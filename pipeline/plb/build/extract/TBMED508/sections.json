@@ -1,5 +1,125 @@
 [
  {
+  "id": "TBMED508/0.h1",
+  "manual": "TBMED508",
+  "para": "0.h1",
+  "chapter": "",
+  "heading": "COLD-WEATHER INJURIES",
+  "pages": [
+   1
+  ],
+  "text": "APPROVED FOR PUBLIC RELEASE; DISTRIBUTION IS UNLIMITED.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/0.h2",
+  "manual": "TBMED508",
+  "para": "0.h2",
+  "chapter": "",
+  "heading": "HEADQUARTERS, DEPARTMENT OF THE ARMY",
+  "pages": [
+   1
+  ],
+  "text": "April 2005",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/0.h3",
+  "manual": "TBMED508",
+  "para": "0.h3",
+  "chapter": "",
+  "heading": "MEDICAL 508* DEPARTMENT OF THE ARMY",
+  "pages": [
+   3
+  ],
+  "text": "Washington, DC, 1 April 2005",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/0.h4",
+  "manual": "TBMED508",
+  "para": "0.h4",
+  "chapter": "",
+  "heading": "PREVENTION AND MANAGEMENT OF COLD-WEATHER INJURIES",
+  "pages": [
+   3
+  ],
+  "text": "You can help to improve this bulletin. If you find any mistakes or have a recommendation to improve procedures, please let us know. Mail a memorandum or DA Form 2028 (Recommended Changes to Publications and Blank Forms) directly to Office of The Surgeon General, ATTN: DASG-PPM-NC, 5111 Leesburg Pike, Falls Church, VA 22041-3258. Paragraph Page",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h1",
+  "manual": "TBMED508",
+  "para": "2.h1",
+  "chapter": "Chapter 2 PHYSIOLOGIC RESPONSES AND",
+  "heading": "ADAPTATIONS TO COLD",
+  "pages": [
+   3
+  ],
+  "text": "Cold stress in military operations 2-1 5 Heat exchange 2-2 6 Environmental cold stress 2-3 7 Physiological responses to cold 2-4 8 Physiological responses to exercisecold stress 2-5 11 Individual factors modifying physiological responses to cold 2-6 12 *This bulletin supersedes TB MED 81/NAVMED P-5052-29/AFP 161-11, 30 September 1976.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h2",
+  "manual": "TBMED508",
+  "para": "2.h2",
+  "chapter": "Chapter 2 PHYSIOLOGIC RESPONSES AND",
+  "heading": "TB MED 508",
+  "pages": [
+   4
+  ],
+  "text": "Paragraph Page Cold strain and performance 2-7 15 Adaptations to cold stress 2-8 16",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h1",
+  "manual": "TBMED508",
+  "para": "4.h1",
+  "chapter": "Chapter 4 COLD INJURY: IDENTIFICATION",
+  "heading": "AND TREATMENT",
+  "pages": [
+   4
+  ],
+  "text": "Types of cold injuries 4-1 41 Predisposing factors 4-2 42 Hypothermia 4-3 47 Frostbite 4-4 53 Nonfreezing cold injury 4-5 60 Profiles and medical board 4-6 65 Surveillance 4-7 65",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/C.h1",
+  "manual": "TBMED508",
+  "para": "C.h1",
+  "chapter": "Appendix C RISK MANAGEMENT STEPS FOR PREVENTING COLD",
+  "heading": "CASUALTIES FOR USE BY COMMANDERS, SENIOR",
+  "pages": [
+   4
+  ],
+  "text": "NCOs, AND INSTRUCTORS 75",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h1",
+  "manual": "TBMED508",
+  "para": "D.h1",
+  "chapter": "Appendix D EXTENDED COLD WEATHER CLOTHING SYSTEM 79",
+  "heading": "TB MED 508",
+  "pages": [
+   5
+  ],
+  "text": "List of Tables Number Title Page 3-1 Intensity of exercise for selected military tasks 23 3-2 Insulation value of different pieces of Army clothing 24 3-3 Immersion time limits at different water temperatures and immersion depths 28 3-4 List of recommended preventive measures to decrease frostbite risk 31 3-5 Time in seconds to reach a finger-skin temperature of 32 degrees F while touching various materials at different temperatures 32 3-6 Daily energy expenditures (measured by doubly labeled water) of military activities 38 4-1 Predisposing factors for hypothermia 45 4-2 Predisposing factors for frostbite and peripheral cold injury 46 4-3 Core temperature and associated physiological changes that occur as core temperature falls 47 4-4 Signs and symptoms of hypothermia 51 4-5 Degrees of frostbite 54 4-6 Stages of freezing cold injury 57 4-7 Rewarming protocol 59 4-8 Recovery stage classification of NFCI based on symptomatology and time from rewarming 62 List of Figures Number Title Page 2-1 Energy (heat) transfer of a soldier performing physical work in cold weather 6 2-2 Effect of cold stress on decreasing skin temperature, increasing peripheral insulation, and reducing the size of the body core 8 2-3 Decrease in finger-skin temperature upon initial exposure to cold (water) and subsequent CIVD responses with continued exposure 9 2-4 Comparison of metabolic rates (METs) during thermoneutral rest, shivering in cold water, and two levels of exercise (1 MET is equal to resting metabolism.) 10 2-5 Patterns of cold acclimatization 16 3-1 Cold strain risk management process 20",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h2",
+  "manual": "TBMED508",
+  "para": "D.h2",
+  "chapter": "Appendix D EXTENDED COLD WEATHER CLOTHING SYSTEM 79",
+  "heading": "TB MED 508",
+  "pages": [
+   6
+  ],
+  "text": "List of Figures (Continued) Number Title Page 3-2 Approximate amount of clothing insulation needed at different air temperatures and physical activity levels 22 3-3 Effects of exercise and wind speed on finger (covered with mitten) and forehead skin temperatures in 14 degrees F air 29 3-4 Windchill temperature index 30 3-5 Time in minutes until the occurrence of cheek frostbite in the most susceptible 5 percent of personnel 30 3-6 Energy expenditure while walking at different velocities in various terrain conditions 37 4-1 Types of cold injuries 41 4-2 Frequency of occurrence of hospitalization for cold-weather injuries among Active Duty soldiers, by winter season, 1980-1999 42 4-3 Number of reported cases of cold-weather injuries from 1998-99 to 2002-03 43 4-4 Cases of cold weather injury hospitalizations by location of Army installation 44 4-5 Rewarming curves for shivering and exercise following cold water immersion 50 4-6 Pictures of frostbite 56 4-7 Nonfreezing cold injury 61 4-8 Schematic of factors and mechanisms that contribute to nonfreezing cold injuries 63 D-1 Lightweight long underwear 79 D-2 Expedition-weight long underwear 79 D-3 Fleece-layered jacket and trousers 80 D-4 Polyester batting jacket and trousers 80 D-5 Gore-TexTM parka and trousers 80",
+  "notices": []
+ },
+ {
   "id": "TBMED508/1-1",
   "manual": "TBMED508",
   "para": "1-1",
@@ -48,6 +168,42 @@
   "notices": []
  },
  {
+  "id": "TBMED508/1.h1",
+  "manual": "TBMED508",
+  "para": "1.h1",
+  "chapter": "CHAPTER 1",
+  "heading": "TB MED 508",
+  "pages": [
+   8
+  ],
+  "text": "(b) Obtain regular real-time, local weather data and predictions to identify windows of opportunity for critical military operations.\n(3) Develop and implement controls for cold, wetness, and wind exposure.\n(a) Ensure soldiers are provided adequate clothing, shelter, heaters, warming areas, food, and warm beverages for cold-weather operations.\n(b) Ensure that only Army-approved heaters are used and personnel are trained in the use of the heaters (see paragraph 3-5a(3)).\n(c) Consider modifying outdoor activities when windchill categories indicate extreme risk of frostbite.\n(d) Initiate a buddy system under cold conditions, and have personnel check each other for cold injuries.\n(4) Provide safe alternative training for individuals or units identified as being at particular risk for cold casualties.\nc. Medical planners will determine regional high and low temperatures when preparing their Medical Intelligence Preparation of the Battlespace (MIPB) and ensure that the commander is briefed on how to protect unit personnel and what climate injuries the medical commander can expect to treat.\nd. Unit medical personnel will--\n(1) Understand the commander's intent and mission goals and advise the commander on the potential adverse effects of cold weather and propose practical options for control of cold, wetness and wind exposure under difficult circumstances.\n(2) Assess each component of cold exposure (environmental factors, condition of the soldier, work load and mission requirements) to plan for the primary prevention of cold injuries by answering the following questions:\n(a) What are the anticipated temperatures and wind speeds to which soldiers will be exposed, and will the soldier be protected from the effects of cold temperatures, wetness and wind?\n(b) What uniform/equipment will be worn, and is clothing clean and without holes or broken fasteners?\n(c) What work intensity and duration is planned?\n(d) Will the soldier be exposed to other materials that increase the risk of a cold injury (such as bare metal objects, fuels or petroleum, oil or lubricants (POL)?\n(e) Will the soldier be able to move around to keep warm, dress down to avoid overheating, or seek shelter to avoid rain/wind/snow?\n(f) Will feet be dry and warm, and will soldiers be given opportunities to change socks/footwear?\n(g) Will the soldier be with a buddy who can assist/watch over him or her to prevent a cold injury?\n(3) Determine onsite windchill temperature using the windchill temperature index table and provide guidance for adjusting physical training and clothing according to the windchill category and work intensity.\n(4) Assist the logistician in estimating clothing, shelter, and heater requirements. 2",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/1.h2",
+  "manual": "TBMED508",
+  "para": "1.h2",
+  "chapter": "CHAPTER 1",
+  "heading": "TB MED 508",
+  "pages": [
+   9
+  ],
+  "text": "(5) Educate the soldiers about the steps needed to minimize the risk of cold injury, to include risk factors such as age, race, fitness, hydration, nutrition, rest, alcohol and drugs, and actions to avoid cold injury such as understanding environmental and personal risks, establishing observational checks, avoiding contact cooling, using clothing properly, and exercising.\n(6) Educate soldiers in recognizing the signs of impending cold injury and the basics of buddy aid.\ne. Preventive medicine officers will--\n(1) Estimate the rate of cold injury and arrange required medical support associated with each course of action.\n(2) Develop a casualty evacuation plan to include a means of warming and monitoring patients.\n(3) Integrate the estimates of mission injury rates, mission-compatible preventive measures, and medical support requirements to determine if alternative plans need to be developed by the command staff.\n(4) Become aware of what types of illnesses are being seen at sick call and what medications are being used.\n(5) Interview soldiers diagnosed as having signs and symptoms of cold injury to describe predisposing conditions and the circumstances surrounding the development.\n(6) Use the Tri-Service Reportable Medical Events System to report cold casualties.\n(7) Communicate to field commanders immediately upon recognition of cold injury sentinel events and clusters.\nf. Soldiers will--\n(1) Be familiar with the causes and risks of cold injury and the personal protective measures they can take to prevent cold injury.\n(2) Attend cold injury threat and risk communication briefings and receive appropriate written cold injury prevention materials well in advance of deployment.\n(3) Apply personal protective measures and use protective clothing and equipment properly (loose and in layers) when required.\n(a) Ensure that their cold-weather clothing is clean, dry, and in good repair, without holes or broken fasteners.\n(b) Consume adequate food and fluid for optimal performance in the cold.\n(c) Ensure their deployment kits contain an initial supply of stock hats, sunglasses, sunscreen, lip balm, and skin-care items.\n(4) Use the buddy system to monitor performance and health.\n(5) Report to the unit medic/medical officer if they or a buddy develops cold injury symptoms. 3",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/1.h3",
+  "manual": "TBMED508",
+  "para": "1.h3",
+  "chapter": "CHAPTER 1",
+  "heading": "This page intentionally left blank",
+  "pages": [
+   10
+  ],
+  "text": "4",
+  "notices": []
+ },
+ {
   "id": "TBMED508/2-1",
   "manual": "TBMED508",
   "para": "2-1",
@@ -57,6 +213,18 @@
    11
   ],
   "text": "Cold stress in military operations\na. Troops participating in military deployments will often encounter cold stress that requires management for successful mission accomplishment. Excessive cold stress degrades physical performance capabilities, significantly impacts morale, and eventually causes cold casualties. Cold stress environments include not only exposure to extremely low temperatures (for example, Arctic regions), but also cold-wet exposures (for example, rain, immersion) in warmer ambient temperatures.\nb. U.S. military operations have been conducted successfully in cold-weather climates where troops were required to endure low temperatures and cold-wet exposure for long hours and push their physiologic limits (for example, World War II European campaigns, Korea, Balkans, and Afghanistan). However, cold-weather conditions impair many aspects of normal military functioning in the field, which can in turn influence soldier health and performance.\n(1) Food and water requirements may be high, yet supply can be difficult, resulting in inadequate nutrition and hydration.\n(2) Furthermore, cold weather contributes to increased disease and non-battle injury since maintaining proper field sanitation and personal hygiene is difficult, and sick and injured individuals are susceptible to medical complications produced by cold.\n(3) Operational problems often arise in cold weather. Mission completion may be delayed because of physical performance decrements, equipment malfunctions, and slow movement of vehicles and personnel. Also, cold-weather clothing can be difficult to integrate with nuclear, biological, and chemical (NBC) protective clothing/equipment.\n(4) In addition, mission requirements that demand intense physical activity, little food, and no sleep make successful cold stress management difficult because these requirements disrupt the normal physiological responses to the cold.\nc. Military operations can occur in the coldest weather and with minimal logistical support, leaving troops under-equipped for the hostile conditions. Individuals in these situations must rely on their prior training and strong leadership in cold strain management. This training can determine whether the mission will succeed or fail with either few or high casualty rates. Individuals in these situations often are not fully prepared, and, consequently, unit commanders and trainers must actively plan to prevent cold casualties. Military training exercises, whether initial entry training, special badge qualification training, or military operations training, often occur during cold-weather seasons and can provide an opportunity to teach personnel how to follow appropriate guidelines for successful completion of missions in cold environments.\nd. Leadership is key for training in cold-weather environments and for successful cold weather military operations. Soldiers need to have confidence that they can master the environment through the use of preventive measures. Lessons learned from previous cold-weather deployments must be emphasized. Leaders must learn their unit's capabilities and manage cold exposure relative to the provided guidance. Guidance is based on the \"average\" soldier, although there is significant individual variability. Supporting medical officers must ensure that the 5",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h3",
+  "manual": "TBMED508",
+  "para": "2.h3",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   12
+  ],
+  "text": "principles of this document are incorporated into the commander's plans and are applied to all phases of training and operations: pre, during, and post. See appendix B for cold-weather deployment tips.",
   "notices": []
  },
  {
@@ -72,6 +240,18 @@
   "notices": []
  },
  {
+  "id": "TBMED508/2.h4",
+  "manual": "TBMED508",
+  "para": "2.h4",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   13
+  ],
+  "text": "b. Radiative heat loss away from the body occurs when surrounding objects have lower surface temperatures than the body and is independent of air motion. However, radiation from the sun, ground, and surrounding objects can have a high radiative capacity and cause the body to gain heat even though the air temperature is below that of the body. For example, on a very sunny day a soldier on a snowy surface may gain a significant amount of heat, despite low air temperatures. However, even when ambient air temperatures are relatively high, heat loss from exposed skin is greater under a clear, night sky than during daylight hours.\nc. Conduction of heat occurs between two objects that are in direct contact and have different surface temperatures. Sleeping on cold ground/snow and touching metal objects and fuels are common ways this occurs during cold weather military operations. Heat conduction is greater during exposure when skin and clothing are wet than when the skin is dry. Wetness decreases the insulation of clothing and increases the contact area between skin and a surface.\nd. Evaporative heat loss occurs when liquid turns to water vapor. Evaporative heat loss is associated with sweating and respiration. The rate of sweat evaporation depends upon air movement and the water vapor pressure gradient between the skin and the environment, so in still or moist air the sweat tends to collect on the skin. When soldiers perform strenuous exercise in heavy clothing, significant heat strain and sweating can occur. After exercise, the nonevaporated sweat will reduce clothing insulation and possibly form ice crystals. Breathing cold air can slightly exacerbate respiratory water loss during exercise, since cold air has lower water content than warmer air. Therefore, the most significant avenue of evaporative heat loss during exercise in cold conditions is the same as in warm conditions, that is, sweating.",
+  "notices": []
+ },
+ {
   "id": "TBMED508/2-3",
   "manual": "TBMED508",
   "para": "2-3",
@@ -81,6 +261,18 @@
    13
   ],
   "text": "Environmental cold stress\na. Cold stress refers to environmental and/or personal conditions that tend to remove body heat and decrease body temperature. Cold strain refers to physiological and/or psychological consequences of cold stress.\nb. Low air temperature, high humidity/rain/immersion, little thermal radiation, and high air movement are all causes of environmental cold stress. Air temperature is measured from a shaded dry bulb thermometer. The contribution of humidity is determined from a wet bulb temperature (measured by covering a thermometer bulb with a wet wick). Radiant heat (solar load) is assessed by a \"black globe\" thermometer consisting of a 6-inch hollow copper sphere painted matte (flat) black on the outside and a thermometer at the center of the sphere. Air movement is measured from an anemometer.\nc. The U.S. Army employs the windchill temperature (WCT) index as one measure to mark levels of environmental cold stress. The WCT integrates wind speed and air temperature to provide an estimate of the cooling power of the environment and the associated risk of peripheral cold injury. The windchill temperature is the equivalent still-air (that is, no wind) temperature at which heat loss through bare skin would be the same as under windy conditions. Note that individuals riding in open vehicles or exposed to propeller/rotor-generated wind can be subject to dangerous windchill, even when natural winds are low. Ambient dry bulb (<32 degrees Fahrenheit (F)) and contact surface temperatures (exposed skin) are used to determine the risk of frostbite. There is no risk of frostbite when the ambient air temperature is above 32 degrees F even though the WCT may be 7",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h5",
+  "manual": "TBMED508",
+  "para": "2.h5",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   14
+  ],
+  "text": "below freezing due to strong winds. Wet skin will not freeze if the air temperature is above 32 degrees F, but wet skin below 32 degrees F will freeze faster than dry skin.\nd. When assessing weather conditions for troops operating in mountainous regions or for aircraft flight personnel, altitude must be considered, if weather measurements are obtained from stations at low elevations. Temperatures, windchill, and the risk of cold injury at high altitudes can differ considerably from those at low elevations. In general, it can be assumed that air temperature is 3.6 degrees F (2 degrees Celsius (C)) lower with every 1,000 feet above the site at which temperature was measured. Winds are usually greater at high altitude, and there is less cover above the tree line.",
   "notices": []
  },
  {
@@ -96,6 +288,114 @@
   "notices": []
  },
  {
+  "id": "TBMED508/2.h6",
+  "manual": "TBMED508",
+  "para": "2.h6",
+  "chapter": "CHAPTER 2",
+  "heading": "insulation, and reducing the size of the body core",
+  "pages": [
+   14
+  ],
+  "text": "8",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h7",
+  "manual": "TBMED508",
+  "para": "2.h7",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   15
+  ],
+  "text": "(2) During whole-body cold exposure, the vasoconstrictor response extends beyond the fingers and occurs throughout the entire body's peripheral shell. Skin vasoconstriction begins when skin temperature falls below about 95 degrees F (35 degrees C) and becomes maximal when skin temperature is about 88 degrees F (31 degrees C) or less; however, as cold strain becomes greater, other underlying tissues will vasoconstrict and increase the insulating layer while constricting the body core area. Therefore, underlying muscles can become cold and stiff. Thus, the vasoconstrictor response to cold exposure helps retard heat loss and defend core temperature, but at the expense of a decline in peripheral tissue temperatures. Figure 2-2 also demonstrates core temperature contraction with concomitant declines in peripheral temperatures during cold exposure.\n(3) The vasoconstriction-induced blood flow reduction and fall in skin temperature contribute to the etiology of peripheral cold injuries, particularly digits and appendages (such as the ears and nose). Cold-induced vasoconstriction has pronounced effects on the hands, fingers, and feet, making them particularly susceptible to cold injury, pain, and a loss of manual dexterity. Another vasomotor response, cold-induced vasodilation (CIVD), modulates the effects of vasoconstriction in the fingers, toes, nose, and ears. Figure 2-3 illustrates this CIVD response in the finger. 90 80",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h8",
+  "manual": "TBMED508",
+  "para": "2.h8",
+  "chapter": "CHAPTER 2",
+  "heading": "F",
+  "pages": [
+   15
+  ],
+  "text": "40 30",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h9",
+  "manual": "TBMED508",
+  "para": "2.h9",
+  "chapter": "CHAPTER 2",
+  "heading": "subsequent CIVD responses with continued exposure",
+  "pages": [
+   15
+  ],
+  "text": "(a) Following the initial decline in skin temperature during cold exposure, a transient increase in blood flow occurs in the cooled finger, toe, cheek, nose, and ear. The CIVD is also transient, resulting in periodic oscillations of skin temperature. A similar CIVD occurring in the forearm appears to reflect vasodilation of muscle as well as cutaneous vasculature. The increased blood flow increases tissue temperatures to protect tissues and also to sustain dexterity in fingers. Originally thought to be only a local effect of cooling, evidence suggests that a central nervous system mechanism also mediates CIVD. For example, when core temperatures are low, the CIVD response is blunted. Therefore, hypothermic soldiers are at increased risk for peripheral cold injury.\n(b) CIVD is enhanced if a person's hands are repeatedly exposed to the cold while the core and skin temperatures are maintained. This response was first noted in fishermen who routinely cleaned fish with their hands in cold water while wearing proper clothing to keep their bodies warm. The fisherman maintained warmer finger temperatures than the general population. Most 9",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h10",
+  "manual": "TBMED508",
+  "para": "2.h10",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   16
+  ],
+  "text": "people demonstrate a CIVD response, although the response can be blunted in those with preexisting vascular impairments such as Raynaud's syndrome and diabetes or those who have used vibrating machinery or tools for a long time.\nc. Heat production.\n(1) Cold exposure elicits an increased metabolic heat production in humans, which can help offset heat loss. In humans, cold-induced heat production is attributable to skeletal muscle contractile activity, during which about 80 percent of the total metabolic energy expended is liberated as heat. Humans initiate this thermogenesis by either voluntarily modifying behavior (increasing physical activity) or through shivering. While certain animals exhibit an increased metabolic heat production by noncontracting tissue in response to cold exposure (that is, nonshivering thermogenesis), adult humans lack this mechanism.\n(2) Shivering, which consists of involuntary, repeated, rhythmic muscle contractions, may start immediately or after several minutes of cold exposure (lowered skin temperature and increased heat loss). It usually begins in the torso muscles, then spreads to the limbs. The intensity and extent of shivering varies according to the severity of cold stress. As shivering intensity increases and more muscles are recruited to shiver, whole-body oxygen uptake increases, typically reaching about two to three times the resting metabolism during sedentary exposure to cold air, but often greater than four times the resting metabolism during sedentary immersion in cold water. Figure 2-4 compares the responses of shivering-induced metabolic heat production to a typical physical training running pace (6 miles per hour (mph)) and maximal exercise. Note that running will produce more than twice the rate of heat production than heavy shivering. However, shivering can be sustained longer than heavy or maximal exercise. 16 14 12 S T E",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h11",
+  "manual": "TBMED508",
+  "para": "2.h11",
+  "chapter": "CHAPTER 2",
+  "heading": "M 10",
+  "pages": [
+   16
+  ],
+  "text": "e aR 8 c o b 6 a e M 4 2 0",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h12",
+  "manual": "TBMED508",
+  "para": "2.h12",
+  "chapter": "CHAPTER 2",
+  "heading": "(Tsk = 54 degrees F)",
+  "pages": [
+   16
+  ],
+  "text": "Note: Tc is core temperature; Tsk is skin temperature.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h13",
+  "manual": "TBMED508",
+  "para": "2.h13",
+  "chapter": "CHAPTER 2",
+  "heading": "cold water, and two levels of exercise (1 MET is equal to resting metabolism.)",
+  "pages": [
+   16
+  ],
+  "text": "10",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h14",
+  "manual": "TBMED508",
+  "para": "2.h14",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   17
+  ],
+  "text": "d. Diuresis and fluid balance.\n(1) A widely recognized effect of exposure to cold is an increase in urine flow rate, that is, cold-induced diuresis (CID). This response is likely caused by a redistribution of body fluids from the extremities and skin to the central circulation as peripheral vasoconstriction occurs. CID is self-limiting, meaning the response diminishes as body water content falls in dehydrated individuals. CID is also prevented by moderate intensity exercise during cold exposure. However, if CID has already occurred by the time exercise begins and the soldiers perform at high levels of physical activity and elevate their core temperature, they may need to rehydrate and reestablish their body water/vascular volume to insure optimal performance.\n(2) Fluid intake often becomes inadequate during cold exposure accompanied by strenuous activity. Thirst sensation is blunted in cold persons, and cold environments often present practical constraints on voluntary drinking (such as water availability, desire to avoid urinating outdoors in cold climates, and time to hydrate). Even in cold environments, metabolic heat production can exceed heat loss, with the resulting heat storage causing hyperthermia and initiating thermoregulatory sweating. The problem is that clothing insulation needed for warmth and comfort in cold environments is much greater during rest and light activity than during strenuous activity. Therefore, if one begins exercising vigorously while wearing clothing selected for sedentary activities in the cold, sweating and the resultant fluid requirements can increase substantially if soldiers do not adjust their clothing layers. If these increased drinking requirements go unmet, dehydration will ensue, just as occurs during exercise in the heat. Dehydration adversely impacts physical work performance (particularly if cold strain is minimized by clothing) but does not alter heat conservation or CIVD responses.",
+  "notices": []
+ },
+ {
   "id": "TBMED508/2-5",
   "manual": "TBMED508",
   "para": "2-5",
@@ -108,6 +408,18 @@
   "notices": []
  },
  {
+  "id": "TBMED508/2.h15",
+  "manual": "TBMED508",
+  "para": "2.h15",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   18
+  ],
+  "text": "b. Fuel metabolism.\n(1) Fuel utilization changes in proportion to the metabolic heat production during cold exposure. During resting cold exposure, plasma glucose oxidation increases 1.5 fold, muscle glycogen use doubles, and lipid oxidation increases almost 3 fold, all due to shivering. Protein use does not change. Plasma glucose, muscle glycogen, fats, and proteins account for 10, 30, 50, and 10 percent, respectively, of total heat production during resting cold exposure. However, if muscle glycogen levels are reduced substantially, such as following extended physical activity, shivering intensity at rest can be maintained by increasing fat oxidation. Thus, macronutrient reserves (carbohydrates, proteins, fats) do not appear to limit shivering.\n(2) During high-intensity, exercise-cold stress, both carbohydrate and fat use increase substantially. As in temperate environments, stored carbohydrates in the form of muscle glycogen are needed to sustain high-intensity exercise. Furthermore, muscle glycogen utilization has been observed to be more pronounced during low-intensity, exercise-cold stress (for example, below 25 percent maximal endurance exercise capability) compared to temperate conditions. Therefore, if soldiers march slowly for a long period of time in the cold to reach an objective and then must do high-intensity work, their ability to perform may be compromised. These findings reinforce the importance of eating adequate amounts of carbohydrate to sustain muscle glycogen at optimal levels. This might be achieved by providing soldiers with carbohydrate supplements during long-duration tactical movements. For example, drinking a 2 to 7 percent carbohydrate beverage increases endurance time by 12 to 50 percent during highintensity exercise in the cold.\nc. Respiratory.\n(1) Upper airway temperatures, which normally remain unchanged during exercise under temperate conditions, can decrease substantially when extremely cold, dry air is breathed during strenuous exercise, but temperatures of the lower respiratory tract and deep body temperatures are unaffected. Pulmonary function during exercise is usually unaffected by breathing cold air in healthy soldiers, but allergy-prone soldiers frequently experience bronchospasm. The triggering mechanism for this in susceptible soldiers remains unresolved but may be related to thermally induced leakage in the lung's microcirculation with subsequent edema or to a sympathetic response secondary to facial cooling.\n(2) Soldiers who experience bronchospasm when breathing cold air during heavy exercise and/or exposure to pollutants exhibit a reduced forced expiratory volume that can limit maximal ventilation and maximal performance. Even healthy soldiers can experience increased respiratory passage secretions and decreased mucociliary clearance when breathing very cold air during exercise, and any associated airway congestion may impair pulmonary mechanics and ventilation during exercise, thus impacting performance.",
+  "notices": []
+ },
+ {
   "id": "TBMED508/2-6",
   "manual": "TBMED508",
   "para": "2-6",
@@ -117,6 +429,42 @@
    18
   ],
   "text": "Individual factors modifying physiological responses to cold\na. Body size and subcutaneous fat.\n(1) Most of the variability among individuals in their thermoregulatory responses and capability to maintain normal body temperatures during cold exposure results from differences in anthropometric characteristics. Individuals with a high amount of body surface area relative to 12",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h16",
+  "manual": "TBMED508",
+  "para": "2.h16",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   19
+  ],
+  "text": "their body mass (long and lean or ectomorphs) lose more body heat in the cold than individuals with a small surface area relative to body weight (short and stocky or mesomorphs). The reason for this is that the principal means of heat loss in cold-exposed humans is convective heat transfer at the skin surface. However, this effect is somewhat lessened in short and stocky people because a large body mass favors maintenance of a constant temperature by virtue of a greater heat content compared to a small body mass.\n(2) All body tissues provide thermal resistance to heat conduction (that is, insulation) from within the body, but thermal resistivity of fat is greater than other tissues. Subcutaneous fat provides significant insulation against heat loss in the cold, and thermal conductance decreases with increasing subcutaneous fat thickness. Consequently, fat persons experience smaller body temperature changes and shiver less during cold exposure than lean persons. As previously discussed, constriction of muscle tissue (underlying cold skin) will reduce blood flow and provide resistance to heat loss. Therefore, heavily muscled persons may be able to defend body temperature better than very lean soldiers because of better insulation and greater heat production from shivering.\nb. Gender.\n(1) The peripheral cold injury rate for female soldiers is two times higher than the rate for males. Gender differences in thermoregulatory responses during cold exposure are almost entirely attributable to women's generally greater body fat content and thicker subcutaneous fat layer than men of comparable age and weight. For example, in men and women having equivalent total body mass and surface areas, women's greater fat content enhances insulation and reduces the fall in core temperature. In women and men of equivalent subcutaneous fat thickness, the women typically have a greater surface area but smaller total body mass (thus lower total body heat content) than men. Therefore, total heat loss would be greater in women due to the larger surface area for convective heat flux, and body temperature would tend to fall more rapidly for any given cold stress.\n(2) Women typically have lower finger temperatures. Furthermore, women have higher rates of peripheral vascular disorders (for example, Raynaud's) that could make them more susceptible to peripheral cold injury.\n(3) Pregnant women need to see a physician to discuss exercising and other activities in the cold. It is very important that pregnant women do not become hypothermic, since this can potentially harm the fetus. In most cases, pregnant women can perform physical training in cold environments if they follow the guidance in this document.\nc. Race. Black male and female soldiers are two to four times more likely to suffer a coldweather injury than their Caucasian counterparts. This increased risk is consistent across all career management fields, which suggests that occupational exposure does not account for the differences between Blacks and Caucasians. Differences between races may be due to coldweather experience but more likely they are due to anthropomorphic considerations (longer, thinner digits) and perhaps greater surface-area-to-mass ratio.\nd. Fitness and training. Overall, physical training and level of fitness appear to have only minor influences on thermoregulatory responses to cold. Most cross-sectional comparisons of aerobically fit and less fit persons find no relationship between maximal aerobic exercise capability and temperature regulation in cold. In those studies purportedly demonstrating a 13",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h17",
+  "manual": "TBMED508",
+  "para": "2.h17",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   20
+  ],
+  "text": "relationship, differences in thermoregulation appear more likely attributable to anthropometric (body size and composition) differences between the aerobically fit and less fit subjects, rather than an effect of maximal aerobic exercise capabilities per se. The primary thermoregulatory advantage provided by the increased endurance resulting from physical training is that the fitter individual can sustain voluntary activity at a higher intensity and longer duration than less fit persons and thus maintain higher and sustained rates of metabolic heat production, which will keep them warmer. In addition, exercise training has been suggested to enhance the peripheral vasoconstriction response, which would conserve body heat but possibly increase peripheral cold injury risks.\ne. Fatigue. Physical fatigue has been shown to impair shivering and peripheral vasoconstriction responses during cold exposure. Therefore, physical fatigue acts to increase the soldier's risk for hypothermia. Fatigued soldiers cannot sustain sufficient activity levels to maintain body temperature during severe cold exposure. As fatigue occurs, the exercise intensity and rate of heat production decline so that heat debt will increase and body temperature will decrease as long as heat loss continues. Strenuous activity and repeated or prolonged cold exposure, or a combination of both, will act to mediate these less efficient heat conservation and metabolic heat production responses.\nf. Age. Soldiers who are older than 45 years may be less cold tolerant than younger persons, either because of a decline in physical fitness (will fatigue sooner because of working at a higher percentage of maximal endurance exercise capability) or because of reduced vasoconstriction and heat conservation in comparison to their younger counterparts.\ng. Dehydration. Dehydration can increase susceptibility to cold injury by decreasing the ability to sustain physical activity (particularly if accompanied by heat stress from exercising in heavy clothing) and therefore decreasing the ability to sustain thermal balance. In addition, dehydration might impair cognitive function and cause soldiers to use poor judgment. Dehydration has not been shown to reduce peripheral skin temperatures and does not impair shivering.\nh. Sustained operations. Exertional fatigue, sleep restriction, and underfeeding are common stressors during sustained operations and together impair a soldier's ability to maintain thermal balance in the cold because of degradation of the metabolic heat production response as well as impairment of the ability to sustain exercise performance. Soldiers engaged in sustained operations also may make more judgment errors when tired and increase their exposure and risk of injury. A given cold stress is more likely to induce cold injury after a long period of sustained operations compared to earlier in the operation. This emphasizes the need for planned rest, sleep, feeding, and recovery before conducting stressful operations in the cold.\ni. Underfeeding. Underfeeding can result in the development of hypoglycemia, and acute hypoglycemia (< 60 milligrams/deciliter) impairs shivering through a central nervous system mediated effect. Also, declining peripheral carbohydrate stores probably contribute to an inability to sustain physical activity and the associated exercise-induced thermogenesis during cold exposure. No food for 48 hours, even in the absence of hypoglycemia, results in an impaired ability to shiver and increased risk of hypothermia. 14",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h18",
+  "manual": "TBMED508",
+  "para": "2.h18",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   21
+  ],
+  "text": "j. Alcohol. Although alcohol may impart a sense of warmth, any peripheral vasodilation will increase heat loss and the risk of hypothermia. Alcohol can cause hypoglycemia, which will decrease shivering responses and the ability to sustain physical work. In addition, alcohol blunts the senses and impairs judgment, so the soldier may not feel the signs and symptoms of developing cold injury. Alcohol must not be consumed by soldiers who are exposed to cold weather.\nk. Nicotine. Smoking or chewing tobacco can increase susceptibility to frostbite by increasing vasoconstriction in the periphery (for example, the hands). Heavy smokers (two to three packs per day) have a 30 percent higher incidence of peripheral cold injury, perhaps because nicotine reduces the CIVD response. Smoking and chewing will be discouraged during cold-weather operations.",
   "notices": []
  },
  {
@@ -144,6 +492,42 @@
   "notices": []
  },
  {
+  "id": "TBMED508/2.h19",
+  "manual": "TBMED508",
+  "para": "2.h19",
+  "chapter": "CHAPTER 2",
+  "heading": "SUBCUTANEOUS SHELL",
+  "pages": [
+   22
+  ],
+  "text": "16",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h20",
+  "manual": "TBMED508",
+  "para": "2.h20",
+  "chapter": "CHAPTER 2",
+  "heading": "TB MED 508",
+  "pages": [
+   23
+  ],
+  "text": "b. In cold habituation, the most commonly observed acclimatization pattern exhibited, physiological responses to cold become less pronounced than in the unacclimatized state.\n(1) Soldiers will develop this adaptation when exposed to superficial cooling of the body surface, even for short periods and in limited body regions, such as the hands and face. Blunting of both shivering and vasoconstriction are the hallmarks of habituation. Higher peripheral skin temperatures are accompanied by enhanced CIVD responses, decreased pain sensations, and increased manual dexterity.\n(2) Cold-habituated persons with blunted shivering and vasoconstrictor responses to cold sometimes, but not always, also exhibit a more pronounced decline in core temperature during cold exposure than nonhabituated persons. This pattern of cold habituation is sometimes referred to as hypothermic habituation.\n(3) Findings from different cold acclimation studies, when viewed collectively, suggest that short, intense cold exposures (for example, less than 1 hour) a few times per week, with little change in core temperature but pronounced falls in skin temperature, will produce habituation; however, longer exposures (for example, more than 8 hours) to more moderate cold conditions on consecutive days over a fairly long period (for example, more than 2 weeks) are required to induce the hypothermic form of habituation.\n(4) Reduced shivering and warmer skin temperatures caused by habituation could potentially provide a military advantage by improving marksmanship and the ability to perform motor skills, increasing thermal comfort, increasing CIVD responses, and reducing susceptibility to cold injury. Habituation will naturally occur as soldiers train outdoors and decrease skin temperatures in cold weather.\nc. A more pronounced thermogenic response to cold characterizes the metabolic acclimatization pattern. An exaggerated shivering response has been reported to develop because of chronic cold exposure. However, the evidence for this pattern has not been clearly demonstrated.\nd. The third major pattern of cold acclimatization, insulative cold acclimatization, is characterized by enhanced heat conservation mechanisms.\n(1) Insulative cold acclimation occurs when the body core temperature repeatedly falls (for example, during cold water immersion) over several weeks. With insulative acclimatization, cold exposure elicits a more rapid and more pronounced decline in skin temperature and lower thermal conductance at the skin than in the unacclimatized state. This more pronounced vasoconstrictor response to cold is possibly due to enhanced sympathetic nervous response to cold. Insulative acclimation has also been shown to lower resting core temperatures.\n(2) In addition, insulative cold acclimatization may also involve development of enhanced circulatory countercurrent heat exchange mechanisms to limit convective heat loss. This type of acclimation is difficult to induce outside of the laboratory and, in terms of the physiological adjustments in core and skin temperature, there is little practical value for soldiers to repeatedly lower their core temperatures substantially to induce insulative acclimatization, as this will not protect them from cold injury or improve their performance. 17",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/2.h21",
+  "manual": "TBMED508",
+  "para": "2.h21",
+  "chapter": "CHAPTER 2",
+  "heading": "This page intentionally left blank",
+  "pages": [
+   24
+  ],
+  "text": "18",
+  "notices": []
+ },
+ {
   "id": "TBMED508/3-1",
   "manual": "TBMED508",
   "para": "3-1",
@@ -153,6 +537,18 @@
    25
   ],
   "text": "General\na. Cold stress is imposed by the combination of environmental, mission, and individual risk factors. Environmental risk factors include temperature, wind, rain, immersion, and altitude. Mission risk factors include the work intensity (metabolic rates expressed as metabolic equivalent or MET levels); duration of cold exposure; and the availability of adequate shelter, clothing, and food. Individual risk factors include physical fitness, body composition, fatigue, race, gender, and health (including prior history of cold injury, use of medications, alcohol, nicotine, drugs of abuse, and poor nutrition). Soldiers can operate in cold environments if they are appropriately clothed, have adequate shelter and protection, consume adequate food and water, and have sufficient rest. Successful management during cold exposure results in sustained work capabilities and avoidance of casualties. Appendix C contains risk management steps for preventing cold casualties.\nb. Successful management of cold stress depends on proper education and experience of leaders and troops exposed to cold. Leaders must have knowledge and understanding of problems associated with working in cold environments in order to minimize each risk factor. Risk management is the process of identifying potential hazards before conducting cold-weather operations/training and taking the steps necessary to control these hazards. Figure 3-1 outlines the cold strain risk management process for preventing cold injuries. An important aspect of this is recognizing changes in weather conditions so that troops can be alerted to potential modifications that may be necessary to reduce exposure and susceptibility to cold injuries. Therefore, the risk management process must continually be reevaluated as input changes. Finally, being alert to signs of soldier distress in the cold is critical so that management procedures and interventions can be adjusted accordingly. 19",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h1",
+  "manual": "TBMED508",
+  "para": "3.h1",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   26
+  ],
+  "text": "1. Identify Hazard How cold is it? 2. Assess Hazards Analyze Mission Requirements Determine Uniform and Equipment Identify High-Risk Soldiers 3. Develop Controls Implement Cold Mitigation 4. Implement Controls Adopt and Implement Controls into Plans 5. Supervise Evaluate and Correct Controls 20 Air Temperature Wind Rain Immersion Altitude Solar Load Work Rates Load Carried Duration Resupply Availability of Clothing/Shelter Availability of Food and Water Experience Fatigue Fitness Body Fat Health Nutritional Status Time of Day Train in Cold Conditions Obtain Appropriate Weather Information Provide Warming Facility Implement Work/Rest Schedules Provide Proper Clothing and Equipment Mandatory Clothing Changes Provide Food and Water Rotate Soldiers Medevac Plan Changing Weather Plan Develop Standing Operating Procedures (SOPs) for: Self Checks Buddy Checks Leadership Checks Enforce Controls Modify Behavior After-Action Reports",
   "notices": []
  },
  {
@@ -168,6 +564,150 @@
   "notices": []
  },
  {
+  "id": "TBMED508/3.h2",
+  "manual": "TBMED508",
+  "para": "3.h2",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   28
+  ],
+  "text": "f. Multiple layering can be achieved with any combination of Army clothing. The best clothing choices include those that are made from synthetic materials, such as polypropylene (for underwear and t-shirts), fleece, and Gore-TexTM (as a shell). The Army physical training (PT) shirt is made from polyester that can be used for the inner wicking layer. The BDU can be used as an insulation layer, but it is a 50 percent cotton-nylon blend so the material will retain moisture if sweating occurs, eventually degrading the insulation of the BDU. For this reason, the BDU is not recommended for cold-weather training or operations. Gore-TexTM jackets or the nylon PT uniform jacket can provide an outer layer that is windproof and waterproof. When there is a relatively high air temperature with high wind speeds, the appropriate clothing may be light insulation with a windproof layer; if there is a low air temperature, more insulation will be required.\ng. The amount of clothing needed is a function of the air temperature and the physical activity level of the soldier. Less clothing is required as the physical activity levels increase. Likewise, clothing requirements become greater as the air temperature decreases. Figure 3-2 presents the approximate clothing insulation requirements needed relative to the air temperature and physical activity levels. Clothing insulation units are referred to as \"clo.\" One clo is equal to the amount of insulation provided by a typical business suit. Physical activity units are given in MET levels where 1 MET is equal to the energy expenditure at rest (about 70 to 80 kilocalories (kcal) per hour). Four METs are equal to an energy expenditure about 4 times the resting value or 280-320 kcal per hour. 10 9 8 oc 7 n o 6 1 Met a us 5 n gn 4 2 Mets h o 3 3 Mets C",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h3",
+  "manual": "TBMED508",
+  "para": "3.h3",
+  "chapter": "CHAPTER 3",
+  "heading": "4 Mets",
+  "pages": [
+   28
+  ],
+  "text": "2",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h4",
+  "manual": "TBMED508",
+  "para": "3.h4",
+  "chapter": "CHAPTER 3",
+  "heading": "1 5 Mets",
+  "pages": [
+   28
+  ],
+  "text": "0 -40 -20 0 20 40 60 Temperature ( degrees F) Note: Wind speed is assumed to be less than 5 mph. At higher wind speeds, a windproof layer may be needed. 1 MET refers to energy expenditure at rest.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h5",
+  "manual": "TBMED508",
+  "para": "3.h5",
+  "chapter": "CHAPTER 3",
+  "heading": "and physical activity levels",
+  "pages": [
+   28
+  ],
+  "text": "22",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h6",
+  "manual": "TBMED508",
+  "para": "3.h6",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   29
+  ],
+  "text": "h. Five different physical activity levels are provided in figure 3-2 representing sedentary (1 MET), easy (2-3 METs), and moderate (about 4-5 METs) military tasks; examples of each are provided in table 3-1. If a soldier is doing easy work (3 METs) and the air temperature is 0 degrees F, then the clothing requirement is about 2 clo. However, if the soldier begins to sweat, he needs to remove clothing so that his skin still feels \"cool to comfortable\" and sweating stops. Likewise, if the wind velocity increases, the soldier may need to add another insulating layer or a windproofing shell. Also, shivering is the first indication that a soldier is becoming cold. If soldiers are shivering, then action must be taken to warm soldiers through preventive actions (for example, increase clothing, increase activity, provide shelter). Commanders need to allow soldiers to choose their own clothing combinations based on the soldier's individual responses. Training in different environments at different activity levels will allow soldiers to understand their own individual needs.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h7",
+  "manual": "TBMED508",
+  "para": "3.h7",
+  "chapter": "CHAPTER 3",
+  "heading": "Intensity of exercise for selected military tasks",
+  "pages": [
+   29
+  ],
+  "text": "Sedentary Easy work Moderate work Hard work 1 MET 2-3 METs 4-5 METs 6 METs\n- Sleeping * Weapon maintenance * Walking in loose * Walking on hard\n- Sentry duty * Walking on hard surface snow/sand at 2.5 mph, surface at 3.5 mph,\n- Gate duty at 2.5 mph, <30-pound no load ?40-lb load (lb) load * Walking on hard surface * Walking in loose sand\n- Marksmanship training at 3.5 mph, <40-lb load at 2.5 mph with load\n- Drill and ceremony * Calisthenics * Field assaults\n- Snowmobiling * Patrolling * Cross-country skiing\n- Individual movement * Snowshoeing techniques (that is, low * Downhill skiing crawl, high crawl)\n- Defensive position construction\ni. Table 3-2 gives the approximate clothing insulation values for various articles of Army clothing. These values are be used for general guidance. Note that adding the individual clo values together will overestimate the amount of total clo, because adding layers compresses the underlying layers, reducing the total insulation. Despite this compression, layering provides excellent protection and allows soldiers the flexibility required to adjust clothing depending on the mission requirements and climatic environmental conditions. 23",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h8",
+  "manual": "TBMED508",
+  "para": "3.h8",
+  "chapter": "CHAPTER 3",
+  "heading": "Insulation value of different pieces of Army clothing",
+  "pages": [
+   30
+  ],
+  "text": "Item Insulation value (clo) Improved physical fitness uniform 0.30 PT uniform + nylon jacket and pants 0.70",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h9",
+  "manual": "TBMED508",
+  "para": "3.h9",
+  "chapter": "CHAPTER 3",
+  "heading": "BDU 1.15",
+  "pages": [
+   30
+  ],
+  "text": "Expedition weight polypropylene underwear 1.35 ECWCS field coat and trouser liners 1.93 Gore-TexTM parka and trousers 1.95 Fleece jacket, bib overall 2.37 Total ECWCS 3.4\nj. An important planning consideration is not only knowing how much clothing is needed during activity in the cold, but also recognizing that as soon as physical activity stops, body heat loss will be significant. Exercise increases peripheral blood flow, resulting in greater heat transfer to the environment. Sweating that may occur with heavy exercise, even in cold conditions, will also increase heat loss when activity stops. This highlights the problem of needing less clothing during a movement, but then needing more layers after being forced to remain stationary in a foxhole or defensive position. Other clothing items always need to be available to be put on if soldiers cease physical activity.\nk. Heat loss from the bare head can be up to 50 percent of the total loss in 25 degrees F air, when soldiers are adequately clothed elsewhere. Watch caps and balaclavas can decrease this heat loss substantially. Hats will be put on before the soldier feels cold and before he or she has incurred a significant loss of body heat. Likewise, as physical activity levels increase, hats can be removed to allow greater heat loss through the head and decrease overheating and sweating. Hats available for military cold-weather operations include the black watch cap (PT hat); the extended cold-weather balaclava hood (National Stock Number (NSN) 8415-01-310-0606); and the cap, cold weather, insulating helmet liner (NSN 8415-01-099-7843). All these can be worn with a Personnel Armor System for Ground Troops helmet.\nl. Similarly, gloves and mittens will be worn before the hands become cold. As physical activity increases and the hands become warm, gloves can be removed to allow cooling through the large surface area of the hands and to limit sweat accumulation in the fabric. Through experience and training, soldiers will learn when to wear and remove gloves and hats. These clothing articles are very versatile and must always be easily accessible. The same principles of layering will be followed for gloves and mittens as for other clothing.\n(1) A liner glove that fits directly against the skin wicks away moisture. A liner glove can also serve as a contact glove that prevents the skin from coming directly into contact with cold objects, thereby reducing the risk of contact cooling or contact frostbite at temperatures below freezing. Wearing the contact glove allows soldiers to take off bulkier gloves to perform tasks that require fine motor skills while still protecting the hands. 24",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h10",
+  "manual": "TBMED508",
+  "para": "3.h10",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   31
+  ],
+  "text": "(2) Each soldier will have at least one pair of spare contact gloves in case the first pair becomes wet due to sweating or handling wet or snowy objects. The Army black leather, lightduty work glove (NSN 8415-00-268-7869) with a woolen insert (NSN 8415-01-319-9042) will protect down to about 10 degrees F if a person is active. The intermediate cold/wet glove system (NSN 8415-01-319-5112) is rated from 0 to 40 degrees F. At colder air temperatures (less than 0 degrees F), the triggerfinger liner (NSN 8415-00-160-0769) and Arctic mittens (NSN 8415-00-782-6716) will provide adequate protection. Mittens will be placed inside the jacket when not in use to keep them warm and dry.\n(3) Using mittens, as opposed to gloves, will provide greater protection from cold injuries. However, this protection must be weighed against the significant decline in manual dexterity that occurs with mitten use.\n(4) The Army also has a specific glove for soldiers handling POL. The extreme cold-weather glove for POL handlers (NSN 8415-01-150-6199) is worn over the cold-weather glove inserts and can be worn down to -40 degrees F.\nm. Choosing the right uniform for the environmental temperatures and activity levels must be based on where training will occur (garrison or field), how long the soldiers will be exposed, and whether physical activity will be continuous or intermittent. For example, if PT consists of marching around base at 3.5 mph in 20 degrees F air carrying a light load (4-5 METS, from table 3-1), clothing insulation requirements would be around 1 clo (figure 3-2). Wearing a BDU would provide the necessary insulation, assuming the exercise is continuous. What would the requirements be if 30 minutes into the march, the soldiers stopped to perform weapon maintenance (2-3 METS, table 3-1)? The recommended insulation would be 2-3 clo. One possible choice to meet the new level of insulation would be to put on a Gore-TexTM jacket. However, if soldiers begin to sweat, they may need to increase ventilation of the jacket or put on another clothing article. A hat might also be required to decrease heat loss through the head. Contact gloves would be needed to handle the cold metal of the weapons. When the march continued and sweating started, the Gore-TexTM jacket would need to come off and the hat removed. This example demonstrates the continual reevaluation of required clothing depending on the operational scenario.\nn. Feet sweat at rest and even more so during physical activity. Layering using two pairs of socks is recommended. The first layer will be a thin nylon or polypropylene sock that wicks moisture away from the skin. The second layer will consist of a wool or wool-blend sock (either NSN 8440-00-153-6717 or 8440-00-543-7778) that can absorb the sweat from the foot. This sock must not be so thick that the boot fits too snugly as this can cause constriction of the blood vessels and increase the risk of cold injury. Boots may need to be sized larger so that a liner and an insulated sock can be worn.\n(1) Even with boots that are \"breathable,\" foot sweat will cause socks to become wet, which increases conductive cooling and cold injury risk. Socks therefore must be changed a minimum of two to three times throughout the day. Having wet feet for prolonged periods (more than 12 hours) increases the risk for trench foot.\n(2) Vapor barrier socks are effective in preventing foot perspiration from being absorbed into the boot; these socks also help to maintain warmer feet by reducing evaporative heat loss. The use of vapor barrier socks is a clothing technique that requires practice and experience in order to 25",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h11",
+  "manual": "TBMED508",
+  "para": "3.h11",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   32
+  ],
+  "text": "understand how moisture management works; it also requires drying feet overnight or the skin of the feet will rapidly deteriorate, resulting in blisters, trench foot, and increased risk of infection. Vapor barrier socks can also be used during conditions when boots will be wet due to movements through streams or swamps. In this case, a vapor barrier sock worn over the twolayer sock will protect the feet from outside moisture, although sweat accumulation will increase.\n(3) Snow can fall inside any boot and melt, creating a cold-wet microenvironment. Gaiters (NSN 8415-01-514-2398) can help prevent this from occurring and also increase insulation by trapping air, helping to keep feet warmer and drier.\n(4) Soldiers will not sleep with footwear on, for several reasons. Feet need to be dried out overnight to maintain the skin integrity and prevent nonfreezing cold injuries. Also, feet will continue to sweat if boots are worn while sleeping, and the boots cannot dry completely. Boots can be placed inside the sleeping bag to dry out. Boots must not be placed outside in very cold temperatures because the moisture in them can freeze, and cold injuries can occur when placing feet in cold boots.\no. The Army has several types of boots for cold-weather operations.\n(1) The intermediate cold/wet boot (NSN 8430-01-471-8230) is designed to be worn in cold, wet environments where the temperature is above 10 degrees F. Wearing this boot for extended periods at air temperatures below 10 degrees F will increase susceptibility to cold injury, because considerable foot cooling will occur at these low temperatures due to insufficient boot insulation.\n(2) Two vapor barrier boots are in the Army's inventory. One is colored black (NSN 8430- 00-823-7046) and is rated down to -20 degrees F. The other boot is colored white (NSN 8430-00-655- 5563) and can be used at temperatures as low as -60 degrees F. Proper fitting of the vapor barrier boots is essential, because tight boots will constrict blood flow, yet loose boots can cause blisters and also allow considerable snow to fall into the boot. Soldiers need to try on several pairs of vapor barrier boots while wearing the appropriate socks to get the proper fit and must not rely on the shoe size only.\n(3) The intermediate cold/wet boot has a limited capacity to transfer sweat, and the extreme cold-weather boot (vapor barrier) allows no evaporation, making it necessary for soldiers to change their socks two to three times daily.\np. Clothing becomes ineffective if it becomes dirty. Dirt compresses the insulation in the fleece and clogs the pores in breathable fabrics. Soldiers must clean their clothing according to the manufacturer's recommendations. Wet clothing can be hung to dry inside a tent with a stove.\nq. In summary, soldiers need to remember the acronym, COLD, for dressing in the cold and avoiding hypothermia:\n(1) Keep it ----- Clean.\n(2) Avoid ------ Overheating.\n(3) Wear it ----- Loose and in Layers.\n(4) Keep it ----- Dry.\nr. Wading in streams or working in the rain substantially increases a soldier's susceptibility to hypothermia because water has a high thermal conductivity. For example, a person could sit in 50 degrees F air for 3 to 4 hours and not experience a fall in core temperature, whereas immersion in 50 degrees F water could cause a person to become hypothermic in 1 to 2 hours. 26",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h12",
+  "manual": "TBMED508",
+  "para": "3.h12",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   33
+  ],
+  "text": "(1) Soldiers must be aware of potential changes in weather that can increase susceptibility to hypothermia (for example, going from 70 degrees F with sunshine to 55 degrees F air with heavy rain). The Gore-TexTM parka/trousers (parka, NSN 8415-01-228-1306; trousers, NSN 8415-01-228-1336) or the Improved Rainsuit (parka, NSN 8405-01-443-9622; trousers NSN 8405-01-443-9487) will provide the necessary protection from the rain. It is important that soldiers carry a rainproof outer layer for rainy conditions in air temperatures below 60 degrees F. If soldiers are sedentary or doing light physical activity in the rain, this outer layer may be worn. If soldiers are engaged in moderate to high physical activity levels, then this outer layer is typically not worn, because soldiers can easily begin to raise their body temperatures and start to sweat.\n(2) The tradeoff between becoming wet from rain versus increased sweating by wearing a Gore-Tex layer must be considered with respect to the environment and mission. For example, if soldiers will be returning to garrison where they are able to dry out and rewarm, clothing dampness due to sweat is less of a problem. However, if soldiers stay in the field overnight and the air temperature goes below freezing, Gore-TexTM that has become wet on the inside due to sweating will freeze and lose its \"breathability.\" These changing weather conditions must be planned for by ensuring that soldiers have enough dry clothing and access to shelter.\ns. Water immersion causes profound physiological changes and challenges to body temperature homeostasis. Core temperature cooling during immersion is dependent on both the water temperature and the immersion depth. Cold water temperatures have higher radiative, convective, and conductive heat losses compared to warm water temperatures. Deeper immersion covers a greater amount of the body surface area and significantly increases body temperature cooling rates and risk for hypothermia. Fast-moving streams increase convective heat loss and cause body temperatures to cool faster than still bodies of water.\nt. Table 3-3 presents the allowable exposure time during immersion at various water temperatures and immersion depths. These exposure times reflect the time it takes the body core temperature to fall to 95.9 degrees F (35.5 degrees C). The immersion time limits in table 3-3 are based on average soldiers. Leaders must recognize that some soldiers will cool faster than the time limits predicted by the table. Soldiers who have low body fat and a high surface-area-to-mass ratio are more susceptible to faster cooling rates. Also, soldiers who have not eaten in over 24 hours are more susceptible, as are those who are fatigued because of physical exhaustion or sustained operations. Time limits when immersed to the neck are very short to avoid the possibility of drowning. 27",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h13",
+  "manual": "TBMED508",
+  "para": "3.h13",
+  "chapter": "CHAPTER 3",
+  "heading": "Immersion time limits at different water temperatures and immersion depths",
+  "pages": [
+   34
+  ],
+  "text": "Water Ankle-deep Knee-deep Waist-deep Neck temperature ( degrees F) 50-54 degrees 7 hours 5 hours 1.5 hours 5 minutes If raining, If raining, If raining, 3.5 hours 2.5 hours 1 hour 55-59 degrees 8 hours 7 hours 2 hours 5 minutes If raining, If raining, If raining, 4 hours 3.5 hours 1.5 hours 60-64 degrees 9 hours 8 hours 3.5 hours 10 minutes If raining, If raining, If raining, 4.5 hours 4 hours 2.5 hours 65-69 degrees 12 hours 12 hours 6 hours 10 minutes If raining, If raining, If raining, 6 hours 6 hours 5 hours >70 degrees No limit No limit No limit 30 minutes",
+  "notices": []
+ },
+ {
   "id": "TBMED508/3-3",
   "manual": "TBMED508",
   "para": "3-3",
@@ -177,6 +717,174 @@
    34
   ],
   "text": "Frostbite avoidance guidance\na. Frostbite accounts for the largest number of cold injuries each year (5 times higher than trench foot). Inadequate planning/training and lack of experience contribute to high injury rates. However, frostbite can be avoided by simple yet effective countermeasures.\n(1) Leaders will follow a systematic risk assessment (figure 3-1) before conducting cold weather operations to identify potential hazards and plan accordingly. At high cold-injury risk levels, the benefit of training may be outweighed by the logistical impact of casualty evacuation and ability to complete the mission.\n(2) Classroom training on cold injuries and avoidance is not sufficient to prepare troops for operating in cold weather. Therefore, opportunities to learn through experience in a controlled situation are invaluable. Gradually increasing exposure and training time in the cold for troops will give them the confidence and ability to recognize potential areas of risk early enough to employ countermeasures and will enable them to work successfully in the environmental conditions with little impact on the mission.\nb. The only way to determine the relative risk of frostbite is to monitor the air temperature and wind speed. Air temperature is the most important determinant for the risk of frostbite. As the air temperature falls below freezing, the risk of frostbite increases. However, wind speed also has a role.\n(1) Wind increases convective heat loss by disturbing the boundary layer of air that rests against the skin and causes the skin to cool at a faster rate than if no wind was present. Figure 3-3 provides an illustration of the effect of wind on skin temperatures in 14 degrees F air at different physical activity levels (see table 3-1 for examples of different activities or tasks). Note that wind will not cool skin, or any tissue, below the ambient air temperature. Therefore, frostbite cannot occur if the air temperature is above 32 degrees F. 28",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h14",
+  "manual": "TBMED508",
+  "para": "3.h14",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   35
+  ],
+  "text": "(2) Physical activity is an effective countermeasure for increasing skin temperature when wind is not present; however, when exposed to wind, physical activity does not alter the temperature of exposed or covered skin. In figure 3-3, at 14 degrees F with no wind, moderate activity can increase finger temperature from 63 to 80 degrees F. However, the addition of an 11-mph wind reduces finger temperatures below 59 degrees F, a critical temperature where decreases in manual dexterity begin to appear. Other effective countermeasures for minimizing the impact of wind include adding windproof clothing and seeking shelter (lee side of building, bivouacking in tree line).",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h15",
+  "manual": "TBMED508",
+  "para": "3.h15",
+  "chapter": "CHAPTER 3",
+  "heading": "14 degrees F Air",
+  "pages": [
+   35
+  ],
+  "text": "85",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h16",
+  "manual": "TBMED508",
+  "para": "3.h16",
+  "chapter": "CHAPTER 3",
+  "heading": "NO WIND",
+  "pages": [
+   35
+  ],
+  "text": "80 forehead",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h17",
+  "manual": "TBMED508",
+  "para": "3.h17",
+  "chapter": "CHAPTER 3",
+  "heading": "S 55 WIND - 11 mph",
+  "pages": [
+   35
+  ],
+  "text": "50 45",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h18",
+  "manual": "TBMED508",
+  "para": "3.h18",
+  "chapter": "CHAPTER 3",
+  "heading": "Exercise",
+  "pages": [
+   35
+  ],
+  "text": "Note: The forehead is denoted by a square; the finger is denoted by a circle.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h19",
+  "manual": "TBMED508",
+  "para": "3.h19",
+  "chapter": "CHAPTER 3",
+  "heading": "skin temperatures in 14  degrees F air",
+  "pages": [
+   35
+  ],
+  "text": "c. Leaders must evaluate the relative risk of frostbite by using the WCT index value. WCT integrates wind speed and air temperature to provide an estimate of the cooling power of the environment. It standardizes the cooling power of the environment to an equivalent air temperature for calm conditions (figure 3-4). WCTs are grouped into frostbite risk zones based upon the period of time in which exposed cheek skin will freeze in more susceptible persons in the population (figure 3-5), assuming they are using precautions (gloves, proper clothing). Table 3-4 gives the general guidance that is to be followed for the different time-to-frostbite risk zones. Cheek skin was chosen because this area of the body is typically not protected, and studies have observed that this area, along with the nose, is one of the coldest areas of the face. Wet skin exposed to the wind will cool even faster. 29",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h20",
+  "manual": "TBMED508",
+  "para": "3.h20",
+  "chapter": "CHAPTER 3",
+  "heading": "50 >120 16 11 8 6 5 4 3 3 2 2 2",
+  "pages": [
+   36
+  ],
+  "text": "Note: Wet skin could significantly decrease the time for frostbite to occur.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h21",
+  "manual": "TBMED508",
+  "para": "3.h21",
+  "chapter": "CHAPTER 3",
+  "heading": "FROSTBITE RISK",
+  "pages": [
+   36
+  ],
+  "text": "LOW - freezing is possible, but unlikely (WHITE) HIGH - freezing could occur in 10-30 minutes (LIGHT GREY) SEVERE - freezing could occur in 5-10 minutes (DARK GREY) EXTREME - freezing could occur in <5 minutes (MEDIUM GREY)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h22",
+  "manual": "TBMED508",
+  "para": "3.h22",
+  "chapter": "CHAPTER 3",
+  "heading": "percent of personnel",
+  "pages": [
+   36
+  ],
+  "text": "30",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h23",
+  "manual": "TBMED508",
+  "para": "3.h23",
+  "chapter": "CHAPTER 3",
+  "heading": "List of recommended preventive measures to decrease frostbite risk",
+  "pages": [
+   37
+  ],
+  "text": "Frostbite risk level Preventive measures Low * Increase surveillance with self and buddy checks.\n- Wear appropriate layers and wind protection for the work intensity.\n- Cover exposed flesh if possible.\n- Wear VB boots below 0 degrees F.\n- Avoid sweating. High * Mandatory buddy checks every 20-30 minutes.\n- Wear ECWCS or equivalent and wind protection including head, hands, feet, face.\n- Cover exposed flesh.\n- Wear VB boots below 0 degrees F.\n- Provide warming facilities.\n- Avoid sweating. Severe * Mandatory buddy checks every 10 minutes.\n- Wear ECWCS or equivalent and wind protection including head, hands, feet, face.\n- Wear VB boots.\n- Provide warming facilities.\n- Work groups of no less than two personnel.\n- No exposed skin.\n- Stay active.\n- Avoid sweating. Extreme * Be ready to modify activities due to extreme risk.\n- Wear ECWCS or equivalent and wind protection including head, hands, feet, face.\n- Wear VB boots.\n- Provide warming facilities.\n- Keep task duration as short as possible.\n- Work groups of no less than two personnel.\n- No exposed skin.\n- Stay active.\n- Avoid sweating.\nd. Exposed fingers will freeze at a WCT that is about 10 degrees F warmer than the cheek, because there is less blood flow in the fingers compared to the face during cold exposure. Therefore, when the WCT is below -9 degrees F, there is an increased risk of finger frostbite, and soldiers must take appropriate precautions (put on gloves, increase physical activity). The risk for frostbite is less at a WCT above -9 degrees F, but appropriate actions to reduce the risk must still be taken. 31",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h24",
+  "manual": "TBMED508",
+  "para": "3.h24",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   38
+  ],
+  "text": "e. Leaders must recognize that wind speeds obtained from weather reports do not take into account man-made wind and that the local weather may vary greatly depending on the local topography. Individuals riding in open vehicles or exposed to propeller/rotor-generated wind can be subject to dangerous windchill, even when natural winds are low. Running and skiing also produce wind across the body at the same rate the body is moving. Also, wind speeds are generally higher at high altitudes where there is little tree cover. Moving from a sheltered bivouac up to a ridge line will increase the likelihood of being exposed to a lower WCT. Mountains can create their own weather patterns by altering wind speed and direction and influencing precipitation. All these factors make preplanning and route selection for soldier movement important in order to minimize the effects of temperature, wind, and weather on cold injury susceptibility.\nf. Face camouflage paint will not be used when the air temperature goes below 32 degrees F, because the paint conceals any changes in skin color, which signal the early development of frostbite. Spreading petroleum jelly or other emollients onto the skin (except the lips) does not lower the risk of frostbite and in fact increases risk by giving a false sense of security because the skin is perceived to be warmer than it is. These products will not be used in freezing weather.\ng. Low mean skin or core temperatures increase susceptibility to peripheral frostbite because they reduce or abolish the CIVD response (para 2-4). When soldiers begin to feel numbness (occurs at a skin temperature around 45 degrees F), they need to increase their physical activity levels to raise their core temperature and increase blood flow to the extremities. As skin temperature falls below 45 degrees F, further cooling to freezing levels will not be perceived by the soldier.\nh. Fingers and other open skin areas can cool rapidly when touching cold materials, especially metal and liquids. Extreme caution must be taken if it is necessary to touch cold objects with bare hands at temperatures below freezing as contact frostbite can occur. Contact gloves will always be used to create a barrier between the hand and material, and can reduce performance decrements associated with hand cooling even at temperatures above freezing. Table 3-5 shows that touching the trigger area of an M-16 rifle (steel) with a bare finger at a weapon temperature of 14 degrees F will cause the finger skin temperature to reach 32 degrees F in just 15 seconds. Fuels have a very low freezing point (-40 degrees F), and contact with these super-cooled fuels can cause instantaneous frostbite. Protective clothing must be used when handling fuels and POL products to avoid splashing on exposed skin. Rifle butts and charging handles also cause contact frostbite to the face and nose when soldiers are sighting and firing weapons.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h25",
+  "manual": "TBMED508",
+  "para": "3.h25",
+  "chapter": "CHAPTER 3",
+  "heading": "Table 3-5",
+  "pages": [
+   38
+  ],
+  "text": "Time in seconds to reach a finger-skin temperature of 32 degrees F while touching various materials",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h26",
+  "manual": "TBMED508",
+  "para": "3.h26",
+  "chapter": "CHAPTER 3",
+  "heading": "at different temperatures",
+  "pages": [
+   38
+  ],
+  "text": "Material Temperature Aluminum Steel Stone 32 degrees F 43 seconds >100 seconds >100 seconds 23 degrees F 15 seconds 50 seconds >100 seconds 14 degrees F 5 seconds 15 seconds 62 seconds 5 degrees F 2 seconds 5 seconds 20 seconds -4 degrees F 1 second 2 seconds 7 seconds -13 degrees F <1 second <1 second 4 seconds 32",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h27",
+  "manual": "TBMED508",
+  "para": "3.h27",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   39
+  ],
+  "text": "i. Straps on gloves and other equipment must not be too tight. Backpack straps may decrease blood flow to the arms and hands, so dropping the load every few hours may be necessary to allow increased circulation. Soldiers must not blow warm breath into mittens or gloves because it can cause the hands to become even colder because of the vapor from the breath adding moisture to the glove that may freeze and contribute to further cooling.\nj. Cold injury surveillance (tracking and observation) of troops is one of the most effective means to prevent frostbite. Troops must be taught to check on their buddies every few hours by looking for blanched skin on the fingers, ears, cheeks, nose, and toes. Leaders must also ensure that soldiers are comfortable about reporting any potential problem and must understand that there will be no negative consequences from reporting. Many cold injuries occur because a soldier is afraid to appear \"weak\" by mentioning to the chain of command that something is wrong (for example, \"fingers are numb\"). In such instances, a cold injury develops because appropriate preventive measures that could resolve the problem are not taken.",
   "notices": []
  },
  {
@@ -204,6 +912,30 @@
   "notices": []
  },
  {
+  "id": "TBMED508/3.h28",
+  "manual": "TBMED508",
+  "para": "3.h28",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   40
+  ],
+  "text": "(2) CO poisoning can be prevented by maintaining adequate ventilation. Tents must not be airtight. Soldiers must not remain stationary in idling vehicles for long periods. Under no circumstances will anyone sleep in an idling vehicle. Occupants of idling vehicles will ensure that exhaust pipes are not blocked by snowbanks and that the windows of the vehicle are slightly opened.\n(3) Only U.S. Army-approved heaters (space heater Arctic, NSN 4520-01-444-2375; space heater small, NSN 4520-01-478-9207; space heater medium, NSN 4520-01-329-3451; space heater convective, NSN 4520-01-431-8927) will be used. Only properly trained soldiers will be permitted to set up, light, refuel, and maintain stoves. Stovepipes must be kept clean and must be tall enough to draft properly. A fire guard must be posted at all times. The tent doorway must be kept clear to allow easy escape in case of fire.\nb. Snow blindness (solar keratitis) and sunburn.\n(1) Snow blindness and sunburn are caused by exposure of unprotected eyes and skin to ultraviolet (UV) radiation. The threat of snow blindness and sunburn depends on the intensity of sunlight, not the air temperature. Snow, ice, and lightly colored objects reflect the sun's rays, increasing the risk for injury.\n(2) Snow blindness results when solar radiation \"sunburns\" unprotected eyes. Eyes may feel painful, gritty, and there may be tearing, blurred vision, and headache. The use of protective eyewear or goggles that block more than 90 percent of UV radiation will help to prevent snow blindness. Sideshields or deeply wrapped lens designs will be used. If sunglasses are not available, opaque eye covering (for example, tape-covered eyeglasses) with narrow horizontal slits provide adequate field-expedient eye protection.\n(3) Sunburn to the skin increases heat loss during cold exposure, increasing susceptibility to hypothermia. It also leads to uncomfortable/painful feelings that decrease soldier performance. Sunburn can be prevented by using a sunscreen that contains para amino benzoic acid of at least a 15 sun protection factor. For cold weather, an alcohol-free sunscreen lotion will be used that blocks both ultraviolet A and ultraviolet B rays.\nc. Respiratory tract.\n(1) Cold weather leads to a host of possible complications for the respiratory system. Problems include bronchospasm, nasal discharge, and upper respiratory tract infections. Allergy-prone soldiers are most susceptible to bronchospasm during heavy exercise in very cold air and must be watched carefully. Bronchospasm can also be caused by fumes from fuel-fired heaters. Proper ventilation and maintenance of these heaters are crucial. Use of a nasal spray consisting of water or sterile saline solution relieves the dryness and discomfort from breathing heated air.\n(2) Crowding and poor ventilation in tents and other shelters increase dissemination of respiratory infections. Influenza vaccination is an essential preventive measure. Medical officers will perform aggressive surveillance, particularly for streptococcal infection. Early intervention with appropriate treatment and infection control can curtail the spread of respiratory infection. Control measures include appropriate predeployment immunization and prophylaxis, early detection of respiratory infection by examination and culture, head-to-toe sleeping in tents, and adequate ventilation. 34",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h29",
+  "manual": "TBMED508",
+  "para": "3.h29",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   41
+  ],
+  "text": "d. Altitude sickness. Cold temperatures may be coupled with high altitude environments. In personnel not acclimatized to altitude, hypoxia can cause pathologic conditions that are distinct in their symptoms. These conditions include acute mountain sickness, high-altitude pulmonary edema, and high-altitude cerebral edema. Altitude acclimatization is the most effective way to prevent these injuries. Refer to U.S. Army Research Institute of Environmental Medicine (USARIEM) Technical Note (TN)04-05 for the proper methods to acclimatize to altitude.\ne. Falls and muscle strains. There is an increased susceptibility to falls, broken bones, sprains, and strains due to frozen ground and ice. Proper footwear and education about this hazardous environment are essential.",
+  "notices": []
+ },
+ {
   "id": "TBMED508/3-6",
   "manual": "TBMED508",
   "para": "3-6",
@@ -213,6 +945,18 @@
    41
   ],
   "text": "NBC clothing and decontamination\na. Wearing NBC individual protective clothing and equipment during cold-weather operations increases the risk for both cold and heat injuries. NBC-protective clothing, gloves, and facemask can fit tightly, so they restrict the blood flow to the fingers and face, increasing the susceptibility of these areas to frostbite. Heavy work will increase sweat accumulation in the gloves, degrading the insulation, and increasing frostbite susceptibility in the fingers. NBC clothing also limits the ability to inspect visually for signs of cold injury.\nb. Wearing the impermeable NBC-protective battle dress overgarment (BDO) over heavy coldweather clothing creates the unexpected situation where heat exhaustion becomes a real possibility for soldiers working hard, even in temperatures as low as -22 degrees F. The added insulation and decreased ventilation of NBC-protective clothing can result in heavy sweating and wetting of the clothing during hard physical activity. When this activity ceases, large heat losses ensue, and finger and toe temperatures can decrease significantly.\nc. Eyepiece fogging is very common when protective masks are worn in cold weather. The eyepiece outserts must always be used. Also, the material used in chemical protective masks becomes stiff and brittle as temperatures fall below freezing, allowing them to be torn more easily than in warm weather and making it difficult to achieve a proper seal.\nd. The drinking tube on the M17 series mask will become unusable when temperatures are below freezing. Using the protective mask during cold weather requires some modifications.\n(1) Before soldiers deploy, rivet heads inside protective masks need to be covered with adhesive tape to prevent contact frostbite. When air temperatures are below 23 degrees F, M3/M4 winterization kits must be installed on chemical protective masks. The kit contains an ice particle prefilter fitted over inlet valves to prevent frost from accumulating on the inlet caps. It also includes two inlet valves and two nose cup valves of a softer rubber that do not become hard and brittle in the cold.\n(2) When it is cold, the protective mask is worn normally. However, clearing the mask by the usual procedure of quickly exhaling maximally will fog the lens. Instead, those wearing the mask exhale steadily and slowly. Increased resistance may be felt while breathing, but this is normal in cold weather.\n(3) The M6A2 hood must not cover the mask voicemeter outlet valve when the air temperature is below freezing. The hood voicemeter outlet valve assembly cover is pulled open below the assembly cover to allow moisture to escape. 35",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h30",
+  "manual": "TBMED508",
+  "para": "3.h30",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   42
+  ],
+  "text": "(4) The harness that straps on the mask must not be too tight, as this will reduce blood flow to the skin of the head and face and can cause frostbite. If the mask is not used for long periods of time, the mask is removed from the carrier and any accumulations of snow and ice are removed. A direct heat source must not be used to warm the mask. If the mask is frozen, warmed, and returned to cold, condensation will form resulting in ice in the mask. The filter canister must be kept dry to prevent freezing of the filter material. The mask is wiped thoroughly dry after use to remove condensation that could freeze inside.\ne. When mask carriers are worn outside the clothing at below freezing temperatures, wearing the cold mask can cause a contact freezing injury, especially at the points where exposed rivet heads contact the face. There have been no reported cases of frostbite in soldiers wearing the M-40 mask at temperatures as low as -40 degrees F.\nf. In temperatures below 0 degrees F, mask carriers must be worn under the parka to keep the mask warm and flexible enough to provide an adequate seal. Practice in wearing the mask is required when the carrier is worn under the parka.\ng. Generally, the BDO is worn outside the cold-weather clothing. Therefore, to prevent overheating, it may be necessary to remove insulating clothing layers before putting on the BDO. Likewise, it may be necessary to add additional clothing layers over the BDO after it is donned if changes in weather or activity warrant additional warmth. Vapor barrier boots or issue overboots are authorized replacements for chemical protective boots.\nh. Chemical protective gloves are worn underneath cold-weather gloves and/or mittens. Individuals whose tasks require a high degree of manual dexterity may be unable to wear coldweather gloves or mittens over the rubber gloves. In this case, polypropylene glove liners worn beneath the protective gloves may provide some protection from the cold for brief periods.\ni. Any garment worn over the BDO will become contaminated during chemical exposure and will have to be discarded and replaced with new issue clothing. Outer clothing is removed before entering tents and heated shelters to avoid bringing snow containing frozen contaminants inside to thaw and create an active hazard.\nj. Autoinjectors will not be carried in the external pocket of the BDO when the temperature is below freezing. They will be placed in an inner pocket where body heat will keep them warm. A string can be tied to the autoinjector, threaded through the outer layers of clothing and then tied to an outside pocket or belt. The autoinjector can then be rapidly extracted from within the clothing by pulling the string.\nk. Skin decontamination with the old M258A1 kit may result in frostbite during cold weather because of wet components. The M291 kit uses dry components and does not present a problem.",
   "notices": []
  },
  {
@@ -228,6 +972,54 @@
   "notices": []
  },
  {
+  "id": "TBMED508/3.h31",
+  "manual": "TBMED508",
+  "para": "3.h31",
+  "chapter": "CHAPTER 3",
+  "heading": "conditions",
+  "pages": [
+   43
+  ],
+  "text": "b. Table 3-6 provides the daily energy expenditures for various military activities. Note that the metabolic rate for military units performing field activities in the cold is about 4,200 to 4,600 kcal per day (kcal/d), with some groups exceeding 6,000 kcal/d. Therefore, food requirements are about 4,400 kcal/d for most active field units. Cold soldiers will use more calories than warm soldiers, which also contributes to increased energy requirements. Caloric requirements for meals in cold weather are about 10 to 40 percent more than meals eaten in garrison. But if soldiers are working in a cold environment for a relatively short period of time, are not carrying excessive loads, or are not walking in difficult terrain, then caloric requirements may not be different from normal requirements. 37",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h32",
+  "manual": "TBMED508",
+  "para": "3.h32",
+  "chapter": "CHAPTER 3",
+  "heading": "Table 3-6",
+  "pages": [
+   44
+  ],
+  "text": "Daily energy expenditures (measured by doubly labeled water) of military activities Group Activity kcal/d Army Special Forces Combat exercise, temperate 3,400 Army Engineers Build road and airstrip @ 3,549 altitude Army Transportation Company Garrison 3,568 Marine Combat Engineers Construction 3,668 Israeli Infantry Combat exercise, summer 3,937 Army Support hospital 3,960 Army Ranger Training course 4,010 Army Ranger Training course 4,090 Marine Artillery exercise, desert 4,115 Marine Combat exercise, winter 4,198 Army Artillery exercise, winter 4,253 Israeli Infantry Combat exercise, winter 4,281 Army Special Forces Combat exercise, winter 4,558 Marine Crucible, women 4,679 Australian Infantry Jungle training 4,750 Army Special Forces Assessment school 5,183 Army Ranger Combat exercise 5,185 Norwegian Ranger Training course 6,250 Marine Crucible, men 6,067 Average 4,405\nc. The most common individual ration soldiers receive during cold-weather operations is the Meals-Ready-To-Eat (MRE). Three to four standard MREs per day (1,300 kcals per MRE) must be eaten to supply a soldier with the necessary 4,200 to 4,500 calories needed during cold weather if no other rations are provided. The MREs include liquid-containing components that can freeze during cold-weather operations if these items are not kept warm by carrying them inside the clothing.\nd. Two other individual rations that U.S. soldiers may receive during cold-weather operations are the Meal, Cold Weather (MCW) and the Long Range Patrol (LRP) meal. Soldiers must eat three MCWs per day (4,500 kcals total ) or three LRP meals per day (1,572 kcals each) to obtain the necessary calories during cold weather operations. Three canteens of water are needed to hydrate all parts of a MCW for a day.\ne. The 10 to 40 percent extra calories most individuals need per day during cold weather can be obtained by eating a \"normal\" breakfast, lunch, and dinner, and then supplementing with frequent snacks throughout the day. Food items issued with regular meals can be saved and eaten later as between-meal snacks. Soldiers can keep items such as MRE pouch bread, granola bars, candies, cookies, crackers, cheese and peanut butter spreads in their pockets, handy for frequent snacking. A good tip for soldiers participating in cold-weather operations is to eat snacks before bed at night. 38",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h33",
+  "manual": "TBMED508",
+  "para": "3.h33",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   45
+  ],
+  "text": "This will help keep soldiers warmer during sleep, which prevents shivering and allows sounder, more restful sleep. Soldiers need to ensure they have adequate insulation when sleeping since their core temperature decreases naturally during sleep. Soldiers who must hike, ski, or snowshoe for very long distances will benefit by eating more foods such as crackers, potatoes, cereals, bread, and noodles, which are high in carbohydrates.\nf. Fluid requirements during cold-weather training will vary according to physical activity levels, but for most people, about 3 to 6 quarts per day need to be consumed. This includes the water that is in food. MREs only average about 7 ounces of fluid per meal (less than 1/4 quart), so soldiers will get less than 1 quart total fluid from three MREs. The best time for soldiers to rehydrate is at mealtime. Soldiers usually drink most of their water with meals, and eating food improves water consumption. Soldiers must be provided with adequate time for meals and fluids. During mealtime, soldiers can drink a variety of fluids (juice, tea, sports drink, coffee), as each will be equally effective in replacing body water. In addition, meals provide the salt intake necessary to retain body water. In addition to the water from MREs, soldiers need to consume 1/2 quart of fluid with breakfast, lunch, and dinner. Depending on the level of physical activity, soldiers need to drink 1 to 4 quarts more fluid throughout the day. As stated in paragraph 3-7d, three canteens of water are needed to rehydrate the food when using MCWs. An additional 1 to 3 quarts need to be drunk throughout the day when using MCWs.\ng. Soldiers with access to water and time allowed to drink will maintain their hydration status during cold weather field training exercises. Dehydration becomes a problem when water is unavailable, there is insufficient time to drink, and workloads are very high. Drinking schedules need to be established and drinking needs to be encouraged and monitored. Operations need to include that include water resupply points. Providing water in the field can be logistically difficult due to the freezing of canteens, 5-gallon metal containers, and the tubing and mouthpiece of personal hydration systems. It is the responsibility of soldiers to ensure that freezing of these containers does not occur. Canteens must be carried within clothing, and metal containers must not be left outside in below-freezing temperatures; adapters can be used to prevent freezing of tubing in personal hydration systems. Accordingly, there must be sufficient time planned for melting and purifying snow/ice. Unmelted snow must not be consumed because it can lower body temperature and may not be potable.\nh. Soldiers can monitor hydration status by noting the color and volume of their urine. Dark, low volume, and infrequent urination indicates that fluid consumption needs to be increased. Likewise, frequent and large volumes of clear urine indicate that fluid replacement needs to be reduced. Soldiers must not avoid urination during cold-weather operations, because a full bladder can prevent individuals from getting restful sleep. Full bladders can also be an irritant and interfere with a soldier's ability to sustain physical performance.\ni. Some do's and don't's for cold weather nutrition follow:\n(1) Do\n(a) Eat 10 to 40 percent more calories than usually eaten in garrison.\n(b) Heat food and beverages at every opportunity.\n(c) Drink more than thirst dictates.\n(d) Provide plenty of fluids at mealtimes and have scheduled meals.\n(e) Eat snacks between meals and before going to sleep. 39",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/3.h34",
+  "manual": "TBMED508",
+  "para": "3.h34",
+  "chapter": "CHAPTER 3",
+  "heading": "TB MED 508",
+  "pages": [
+   46
+  ],
+  "text": "(2) Don't\n(a) Eat cold snow or ice. Melt first and then purify.\n(b) Start new dietary habits (for example, a low-calorie diet).\n(c) Use field-training exercises to lose weight.\n(d) Consume alcohol. 40",
+  "notices": []
+ },
+ {
   "id": "TBMED508/4-1",
   "manual": "TBMED508",
   "para": "4-1",
@@ -237,6 +1029,18 @@
    47
   ],
   "text": "Types of cold injuries Cold injuries are classified into three categories: hypothermia, cold/dry (freezing), and cold/wet (nonfreezing). Hypothermia is defined as core body cooling below 95 degrees F. Cold/dry and cold/wet injuries are localized to extremities and exposed skin. Cold/dry injury causes freezing of cells and tissues and is known as frostbite. Cold/wet injury is classified as NFCI and includes chilblain and trench foot. It is not unusual for both hypothermia and local cold injuries to occur simultaneously. Figure 4-1 depicts the types of cold injuries and associated body temperatures.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h2",
+  "manual": "TBMED508",
+  "para": "4.h2",
+  "chapter": "CHAPTER 4",
+  "heading": "Hypothermia Local Cold Injuries",
+  "pages": [
+   47
+  ],
+  "text": "Core Temperature <95 degrees F (35 degrees C) Skin/Tissue Temperatures Skin/Tissue Temperatures < 32 degrees F (0 degrees C) > 32 degrees C (0 degrees C) Nonfreezing Cold Injuries Frostbite (Cold/Wet) (Cold/Dry) Trench Foot Chilblains 41",
   "notices": []
  },
  {
@@ -252,6 +1056,126 @@
   "notices": []
  },
  {
+  "id": "TBMED508/4.h3",
+  "manual": "TBMED508",
+  "para": "4.h3",
+  "chapter": "CHAPTER 4",
+  "heading": "among Active Duty soldiers, by winter season, 1980-1999",
+  "pages": [
+   48
+  ],
+  "text": "42",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h4",
+  "manual": "TBMED508",
+  "para": "4.h4",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   49
+  ],
+  "text": "600 500 400 s e Frostbite s a 300 C # 200",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h5",
+  "manual": "TBMED508",
+  "para": "4.h5",
+  "chapter": "CHAPTER 4",
+  "heading": "Immersion Foot",
+  "pages": [
+   49
+  ],
+  "text": "100 Chilblain",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h6",
+  "manual": "TBMED508",
+  "para": "4.h6",
+  "chapter": "CHAPTER 4",
+  "heading": "Hypothermia",
+  "pages": [
+   49
+  ],
+  "text": "0",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h7",
+  "manual": "TBMED508",
+  "para": "4.h7",
+  "chapter": "CHAPTER 4",
+  "heading": "Winter Season",
+  "pages": [
+   49
+  ],
+  "text": "b. Figure 4-4 shows the number of cold-weather injury hospitalization cases per 100,000 person-years at each of the major Army installations from 1998 to 2003. This figure illustrates that although cold-weather injuries are most prevalent at northern bases, cold injury hospitalizations occur throughout the continental United States (including the South), Korea, and Germany. 43",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h8",
+  "manual": "TBMED508",
+  "para": "4.h8",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   50
+  ],
+  "text": "Cold injuries by Army installation, 1998-2003.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h9",
+  "manual": "TBMED508",
+  "para": "4.h9",
+  "chapter": "CHAPTER 4",
+  "heading": "No. of cases",
+  "pages": [
+   50
+  ],
+  "text": "151+ Lewis 101-150 76-100 51-75 Drum 26-50 1-25 West Point Aberdeen Meade Walter Reed AMC Leavenworth Belvoir Carson Riley Knox Lee Eustis Irwin Leonard Wood Campbell Bragg Sill Jackson Gordon Huachuca Stewart Bliss Rucker Benning Hood Polk Wainwright Sam Houston Tripler Korea Germany\nc. Table 4-1 presents the predisposing factors for hypothermia. These factors can be broadly categorized into those that decrease heat production, those that increase heat loss, those that impair thermoregulation, and other miscellaneous clinical states. The latter category is vague because of the many mechanisms for disease that can interfere with thermoregulation and may be more applicable in local civilian populations than in deployed forces, since soldiers are not deployed if they have been diagnosed with a serious disease. 44",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h10",
+  "manual": "TBMED508",
+  "para": "4.h10",
+  "chapter": "CHAPTER 4",
+  "heading": "production thermoregulation clinical states",
+  "pages": [
+   51
+  ],
+  "text": "Mission factors Mission factors Peripheral failure * Infection\n- Inactivity * Immersion * Trauma * Renal failure\n- Fatigue * Rain * Neuropathies * Cancer\n- Energy depletion * Wet clothing * Acute spinal cord from sweat transection\n- Wind Endocrine * Fatigue\n- Hypopituitarism Central failure\n- Hypoadrenalism * Central nervous\n- Hypothyroidism Erythrodermas system lesions and\n- Hypoglycemia * Burns trauma\n- Diabetes * Psoriasis * Stroke\n- Icthyosis * Subarachnoid\n- Exfoliative hemorrhage dermatitis * Hypothalamic\n- Sunburn dysfunction\n- Parkinson's Disease Iatrogenic * Multiple sclerosis\n- Emergency birth * Pharmacologic\n- Cold infusions * Toxicologic\n- Heat illness * Drug and alcohol treatment abuse\nd. Mission factors are the most important for the soldier to consider because they both decrease heat production and increase heat loss. Early recognition is critical so that preventive measures can be used to minimize the potential impact of mission factors (see chapter 3 of this document). Another important area is impaired thermoregulation caused by an injury to the brain or peripheral nervous system or other acute battle trauma. Soldiers with such an injury or trauma need to be kept warm and removed from the cold environment as soon as possible.\ne. Physicians may administer medications that adversely influence thermoregulation and increase patient risk for cold injury. Drugs that impair vasoconstriction include benzodiazepines, phenothiazines, tricyclic antidepressants, barbiturates, and general anesthetics. Other drugs that may predispose to hypothermia include lithium, clonidine, fluphenazine, acetaminophen, cannabis, bethanechol, alcohol, and atropine. Therefore, any patients who have taken these drugs need to be kept warm and dry and must not be administered cold intravenous fluids as this can reduce body temperature. 45",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h11",
+  "manual": "TBMED508",
+  "para": "4.h11",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   52
+  ],
+  "text": "f. Table 4-2 presents the predisposing factors for frostbite. Risk factors are separated by cause, including environmental, mechanical, physiologic, psychologic, and medical causes. Some medical problems would not be found in deployed soldiers but may be prevalent in the local civilian population.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h12",
+  "manual": "TBMED508",
+  "para": "4.h12",
+  "chapter": "CHAPTER 4",
+  "heading": "Environmental Mechanical Physiologic Psychologic Medical",
+  "pages": [
+   52
+  ],
+  "text": "- Temperature * Constrictive * Black * Severe mental * Hypotension\n- Wet skin clothing * Women stress * Atherosclerosis\n- Exposure * Wet clothing * Hypothermia * Poor training * Arteritis duration * Inadequate * Prior peripheral * Poor * Raynaud\n- Windchill clothing and cold injury leadership Syndrome\n- POLs shelter * Trauma * Drug and * Vasospastic (petroleum, * Tight boots * Erythrodermas alcohol abuse disorders oil, lubricants) * Vapor barrier * Hyperhidrosis * Anemia\n- Contact with boots * Hypoxia * Sickle cell metals * Cramped and * Smoking disease prolonged * Energy * Diabetes stationary depletion * Shock posture * Poor physical * Vasoconstrictors conditioning\ng. Environmental and mechanical causes of frostbite can be prevented by recognizing the potential for these factors to increase susceptibility and by employing appropriate countermeasures. The individual soldier cannot change the physiologic, psychologic, and medical factors, but educating soldiers about these risk factors will enable them to recognize situations or genetic factors that increase the risk of a cold injury. Epidemiological data show that military occupational specialties (MOSs) or groups with the greatest incidence of cold injury include: infantry, field artillery, junior enlisted (E-4 and below), soldiers riding in open vehicles, soldiers who use tools and equipment that vibrate, soldiers who carry heavy loads, and soldiers who grip (for example, ski poles) for long durations. Increased observation of hands, feet, and face from the leadership, education of each soldier regarding cold-weather injuries, and mandatory buddy checks for early signs of cold injury in these groups or MOSs can decrease the incidence of frostbite among soldiers. 46",
+  "notices": []
+ },
+ {
   "id": "TBMED508/4-3",
   "manual": "TBMED508",
   "para": "4-3",
@@ -261,6 +1185,102 @@
    53
   ],
   "text": "Hypothermia\na. Hypothermia is defined as a core temperature below 95 oF (35 oC), which represents a fall from normal body temperature of about 3.5 oF (2 oC).\n(1) To diagnose hypothermia, core temperature is measured rectally with a low-reading thermometer. Oral and tympanic temperatures will not yield accurate results in a cold environment, even when care is taken to use the best technique. Hypothermia is usually characterized as mild, moderate, or severe, based on core temperature. Table 4-3 lists the core temperatures and physiological changes typically associated with these low body core temperatures. Rewarming someone who is suspected of having hypothermia must not be delayed either to find a low-reading thermometer or to run a clinical laboratory test.\n(2) Intense shivering is one of the first signs of body cooling and requires increased attention from the leadership, because early intervention can prevent development of hypothermia. The symptoms become progressively worse as core temperature falls, and if a soldier becomes sufficiently cold, shivering may actually decrease or cease, resulting in a decrease in heat production. Neurological changes are manifested by changes in mood and suggest that a person is now clinically hypothermic (less than 95 degrees F). Note that resuscitation efforts have been successful down to core temperatures as low as 60 degrees F. Because life signs at these temperatures are almost impossible to obtain, no one will be pronounced dead until they have been rewarmed; hence the use of the adage, \"A person is not dead until they are warm and dead.\"",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h13",
+  "manual": "TBMED508",
+  "para": "4.h13",
+  "chapter": "CHAPTER 4",
+  "heading": "Table 4-3",
+  "pages": [
+   53
+  ],
+  "text": "Core temperature and associated physiological changes that occur as core temperature falls",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h14",
+  "manual": "TBMED508",
+  "para": "4.h14",
+  "chapter": "CHAPTER 4",
+  "heading": "oF oC",
+  "pages": [
+   53
+  ],
+  "text": "Normothermia 98.6 37.0 Mild 95.0 35.0 Maximal shivering; increased blood pressure hypothermia 93.2 34.0 Amnesia; dysarthria; poor judgment; behavior change 91.4 33.0 Ataxia; apathy 89.6 32.0 Stupor 87.8 31.0 Shivering ceases; pupils dilate Moderate 85.2 30.0 Cardiac arrhythmias; decreased cardiac output hypothermia 85.2 29.0 Unconsciousness 82.4 28.0 Ventricular fibrillation likely; hypoventilation 80.6 27.0 Loss of reflexes and voluntary motion 78.8 26.0 Acid-based disturbances; no response to pain 77.0 25.0 Reduced cerebral blood flow Severe 75.2 24.0 Hypotension; bradycardia; pulmonary edema hypothermia 73.4 23.0 No corneal reflexes; areflexia 66.2 19.0 Electroencephalographic silence 64.4 18.0 Asystole 60.8 16.0 Lowest adult survival from accidental hypothermia 59.2 15.2 Lowest infant survival from accidental hypothermia 47",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h15",
+  "manual": "TBMED508",
+  "para": "4.h15",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   54
+  ],
+  "text": "b. Hypothermia is also classified by how it is induced and the relative time frame for induction. These hypothermia classification categories are often called acute (immersion), submersion, subacute, and subchronic.\n(1) Acute (immersion) hypothermia (partial or full immersion) is induced when conductive heat losses far exceed heat production so core temperature subsequently falls. Furthermore, the shock of sudden cold-water immersion, such as falling through ice, usually induces an initial hyperventilation with a risk of water aspiration, as well as a sudden fall in blood pressure. After this initial shock, heat loss needs to be minimized by limiting movement and huddling. During the first 5 minutes of ice-water immersion, it may be possible to self-rescue, but after longer immersions the decreasing body temperature will make it difficult to coordinate movements effectively.\n(2) Submersion hypothermia is total submersion of the body in ice-cold water. Cold water may be aspirated, causing fast cooling of the brain and heart. This is prevalent especially in young children. Fast cooling of the brain may have a protective effect, and successful resuscitation has been achieved after 45 to 60 minutes of submersion.\n(3) Subacute hypothermia occurs with exposure less severe than cold water immersion (for example, cold air with wind and rain). This type of hypothermia generally develops over many hours or several days because of a variety of reasons. For example, hypothermia associated with physical exertion or substrate depletion would generally fall within this category.\n(4) Subchronic hypothermia is caused by prolonged (days to weeks) exposure to cold temperatures. This may be seen during extended operations or in isolated groups of soldiers in survival situations. In the civilian community, it is commonly seen in the elderly and malnourished in urban settings.\nc. Cardiac instability is common with hypothermia and in some cases may precipitate sudden death by cardiac arrest.\n(1) One reason for this is ventricular irritability, which may lead to multifocal ventricular tachychardia, ultimately resulting in ventricular fibrillation. Another potential reason for sudden death is the hypotension that is often associated with hypothermia, especially with cold water immersion. Slowed orthostatic reflexes in combination with hypovolemia may result in hypotension when victims are rescued from the water. Finally, the reperfusion of tissues that have had little blood flow brings acidotic, hyperkalemic, and cold blood back to the central circulation and can further increase the risk of fibrillation.\n(2) The risk of sudden death can be moderated during rescue by keeping the casualty quiet and supine, avoiding sudden movements during rescue, and not allowing exertion by the casualty during rescue. Electrocardiogram changes often seen with hypothermia include bradycardia; prolongation of PR and QT intervals; widening of QRS; junctional rhythms; and Osborne waves (J waves). Hyperkalemia occurs at core temperatures less than 86 degrees F and can increase the risk for ventricular fibrillation. Therefore, potassium levels must be continually monitored. 48",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h16",
+  "manual": "TBMED508",
+  "para": "4.h16",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   55
+  ],
+  "text": "d. After an initial stimulation of respiration with mild hypothermia (leading to respiratory alkalosis), there is a progressive decrease in tidal volume as metabolic activity slows down, causing carbon dioxide (CO2) retention, even though CO2 output decreases 50 percent at a core temperature of 85 degrees F. Metabolic and respiratory acidosis soon follow. However, analyzing CO2 and pH values in a hypothermic patient is difficult to interpret. Blood gas analyzers warm blood up to 98.6 degrees F, resulting in higher CO2 values and lower pH values than the actual values in a hypothermic patient. Aggressive treatment with bicarbonate to reverse this condition is contraindicated because as the person rewarms, the patient will often have a pronounced alkalosis that must then be treated.\ne. Cerebral metabolism decreases by 6 percent for every 1.8 degrees F fall in core temperature. The electrical activity in the brain is altered at temperatures below 92.3 degrees F (33.5 degrees C), and is not detectable at or below 68 degrees F (20 degrees C). However, one cannot assume that the person cannot be resuscitated or regain neurological function. Decreasing cerebral metabolism and activity may provide some protection, enabling the brain to recover from hypothermia.\nf. Hypothermia prolongs clotting time because it depresses the enzymes involved in the clotting cascade. Platelet levels are also lowered, which may be caused by either depressed bone marrow production or sequestration in the spleen and liver. This thrombocytopenia increases the risk of hemorrhage in the hypothermic patient. Reduced clotting time reverses upon rewarming.\ng. During body cooling, a temperature gradient develops between the internal organs and the tissues between the core and the skin. Blood flow to the skin and muscles decreases during severe cold exposure, and these tissues will cool more than the core. During rewarming (paras 4-3j and 4-3k), colder blood returning from the muscles and skin may contribute to an afterdrop, or a continued fall in core temperature which may be as large as 1 to 3 oF (0.5 to 1.5 oC). Rewarming techniques that induce peripheral vasodilation are associated with larger afterdrops by increasing the blood flow to the coldest tissues (that is, the skin), and sometimes are associated with significant falls in mean arterial pressure. Depending on core temperature, the afterdrop may be sufficient to induce syncope or ventricular fibrillation. For this reason, core heating methods are preferable to peripheral heating in cases of severe hypothermia. Afterdrops also occur in hypothermic patients who experience frostbite and have their extremities thawed before the core temperature is stabilized. Figure 4-5 shows the afterdrop and rewarming curves following cold water immersion. Note that shivering alone causes a small afterdrop and causes the core temperature to increase to the same level as exercise after 45 minutes of rewarming. 49",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h17",
+  "manual": "TBMED508",
+  "para": "4.h17",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   56
+  ],
+  "text": "h. Table 4-4 illustrates all the signs and symptoms of hypothermia. Early signs typically include feeling cold, shivering, and withdrawal. Clinically, this will first appear as a change in neurological functions. Onset of hypothermia is typically associated with the so-called \"umbles,\" that is, grumbles, mumbles, fumbles, and stumbles, mirroring how cold affects the body's muscles and nerves. Symptoms of hypothermia consist of confusion, sleepiness, slurred speech, shallow breathing, weak pulse, low blood pressure, change in behavior or in appearance, shivering or loss of shivering, stiffness in the arms or legs, or poor control over body movements or slow reactions. Soldiers may often note behavior changes in buddies that seem out of character (\"grumbles\" and \"mumbles\"), as well as withdrawal. These are all important signs that must be taken seriously, and prompt immediate action to treat the soldier must be initiated.\ni. The goals of field management of hypothermia are to rescue, examine, insulate, and rapidly transport. Hypothermia is a true medical emergency and requires evacuation. 50",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h18",
+  "manual": "TBMED508",
+  "para": "4.h18",
+  "chapter": "CHAPTER 4",
+  "heading": "Signs and symptoms of hypothermia",
+  "pages": [
+   57
+  ],
+  "text": "Affected area Symptoms Neurological system Decreased levels of consciousness Ataxia Antinociception Amnesia Initial hyperreflexia Anesthesia Hyporeflexia Cardiovascular system Tachycardia Dysrhythmias Decreased heart tones Jugular venous distension Hypotension Respiratory system Tachypnea Adventitious sounds Bronchorrhea Progressive hypoventilation Apnea Gastrointestinal system Ileus Constipation Abdominal distension Gastric dilatation Genitourinary system Anuria Polyuria Psychiatric signs Impaired judgment Mood changes Altered mental status Paradoxical undressing Neuroses Psychoses Musculoskeletal system Increased muscle tone Shivering Rigidity Compartment syndrome Dermatological conditions Erythema Pallor Cyanosis Frostbite Sclerema Cold urticaria Necrosis Edema Head, eye, ear, nose, and throat Decreased corneal reflexes Flushing Facial edema Rhinorrhea 51",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h19",
+  "manual": "TBMED508",
+  "para": "4.h19",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   58
+  ],
+  "text": "j. Rewarming techniques include patients generating their own heat via shivering or exercise (endogenous rewarming), insulating against further heat losses (passive external rewarming), use of heat on the skin (active external rewarming), and direct delivery of heat to the core (active internal rewarming). Active internal rewarming can be performed only in a hospital setting.\nk. For responsive patients, shivering (endogenous rewarming) is effective once heat loss has been reduced by removing wet clothing, increasing insulation, and moving to a sheltered area (passive external techniques). Physical exercise is also effective for increasing metabolic heat production, but tends to cause a somewhat larger afterdrop (see figure 4-5). Rewarming with exercise is done only in stable patients with no sign of cardiac arrhythmias.\nl. Active external rewarming techniques (for example, radiant heat, hot water bottles, electric blankets, forced hot air, warm water immersion) are applied only to individuals who have ceased shivering or have a traumatic or toxicological vasodilation that exacerbates the rate of heat loss, since increasing skin temperature will blunt shivering and actually reduce the rate of rewarming. As core temperature falls to about 90 oF (32 oC), shivering ceases and rewarming is difficult in the field.\nm. It is important to cover the head during rewarming, since there is limited vasoconstriction of the head and facial cutaneous vessels, and significant amounts of heat (30 to 40 percent) can be lost through the head. If minimal shelter is available, creating a \"cocoon\" using a polyethylene vapor barrier helps retain heat by limiting evaporative and convective heat loss. Insulation from the ground is especially important. Foam pads, branches, and leaves can be used to insulate the patient lying on the ground. Individuals with cardiac irritability need to be handled gently so that arrhythmias do not convert to ventricular tachycardia, ventricular fibrillation, or asystole.\nn. In unresponsive patients, it is essential to assess peripheral pulses. Although these pulses are very difficult to detect, they must be determined before cardiopulmonary resuscitation (CPR) is initiated. Even slow heart rates may provide enough blood for the low metabolic demand of the patient. If CPR is initiated in a hypothermic person with a pulse, chest compressions could convert sinus bradycardia into a ventricular dysrhythmia.\no. Managing the hypothermic patient in the hospital includes initially stabilizing the patient, using active internal rewarming techniques for the most serious hypothermia cases, maintaining fluid volume levels, and using drugs to manage arrhythmias.\np. Initial stabilization may require intubation unless the patient is alert with intact protective airway reflexes. In moderate and severe hypothermia, a nasogastric tube is indicated following intubation. The patient must be evaluated for pancreatitis, ileus, or other trauma. Initial laboratory tests include blood glucose, uncorrected arterial blood gases, complete blood count, electrolyte panel, serum amylase/lipase levels, prothrombin time, platelet count, fibrinogen level, blood urea nitrogen, and creatinine. Poor responders need to have cervical or spine x-rays to rule out trauma not indicated in a patient history.\nq. Active internal rewarming techniques include inhalation rewarming, heated intravenous fluid infusions, lavage (gastric, thoracic, peritoneal), and blood rewarming. These techniques are quite invasive and are to be performed by well-trained personnel with extensive experience. 52",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h20",
+  "manual": "TBMED508",
+  "para": "4.h20",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   59
+  ],
+  "text": "r. Moderate or severe hypothermia is often associated with volume depletion, and increased blood viscosity may make patients susceptible to thromboembolism. Most hypothermia patients will receive an intravenous (IV) of 250 to 500 milliliters of heated 5 percent dextrose in normal saline. The temperature of the fluids will be between 104 and 108 degrees F (40 to 42 degrees C). Lactated ringers are to be avoided because the liver cannot metabolize lactate efficiently in someone with hypothermia. Patients must then be followed for signs of fluid overload.\ns. Drug use during resuscitation of the hypothermic patient is complicated. Many drugs are temperature dependent, and overmedication may be required for a response. Upon rewarming, these drug levels may then be toxic. If hypoglycemia, alcohol, or opiate intoxication is contributing to hypothermia, intravenous naloxone (1 to 2 milligrams (mg)), thiamine (100 mg), or glucose (10 to 25 grams) may be indicated. Managing the heart rate or blood pressure pharmacologically must be avoided. Vasoconstrictors may increase arrhythmias, and vasodilators could abolish peripheral vasoconstriction and induce a severe afterdrop.\nt. Postwarming complications include infection, rhabdomyolysis, myoglobinuria, and renal failure. Antibiotics must be administered if any sign of infection is present. However, the classic signs of infection are not present in hypothermia, and patients must be aggressively screened for infection prior to antibiotic use. Fever is absent and many laboratory tests are unreliable. Immune function is degraded at core temperatures below 88 degrees F, so the likelihood of a bacterial infection increases and must be managed. Early laboratory tests can indicate whether rhabdomyolysis and impaired kidney function (which can be followed over the course of hospital treatment) are likely to occur.",
   "notices": []
  },
  {
@@ -276,6 +1296,114 @@
   "notices": []
  },
  {
+  "id": "TBMED508/4.h21",
+  "manual": "TBMED508",
+  "para": "4.h21",
+  "chapter": "CHAPTER 4",
+  "heading": "Degrees of frostbite",
+  "pages": [
+   60
+  ],
+  "text": "First-degree Second-degree characteristics characteristics An epidermal injury: Whole epidermis (full-thickness) skin Affected area is injury (may also usually limited in affect superficial extent involving skin dermis): that has had brief contact with very Some limitation of cold air or metal (for motion is present example, touching an early, since freezing outside door handle). involves deeper layers. Frozen skin is initially white or There is rapid thawing yellow plaque. with return of mobility and Skin thaws quickly, appearance of pain. becoming wheallike, red, and painful. Blisters with clear fluid form more than Mobility is normal, several hours after since deep tissues are thawing. not frozen. Upper layers of Affected area may dermis are usually become swollen, but preserved which does not blister. permits rapid re- There is peeling of epithelialization after the skin with injury. complete clinical healing in 7-10 days No permanent tissue after injury. loss is incurred. Complete healing Potential for residual occurs within 3 to 4 neurological weeks. sequelae. There is a potential for residual neurological sequelae. 54 Third-degree Fourth-degree characteristics characteristics Dermis and Full thickness of the subcutaneous tissue: skin and underlying tissues, even Initially, frozen tissue including bones: is still and restricts mobility. Initially the frozen tissue has no mobility. After thawing, mobility is restored Thawing restores briefly, but affected passive mobility, but skin swells rapidly intrinsic muscle and hemorrhagic function is lost. blisters develop due to damage to the dermal Skin reperfusion after vascular plexus. thawing is poor. Swelling restricts mobility. Blisters and edema do not develop. Significant skin loss follows slowly Affected area shows through sloughing. early necrotic change. Healing is slow; may Injury evolves slowly be some permanent (weeks) to sloughing tissue loss. and autoamputation. Residual cold Significant permanent sensitivity is common. anatomic and functional loss is the rule.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h22",
+  "manual": "TBMED508",
+  "para": "4.h22",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   61
+  ],
+  "text": "(2) First-degree frostbite is defined as superficial freezing (\"frostnip\"), usually produced by a short-duration exposure to cold air or contact with a cold object (for example, a metal door handle). Early signs include erythema, edema, transient tingling, or burning sensation. The skin initially has a mottled blue-grey appearance followed by a red appearance with thawing and is hot and dry to the touch. Swelling occurs within 2 to 3 hours of rewarming and may persist for 10 days. There is desquamation of the superficial epithelium in 5 to 10 days, lasting up to a month. Common sequelae include paresthesia, aching, and necrosis of pressure points if the frostbite is on the foot. The individual may experience increased sensitivity to cold and hyperhidrosis.\n(3) Second-degree frostbite is defined as injury to the epidermis and superficial dermis. The skin appears gray/white and is cold and firm to the touch. There is little pain and loss of sensation, although the range of motion is decreased when skin is frozen. Vesicles appear within 12 to 24 hours, and when dry they form an eschar. Blisters need to remain intact, but if they rupture, care must be taken to avoid infection. As the vesicles dry, they slough with pink granulation tissue, and there is no permanent tissue loss. Throbbing and aching pain persists for 3 to 10 days post-injury. Hyperhidrosis appears after the second or third week.\n(4) Third-degree frostbite is defined as freezing of full skin thickness (dermis) and into the reticular layer. The vesicles that form may be hemorrhagic. There is generalized edema that abates after 5 to 6 days. Subfascial pressure increases, and compartment syndromes are common. The skin forms a black, hard, dry eschar; and, when the area of involvement finally demarcates, there is sloughing with some ulceration. Burning, aching, throbbing, or shooting pain from the fifth day to 4 to 5 weeks is common. Hyperhidrosis and cyanosis appear late. Residual cold sensitivity is common.\n(5) Fourth-degree frostbite involves the entire thickness of skin and underlying tissue and may include bone. There is no mobility in the frozen tissue. After rewarming, passive mobility returns, but muscle function may remain poor. Upon rewarming, the skin has a deep cyanotic appearance with poor perfusion. Over several weeks, the tissue will slough. In rapidly frozen extremities or freeze-thaw-refreeze injuries, dry gangrene develops with mummification after 5 to 10 days. With slower freezing, demarcation takes much longer to occur, but is usually clear at 20 to 36 days. Some tissue damage is irreversible. However, early surgical intervention is not indicated because there is a high capacity for tissue healing even in those cases in which the original prognosis was poor. Figure 4-6 presents pictures of different frostbite injuries. 55",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h23",
+  "manual": "TBMED508",
+  "para": "4.h23",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   62
+  ],
+  "text": "A shows frostbite in the ear with a characteristic bleb. Rapid rewarming in this person prevented any tissue loss. B shows frostbite that thawed spontaneously. A metatarsal amputation was performed after this injury. C is a case of freeze-thaw-refreeze injury. The casualty was exposed to less than 0 degrees F for 3 days. D shows frostbite in the fingers 3 weeks after the injury and spontaneous thawing in a cold cabin. Note the demarcation of tissue. 56",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h24",
+  "manual": "TBMED508",
+  "para": "4.h24",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   63
+  ],
+  "text": "b. Pathophysiology.\n(1) The pathophysiological changes in freezing cold injuries occur in two phases. The first phase is induced by cooling, supercooling, and freezing. The second phase occurs during thawing/rewarming and the postthaw phase. Table 4-6 lists the two phases and the events that occur in each phase.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h25",
+  "manual": "TBMED508",
+  "para": "4.h25",
+  "chapter": "CHAPTER 4",
+  "heading": "stage",
+  "pages": [
+   63
+  ],
+  "text": "- Structural damage by ice crystal growth. * Circulatory stasis.\n- Protein denaturation. * Corpuscular aggregation.\n- Intracellular and extracellular pH changes. * Piling of red cells back to the\n- Dehydration within the cells as a result of capillary bed. extracellular ice formation and extraction of * Development of plugs in the cellular water. circulation.\n- Loss of protein-bound water. * Tissue edema.\n- Rupture of cell membranes. * Anoxia-ischemia of tissues.\n- Abnormal cell wall permeability. * Increase of compartment space\n- Destruction of essential enzymes. pressure.\n- Ultrastructural damage to the capillaries. * Capillary and peripheral vessel\n- Consistent mitochondrial damage in muscle collapse with endothelial cell cells. disruption.\n- Thrombosis of vessels, ischemia, regional necrosis, and tissue death if process not reversed.\n(2) Freezing impairs microvascular function, increases cell permeability, and causes separation of endothelial cells from the arterial wall. Cartilage is also particularly susceptible to freezing damage. Thawing and reperfusion lead to formation of free radicals, neutrophil activation, and inflammation. Prostaglandin and thromboxane are released during thawing, predisposing to vascular clotting. If freezing occurs again after thawing, intracellular ice formation is likely, resulting in destruction of cells, which is why it is critically important to delay rewarming if the possibility of refreezing exists.\nc. Signs and symptoms. The first sign of frostbite is numbness. In the periphery, the initial sense of cooling begins at skin temperatures of about 82 oF and pain appears at about 68 oF, but, as skin temperature falls below 50 oF, these sensations are replaced by numbness. Soldiers also often feel a \"wooden\" sensation in the injured area. After rewarming, pain is significant. The initial sensations are an uncomfortable sense of cold, which may include tingling, burning, aching, sharp pain, and decreased sensation. The skin color may initially appear red; it then becomes waxy white. Note that peripheral temperatures (hands, feet) may be indicative of a generalized whole-body cooling that may ultimately result in hypothermia. 57",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h26",
+  "manual": "TBMED508",
+  "para": "4.h26",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   64
+  ],
+  "text": "d. Field management.\n(1) Managing freezing injuries in the field depends on many conditions, including the treatment of other injuries, the possibility of hypothermia, the possibility of refreezing, and the ease of evacuation. Treatment for freezing injuries will follow some basic rules with regard to thaw-refreeze possibilities, rewarming, and other considerations.\n(a) Once a tissue is thawed, it must not freeze again. If there is the possibility that tissue could be thawed and then refreeze (for example, evacuation), the tissue must not be allowed to thaw since re-formation of ice crystals will cause increased tissue damage. In addition, further trauma to frozen or injured parts must be avoided, and this includes walking on injured feet and rubbing of the affected tissue. If soldiers must walk on a frozen extremity (for example, in retreat), they must do so without thawing the injury. This is a difficult decision, but it will decrease the chance of a freeze-thaw-refreeze injury due to mechanical trauma.\n(b) For rewarming, avoid exposure to excessive heat, mechanical trauma (for example, rubbing affected tissue), or any factor causing a loss of circulation. The victim cannot tell if the temperature is too hot, so application of external heat using open flames, stove tops, hot air from vehicle exhaust, steam, or directly applied heat packs is not appropriate. Thawed injuries will be insulated against dangerous windchill from moving vehicles or helicopter wash so that they do not refreeze. If transport time to a medical facility will be short (1 to 2 hours), the risks posed by improper rewarming or refreezing are greater than the risk of delaying treatment. If transport time will be more than 2 hours, frostbite often will thaw spontaneously, depending on the level of injury, exposure time, and activity levels. During field management, it is more important to prevent hypothermia than to rewarm frostbite rapidly.\n(c) Rewarming could also expose other life-threatening factors such as blood loss, which initially stopped when the tissue became frozen. Other considerations include treating open blisters, which are susceptible to infection and need to be covered by sterile bandages and treated with a topical antibiotic. Soldiers must not use tobacco products, which can cause vasoconstriction and decrease blood flow to the injured area. Finally, all soldiers with a peripheral freezing injury must be suspected of being hypothermic and be treated for this.\n(2) If the decision is made to rewarm the frostbite injury, a warm (98 to 104 degrees F) water bath needs to be prepared. A container must be available that is large enough to accommodate the frostbitten tissue without the tissue touching the sides or bottom of the container. (It is important that hot water not be used because the local heat dissipation procedures are impaired and tissue injury could result.) A thermometer that reads in the range of 98 to 104 oF (37 to 40 oC) must be used. The water needs to be gently circulated around the affected tissue between these temperature ranges. Other logistical concerns that affect whether to use a warm water bath include risk to the unit (for example, does the soldier need to remain on the line or help with a retreat), availability of shelter and equipment, and the time frame of evacuation.\n(3) Minor frostbite can be thawed at room temperature or against a buddy's skin. Note that insulative clothing that was donned during cold exposure will now serve to insulate the frozen part against rewarming, so once the victim is in a warm environment, this clothing needs to be 58",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h27",
+  "manual": "TBMED508",
+  "para": "4.h27",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   65
+  ],
+  "text": "removed from the area of frostbite. Obviously, first-degree frostbite is easier to treat and results in less damage than more severe frostbite, which highlights the importance of early recognition of cold injuries.\ne. Hospital management.\n(1) There are three stages to definitive hospital care, depending on the stage the patient presents. They are prethaw, thaw, and postthaw. The stages with associated treatments are listed in table 4-7.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h28",
+  "manual": "TBMED508",
+  "para": "4.h28",
+  "chapter": "CHAPTER 4",
+  "heading": "Rewarming protocol",
+  "pages": [
+   65
+  ],
+  "text": "Prethaw Thaw Postthaw\n- Protect part - no friction * Provide parenteral * Dry and elevate part. massage. ketorolac or other * Leave clear vesicles\n- Stabilize core analgesia. intact. temperature. * Provide tetanus booster. * Debride broken vesicles,\n- Address medical and * Immerse part in and apply topical surgical conditions. circulating water that is antibiotic or sterile aloe\n- Rehydrate patient. thermometer-monitored at vera ointment. 98-104 degrees F (37-40 degrees C). * Leave hemorrhagic\n- Encourage gentle motion vesicles intact. of part, but do not * Consider tetanus and massage. streptococcal prophylaxis.\n- Administer drugs to * Provide hydrotherapy at inhibit platelet activity, 98 degrees F (37 degrees C) three times smooth muscle a day. contraction, and * Consider dibenzylene in vasoconstriction. severe cases.\n- Administer ibuprofen 400 mg every 8 hours orally.\n(2) Prethaw treatment for frostbite must not wait for laboratory studies. Definitive care must be started as soon as possible. Many frostbite victims are hypothermic. As extremities are rewarmed, blood returning to the core causes an afterdrop, so core temperature must be monitored closely.\n(a) Tissue rewarming must begin as soon as possible in a warm water bath (98 to 104 degrees F). However, tissue reperfusion can be very painful. This sometimes causes rewarming to be stopped before the tissue is completely thawed. Medical personnel need to ensure that proper thawing techniques are followed and that complete thawing occurs. The use of a mild soap or antibacterial solution such as hexachlorophene or Betadine? in the warm water bath solution can be used to decrease the risk of infection. A tetanus booster is recommended. (Betadine? is a registered trademark of Purdue Frederick Company, Norwalk, CT.)\n(b) Other treatments include using low-molecular-weight dextran (dextran 40) for its antiplatelet effects, calcium channel blockers (nifedipine) to inhibit vascular smooth muscle 59",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h29",
+  "manual": "TBMED508",
+  "para": "4.h29",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   66
+  ],
+  "text": "contraction and increase blood flow, and sympatholytic agents (phenoxybenzamine hydrochloride) to inhibit vasoconstriction. Oral fluid intake or an IV may be required following use of these sympathetic blockers since they can have hypotensive effects.\n(3) Postthaw treatment includes placing cotton between digits to avoid friction. A foam or fluffy bed pad needs to be used under injured feet along with a sheet cradle to keep the bed cover from contacting the feet. Blebs need to be kept intact until the fluid resorbs. In time, the dead skin will dry onto the healed skin below and at that time needs to be debrided. Any surgical intervention needs to be delayed as long as possible until a clear demarcation line and tissue death have been established and there is no danger of further retraction of tissues. This may take 15 to 45 days or longer. Premature amputation may result in further retraction of tissues. Escharotomy of dorsal or lateral aspect of the digits may be necessary when the eschar is dry and limits joint movement of the digits. Fasciotomy may be helpful to relieve compartment pressure and restore circulation. Sympathectomy will not help preserve tissue, and, although it may alleviate pain, is not recommended. The prognosis for recovery from frostbite is best if freezing is short in duration and the depth is minimal, thawing is rapid and no refreezing takes place, and blebs develop early and are very distal.\n(4) Common sequelae from frostbite injury include hyperhidrosis, paresthesia, pain, hypersensitivity to heat or cold, reduced joint mobility, joint swelling, edema, nail loss or deformity, fat pad loss from digits, decreased proprioceptive sense of digit tips, and muscle atrophy. The extent of the original injury impacts which tissues have ongoing symptoms. Neurologic injury may be manifested by numbness, aching, burning or dull pain, hot or cold paresthesia, and delayed conduction velocity. Vascular injury is manifested by strong vasoconstrictor responses to even mild cooling, and extended rates of rewarming. Muscle weakness, limited range of motion, and arthritis also may be associated with severe cold injury. It should be noted that hyperhydrosis may predispose the individual to skin maceration.",
+  "notices": []
+ },
+ {
   "id": "TBMED508/4-5",
   "manual": "TBMED508",
   "para": "4-5",
@@ -285,6 +1413,66 @@
    66
   ],
   "text": "Nonfreezing cold injury\na. The most common NFCIs are trench foot and chilblains.\n(1) Trench foot typically occurs when tissues are exposed to temperatures between 32 and 60 degrees F for prolonged periods of time (more than 12 hours), whereas chilblains, a more superficial injury, can occur after just a few hours of exposure of bare skin. These injuries may occur because of actual immersion (as occurred during the Vietnam War when soldiers moved through rice paddies for long periods) or by the creation of a damp environment inside boots caused by sweat-soaked socks. The injury classification of NFCI is determined by the symptoms and stages of recovery that occur days and weeks after the exposure (table 4-8).\n(2) Trench foot is a cold injury sustained by tissues exposed to cold-wet conditions for prolonged periods of time. It can occur in any tissue but is most common in the foot. It initially appears as a swollen, edematous foot with a feeling of numbness. The initial color is red but soon becomes pale and cyanotic if the injury is more severe. Peripheral pulses are hard to detect. Trench foot is accompanied by aches, increased pain sensitivity, and infections. Figure 4-7 shows trench foot cases from the Falkland War. 60",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h30",
+  "manual": "TBMED508",
+  "para": "4.h30",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   67
+  ],
+  "text": "A shows a case that occurred in a soldier 3 days after suffering a gunshot wound. Note the demarcation line on the right leg. This casualty was also hypothermic. B shows a case of trench foot after many weeks of wearing the same boots in cold-wet conditions. Note the injuries on the fleshy parts of the sole and toes.\n(3) Chilblain (also known as pernio or kibe) is a superficial cold injury typically occurring after 1 to 5 hours in cold-wet conditions, at temperatures below 50 oF (16 oC). Small erythematous papules appear on the skin, most often on the dorsal surface of the fingers, but the ears, face and exposed shins are also common areas for occurrence. The lesions are swollen, tender, itchy, and painful. Upon rewarming, the skin becomes inflamed, red and hot to the touch, and swollen, with an itching or burning sensation that may continue for several hours after exposure. There are no lasting effects from chilblain.\nb. Early diagnosis of NFCI becomes evident when these symptoms do not resolve with rewarming.\n(1) With chilblains, these symptoms will resolve with rewarming at stage 1 and not progress further. Symptomatology after rewarming in the first few days includes hyperemia, edema, and sensory changes.\n(2) After about a week, if the injury is severe (greater than Grade A and not chilblains), numbness persists, and the greater the area of numbness, the more likely the injury will be classified as more severe (for example, Grade D NFCI has numbness in the entire foot, whereas in Grade B, the numbness may be observed only in the toes). 61",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h31",
+  "manual": "TBMED508",
+  "para": "4.h31",
+  "chapter": "CHAPTER 4",
+  "heading": "Table 4-8",
+  "pages": [
+   68
+  ],
+  "text": "Recovery stage classification of NFCI based on symptomatology and time from rewarming",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h32",
+  "manual": "TBMED508",
+  "para": "4.h32",
+  "chapter": "CHAPTER 4",
+  "heading": "Stage Grade A Grade B Grade C Grade D",
+  "pages": [
+   68
+  ],
+  "text": "Stage 2 recovery Hyperemia and slight Edema, hyperemia, Edema, hyperemia, Severe edema, sensory change may and definite sensory blisters, and mottling extravasation of last 2 to 3 days. change are still present are present 2 to 3 days blood, and incipient 2 to 3 days after after injury. gangrene are present Rapid re-ambulation injury. after 2 to 3 days. is the rule with only At 7 days-occasional residual * Anesthesia is present At 7 days, complete cold sensitivity. on the plantar and anesthesia in the dorsal surfaces of the entire foot is present, foot and toes. with paralysis and\n- Vibration and wasting of the proprioception are intrinsic muscles. diminished.\n- Intrinsic muscles of the foot become paretic and atrophic. Stage 3 recovery Return to duty is At 7 days, anesthesia Edema persists for 2 to Injury often extends possible within 1 to 2 is found only on the 3 weeks. proximally. weeks. plantar surface of the foot and tips of the Deep tissue, as well toes, and lasts 4 to 9 as superficial tissue, weeks. is lost. This degree of injury Gangrene is a is associated with-- constant risk until\n- 1 to 3 weeks of tissue loss is edema. complete.\n- 2 to 4 weeks of neuropathic pain. Edema in tissue that\n- 3 to 7 weeks of is not lost lasts 3 to 7 hyperemia. weeks. Stage 4 recovery Hyperhidrosis and Pain and hyperemia Hyperemia and pain residual cold persist for up to 14 last up to 4 months. sensitivity may occur. weeks. Prolonged Re-ambulation is Some skin sloughs, but convalescence and possible when walking loss of deep tissue permanent disability does not increase pain. does not occur. are the rule. Return to duty usually Hyperhidrosis and cold requires 3 to 4 months. sensitivity are typical. Some cases will be permanently disabling. Notes:\n(1) Stage 2 occurs about 1 to 7 days after rewarming; stage 3 occurs about 2 to 10 weeks after rewarming; and stage 4 occurs weeks/months/years after rewarming.\n(2) Classifications are based on criteria established by Ungley. 62",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h33",
+  "manual": "TBMED508",
+  "para": "4.h33",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   69
+  ],
+  "text": "(3) In stage 3, hyperemia persists and may last for a few days to many months, but typically averages 6 to 10 weeks. The extremity is red and hot. Previously weak distal pulses become full and bounding, but the microcirculation is still diminished (delayed capillary refill). If there is an improved sensitivity to light touch and pin pricks within 4 to 5 weeks, then there is a lesser chance of persistent symptoms, suggesting a Grade B injury. However, continued lack of feeling beyond 6 weeks suggests neuronal degeneration, which may take longer to resolve, with the injury classified as Grade C or D. In Grade D injuries, deep tissue loss will occur in the third stage of recovery.\n(4) Stage 4 recovery takes months and/or years and is characterized by increased sweating on the extremity and cold sensitivity. Depending on the amount of tissue loss, soldiers could return to duty (Grade B injury) or may become disabled or require amputation (Grade C and D). Cold-Wet Swelling and Local Nerve Exposure Breakdown of Cooling Skin Vasoconstriction Pain and Fear\n- Local Blood Flow Constrictive Footwear Immobility Local Nerve Damage Ischemia Endothelial Damage Sensory Impairment Loss of Cold Vasodilation Sensitization 63",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h34",
+  "manual": "TBMED508",
+  "para": "4.h34",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   70
+  ],
+  "text": "c. Figure 4-8 illustrates the possible etiological factors and mechanisms of NFCI. Following a prolonged cold-wet stimulus that lowers tissue temperatures and causes vasoconstriction, local nerve cooling may take place that directly damages nerves causing a impairment in sensory perception. Likewise, tissue cooling leads to a decrease in blood flow, increasing ischemia and eventually leading to endothelial changes and the inability to vasodilate. Immobility and constrictive footwear also directly lead to vasoconstriction and decreases in local blood flow. Cold-wet exposure (whether caused by immersion of feet or wet socks) also causes direct breakdown of skin integrity, increasing susceptibility to NFCI.\nd. Soldiers who sustained nonfreezing injuries during World War II displayed a variety of lesions to the skin, muscle, nerve, and bone. Muscle cells separated and the muscle fibers were damaged. The muscle cells were also filled with fibrous tissue. Vascular tissues had inflammatory cell infiltration, and the vessel lining swelled due to clot formation. This was present mostly in the smaller caliber vessels, such as arterioles and capillaries. Bone decalcification also occurred. Nerves had axons severed from the cell body.\ne. The intense and prolonged peripheral vasoconstriction that occurs during prolonged cold-wet exposure causes ischemic damage to both neural and circulatory components in the local blood vessels. CIVD, which otherwise might maintain the tissues at a warmer temperature, disappears early. CIVD is typically absent with NFCI and may remain blunted for weeks or months following the injury.\nf. First aid in the field for NFCI includes preventing further exposure; removing wet or constrictive clothing; washing and drying extremities gently; elevating limbs and covering them with layers of loose, warm, dry clothing; and evacuating to a higher-echelon medical facility. First aid must not include popping blisters, applying lotions or creams, massage, exposure to extreme heat, or permitting soldiers to walk on their feet. Walking will cause maceration of the tissue and worsen the injury and prognosis for recovery. Infection can be prevented by not popping blisters, keeping the affected area clean and dry, and covering the injured tissue with sterile bandages.\ng. Further treatment of NFCI in the hospital is not well defined because of a limited knowledge base. Also, NFCI symptomatology is constantly evolving, and effects can last years. A thorough exposure history is required because diagnosis of NFCI is made based primarily on a history of environmental exposure. Hospital evaluation of NFCI may include thermography, laser Doppler flowmetry (which indicates blood flow in the skin but does not reflect blood flow in deeper vessels), and neuromuscular evaluation, including nerve conduction velocity. None of these tests, however, will change acute care.\nh. Analgesics may be given for pain but tend not to be very effective. Sympathectomy may alleviate extreme pain in the short term, but has not been effective long term and is not recommended. Other drugs have been used (nifedipine, amitriptyline hydrochloride) to treat patients with NFCI and may be useful for increasing blood flow and reducing pain, but they are not routinely prescribed. 64",
   "notices": []
  },
  {
@@ -309,6 +1497,246 @@
    71
   ],
   "text": "Surveillance\na. Surveillance includes heightened provider awareness of cases meeting the cold-injury criteria and vigilance in reportable medical event reporting through the preventive medicine activity to the U.S. Army Medical Surveillance Activity (AMSA). Only through data-based policy decisionmaking can cold injury be prevented and its serious complications minimized. Preventive medicine personnel will coordinate with the appropriate unit or organizational safety personnel regarding cold weather injury data and the reporting of those data through both medical and safety channels. Unit or organizational safety personnel are required to report coldweather injuries through safety channels to the U.S. Army Safety Center, according to AR 385- 40, paragraph 2-6d.\nb. Reported cold illness/injury cases need to meet the case definition found in the Tri-Service Reportable Events list published by AMSA. This list and the clinical criteria can be obtained from http://amsa.army.mil. Descriptions of hypothermia (AMSA code 991.6), frostbite (AMSA code 991.0-991.3), and immersion-type (AMSA code 991.4) injuries follow:\n(1) Clinical descriptions.\n(a) Hypothermia is the result of a generalized lowering of core body temperature to below 95 degrees F. It can result from either dry-land, whole-body exposure or immersion in cold water. Freezing temperatures are not required to produce hypothermia.\n(b) Frostbite is the most common of the cold/dry injuries. It results from the actual crystallization of tissue fluids in the skin or subcutaneous tissues after exposure to temperatures below freezing. 65",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/4.h35",
+  "manual": "TBMED508",
+  "para": "4.h35",
+  "chapter": "CHAPTER 4",
+  "heading": "TB MED 508",
+  "pages": [
+   72
+  ],
+  "text": "(c) Cold/wet injuries are localized nonfreezing injuries, usually of extremities. These injuries include chilblains, pernio, and trench foot. They may occur in temperatures as high as 60 degrees F with prolonged exposure.\n(2) Clinical case definitions.\n(a) Hypothermia is a body core temperature less than 95 degrees F.\n(b) Frostbite (first-degree) is superficial epidermal injury. Mobility is unaffected, with no blistering. Complete healing occurs in 7 to 10 days; residual cold sensitivity may occur.\n(c) Frostbite (second-degree) involves the entire epidermis, forms bulla after thawing, and heals in 3 to 4 weeks. Residual cold sensitivity may occur.\n(d) Frostbite (third-degree) involves the dermis at least to the reticular layer. When the dermis is frozen, mobility is limited. Third-degree frostbite is characterized by hemorrhagic bullae and swelling. Permanent tissue loss may occur.\n(e) Frostbite (fourth-degree) affects full skin thickness and underlying tissue damage. There is no mobility of the frozen tissue, and mobility is not recovered with thawing. There is no bullae or edema, but necrotic changes occur rather early. Significant permanent damage is typical.\n(f) Immersion-type injury includes chilblains, pernio or trench foot.\nc. Recordkeeping will include the circumstances under which the illness occurred and the time course of clinical symptoms and signs. An effective cold stress/injury surveillance program documents--\n(1) Active monitoring of outcomes and all cold-related deaths.\n(2) Training activities.\n(3) Personal risk factors in the training population (for example, smoking, alcohol use, fasting state).\n(4) Weather conditions.\n(5) Amount and timing of exercise.\n(6) Clothing and equipment/supplies involved.\n(7) Medications (prescriptions and over-the-counter) taken before the event.\n(8) Nutritional supplement use associated with the cold-injury event. 66",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h1",
+  "manual": "TBMED508",
+  "para": "A.h1",
+  "chapter": "APPENDIX A",
+  "heading": "AR 40-501",
+  "pages": [
+   73
+  ],
+  "text": "Standards of Medical Fitness. (Cited in para 4-6.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h2",
+  "manual": "TBMED508",
+  "para": "A.h2",
+  "chapter": "APPENDIX A",
+  "heading": "AR 385-40",
+  "pages": [
+   73
+  ],
+  "text": "Accident Reporting and Records. (Cited in para 4-7a.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h3",
+  "manual": "TBMED508",
+  "para": "A.h3",
+  "chapter": "APPENDIX A",
+  "heading": "USARIEM TN04-05",
+  "pages": [
+   73
+  ],
+  "text": "Altitude Acclimatization Guide. (Cited in para 3-5d.) (Available at http://www.usariem.army.mil/download/altitudeacclimatizationguide.pdf.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h4",
+  "manual": "TBMED508",
+  "para": "A.h4",
+  "chapter": "APPENDIX A",
+  "heading": "AR 40-5",
+  "pages": [
+   73
+  ],
+  "text": "Preventive Medicine",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h5",
+  "manual": "TBMED508",
+  "para": "A.h5",
+  "chapter": "APPENDIX A",
+  "heading": "AR 40-400",
+  "pages": [
+   73
+  ],
+  "text": "Patient Administration",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h6",
+  "manual": "TBMED508",
+  "para": "A.h6",
+  "chapter": "APPENDIX A",
+  "heading": "AR 40-501",
+  "pages": [
+   73
+  ],
+  "text": "Standards of Medical Fitness",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h7",
+  "manual": "TBMED508",
+  "para": "A.h7",
+  "chapter": "APPENDIX A",
+  "heading": "FCM-R19-2003",
+  "pages": [
+   73
+  ],
+  "text": "U.S. Department of Commerce, National Oceanic and Atmospheric Administration. Report on Wind Chill Temperature and Extreme Heat Indices: Evaluation and Improvement Projects. (Available at http://www.ofcm.gov/jagti/r19-ti-plan/pdf/entire_r19_ti.pdf.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h8",
+  "manual": "TBMED508",
+  "para": "A.h8",
+  "chapter": "APPENDIX A",
+  "heading": "FM 4-02.17",
+  "pages": [
+   73
+  ],
+  "text": "Preventive Medicine Services. (Available at https://atiam.train.army.mil/soldierPortal/atia/adlsc/view/public/9176-1/fm/4-02.17/fm4- 02_17.htm.) 67",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h9",
+  "manual": "TBMED508",
+  "para": "A.h9",
+  "chapter": "APPENDIX A",
+  "heading": "FM 4-25.12",
+  "pages": [
+   74
+  ],
+  "text": "Unit Field Sanitation Team. (Available at https://atiam.train.army.mil/soldierPortal/atia/adlsc/view/public/4664-1/fm/4-25.12/fm4- 25_12.htm.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h10",
+  "manual": "TBMED508",
+  "para": "A.h10",
+  "chapter": "APPENDIX A",
+  "heading": "FM 8-55",
+  "pages": [
+   74
+  ],
+  "text": "Planning for Health Service Support. (Available at https://atiam.train.army.mil/soldierPortal/atia/adlsc/view/public/4732-1/fm/8-55/toc.htm.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h11",
+  "manual": "TBMED508",
+  "para": "A.h11",
+  "chapter": "APPENDIX A",
+  "heading": "Medical Surveillance Monthly Report (MSMR)",
+  "pages": [
+   74
+  ],
+  "text": "U.S. Army Center for Health Promotion and Preventive Medicine, AMSA: Aberdeen Proving Ground, Maryland, 2003. (Available at http://amsa.army.mil/AMSA/amsa_home.htm.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h12",
+  "manual": "TBMED508",
+  "para": "A.h12",
+  "chapter": "APPENDIX A",
+  "heading": "Tri-Service Reportable Events: Guidelines & Case Definitions",
+  "pages": [
+   74
+  ],
+  "text": "U.S. Army Center for Health Promotion and Preventive Medicine, AMSA: Aberdeen Proving Ground, Maryland, 2004. (Available at http://amsa.army.mil/documents/DoD_PDFs/May04TriServREGuide.pdf.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h13",
+  "manual": "TBMED508",
+  "para": "A.h13",
+  "chapter": "APPENDIX A",
+  "heading": "USARIEM TN02-2",
+  "pages": [
+   74
+  ],
+  "text": "Sustaining Health & Performance in Cold Weather Operations. (Available at http://www.usariem.army.mil/download/cold0102.pdf.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h14",
+  "manual": "TBMED508",
+  "para": "A.h14",
+  "chapter": "APPENDIX A",
+  "heading": "U.S. Army Alaska (USARAK) Pamphlet 385-4",
+  "pages": [
+   74
+  ],
+  "text": "Risk Management Guide for Cold Weather Operations. (Available at http://www.usarak.army.mil/pubs/Pamphlets.htm.)",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h15",
+  "manual": "TBMED508",
+  "para": "A.h15",
+  "chapter": "APPENDIX A",
+  "heading": "Prescribed Forms",
+  "pages": [
+   74
+  ],
+  "text": "This section contains no entries.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h16",
+  "manual": "TBMED508",
+  "para": "A.h16",
+  "chapter": "APPENDIX A",
+  "heading": "Referenced Forms",
+  "pages": [
+   74
+  ],
+  "text": "This section contains no entries.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h17",
+  "manual": "TBMED508",
+  "para": "A.h17",
+  "chapter": "APPENDIX A",
+  "heading": "Selected Bibliography",
+  "pages": [
+   74
+  ],
+  "text": "Castellani, J.W., A.J. Young, D.W. DeGroot, D.A. Stulz, B.S. Cadarette, S.G. Rhind, J. Zamecnik, P.N. Shek, and M.N. Sawka. \"Thermoregulation During Cold Exposure After Several Days of Exhaustive Exercise.\" Journal of Applied Physiology 90 (2001): 939-946. 68",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h18",
+  "manual": "TBMED508",
+  "para": "A.h18",
+  "chapter": "APPENDIX A",
+  "heading": "TB MED 508",
+  "pages": [
+   75
+  ],
+  "text": "Castellani, J.W., D.A. Stulz, D.W. DeGroot, L.A. Blanchard, B.S. Cadarette, B.C. Nindl, and S.J. Montain. \"Eighty-Four Hours of Sustained Operations Alter Thermoregulation During Cold Exposure. Medicine and Science in Sports and Exercise 35(1) (2003): 175-181. Danielsson, U. \"Windchill and the Risk of Tissue Freezing.\" Journal of Applied Physiology 81\n(6) (1996): 2666-2673. Danzl, D.F. \"Accidental Hypothermia.\" In Rosen's Emergency Medicine, Concepts and Clinical Practice, Volume 3, edited by J.A. Marx, 1979-1996. St. Louis, MO: Mosby, 2002. Danzl, D.F., and E.L. Lloyd. \"Treatment of Accidental Hypothermia.\" In Textbooks of Military Medicine: Medical Aspects of Harsh Environments, Volume 1, edited by K.B. Pandolf and R.E. Burr, 491-529. Falls Church, VA: Office of The Surgeon General, U.S. Army, 2002. DeGroot, D.W., J.W. Castellani, J.O.Williams, and P.J. Amoroso. \"Epidemiology of U.S. Army Cold Weather Injuries, 1980-1999.\" Aviation, Space, and Environmental Medicine 74 (2003): 564-570. Freund, B.J., and M.N. Sawka. \"Influence of Cold Stress on Human Fluid Balance.\" In Nutritional Needs in Cold and High-Altitude Environments: Applications for Military Personnel in Field Operations, edited by B.M. Marriot and S.J. Carlson, 161-180. Washington, DC: National Academy Press, 1996. Gavhed, D.C.E., and I. Holmer. \"Thermal Responses at Three Low Ambient Temperatures: Validation of the Duration Limited Exposure Index.\" International Journal of Industrial Ergonomics 21(6) (1998): 465-474. Holmer, I., Q. Geng, G. Havenith, E. de Hartog, H. Rintamaki, J. Malchaire, and A. Piette. \"Temperature Limit Values for Cold Touchable Surfaces.\" NR 2003:7. Stockholm: National Institute for Working Life, 2003. Makinen, T.T., D. Gavhed, I. Holmer, and H. Rintamaki. \"Effects of Metabolic Rate on Thermal Responses at Different Air Velocities in -10 degrees C.\" Comparative Biochemistry and Physiology - Part A: Molecular & Integrative Physiology 128(4) (2001): 759-768. Mills, W.J. \"Clinical Aspects of Freezing Cold Injury.\" In Textbooks of Military Medicine: Medical Aspects of Harsh Environments, Volume 1, edited by K.B. Pandolf and R.E. Burr, 429- 466. Falls Church, VA: Office of The Surgeon General, U.S. Army, 2002. Mills, W.J. \"Pictorial Atlas of Freezing Cold Injury.\" In Textbooks of Military Medicine: Medical Aspects of Harsh Environments, Volume 1, edited by K.B. Pandolf and R.E. Burr, 567- 609. Falls Church, VA: Office of The Surgeon General, U.S. Army, 2002. 69",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/A.h19",
+  "manual": "TBMED508",
+  "para": "A.h19",
+  "chapter": "APPENDIX A",
+  "heading": "TB MED 508",
+  "pages": [
+   76
+  ],
+  "text": "O'Brien, C., A.J. Young, and M.N. Sawka. \"Hypohydration and Thermoregulation in Cold Air.\" Journal of Applied Physiology 84 (1998): 185-189. O'Brien, C., and S.J. Montain. \"Hypohydration Effect on Finger Skin Temperature and Blood Flow During Cold-Water Finger Immersion.\" Journal of Applied Physiology 94 (2003): 598- 603. Thomas, J.R., and E.H.N. Oakley. \"Nonfreezing Cold Injury.\" In Textbooks of Military Medicine: Medical Aspects of Harsh Environments, Volume 1, edited by K.B. Pandolf and R.E. Burr, 467-490. Falls Church, VA: Office of The Surgeon General, U.S. Army, 2002. Toner, M.M., and W.D. McArdle. \"Human Thermoregulatory Responses to Acute Cold Stress With Special Reference to Water Immersion.\" In Handbook of Physiology: Section 4, Environmental Physiology, Vol. 1, edited by M.J. Fregley and C.M. Blatteis, 379-398. New York: Oxford University Press, 1996. Ungley, C.C., G.D. Channel, and R.C. Richard. \"Immersion Foot Syndrome.\" British Journal of Surgery 33 (1945): 17-31. Young, A.J. \"Homeostatic Responses to Prolonged Cold Exposure: Human Cold Acclimatization.\" In Handbook of Physiology: Section 4, Environmental Physiology, Vol. 1, edited by M.J. Fregley and C.M. Blatteis, 419-438. New York: Oxford University Press, 1996. Young, A.J., J.W. Castellani, and M.N. Sawka. \"Human Physiological Responses to Cold Exposure. In Proceedings of 1997 Nagano Symposium on Sports Science, edited by H. Nose, E.R. Nadel, and T. Morimoto, 273-286. Carmel, IN: Cooper Publishing Group, 1998. Young, A.J., C. O'Brien, M.N. Sawka, and R.R. Gonzalez. \"Physiological Problems Associated With Wearing NBC Protective Clothing During Cold Weather.\" Aviation, Space and Environmental Medicine 71 (2000): 184-189. Young, A.J., J.W. Castellani, C. O'Brien, R.L. Shippee, P. Tikuisis, L.G. Meyer, L.A. Blanchard, J.E. Kain, B.S. Cadarette, and M.N. Sawka. \"Exertional Fatigue, Sleep Loss, and Negative Energy Balance Increase Susceptibility to Hypothermia.\" Journal of Applied Physiology 85 (1998): 1210-1217. 70",
   "notices": []
  },
  {
@@ -384,6 +1812,18 @@
   "notices": []
  },
  {
+  "id": "TBMED508/B.h1",
+  "manual": "TBMED508",
+  "para": "B.h1",
+  "chapter": "APPENDIX B",
+  "heading": "This page intentionally left blank",
+  "pages": [
+   80
+  ],
+  "text": "74",
+  "notices": []
+ },
+ {
   "id": "TBMED508/C-1",
   "manual": "TBMED508",
   "para": "C-1",
@@ -420,6 +1860,18 @@
   "notices": []
  },
  {
+  "id": "TBMED508/C.h2",
+  "manual": "TBMED508",
+  "para": "C.h2",
+  "chapter": "APPENDIX C",
+  "heading": "TB MED 508",
+  "pages": [
+   82
+  ],
+  "text": "(2) Adequate shelter.\n(3) Proper fitness.\n(4) Proper food and hydration.\nc. Mission-related concerns, to include--\n(1) Degree of mobility, which impacts on soldier heat generation.\n(2) Contact with ground or other surfaces that may increase conductive cooling.\n(3) Exposure to wet conditions (for example, stream crossings).",
+  "notices": []
+ },
+ {
   "id": "TBMED508/C-4",
   "manual": "TBMED508",
   "para": "C-4",
@@ -432,6 +1884,18 @@
   "notices": []
  },
  {
+  "id": "TBMED508/C.h3",
+  "manual": "TBMED508",
+  "para": "C.h3",
+  "chapter": "APPENDIX C",
+  "heading": "TB MED 508",
+  "pages": [
+   83
+  ],
+  "text": "(g) Gaiters are to be worn to keep boots dry when necessary.\n(h) Gloves or mittens are to be worn.\n(i) Hands must be warmed under clothes before hands become numb.\n(j) Skin contact with snow, fuel, or bare metal is to be avoided, and proper gloves are to be worn when handling fuel or bare metal.\n(k) Gloves are to be waterproofed by treating them with waterproofing compounds.\n(l) Face and ears are to be covered with a scarf, and an insulated cap with flaps over the ears or a balaclava is to be worn.\n(m) Face and ears are to be warmed by covering them with warm hands, and the face and ears must not be rubbed.\n(n) Face camouflage will not be used when the air temperature is below 32 oF.\n(o) Sunscreen are to be worn.\n(p) Sunglasses are to be worn to prevent snow blindness.\n(2) The body will be kept warm.\n(a) Soldiers are to keep moving.\n(b) Big muscles (arms, shoulders, trunk, and legs) are to be exercised to keep warm.\n(3) Health and nutrition must be sustained.\n(a) Alcohol use is to be avoided (alcohol impairs the body's ability to shiver).\n(b) Tobacco products are to be avoided (tobacco products decrease blood flow to the skin).\n(c) All meals are to be eaten to maintain energy.\n(d) Water or warm nonalcoholic fluids are to be drunk to prevent dehydration.\n(e) CO poisoning must be prevented by using only Army-approved heaters in sleeping areas, by not sleeping near the exhaust of a vehicle while the vehicle is running, and by not sleeping in an enclosed area where an open fire is burning.\n(4) Soliders will protect each other.\n(a) Soldiers are to watch for signs of frostbite and other cold weather injuries in their buddies.\n(b) Soldiers are to ask about and assist with rewarming of feet, hands, ears or the face.\n(5) Leadership initiatives will be practiced.\n(a) Activities or exercise will be limited or possibly discontinued during very cold weather.\n(b) Covered vehicles are to be used for troop transport.\n(c) Warming tents will be available.\n(d) Warm food and drink will be on hand.\n(e) All equipment are to be checked and working properly.",
+  "notices": []
+ },
+ {
   "id": "TBMED508/C-5",
   "manual": "TBMED508",
   "para": "C-5",
@@ -441,6 +1905,18 @@
    83
   ],
   "text": "Implementing controls Cold casualty controls can be implemented through\na. Identified controls already in place (buddy checks, sock changes, available shelter, and warm meals).\nb. Controls that are integrated into standing operating procedures.\n(1) Soldiers (including newly arrived soldiers) will be educated about hazards and controls.\n(2) The buddy system will be implemented to check clothes/personal protection. 77",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/C.h4",
+  "manual": "TBMED508",
+  "para": "C.h4",
+  "chapter": "APPENDIX C",
+  "heading": "TB MED 508",
+  "pages": [
+   84
+  ],
+  "text": "(3) Soldiers will be encouraged and allowed to speak up about any problem (self-checks).\nc. A decision to accept risk at the appropriate level.",
   "notices": []
  },
  {
@@ -477,6 +1953,582 @@
    85
   ],
   "text": "Description\na. The long underwear is the primary wicking layer and will be worn directly against the skin. The wicking ability of the polyester fabric allows transfer of water vapor from the skin to the outer layers where it can evaporate. Therefore, this type of long underwear helps keep clothing dry. Soldiers must not wear cotton or wool underneath this layer.\nb. The fleece layer is the primary insulation layer worn over the long underwear. The amount of insulation required depends on whether the soldier is active or immobile. Active soldiers may not need this layer at all, whereas immobile soldiers may choose to add the polyester batting coat and trousers. For moderate levels of activity in cold conditions, opening the underarm zippers and the front zipper of the fleece jacket and the side zippers on the pants will increase ventilation. 79",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h3",
+  "manual": "TBMED508",
+  "para": "D.h3",
+  "chapter": "APPENDIX D",
+  "heading": "trousers",
+  "pages": [
+   86
+  ],
+  "text": "c. The Gore-TexTM parka and trousers are a windproof and waterproof outer layer. The Gore- TexTM fabric allows vapor transfer from the body to the environment. However, because the limited vapor transfer rate is quickly exceeded during exercise, the layer is usually not worn during exercise. 80",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h4",
+  "manual": "TBMED508",
+  "para": "D.h4",
+  "chapter": "APPENDIX D",
+  "heading": "TB MED 508",
+  "pages": [
+   87
+  ],
+  "text": "d. The ECWCS does not include glove/mitten, sock, or boot systems. See paragraphs 3-2l, 3-2n, and 3-2o of this document for guidance on choosing appropriate gloves/mittens and footwear. 81",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h5",
+  "manual": "TBMED508",
+  "para": "D.h5",
+  "chapter": "APPENDIX D",
+  "heading": "This page intentionally left blank",
+  "pages": [
+   88
+  ],
+  "text": "82",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h6",
+  "manual": "TBMED508",
+  "para": "D.h6",
+  "chapter": "APPENDIX D",
+  "heading": "AMSA",
+  "pages": [
+   89
+  ],
+  "text": "U.S. Army Medical Surveillance Activity",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h7",
+  "manual": "TBMED508",
+  "para": "D.h7",
+  "chapter": "APPENDIX D",
+  "heading": "BDO",
+  "pages": [
+   89
+  ],
+  "text": "battle dress overgarment",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h8",
+  "manual": "TBMED508",
+  "para": "D.h8",
+  "chapter": "APPENDIX D",
+  "heading": "BDU",
+  "pages": [
+   89
+  ],
+  "text": "battle dress uniform",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h9",
+  "manual": "TBMED508",
+  "para": "D.h9",
+  "chapter": "APPENDIX D",
+  "heading": "C",
+  "pages": [
+   89
+  ],
+  "text": "Celsius",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h10",
+  "manual": "TBMED508",
+  "para": "D.h10",
+  "chapter": "APPENDIX D",
+  "heading": "CID",
+  "pages": [
+   89
+  ],
+  "text": "cold-induced diuresis",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h11",
+  "manual": "TBMED508",
+  "para": "D.h11",
+  "chapter": "APPENDIX D",
+  "heading": "CIVD",
+  "pages": [
+   89
+  ],
+  "text": "cold-induced vasodilation",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h12",
+  "manual": "TBMED508",
+  "para": "D.h12",
+  "chapter": "APPENDIX D",
+  "heading": "CO",
+  "pages": [
+   89
+  ],
+  "text": "carbon monoxide CO2 carbon dioxide",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h13",
+  "manual": "TBMED508",
+  "para": "D.h13",
+  "chapter": "APPENDIX D",
+  "heading": "CPR",
+  "pages": [
+   89
+  ],
+  "text": "cardiopulmonary resuscitation",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h14",
+  "manual": "TBMED508",
+  "para": "D.h14",
+  "chapter": "APPENDIX D",
+  "heading": "ECWCS",
+  "pages": [
+   89
+  ],
+  "text": "Extended Cold Weather Clothing System",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h15",
+  "manual": "TBMED508",
+  "para": "D.h15",
+  "chapter": "APPENDIX D",
+  "heading": "F",
+  "pages": [
+   89
+  ],
+  "text": "Fahrenheit",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h16",
+  "manual": "TBMED508",
+  "para": "D.h16",
+  "chapter": "APPENDIX D",
+  "heading": "IV",
+  "pages": [
+   89
+  ],
+  "text": "intravenous 83",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h17",
+  "manual": "TBMED508",
+  "para": "D.h17",
+  "chapter": "APPENDIX D",
+  "heading": "kcal",
+  "pages": [
+   90
+  ],
+  "text": "kilocalorie",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h18",
+  "manual": "TBMED508",
+  "para": "D.h18",
+  "chapter": "APPENDIX D",
+  "heading": "kcal/d",
+  "pages": [
+   90
+  ],
+  "text": "kilocalories per day",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h19",
+  "manual": "TBMED508",
+  "para": "D.h19",
+  "chapter": "APPENDIX D",
+  "heading": "lb",
+  "pages": [
+   90
+  ],
+  "text": "pound",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h20",
+  "manual": "TBMED508",
+  "para": "D.h20",
+  "chapter": "APPENDIX D",
+  "heading": "LRP",
+  "pages": [
+   90
+  ],
+  "text": "Long Range Patrol",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h21",
+  "manual": "TBMED508",
+  "para": "D.h21",
+  "chapter": "APPENDIX D",
+  "heading": "MCW",
+  "pages": [
+   90
+  ],
+  "text": "Meal, Cold Weather",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h22",
+  "manual": "TBMED508",
+  "para": "D.h22",
+  "chapter": "APPENDIX D",
+  "heading": "MEB",
+  "pages": [
+   90
+  ],
+  "text": "medical evaluation board",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h23",
+  "manual": "TBMED508",
+  "para": "D.h23",
+  "chapter": "APPENDIX D",
+  "heading": "MET",
+  "pages": [
+   90
+  ],
+  "text": "metabolic equivalent",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h24",
+  "manual": "TBMED508",
+  "para": "D.h24",
+  "chapter": "APPENDIX D",
+  "heading": "mg",
+  "pages": [
+   90
+  ],
+  "text": "milligram",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h25",
+  "manual": "TBMED508",
+  "para": "D.h25",
+  "chapter": "APPENDIX D",
+  "heading": "MIPB",
+  "pages": [
+   90
+  ],
+  "text": "Medical Intelligence Preparation of the Battlespace",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h26",
+  "manual": "TBMED508",
+  "para": "D.h26",
+  "chapter": "APPENDIX D",
+  "heading": "MOS",
+  "pages": [
+   90
+  ],
+  "text": "military occupational specialty",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h27",
+  "manual": "TBMED508",
+  "para": "D.h27",
+  "chapter": "APPENDIX D",
+  "heading": "mph",
+  "pages": [
+   90
+  ],
+  "text": "miles per hour",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h28",
+  "manual": "TBMED508",
+  "para": "D.h28",
+  "chapter": "APPENDIX D",
+  "heading": "MRE",
+  "pages": [
+   90
+  ],
+  "text": "Meals-Ready-to-Eat",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h29",
+  "manual": "TBMED508",
+  "para": "D.h29",
+  "chapter": "APPENDIX D",
+  "heading": "NBC",
+  "pages": [
+   90
+  ],
+  "text": "nuclear, biological and chemical",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h30",
+  "manual": "TBMED508",
+  "para": "D.h30",
+  "chapter": "APPENDIX D",
+  "heading": "NFCI",
+  "pages": [
+   90
+  ],
+  "text": "nonfreezing cold injury 84",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h31",
+  "manual": "TBMED508",
+  "para": "D.h31",
+  "chapter": "APPENDIX D",
+  "heading": "NSN",
+  "pages": [
+   91
+  ],
+  "text": "National Stock Number",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h32",
+  "manual": "TBMED508",
+  "para": "D.h32",
+  "chapter": "APPENDIX D",
+  "heading": "POL",
+  "pages": [
+   91
+  ],
+  "text": "petroleum, oil and lubricants",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h33",
+  "manual": "TBMED508",
+  "para": "D.h33",
+  "chapter": "APPENDIX D",
+  "heading": "PT",
+  "pages": [
+   91
+  ],
+  "text": "physical training",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h34",
+  "manual": "TBMED508",
+  "para": "D.h34",
+  "chapter": "APPENDIX D",
+  "heading": "TN",
+  "pages": [
+   91
+  ],
+  "text": "Technical Note",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h35",
+  "manual": "TBMED508",
+  "para": "D.h35",
+  "chapter": "APPENDIX D",
+  "heading": "USARIEM",
+  "pages": [
+   91
+  ],
+  "text": "U.S. Army Research Institute of Environmental Medicine",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h36",
+  "manual": "TBMED508",
+  "para": "D.h36",
+  "chapter": "APPENDIX D",
+  "heading": "UV",
+  "pages": [
+   91
+  ],
+  "text": "ultraviolet",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h37",
+  "manual": "TBMED508",
+  "para": "D.h37",
+  "chapter": "APPENDIX D",
+  "heading": "WCT",
+  "pages": [
+   91
+  ],
+  "text": "windchill temperature index",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h38",
+  "manual": "TBMED508",
+  "para": "D.h38",
+  "chapter": "APPENDIX D",
+  "heading": "Cold-induced vasodilation",
+  "pages": [
+   91
+  ],
+  "text": "Periodic oscillations of skin temperature following the initial decline during cold exposure, resulting from transient increases in blood flow.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h39",
+  "manual": "TBMED508",
+  "para": "D.h39",
+  "chapter": "APPENDIX D",
+  "heading": "Frostbite",
+  "pages": [
+   91
+  ],
+  "text": "Tissue freezing.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h40",
+  "manual": "TBMED508",
+  "para": "D.h40",
+  "chapter": "APPENDIX D",
+  "heading": "Habituation",
+  "pages": [
+   91
+  ],
+  "text": "Decrease in the shivering and vasoconstrictor responses to cold exposure.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h41",
+  "manual": "TBMED508",
+  "para": "D.h41",
+  "chapter": "APPENDIX D",
+  "heading": "Hyperthermia",
+  "pages": [
+   91
+  ],
+  "text": "Elevated body temperature.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h42",
+  "manual": "TBMED508",
+  "para": "D.h42",
+  "chapter": "APPENDIX D",
+  "heading": "Hypothermia",
+  "pages": [
+   91
+  ],
+  "text": "Body temperature below 95 degrees F.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h43",
+  "manual": "TBMED508",
+  "para": "D.h43",
+  "chapter": "APPENDIX D",
+  "heading": "Layering",
+  "pages": [
+   91
+  ],
+  "text": "Method of placing several clothing layers on top of each other to increase insulation. 85",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h44",
+  "manual": "TBMED508",
+  "para": "D.h44",
+  "chapter": "APPENDIX D",
+  "heading": "Metabolic equivalent level",
+  "pages": [
+   92
+  ],
+  "text": "Energy expenditure during exercise relative to the resting energy expenditure (5 metabolic equivalents (METs) is equal to 5 times the energy expenditure at rest).",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h45",
+  "manual": "TBMED508",
+  "para": "D.h45",
+  "chapter": "APPENDIX D",
+  "heading": "Nonfreezing cold injury",
+  "pages": [
+   92
+  ],
+  "text": "Injury sustained after prolonged exposure to cold-wet conditions.",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h46",
+  "manual": "TBMED508",
+  "para": "D.h46",
+  "chapter": "APPENDIX D",
+  "heading": "Windchill temperature index",
+  "pages": [
+   92
+  ],
+  "text": "Integration of wind speed and air temperature to provide an estimate of the cooling power of the environment; it standardizes the cooling power of the environment to an equivalent air temperature for calm conditions. 86",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h47",
+  "manual": "TBMED508",
+  "para": "D.h47",
+  "chapter": "APPENDIX D",
+  "heading": "TB MED 508",
+  "pages": [
+   93
+  ],
+  "text": "By Order of the secretary of the Army and the Air Force:",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h48",
+  "manual": "TBMED508",
+  "para": "D.h48",
+  "chapter": "APPENDIX D",
+  "heading": "PETER J. SCHOOMAKER",
+  "pages": [
+   93
+  ],
+  "text": "General, United States Army Chief of Staff Official:",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h49",
+  "manual": "TBMED508",
+  "para": "D.h49",
+  "chapter": "APPENDIX D",
+  "heading": "SANDRA R. RILEY",
+  "pages": [
+   93
+  ],
+  "text": "Administrative Assistant to the Secretary of the Army 06096",
+  "notices": []
+ },
+ {
+  "id": "TBMED508/D.h50",
+  "manual": "TBMED508",
+  "para": "D.h50",
+  "chapter": "APPENDIX D",
+  "heading": "DISTRIBUTION:",
+  "pages": [
+   93
+  ],
+  "text": "Active Army, Army National Guard, and U.S. Army Reserve: To be distributed in accordance with DA Form 12-34C-R requirements for TB MED Series: Professional Medical Material.",
   "notices": []
  }
 ]
