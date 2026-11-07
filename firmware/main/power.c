@@ -85,11 +85,12 @@ battery_t power_battery(void) {
     /* Nothing wired (an open pin wanders) or a reading no LiPo can give: report
      * "unknown" so a bench board without the divider is never locked to the
      * emergency pages or put to sleep as "critical". */
-    if (hi - lo > 150 || b.mv < 2800 || b.mv > 4500) {
+    if (hi - lo > 400 ||   /* USB charge ripple shows up to ~260 mV; an open pin wanders much more */
+         b.mv < 2800 || b.mv > 4500) {
         static int64_t last_log_us = -60000000;          /* say why, at most once a minute */
         int64_t t = esp_timer_get_time();
         if (t - last_log_us > 60000000) {
-            ESP_LOGI("power", "battery reading ignored: pin %d..%d mV, battery %d mV (want 2800..4500, spread <= 150)", lo, hi, b.mv);
+            ESP_LOGI("power", "battery reading ignored: pin %d..%d mV, battery %d mV (want 2800..4500, spread <= 400)", lo, hi, b.mv);
             last_log_us = t;
         }
         b.mv = 0; return b;
