@@ -382,3 +382,14 @@ def test_reference_shelf_labels_distinct_and_titles_short(repo):
     assert len(set(labels)) == 4 and labels[0].startswith("1-1 Distinct opening")
     assert len(b.trees[0]["title"]) <= TITLE_MAX
     assert b.trees[0]["full_title"] == "A Very Long Manual Name That Will Not Fit"
+
+
+@pytest.mark.parametrize("line,is_chapter", [
+    ("Chapter 4", True), ("CHAPTER 1. INTRODUCTION", True), ("Appendix A", True),
+    ("Chapter 12 Cold Weather", True), ("APPENDIX G", True),
+    ("chapter 6, see paragraph 6-2", False), ("Chapter 1 describes the desert", False),
+    ("Appendix C).", False), ("Chapter 7 for details", False), ("Chapter 3, Section II", False),
+])
+def test_chapter_heading_vs_cross_reference(line, is_chapter):
+    from plb.extract import CHAPTER_RE
+    assert bool(CHAPTER_RE.match(line)) is is_chapter

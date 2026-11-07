@@ -28,6 +28,12 @@ def _label(s: str, limit: int = LABEL_MAX) -> str:
     return s if len(s) <= limit else s[:limit - 3].rstrip() + "..."
 
 
+def _chap_key(chap: str | None) -> str:
+    """'CHAPTER 2' and 'CHAPTER 2. PERSONAL CLOTHING' are the same chapter."""
+    m = re.match(r"^(chapter|appendix)\s+(\S+?)[.:]?(\s|$)", chap or "", flags=re.I)
+    return f"{m.group(1).lower()} {m.group(2).upper()}" if m else (chap or "")
+
+
 def _first_words(text: str) -> str:
     return " ".join(text.replace("\n", " ").split()[:8])
 
@@ -76,8 +82,10 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
         about = " ".join(x for x in [m.get("about") or "",
                                      f"{title}, {str(m.get('edition')).split(' (')[0]}." if str(m.get("edition") or "TBD") != "TBD" else f"{title}."] if x)
         chapters = []
-        for ci, (chap, group) in enumerate(groupby(secs, key=lambda s: s.get("chapter") or "")):
+        for ci, (_, group) in enumerate(groupby(secs, key=lambda s: _chap_key(s.get("chapter")))):
             group = list(group)
+            chap_lines = list(dict.fromkeys(s.get("chapter") or "" for s in group))
+            chap = chap_lines[0]
             leaves = []
             # a section's label is its heading, unless neighbours share that heading:
             # then para + first words, so a list never repeats one title
@@ -90,9 +98,19 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
                     leaves.append(node(tid, f"s{s['para']}", label, passages=pids))
             heads = [list(g) for _, g in groupby(zip(group, leaves),
                                                   key=lambda p: p[0].get("heading") or "")]
-            first = next((s.get("heading") for s in group if s.get("heading")
-                          and "contents" not in s.get("heading", "").lower()), "")
-            chap_short = re.sub(r"^chapter\s+", "Ch ", chap, flags=re.I)
+            # chapter title: from a "CHAPTER 2. PERSONAL CLOTHING" line if there is one,
+            # else the first ALL-CAPS heading (sidebar vignettes like "Russia, 1942" are not)
+            titled = [re.sub(r"^\S+\s+\S+?[.:]?\s+", "", c, count=1) for c in chap_lines
+                      if re.match(r"^\S+\s+\S+?[.:]?\s+\S", c)]
+            def plain(h):
+                return re.sub(r"[^a-z0-9]", "", h.lower())
+            heads_ok = [s.get("heading") for s in group if s.get("heading")
+                        and "contents" not in s.get("heading", "").lower()
+                        and plain(s["heading"]) != plain(title)]       # running headers
+            first = titled[0] if titled else next((h for h in heads_ok if h.isupper()), "")
+            m_num = re.match(r"^(chapter|appendix)\s+(\S+?)[.:]?(\s|$)", chap, flags=re.I)
+            chap_short = (("Ch " if m_num.group(1).lower() == "chapter" else "App ") + m_num.group(2)
+                          if m_num else chap)
             chap_label = (f"{chap_short} {first.title() if first.isupper() else first}" if chap else
                           ("Sections" if ci == 0 else f"Sections ({ci + 1})"))
             if len(leaves) > list_max and 1 < len(heads) <= list_max * list_max:

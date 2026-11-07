@@ -121,9 +121,12 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
     (out / "pictures.json").write_text(json.dumps(pics, indent=1))
     # catalog lines for the reference shelf, readable by name in the current cartridge
     strings = dict(strings or {})
-    for t in b.trees:
+    # ABOUT#<n>: n = the tree's index in trees.json, which is the cartridge tree table
+    # order (firmware knows the index, not the id; cart_string names are <= 31 chars)
+    for i, t in enumerate(b.trees):
         if t.get("about"):
-            strings[f"ABOUT:{t['id']}"] = t["about"]
+            strings[f"ABOUT:{t['id']}"[:31]] = t["about"]
+            strings[f"ABOUT#{i}"] = t["about"]
     (out / "strings.json").write_text(json.dumps(strings, indent=1))
     (out / "contexts.json").write_text(json.dumps(contexts, indent=1))
 

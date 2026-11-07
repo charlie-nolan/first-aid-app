@@ -35,7 +35,10 @@ FIG_SPLIT_RE = re.compile(r"Figure\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})(?:[.\-]\
 TOC_LEADER_RE = re.compile(r"(\.\s*){3,}")
 TOC_PAGENO_RE = re.compile(r"\s\d{1,3}$")
 TABLE_RE = re.compile(r"^Table\s+(?P<num>(?:[A-Z]|\d{1,2})-\d{1,3})\.\s*(?P<title>.*)$")
-CHAPTER_RE = re.compile(r"^(Chapter\s+\d+|Appendix\s+[A-Z])\b", re.I)
+# "Chapter 4", "CHAPTER 4. TITLE", "Appendix A Title" start a chapter. Cross-references
+# in running text ("chapter 6, see", "Chapter 1 describes", "Appendix C).") must not.
+CHAPTER_RE = re.compile(r"^(?:Chapter|CHAPTER|Appendix|APPENDIX)\s+(?:\d+|[A-Z])"
+                        r"(?=$|[.:\-]?\s+(?:[A-Z(]|$)|[.:]$)")
 
 # Some DoD PDFs use font subsets whose codes are shifted (e.g. "6HSWHPEHU" = "September").
 COMMON = set("""the of and to a in is be or for with it as that by on are from this at can
