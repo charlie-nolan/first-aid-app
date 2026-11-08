@@ -299,3 +299,37 @@ def test_ruled_table_rows_read_cell_by_cell(tmp_path):
     assert secs["1.t2"]["pages"] == [1, 2] and secs["1.t1"]["heading"] == "Table 3.2: Placeholder Chart"
     texts = " ".join(s["text"] for s in secs.values())
     assert "Placeholder text after the table." in texts and "Kind Layers Signs" not in texts
+
+def test_default_build_excludes_personal_sources(tmp_path):
+    """A personal (copyrighted, own-device-only) book is used only with personal=True."""
+    from plb.build import build
+    root = tmp_path / "repo"
+    (root / "content" / "trees").mkdir(parents=True)
+    (root / "content" / "config.yaml").write_text(yaml.safe_dump({"reference_shelf": True}))
+    (root / "content" / "config.personal.yaml").write_text(
+        yaml.safe_dump({"library_prepend": {"Wild": ["ref-PERS"]}}))
+    (root / "sources.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PUB", "title": "Public", "edition": "1", "file": "s/p.pdf"}]}))
+    (root / "sources.personal.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PERS", "title": "Personal", "edition": "1", "file": "s/q.pdf", "personal": True,
+         "cite_as": "Pers 1e", "cite_style": "page"}]}))
+    sec = lambda mid, para, page: {"id": f"{mid}/{para}", "manual": mid, "para": para,
+                                   "chapter": "", "heading": "Placeholder Heading",
+                                   "pages": [page], "text": "Placeholder text.", "notices": []}
+    for d, mid in (("extract", "PUB"), ("extract_personal", "PERS")):
+        out = root / "build" / d / mid
+        out.mkdir(parents=True)
+        (out / "sections.json").write_text(json.dumps([sec(mid, "3.1", 3)]))
+        (out / "figures.json").write_text("[]")
+
+    out, _ = build(root)
+    trees = json.loads((out / "trees.json").read_text())
+    passages = (out / "passages.jsonl").read_text()
+    assert [t["id"] for t in trees["trees"]] == ["ref-PUB"]
+    assert "PERS" not in passages and "Pers 1e" not in passages
+
+    out, _ = build(root, personal=True)
+    trees = json.loads((out / "trees.json").read_text())
+    assert {t["id"] for t in trees["trees"]} == {"ref-PUB", "ref-PERS"}
+    assert out.name == "intermediate_personal"
+    assert "Pers 1e, p3, Placeholder Heading" in (out / "passages.jsonl").read_text()

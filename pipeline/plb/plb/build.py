@@ -22,7 +22,7 @@ import yaml
 from . import phrases as ph
 from .extract import load_figures, load_sections
 from .pictures import build_picture
-from .sources import load_manifest
+from .sources import PERSONAL_EXTRACT, load_manifest
 from .trees import DEFAULT_CONTEXTS, Issue, build_trees, pretty_manual
 
 
@@ -31,19 +31,34 @@ def pic_id(fig_id: str) -> str:
 
 
 def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
-          tree_dir: Path | None = None, max_phrases: int = ph.MAX_PHRASES) -> tuple[Path, list[Issue]]:
-    out = out or root / "build" / "intermediate"
+          tree_dir: Path | None = None, max_phrases: int = ph.MAX_PHRASES,
+          personal: bool = False) -> tuple[Path, list[Issue]]:
+    """personal: also take the gitignored sources.personal.yaml manuals (extracted under
+    build/extract_personal) and content/config.personal.yaml. Off by default, so a normal
+    build never sees them."""
+    out = out or root / "build" / ("intermediate_personal" if personal else "intermediate")
     extract_dir = extract_dir or root / "build" / "extract"
+    personal_dir = root / "build" / PERSONAL_EXTRACT
     tree_dir = tree_dir or root / "content" / "trees"
     manuals = {m.id: m.raw | {"sha256": m.sha256, "distribution": m.distribution}
-               for m in load_manifest(root / "sources.yaml")}
+               for m in load_manifest(root / "sources.yaml", personal)}
     dirs = sorted(p for p in extract_dir.glob("*") if p.is_dir())
+    if personal:
+        dirs += sorted(p for p in personal_dir.glob("*") if p.is_dir() and p.name in manuals)
     sections = load_sections(dirs)
     figures = load_figures(dirs)
     config = yaml.safe_load((root / "content" / "config.yaml").read_text()) \
         if (root / "content" / "config.yaml").exists() else {}
     strings = yaml.safe_load((root / "content" / "strings.yaml").read_text()) \
         if (root / "content" / "strings.yaml").exists() else {}
+    pconf = root / "content" / "config.personal.yaml"
+    if personal and pconf.exists():
+        # library_prepend: {folder: [tree ids]} puts personal shelf manuals first in a folder
+        extra = yaml.safe_load(pconf.read_text()) or {}
+        groups = dict(config.get("library_groups") or {})
+        for g, tids in (extra.get("library_prepend") or {}).items():
+            groups[g] = list(tids) + [t for t in groups.get(g, []) if t not in tids]
+        config = {**config, "library_groups": groups}
 
     contexts = dict(DEFAULT_CONTEXTS)
     if (root / "content" / "contexts.yaml").exists():
@@ -54,7 +69,7 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
         from .shelf import add_reference_shelf
         by_manual = {}
         for mid in manuals:                       # sources.yaml order, file order inside
-            p = extract_dir / mid / "sections.json"
+            p = (personal_dir if manuals[mid].get("personal") else extract_dir) / mid / "sections.json"
             if p.exists():
                 by_manual[mid] = json.loads(p.read_text())
         add_reference_shelf(b, by_manual, manuals)

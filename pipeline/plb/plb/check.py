@@ -26,9 +26,10 @@ from .trees import Issue
 
 
 def run_checks(root: Path, inter: Path, build_issues: list[Issue],
-               reader_cmd: str | None = None, library: Path | None = None) -> list[Issue]:
+               reader_cmd: str | None = None, library: Path | None = None,
+               personal: bool = False) -> list[Issue]:
     issues = list(build_issues)
-    issues += [Issue("error", "sources", p) for p in verify(root, root / "sources.yaml")]
+    issues += [Issue("error", "sources", p) for p in verify(root, root / "sources.yaml", personal)]
 
     trees = json.loads((inter / "trees.json").read_text())
     cmds = json.loads((inter / "phrases.json").read_text())

@@ -42,6 +42,8 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="plb", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--root", default=".", help="repo root (has sources.yaml)")
+    ap.add_argument("--personal", action="store_true",
+                    help="also use the gitignored sources.personal.yaml books (personal device only)")
     sub = ap.add_subparsers(dest="cmd", required=True)
     f = sub.add_parser("fetch"); f.add_argument("id", nargs="?")
     i = sub.add_parser("ingest"); i.add_argument("id"); i.add_argument("pdf")
@@ -53,7 +55,8 @@ def main(argv=None) -> int:
     t = sub.add_parser("test"); t.add_argument("--reader-cmd"); t.add_argument("--library")
     p = sub.add_parser("pack"); p.add_argument("--packer", required=True,
                                                help="CMD INTERMEDIATE_DIR OUT.bin")
-    p.add_argument("--out", default="build/library.bin")
+    p.add_argument("--out", default=None, help="default build/library.bin "
+                                                 "(build/library_personal.bin with --personal)")
     rv = sub.add_parser("review"); rv.add_argument("--out", default="content/review")
     s = sub.add_parser("show"); s.add_argument("section")
     g = sub.add_parser("grep"); g.add_argument("words", nargs="+")
@@ -71,7 +74,7 @@ def main(argv=None) -> int:
         return 0
     if a.cmd == "extract":
         rc = 0
-        for m in src.load_manifest(manifest):
+        for m in src.load_manifest(manifest, a.personal):
             if a.ids and m.id not in a.ids:
                 continue
             pdf = m.path(root)
@@ -84,7 +87,7 @@ def main(argv=None) -> int:
                 if a.ids:
                     print(f"{m.id}: {pdf} not found (plb ingest first)"); rc = 1
                 continue
-            out = root / "build" / "extract" / m.id
+            out = root / "build" / (src.PERSONAL_EXTRACT if m.raw.get("personal") else "extract") / m.id
             secs, figs = extract(pdf, m.id, out, figures=not (a.no_figures or a.figure_cmd),
                                  numbering=m.raw.get("numbering", "dash"),
                                  skip_pages=tuple(m.raw.get("skip_pages") or ()),
@@ -101,15 +104,16 @@ def main(argv=None) -> int:
         print(f"locked {n} cited sections -> content/cites.lock.yaml")
         return _report(issues)
     if a.cmd in ("build", "test", "pack"):
-        out, issues = build(root)
+        out, issues = build(root, personal=a.personal)
         if a.cmd == "build":
             print(f"intermediate -> {out}")
             return _report(issues)
         lib = Path(a.library) if getattr(a, "library", None) else root / "build" / "library.bin"
-        issues = run_checks(root, out, issues, getattr(a, "reader_cmd", None), lib)
+        issues = run_checks(root, out, issues, getattr(a, "reader_cmd", None), lib, a.personal)
         rc = _report(issues)
         if a.cmd == "pack" and rc == 0:
-            r = subprocess.run(shlex.split(a.packer) + [str(out), str(root / a.out)])
+            dest = a.out or ("build/library_personal.bin" if a.personal else "build/library.bin")
+            r = subprocess.run(shlex.split(a.packer) + [str(out), str(root / dest)])
             return r.returncode
         return rc
     if a.cmd == "review":
