@@ -339,7 +339,9 @@ def test_chapter_pattern_with_title_on_next_line(tmp_path):
     """Books that don't say "Chapter" (Aerie: "Section One:" then "Introduction" below it)."""
     pdf = tmp_path / "t.pdf"
     c = canvas.Canvas(str(pdf), pagesize=letter)
-    y = lines(c, H - 120, ["Section One:", "Introduction"], "Helvetica-Bold", 30) - 20
+    c.setFont("Helvetica-Bold", 30)
+    c.drawString(72, H - 120, "Section One:"); c.drawString(72, H - 160, "Introduction")
+    y = H - 200
     y = lines(c, y, ["Placeholder Heading"], "Helvetica-Bold", 14)
     lines(c, y, ["Placeholder body text under the heading."])
     c.showPage(); c.save()
