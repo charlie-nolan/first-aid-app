@@ -42,6 +42,15 @@ config LIB_PLAIN_BAT_D5
         The IR output moves off D5. With nothing on D5 the reading is noisy or
         out of range and is ignored, so the header just shows no battery.
 
+config LIB_PLAIN_DOUBLE_TAP
+    bool "Plain: double-tap stands in for the missing buttons"
+    depends on LIB_BOARD_PLAIN
+    default y
+    help
+        Bench testing of the 6-button UI on 3 buttons: TALK twice = Window R,
+        BACK twice = Window L, DOWN twice = UP. Single taps of those three wait
+        300 ms to see if a second tap follows. Turns on the corner answer screens.
+
 config LIB_PANEL_FLIP
     bool "Rotate the screen 180 degrees"
     default n

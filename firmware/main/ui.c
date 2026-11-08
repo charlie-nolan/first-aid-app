@@ -244,10 +244,13 @@ void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s) {
     unsigned nf = cart_font_sizes(c);
     if (nf && s->font >= nf) s->font = (uint8_t)(nf - 1);
     if (s->family >= cart_font_families(c)) s->family = 0;
-    /* Home is the Library's top level (its folders), on every boot and wake
-     * (Charlie, 2026-11-07); there is no wake screen. */
-    (void)fresh;
-    u->mode = M_LIBRARY; u->back_mode = M_READ; u->list_sel = 0; u->lib_folder = 0xFF;
+    /* Boot and wake go back to the page being read; the Library is a menu item
+     * (Charlie, 2026-11-08: not a default page). A fresh start opens the first
+     * topic that isn't a reference book. */
+    if (fresh && c->n_trees && tree_is_ref(c, c->home_tree % c->n_trees))
+        for (unsigned t = 0; t < c->n_trees; t++)
+            if (!tree_is_ref(c, (uint16_t)t)) { s->win[0].node = cart_tree(c, (uint16_t)t).root; break; }
+    u->mode = M_READ; u->back_mode = M_READ; u->list_sel = 0; u->lib_folder = 0xFF;
 }
 
 static void clamp_page(ui_t *u) {
@@ -681,7 +684,7 @@ static void talk_short(ui_t *u) {
 static void back(ui_t *u) {
     ui_window_t *w = W(u);
     if (w->nhist) { w->node = w->hist[--w->nhist]; w->page = 0; w->sel = 0; }
-    else open_library(u);
+    else open_menu(u);                                     /* the Library is in the menu */
 }
 
 static ui_act_t menu_select(ui_t *u, ui_act_t a) {

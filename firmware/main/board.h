@@ -58,7 +58,11 @@
 #define PIN_MIC_PWR   PIN_NONE
 #define PIN_MIC_DATA  PIN_NONE
 #define PIN_MIC_CLK   PIN_NONE
+#if CONFIG_LIB_PLAIN_DOUBLE_TAP
+#define HAS_WINDOW_KEYS 1           /* double taps stand in for them (buttons.c) */
+#else
 #define HAS_WINDOW_KEYS 0
+#endif
 #endif
 
 /* Light levels, 10-bit PWM duty (0..1023). Tune on the bench. */
