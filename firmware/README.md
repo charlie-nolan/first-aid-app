@@ -101,7 +101,7 @@ works the same way. The plain bench board has no corner buttons, so it keeps the
 list (DOWN to move, TALK to open). Trees are capped at 4 answers per question
 (`plb build` fails otherwise), so every card works with buttons alone.
 
-Quick (partial) refreshes leave faint ghosts; every 5th refresh is a full one
+Quick (partial) refreshes leave faint ghosts; every 15th refresh is a full one (menuconfig > Librarian to change it)
 (the black-white flash), and pressing any two buttons together forces one.
 The serial log prints each refresh and how long BUSY stayed high. "BUSY never
 went high" means the BUSY wire (D3) is loose; the screen then tears, so the

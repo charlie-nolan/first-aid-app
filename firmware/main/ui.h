@@ -12,9 +12,11 @@
 #define UI_W 250            /* landscape, 2.13" panel */
 #define UI_H 122
 #define UI_STRIDE 32        /* bytes per framebuffer row (256 px) */
+extern const uint8_t ui_sleep_art[];   /* sleep_art.c: built-in sleep picture */
 #define UI_WINDOWS 5
 #define UI_HIST 8
-#define UI_SAVED_MAGIC 0x4C494231u   /* "LIB1" */
+#define UI_SAVED_MAGIC 0x4C494232u   /* "LIB2" */
+#define UI_LAST_TREES 32               /* manuals whose reading position is remembered */
 
 typedef enum { B_TALK, B_BACK, B_WIN_L, B_WIN_R, B_UP, B_DOWN, B_COUNT } ui_btn_t;
 typedef enum { E_PRESS, E_SHORT, E_LONG, E_RELEASE } ui_evkind_t;
@@ -38,8 +40,11 @@ typedef struct {
     uint8_t font;                   /* 0 small, 1 medium, 2 large */
     uint8_t light;                  /* front light 0 off, 1 dim, 2 bright */
     uint8_t mesh_on;
-    uint8_t family, pad2[3];        /* font family (Lexend, Bitter, ...) */
+    uint8_t family;                 /* font family (Lexend, Bitter, ...) */
+    uint8_t clean;                  /* page turns between screen clean-ups; 0 = build default */
+    uint8_t pad2[2];
     cart_tags_t ctx;                /* sticky context: state, season, activity (also kept in NVS) */
+    uint16_t last[UI_LAST_TREES];   /* reference shelf: last section read in each manual (0 = none) */
 } ui_saved_t;
 
 typedef struct {
@@ -63,6 +68,7 @@ typedef struct {
     ui_saved_t *s;
     ui_mode_t mode, back_mode;
     uint8_t list_sel, listening, talk_armed, ctx_dim;
+    uint8_t lib_folder;             /* Library: 0xFF = top level, else the first tree of the open folder */
     uint16_t picks[3]; uint8_t npicks;
     const char *msg;
     char scratch[4096];
