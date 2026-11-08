@@ -19,6 +19,17 @@ phrases:
   - help bleeding
   - stop the bleeding
   - amputation
+  - how do i stop bleeding
+  - how do i stop the bleeding
+  - help someone is bleeding
+  - "there's so much blood"
+  - blood is spurting
+  - blood is pumping out
+  - my friend was shot
+  - gunshot wound
+  - stab wound
+  - someone got stabbed
+  - deep cut
 nodes:
   start:
     label: Is the bleeding life-threatening?
@@ -31,7 +42,7 @@ nodes:
   limb:
     label: Have a tourniquet?
     cite: [ATP4-02.11/4-6, ATP4-02.11/4-9]
-    phrases: [bleeding arm, bleeding leg, arm bleeding, leg bleeding]
+    phrases: [bleeding arm, bleeding leg, arm bleeding, leg bleeding, my leg is bleeding a lot, "he's bleeding from his arm", leg is bleeding, my arm is bleeding, gunshot wound to the leg, she cut her hand badly]
     choices:
       - {label: "Yes, have a tourniquet", to: tq, kind: kit}
       - {label: "No tourniquet", to: pack, kind: nothing}
@@ -40,7 +51,7 @@ nodes:
     label: Apply a tourniquet
     cite: [ATP4-02.11/4-37, ATP4-02.11/4-38, ATP4-02.11/4-43, ATP4-02.11/4-39, ATP4-02.11/4-40]
     figure: ATP4-02.11/fig/4-5
-    phrases: [tourniquet, how to use a tourniquet, apply a tourniquet, put on a tourniquet]
+    phrases: [tourniquet, how to use a tourniquet, apply a tourniquet, put on a tourniquet, how do i put on a tourniquet, how do i apply a tourniquet, use a tourniquet, where do i put the tourniquet, how tight should the tourniquet be]
     choices:
       - {label: "One-handed (self-aid)", to: tq_one_hand}
       - {label: "Still bleeding", to: tq_second}
@@ -50,21 +61,21 @@ nodes:
     label: One-handed tourniquet
     cite: [ATP4-02.11/4-41]
     figure: ATP4-02.11/fig/4-5
-    phrases: [one handed tourniquet, tourniquet on myself, self aid tourniquet]
+    phrases: [one handed tourniquet, tourniquet on myself, self aid tourniquet, put a tourniquet on myself, i need to tourniquet my own arm]
     choices:
       - {label: "Bleeding stopped", to: dressing}
 
   tq_second:
     label: Tourniquet not working
     cite: [ATP4-02.11/4-61, ATP4-02.11/4-62]
-    phrases: [tourniquet not working, still bleeding with tourniquet, second tourniquet]
+    phrases: [tourniquet not working, still bleeding with tourniquet, second tourniquet, "the tourniquet isn't working", still bleeding after the tourniquet, do i need a second tourniquet]
     choices:
       - {label: "Bleeding stopped", to: dressing}
 
   pack:
     label: No tourniquet
     cite: [ATP4-02.11/4-80, ATP4-02.11/4-51, ATP4-02.11/4-54, ATP4-02.11/4-66]
-    phrases: [no tourniquet, pack a wound, wound packing, how to pack a wound, direct pressure]
+    phrases: [no tourniquet, pack a wound, wound packing, how to pack a wound, direct pressure, "i don't have a tourniquet", pack the wound, how do i pack a wound, stuff the wound with gauze]
     choices:
       - {label: "Still bleeding, improvise", to: improv_tq, kind: improvised}
       - {label: "Keep holding pressure", to: pressure, kind: nothing}
@@ -72,14 +83,14 @@ nodes:
   improv_tq:
     label: Improvised tourniquet
     cite: [ATP4-02.11/4-82, ATP4-02.11/4-79, ATP4-02.11/4-81, ATP4-02.11/4-83]
-    phrases: [improvised tourniquet, make a tourniquet, homemade tourniquet, tourniquet from a belt]
+    phrases: [improvised tourniquet, make a tourniquet, homemade tourniquet, tourniquet from a belt, how do i make a tourniquet, make a tourniquet out of a belt]
     choices:
       - {label: "Bleeding stopped", to: dressing}
 
   pressure:
     label: Direct pressure
     cite: [ATP4-02.11/4-10, ATP4-02.11/4-66]
-    phrases: [hold pressure, press on the wound]
+    phrases: [hold pressure, press on the wound, apply pressure, put pressure on it]
     choices:
       - {label: "Bleeding stopped", to: dressing}
 
@@ -87,7 +98,7 @@ nodes:
     label: Neck, armpit or groin
     cite: [ATP4-02.11/4-73, ATP4-02.11/4-45]
     figure: ATP4-02.11/fig/4-6
-    phrases: [junctional bleeding]
+    phrases: [junctional bleeding, "bleeding where a tourniquet won't fit"]
     choices:
       - {label: "Neck", to: neck}
       - {label: "Armpit", to: armpit}
@@ -96,25 +107,25 @@ nodes:
   neck:
     label: Neck bleeding
     cite: [ATP4-02.11/4-75, ATP4-02.11/4-76]
-    phrases: [neck bleeding, bleeding from the neck, cut throat]
+    phrases: [neck bleeding, bleeding from the neck, cut throat, his neck is bleeding]
     choices:
       - {label: "Bleeding stopped", to: dressing}
 
   armpit:
     label: Armpit bleeding
     cite: [ATP4-02.11/4-77]
-    phrases: [armpit bleeding, bleeding from the armpit, bleeding shoulder]
+    phrases: [armpit bleeding, bleeding from the armpit, bleeding shoulder, bleeding in the armpit, shot in the shoulder]
     choices:
       - {label: "Bleeding stopped", to: dressing}
 
   groin:
     label: Groin bleeding
     cite: [ATP4-02.11/4-84, ATP4-02.11/4-85, ATP4-02.11/4-86, ATP4-02.11/4-87]
-    phrases: [groin bleeding, bleeding from the groin, inner thigh bleeding]
+    phrases: [groin bleeding, bleeding from the groin, inner thigh bleeding, bleeding in the groin]
     choices:
       - {label: "Bleeding stopped", to: dressing}
 
   dressing:
     label: Pressure dressing and checks
     cite: [ATP4-02.11/4-70, ATP4-02.11/4-71, ATP4-02.11/4-72, ATP4-02.11/4-46, ATP4-02.11/7-8]
-    phrases: [pressure bandage, pressure dressing, bandage too tight, check the bandage]
+    phrases: [pressure bandage, pressure dressing, bandage too tight, check the bandage, how do i put on a pressure dressing, the bandage is too tight]

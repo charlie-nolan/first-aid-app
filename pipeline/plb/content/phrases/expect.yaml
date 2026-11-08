@@ -1,2 +1,91 @@
 # Spoken phrase -> the tree/node it must open. `plb test` fails if any of these drift.
-# e.g. "snake bite": snakebite/start
+# Realistic things a stressed person might say, not just the menu wording.
+# Each is also registered as a phrase in its tree, so voice lands on the right step.
+# DRAFT wording for Charlie's review.
+
+# bleeding: is it life-threatening?
+"bleeding": bleeding/start
+"heavy bleeding": bleeding/start
+"bleeding won't stop": bleeding/start
+"how do i stop bleeding": bleeding/start
+"how do i stop the bleeding": bleeding/start
+"stop the bleeding": bleeding/start
+"help someone is bleeding": bleeding/start
+"there's so much blood": bleeding/start
+"lots of blood": bleeding/start
+"blood is spurting": bleeding/start
+"blood is pumping out": bleeding/start
+"my friend was shot": bleeding/start
+"gunshot wound": bleeding/start
+"stab wound": bleeding/start
+"someone got stabbed": bleeding/start
+"deep cut": bleeding/start
+"amputation": bleeding/start
+
+# arm or leg
+"my leg is bleeding a lot": bleeding/limb
+"he's bleeding from his arm": bleeding/limb
+"leg is bleeding": bleeding/limb
+"my arm is bleeding": bleeding/limb
+"gunshot wound to the leg": bleeding/limb
+"she cut her hand badly": bleeding/limb
+"leg bleeding": bleeding/limb
+
+# tourniquet
+"tourniquet": bleeding/tq
+"how do i put on a tourniquet": bleeding/tq
+"how do i apply a tourniquet": bleeding/tq
+"use a tourniquet": bleeding/tq
+"where do i put the tourniquet": bleeding/tq
+"how tight should the tourniquet be": bleeding/tq
+
+# on yourself
+"tourniquet on myself": bleeding/tq_one_hand
+"one handed tourniquet": bleeding/tq_one_hand
+"put a tourniquet on myself": bleeding/tq_one_hand
+"i need to tourniquet my own arm": bleeding/tq_one_hand
+
+# tourniquet not stopping it
+"the tourniquet isn't working": bleeding/tq_second
+"tourniquet not working": bleeding/tq_second
+"still bleeding after the tourniquet": bleeding/tq_second
+"do i need a second tourniquet": bleeding/tq_second
+
+# no tourniquet: pack the wound
+"i don't have a tourniquet": bleeding/pack
+"no tourniquet": bleeding/pack
+"pack the wound": bleeding/pack
+"how do i pack a wound": bleeding/pack
+"wound packing": bleeding/pack
+"stuff the wound with gauze": bleeding/pack
+
+# improvised tourniquet
+"how do i make a tourniquet": bleeding/improv_tq
+"make a tourniquet out of a belt": bleeding/improv_tq
+"improvised tourniquet": bleeding/improv_tq
+"homemade tourniquet": bleeding/improv_tq
+
+# direct pressure
+"apply pressure": bleeding/pressure
+"put pressure on it": bleeding/pressure
+"press on the wound": bleeding/pressure
+"hold pressure": bleeding/pressure
+
+# where a tourniquet can't go
+"junctional bleeding": bleeding/junctional
+"bleeding where a tourniquet won't fit": bleeding/junctional
+"cut throat": bleeding/neck
+"neck bleeding": bleeding/neck
+"his neck is bleeding": bleeding/neck
+"bleeding in the armpit": bleeding/armpit
+"armpit bleeding": bleeding/armpit
+"shot in the shoulder": bleeding/armpit
+"bleeding from the groin": bleeding/groin
+"bleeding in the groin": bleeding/groin
+"inner thigh bleeding": bleeding/groin
+
+# dressings
+"pressure bandage": bleeding/dressing
+"how do i put on a pressure dressing": bleeding/dressing
+"the bandage is too tight": bleeding/dressing
+"check the bandage": bleeding/dressing
