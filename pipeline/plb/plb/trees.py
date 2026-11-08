@@ -128,7 +128,7 @@ def citation_for(manual_id: str, para: str, manuals: dict[str, dict],
     book = pretty_manual(manual_id, manuals)
     if manuals.get(manual_id, {}).get("cite_style") == "page" and sec:
         # 'Aerie WM 15e, p42, Splinting': books without paragraph numbers cite the page
-        head = " ".join(re.sub(r"^[\s*#\-]+", "", sec.get("heading") or "").split())
+        head = " ".join(re.sub(r"^[\s*#\-?]+", "", sec.get("heading") or "").split())   # "??" = an icon glyph
         head = head.title() if head.isupper() else head
         head = head if len(head) <= 40 else head[:37].rstrip() + "..."
         page = (sec.get("pages") or [None])[0]

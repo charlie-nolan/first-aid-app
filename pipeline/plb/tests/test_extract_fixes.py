@@ -486,3 +486,25 @@ def test_bold_box_text_stays_in_the_box(tmp_path):
     secs, _, _ = run(tmp_path, draw)
     assert secs["1-1"]["notices"] == [{"kind": "WARNING", "text":
         "Placeholder casualties moved this way may not receive placeholder care."}]
+
+
+def test_inline_numbered_steps_split():
+    from plb.extract import split_numbered_steps
+    assert split_numbered_steps("1. Rest here. 2. Cool down. 3. Evacuate.") == \
+        "1. Rest here.\n2. Cool down.\n3. Evacuate."
+    # two lists in one paragraph, each counting from 1
+    assert split_numbered_steps("Stage A (x) 1. Alpha: a 2. Bravo: b Stage B (y) 1. Alpha: c 2. Bravo: d") == \
+        "Stage A (x)\n1. Alpha: a\n2. Bravo: b Stage B (y)\n1. Alpha: c\n2. Bravo: d"
+    # not a counted run: left alone
+    for s in ("See Figure 1. Placeholder and 98.6 degrees.", "Text 1. Only one step here.",
+              "Steps 2. Then 3. Out of order."):
+        assert split_numbered_steps(s) == s
+
+
+def test_spelled_section_chapters_sort_in_book_order():
+    from plb.shelf import _chap_key, _chap_sort
+    keys = [_chap_key(c) for c in ("Section Four: Placeholder", "Section One: Introduction",
+                                   "Section Twelve: Placeholder", "Section Two")]
+    assert keys == ["chapter 4", "chapter 1", "chapter 12", "chapter 2"]
+    assert sorted(keys, key=_chap_sort) == ["chapter 1", "chapter 2", "chapter 4", "chapter 12"]
+    assert _chap_key("SECTION 7: ADDITIONAL TRAINING") == "SECTION 7: ADDITIONAL TRAINING"

@@ -109,7 +109,8 @@ def main(argv=None) -> int:
                                               else tuple(m.raw.get("table_pages") or ())),
                                  chapter_pattern=m.raw.get("chapter_pattern"),
                                  margins=m.raw.get("margins", "fixed"),
-                                 columns=bool(m.raw.get("columns")))
+                                 columns=bool(m.raw.get("columns")),
+                                 split_steps=bool(m.raw.get("split_steps")))
             if a.figure_cmd:
                 subprocess.run(shlex.split(a.figure_cmd) + [str(pdf), str(out)], check=True)
                 figs = json.loads((out / "figures.json").read_text())
