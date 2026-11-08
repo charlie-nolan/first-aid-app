@@ -123,7 +123,7 @@ def citation_for(manual_id: str, para: str, manuals: dict[str, dict],
     m = re.match(r"^(chapter|appendix)\s+(\S+?)[.:]?(\s|$)", sec.get("chapter") or "", flags=re.I)
     where = ((("Ch " if m.group(1).lower() == "chapter" else "App ") + m.group(2)) if m
              else (sec.get("chapter") or "front matter"))
-    return f"{book}, {where}, {head}" if head else f"{book}, {where}"
+    return f"{book}, {where}, {head}" if head and head != where else f"{book}, {where}"
 
 
 def load_trees(tree_dir: Path) -> list[tuple[Path, dict]]:

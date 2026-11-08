@@ -134,6 +134,12 @@ def verify(root: Path, manifest: Path) -> list[str]:
         p = m.path(root)
         if not p.exists():
             continue  # manuals are optional until a tree cites them
+        for pg in m.raw.get("pages") or []:          # web manuals: every saved page is pinned
+            pp = root / pg["file"]
+            if not pp.exists():
+                problems.append(f"{m.id}: page {pg['file']} missing")
+            elif sha256_file(pp) != pg.get("sha256"):
+                problems.append(f"{m.id}: page {pg['file']} changed since it was pinned")
         if not m.sha256:
             problems.append(f"{m.id}: hash not pinned (run plb ingest)")
         elif sha256_file(p) != m.sha256:

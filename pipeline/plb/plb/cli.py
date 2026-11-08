@@ -23,6 +23,7 @@ from . import sources as src
 from .build import build
 from .check import run_checks
 from .extract import extract, load_sections
+from .web import extract_web
 
 
 def _root(a) -> Path:
@@ -48,6 +49,7 @@ def main(argv=None) -> int:
     e.add_argument("--no-figures", action="store_true")
     e.add_argument("--figure-cmd", help="external extractor: CMD PDF OUTDIR, must write figures.json")
     sub.add_parser("build")
+    sub.add_parser("lock", help="pin the content hash of every section a reviewed topic cites")
     t = sub.add_parser("test"); t.add_argument("--reader-cmd"); t.add_argument("--library")
     p = sub.add_parser("pack"); p.add_argument("--packer", required=True,
                                                help="CMD INTERMEDIATE_DIR OUT.bin")
@@ -73,6 +75,11 @@ def main(argv=None) -> int:
             if a.ids and m.id not in a.ids:
                 continue
             pdf = m.path(root)
+            if m.raw.get("kind") == "web" and pdf.exists():
+                out = root / "build" / "extract" / m.id
+                secs = extract_web(root, m.raw, out)
+                print(f"{m.id}: {len(secs)} sections from {len(m.raw['pages'])} web pages -> {out}")
+                continue
             if not pdf.exists():
                 if a.ids:
                     print(f"{m.id}: {pdf} not found (plb ingest first)"); rc = 1
@@ -87,6 +94,12 @@ def main(argv=None) -> int:
                 figs = json.loads((out / "figures.json").read_text())
             print(f"{m.id}: {len(secs)} sections, {len(figs)} figures -> {out}")
         return rc
+    if a.cmd == "lock":
+        from .check import write_cite_lock
+        out, issues = build(root)
+        n = write_cite_lock(root, json.loads((out / "trees.json").read_text()))
+        print(f"locked {n} cited sections -> content/cites.lock.yaml")
+        return _report(issues)
     if a.cmd in ("build", "test", "pack"):
         out, issues = build(root)
         if a.cmd == "build":

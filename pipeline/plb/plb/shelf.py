@@ -106,7 +106,8 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
         for i, s in enumerate(secs):
             buckets.setdefault(_chap_key(s.get("chapter")), []).append((i, s))
         ordered = []
-        for k in sorted(buckets, key=_chap_sort):
+        first_page = {k: min((s.get("pages") or [0])[0] for _, s in v) for k, v in buckets.items()}
+        for k in sorted(buckets, key=lambda k: (_chap_sort(k)[:2], first_page[k], k)):
             ordered += [s for _, s in sorted(buckets[k], key=lambda p: ((p[1].get("pages") or [0])[0], p[0]))]
         n_chaps = len(buckets)
         if n_chaps > 1 and "" in buckets:
@@ -151,7 +152,8 @@ def add_reference_shelf(b: Built, sections_by_manual: dict[str, list[dict]],
             m_num = re.match(r"^(chapter|appendix)\s+(\S+?)[.:]?(\s|$)", chap, flags=re.I)
             chap_short = (("Ch " if m_num.group(1).lower() == "chapter" else "App ") + m_num.group(2)
                           if m_num else chap)
-            chap_label = (f"{chap_short} {first.title() if first.isupper() else first}" if chap else
+            chap_label = (f"{chap_short} {first.title() if first.isupper() else first}" if m_num
+                          else chap if chap else
                           ("Front matter" if n_chaps > 1 else "Sections") if ci == 0
                           else f"Sections ({ci + 1})")
             if len(leaves) > list_max and 1 < len(heads) <= list_max * list_max:

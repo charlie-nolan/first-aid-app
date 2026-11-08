@@ -59,6 +59,11 @@ def run_checks(root: Path, inter: Path, build_issues: list[Issue],
         for ch in n["choices"]:
             if not n.get("unreviewed") and by_id[ch["to"]].get("unreviewed"):
                 issues.append(Issue("error", n["key"], "reviewed topic links into unreviewed text"))
+    # cited sections are pinned by content hash (content/cites.lock.yaml), because
+    # heading-mode ids ("108.1", "2.h4") follow page order and can shift on re-extract
+    lock_errs = check_cite_lock(root, trees)
+    issues += lock_errs
+
     # refused passages (content/refused.yaml) never ship in a reviewed topic
     ref_path = root / "content" / "refused.yaml"
     for r in (yaml.safe_load(ref_path.read_text()) or []) if ref_path.exists() else []:
@@ -115,3 +120,50 @@ def run_checks(root: Path, inter: Path, build_issues: list[Issue],
                     issues.append(Issue("error", "reader", f"node {n['key']}: passage {pid} does "
                                                            "not decode verbatim from library.bin"))
     return issues
+
+
+LOCK = Path("content") / "cites.lock.yaml"
+
+
+def _section_hash(sec: dict) -> str:
+    import hashlib
+    blob = sec["text"] + "".join("\n" + str(n.get("text", "")) for n in sec.get("notices") or [])
+    return hashlib.sha256(blob.encode()).hexdigest()[:16]
+
+
+def reviewed_cites(trees: dict) -> set[str]:
+    return {pid.split("#")[0].split("~")[0] for n in trees["nodes"] if not n.get("unreviewed")
+            for pid in n["passages"]}
+
+
+def _sections(root: Path) -> dict:
+    return load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir()))
+
+
+def check_cite_lock(root: Path, trees: dict) -> list[Issue]:
+    lock = yaml.safe_load((root / LOCK).read_text()) if (root / LOCK).exists() else {}
+    lock = lock or {}
+    secs = _sections(root)
+    out = []
+    for ref in sorted(reviewed_cites(trees)):
+        sec = secs.get(ref)
+        if sec is None:
+            continue                                    # build already reports missing cites
+        if ref not in lock:
+            out.append(Issue("warning", ref, "cited section not in cites.lock.yaml (run plb lock "
+                                             "after review)"))
+        elif lock[ref]["hash"] != _section_hash(sec):
+            out.append(Issue("error", ref, f"cited section changed since it was locked (was "
+                                           f"{lock[ref]['starts']!r}); a re-extract may have "
+                                           f"shifted ids. Fix the cite, then plb lock"))
+    return out
+
+
+def write_cite_lock(root: Path, trees: dict) -> int:
+    secs = _sections(root)
+    lock = {ref: {"hash": _section_hash(secs[ref]),
+                  "starts": " ".join(secs[ref]["text"].split()[:8])}
+            for ref in sorted(reviewed_cites(trees)) if ref in secs}
+    (root / LOCK).write_text("# plb lock: content hash of every section a reviewed topic cites.\n"
+                             + yaml.safe_dump(lock, sort_keys=True, width=100))
+    return len(lock)
