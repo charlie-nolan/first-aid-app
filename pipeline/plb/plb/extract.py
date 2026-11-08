@@ -256,8 +256,10 @@ def column_bands(words: list[dict], page_width: float) -> list[list[dict]]:
     key, count = xs.most_common(1)[0]
     if count < 4:
         return [words]
-    hits = [i for i, x in starts if abs(round(x / 12) - key) <= 1]
-    gutter = min(x for i, x in starts if i in hits) - 2
+    # the right column's items start at different indents (Aerie p118: 306-366); the gutter
+    # is just left of the leftmost of them
+    hits = [i for i, _ in starts]
+    gutter = min(x for _, x in starts) - 2
     lo, hi = min(hits), max(hits)
     # extend the band over rows that sit only in the right column next to it
     while hi + 1 < len(rows) and min(w["x0"] for w in rows[hi + 1]) >= gutter:
