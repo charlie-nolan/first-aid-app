@@ -215,6 +215,7 @@ manuals:
   file: sources/FEMA_CERT.pdf
   sha256: ca297bbc329c322ccbcb252fae7a1c89fd95f93dbf72b78b165b53cafa664026
   numbering: headings
+  table_pages: [107, 108]   # Table 3.2 burn classification chart, read cell by cell
 - id: DHS-ACTIVE-SHOOTER
   topic: "Active Shooter Response"   # shelf title on the device (<= 28 chars)
   about: "Department of Homeland Security booklet on how to respond to an active shooter."   # catalog line, not passage text
@@ -277,3 +278,64 @@ manuals:
   - https://irp.fas.org/doddir/army/atp4-02-7.pdf
   file: sources/ATP_4-02.7.pdf
   sha256: null
+- id: NWS-LIGHTNING
+  topic: Lightning Safety (NWS)
+  about: 'US National Weather Service lightning safety pages (2026): staying safe outdoors, camping and
+    climbing, and the ways lightning strikes people.'
+  title: Lightning Safety
+  publisher: NOAA National Weather Service
+  cite_as: NWS Lightning Safety
+  edition: web pages fetched 2026-11-08
+  distribution: US Government work (17 USC 105)
+  kind: web
+  file: sources_web/nws-lightning.html
+  sha256: bd9fc65d3cd4fa93b774d144d2e5bbfedeb3e025a5436b9632c4c07bfea41d07
+  urls:
+  - https://www.weather.gov/safety/lightning
+  - https://www.weather.gov/safety/lightning-outdoors
+  - https://www.weather.gov/safety/lightning-struck
+  pages:
+  - file: sources_web/nws-lightning.html
+    url: https://www.weather.gov/safety/lightning
+    sha256: bd9fc65d3cd4fa93b774d144d2e5bbfedeb3e025a5436b9632c4c07bfea41d07
+    fetched: '2026-11-08'
+    selector: .cms-content
+  - file: sources_web/nws-lightning-outdoors.html
+    url: https://www.weather.gov/safety/lightning-outdoors
+    sha256: 5af39d9a11bb3d38c27956d94e7e4e313eb9f9965e2e6ab2402329d28ab04f9f
+    fetched: '2026-11-08'
+    selector: .cms-content
+  - file: sources_web/nws-lightning-struck.html
+    url: https://www.weather.gov/safety/lightning-struck
+    sha256: 51221e8165f388da453f17a0a61bb7b7dff15fa50c191a0942bf773e8022f8cf
+    fetched: '2026-11-08'
+    selector: .cms-content
+- id: READY-GOV
+  topic: Weather Safety (Ready.gov)
+  about: 'FEMA Ready.gov pages (2026): thunderstorms and lightning, extreme heat and heat illness, winter
+    weather, frostbite and hypothermia.'
+  title: 'Ready.gov: Thunderstorms & Lightning, Extreme Heat, Winter Weather'
+  publisher: FEMA / DHS (Ready.gov)
+  cite_as: Ready.gov
+  edition: web pages fetched 2026-11-08
+  distribution: US Government work (17 USC 105)
+  kind: web
+  file: sources_web/ready-lightning.html
+  sha256: 3869841e873f3933d38b82fd5cd7772223d390ba612b39dfbe3ec2f6fa9caa33
+  urls:
+  - https://www.ready.gov/thunderstorms-lightning
+  - https://www.ready.gov/heat
+  - https://www.ready.gov/winter-weather
+  pages:
+  - file: sources_web/ready-lightning.html
+    url: https://www.ready.gov/thunderstorms-lightning
+    sha256: 3869841e873f3933d38b82fd5cd7772223d390ba612b39dfbe3ec2f6fa9caa33
+    fetched: '2026-11-08'
+  - file: sources_web/ready-heat.html
+    url: https://www.ready.gov/heat
+    sha256: de7959a3f1eaa0c08424f6b2962c5c1713ede719f3f095c52c741565c7a7524e
+    fetched: '2026-11-08'
+  - file: sources_web/ready-winter.html
+    url: https://www.ready.gov/winter-weather
+    sha256: 9ca13b2f9851bf664cf72a328bcb7aabd65cf120419ee830fb9dc5774eb92062
+    fetched: '2026-11-08'

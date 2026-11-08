@@ -17,6 +17,7 @@ static const char *TAG = "epd";
 static spi_device_handle_t spi;
 static uint8_t ram[PBPR * PH];             /* panel image, built from the landscape fb */
 static bool awake;
+static bool busy_warned;
 
 static void cmd(uint8_t c) {
     gpio_set_level(PIN_EPD_DC, 0);
@@ -35,12 +36,28 @@ static void data(const uint8_t *d, size_t n) {
 static void data1(uint8_t b) { data(&b, 1); }
 static void cmdv(uint8_t c, const uint8_t *d, size_t n) { cmd(c); if (n) data(d, n); }
 
-static void wait_busy(void) {               /* BUSY is high while the panel works */
+static int wait_busy(void) {                /* BUSY is high while the panel works; returns ms waited */
     int ms = 0;
     while (gpio_get_level(PIN_EPD_BUSY) == 1) {
         vTaskDelay(pdMS_TO_TICKS(5));
         if ((ms += 5) > 6000) { ESP_LOGW(TAG, "BUSY stuck high: check the BUSY wire"); break; }
     }
+    return ms;
+}
+/* Start the refresh and wait for it. A refresh takes ~2 s (full) or ~0.5 s (partial);
+ * if BUSY never goes high the wire is loose or missing, and sending the next image
+ * mid-refresh tears the screen, so fall back to a fixed wait. */
+static void update(uint8_t mode, bool full) {
+    cmdv(0x22, &mode, 1);
+    cmd(0x20);
+    vTaskDelay(pdMS_TO_TICKS(2));
+    int ms = wait_busy();
+    if (ms < 20) {
+        if (!busy_warned) ESP_LOGW(TAG, "BUSY never went high: check the BUSY wire (D3). Using fixed waits.");
+        busy_warned = true;
+        vTaskDelay(pdMS_TO_TICKS(full ? 3000 : 800));
+    }
+    ESP_LOGI(TAG, "%s refresh, BUSY high for %d ms", full ? "full" : "partial", ms);
 }
 static void reset(void) {
     gpio_set_level(PIN_EPD_RST, 1); vTaskDelay(pdMS_TO_TICKS(20));
@@ -55,7 +72,9 @@ static void window_full(void) {
 }
 static void panel_init(void) {
     reset(); wait_busy();
-    cmd(0x12); wait_busy();                                      /* software reset */
+    cmd(0x12);                                                   /* software reset */
+    vTaskDelay(pdMS_TO_TICKS(20));      /* datasheet: 10 ms before the next command, even if BUSY reads low */
+    wait_busy();
     cmdv(0x01, (const uint8_t[]){ (PH - 1) & 0xFF, (PH - 1) >> 8, 0x00 }, 3);   /* gate lines */
     cmdv(0x11, (const uint8_t[]){ 0x03 }, 1);                    /* X+, Y+ */
     window_full();
@@ -74,7 +93,7 @@ void epd_init(void) {
     spi_bus_config_t bus = { .mosi_io_num = PIN_EPD_MOSI, .miso_io_num = -1, .sclk_io_num = PIN_EPD_SCK,
                              .quadwp_io_num = -1, .quadhd_io_num = -1, .max_transfer_sz = 4096 };
     ESP_ERROR_CHECK(spi_bus_initialize(SPI2_HOST, &bus, SPI_DMA_CH_AUTO));
-    spi_device_interface_config_t dev = { .clock_speed_hz = 10 * 1000 * 1000, .mode = 0,
+    spi_device_interface_config_t dev = { .clock_speed_hz = 4 * 1000 * 1000   /* 4 MHz: clean edges over breadboard jumpers */, .mode = 0,
                                           .spics_io_num = PIN_EPD_CS, .queue_size = 1 };
     ESP_ERROR_CHECK(spi_bus_add_device(SPI2_HOST, &dev, &spi));
     panel_init();
@@ -103,18 +122,21 @@ void epd_show(const uint8_t *fb, bool full) {
         cmdv(0x24, ram, sizeof ram);                 /* new image */
         window_full();
         cmdv(0x26, ram, sizeof ram);                 /* base image for the partial updates that follow */
-        cmdv(0x22, (const uint8_t[]){ 0xF7 }, 1);
-        cmd(0x20); wait_busy();
+        update(0xF7, true);
     } else {
-        gpio_set_level(PIN_EPD_RST, 0); vTaskDelay(pdMS_TO_TICKS(1));
-        gpio_set_level(PIN_EPD_RST, 1);
+        /* No hardware reset here: it is not needed between partials and the
+         * controller wants ~10 ms after one before it takes commands. */
         cmdv(0x3C, (const uint8_t[]){ 0x80 }, 1);
         cmdv(0x01, (const uint8_t[]){ (PH - 1) & 0xFF, (PH - 1) >> 8, 0x00 }, 3);
         cmdv(0x11, (const uint8_t[]){ 0x03 }, 1);
         window_full();
         cmdv(0x24, ram, sizeof ram);
-        cmdv(0x22, (const uint8_t[]){ 0xFF }, 1);
-        cmd(0x20); wait_busy();
+        update(0xFF, false);
+        /* Keep the base image (0x26) equal to what is now on the glass, so the
+         * next partial update diffs against the real screen. Without this the
+         * base stays at the last full refresh and errors build up page by page. */
+        window_full();
+        cmdv(0x26, ram, sizeof ram);
     }
 }
 

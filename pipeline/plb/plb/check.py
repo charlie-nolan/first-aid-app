@@ -20,15 +20,17 @@ from pathlib import Path
 import yaml
 
 from .extract import load_sections
+from .sources import PERSONAL_EXTRACT, PERSONAL_LOCK
 from .phrases import normalize
 from .sources import verify
 from .trees import Issue
 
 
 def run_checks(root: Path, inter: Path, build_issues: list[Issue],
-               reader_cmd: str | None = None, library: Path | None = None) -> list[Issue]:
+               reader_cmd: str | None = None, library: Path | None = None,
+               personal: bool = False) -> list[Issue]:
     issues = list(build_issues)
-    issues += [Issue("error", "sources", p) for p in verify(root, root / "sources.yaml")]
+    issues += [Issue("error", "sources", p) for p in verify(root, root / "sources.yaml", personal)]
 
     trees = json.loads((inter / "trees.json").read_text())
     cmds = json.loads((inter / "phrases.json").read_text())
@@ -59,12 +61,30 @@ def run_checks(root: Path, inter: Path, build_issues: list[Issue],
         for ch in n["choices"]:
             if not n.get("unreviewed") and by_id[ch["to"]].get("unreviewed"):
                 issues.append(Issue("error", n["key"], "reviewed topic links into unreviewed text"))
+    # cited sections are pinned by content hash (content/cites.lock.yaml), because
+    # heading-mode ids ("108.1", "2.h4") follow page order and can shift on re-extract
+    lock_errs = check_cite_lock(root, trees, personal)
+    issues += lock_errs
+
+    # refused passages (content/refused.yaml) never ship in a reviewed topic
+    ref_path = root / "content" / "refused.yaml"
+    for r in (yaml.safe_load(ref_path.read_text()) or []) if ref_path.exists() else []:
+        for n in trees["nodes"]:
+            if n.get("unreviewed"):
+                continue
+            for pid in n["passages"]:
+                base = pid.split("#")[0].split("~")[0]
+                p = by_pid.get(pid)
+                if base == r["ref"] and (not r.get("text") or (p and r["text"] in p["text"])):
+                    issues.append(Issue("error", n["key"], f"uses refused passage {pid}: {r['why']}"))
     for c in cmds:
         if c["node"] not in key_of:
             issues.append(Issue("error", "phrases", f"cmd {c['cmd_id']} points at missing node"))
 
     # 4. passages verbatim + ASCII + coverage
-    sections = load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir()))
+    sections = load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir())
+                             + (sorted(p for p in (root / "build" / PERSONAL_EXTRACT).glob("*")
+                                       if p.is_dir()) if personal else []))
     for p in passages:
         base = p["id"].split("#")[0].split("~")[0]
         sec = sections.get(base)
@@ -104,3 +124,72 @@ def run_checks(root: Path, inter: Path, build_issues: list[Issue],
                     issues.append(Issue("error", "reader", f"node {n['key']}: passage {pid} does "
                                                            "not decode verbatim from library.bin"))
     return issues
+
+
+LOCK = Path("content") / "cites.lock.yaml"
+
+
+def _section_hash(sec: dict) -> str:
+    import hashlib
+    blob = sec["text"] + "".join("\n" + str(n.get("text", "")) for n in sec.get("notices") or [])
+    return hashlib.sha256(blob.encode()).hexdigest()[:16]
+
+
+def reviewed_cites(trees: dict) -> set[str]:
+    return {pid.split("#")[0].split("~")[0] for n in trees["nodes"] if not n.get("unreviewed")
+            for pid in n["passages"]}
+
+
+def _sections(root: Path, personal: bool = False) -> tuple[dict, set[str]]:
+    """(sections, ids of sections that come from personal books)."""
+    pub = load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir()))
+    if not personal:
+        return pub, set()
+    pers = load_sections(sorted(p for p in (root / "build" / PERSONAL_EXTRACT).glob("*")
+                                if p.is_dir()))
+    return pub | pers, set(pers)
+
+
+def _lock_path(root: Path, personal_ref: bool) -> Path:
+    # refs into personal books (and their first words) never go in the committed lock
+    return root / "content" / (PERSONAL_LOCK if personal_ref else "cites.lock.yaml")
+
+
+def _read_lock(p: Path) -> dict:
+    return (yaml.safe_load(p.read_text()) or {}) if p.exists() else {}
+
+
+def check_cite_lock(root: Path, trees: dict, personal: bool = False) -> list[Issue]:
+    secs, pers = _sections(root, personal)
+    locks = {False: _read_lock(_lock_path(root, False)), True: _read_lock(_lock_path(root, True))}
+    out = []
+    for ref in sorted(reviewed_cites(trees)):
+        sec = secs.get(ref)
+        if sec is None:
+            continue                                    # build already reports missing cites
+        lock = locks[ref in pers]
+        if ref not in lock:
+            out.append(Issue("warning", ref, "cited section not locked (run plb lock after review)"))
+        elif lock[ref]["hash"] != _section_hash(sec):
+            out.append(Issue("error", ref, f"cited section changed since it was locked (was "
+                                           f"{lock[ref]['starts']!r}); a re-extract may have "
+                                           f"shifted ids. Fix the cite, then plb lock"))
+    return out
+
+
+def write_cite_lock(root: Path, trees: dict, personal: bool = False) -> int:
+    secs, pers = _sections(root, personal)
+    refs = [r for r in sorted(reviewed_cites(trees)) if r in secs]
+    n = 0
+    for is_pers in ((False, True) if personal else (False,)):
+        mine = [r for r in refs if (r in pers) == is_pers]
+        lock = {r: {"hash": _section_hash(secs[r]), "starts": " ".join(secs[r]["text"].split()[:8])}
+                for r in mine}
+        if not is_pers and personal:
+            # a personal build sees only some public trees' cites too; keep the rest
+            lock = _read_lock(_lock_path(root, False)) | lock
+        _lock_path(root, is_pers).write_text(
+            "# plb lock: content hash of every section a reviewed topic cites.\n"
+            + yaml.safe_dump(lock, sort_keys=True, width=100))
+        n += len(mine)
+    return n

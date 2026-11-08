@@ -9,7 +9,7 @@ reference_shelf: true
 # folders, not a topic. Tree order inside = cartridge tree table order (ABOUT#n, GROUP#n).
 library_groups:
   First aid: [ref-ATP4-02.11, ref-TC4-02.1, bleeding]
-  Wilderness first aid: [ref-TBMED508, ref-TBMED507, ref-TBMED505, ref-NAVSNAKES, ref-TC4-02.3, ref-SHIPSMED]
+  Wilderness first aid: [ref-TBMED508, ref-TBMED507, ref-TBMED505, ref-NAVSNAKES, ref-TC4-02.3, ref-SHIPSMED, ref-NWS-LIGHTNING, ref-READY-GOV]
   Survival: [ref-ATP3-50.21, ref-AFH10-644, ref-TC21-3]
   Terrain: [ref-ATP3-90.97, ref-TC3-97.61, ref-ATP3-90.98, ref-ATP3-90.99, ref-TC3-21.76]
   Emergencies: [ref-FEMA-CERT, ref-DHS-ACTIVE-SHOOTER, ref-USAMRICD-FMCC]

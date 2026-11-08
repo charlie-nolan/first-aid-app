@@ -17397,7 +17397,7 @@
   "notices": [
    {
     "kind": "WARNING",
-    "text": "No more than four personnel should be used to tighten the rope when a simple 3:1 or a transport tightening system is used to apply tension. Using more personnel can overtighten the rope and bring the rope critically close to failure. REDUNDANCY"
+    "text": "No more than four personnel should be used to tighten the rope when a simple 3:1 or a transport tightening system is used to apply tension. Using more personnel can overtighten the rope and bring the rope critically close to failure."
    }
   ]
  },
@@ -17406,7 +17406,7 @@
   "manual": "TC3-97.61",
   "para": "16-13",
   "chapter": "Chapter 16",
-  "heading": "SIMPLE 3:1 TIGHTENING SYSTEM",
+  "heading": "REDUNDANCY",
   "pages": [
    395
   ],

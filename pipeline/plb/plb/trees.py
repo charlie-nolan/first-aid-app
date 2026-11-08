@@ -114,6 +114,14 @@ def citation_for(manual_id: str, para: str, manuals: dict[str, dict],
     """'ATP 4-02.11, para 4-37'. Heading-only sections ("2.h1") have no real paragraph
     number, so they cite their place instead: 'front matter, Preface' or 'Ch 2, <heading>'."""
     book = pretty_manual(manual_id, manuals)
+    if manuals.get(manual_id, {}).get("cite_style") == "page" and sec:
+        # 'Aerie WM 15e, p42, Splinting': books without paragraph numbers cite the page
+        head = " ".join(re.sub(r"^[\s*#\-]+", "", sec.get("heading") or "").split())
+        head = head.title() if head.isupper() else head
+        head = head if len(head) <= 40 else head[:37].rstrip() + "..."
+        page = (sec.get("pages") or [None])[0]
+        page = page - int(manuals[manual_id].get("page_offset") or 0) if page else page
+        return ", ".join(x for x in [book, f"p{page}" if page else "", head] if x)
     if ".h" not in para:
         return f"{book}, para {para}"
     sec = sec or {}
@@ -123,12 +131,14 @@ def citation_for(manual_id: str, para: str, manuals: dict[str, dict],
     m = re.match(r"^(chapter|appendix)\s+(\S+?)[.:]?(\s|$)", sec.get("chapter") or "", flags=re.I)
     where = ((("Ch " if m.group(1).lower() == "chapter" else "App ") + m.group(2)) if m
              else (sec.get("chapter") or "front matter"))
-    return f"{book}, {where}, {head}" if head else f"{book}, {where}"
+    return f"{book}, {where}, {head}" if head and head != where else f"{book}, {where}"
 
 
-def load_trees(tree_dir: Path) -> list[tuple[Path, dict]]:
+def load_trees(tree_dir) -> list[tuple[Path, dict]]:
+    """tree_dir: one folder, or a list (content/trees, then content/trees_personal)."""
     out = []
-    for p in sorted(tree_dir.glob("*.yaml")):
+    dirs = tree_dir if isinstance(tree_dir, (list, tuple)) else [tree_dir]
+    for p in [p for d in dirs for p in sorted(Path(d).glob("*.yaml"))]:
         data = yaml.safe_load(p.read_text())
         if data:
             out.append((p, data))

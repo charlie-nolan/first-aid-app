@@ -247,3 +247,242 @@ def test_join_words_gap_scales_with_size():
     assert join_words([w("A", 0, 8.66, 12), w("PPLICATION", 8.64, 60, 9.5)]) == "APPLICATION"
     assert join_words([w("Direct", 0, 24.85, 10), w("pressure.", 25.68, 61, 10)]) == "Direct pressure."
     assert join_words([w("big", 0, 30, 40), w("type", 30.8, 70, 40)]) == "bigtype"     # 0.8 pt at 40 pt
+
+
+def test_degree_lookalikes_map_like_degree_sign():
+    from plb.extract import normalize
+    out = [" ".join(normalize(t).split()) for t in ("95° F", "95º F (37º C)", "40˚F")]
+    assert out == ["95 degrees F", "95 degrees F (37 degrees C)", "40 degrees F"]
+
+
+def test_ruled_table_rows_read_cell_by_cell(tmp_path):
+    """CERT Table 3.2: a ruled 3-column table whose last row continues on the next page.
+    Read line by line the columns interleave; with table_pages each row is one section."""
+    pdf = tmp_path / "t.pdf"
+    c = canvas.Canvas(str(pdf), pagesize=letter)
+    xs = [80, 200, 360, 530]
+
+    def table(y, rows, header=True):
+        hdr = [["Kind", "Layers", "Signs"]] if header else []
+        allrows = hdr + rows
+        heights = [16 * max(1, max(len(cell) for cell in r)) for r in allrows]
+        top = y
+        c.setFont("Helvetica", 10)
+        for r, h in zip(allrows, heights):
+            for k, cell in enumerate(r):
+                for j, item in enumerate(cell if isinstance(cell, list) else [cell]):
+                    c.drawString(xs[k] + 4, top - 12 - 14 * j, item)
+            c.line(xs[0], top, xs[-1], top)
+            top -= h
+        c.line(xs[0], top, xs[-1], top)
+        for x in xs:
+            c.line(x, y, x, top)
+        return top
+
+    c.setFont("Helvetica-Bold", 11); c.drawString(72, H - 90, "PLACEHOLDER CLASSES")
+    c.setFont("Helvetica", 10); c.drawString(72, H - 108, "Some placeholder text before the table.")
+    c.setFont("Helvetica-Bold", 9); c.drawString(72, H - 130, "Table 3.2: Placeholder Chart")   # bold, as in CERT
+    table(H - 140, [[["Mild"], ["• Outer layer"], ["• Red skin", "• Pain"]],
+                    [["Deep"], ["• Outer layer", "• Middle layer"], ["• Dry", "• White"]]])
+    c.showPage()
+    bottom = table(H - 80, [[[""], ["• Some deeper damage"], ["• Little pain"]]])
+    c.setFont("Helvetica-Bold", 11); c.drawString(72, bottom - 30, "AFTER THE TABLE")
+    c.setFont("Helvetica", 10); c.drawString(72, bottom - 48, "Placeholder text after the table.")
+    c.showPage(); c.save()
+
+    out = tmp_path / "out"
+    extract(pdf, "T", out, figures=False, numbering="headings", table_pages=(1, 2))
+    secs = {s["para"]: s for s in json.loads((out / "sections.json").read_text())}
+    assert secs["1.t1"]["text"] == "Mild: Layers: Outer layer. Signs: Red skin; Pain."
+    assert secs["1.t2"]["text"] == ("Deep: Layers: Outer layer; Middle layer; Some deeper damage. "
+                                    "Signs: Dry; White; Little pain.")
+    assert secs["1.t2"]["pages"] == [1, 2] and secs["1.t1"]["heading"] == "Table 3.2: Placeholder Chart"
+    texts = " ".join(s["text"] for s in secs.values())
+    assert "Placeholder text after the table." in texts and "Kind Layers Signs" not in texts
+
+def test_default_build_excludes_personal_sources(tmp_path):
+    """A personal (copyrighted, own-device-only) book is used only with personal=True."""
+    from plb.build import build
+    root = tmp_path / "repo"
+    (root / "content" / "trees").mkdir(parents=True)
+    (root / "content" / "config.yaml").write_text(yaml.safe_dump({"reference_shelf": True}))
+    (root / "content" / "config.personal.yaml").write_text(
+        yaml.safe_dump({"library_prepend": {"Wild": ["ref-PERS"]}}))
+    (root / "sources.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PUB", "title": "Public", "edition": "1", "file": "s/p.pdf"}]}))
+    (root / "sources.personal.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PERS", "title": "Personal", "edition": "1", "file": "s/q.pdf", "personal": True,
+         "cite_as": "Pers 1e", "cite_style": "page"}]}))
+    sec = lambda mid, para, page: {"id": f"{mid}/{para}", "manual": mid, "para": para,
+                                   "chapter": "", "heading": "Placeholder Heading",
+                                   "pages": [page], "text": "Placeholder text.", "notices": []}
+    for d, mid in (("extract", "PUB"), ("extract_personal", "PERS")):
+        out = root / "build" / d / mid
+        out.mkdir(parents=True)
+        (out / "sections.json").write_text(json.dumps([sec(mid, "3.1", 3)]))
+        (out / "figures.json").write_text("[]")
+
+    out, _ = build(root)
+    trees = json.loads((out / "trees.json").read_text())
+    passages = (out / "passages.jsonl").read_text()
+    assert [t["id"] for t in trees["trees"]] == ["ref-PUB"]
+    assert "PERS" not in passages and "Pers 1e" not in passages
+
+    out, _ = build(root, personal=True)
+    trees = json.loads((out / "trees.json").read_text())
+    assert {t["id"] for t in trees["trees"]} == {"ref-PUB", "ref-PERS"}
+    assert out.name == "intermediate_personal"
+    assert "Pers 1e, p3, Placeholder Heading" in (out / "passages.jsonl").read_text()
+
+
+def test_chapter_pattern_with_title_on_next_line(tmp_path):
+    """Books that don't say "Chapter" (Aerie: "Section One:" then "Introduction" below it)."""
+    pdf = tmp_path / "t.pdf"
+    c = canvas.Canvas(str(pdf), pagesize=letter)
+    c.setFont("Helvetica-Bold", 30)
+    c.drawString(72, H - 120, "Section One:"); c.drawString(72, H - 160, "Introduction")
+    y = H - 200
+    y = lines(c, y, ["Placeholder Heading"], "Helvetica-Bold", 14)
+    lines(c, y, ["Placeholder body text under the heading."])
+    c.showPage(); c.save()
+    out = tmp_path / "out"
+    extract(pdf, "T", out, figures=False, numbering="headings",
+            chapter_pattern=r"^Section\s+(?:One|Two)\b:?")
+    secs = json.loads((out / "sections.json").read_text())
+    assert [(s["chapter"], s["heading"], s["text"]) for s in secs] == [
+        ("Section One: Introduction", "Placeholder Heading", "Placeholder body text under the heading.")]
+
+
+def test_personal_trees_and_lock_stay_personal(tmp_path):
+    """content/trees_personal/ is read only with personal=True, and its cites are locked in
+    the gitignored cites.personal.lock.yaml, never in the committed cites.lock.yaml."""
+    from plb.build import build
+    from plb.check import write_cite_lock, check_cite_lock
+    root = tmp_path / "repo"
+    (root / "content" / "trees").mkdir(parents=True)
+    (root / "content" / "trees_personal").mkdir()
+    (root / "content" / "config.yaml").write_text(yaml.safe_dump({}))
+    (root / "sources.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PUB", "title": "Public", "edition": "1", "file": "s/p.pdf"}]}))
+    (root / "sources.personal.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PERS", "title": "Personal", "edition": "1", "file": "s/q.pdf", "personal": True}]}))
+    for d, mid in (("extract", "PUB"), ("extract_personal", "PERS")):
+        out = root / "build" / d / mid
+        out.mkdir(parents=True)
+        (out / "sections.json").write_text(json.dumps([{
+            "id": f"{mid}/3.1", "manual": mid, "para": "3.1", "chapter": "", "heading": "H",
+            "pages": [3], "text": f"Placeholder {mid} words here.", "notices": []}]))
+        (out / "figures.json").write_text("[]")
+    tree = lambda tid, cites: {"id": tid, "title": tid, "shelf": "first-aid", "root": "a",
+                               "nodes": {"a": {"label": "Start", "cite": cites}}}
+    (root / "content" / "trees" / "pub.yaml").write_text(yaml.safe_dump(tree("pub", ["PUB/3.1"])))
+    (root / "content" / "trees_personal" / "wild.yaml").write_text(
+        yaml.safe_dump(tree("wild", ["PERS/3.1", "PUB/3.1"])))
+
+    out, issues = build(root)
+    assert [t["id"] for t in json.loads((out / "trees.json").read_text())["trees"]] == ["pub"]
+
+    out, issues = build(root, personal=True)
+    trees = json.loads((out / "trees.json").read_text())
+    assert {t["id"] for t in trees["trees"]} == {"pub", "wild"}
+    assert not [i for i in issues if i.level == "error"]
+    write_cite_lock(root, trees, personal=True)
+    public_lock = (root / "content" / "cites.lock.yaml").read_text()
+    assert "PERS" not in public_lock and "PUB/3.1" in public_lock
+    assert "PERS/3.1" in (root / "content" / "cites.personal.lock.yaml").read_text()
+    assert not check_cite_lock(root, trees, personal=True)
+
+
+def _pdf(tmp_path, pages):
+    pdf = tmp_path / "t.pdf"
+    c = canvas.Canvas(str(pdf), pagesize=letter)
+    for draw in pages:
+        draw(c)
+        c.showPage()
+    c.save()
+    return pdf
+
+
+def test_superscript_degree_after_number(tmp_path):
+    """Aerie p91: "100-102" + raised 6 pt "0" + "F" printed 100-102°F; read it as degrees."""
+    from plb.extract import read_lines
+
+    def draw(c):
+        x, y = 72, H - 120
+        for text, size, rise in [("1-1. Bath at 100-102", 11, 0), ("0", 6.4, 4.5), ("F (38-39", 11, 0),
+                                 ("0", 6.4, 4.5), ("C) for 30 minutes. Mix H", 11, 0), ("2", 6.4, -2),
+                                 ("O with 10 parts.", 11, 0)]:
+            c.setFont("Helvetica", size); c.drawString(x, y + rise, text)
+            x += stringWidth(text, "Helvetica", size)
+    pdf = _pdf(tmp_path, [draw])
+    text = " ".join(l.text for _, ls in read_lines(pdf) for l in ls)
+    assert "100-102 degrees F (38-39 degrees C)" in " ".join(text.split())
+    assert "H2O" in text.replace(" ", "")                 # a subscript is not a degree sign
+
+
+def test_auto_margins_keep_body_lines_near_the_edge(tmp_path):
+    """Aerie sets body text 40 pt from the top and 45 pt from the bottom; fixed 7% margins
+    cut it. Auto margins drop only the running header/footer."""
+    from plb.extract import read_lines
+
+    def page(n):
+        def draw(c):
+            c.setFont("Helvetica", 10); c.drawString(450, H - 22, "Running Header")
+            c.drawString(36, 22, f"{n} Book Title Footer")
+            c.setFont("Helvetica", 11)
+            c.drawString(72, H - 46, f"Top body line {'abcde'[n - 1] * 3}.")
+            c.drawString(72, H / 2, "Middle body line.")
+            c.drawString(72, 52, f"Bottom body line {'vwxyz'[n - 1] * 3}.")
+        return draw
+    pdf = _pdf(tmp_path, [page(n) for n in range(1, 6)])
+    fixed = [l.text for _, ls in read_lines(pdf) for l in ls]
+    auto = [l.text for _, ls in read_lines(pdf, margins="auto") for l in ls]
+    assert "Top body line aaa." not in fixed
+    assert "Top body line aaa." in auto and "Bottom body line xxx." in auto
+    assert not any("Running Header" in t or "Book Title Footer" in t for t in auto)
+
+
+def test_two_column_band_reads_left_then_right(tmp_path):
+    """Aerie p118: full-width text, then a two-column list, then full-width text again."""
+    from plb.extract import read_lines
+
+    def draw(c):
+        c.setFont("Helvetica", 11)
+        c.drawString(60, H - 100, "Full width introduction line that runs across the page.")
+        for i in range(6):
+            c.drawString(60, H - 130 - 14 * i, f"Left item {i}")
+            c.drawString(360, H - 130 - 14 * i, f"Right item {i}")
+        c.drawString(60, H - 240, "Full width closing line that runs across the page.")
+    pdf = _pdf(tmp_path, [draw])
+    texts = [l.text for _, ls in read_lines(pdf, columns=True) for l in ls]
+    assert texts[0].startswith("Full width introduction")
+    assert texts[1:7] == [f"Left item {i}" for i in range(6)]
+    assert texts[7:13] == [f"Right item {i}" for i in range(6)]
+    assert texts[-1].startswith("Full width closing")
+    plain = [l.text for _, ls in read_lines(pdf) for l in ls]
+    assert "Left item 0 Right item 0" in plain             # default reading is unchanged
+
+
+def test_notice_box_stops_at_next_heading(tmp_path):
+    """Aerie 50.1: a NOTE box ran into the following bold heading and its text."""
+    def draw(c):
+        y = lines(c, H - 100, ["1-1. Alpha placeholder paragraph."]) - 8
+        y = lines(c, y, ["NOTE: Placeholder note text inside the box."])
+        y = lines(c, y, ["NEXT PLACEHOLDER HEADING"], "Helvetica-Bold", 11)
+        lines(c, y, ["1-2. Bravo placeholder paragraph."])
+    secs, _, _ = run(tmp_path, draw)
+    assert secs["1-1"]["notices"] == [{"kind": "NOTE", "text": "Placeholder note text inside the box."}]
+    assert secs["1-2"]["heading"] == "NEXT PLACEHOLDER HEADING"
+
+
+def test_bold_box_text_stays_in_the_box(tmp_path):
+    """Army WARNING boxes set their text in bold: it is box text, not a heading."""
+    def draw(c):
+        y = lines(c, H - 100, ["1-1. Alpha placeholder paragraph."]) - 8
+        y = lines(c, y, ["WARNING"], "Helvetica-Bold", 10)
+        y = lines(c, y, ["Placeholder casualties moved this way may not", "receive placeholder care."],
+                  "Helvetica-Bold", 10) - 8
+        lines(c, y, ["1-2. Bravo placeholder paragraph."])
+    secs, _, _ = run(tmp_path, draw)
+    assert secs["1-1"]["notices"] == [{"kind": "WARNING", "text":
+        "Placeholder casualties moved this way may not receive placeholder care."}]

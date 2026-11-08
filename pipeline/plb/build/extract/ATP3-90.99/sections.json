@@ -1056,7 +1056,7 @@
   "notices": [
    {
     "kind": "CAUTION",
-    "text": "Hourly fluid intake should not exceed 1 1/2 quarts. Daily fluid intake should not exceed 12 quarts. Wearing body armor in humid climates adds 5 degrees F to the WBGT index. Wearing chemical, biological, radiological, and nuclear protective ensemble in humid climates adds 10 degrees F to the WBGT index. Legend: degrees F degrees Fahrenheit qt/hr quart per hour ? plus or minus NL no limit to work time per hour ? greater than WBGT wet bulb-globe temperature Effects of Water Loss"
+    "text": "Hourly fluid intake should not exceed 1 1/2 quarts. Daily fluid intake should not exceed 12 quarts. Wearing body armor in humid climates adds 5 degrees F to the WBGT index. Wearing chemical, biological, radiological, and nuclear protective ensemble in humid climates adds 10 degrees F to the WBGT index. Legend: degrees F degrees Fahrenheit qt/hr quart per hour ? plus or minus NL no limit to work time per hour ? greater than WBGT wet bulb-globe temperature"
    }
   ]
  },
@@ -1065,7 +1065,7 @@
   "manual": "ATP3-90.99",
   "para": "1-79",
   "chapter": "Chapter 1",
-  "heading": "Fahrenheit minutes (qt/hr) minutes (qt/hr) minutes (qt/hr)",
+  "heading": "Effects of Water Loss",
   "pages": [
    25
   ],
@@ -1077,7 +1077,7 @@
   "manual": "ATP3-90.99",
   "para": "1-80",
   "chapter": "Chapter 1",
-  "heading": "Fahrenheit minutes (qt/hr) minutes (qt/hr) minutes (qt/hr)",
+  "heading": "Effects of Water Loss",
   "pages": [
    25
   ],
@@ -1089,7 +1089,7 @@
   "manual": "ATP3-90.99",
   "para": "1-81",
   "chapter": "Chapter 1",
-  "heading": "Fahrenheit minutes (qt/hr) minutes (qt/hr) minutes (qt/hr)",
+  "heading": "Effects of Water Loss",
   "pages": [
    25,
    26
@@ -1102,7 +1102,7 @@
   "manual": "ATP3-90.99",
   "para": "1-82",
   "chapter": "Chapter 1",
-  "heading": "Fahrenheit minutes (qt/hr) minutes (qt/hr) minutes (qt/hr)",
+  "heading": "Effects of Water Loss",
   "pages": [
    26
   ],
@@ -1114,7 +1114,7 @@
   "manual": "ATP3-90.99",
   "para": "1-83",
   "chapter": "Chapter 1",
-  "heading": "Fahrenheit minutes (qt/hr) minutes (qt/hr) minutes (qt/hr)",
+  "heading": "Effects of Water Loss",
   "pages": [
    26
   ],
