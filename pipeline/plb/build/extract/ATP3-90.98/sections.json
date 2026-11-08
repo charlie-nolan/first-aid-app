@@ -1072,7 +1072,7 @@
   "notices": [
    {
     "kind": "CAUTION",
-    "text": "Hourly fluid intake should not exceed 1.5 quarts. Daily fluid intake should not exceed 12 quarts. Wearing body armor in humid climates adds 5F to the WBGT index. Wearing chemical, biological, radiological, and nuclear protective ensemble in humid climates adds 10 F to the WBGT index. F degrees Fahrenheit NL no limit to work time per hour > greater than qt/hour quart per hour plus or minus WBGT wet bulb-globe temperature Modifications"
+    "text": "Hourly fluid intake should not exceed 1.5 quarts. Daily fluid intake should not exceed 12 quarts. Wearing body armor in humid climates adds 5F to the WBGT index. Wearing chemical, biological, radiological, and nuclear protective ensemble in humid climates adds 10 F to the WBGT index. F degrees Fahrenheit NL no limit to work time per hour > greater than qt/hour quart per hour plus or minus WBGT wet bulb-globe temperature"
    }
   ]
  },
@@ -1081,7 +1081,7 @@
   "manual": "ATP3-90.98",
   "para": "1-80",
   "chapter": "Chapter 1",
-  "heading": "1 7881.9 NL  NL  40/20",
+  "heading": "Modifications",
   "pages": [
    23
   ],
@@ -1093,7 +1093,7 @@
   "manual": "ATP3-90.98",
   "para": "1-81",
   "chapter": "Chapter 1",
-  "heading": "1 7881.9 NL  NL  40/20",
+  "heading": "Modifications",
   "pages": [
    23,
    24

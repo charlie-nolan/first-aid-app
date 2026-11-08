@@ -1656,7 +1656,7 @@
   "notices": [
    {
     "kind": "WARNING",
-    "text": "Avoid manual carries for casualties with suspected neck or spine injuries, unless immediate life-threatening hazards are present. Seek medical advice on appropriate movement and transportation protocols. CASUALTY MOVEMENT"
+    "text": "Avoid manual carries for casualties with suspected neck or spine injuries, unless immediate life-threatening hazards are present. Seek medical advice on appropriate movement and transportation protocols."
    }
   ]
  },
@@ -1665,7 +1665,7 @@
   "manual": "ATP4-02.11",
   "para": "2-6",
   "chapter": "Chapter 2",
-  "heading": "CASUALTY EXTRACTION",
+  "heading": "CASUALTY MOVEMENT",
   "pages": [
    38
   ],
@@ -4414,7 +4414,7 @@
   "notices": [
    {
     "kind": "CAUTION",
-    "text": "Do NOT use blood or other body fluids to lubricate the NPA. TIER 1 SKILLS FOR AIRWAY CONTROL"
+    "text": "Do NOT use blood or other body fluids to lubricate the NPA."
    }
   ]
  },
@@ -4423,7 +4423,7 @@
   "manual": "ATP4-02.11",
   "para": "5-9",
   "chapter": "Chapter 5",
-  "heading": "EQUIPMENT USED FOR AIRWAY CONTROL",
+  "heading": "TIER 1 SKILLS FOR AIRWAY CONTROL",
   "pages": [
    74
   ],
@@ -8955,7 +8955,7 @@
    },
    {
     "kind": "CAUTION",
-    "text": "DO NOT give casualties with abdominal wounds food or water (moistening the lips is allowed). BANDAGING"
+    "text": "DO NOT give casualties with abdominal wounds food or water (moistening the lips is allowed)."
    }
   ]
  },
@@ -8964,7 +8964,7 @@
   "manual": "ATP4-02.11",
   "para": "14-12",
   "chapter": "Chapter 14",
-  "heading": "ABDOMINAL WOUNDS",
+  "heading": "BANDAGING",
   "pages": [
    157
   ],
@@ -10745,7 +10745,7 @@
   "notices": [
    {
     "kind": "WARNING",
-    "text": "Service members should use extreme caution when starting fad diets or taking over-the-counter herbal supplements. Death and severe injury may occur in individuals using dietary or herbal supplements without medical monitoring. A trained health care provider should supervise weight loss and the use of weight loss supplements. HEAT INJURIES"
+    "text": "Service members should use extreme caution when starting fad diets or taking over-the-counter herbal supplements. Death and severe injury may occur in individuals using dietary or herbal supplements without medical monitoring. A trained health care provider should supervise weight loss and the use of weight loss supplements."
    }
   ]
  },
@@ -10754,7 +10754,7 @@
   "manual": "ATP4-02.11",
   "para": "17-5",
   "chapter": "Chapter 17",
-  "heading": "OVERVIEW OF CLIMATIC INJURIES",
+  "heading": "HEAT INJURIES",
   "pages": [
    188
   ],
@@ -10766,7 +10766,7 @@
   "manual": "ATP4-02.11",
   "para": "17-6",
   "chapter": "Chapter 17",
-  "heading": "OVERVIEW OF CLIMATIC INJURIES",
+  "heading": "HEAT INJURIES",
   "pages": [
    188
   ],
@@ -10778,7 +10778,7 @@
   "manual": "ATP4-02.11",
   "para": "17-7",
   "chapter": "Chapter 17",
-  "heading": "OVERVIEW OF CLIMATIC INJURIES",
+  "heading": "HEAT INJURIES",
   "pages": [
    188
   ],
@@ -10790,7 +10790,7 @@
   "manual": "ATP4-02.11",
   "para": "17-8",
   "chapter": "Chapter 17",
-  "heading": "OVERVIEW OF CLIMATIC INJURIES",
+  "heading": "HEAT INJURIES",
   "pages": [
    188
   ],

@@ -1776,9 +1776,21 @@
   "notices": [
    {
     "kind": "NOTE",
-    "text": "Excalibur is not authorized for the M109A5. See ATP 3-09.32, Fire Multi-Service Tactics, Techniques, and Procedures for the Joint Application of Firepower, Appendix I for a detailed discussion of \"danger close.\" LEGEND APICM - antipersonnel improved conventional munitions; DPICM - dual purpose improved conventional munitions; ET electronic time; HC - hexachloroethane smoke; HE - high explosive; Illum - illumination; MT mechanical time; MTSQ mechanical time superquick; N/A - not available; PD - point detonating; RAP - rocket assisted projectile; SCATMINE scatterable mine; VT - variable time; WP - white phosphorus"
+    "text": "Excalibur is not authorized for the M109A5. See ATP 3-09.32, Fire Multi-Service Tactics, Techniques, and Procedures for the Joint Application of Firepower, Appendix I for a detailed discussion of \"danger close.\""
    }
   ]
+ },
+ {
+  "id": "TC3-21.76/3.h5",
+  "manual": "TC3-21.76",
+  "para": "3.h5",
+  "chapter": "Chapter 3",
+  "heading": "LEGEND",
+  "pages": [
+   77
+  ],
+  "text": "APICM - antipersonnel improved conventional munitions; DPICM - dual purpose improved conventional munitions; ET electronic time; HC - hexachloroethane smoke; HE - high explosive; Illum - illumination; MT mechanical time; MTSQ mechanical time superquick; N/A - not available; PD - point detonating; RAP - rocket assisted projectile; SCATMINE scatterable mine; VT - variable time; WP - white phosphorus",
+  "notices": []
  },
  {
   "id": "TC3-21.76/3-4",
@@ -1819,9 +1831,9 @@
   ]
  },
  {
-  "id": "TC3-21.76/3.h5",
+  "id": "TC3-21.76/3.h6",
   "manual": "TC3-21.76",
-  "para": "3.h5",
+  "para": "3.h6",
   "chapter": "Chapter 3",
   "heading": "Close Standing Prone",
   "pages": [
@@ -1831,9 +1843,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h6",
+  "id": "TC3-21.76/3.h7",
   "manual": "TC3-21.76",
-  "para": "3.h6",
+  "para": "3.h7",
   "chapter": "Chapter 3",
   "heading": "Close Standing Standing",
   "pages": [
@@ -1843,9 +1855,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h7",
+  "id": "TC3-21.76/3.h8",
   "manual": "TC3-21.76",
-  "para": "3.h7",
+  "para": "3.h8",
   "chapter": "Chapter 3",
   "heading": "(M913 HERA / M297 HERA)",
   "pages": [
@@ -1855,9 +1867,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h8",
+  "id": "TC3-21.76/3.h9",
   "manual": "TC3-21.76",
-  "para": "3.h8",
+  "para": "3.h9",
   "chapter": "Chapter 3",
   "heading": "(M483A1)",
   "pages": [
@@ -1867,9 +1879,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h9",
+  "id": "TC3-21.76/3.h10",
   "manual": "TC3-21.76",
-  "para": "3.h9",
+  "para": "3.h10",
   "chapter": "Chapter 3",
   "heading": "(M864)",
   "pages": [
@@ -1879,9 +1891,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h10",
+  "id": "TC3-21.76/3.h11",
   "manual": "TC3-21.76",
-  "para": "3.h10",
+  "para": "3.h11",
   "chapter": "Chapter 3",
   "heading": "(M945A1 RAP)",
   "pages": [
@@ -1927,9 +1939,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h11",
+  "id": "TC3-21.76/3.h12",
   "manual": "TC3-21.76",
-  "para": "3.h11",
+  "para": "3.h12",
   "chapter": "Chapter 3",
   "heading": "LEGEND",
   "pages": [
@@ -1956,9 +1968,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h12",
+  "id": "TC3-21.76/3.h13",
   "manual": "TC3-21.76",
-  "para": "3.h12",
+  "para": "3.h13",
   "chapter": "Chapter 3",
   "heading": "TARGET NUMBER OR TYPE OF TARGET",
   "pages": [
@@ -1968,9 +1980,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h13",
+  "id": "TC3-21.76/3.h14",
   "manual": "TC3-21.76",
-  "para": "3.h13",
+  "para": "3.h14",
   "chapter": "Chapter 3",
   "heading": "LEGEND",
   "pages": [
@@ -2004,9 +2016,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h14",
+  "id": "TC3-21.76/3.h15",
   "manual": "TC3-21.76",
-  "para": "3.h14",
+  "para": "3.h15",
   "chapter": "Chapter 3",
   "heading": "b. Warning order:*",
   "pages": [
@@ -2016,9 +2028,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h15",
+  "id": "TC3-21.76/3.h16",
   "manual": "TC3-21.76",
-  "para": "3.h15",
+  "para": "3.h16",
   "chapter": "Chapter 3",
   "heading": "c. Method of target location:*",
   "pages": [
@@ -2028,9 +2040,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h16",
+  "id": "TC3-21.76/3.h17",
   "manual": "TC3-21.76",
-  "para": "3.h16",
+  "para": "3.h17",
   "chapter": "Chapter 3",
   "heading": "d. Location of target: *",
   "pages": [
@@ -2040,9 +2052,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h17",
+  "id": "TC3-21.76/3.h18",
   "manual": "TC3-21.76",
-  "para": "3.h17",
+  "para": "3.h18",
   "chapter": "Chapter 3",
   "heading": "* Polar plot:",
   "pages": [
@@ -2052,9 +2064,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h18",
+  "id": "TC3-21.76/3.h19",
   "manual": "TC3-21.76",
-  "para": "3.h18",
+  "para": "3.h19",
   "chapter": "Chapter 3",
   "heading": "e. Description of target: *",
   "pages": [
@@ -2064,9 +2076,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h19",
+  "id": "TC3-21.76/3.h20",
   "manual": "TC3-21.76",
-  "para": "3.h19",
+  "para": "3.h20",
   "chapter": "Chapter 3",
   "heading": "f. Method of engagement:",
   "pages": [
@@ -2076,9 +2088,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h20",
+  "id": "TC3-21.76/3.h21",
   "manual": "TC3-21.76",
-  "para": "3.h20",
+  "para": "3.h21",
   "chapter": "Chapter 3",
   "heading": "g. Method of fire and control:",
   "pages": [
@@ -2088,9 +2100,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h21",
+  "id": "TC3-21.76/3.h22",
   "manual": "TC3-21.76",
-  "para": "3.h21",
+  "para": "3.h22",
   "chapter": "Chapter 3",
   "heading": "* Method of control:",
   "pages": [
@@ -2100,9 +2112,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h22",
+  "id": "TC3-21.76/3.h23",
   "manual": "TC3-21.76",
-  "para": "3.h22",
+  "para": "3.h23",
   "chapter": "Chapter 3",
   "heading": "Fire Support",
   "pages": [
@@ -2112,9 +2124,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h23",
+  "id": "TC3-21.76/3.h24",
   "manual": "TC3-21.76",
-  "para": "3.h23",
+  "para": "3.h24",
   "chapter": "Chapter 3",
   "heading": "i. Message to observer:",
   "pages": [
@@ -2124,9 +2136,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h24",
+  "id": "TC3-21.76/3.h25",
   "manual": "TC3-21.76",
-  "para": "3.h24",
+  "para": "3.h25",
   "chapter": "Chapter 3",
   "heading": "Observer",
   "pages": [
@@ -2136,9 +2148,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h25",
+  "id": "TC3-21.76/3.h26",
   "manual": "TC3-21.76",
-  "para": "3.h25",
+  "para": "3.h26",
   "chapter": "Chapter 3",
   "heading": "END OF MISSION, 15 CASUALTIES,",
   "pages": [
@@ -2148,9 +2160,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h26",
+  "id": "TC3-21.76/3.h27",
   "manual": "TC3-21.76",
-  "para": "3.h26",
+  "para": "3.h27",
   "chapter": "Chapter 3",
   "heading": "J42, THIS IS F24, ADJUST FIRE, SHIFT AB1001,",
   "pages": [
@@ -2160,9 +2172,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h27",
+  "id": "TC3-21.76/3.h28",
   "manual": "TC3-21.76",
-  "para": "3.h27",
+  "para": "3.h28",
   "chapter": "Chapter 3",
   "heading": "END OF MISSION, TWO TANKS DESTROYED,",
   "pages": [
@@ -2172,9 +2184,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h28",
+  "id": "TC3-21.76/3.h29",
   "manual": "TC3-21.76",
-  "para": "3.h28",
+  "para": "3.h29",
   "chapter": "Chapter 3",
   "heading": "Observer",
   "pages": [
@@ -2184,9 +2196,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h29",
+  "id": "TC3-21.76/3.h30",
   "manual": "TC3-21.76",
-  "para": "3.h29",
+  "para": "3.h30",
   "chapter": "Chapter 3",
   "heading": "END OF MISSION, 15 CASUALTIES, PLATOON",
   "pages": [
@@ -2196,9 +2208,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h30",
+  "id": "TC3-21.76/3.h31",
   "manual": "TC3-21.76",
-  "para": "3.h30",
+  "para": "3.h31",
   "chapter": "Chapter 3",
   "heading": "Firing Unit",
   "pages": [
@@ -2208,9 +2220,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h31",
+  "id": "TC3-21.76/3.h32",
   "manual": "TC3-21.76",
-  "para": "3.h31",
+  "para": "3.h32",
   "chapter": "Chapter 3",
   "heading": "END OF MISSION, 15 CASUALTIES,",
   "pages": [
@@ -2220,9 +2232,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h32",
+  "id": "TC3-21.76/3.h33",
   "manual": "TC3-21.76",
-  "para": "3.h32",
+  "para": "3.h33",
   "chapter": "Chapter 3",
   "heading": "Firing Unit",
   "pages": [
@@ -2232,9 +2244,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h33",
+  "id": "TC3-21.76/3.h34",
   "manual": "TC3-21.76",
-  "para": "3.h33",
+  "para": "3.h34",
   "chapter": "Chapter 3",
   "heading": "FIVE T-72 TANKS AT POL SITE AUTHENTICATE",
   "pages": [
@@ -2244,9 +2256,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h34",
+  "id": "TC3-21.76/3.h35",
   "manual": "TC3-21.76",
-  "para": "3.h34",
+  "para": "3.h35",
   "chapter": "Chapter 3",
   "heading": "END OF MISSION, 15 CASUALTIES, PLATOON",
   "pages": [
@@ -2256,9 +2268,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h35",
+  "id": "TC3-21.76/3.h36",
   "manual": "TC3-21.76",
-  "para": "3.h35",
+  "para": "3.h36",
   "chapter": "Chapter 3",
   "heading": "Firing Unit",
   "pages": [
@@ -2268,9 +2280,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h36",
+  "id": "TC3-21.76/3.h37",
   "manual": "TC3-21.76",
-  "para": "3.h36",
+  "para": "3.h37",
   "chapter": "Chapter 3",
   "heading": "END OF MISSION, 15 CASUALTIES, PLATOON",
   "pages": [
@@ -2304,9 +2316,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h37",
+  "id": "TC3-21.76/3.h38",
   "manual": "TC3-21.76",
-  "para": "3.h37",
+  "para": "3.h38",
   "chapter": "Chapter 3",
   "heading": "(MINUTES) (SECONDS)",
   "pages": [
@@ -2316,9 +2328,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h38",
+  "id": "TC3-21.76/3.h39",
   "manual": "TC3-21.76",
-  "para": "3.h38",
+  "para": "3.h39",
   "chapter": "Chapter 3",
   "heading": "LEGEND",
   "pages": [
@@ -2328,9 +2340,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h39",
+  "id": "TC3-21.76/3.h40",
   "manual": "TC3-21.76",
-  "para": "3.h39",
+  "para": "3.h40",
   "chapter": "Chapter 3",
   "heading": "LJDAM, FLIR, SAR,",
   "pages": [
@@ -2340,9 +2352,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h40",
+  "id": "TC3-21.76/3.h41",
   "manual": "TC3-21.76",
-  "para": "3.h40",
+  "para": "3.h41",
   "chapter": "Chapter 3",
   "heading": "F-15E CBU/WCMD, LITENING, HQ II,",
   "pages": [
@@ -2352,9 +2364,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h41",
+  "id": "TC3-21.76/3.h42",
   "manual": "TC3-21.76",
-  "para": "3.h41",
+  "para": "3.h42",
   "chapter": "Chapter 3",
   "heading": "SATCOM",
   "pages": [
@@ -2364,9 +2376,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h42",
+  "id": "TC3-21.76/3.h43",
   "manual": "TC3-21.76",
-  "para": "3.h42",
+  "para": "3.h43",
   "chapter": "Chapter 3",
   "heading": "65-E, GP",
   "pages": [
@@ -2376,9 +2388,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h43",
+  "id": "TC3-21.76/3.h44",
   "manual": "TC3-21.76",
-  "para": "3.h43",
+  "para": "3.h44",
   "chapter": "Chapter 3",
   "heading": "AV-8B JDAM, CCD TV, UHF, VHF- HQ II,",
   "pages": [
@@ -2388,9 +2400,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h44",
+  "id": "TC3-21.76/3.h45",
   "manual": "TC3-21.76",
-  "para": "3.h44",
+  "para": "3.h45",
   "chapter": "Chapter 3",
   "heading": "2.75\" LUU-2/19",
   "pages": [
@@ -2400,9 +2412,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h45",
+  "id": "TC3-21.76/3.h46",
   "manual": "TC3-21.76",
-  "para": "3.h45",
+  "para": "3.h46",
   "chapter": "Chapter 3",
   "heading": "65, GP",
   "pages": [
@@ -2412,9 +2424,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h46",
+  "id": "TC3-21.76/3.h47",
   "manual": "TC3-21.76",
-  "para": "3.h46",
+  "para": "3.h47",
   "chapter": "Chapter 3",
   "heading": "CBU/WCMD, SADL, VMF VHF-AM/FM, VINSON",
   "pages": [
@@ -2424,9 +2436,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h47",
+  "id": "TC3-21.76/3.h48",
   "manual": "TC3-21.76",
-  "para": "3.h47",
+  "para": "3.h48",
   "chapter": "Chapter 3",
   "heading": "IZLID, LUU-",
   "pages": [
@@ -2436,9 +2448,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h48",
+  "id": "TC3-21.76/3.h49",
   "manual": "TC3-21.76",
-  "para": "3.h48",
+  "para": "3.h49",
   "chapter": "Chapter 3",
   "heading": "(AITG",
   "pages": [
@@ -2448,9 +2460,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h49",
+  "id": "TC3-21.76/3.h50",
   "manual": "TC3-21.76",
-  "para": "3.h49",
+  "para": "3.h50",
   "chapter": "Chapter 3",
   "heading": "UHF, VHF,",
   "pages": [
@@ -2460,9 +2472,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h50",
+  "id": "TC3-21.76/3.h51",
   "manual": "TC3-21.76",
-  "para": "3.h50",
+  "para": "3.h51",
   "chapter": "Chapter 3",
   "heading": "IRC, NCCT",
   "pages": [
@@ -2472,9 +2484,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h51",
+  "id": "TC3-21.76/3.h52",
   "manual": "TC3-21.76",
-  "para": "3.h51",
+  "para": "3.h52",
   "chapter": "Chapter 3",
   "heading": "LLL TV,",
   "pages": [
@@ -2484,9 +2496,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h52",
+  "id": "TC3-21.76/3.h53",
   "manual": "TC3-21.76",
-  "para": "3.h52",
+  "para": "3.h53",
   "chapter": "Chapter 3",
   "heading": "HIBEAM,",
   "pages": [
@@ -2496,9 +2508,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h53",
+  "id": "TC3-21.76/3.h54",
   "manual": "TC3-21.76",
-  "para": "3.h53",
+  "para": "3.h54",
   "chapter": "Chapter 3",
   "heading": "UHF, VHF",
   "pages": [
@@ -2508,9 +2520,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h54",
+  "id": "TC3-21.76/3.h55",
   "manual": "TC3-21.76",
-  "para": "3.h54",
+  "para": "3.h55",
   "chapter": "Chapter 3",
   "heading": "LEGEND",
   "pages": [
@@ -2525,27 +2537,15 @@
   ]
  },
  {
-  "id": "TC3-21.76/3.h55",
+  "id": "TC3-21.76/3.h56",
   "manual": "TC3-21.76",
-  "para": "3.h55",
+  "para": "3.h56",
   "chapter": "Chapter 3",
   "heading": "MOSP (EO,",
   "pages": [
    91
   ],
   "text": "C-Band Hunter None IR, ELRF, UHF/VHF",
-  "notices": []
- },
- {
-  "id": "TC3-21.76/3.h56",
-  "manual": "TC3-21.76",
-  "para": "3.h56",
-  "chapter": "Chapter 3",
-  "heading": "UHF, VHF-",
-  "pages": [
-   91
-  ],
-  "text": "MQ-1B MTS, LTM, Link 16, AM/FM, HQ II, Hellfire Predator LTD PACWIND SATCOM, SINCGARS VDL",
   "notices": []
  },
  {
@@ -2557,13 +2557,25 @@
   "pages": [
    91
   ],
-  "text": "Hellfire, MTS, SAR,",
+  "text": "MQ-1B MTS, LTM, Link 16, AM/FM, HQ II, Hellfire Predator LTD PACWIND SATCOM, SINCGARS VDL",
   "notices": []
  },
  {
   "id": "TC3-21.76/3.h58",
   "manual": "TC3-21.76",
   "para": "3.h58",
+  "chapter": "Chapter 3",
+  "heading": "UHF, VHF-",
+  "pages": [
+   91
+  ],
+  "text": "Hellfire, MTS, SAR,",
+  "notices": []
+ },
+ {
+  "id": "TC3-21.76/3.h59",
+  "manual": "TC3-21.76",
+  "para": "3.h59",
   "chapter": "Chapter 3",
   "heading": "MQ-9 AM/FM, HQ II,",
   "pages": [
@@ -2573,9 +2585,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h59",
+  "id": "TC3-21.76/3.h60",
   "manual": "TC3-21.76",
-  "para": "3.h59",
+  "para": "3.h60",
   "chapter": "Chapter 3",
   "heading": "GBU-38 LTD",
   "pages": [
@@ -2585,9 +2597,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h60",
+  "id": "TC3-21.76/3.h61",
   "manual": "TC3-21.76",
-  "para": "3.h60",
+  "para": "3.h61",
   "chapter": "Chapter 3",
   "heading": "CSP (EO,",
   "pages": [
@@ -2597,9 +2609,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h61",
+  "id": "TC3-21.76/3.h62",
   "manual": "TC3-21.76",
-  "para": "3.h61",
+  "para": "3.h62",
   "chapter": "Chapter 3",
   "heading": "RQ-7B HQ II,",
   "pages": [
@@ -2609,9 +2621,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h62",
+  "id": "TC3-21.76/3.h63",
   "manual": "TC3-21.76",
-  "para": "3.h62",
+  "para": "3.h63",
   "chapter": "Chapter 3",
   "heading": "RQ-11B IR, EO, IR",
   "pages": [
@@ -2621,9 +2633,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h63",
+  "id": "TC3-21.76/3.h64",
   "manual": "TC3-21.76",
-  "para": "3.h63",
+  "para": "3.h64",
   "chapter": "Chapter 3",
   "heading": "LEGEND",
   "pages": [
@@ -2662,9 +2674,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h64",
+  "id": "TC3-21.76/3.h65",
   "manual": "TC3-21.76",
-  "para": "3.h64",
+  "para": "3.h65",
   "chapter": "Chapter 3",
   "heading": "ARMY ATTACK AVIATION CALL-FOR-FIRE FORMAT",
   "pages": [
@@ -2674,9 +2686,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h65",
+  "id": "TC3-21.76/3.h66",
   "manual": "TC3-21.76",
-  "para": "3.h65",
+  "para": "3.h66",
   "chapter": "Chapter 3",
   "heading": "2. Friendly location and mark: \"MY POSITION NP359654 , MARKED BY STROBE .\"",
   "pages": [
@@ -2686,9 +2698,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h66",
+  "id": "TC3-21.76/3.h67",
   "manual": "TC3-21.76",
-  "para": "3.h66",
+  "para": "3.h67",
   "chapter": "Chapter 3",
   "heading": "3. Target location: TARGET LOCATION NP459854 \"",
   "pages": [
@@ -2698,9 +2710,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h67",
+  "id": "TC3-21.76/3.h68",
   "manual": "TC3-21.76",
-  "para": "3.h67",
+  "para": "3.h68",
   "chapter": "Chapter 3",
   "heading": "4. Target description and mark: \" 3 TANKS , MARKED BY INFRARED POINTER \"",
   "pages": [
@@ -2710,9 +2722,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h68",
+  "id": "TC3-21.76/3.h69",
   "manual": "TC3-21.76",
-  "para": "3.h68",
+  "para": "3.h69",
   "chapter": "Chapter 3",
   "heading": "5. Remarks: \" NONE .\"",
   "pages": [
@@ -2722,14 +2734,26 @@
   "notices": [
    {
     "kind": "NOTE",
-    "text": "1. Clearance. If airspace has been cleared between the employing aircraft and the target, transmission of this brief is clearance to fire unless \"DANGER CLOSE\" or \"AT MY COMMAND\" is stated.\" 2. Danger close. For danger close fire, the observer or commander must accept responsibility for increased risk. State \"CLEARED DANGER CLOSE\" in line 5 and pass the initials of the on-scene ground commander. This clearance may be preplanned. 3. At my command. For positive control of the aircraft, state \"AT MY COMMAND\" on line 5. The aircraft will call \"READY TO FIRE,\" when ready. LEGEND IR - infrared; TRP - target reference point"
+    "text": "1. Clearance. If airspace has been cleared between the employing aircraft and the target, transmission of this brief is clearance to fire unless \"DANGER CLOSE\" or \"AT MY COMMAND\" is stated.\" 2. Danger close. For danger close fire, the observer or commander must accept responsibility for increased risk. State \"CLEARED DANGER CLOSE\" in line 5 and pass the initials of the on-scene ground commander. This clearance may be preplanned. 3. At my command. For positive control of the aircraft, state \"AT MY COMMAND\" on line 5. The aircraft will call \"READY TO FIRE,\" when ready."
    }
   ]
  },
  {
-  "id": "TC3-21.76/3.h69",
+  "id": "TC3-21.76/3.h70",
   "manual": "TC3-21.76",
-  "para": "3.h69",
+  "para": "3.h70",
+  "chapter": "Chapter 3",
+  "heading": "LEGEND",
+  "pages": [
+   92
+  ],
+  "text": "IR - infrared; TRP - target reference point",
+  "notices": []
+ },
+ {
+  "id": "TC3-21.76/3.h71",
+  "manual": "TC3-21.76",
+  "para": "3.h71",
   "chapter": "Chapter 3",
   "heading": "7.62 MG, VHF-",
   "pages": [
@@ -2739,9 +2763,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h70",
+  "id": "TC3-21.76/3.h72",
   "manual": "TC3-21.76",
-  "para": "3.h70",
+  "para": "3.h72",
   "chapter": "Chapter 3",
   "heading": "UHF-AM,",
   "pages": [
@@ -2751,9 +2775,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h71",
+  "id": "TC3-21.76/3.h73",
   "manual": "TC3-21.76",
-  "para": "3.h71",
+  "para": "3.h73",
   "chapter": "Chapter 3",
   "heading": "VHF-FMX2,",
   "pages": [
@@ -2763,9 +2787,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h72",
+  "id": "TC3-21.76/3.h74",
   "manual": "TC3-21.76",
-  "para": "3.h72",
+  "para": "3.h74",
   "chapter": "Chapter 3",
   "heading": "AH-64D/E VHF-AM, VINSON",
   "pages": [
@@ -2775,9 +2799,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h73",
+  "id": "TC3-21.76/3.h75",
   "manual": "TC3-21.76",
-  "para": "3.h73",
+  "para": "3.h75",
   "chapter": "Chapter 3",
   "heading": "SATCOM,",
   "pages": [
@@ -2787,9 +2811,9 @@
   "notices": []
  },
  {
-  "id": "TC3-21.76/3.h74",
+  "id": "TC3-21.76/3.h76",
   "manual": "TC3-21.76",
-  "para": "3.h74",
+  "para": "3.h76",
   "chapter": "Chapter 3",
   "heading": "LEGEND",
   "pages": [

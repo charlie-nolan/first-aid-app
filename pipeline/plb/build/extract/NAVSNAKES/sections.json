@@ -2054,16 +2054,28 @@
   "chapter": "CHAPTER V",
   "heading": "1-40 (some color), figs. 1-62, Maps 1-248. STEBBINS,",
   "pages": [
-   57,
-   58
+   57
   ],
-  "text": "FITCH, Henry S. 1960. Autecology of the Copperhead. Univ. Kansas Publ. Mus. Nat. Hist., vol. 13, pp. 85-288, pls. 13-20. figs. 1-26, tables 1-26. WRIGHT, KLAUBER, LAURENCE M. 1956. Rattlesnakes: Their Habits, Life Histories, and Influence on Mankind. Univ. of California ners) wo t ce ar",
+  "text": "FITCH, Henry S. 1960. Autecology of the Copperhead. Univ. Kansas Publ. Mus. Nat. Hist., vol. 13, pp. 85-288, pls. 13-20. figs. 1-26, tables 1-26. WRIGHT, KLAUBER, LAURENCE M. 1956. Rattlesnakes: Their Habits, Life Histories, and Influence on Mankind. Univ. of California",
   "notices": [
    {
     "kind": "NOTE",
-    "text": "Press: Berkeley and Los Angeles. Vol. I, xxix + 1-708 pp., figs., tables, maps, frontis. (color). Vol. II, xvii + 709-1476 pp., figs., tables, frontis., (color). Robert C. 1954. Amphibians and Reptiles of Western North America. Me- Graw-Hill: New York, xxii + 1-528 pp., pls. 1-104. Albert H. and Anna A. WRIGHT 1957. Handbook of Snakes of the United States and Canada. Comstock: Ithaca, N.Y., 2 vols., 1105 pp., 305 figs., 70 maps."
+    "text": "Press: Berkeley and Los Angeles. Vol. I, xxix + 1-708 pp., figs., tables, maps, frontis. (color). Vol. II, xvii + 709-1476 pp., figs., tables, frontis., (color)."
    }
   ]
+ },
+ {
+  "id": "NAVSNAKES/57.2",
+  "manual": "NAVSNAKES",
+  "para": "57.2",
+  "chapter": "CHAPTER V",
+  "heading": "Robert C. 1954. Amphibians and",
+  "pages": [
+   57,
+   58
+  ],
+  "text": "Reptiles of Western North America. Me- Graw-Hill: New York, xxii + 1-528 pp., pls. 1-104. Albert H. and Anna A. WRIGHT 1957. Handbook of Snakes of the United States and Canada. Comstock: Ithaca, N.Y., 2 vols., 1105 pp., 305 figs., 70 maps. ners) wo t ce ar",
+  "notices": []
  },
  {
   "id": "NAVSNAKES/58.1",
@@ -2491,16 +2503,40 @@
   "chapter": "CHAPTER V",
   "heading": "SCHMIDT, Karl P. 1941. The Amphibians and",
   "pages": [
-   70,
-   71
+   70
   ],
-  "text": "Reptiles of British Honduras. Zool. Ser. Field Mus. Nat. Hist., vol. 22, no. 8, pp. 475-510. Section 3",
+  "text": "Reptiles of British Honduras. Zool. Ser. Field Mus. Nat. Hist., vol. 22, no. 8, pp. 475-510. An Annotated Checklist and Key to the Snakes of Mexico. Bull. U. S. Natl. Mus. (187) : 1-239 p.",
   "notices": [
    {
     "kind": "NOTE",
-    "text": "Genus JZferurus in Colombia. Fieldiana- Zool., 34 (34) : 837-359, figs. 65-69. SMITH, Hobart M., and E. H. TAYLOR. 1945. An Annotated Checklist and Key to the Snakes of Mexico. Bull. U. S. Natl. Mus. (187) : 1-239 p. STUART, L. C. 1963. A Checklist of the Herpetofauna of Guatemala. Mise. Pub. Mus. Zool. Univ. Michigan (122): 1-150, 1 pl., 1 map. TAYLOR, Edward H. 1951. A Brief Review of the Snakes of Costa Rica. Univ. Kansas Sci. Bull., 34 (part 1, no. 1) : 3-88, figs. 1-7, pls. 1-23."
+    "text": "Genus JZferurus in Colombia. Fieldiana- Zool., 34 (34) : 837-359, figs. 65-69. SMITH, Hobart M., and E. H. TAYLOR. 1945."
    }
   ]
+ },
+ {
+  "id": "NAVSNAKES/70.2",
+  "manual": "NAVSNAKES",
+  "para": "70.2",
+  "chapter": "CHAPTER V",
+  "heading": "STUART, L. C. 1963. A Checklist of the Herpe-",
+  "pages": [
+   70
+  ],
+  "text": "tofauna of Guatemala. Mise. Pub. Mus.",
+  "notices": []
+ },
+ {
+  "id": "NAVSNAKES/70.3",
+  "manual": "NAVSNAKES",
+  "para": "70.3",
+  "chapter": "CHAPTER V",
+  "heading": "Zool. Univ. Michigan (122): 1-150, 1 pl., 1",
+  "pages": [
+   70,
+   71
+  ],
+  "text": "map. TAYLOR, Edward H. 1951. A Brief Review of the Snakes of Costa Rica. Univ. Kansas Sci. Bull., 34 (part 1, no. 1) : 3-88, figs. 1-7, pls. 1-23. Section 3",
+  "notices": []
  },
  {
   "id": "NAVSNAKES/71.1",
@@ -2938,16 +2974,76 @@
   "chapter": "CHAPTER V",
   "heading": "AMARAL, Afranio do. 1930. Lista remissiva",
   "pages": [
-   81,
-   82
+   81
   ],
-  "text": "7 ve 6 r _",
+  "text": "",
   "notices": [
    {
     "kind": "NOTE",
-    "text": "DUNN, Emmett R. 1944. Los genereos de anfibios y reptiles de Colombia, III. Tercera Parte: Reptiles; orden de las serpientes. Caldasia, 3 (12): 155-224. FONSECA, Flavio da. 1949. Animais peconhentos. Publ. Inst. Butantan, Sao Paulo. 376 p., 129 figs., 13 color pls. TIOGE, Alphonse R. 1965. Preliminary Account on Neotropical Crotalinae (Serpentes, Viperidae). Mem. Inst. Butantan 32:109-184, pls. 1-20, maps 1-10. LAZELL, James D., Jr. 1964. The Lesser Antillean Representatives of Bothrops and Constrictor. Bull. Mus. Comp. Zool., 132\n(3) : 245-273, figs. 1-5. MOLE, R. R. 1924. The Trinidad Snakes. Proc. Zool. Soc. London: 235-278, pls. 1-10. PETERS, James A. 1960. The Snakes of Eeuador: A Check List and Key. Bull. Mus. Comp. Zool., 122 (9) : 491-541. ROZE, Janis A. 1955. Revision de las corales (Serpentes: Elapidae) de Venezuela. Acta Biol. Venezuelica, 1 (art. 17) : 453-500, 4 figs. (2 color). ROZE, Janis A. 1966. La Taxonomia y Zoogeografia de los ofidios de Venezuela. Universidad Central de Venezuela, Caracas. 362 pp. 79 figs., 80 maps. SANDNER MONTILLA, F. 1965. Manual de las serpientes ponzonosas de Venezuela. (Pub. by author) Caracas. 108 p. 69 figs., 9 col. pls. SANTOS, Eurico. 1955. <Anfibios e repteis do Brasil (vida e costumes). 2nd ed. F. Briguiet & Cia., Rio de Janeiro. 262 p., 65 figs., 10 color pls."
+    "text": "DUNN, Emmett R. 1944. Los genereos de anfibios y reptiles de Colombia, III. Tercera Parte: Reptiles; orden de las serpientes. Caldasia, 3 (12): 155-224."
    }
   ]
+ },
+ {
+  "id": "NAVSNAKES/81.7",
+  "manual": "NAVSNAKES",
+  "para": "81.7",
+  "chapter": "CHAPTER V",
+  "heading": "FONSECA, Flavio da. 1949. Animais pecon-",
+  "pages": [
+   81
+  ],
+  "text": "hentos. Publ. Inst. Butantan, Sao Paulo. 376 p., 129 figs., 13 color pls.",
+  "notices": []
+ },
+ {
+  "id": "NAVSNAKES/81.10",
+  "manual": "NAVSNAKES",
+  "para": "81.10",
+  "chapter": "CHAPTER V",
+  "heading": "peridae). Mem. Inst. Butantan 32:109-184,",
+  "pages": [
+   81
+  ],
+  "text": "pls. 1-20, maps 1-10. LAZELL, James D., Jr. 1964. The Lesser Antillean Representatives of Bothrops and",
+  "notices": []
+ },
+ {
+  "id": "NAVSNAKES/81.11",
+  "manual": "NAVSNAKES",
+  "para": "81.11",
+  "chapter": "CHAPTER V",
+  "heading": "Constrictor. Bull. Mus. Comp. Zool., 132",
+  "pages": [
+   81
+  ],
+  "text": "(3) : 245-273, figs. 1-5. MOLE, R. R. 1924. The Trinidad Snakes. Proc. Zool. Soc. London: 235-278, pls. 1-10. PETERS, James A. 1960. The Snakes of Eeuador: A Check List and Key. Bull. Mus. Comp. Zool., 122 (9) : 491-541. ROZE, Janis A. 1955. Revision de las corales (Serpentes: Elapidae) de Venezuela. Acta Biol. Venezuelica, 1 (art. 17) : 453-500, 4 figs. (2 color). ROZE, Janis A. 1966. La Taxonomia y Zoogeografia de los ofidios de Venezuela. Universidad Central de Venezuela, Caracas. 362 pp. 79 figs., 80 maps. SANDNER MONTILLA, F. 1965. Manual de las serpientes ponzonosas de Venezuela. (Pub. by author) Caracas. 108 p. 69 figs., 9 col. pls.",
+  "notices": []
+ },
+ {
+  "id": "NAVSNAKES/81.12",
+  "manual": "NAVSNAKES",
+  "para": "81.12",
+  "chapter": "CHAPTER V",
+  "heading": "SANTOS, Eurico. 1955. <Anfibios e repteis do",
+  "pages": [
+   81
+  ],
+  "text": "Brasil (vida e costumes). 2nd ed. F. Bri-",
+  "notices": []
+ },
+ {
+  "id": "NAVSNAKES/81.13",
+  "manual": "NAVSNAKES",
+  "para": "81.13",
+  "chapter": "CHAPTER V",
+  "heading": "guiet & Cia., Rio de Janeiro. 262 p., 65 figs.,",
+  "pages": [
+   81,
+   82
+  ],
+  "text": "10 color pls. 7 ve 6 r _",
+  "notices": []
  },
  {
   "id": "NAVSNAKES/82.1",
