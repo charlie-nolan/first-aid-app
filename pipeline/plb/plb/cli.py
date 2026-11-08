@@ -7,6 +7,8 @@
     plb test [--reader-cmd CMD]    build, then run every check; non-zero exit on any error
     plb pack --packer CMD          build + test, then hand build/intermediate to the packer
     plb review [--out DIR]         build, then write one Markdown review page per tree
+    plb verbatim [--all] [--judge]  re-read cited pages from the PDFs; card text word for word?
+    plb voice [--json]             score synthetic utterances against the phrase list
     plb show SECTION_ID            print an extracted section (to pick citations)
     plb grep WORDS                 search extracted sections (to find what to cite)
 """
@@ -58,6 +60,19 @@ def main(argv=None) -> int:
     p.add_argument("--out", default=None, help="default build/library.bin "
                                                  "(build/library_personal.bin with --personal)")
     rv = sub.add_parser("review"); rv.add_argument("--out", default="content/review")
+    vb = sub.add_parser("verbatim", help="compare card passages with the original PDF pages")
+    vb.add_argument("--all", action="store_true", help="also the unreviewed reference shelf")
+    vb.add_argument("--judge", action="store_true", help="ask Claude about each MISMATCH (needs API key)")
+    vb.add_argument("--only", nargs="*", help="passage id prefixes, e.g. ATP4-02.11/4-4")
+    vb.add_argument("--out", default="build/verbatim.md")
+    vc = sub.add_parser("voice", help="stress-test the voice phrase list with synthetic utterances")
+    vc.add_argument("--utterances", default="content/phrases/synthetic")
+    vc.add_argument("--out", default="build/voice-report.md")
+    vc.add_argument("--generate", metavar="TREE", help="ask Claude for new utterances for TREE "
+                    "(writes build/synthetic-TREE.yaml to review; needs an API key)")
+    vc.add_argument("--threshold", type=float, default=None, help="recogniser stand-in cutoff")
+    vc.add_argument("--min-accuracy", type=float, default=None,
+                    help="fail if fewer than this share of in-scope utterances land right")
     s = sub.add_parser("show"); s.add_argument("section")
     g = sub.add_parser("grep"); g.add_argument("words", nargs="+")
     a = ap.parse_args(argv)
@@ -127,6 +142,35 @@ def main(argv=None) -> int:
         for f in write_review(out, root / a.out):
             print(f)
         return _report(issues)
+    if a.cmd == "verbatim":
+        from . import verbatim as vb
+        from .check import _sections
+        out, issues = build(root, personal=a.personal)
+        manuals = {m.id: m.raw for m in src.load_manifest(manifest, a.personal)}
+        secs, _ = _sections(root, a.personal)
+        found = vb.check_passages(root, out, manuals, secs, only_reviewed=not a.all, ids=a.only)
+        if a.judge:
+            print(f"judged {vb.judge(found, root, out, manuals, secs)} mismatches")
+        dest = root / a.out
+        print(vb.write_report(found, dest), "->", dest)
+        for f in found:
+            if f.level in ("MISMATCH", "NO-SOURCE"):
+                print(f"{f.level:9} {f.passage:28} {(f.judge or {}).get('verdict', '')}")
+        return 1 if any(f.level == "MISMATCH" for f in found) else 0
+    if a.cmd == "voice":
+        from . import voicetest as vt
+        out, issues = build(root, personal=a.personal)
+        if a.generate:
+            print("wrote", vt.generate(out, a.generate, root / "build" / f"synthetic-{a.generate}.yaml"))
+            return 0
+        rep = vt.run(root, out, root / a.utterances, thr=a.threshold or vt.THRESHOLD)
+        dest = root / a.out
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(vt.report_md(rep))
+        print(vt.summary(rep), "->", dest)
+        if a.min_accuracy is not None and rep["in_scope_accuracy"] < a.min_accuracy:
+            return 1
+        return 1 if rep["unsafe"] or rep["off_step"] else 0
     if a.cmd in ("show", "grep"):
         secs = load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir()))
         if a.cmd == "show":
