@@ -11,7 +11,10 @@ since boxes sit elsewhere on the page):
 
   exact       same words and punctuation, only whitespace and list markers differ
   layout      same once line-end hyphens, ligatures, curly quotes and dashes are folded
-  MISMATCH    words differ: the word-level diff is reported for a person to look at.
+  MISMATCH    words differ: the word-level diff is reported, and (with --judge) an LLM
+              is asked only whether the difference is an extraction artifact or changes
+              what the card tells someone to do. The judge never clears a card: every
+              MISMATCH stays flagged for a person to look at.
 
 Running headers/footers (lines repeated on many pages) are removed before comparing, so
 a passage that crosses a page break still matches. Nothing else is skipped: a word the
@@ -129,6 +132,7 @@ class Finding:
     chunk: str = ""
     diff: list[dict] = field(default_factory=list)
     nodes: list[str] = field(default_factory=list)
+    judge: dict | None = None
 
 
 def split_chunks(text: str) -> list[str]:
@@ -229,6 +233,82 @@ def check_passages(root: Path, inter: Path, manuals: dict, sections: dict,
     return out
 
 
+# ---------------------------------------------------------------- optional LLM judge
+
+JUDGE_PROMPT = """You check a first-aid device. Its screen may only show text copied word for word
+from a printed manual. Below is the CARD text the device will show, and the PAGE text read
+from the manual's PDF by a different program. A word-level diff between them is listed.
+
+Decide only this: is every difference an extraction artifact (reading order, a glyph read
+wrongly such as a degree sign, words split or joined, a header or figure label caught in
+between), or does any difference change, add or remove an instruction, number, warning or
+condition that the reader would act on? When unsure, say it changes meaning.
+
+DIFF:
+{diff}
+
+CARD:
+{card}
+
+PAGE (excerpt):
+{page}
+"""
+
+JUDGE_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "verdict": {"type": "string", "enum": ["artifact_only", "changes_meaning"]},
+        "reason": {"type": "string"},
+    },
+    "required": ["verdict", "reason"],
+    "additionalProperties": False,
+}
+
+
+def judge(findings: list[Finding], root: Path, inter: Path, manuals: dict, sections: dict,
+          model: str = "claude-opus-5-5") -> int:
+    """Ask Claude about each MISMATCH. Needs the `anthropic` package and an API key
+    (or `ant auth login`). Advisory only: the result is written next to the finding."""
+    import anthropic
+    client = anthropic.Anthropic()
+    n = 0
+    for f in findings:
+        if f.level != "MISMATCH":
+            continue
+        diff = "\n".join(f"- card: {d.get('card')!r}  page: {d.get('pdf')!r}" for d in f.diff)
+        prompt = JUDGE_PROMPT.format(diff=diff, card=f.chunk, page=_page_excerpt(f, root, manuals,
+                                                                                  sections))
+        r = client.beta.messages.create(
+            model=model, max_tokens=2000,
+            betas=["server-side-fallback-2026-07-01"], fallbacks="default",
+            output_config={"effort": "low",
+                           "format": {"type": "json_schema", "schema": JUDGE_SCHEMA}},
+            messages=[{"role": "user", "content": prompt}])
+        if r.stop_reason == "refusal":
+            f.judge = {"verdict": "no_answer", "reason": "model declined"}
+        else:
+            txt = next((b.text for b in r.content if b.type == "text"), "{}")
+            try:
+                f.judge = json.loads(txt)
+            except json.JSONDecodeError:
+                f.judge = {"verdict": "no_answer", "reason": txt[:200]}
+        n += 1
+    return n
+
+
+def _page_excerpt(f: Finding, root, manuals, sections, limit: int = 6000) -> str:
+    base = f.passage.split("#")[0].split("~")[0]
+    sec = sections.get(base) or {}
+    m = manuals.get(base.split("/")[0], {})
+    src = WebPages(root, m) if m.get("kind") == "web" else PdfPages(root / m["file"])
+    w = src.window(sec.get("pages") or [1], pad=0)
+    a = words(f.chunk)
+    first = " ".join(a[:3])
+    i = " ".join(w.split()).find(first) if first else -1
+    flat = " ".join(w.split())
+    return flat[max(0, i - 500):max(0, i - 500) + limit] if i >= 0 else flat[:limit]
+
+
 def write_report(findings: list[Finding], path: Path) -> str:
     c = Counter(f.level for f in findings)
     lines = ["# Card text vs source pages", "",
@@ -241,6 +321,8 @@ def write_report(findings: list[Finding], path: Path) -> str:
         if f.level in ("MISMATCH", "NO-SOURCE"):
             lines.append(f"## {f.level}: {f.passage} ({f.citation})")
             lines.append(f"Shown on: {', '.join(f.nodes)}")
+            if f.judge:
+                lines.append(f"Judge (advisory): **{f.judge.get('verdict')}**: {f.judge.get('reason')}")
             for d in f.diff:
                 tag = " (spacing/hyphen only)" if d.get("minor") else ""
                 lines.append(f"- after \"{d.get('after', '')}\": card `{d['card'] or '(nothing)'}`"
