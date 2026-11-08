@@ -59,6 +59,17 @@ def run_checks(root: Path, inter: Path, build_issues: list[Issue],
         for ch in n["choices"]:
             if not n.get("unreviewed") and by_id[ch["to"]].get("unreviewed"):
                 issues.append(Issue("error", n["key"], "reviewed topic links into unreviewed text"))
+    # refused passages (content/refused.yaml) never ship in a reviewed topic
+    ref_path = root / "content" / "refused.yaml"
+    for r in (yaml.safe_load(ref_path.read_text()) or []) if ref_path.exists() else []:
+        for n in trees["nodes"]:
+            if n.get("unreviewed"):
+                continue
+            for pid in n["passages"]:
+                base = pid.split("#")[0].split("~")[0]
+                p = by_pid.get(pid)
+                if base == r["ref"] and (not r.get("text") or (p and r["text"] in p["text"])):
+                    issues.append(Issue("error", n["key"], f"uses refused passage {pid}: {r['why']}"))
     for c in cmds:
         if c["node"] not in key_of:
             issues.append(Issue("error", "phrases", f"cmd {c['cmd_id']} points at missing node"))

@@ -247,3 +247,9 @@ def test_join_words_gap_scales_with_size():
     assert join_words([w("A", 0, 8.66, 12), w("PPLICATION", 8.64, 60, 9.5)]) == "APPLICATION"
     assert join_words([w("Direct", 0, 24.85, 10), w("pressure.", 25.68, 61, 10)]) == "Direct pressure."
     assert join_words([w("big", 0, 30, 40), w("type", 30.8, 70, 40)]) == "bigtype"     # 0.8 pt at 40 pt
+
+
+def test_degree_lookalikes_map_like_degree_sign():
+    from plb.extract import normalize
+    out = [" ".join(normalize(t).split()) for t in ("95° F", "95º F (37º C)", "40˚F")]
+    assert out == ["95 degrees F", "95 degrees F (37 degrees C)", "40 degrees F"]

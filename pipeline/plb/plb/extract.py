@@ -48,6 +48,7 @@ will should may when has have into which all one two any other them than then th
 LIGATURES = {"ﬁ": "fi", "ﬂ": "fl", "ﬀ": "ff", "ﬃ": "ffi", "ﬄ": "ffl",
              "‘": "'", "’": "'", "“": '"', "”": '"', "–": "-",
              "—": "--", "•": "*", "©": "(C)", " ": " ", "°": " degrees ",
+             "º": " degrees ", "˚": " degrees ",   # CERT prints 95º F; NFKD would give "o"
              "⁄": "/", "∕": "/"}
 FRACTIONS = {"½": "1/2", "¼": "1/4", "¾": "3/4", "⅓": "1/3", "⅔": "2/3", "⅛": "1/8"}
 
