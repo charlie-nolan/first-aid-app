@@ -1,0 +1,5 @@
+# romkit packer + tests (pip install -r romkit/requirements.txt)
+numpy>=1.26
+Pillow>=10
+freetype-py==2.5.1
+uharfbuzz==0.57.0
