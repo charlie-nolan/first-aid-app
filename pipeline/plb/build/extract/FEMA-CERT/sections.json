@@ -2220,33 +2220,46 @@
   "notices": []
  },
  {
-  "id": "FEMA-CERT/107.5",
+  "id": "FEMA-CERT/107.t1",
   "manual": "FEMA-CERT",
-  "para": "107.5",
+  "para": "107.t1",
   "chapter": "",
-  "heading": "Classification Skin Layers Affected Signs",
+  "heading": "Table 3.2: Burn Classification Chart",
   "pages": [
    107
   ],
-  "text": "- Reddened, dry skin Superficial * Epidermis * Pain\n- Swelling (possible)\n- Reddened, blistered skin Partial Thickness ** EpidermisPartial destruction of dermis ** WetPain appearance\n- Swelling (possible) Full Thickness * Complete destruction of epidermis * Whitened,charred (brownleathery,or black)or and dermis",
+  "text": "Superficial: Skin Layers Affected: Epidermis. Signs: Reddened, dry skin; Pain; Swelling (possible).",
+  "notices": []
+ },
+ {
+  "id": "FEMA-CERT/107.t2",
+  "manual": "FEMA-CERT",
+  "para": "107.t2",
+  "chapter": "",
+  "heading": "Table 3.2: Burn Classification Chart",
+  "pages": [
+   107
+  ],
+  "text": "Partial Thickness: Skin Layers Affected: Epidermis; Partial destruction of dermis. Signs: Reddened, blistered skin; Wet appearance; Pain; Swelling (possible).",
+  "notices": []
+ },
+ {
+  "id": "FEMA-CERT/107.t3",
+  "manual": "FEMA-CERT",
+  "para": "107.t3",
+  "chapter": "",
+  "heading": "Table 3.2: Burn Classification Chart",
+  "pages": [
+   107,
+   108
+  ],
+  "text": "Full Thickness: Skin Layers Affected: Complete destruction of epidermis and dermis; Possible subcutaneous damage (destroys all layers of skin and some or all underlying structures). Signs: Whitened, leathery, or charred (brown or black); Painful or relatively painless.",
   "notices": []
  },
  {
   "id": "FEMA-CERT/108.1",
   "manual": "FEMA-CERT",
   "para": "108.1",
-  "chapter": "",
-  "heading": "Classification Skin Layers Affected Signs",
-  "pages": [
-   108
-  ],
-  "text": "- Possible subcutaneous damage * Painful or relatively (destroys all layers of skin and painless some or all underlying structures)",
-  "notices": []
- },
- {
-  "id": "FEMA-CERT/108.2",
-  "manual": "FEMA-CERT",
-  "para": "108.2",
   "chapter": "",
   "heading": "Guidelines for Treating Heat Burns",
   "pages": [
@@ -2256,9 +2269,9 @@
   "notices": []
  },
  {
-  "id": "FEMA-CERT/108.3",
+  "id": "FEMA-CERT/108.2",
   "manual": "FEMA-CERT",
-  "para": "108.3",
+  "para": "108.2",
   "chapter": "",
   "heading": "Guidelines for Treating Chemical Burns",
   "pages": [
@@ -2506,7 +2519,7 @@
   "pages": [
    114
   ],
-  "text": "Hypothermia may be caused by exposure to cold or by trauma. The primary signs and symptoms of hypothermia are:\n- A body temperature of 95o F (37o C) or lower;\n- Redness or blueness of the skin; and\n- Numbness accompanied by shivering. In later stages, hypothermia will be accompanied by:\n- Slurred speech;\n- Unpredictable behavior; and\n- Listlessness. Because hypothermia can set in within only a few minutes, treat patients rescued from cold air or water environments first by:\n- Removing wet clothing;\n- Placing something between the injured person and the ground (e.g., cardboard, jacket, blanket, or anything that provides physical separation);\n- Wrapping the injured person with dry layers (e.g., coat, blanket, or Mylar emergency blanket);\n- Shielding the injured person from the wind with your body or surrounding objects;\n- Not attempting to use massage to warm affected body parts; and\n- Placing an unconscious patient in the recovery position.",
+  "text": "Hypothermia may be caused by exposure to cold or by trauma. The primary signs and symptoms of hypothermia are:\n- A body temperature of 95 degrees F (37 degrees C) or lower;\n- Redness or blueness of the skin; and\n- Numbness accompanied by shivering. In later stages, hypothermia will be accompanied by:\n- Slurred speech;\n- Unpredictable behavior; and\n- Listlessness. Because hypothermia can set in within only a few minutes, treat patients rescued from cold air or water environments first by:\n- Removing wet clothing;\n- Placing something between the injured person and the ground (e.g., cardboard, jacket, blanket, or anything that provides physical separation);\n- Wrapping the injured person with dry layers (e.g., coat, blanket, or Mylar emergency blanket);\n- Shielding the injured person from the wind with your body or surrounding objects;\n- Not attempting to use massage to warm affected body parts; and\n- Placing an unconscious patient in the recovery position.",
   "notices": []
  },
  {
@@ -2519,7 +2532,7 @@
    114,
    115
   ],
-  "text": "A person's blood vessels constrict in cold weather in an effort to preserve body heat. In extreme cold, the body will further constrict blood vessels in the extremities in an effort to shunt blood toward the core organs (e.g., heart, lungs, intestines). The combination of inadequate circulation and extreme temperatures will cause tissue in these extremities to freeze, and in some cases, tissue death will result. Frostbite is most common in the nose, ears, hands, and feet. There are several key signs and symptoms of frostbite:\n- Skin discoloration (red, white, purple, black);\n- Burning or tingling sensation, at times not localized to the injury site; and\n- Partial or complete numbness. Warm a patient suffering from frostbite slowly! Thawing the frozen extremity too rapidly can cause chilled blood to flow to the heart, shocking it, and potentially stopping it.\n- Immerse injured area in warm (NOT hot) water, approximately 107.6o F.\n- DO NOT allow the body part to re-freeze, as this will exacerbate the injury.\n- DO NOT attempt to use massage to warm body parts. Frostbite results in the formation of ice crystals in the tissue; rubbing could potentially cause a great deal of damage! Wrap affected body parts in dry, sterile dressing. Again, it is vital to complete this task carefully to reduce the likelihood of further tissue damage.",
+  "text": "A person's blood vessels constrict in cold weather in an effort to preserve body heat. In extreme cold, the body will further constrict blood vessels in the extremities in an effort to shunt blood toward the core organs (e.g., heart, lungs, intestines). The combination of inadequate circulation and extreme temperatures will cause tissue in these extremities to freeze, and in some cases, tissue death will result. Frostbite is most common in the nose, ears, hands, and feet. There are several key signs and symptoms of frostbite:\n- Skin discoloration (red, white, purple, black);\n- Burning or tingling sensation, at times not localized to the injury site; and\n- Partial or complete numbness. Warm a patient suffering from frostbite slowly! Thawing the frozen extremity too rapidly can cause chilled blood to flow to the heart, shocking it, and potentially stopping it.\n- Immerse injured area in warm (NOT hot) water, approximately 107.6 degrees F.\n- DO NOT allow the body part to re-freeze, as this will exacerbate the injury.\n- DO NOT attempt to use massage to warm body parts. Frostbite results in the formation of ice crystals in the tissue; rubbing could potentially cause a great deal of damage! Wrap affected body parts in dry, sterile dressing. Again, it is vital to complete this task carefully to reduce the likelihood of further tissue damage.",
   "notices": []
  },
  {
@@ -2555,7 +2568,7 @@
   "pages": [
    115
   ],
-  "text": "Some or all of the following symptoms characterize heat stroke:\n- Hot, red skin;\n- Lack of perspiration;\n- Changes in consciousness; and/or\n- Rapid, weak pulse and rapid, shallow breathing. In a heat stroke patient, body temperature can be very high -- as high as 105o F. If an individual suffering from heat stroke is not treated, death can result.",
+  "text": "Some or all of the following symptoms characterize heat stroke:\n- Hot, red skin;\n- Lack of perspiration;\n- Changes in consciousness; and/or\n- Rapid, weak pulse and rapid, shallow breathing. In a heat stroke patient, body temperature can be very high -- as high as 105 degrees F. If an individual suffering from heat stroke is not treated, death can result.",
   "notices": []
  },
  {

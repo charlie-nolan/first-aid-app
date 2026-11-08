@@ -261,6 +261,22 @@ def chapter_key(chapter: str) -> str:
     return m[1] if m else "0"
 
 
+def table_cell_items(cell: str | None) -> list[str]:
+    """A table cell's bullet items, each one line ("• Complete destruction of epidermis\nand
+    dermis" -> ["Complete destruction of epidermis and dermis"])."""
+    text = normalize(CID_RE.sub("\u2022", cell or "")).replace("*", "\u2022")   # unmapped bullets too
+    parts = [p for p in re.split(r"\u2022", text)] if "\u2022" in text else [text]
+    return [re.sub(r"\s+", " ", p).strip() for p in parts if p.strip()]
+
+
+def table_row_text(hdr: list[str], cells: list[list[str]]) -> str:
+    """"Superficial: Skin Layers Affected: Epidermis. Signs: Reddened, dry skin; Pain; ..."
+    The cell words are verbatim; only the column names and punctuation are added."""
+    first = "; ".join(cells[0])
+    rest = [f"{h}: {'; '.join(c)}." for h, c in zip(hdr[1:], cells[1:]) if c]
+    return f"{first}: " + " ".join(rest) if first else " ".join(rest)
+
+
 def is_heading(line: Line, body_size: float) -> bool:
     t = line.text.strip()
     if not t or len(t) > 80 or PARA_RE.match(t) or FIG_RE.match(t) or t.endswith("."):
@@ -272,10 +288,13 @@ def is_heading(line: Line, body_size: float) -> bool:
 
 def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             dpi: int = 200, numbering: str = "dash",
-            skip_pages: tuple[int, ...] = ()) -> tuple[list[Section], list[Figure]]:
+            skip_pages: tuple[int, ...] = (),
+            table_pages: tuple[int, ...] = ()) -> tuple[list[Section], list[Figure]]:
     """numbering: "dash" (Army "2-15."), "decimal" (Air Force "4.7.3.") or "headings"
     (no paragraph numbers: each heading starts a section, numbered "<page>.<n>").
-    skip_pages: 1-based pages that are not part of the publication (a reseller's note)."""
+    skip_pages: 1-based pages that are not part of the publication (a reseller's note).
+    table_pages: 1-based pages whose ruled tables are read cell by cell (one section per row,
+    "<page>.t<n>") instead of line by line, which interleaves the columns."""
     out_dir.mkdir(parents=True, exist_ok=True)
     fig_dir = out_dir / "figures"
     para_re = DECIMAL_RE if numbering == "decimal" else PARA_RE
@@ -289,6 +308,9 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
     keyword_lines = 0               # CAUTION/WARNING/NOTE/DANGER words seen, for the audit
     per_page: dict[int, int] = {}
     per_chapter: dict[str, int] = {}    # unnumbered stretches inside a numbered manual
+    table_title = ""                    # last "Table 3.2: ..." caption, the heading for its rows
+    last_row: dict | None = None        # a table row that may continue on the next page
+    per_table: dict[int, int] = {}      # table rows per page, "<page>.t<n>"
 
     def end_notice():
         nonlocal notice
@@ -311,15 +333,49 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
         cur.notices.extend(pending)
         pending.clear()
 
+    def emit_table(page, tbl):
+        nonlocal last_row
+        rows = tbl.extract()
+        hdr = [normalize(c or "").strip() for c in rows[0]]
+        for row in rows[1:]:
+            cells = [table_cell_items(c) for c in row]
+            if not cells[0] and last_row is not None:          # continues the row above
+                for k, items in enumerate(cells[1:], 1):
+                    last_row["cells"][k].extend(items)
+                if page.page_number not in last_row["sec"].pages:
+                    last_row["sec"].pages.append(page.page_number)
+                last_row["sec"].text = table_row_text(last_row["hdr"], last_row["cells"])
+                continue
+            n = per_table[page.page_number] = per_table.get(page.page_number, 0) + 1
+            num = f"{page.page_number}.t{n}"
+            sec = Section(f"{manual_id}/{num}", manual_id, num, chapter, table_title or heading,
+                          [page.page_number])
+            sec.text = table_row_text(hdr, cells)
+            sections.append(sec)
+            last_row = {"sec": sec, "cells": cells, "hdr": hdr}
+
     for page, lines in read_lines(pdf_path):
         if page.page_number in skip_pages:
             continue
+        tables = page.find_tables() if page.page_number in table_pages else []
+        if tables:
+            boxes = [t.bbox for t in tables]
+            lines = [l for l in lines if not any(b[1] - 2 <= l.top and l.bottom <= b[3] + 2
+                                                 for b in boxes)]
+            todo = sorted(tables, key=lambda t: t.bbox[1])
+        else:
+            todo = []
         sizes = sorted(l.size for l in lines) or [10.0]
         body = sizes[len(sizes) // 2]
         toc_page = sum(bool(FIG_RE.match(l.text) and TOC_PAGENO_RE.search(l.text))
                        for l in lines) >= 3
         for i, ln in enumerate(lines):
             t = ln.text.strip()
+            while todo and ln.top > todo[0].bbox[3]:             # a table sat above this line
+                flush()
+                emit_table(page, todo.pop(0))
+            if not todo and last_row is not None and t:          # text after the table: it is done
+                last_row = None
             keyword_lines += len(NOTICE_WORD_RE.findall(t))
             if notice is not None:
                 gap = ln.top - notice["bottom"] if ln.page == notice["page"] else 99
@@ -350,6 +406,7 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
                     figs.append(_crop_figure(page, lines, i, manual_id, cap, fig_dir, dpi, xr))
                 continue
             if TABLE_RE.match(t):
+                table_title = t
                 continue
             pm = para_re.match(t) if numbering != "headings" else None
             if pm:
@@ -378,6 +435,9 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
                 if ln.page not in cur.pages:
                     cur.pages.append(ln.page)
                 buf.append(t)
+        for tbl in todo:                                      # tables below the last line
+            flush()
+            emit_table(page, tbl)
     flush()
     if pending and sections:
         sections[-1].notices.extend(pending)

@@ -215,6 +215,7 @@ manuals:
   file: sources/FEMA_CERT.pdf
   sha256: ca297bbc329c322ccbcb252fae7a1c89fd95f93dbf72b78b165b53cafa664026
   numbering: headings
+  table_pages: [107, 108]   # Table 3.2 burn classification chart, read cell by cell
 - id: DHS-ACTIVE-SHOOTER
   topic: "Active Shooter Response"   # shelf title on the device (<= 28 chars)
   about: "Department of Homeland Security booklet on how to respond to an active shooter."   # catalog line, not passage text

@@ -253,3 +253,49 @@ def test_degree_lookalikes_map_like_degree_sign():
     from plb.extract import normalize
     out = [" ".join(normalize(t).split()) for t in ("95° F", "95º F (37º C)", "40˚F")]
     assert out == ["95 degrees F", "95 degrees F (37 degrees C)", "40 degrees F"]
+
+
+def test_ruled_table_rows_read_cell_by_cell(tmp_path):
+    """CERT Table 3.2: a ruled 3-column table whose last row continues on the next page.
+    Read line by line the columns interleave; with table_pages each row is one section."""
+    pdf = tmp_path / "t.pdf"
+    c = canvas.Canvas(str(pdf), pagesize=letter)
+    xs = [80, 200, 360, 530]
+
+    def table(y, rows, header=True):
+        hdr = [["Kind", "Layers", "Signs"]] if header else []
+        allrows = hdr + rows
+        heights = [16 * max(1, max(len(cell) for cell in r)) for r in allrows]
+        top = y
+        c.setFont("Helvetica", 10)
+        for r, h in zip(allrows, heights):
+            for k, cell in enumerate(r):
+                for j, item in enumerate(cell if isinstance(cell, list) else [cell]):
+                    c.drawString(xs[k] + 4, top - 12 - 14 * j, item)
+            c.line(xs[0], top, xs[-1], top)
+            top -= h
+        c.line(xs[0], top, xs[-1], top)
+        for x in xs:
+            c.line(x, y, x, top)
+        return top
+
+    c.setFont("Helvetica-Bold", 11); c.drawString(72, H - 90, "PLACEHOLDER CLASSES")
+    c.setFont("Helvetica", 10); c.drawString(72, H - 108, "Some placeholder text before the table.")
+    c.setFont("Helvetica-Bold", 9); c.drawString(72, H - 130, "Table 3.2: Placeholder Chart")   # bold, as in CERT
+    table(H - 140, [[["Mild"], ["• Outer layer"], ["• Red skin", "• Pain"]],
+                    [["Deep"], ["• Outer layer", "• Middle layer"], ["• Dry", "• White"]]])
+    c.showPage()
+    bottom = table(H - 80, [[[""], ["• Some deeper damage"], ["• Little pain"]]])
+    c.setFont("Helvetica-Bold", 11); c.drawString(72, bottom - 30, "AFTER THE TABLE")
+    c.setFont("Helvetica", 10); c.drawString(72, bottom - 48, "Placeholder text after the table.")
+    c.showPage(); c.save()
+
+    out = tmp_path / "out"
+    extract(pdf, "T", out, figures=False, numbering="headings", table_pages=(1, 2))
+    secs = {s["para"]: s for s in json.loads((out / "sections.json").read_text())}
+    assert secs["1.t1"]["text"] == "Mild: Layers: Outer layer. Signs: Red skin; Pain."
+    assert secs["1.t2"]["text"] == ("Deep: Layers: Outer layer; Middle layer; Some deeper damage. "
+                                    "Signs: Dry; White; Little pain.")
+    assert secs["1.t2"]["pages"] == [1, 2] and secs["1.t1"]["heading"] == "Table 3.2: Placeholder Chart"
+    texts = " ".join(s["text"] for s in secs.values())
+    assert "Placeholder text after the table." in texts and "Kind Layers Signs" not in texts
