@@ -1,5 +1,234 @@
 [
  {
+  "id": "TC4-02.1/0.h1",
+  "manual": "TC4-02.1",
+  "para": "0.h1",
+  "chapter": "",
+  "heading": "JANUARY 2016",
+  "pages": [
+   1
+  ],
+  "text": "DISTRIBUTION RESTRICTION. Approved for public release; distribution is unlimited. *This publication supersedes FM 4-25.11/NTRP 4-02.1.1/AFMAN 44-163(I)/MCRP 3-02G, dated 23 December 2002.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h2",
+  "manual": "TC4-02.1",
+  "para": "0.h2",
+  "chapter": "",
+  "heading": "Headquarters, Department of the Army",
+  "pages": [
+   2,
+   3
+  ],
+  "text": "This publication is available at Army Knowledge Online (https://armypubs.us.army.mil/doctrine/index.html). To receive publishing updates, please subscribe at http://www.apd.army.mil/AdminPubs/new_subscribe.asp Change 2 Headquarters Training Circular Department of the Army No. 4-02.1 Washington, DC, 7 December 2018",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h3",
+  "manual": "TC4-02.1",
+  "para": "0.h3",
+  "chapter": "",
+  "heading": "FIRST AID",
+  "pages": [
+   3
+  ],
+  "text": "1. Change Training Circular (TC) 4-02.1, dated 21 January 2016, as follows:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h4",
+  "manual": "TC4-02.1",
+  "para": "0.h4",
+  "chapter": "",
+  "heading": "Remove Old Pages Insert New Pages",
+  "pages": [
+   3
+  ],
+  "text": "page ii page ii pages 5-1 and 5-2 pages 5-1 through 5-3 2. A bar ( ) marks new or changed material. 3. File this transmittal sheet in front of the publication. DISTRIBUTION RESTRICTION: Approved for public release; distribution is unlimited.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h5",
+  "manual": "TC4-02.1",
+  "para": "0.h5",
+  "chapter": "",
+  "heading": "7 December 2018",
+  "pages": [
+   4
+  ],
+  "text": "By Order of the Secretary of the Army:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h6",
+  "manual": "TC4-02.1",
+  "para": "0.h6",
+  "chapter": "",
+  "heading": "MARK A. MILLEY",
+  "pages": [
+   4
+  ],
+  "text": "General, United States Army Chief of Staff Official:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h7",
+  "manual": "TC4-02.1",
+  "para": "0.h7",
+  "chapter": "",
+  "heading": "KATHLEEN S. MILLER",
+  "pages": [
+   4
+  ],
+  "text": "Administrative Assistant to the Secretary of the Army 1833708",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h8",
+  "manual": "TC4-02.1",
+  "para": "0.h8",
+  "chapter": "",
+  "heading": "DISTRIBUTION:",
+  "pages": [
+   4
+  ],
+  "text": "Distributed in electronic media only (EMO).",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h9",
+  "manual": "TC4-02.1",
+  "para": "0.h9",
+  "chapter": "",
+  "heading": "TC 4-02.1, C1",
+  "pages": [
+   5
+  ],
+  "text": "Change 1 Headquarters Training Circular Department of the Army No. 4-02.1 Washington, DC, 5 August 2016",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h10",
+  "manual": "TC4-02.1",
+  "para": "0.h10",
+  "chapter": "",
+  "heading": "FIRST AID",
+  "pages": [
+   5
+  ],
+  "text": "1. Change Training Circular (TC) 4-02.1, dated 21 January 2016, as follows:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h11",
+  "manual": "TC4-02.1",
+  "para": "0.h11",
+  "chapter": "",
+  "heading": "Remove Old Pages Insert New Pages",
+  "pages": [
+   5
+  ],
+  "text": "iii through vi iii through vi pages 1-7 through 1-8 pages 1-7 through 1-8 N/A pages 24-1 through 27-2 References-1 and References-2 References-1 and References-2 2. New or changed material is indicated by a star (?). 3. File this transmittal sheet in front of the publication. DISTRIBUTION RESTRICTION: Approved for public release; distribution is unlimited.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h12",
+  "manual": "TC4-02.1",
+  "para": "0.h12",
+  "chapter": "",
+  "heading": "5 August 2016",
+  "pages": [
+   6
+  ],
+  "text": "By Order of the Secretary of the Army:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h13",
+  "manual": "TC4-02.1",
+  "para": "0.h13",
+  "chapter": "",
+  "heading": "MARK A. MILLEY",
+  "pages": [
+   6
+  ],
+  "text": "General, United States Army Chief of Staff Official:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h14",
+  "manual": "TC4-02.1",
+  "para": "0.h14",
+  "chapter": "",
+  "heading": "GERALD B. O'KEEFE",
+  "pages": [
+   6
+  ],
+  "text": "Administrative Assistant to the Secretary of the Army 1621802",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h15",
+  "manual": "TC4-02.1",
+  "para": "0.h15",
+  "chapter": "",
+  "heading": "DISTRIBUTION:",
+  "pages": [
+   6
+  ],
+  "text": "Active Army, Army National Guard, and United States Army Reserve: Distributed in electronic media only (EMO).",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/0.h16",
+  "manual": "TC4-02.1",
+  "para": "0.h16",
+  "chapter": "",
+  "heading": "*TC 4-02.1",
+  "pages": [
+   7
+  ],
+  "text": "Training Circular (TC) Headquarters No. 4-02.1 Department of the Army Washington, DC, 21 January 2016",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h1",
+  "manual": "TC4-02.1",
+  "para": "A.h1",
+  "chapter": "Appendix A IMPROVED FIRST AID KIT....................................................................................A-1",
+  "heading": "Preface",
+  "pages": [
+   11
+  ],
+  "text": "Training Circular (TC) 4-02.1 provides first aid techniques and guidance for Soldiers. Implementation of the techniques presented in this publication enable Soldiers to render first aid and prevent greater harm to injured Soldiers. The principal audience for TC 4-02.1 is commanders, subordinate leaders, individual Soldiers, Department of Defense (DOD) civilians and contractors. Commanders, staffs, and subordinates ensure their decisions and actions comply with applicable United States, international, and, in some cases, host-nation laws and regulations. Commanders at all levels ensure their Soldiers operate in accordance with the law of war and the rules of engagement. (Refer to Field Manual [FM] 27-10.) This publication is in consonance with the following North Atlantic Treaty Organization (NATO) Standards and Standardization Agreements (STANAGs):",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h2",
+  "manual": "TC4-02.1",
+  "para": "A.h2",
+  "chapter": "Appendix A IMPROVED FIRST AID KIT....................................................................................A-1",
+  "heading": "Title STANAGs Standards",
+  "pages": [
+   11
+  ],
+  "text": "Allied Medical Publication (AMedP), Military Acute Trauma Care Training 8.12 Requirement for Training in First-Aid, Emergency Care in Combat Situations and Basic Hygiene for all Military Personnel 2122 First-Aid Dressings, First Aid Kits and Emergency Medical Care Kits 2126 First Aid and Hygiene Training in a Chemical, Biological, Radiological, and Nuclear or Toxic Industrial Hazard Environment 2358 Requirements for Military Acute Trauma Care Training 2544 This publication uses joint terms where applicable. Selected joint and Army terms and definitions appear in both the glossary and the text. This publication is not the proponent for any Army terms. Unless otherwise stated in this publication, the use of masculine nouns and pronouns does not refer exclusively to men. Training Circular 4-02.1 applies to the Active Army, Army National Guard/Army National Guard of the United States, and United States Army Reserve unless otherwise stated. The proponent and the preparing agency of this publication is the United States Army Medical Department Center and School, United States Army Health Readiness Center of Excellence. Send comments and recommendations on a DA Form 2028 (Recommended Changes to Publications and Blank Forms) to Commander, United States Army Medical Department Center and School, United States Army Health Readiness Center of Excellence, ATTN: MCCS-FDL (TC 4-02.1), 2377 Greeley Road, Building 4011, Suite D, JBSA Fort Sam Houston, Texas 78234-7731; by e-mail to usarmy.jbsa.medcomameddcs.mbx.ameddcs-medical-doctrine@mail.mil; or submit an electronic DA Form 2028. Recommended changes should be keyed to the specific page, paragraph, and line number. A rationale for each proposed change is required to aid in the evaluation and adjudication of each comment.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h3",
+  "manual": "TC4-02.1",
+  "para": "A.h3",
+  "chapter": "Appendix A IMPROVED FIRST AID KIT....................................................................................A-1",
+  "heading": "Introduction",
+  "pages": [
+   12
+  ],
+  "text": "Because medical personnel will not always be readily available, nonmedical Soldiers must rely on themselves and other Soldiers' skills and knowledge of first aid methods to render aid until medical assistance arrives. First aid is given until medical care provided by medically trained personnel such as a combat medic or other health care provider arrives. The individual being provided first aid (by self-aid, buddy aid, or combat lifesaver) is considered a casualty. Once medically trained personnel (combat medic, paramedic, or other health care provider) initiates care, the casualty is then considered to be a patient. Training Circular 4-02.1 provides first aid procedures for nonmedical personnel in environments from home station to combat situations. This publication is meant to be used by trainers and individuals being trained based on common first aid tasks. Tasks are found in the Soldier's Manual of Common Tasks, Warrior Skills Level 1, and appropriate modified tasks from the Soldier's Manual and Trainer's Guide, Military Occupational Specialty (MOS) 68W. These tasks are meant to reinforce and maintain proficiency in correct procedures for giving first aid throughout a Soldier's time in Service. Training Circular 4-02.1 is designed to facilitate training and first aid competencies by bridging first aid training across the spectrum of assignments from training to permanent duty station and deployment. Tactical combat casualty care (TC3) is introduced in TC 4-02.1 with first aid tasks and procedures associated with combat situations. Individual and multiple first aid tasks in combination with collective tasks, may be integrated into various training scenarios.\n- This is a complete revision of FM 4-25.11/NTRP 4-02.1/AFMAN 44-163(I)/MCRP 3-02G that transforms the publication to an Army training circular. It is designed to facilitate training individual tasks and combining those tasks into logical and progressive training opportunities from individual, small unit, subsequently integrated into larger and more complex training scenarios. The purpose is to integrate and maintain first aid proficiency throughout the depth and breadth of the Army formation.\n- There are 27 chapters each covering an individual first aid task and one appendix describing and listing the contents of the United States Army Improved First Aid Kit (IFAK) and the new IFAK II. This revision and transformation of the first aid publication supports the United States Army Doctrine 2015 initiative.",
+  "notices": []
+ },
+ {
   "id": "TC4-02.1/1-1",
   "manual": "TC4-02.1",
   "para": "1-1",
@@ -189,6 +418,18 @@
    14
   ],
   "text": "For Soldiers to perform first aid effectively they must have a basic understanding of the structure and function of these vital body systems. These systems are the respiratory system, the circulatory system, and",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/1.h1",
+  "manual": "TC4-02.1",
+  "para": "1.h1",
+  "chapter": "Chapter 1",
+  "heading": "Fundamentals of First Aid",
+  "pages": [
+   15
+  ],
+  "text": "the musculoskeletal system. Injury to or compromise of these systems can quickly result in permanent injury or death of the injured.",
   "notices": []
  },
  {
@@ -788,6 +1029,18 @@
   "notices": []
  },
  {
+  "id": "TC4-02.1/2.h1",
+  "manual": "TC4-02.1",
+  "para": "2.h1",
+  "chapter": "Chapter 2",
+  "heading": "Evaluate a Casualty (081-COM-1001)",
+  "pages": [
+   23
+  ],
+  "text": "Note. If the casualty is breathing, insert a nasopharyngeal airway (see Chapter 3, Task 081- COM-1023, on page 3-1) and place the casualty in the recovery position. Only in the case of nontraumatic injuries such as hypothermia, near drowning, or electrocution should cardiopulmonary resuscitation (CPR) be considered when in a tactical environment prior to the tactical evacuation phase.\n- If in a nontactical environment, begin rescue breathing as necessary to restore breathing and or pulse. See Chapter 3, Task 081-COM-1023, on page 3-1.\n- If the casualty has a penetrating chest wound and is breathing or attempting to breathe, stop the evaluation to apply an occlusive dressing and position or transport with the affected side down, if possible. See Chapter 5, Task 081-COM-1026, on page 5-1.\n- Check for an exit wound. If found, apply an occlusive dressing.\n- Dress all nonlife-threatening injuries and any bleeding that has not been addressed earlier with appropriate dressings. See Chapter 6, Task 081-COM-1032, on page 6-1.\n- Determine the need to evacuate the casualty and supply information for lines 3 to 5 of the 9-line medical evacuation request to your tactical leader. See Soldier Training Publication (STP) 21-1- SMCT, Chapter 3, Task 081-COM-0101, on page 6-1.",
+  "notices": []
+ },
+ {
   "id": "TC4-02.1/2-6",
   "manual": "TC4-02.1",
   "para": "2-6",
@@ -929,6 +1182,18 @@
   ]
  },
  {
+  "id": "TC4-02.1/3.h1",
+  "manual": "TC4-02.1",
+  "para": "3.h1",
+  "chapter": "Chapter 3",
+  "heading": "Open the Airway (081-COM-1023)",
+  "pages": [
+   27
+  ],
+  "text": "- Place the casualty in the recovery position by rolling him as a single unit onto his side, placing the hand of his upper arm under his chin, and flexing his upper leg.\n- Watch the casualty closely for life-threatening conditions and check for other injuries, if necessary.",
+  "notices": []
+ },
+ {
   "id": "TC4-02.1/3-7",
   "manual": "TC4-02.1",
   "para": "3-7",
@@ -975,6 +1240,18 @@
    29
   ],
   "text": "The airway may be partially or completely blocked. In either case removing the obstruction is vital. In cases of complete blockage, removing the blockage quickly is critical if the casualty is to survive.\n- Determine if the casualty needs help as follows:\n- If a casualty has a mild airway obstruction (able to speak or cough forcefully, may be wheezing between coughs) do not interfere except to encourage the casualty.\n- If the casualty has a severe airway obstruction (poor air exchange and increased breathing difficulty, a silent cough, cyanosis [bluish tinge to the skin], or inability to speak or breathe) continue with abdominal or chest thrusts. Note. You can ask the casualty one question, Are you choking? If the casualty nods yes, help is needed.\n- The decision to perform abdominal or chest thrusts is determined by the casualty's condition. Note. Abdominal thrusts should be used unless the casualty is in advanced stages of pregnancy, is very obese, or has a significant abdominal wound.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/4.h1",
+  "manual": "TC4-02.1",
+  "para": "4.h1",
+  "chapter": "Chapter 4",
+  "heading": "ABDOMINAL THRUSTS",
+  "pages": [
+   29
+  ],
+  "text": "Note. Clearing a conscious casualty's airway obstruction can be performed with the casualty either sitting or standing.",
   "notices": []
  },
  {
@@ -1081,6 +1358,19 @@
    32
   ],
   "text": "When a commercial chest seal is unavailable, apply an improvised occlusive chest seal over the wound as follows:\n- Fully open the outer wrapper of the casualty's dressing, or other occlusive material.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/5.h1",
+  "manual": "TC4-02.1",
+  "para": "5.h1",
+  "chapter": "Chapter 5",
+  "heading": "Perform First Aid for an Open Chest Wound (081-COM-0069)",
+  "pages": [
+   33,
+   34
+  ],
+  "text": "- Wipe any dirt, blood, or sweat from the skin with gauze or any available clothing.\n- Instruct the casualty to fully exhale, then place the inner surface of the outer wrapper or other occlusive material directly over the wound. Note. Do not touch the inner surface of the occlusive material. Ensure that the edges of the occlusive material extend 2 inches beyond the wound.\n- Apply 2-inch tape from the casualty's IFAK to three sides of the occlusive material and secure it firmly to the casualty's chest. Leave the side nearest to the ground untaped. Note. If unconscious, the casualty will be placed in the recovery position with the injured-side down, therefore the outside edge on the injured side would be left untaped. If the casualty is conscious and sitting, the bottom edge would be left untaped. Note. Check for additional wounds on the front side of the casualty, to include the armpits. If any wounds are found between the neck and belly button, treat as a chest injury with an improvised occlusive chest seal.\n- Roll the casualty on his or her side or have the conscious casualty sit up and examine the back for any wounds.\n- If any wounds are present on the back, treat as a chest injury with a large improvised occlusive chest seal (such as the plastic wrapper from the emergency dressing in the IFAK).\n- Encourage the casualty to breathe normally.\n- Place casualty in position of comfort (usually sitting) if conscious, or in the recovery position (on the casualty's side) with the injured-side down if unconscious.\n- Continue to monitor the casualty for signs of respiratory distress (increased difficulty breathing).\n- If the casualty has increased difficulty breathing, lift the chest seal, release any trapped air by wiping blood or debris from the wound, and reseal or replace the chest seal upon exhalation.\n- Seek medical aid and continue to monitor the casualty until relieved by medical personnel. This page intentionally left blank.",
   "notices": []
  },
  {
@@ -1291,6 +1581,18 @@
   ]
  },
  {
+  "id": "TC4-02.1/7.h1",
+  "manual": "TC4-02.1",
+  "para": "7.h1",
+  "chapter": "Chapter 7",
+  "heading": "Perform First Aid for Burns (081-COM-1007)",
+  "pages": [
+   39
+  ],
+  "text": "- Apply the dressing or pad, white-side down, directly over the wound.\n- Wrap the tail (or the elastic bandage) so the dressing or pad is covered.\n- For a field dressing, tie the tails into a nonslip knot over the outer edge of the dressing, not over the wound. For an emergency bandage, secure the hooking ends of the closure bar into the elastic bandage.\n- Check to ensure that the dressing is applied lightly over the burn but firmly enough to prevent slipping. Note. If the casualty is conscious and not nauseated, give him small amounts of water to drink.",
+  "notices": []
+ },
+ {
   "id": "TC4-02.1/7-5",
   "manual": "TC4-02.1",
   "para": "7-5",
@@ -1489,6 +1791,18 @@
     "text": "DO NOT give yourself additional injections. If you are able to walk without assistance and know who you are and where you are, you will NOT need the second set of injections. If you continue to have symptoms of nerve agent poisoning, seek someone else (a buddy) to check your symptoms and administer the additional set of injections, if required."
    }
   ]
+ },
+ {
+  "id": "TC4-02.1/9.h1",
+  "manual": "TC4-02.1",
+  "para": "9.h1",
+  "chapter": "Chapter 9",
+  "heading": "Perform First Aid for Nerve Agent Injury (081-COM-1044)",
+  "pages": [
+   45
+  ],
+  "text": "- Convulsions.\n- Unconsciousness with, or without respiratory failure.\n- Localized sweating and muscular twitching in the area of contaminated skin.",
+  "notices": []
  },
  {
   "id": "TC4-02.1/9-9",
@@ -1695,6 +2009,18 @@
   "notices": []
  },
  {
+  "id": "TC4-02.1/10.h1",
+  "manual": "TC4-02.1",
+  "para": "10.h1",
+  "chapter": "Chapter 10",
+  "heading": "First Aid for Bites and Stings (081-833-0072)",
+  "pages": [
+   49
+  ],
+  "text": "- Respiratory distress.\n- Anaphylactic shock.",
+  "notices": []
+ },
+ {
   "id": "TC4-02.1/10-9",
   "manual": "TC4-02.1",
   "para": "10-9",
@@ -1710,6 +2036,18 @@
     "text": "Lyme disease, usually transmitted by the tiny deer tick but now thought to be transmitted by the larger dog tick, can cause longterm neurological and other complications if not identified and treated early."
    }
   ]
+ },
+ {
+  "id": "TC4-02.1/10.h2",
+  "manual": "TC4-02.1",
+  "para": "10.h2",
+  "chapter": "Chapter 10",
+  "heading": "TICKS",
+  "pages": [
+   49
+  ],
+  "text": "Note. Tick bites are serious because ticks can carry tick fever, Rocky Mountain spotted fever, Lyme disease, other bacterial diseases, and may even cause anemia if the infestation is severe enough.",
+  "notices": []
  },
  {
   "id": "TC4-02.1/10-10",
@@ -1772,6 +2110,18 @@
    50
   ],
   "text": "Treat tick bites as follows:\n- Remove all parts of the tick.\n- Using tweezers, grasp the tick as close to the skin as possible. Using steady pressure, pull the tick straight out.\n- If tweezers are not available, use an absorbent material (gauze, toweling) to protect your skin. Grasp the tick as close to the skin as possible and pull straight out using steady pressure.\n- Wash the area around the bite gently using normal saline (or cleanest water available) and a mild",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/10.h3",
+  "manual": "TC4-02.1",
+  "para": "10.h3",
+  "chapter": "Chapter 10",
+  "heading": "First Aid for Bites and Stings (081-833-0072)",
+  "pages": [
+   51
+  ],
+  "text": "- Monitor vital signs.\n- Seek medical aid.",
   "notices": []
  },
  {
@@ -2438,6 +2788,18 @@
   "notices": []
  },
  {
+  "id": "TC4-02.1/13.h1",
+  "manual": "TC4-02.1",
+  "para": "13.h1",
+  "chapter": "Chapter 13",
+  "heading": "PREPARE CRAVATS",
+  "pages": [
+   66
+  ],
+  "text": "Note. If cravats are to be used in securing the splint to the injured extremity, position the cravats above and below the fracture site.",
+  "notices": []
+ },
+ {
   "id": "TC4-02.1/13-16",
   "manual": "TC4-02.1",
   "para": "13-16",
@@ -2742,15 +3104,15 @@
   "notices": []
  },
  {
-  "id": "TC4-02.1/15-10",
+  "id": "TC4-02.1/15.h1",
   "manual": "TC4-02.1",
-  "para": "15-10",
+  "para": "15.h1",
   "chapter": "Chapter 15",
   "heading": "External Chest Compressions (081-831-0046)",
   "pages": [
    73
   ],
-  "text": "Continue evaluating the casualty when the pulse and breathing are restored. If the casualty's condition permits, place him in the recovery position. See Chapter 3, Task 081-COM 1023, on page 3-1.",
+  "text": "- Switch duties with the second rescuer every 5 cycles or about 2 minutes, taking less than 5 seconds to switch.\n- Ventilator--\n- Maintain an open airway. See Chapter 3, Task 081-COM-1023, on page 3-1.\n- Give breaths, watching for chest rise and avoiding excessive ventilation. Note. If signs of gastric distention are noted, do the following: 1. Recheck and reposition the airway. 2. Watch for the rise and fall of the chest. 3. Ventilate the casualty only enough to cause the chest to rise.\n- Encourage the first rescuer/compressor to perform compressions that are deep enough and fast enough to allow complete chest recoil between compressions.\n- Continue CPR switching duties as described in paragraph 15-8. Note. The rescuer doing rescue breathing should recheck the carotid pulse every 3 to 5 minutes.",
   "notices": [
    {
     "kind": "CAUTION",
@@ -2761,6 +3123,18 @@
     "text": "During evacuation, CPR or rescue breathing should be continued en route if necessary."
    }
   ]
+ },
+ {
+  "id": "TC4-02.1/15-10",
+  "manual": "TC4-02.1",
+  "para": "15-10",
+  "chapter": "Chapter 15",
+  "heading": "External Chest Compressions (081-831-0046)",
+  "pages": [
+   73
+  ],
+  "text": "Continue evaluating the casualty when the pulse and breathing are restored. If the casualty's condition permits, place him in the recovery position. See Chapter 3, Task 081-COM 1023, on page 3-1.",
+  "notices": []
  },
  {
   "id": "TC4-02.1/15-11",
@@ -2788,20 +3162,106 @@
   "notices": []
  },
  {
-  "id": "TC4-02.1/17-1",
+  "id": "TC4-02.1/16.h1",
   "manual": "TC4-02.1",
-  "para": "17-1",
-  "chapter": "Chapter 17",
-  "heading": "Abdominal Injuries (081-831-0028)",
+  "para": "16.h1",
+  "chapter": "Chapter 16",
+  "heading": "TYPES OF HEAD INJURIES",
   "pages": [
-   79
+   75
   ],
-  "text": "The most serious abdominal wound is one which an object penetrates the abdominal wall and pierces internal organs or large blood vessels. In these instances, bleeding may be severe and death can occur rapidly.",
+  "text": "16-1 Head injuries range from minor abrasions or cuts to severe brain injuries that may result in unconsciousness and death. Head injuries are classified as open or closed. An open head injury is visible and has evidence of bleeding. A closed head injury may be visible (such as a depression in the skull), or the wound may not be visible (such as internal bleeding) and not visibly apparent. Some head injuries may cause unconsciousness; however, some very serious head injuries may not result in unconsciousness. Casualties with head and neck injuries should be treated as though they also may have a spinal injury. The casualty should not be moved until the head and neck are stabilized unless he is in immediate danger (such as close to a burning vehicle). Prompt first aid measures should be initiated for casualties with suspected head injuries. Always seek medical aid for any type of head injury.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/16.h2",
+  "manual": "TC4-02.1",
+  "para": "16.h2",
+  "chapter": "Chapter 16",
+  "heading": "CLOSED HEAD INJURIES",
+  "pages": [
+   75
+  ],
+  "text": "16-2 A closed head injury caused by a direct blow to the head can result in--\n- Deformity to the head.\n- Clear fluid or blood escaping from the nose and/or ear(s).\n- Periorbital discoloration (raccoon eyes).\n- Bruising behind the ears, over the mastoid process (battle sign).\n- Lowered pulse rate if the casualty has not lost a significant amount of blood. 16-3 Signs of increased intracranial (inside the skull) pressure include--\n- Headache, nausea, and/or vomiting.\n- Possible unconsciousness.\n- Change in pupil size and symmetry (equal/same size).\n- Lateral loss of motor nerve function-one side of the body becomes paralyzed. Note. Lateral loss may not happen immediately but may occur later.\n- Change in the casualty's respiratory rate or pattern.\n- Elevated body temperature.\n- Restlessness (indicates insufficient oxygenation of the brain).",
   "notices": [
    {
     "kind": "WARNING",
     "text": "Brain injury, leading to a loss of function or death, often occurs without evidence of a skull fracture or scalp injury. Because the skull cannot expand, swelling of the brain or a collection of fluid pressing on the brain can cause pressure. This can compress and destroy brain tissue."
-   },
+   }
+  ]
+ },
+ {
+  "id": "TC4-02.1/16.h3",
+  "manual": "TC4-02.1",
+  "para": "16.h3",
+  "chapter": "Chapter 16",
+  "heading": "CONCUSSION",
+  "pages": [
+   76
+  ],
+  "text": "16-4 A concussion is caused by a violent jar or shock and can result in--\n- Temporary unconsciousness followed by confusion.\n- Temporary, usually short term, loss of some or all brain functions.\n- The casualty has a headache or is seeing double.\n- The casualty may or may not have a skull fracture. Note. A direct blow to the skull may bruise the brain.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/16.h4",
+  "manual": "TC4-02.1",
+  "para": "16.h4",
+  "chapter": "Chapter 16",
+  "heading": "CONTUSION",
+  "pages": [
+   76
+  ],
+  "text": "16-5 A contusion is an internal bruise or injury. It is more serious than a concussion. A contusion may result in--\n- The injured tissue may bleed or swell.\n- Swelling may cause increased intracranial (inside the skull) pressure that may result in decreased level of consciousness and even death.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/16.h5",
+  "manual": "TC4-02.1",
+  "para": "16.h5",
+  "chapter": "Chapter 16",
+  "heading": "OPEN HEAD INJURY",
+  "pages": [
+   76
+  ],
+  "text": "16-6 An open head injury is notable for blood loss from the very vascular nature of the head and neck area. An open head injury may result in--\n- Penetrating wound-an entry wound with no exit wound.\n- Perforating wound-the wound has both entry and exit wounds.\n- Visibly deformed skull.\n- Exposed brain tissue.\n- Possible unconsciousness.\n- Paralysis or disability on one side of the body.\n- Change in pupil size.\n- Lacerated scalp tissue-may have extensive bleeding.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/16.h6",
+  "manual": "TC4-02.1",
+  "para": "16.h6",
+  "chapter": "Chapter 16",
+  "heading": "FIRST AID FOR HEAD INJURIES",
+  "pages": [
+   76
+  ],
+  "text": "16-7 Provide direct manual stabilization of the head as follows:\n- Place your hands on each side of the casualty's head, thereby, maintaining the position of the head in line with the body.\n- Support, or have someone support the head in this fashion. 16-8 Assess the casualty's level of consciousness by the following method:\n- Alert, Voice, Pain, Unconscious Method.\n- Is the casualty alert?\n- Does the casualty respond to verbal stimuli/commands?\n- Does the casualty respond to painful stimulus?\n- Is the casualty unconscious?",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/16.h7",
+  "manual": "TC4-02.1",
+  "para": "16.h7",
+  "chapter": "Chapter 16",
+  "heading": "INITIATE TREATMENT FOR A SUPERFICIAL HEAD INJURY",
+  "pages": [
+   76
+  ],
+  "text": "16-9 Provide first aid for superficial head injury as follows:\n- Apply a dressing.\n- Observe for abnormal behavior or evidence of complications.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/16.h8",
+  "manual": "TC4-02.1",
+  "para": "16.h8",
+  "chapter": "Chapter 16",
+  "heading": "HEAD INJURY INVOLVING TRAUMA",
+  "pages": [
+   77,
+   78
+  ],
+  "text": "16-10 Provide first aid for head injury involving trauma as follows:\n- Maintain a patent airway using the jaw thrust maneuver.\n- Dress the head wounds.\n- Control bleeding.\n- Treat for shock.\n- Seek medical aid.\n- Monitor the casualty for convulsions or seizures. 16-11 Monitor unstable casualties for the following--\n- Level of consciousness by using the before described; alert, responds to voice, reacts to pain stimuli, and is the casualty unconscious indicators. Is the casualty aware and alert?\n- Pupils respond to light and are equal in size.\n- Motor functions, casualty's strength, mobility, coordination and sensation.\n- Seek medical aid.\n- Evacuate the casualty as soon as possible. This page intentionally left blank.",
+  "notices": [
    {
     "kind": "WARNING",
     "text": "DO NOT apply pressure to or replace brain tissue."
@@ -2811,6 +3271,18 @@
     "text": "DO NOT give the casualty anything by mouth."
    }
   ]
+ },
+ {
+  "id": "TC4-02.1/17-1",
+  "manual": "TC4-02.1",
+  "para": "17-1",
+  "chapter": "Chapter 17",
+  "heading": "Abdominal Injuries (081-831-0028)",
+  "pages": [
+   79
+  ],
+  "text": "The most serious abdominal wound is one which an object penetrates the abdominal wall and pierces internal organs or large blood vessels. In these instances, bleeding may be severe and death can occur rapidly.",
+  "notices": []
  },
  {
   "id": "TC4-02.1/17-2",
@@ -2937,6 +3409,27 @@
   ]
  },
  {
+  "id": "TC4-02.1/19.h1",
+  "manual": "TC4-02.1",
+  "para": "19.h1",
+  "chapter": "Chapter 19",
+  "heading": "Apply an Elastic Bandage (081-933-0264)",
+  "pages": [
+   83
+  ],
+  "text": "Select the appropriate bandage material for the injury as follows: Note. The width of the bandage to use is determined by the size of the part to be covered. As a general rule; the larger the part or the area, the wider the bandage applied.\n- Use gauze or a gauze bandage roll for bleeding injuries of the hand, wrist, elbow, shoulder, groin, knee, ankle, and foot.\n- Use an elastic roller bandage for amputations, arterial bleeding, sprains, and torn muscles as follows:\n- Hand: 2-inch bandage.\n- Lower arm, lower leg, and foot: 3-inch bandage.\n- Thigh and chest: 4- to 6-inch bandage. Note. Elastic roller bandages may be used whenever pressure support or restriction of movement is needed. They should not be used to secure dressings. Prepare the patient for bandaging as follows:\n- Position the body part to be bandaged in a normal resting position (position of function). Note. Bending a bandaged joint changes the pressure of the bandage in places of stress (elbow, knee, and ankle).\n- Ensure the body part to be bandaged is clean and dry.\n- Place pads over bony places or between skin surfaces to be bandaged (such as fingers and armpits). Apply the anchor wrap by--\n- Laying the bandage end at an angle across the area to be bandaged.\n- Bringing the bandage under the area, back to the starting point, and make a second turn.\n- Folding the uncovered triangle of the bandage end back over the second turn.\n- Covering the triangle with a third turn, completing the anchor. Apply the bandage wrap to the injury as follows:\n- Use a circular wrap to end other bandage patterns, such as a pressure bandage, or to cover small dressings.\n- Use a spiral wrap for a large cylindrical area such as a forearm, upper arm, calf, or thigh. The spiral wrap is used to cover an area larger than a circular wrap can cover.\n- Use a reverse spiral wrap to cover small to large conical areas, for the example, from ankle to knee.",
+  "notices": [
+   {
+    "kind": "WARNING",
+    "text": "Do NOT anchor a splint or sling to the impaled object. Avoid undue motion of the impaled object when applying a splint."
+   },
+   {
+    "kind": "CAUTION",
+    "text": "DO NOT wrap too tightly. The roller bandage may act as a tourniquet on an injured limb, causing further damage."
+   }
+  ]
+ },
+ {
   "id": "TC4-02.1/20-1",
   "manual": "TC4-02.1",
   "para": "20-1",
@@ -2947,14 +3440,6 @@
   ],
   "text": "A sling is a triangular bandage used to support the shoulder and arm. Once the casualty's arm is placed in a sling, a swath can be used to hold the arm against the side of the chest. To apply a sling--\n- Evaluate distal circulation (for example, the radial pulse [at the wrist]; the posterior tibial pulse [on the inside of the ankle]), sensation, and motor functions of the extremity.\n- Prepare the sling by folding cloth into a triangle. Note. A triangular bandage makes an ideal arm sling.\n- Fold the injured arm across the casualty's chest. Note. If the casualty cannot hold their arm, have someone assist them until you tie the sling.\n- Position the sling over the top of the casualty's chest.\n- Extend one point of the triangle beyond the elbow on the injured side.\n- Take the bottom point and bring it up over the casualty's arm.\n- Continue to take it over the top of the injured shoulder.\n- If appropriate, draw up the ends of the sling so that the casualty's hand is about 4 inches above the elbow.\n- Tie the ends of the sling together.\n- Make sure the knot does not press against the back of the casualty's neck.\n- Pad with bulky dressings.\n- Confirm the casualty's fingertips are left exposed.\n- Evaluate circulation, sensation, and motor function.\n- If pulse has been lost, take off the sling and repeat the procedure.\n- If procedure was repeated, recheck circulation, sensation, and motor function.\n- Form a pocket for the casualty's elbow.\n- Take hold of the point of material at the elbow and fold it forward, pinning it to the front of the sling.\n- If you do not have a pin, twist the excess material and tie a knot in the point.",
   "notices": [
-   {
-    "kind": "WARNING",
-    "text": "Do NOT anchor a splint or sling to the impaled object. Avoid undue motion of the impaled object when applying a splint."
-   },
-   {
-    "kind": "CAUTION",
-    "text": "DO NOT wrap too tightly. The roller bandage may act as a tourniquet on an injured limb, causing further damage."
-   },
    {
     "kind": "CAUTION",
     "text": "If a spinal injury is suspected, do not tie the sling around the casualty's neck, instead, pin the ends to the casualty's clothing securely."
@@ -2975,15 +3460,15 @@
   "notices": []
  },
  {
-  "id": "TC4-02.1/23-1",
+  "id": "TC4-02.1/21.h1",
   "manual": "TC4-02.1",
-  "para": "23-1",
-  "chapter": "Chapter 23",
-  "heading": "Transport a Casualty (081-COM-1046)",
+  "para": "21.h1",
+  "chapter": "Chapter 21",
+  "heading": "Treat a Casualty for Snakebite (081-833-0073)",
   "pages": [
-   93
+   87
   ],
-  "text": "Transporting a casualty away from danger or to an evacuation vehicle is a key component of first aid. Care must be exercised in order not to further injure the casualty. More information concerning the transport and evacuation of casualties is found in STP 8-68W13-SM-TG and in ATPs 4-25.13 and 4-02.2. The movement of casualties requires risk assessment. See ATP 5-19 for more information.",
+  "text": "When encountering a casualty with snakebite, scan the ground around the area to ensure the scene is safe. Stay calm and take necessary body substance isolation precautions. Expose the injury site. Determine the type of snakebite as follows: Note. Staying calm and keeping the casualty calm and at rest is critical.\n- Nonpoisonous--\n- Four to six rows of teeth.\n- No fangs.\n- Poisonous--\n- Two rows of teeth.\n- Two fangs which create puncture wounds.\n- Elliptical pupils or vertical slits, much like those of a cat.\n- Pit between the eye and mouth.\n- A variety of different-shaped blotches on backgrounds of pink, yellow, olive, tan, gray, or brown skin.",
   "notices": [
    {
     "kind": "WARNING",
@@ -2996,7 +3481,21 @@
    {
     "kind": "WARNING",
     "text": "Exception is the coral snake, a poisonous snake that does not have fangs. It leaves a semicircular pattern with its teeth as it chews the skin."
-   },
+   }
+  ]
+ },
+ {
+  "id": "TC4-02.1/21.h2",
+  "manual": "TC4-02.1",
+  "para": "21.h2",
+  "chapter": "Chapter 21",
+  "heading": "Treat a Casualty for Snakebite (081-833-0073)",
+  "pages": [
+   89,
+   90
+  ],
+  "text": "- For poisonous snakebite--\n- Wash the area around the bite gently using a mild or strong soap and sterile normal saline if available, otherwise, clean water.\n- Keep the casualty calm and reassured.\n- Explain to the casualty what will be done.\n- Limit their physical activity.\n- Keep any bitten extremities immobilized-the application of a splint will help.\n- Lower the injection site below the level of the heart.\n- Remove any rings, bracelets, or other constricting items on the bitten extremity. Note. Removing jewelry or other constricting objects from the casualty's affected limb will help in case the limb swells, which could make removal more difficult later.\n- Seek medical assistance and direction as follows:\n- Ask for the best receiving medical facility where antivenom is most readily available to treat the casualty.\n- Ask medical direction and follow local protocols or instructions in the application of a constricting band in the first aid of snakebite, proximal to the bite.\n- Record first aid applied on the TCCC Card (DD Form 1380).\n- Evacuate the casualty. Note. Rapid transport and administration of antivenom are the most effective interventions for the treatment of life-threatening snakebites. If accompanying the casualty on CASEVAC to a medical treatment facility, observe the casualty carefully for signs and symptoms of allergic reaction, monitoring the airway, breathing, circulation, vital signs (for first aid purposes; pulse and respiration), distal pulse of the bitten extremity, treating for shock, and conserving body heat. This page intentionally left blank.",
+  "notices": [
    {
     "kind": "WARNING",
     "text": "Never delay care and transport in order to capture the snake."
@@ -3008,7 +3507,32 @@
    {
     "kind": "WARNING",
     "text": "DO NOT cut the bite and suction or squeeze the bite site."
-   },
+   }
+  ]
+ },
+ {
+  "id": "TC4-02.1/22.h1",
+  "manual": "TC4-02.1",
+  "para": "22.h1",
+  "chapter": "Chapter 22",
+  "heading": "Initiate Treatment for Anaphylactic Shock (081-833-0003)",
+  "pages": [
+   91
+  ],
+  "text": "When initiating first aid for anaphylactic shock it is imperative to seek medical assistance immediately and acquire the casualty's epinephrine autoinjector if available. Note. Anaphylactic reactions occur within minutes or even seconds after contact with the substance to which the casualty is allergic. Reactions occur in the skin, respiratory system, and circulatory system. Check the casualty for signs and symptoms of anaphylactic shock as follows:\n- Skin--\n- Flushed or ashen.\n- Burning or itching.\n- Edema (swelling), especially in the face, tongue, or airway.\n- Urticaria (hives) spreading over the body.\n- Marked swelling of the lips and cyanosis about the lips.\n- Respiratory--\n- Tightness in or pain in the chest.\n- Sneezing and coughing.\n- Wheezing, stridor (high pitched wheezing sound) or difficulty in breathing (dyspnea).\n- Sputum (may be blood tinged).\n- Respiratory failure.\n- Circulatory--\n- Weak, rapid pulse.\n- Falling blood pressure.\n- Hypotension.\n- Dizziness or fainting.\n- Coma.\n- Open the airway, if necessary. See Chapter 3, Task 081-COM-1023, on page 3-1.\n- Seek medical assistance and transportation immediately concurrent with providing first aid measures. Send a runner or have a bystander call for help. Note. In cases of airway obstruction from swelling of the airway, trained medical intervention is required.\n- Administer the casualty's autoinjector, if available, as follows:\n- Pediatric autoinjector single dose, 0.15 milligrams, adult autoinjector single dose for greater than 66 pounds, 0.3 milligrams. Follow the directions for administration and use provided with the autoinjector. Note. Annotate the time of injection on the TCCC Card (DD Form 1380).\n- Additional epinephrine may be required if anaphylaxis progresses. Additional dose may be administered every 5 to 10 minutes if the casualty has been prescribed additional autoinjectors.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/23-1",
+  "manual": "TC4-02.1",
+  "para": "23-1",
+  "chapter": "Chapter 23",
+  "heading": "Transport a Casualty (081-COM-1046)",
+  "pages": [
+   93
+  ],
+  "text": "Transporting a casualty away from danger or to an evacuation vehicle is a key component of first aid. Care must be exercised in order not to further injure the casualty. More information concerning the transport and evacuation of casualties is found in STP 8-68W13-SM-TG and in ATPs 4-25.13 and 4-02.2. The movement of casualties requires risk assessment. See ATP 5-19 for more information.",
+  "notices": [
    {
     "kind": "WARNING",
     "text": "If the casualty was involved in a vehicle crash you should always consider that he may have a spinal injury. Unless there is an immediate life-threatening situation (such as fire, explosion), DO NOT move the casualty with a suspected back or neck injury. Seek medical personnel for guidance on how to transport the casualty."
@@ -3098,6 +3622,23 @@
   "notices": []
  },
  {
+  "id": "TC4-02.1/23.h1",
+  "manual": "TC4-02.1",
+  "para": "23.h1",
+  "chapter": "Chapter 23",
+  "heading": "Transport a Casualty (081-COM-1046)",
+  "pages": [
+   95
+  ],
+  "text": "- Continue to move backwards, thus straightening the casualty's legs and locking the knees.\n- Walk forward, bringing the casualty to a standing position but tilted slightly backward to prevent the knees from buckling.\n- Maintain constant support of the casualty with one arm. Free your other arm, quickly grasp his wrist, and raise the arm high.\n- Quickly pass your head under the casualty's raised arm, releasing it as you pass under it.\n- Move swiftly to face the casualty.\n- Secure your arms around his waist.\n- Immediately place your foot between his feet and spread them (approximately 6 to 8 inches apart).\n- Again grasp the casualty's wrist and raise the arm high above your head.\n- Bend down and pull the casualty's arm over and down your shoulder bringing his body across your shoulders. At the same time pass your arm between the legs.\n- Grasp the casualty's wrist with one hand while placing your other hand on your knee for support.\n- Rise with the casualty correctly positioned. Note. Your other hand is free to use as needed.",
+  "notices": [
+   {
+    "kind": "WARNING",
+    "text": "DO NOT use the neck drag if the casualty has a fractured arm or a suspected neck injury. If the casualty is unconscious, protect his head from the ground."
+   }
+  ]
+ },
+ {
   "id": "TC4-02.1/23-8",
   "manual": "TC4-02.1",
   "para": "23-8",
@@ -3107,12 +3648,7 @@
    95
   ],
   "text": "Conduct a neck drag by using the following procedures:\n- Place the casualty on his back, if not already there, otherwise, use the following steps:\n- Kneel at the casualty's uninjured side.\n- Place the casualty's arm above his head.\n- Cross the ankle on the injured side over the opposite ankle.\n- Place one of your hands on the shoulder farther from you and your other hand on his hip or thigh.\n- Roll the casualty toward you onto his abdomen.\n- Once the casualty is on his back, tie the casualty's hands at the wrists. (If conscious, the casualty may clasp his hands together around your neck.)\n- Straddle the casualty in a kneeling face-to-face position.\n- Loop the casualty's tied hands over and around your neck.\n- Crawl forward, looking ahead, dragging the casualty with you.",
-  "notices": [
-   {
-    "kind": "WARNING",
-    "text": "DO NOT use the neck drag if the casualty has a fractured arm or a suspected neck injury. If the casualty is unconscious, protect his head from the ground."
-   }
-  ]
+  "notices": []
  },
  {
   "id": "TC4-02.1/23-9",
@@ -3172,6 +3708,18 @@
    96
   ],
   "text": "Lift the casualty by-- Note. For a flexible litter, lift the sides of the flexible litter and fasten the four cross straps to the buckles directly opposite the straps. Lift the foot portion of the flexible litter and feed the foot straps through the unused grommets at the foot end of the flexible litter and fasten the buckles.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/23.h2",
+  "manual": "TC4-02.1",
+  "para": "23.h2",
+  "chapter": "Chapter 23",
+  "heading": "Transport a Casualty (081-COM-1046)",
+  "pages": [
+   97
+  ],
+  "text": "- Using for Soldiers (two on each side), all facing the casualty's feet. Have each Soldier grab a handle with their inside hand.\n- In one fluid motion on the preparatory command of prepare to lift and then command of execution of lift, raise as a unit holding the casualty parallel and even.",
   "notices": []
  },
  {
@@ -3271,6 +3819,18 @@
   "notices": []
  },
  {
+  "id": "TC4-02.1/23.h3",
+  "manual": "TC4-02.1",
+  "para": "23.h3",
+  "chapter": "Chapter 23",
+  "heading": "Ground Ambulance",
+  "pages": [
+   98
+  ],
+  "text": "Note. Ground ambulances have combat medics to take care of the casualties during evacuation. Follow any special instructions they give for loading, securing, or unloading casualties.",
+  "notices": []
+ },
+ {
   "id": "TC4-02.1/23-22",
   "manual": "TC4-02.1",
   "para": "23-22",
@@ -3280,6 +3840,18 @@
    98
   ],
   "text": "When loading a ground ambulance, use the following procedures:\n- Make sure each litter casualty is secured to his litter. Use the litter straps when available.\n- Load the most serious casualty last.\n- Load the casualty head first (head in the direction of travel) rather than feet first.\n- Make sure each litter is secured to the vehicle. Note. Unload casualties in reverse order, most seriously injured casualty first.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/23.h4",
+  "manual": "TC4-02.1",
+  "para": "23.h4",
+  "chapter": "Chapter 23",
+  "heading": "Air Ambulance",
+  "pages": [
+   98
+  ],
+  "text": "Note. Air ambulances have combat medics (flight medics) to take care of the casualties during evacuation. Follow any special instructions that they give for loading, securing, or unloading casualties.",
   "notices": []
  },
  {
@@ -3298,6 +3870,18 @@
     "text": "Never go around the rear of the UH-60 or UH-1 aircraft."
    }
   ]
+ },
+ {
+  "id": "TC4-02.1/23.h5",
+  "manual": "TC4-02.1",
+  "para": "23.h5",
+  "chapter": "Chapter 23",
+  "heading": "Transport a Casualty (081-COM-1046)",
+  "pages": [
+   99
+  ],
+  "text": "- Approach performance aircraft (M/C-130, C-17, and C-5B) from the rear, under the guidance of the aircraft loadmaster or the ground control party.\n- Load the most seriously injured casualty last.\n- Load the casualty who will occupy the upper berth first, and then load the next litter casualty immediately under the first casualty. Note. This is done to keep the casualty from accidentally falling on another casualty if his litter is dropped before it is secured.\n- When casualties are placed lengthwise, position them with their heads toward the direction of travel.\n- Make sure each litter casualty is secured to the litter.\n- Make sure each litter is secured to the aircraft. Note. Unload casualties in reverse order, most seriously injured first.",
+  "notices": []
  },
  {
   "id": "TC4-02.1/23-24",
@@ -3868,6 +4452,236 @@
    112
   ],
   "text": "The IFAK II (Figure A-2) adds--\n- 1 new custom pouch.\n- Second tourniquet, combat application.\n- 1 marker.\n- 1 eye shield.\n- 1 commercial chest seal.\n- 1 strap cutter.\n- 1 TCCC Card (DD Form 1380).\n- Combat gauze is issued by the unit.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h4",
+  "manual": "TC4-02.1",
+  "para": "A.h4",
+  "chapter": "Appendix A",
+  "heading": "This glossary lists acronyms and terms with Army or joint definitions. This",
+  "pages": [
+   113
+  ],
+  "text": "publication is not the proponent for any terms.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h5",
+  "manual": "TC4-02.1",
+  "para": "A.h5",
+  "chapter": "Appendix A",
+  "heading": "SECTION I - ACRONYMS AND ABBREVIATIONS",
+  "pages": [
+   113,
+   114
+  ],
+  "text": "AMedP Allied medical publication ATNAA antidote treatment nerve agent autoinjector ATP Army techniques publication CANA convulsant antidoate for nerve agent CASEVAC casualty evacuation DA Department of the Army DD Department of Defense F Fahrenheit FM field manual CPR cardiopulmonaryresuscitation DOD Department of Defense IFAK improved first aid kit JSLIST Joint Service Lightweight Integrated Suit Technology MOS military occupational specialty NATO North Atlantic Treaty Organization NPA Nasopharyngeal airway STANAG standardization agreement STP Soldier training publication TC training circular TC3 tactical combat casualty care TCCC tactical combat casualty care card This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h6",
+  "manual": "TC4-02.1",
+  "para": "A.h6",
+  "chapter": "Appendix A",
+  "heading": "REQUIRED PUBLICATIONS",
+  "pages": [
+   115
+  ],
+  "text": "These documents must be available to the intended users of this publication. These publications are available online at http://www.apd.army.mil. Accessed on 28 October 2015. ADRP 1-02, Terms and Military Symbols, 7 December 2015. STP 8-68W13-SM-TG, Soldier's Manual and Trainer's Guide, MOS 68W Health Care Specialist, Skill Levels 1, 2, and 3, 3 May 2013. STP 21-1-SMCT, Soldier's Manual of Common Tasks, Warrior Skills, Level I, 10 August 2015. These publications are available online at http://www.dtic.mil/doctrine. Accessed on 28 October 2015. JP 1-02, Department of Defense Dictionary of Military and Associated Terms, 8 November 2010.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h7",
+  "manual": "TC4-02.1",
+  "para": "A.h7",
+  "chapter": "Appendix A",
+  "heading": "RELATED PUBLICATIONS",
+  "pages": [
+   115
+  ],
+  "text": "These documents contain relevant supplemental information.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h8",
+  "manual": "TC4-02.1",
+  "para": "A.h8",
+  "chapter": "Appendix A",
+  "heading": "NATO STANDARDS AND STANDARDIZATION AGREEMENTS",
+  "pages": [
+   115
+  ],
+  "text": "These publications are available online at http://nso.nato.int/nso/. Accessed on 28 October 2015. Standard, AMedP-8.12, Military Acute Trauma Care Training, Edition A, Version 1, July 2015. STANAG 2122, Requirement for Training in First Aid, Emergency Care in Combat Situations and Basic Hygiene for all Military Personnel, Edition 3, 11 November 2010. STANAG 2126, First-Aid Dressings, First Aid Kits and Emergency Medical Care Kits, Edition 6, 10 December 2009. STANAG 2358, First Aid and Hygiene Training in a Chemical, Biological, Radiological, and Nuclear or Toxic Industrial Hazard Environment, Edition 4, 5 January 2009. STANAG 2544, Requirements for Military Acute Trauma Care Training, Edition 2, 14 July 2015.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h9",
+  "manual": "TC4-02.1",
+  "para": "A.h9",
+  "chapter": "Appendix A",
+  "heading": "ARMY PUBLICATIONS",
+  "pages": [
+   115
+  ],
+  "text": "Most Army doctrinal publications are available online at http://www.apd.army.mil. Accessed on 28 October 2015. ATP 4-02.2, Medical Evacuation, 12 August 2014. ATP 4-02.3, Army Health System Support to Maneuver Forces, 9 June 2014. ATP 4-25.12, Unit Field Sanitation Teams, 30 April 2014. ATP 4-25.13, Casualty Evacuation, 15 February 2013. ATP 5-19, Risk Management, 14 April 2014.\n- ATP 6-22.5, A Leader's Guide to Soldier Health and Fitness, 10 February 2016. Accessed on 8 June 2016. FM 4-02, Army Health System, 26 August 2013. FM 27-10, The Law of Land Warfare, 18 July 1956. TC 4-02.3, Field Hygiene and Sanitation, 6 May 2015.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h10",
+  "manual": "TC4-02.1",
+  "para": "A.h10",
+  "chapter": "Appendix A",
+  "heading": "WEB SITES",
+  "pages": [
+   115
+  ],
+  "text": "- Joint Theater Trauma System Clinical Practice Guideline. http://www.usaisr.amedd.army.mil/cpgs/Initial_Care_of_Ocular_and_Adnexal_Injuries_24N ov2014.pdf Accessed on 8 June 2016.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h11",
+  "manual": "TC4-02.1",
+  "para": "A.h11",
+  "chapter": "Appendix A",
+  "heading": "References",
+  "pages": [
+   116
+  ],
+  "text": "United States Army Public Health Center. (Heat Illness Prevention) https://phc.amedd.army.mil/TOPICS/DISCOND/HIPSS/Pages/HeatInjuryPrevention.aspx (Cold Weather Casualties and Injuries) http://phc.amedd.army.mil/topics/discond/cip/Pages/ColdCasualtiesInjuries.aspx United States Army Medical Materiel Agency. http://www.usamma.amedd.army.mil/assets/docs/IFAK.pdf and http://www.army.mil/article/116565\n- Vision Care of Excellence http://vce.health.mil/. (Click on \"Service Members and Veterans\" tab, go to \"Related Contents,\" select \"Eye Injury Response Tips.\") Accessed on 8 June 2016.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h12",
+  "manual": "TC4-02.1",
+  "para": "A.h12",
+  "chapter": "Appendix A",
+  "heading": "PRESCRIBED FORMS",
+  "pages": [
+   116
+  ],
+  "text": "None.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h13",
+  "manual": "TC4-02.1",
+  "para": "A.h13",
+  "chapter": "Appendix A",
+  "heading": "REFERENCED FORMS",
+  "pages": [
+   116
+  ],
+  "text": "Unless otherwise indicated, Department of the Army (DA) Forms are available on the Army Publishing Directorate (APD) Web site (www.apd.army.mil). Accessed on 10 November 2015. DA Form 2028, Recommended Changes to Publications and Blank Forms. Department of Defense (DD) Forms are available on the Office of the Secretary of Defense (OSD) Web site (www.dtic.mil/whs/directives/infomgt/forms/formsprogram.htm). Accessed on 10 November 2015. DD Form 1380, Tactical Combat Casualty Care (TCCC) Card.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h14",
+  "manual": "TC4-02.1",
+  "para": "A.h14",
+  "chapter": "Appendix A",
+  "heading": "Index",
+  "pages": [
+   117
+  ],
+  "text": "References are to paragraph numbers except where otherwise specified.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h15",
+  "manual": "TC4-02.1",
+  "para": "A.h15",
+  "chapter": "Appendix A",
+  "heading": "A M R",
+  "pages": [
+   117
+  ],
+  "text": "buddy aid, introduction, 1-2, medical evacuation, 1-2, 1-10, respiration, 1-17--18, 2-5, 3-5, 1-8--9, 9-9--10, 9-12 2-5, 22-1, 23-1, 23-24 11-8, 12-5, 14-1, 21-6, 22-2 medical treatment, 1-3, 1-12--",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h16",
+  "manual": "TC4-02.1",
+  "para": "A.h16",
+  "chapter": "Appendix A",
+  "heading": "C 13, 12-22 S",
+  "pages": [
+   117
+  ],
+  "text": "casualty22-2, 23-4,evacuation,23-21, 1-2,23-2421-6, medical1-13, treatment3-8, 11-7, facility,12-2, 12-11,1-3, self-aid, introduction, 1-1, 1-8-- 10, 2-2, 9-6--7, 9-11 combat lifesaver, introduction, 12-25, 21-5--6, 22-2 1-2, 1-5, 1-8",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h17",
+  "manual": "TC4-02.1",
+  "para": "A.h17",
+  "chapter": "Appendix A",
+  "heading": "combat medic, introduction, P T",
+  "pages": [
+   117
+  ],
+  "text": "1-2, 1-6, 6-6, 23-21--22 tactical combat casualty pulse, 1-26--33, 2-2, 2-5, 6-5, care,1-2--3, 1-14, 2-6",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h18",
+  "manual": "TC4-02.1",
+  "para": "A.h18",
+  "chapter": "Appendix A",
+  "heading": "E 6-7, 11-8, 12-5, 13-9--10,",
+  "pages": [
+   117,
+   118
+  ],
+  "text": "13-15, 13-22, 14-3, 14-5--6, emergency medical treatment, 15-1, 15-7--8, 16-2, 18-2, 1-2, 1-7 19-5, 20-1, 21-4, 21-6, 22-2 enhanced first aid, 1-2, 1-5, 1-8 This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h19",
+  "manual": "TC4-02.1",
+  "para": "A.h19",
+  "chapter": "Appendix A",
+  "heading": "21 January 2016",
+  "pages": [
+   119
+  ],
+  "text": "By Order of the Secretary of the Army:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h20",
+  "manual": "TC4-02.1",
+  "para": "A.h20",
+  "chapter": "Appendix A",
+  "heading": "MARK A. MILLEY",
+  "pages": [
+   119
+  ],
+  "text": "General, United States Army Chief of Staff Official:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h21",
+  "manual": "TC4-02.1",
+  "para": "A.h21",
+  "chapter": "Appendix A",
+  "heading": "GERALD B. O'KEEFE",
+  "pages": [
+   119
+  ],
+  "text": "Administrative Assistant to the Secretary of the Army 1601105",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.1/A.h22",
+  "manual": "TC4-02.1",
+  "para": "A.h22",
+  "chapter": "Appendix A",
+  "heading": "DISTRIBUTION:",
+  "pages": [
+   119
+  ],
+  "text": "Active Army, Army National Guard, and United States Army Reserve: Distributed in electronic media only (EMO).",
   "notices": []
  }
 ]

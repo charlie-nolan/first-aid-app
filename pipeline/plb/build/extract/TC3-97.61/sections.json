@@ -1,5 +1,95 @@
 [
  {
+  "id": "TC3-97.61/0.h1",
+  "manual": "TC3-97.61",
+  "para": "0.h1",
+  "chapter": "",
+  "heading": "NOVEMBER 2025",
+  "pages": [
+   1
+  ],
+  "text": "DISTRIBUTION RESTRICTION: Approved for public release; distribution is unlimited. This publication supersedes TC 3-97.61, dated 26 July 2012.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/0.h2",
+  "manual": "TC3-97.61",
+  "para": "0.h2",
+  "chapter": "",
+  "heading": "HEADQUARTERS, DEPARTMENT OF THE ARMY",
+  "pages": [
+   2,
+   3
+  ],
+  "text": "This publication is available at the Army Publishing Directorate site (https://armypubs.army.mil) and the Central Army Registry Site (https://atiam.train.army.mil/catalog/dashboard). Training Circular Headquarters No. 3-97.61 Department of the Army Washington, DC, 26 November 2025",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/0.h3",
+  "manual": "TC3-97.61",
+  "para": "0.h3",
+  "chapter": "",
+  "heading": "Page",
+  "pages": [
+   3,
+   4,
+   5,
+   6
+  ],
+  "text": "DISTRIBUTION RESTRICTION: Approved for public release; distribution is unlimited. *This publication supersedes TC 3-97.61, dated 26 July 2012. Section I - Levels of Mountaineer ....................................................................................... 17 Candidates for Formal Mountain Training............................................................................... 17 Level 1: Basic Military Mountaineer ........................................................................................ 18 Level 2: Advanced Military Mountaineer ................................................................................. 19 Level 3: Master Military Mountaineer ...................................................................................... 19 Section II - Training Individual Mountain Skills ................................................................ 20 Unit-Level Training Programs ................................................................................................. 20 Progression of Mountain Skills ................................................................................................ 21 CHAPTER 3 ..........................................................................................................................................25 ENVIRONMENTAL INJURIES .................................................................................................... 25 Section I - Environmental Injury Prevention ..................................................................... 25 Illnesses and Injuries............................................................................................................... 25 Treatment and Evacuation ...................................................................................................... 25 Injuries Related to Cold Exposure .......................................................................................... 25 Cold-Weather Considerations ................................................................................................. 29 Section II - Altitude Effects, Injuries, and Acclimatization ............................................... 36 Acclimatization ........................................................................................................................ 36 Acute Mountain Sickness ........................................................................................................ 36 High-Altitude Pulmonary Edema ............................................................................................. 37 High-Altitude Cerebral Edema ................................................................................................ 38 CHAPTER 4 ..........................................................................................................................................41 MOUNTAIN SUBSISTENCE AND SUSTAINMENT ................................................................... 41 Section I - Physical Traits of the Military Mountaineer..................................................... 41 Physical Training for the Mountain Environment .................................................................... 41 Nutrition for the Mountain Environment .................................................................................. 43 Acclimatization ........................................................................................................................ 45 Fatigue .................................................................................................................................... 45 Section II - Cold-Weather Sustainment .............................................................................. 45 Clothing ................................................................................................................................... 46 Extended Cold-Weather Clothing System .............................................................................. 51 Section III - Small Group Mountain Sustainment and Subsistence ................................ 51 Soldier Load Management ...................................................................................................... 52 Water Procurement ................................................................................................................. 54 Aerial Resupply ....................................................................................................................... 56 Section IV - Bivouac Considerations ................................................................................. 56 Bivouac Site Location.............................................................................................................. 57 Glacier Bivouac Procedures ................................................................................................... 57 Shelters ................................................................................................................................... 57 Lightweight Stoves .................................................................................................................. 61 CHAPTER 5 ......................................................................................................................................... 63 AVALANCHE ............................................................................................................................... 63 Section I - Avalanche Hazards ............................................................................................ 63 Avalanche Elements ................................................................................................................ 64 Types of Avalanches ............................................................................................................... 68 Forecasts ................................................................................................................................. 70 Section II - Avalanche Risk Management ........................................................................... 72 Unit-Level Responsibilities ...................................................................................................... 72 Military Mountaineer Responsibilities ...................................................................................... 72 Section III - Avalanche Search and Rescue ....................................................................... 75 Avalanche Search ................................................................................................................... 75 Group Checks .......................................................................................................................... 76 Avalanche Rescue ................................................................................................................... 77 CHAPTER 6 ......................................................................................................................................... 83 MOUNTAIN MOBILITY ................................................................................................................ 83 Section I - Individual Movement Techniques ..................................................................... 83 Mobility ..................................................................................................................................... 83 Mountain Walking .................................................................................................................... 84 Climbing Rock.......................................................................................................................... 90 Section II - Movement Over Snow and Ice ....................................................................... 113 Mobility Over Snow and Ice ................................................................................................... 113 Movement Over Snow ........................................................................................................... 119 Ice Climbing ........................................................................................................................... 130 Section III - Load Management for Mobility ..................................................................... 136 Load Management ................................................................................................................. 136 Planning ................................................................................................................................. 136 Scrambling and Climbing Load Management ....................................................................... 137 CHAPTER 7 ....................................................................................................................................... 139 NAVIGATION IN MOUNTAINOUS TERRAIN ........................................................................... 139 Section I - Military Land Navigation in Nontechnical Mountainous Terrain ................. 139 Navigational Equipment ......................................................................................................... 139 Navigational Techniques ....................................................................................................... 141 Route Planning ...................................................................................................................... 143 Section II - Navigation in Technical Mountainous Terrain ............................................. 146 Reconnaissance .................................................................................................................... 146 Roped Movement Techniques............................................................................................... 147 Route Finding ........................................................................................................................ 147 CHAPTER 8 ....................................................................................................................................... 149 KNOT TYING AND ROPE MANAGEMENT .............................................................................. 149 Section I - Types of Rope, Webbing, and Carabiners..................................................... 149 Ropes and Cords .................................................................................................................. 149 Webbing and Slings .............................................................................................................. 150 Carabiners ............................................................................................................................. 152 Section II - Basic Terminology .......................................................................................... 154 Running End ......................................................................................................................... 154 Standing End ......................................................................................................................... 154 Bight ...................................................................................................................................... 155 Loop ...................................................................................................................................... 155 Turn ....................................................................................................................................... 155 Round Turn ........................................................................................................................... 155 Half Hitch ............................................................................................................................... 155 Tail......................................................................................................................................... 155 Dressing ................................................................................................................................ 155 Setting ................................................................................................................................... 155 Section III - Knot Tying and Considerations ................................................................... 156 Types of Knots ...................................................................................................................... 156 Knot Tying Considerations .................................................................................................... 157 Knot Tying Techniques ......................................................................................................... 158",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/0.h4",
+  "manual": "TC3-97.61",
+  "para": "0.h4",
+  "chapter": "",
+  "heading": "Tables",
+  "pages": [
+   16
+  ],
+  "text": "This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/0.h5",
+  "manual": "TC3-97.61",
+  "para": "0.h5",
+  "chapter": "",
+  "heading": "Preface",
+  "pages": [
+   17,
+   18
+  ],
+  "text": "TC 3-97.61 is the Army's doctrinal publication for military mountaineering. It provides doctrinal guidance and direction for how U.S. forces train military mountaineers to operate in complex and mountainous terrain. This training circular is designed to work in conjunction with and complement ATP 3-21.50 and ATP 3-90.97. This manual enables leaders and Soldiers to understand mountain and cold-weather environments; their effects on personnel, operations, and equipment; and most importantly, how units train Soldiers to prepare to deploy in complex mountain environments. The principle audience for this publication is all members of the profession of arms. Commanders and staffs at all levels, including Army headquarters serving as joint task force or multinational headquarters, should also refer to applicable joint or multinational doctrine concerning military mountaineering techniques and procedures. Trainers and educators throughout the Army will use this publication to tailor their curriculum to the demands of military mountaineering. This publication provides the conceptual framework for conventional forces to train Soldiers in military mountaineering and serves as a foundation for more demanding collective mountain warfare training. It addresses training for mountain and cold weather at the tactical level. (See ATP 3-21.50 for higher-level collective information.) Commanders, staffs, and subordinates ensure that their decisions and actions comply with applicable United States, international, and, in some cases, host-nation laws and regulations. Commanders at all levels ensure that their Service members operate in accordance with the law of armed conflict and the rules of engagement. (See FM 6-27 for legal compliance.) The use of a trade or brand name does not constitute endorsement of the product or website. TC 3-97.61 uses joint terms where applicable. Selected joint and Army terms and definitions appear in both the glossary and the text. Terms for which TC 3-97.61 is the proponent publication (the authority) are marked with an asterisk (*) in the glossary. When first defined in the text, terms for which TC 3-97.61 is the proponent publication are boldfaced and italicized, and definitions are boldfaced. When first defining other proponent definitions in the text, the term is italicized with the proponent designator and number at the of the definition. Following uses of the term are not italicized. TC 3-97.61 applies to the Active Army, Army National Guard/Army National Guard of the United States, and United States Army Reserve unless otherwise stated. The proponent for this publication is the United States Army Maneuver Center of Excellence. The preparing agency is the United States Army Maneuver Center of Excellence, Department of Tactics, Training, and Doctrine. Send comments and recommendations on DA Form 2028 (Recommended Changes to Publications and Blank Forms) to Commander, U.S. Army Mountain Warfare School, ATTN: MWS-Z, 08 Mountain School Road, Jericho, Vermont 05465; by email to: ng.vt.vtarng.list.amwsinfo@army.mil; or submit an electronic DA Form 2028. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/0.h6",
+  "manual": "TC3-97.61",
+  "para": "0.h6",
+  "chapter": "",
+  "heading": "Introduction",
+  "pages": [
+   19,
+   20
+  ],
+  "text": "Operating in a mountainous environment is a continual exercise in problem solving and critical thinking. This document presents proven, utilitarian techniques for approaching the mountain and cold-weather problem issues. This training circular should not be interpreted as prescriptive in nature but rather a starting place and solid reference for best practices and risk mitigation. There is no substitute for experience and practice when dealing with mountainous environments. As the old adage goes, \"There are bold climbers and there are old climbers. There are no bold old climbers.\" TC 3-97.61 incorporates changes to terminology, concepts, constructs and proven tactics, techniques, and procedures (TTP) developed during the past decade in military mountaineering. The following summarizes each chapter and appendix in TC 3-97.61:\n- Chapter 1 establishes a working definition and classification of mountainous terrain. While some of this content is self-explanatory, it is imperative for leaders, especially in the light Infantry community, to be intimately familiar with the dismounted mobility classification tool and its implications on movement and maneuver.\n- Chapter 2 contains important changes to the qualification levels of military mountaineers and basic guidance on unit-level training programs. While operating in mountainous terrain is an environmental variable and not a mission, leaders must understand that they will often be forced to fight both the enemy and the environment. A unit that can successfully fight in the mountains can rapidly adapt to fighting in other conditions; in contrast, a unit untrained in mountain operations will not be able to rapidly transition.\n- Chapter 3 contains information on the multitude of environmental injuries common to operating in the mountains. Diagnosing and treating these injuries should be a training priority for medical personnel preparing to move into a cold weather or high-altitude environment.\n- Chapter 4 touches on the requirement for a base high level of physical fitness due to the exertion needed to exist and move in mountainous terrain. Soldiers require additional caloric intake to maintain peak performance in these conditions. While it may seem counterintuitive, dehydration is a common problem experienced by Soldiers operating in the cold. Critical to the success of any unit operating in these conditions is not only having the proper clothing and equipment but also understanding its proper wear and application. Knowing how to function and being \"comfortably cool\" are acquired skills.\n- Chapter 5 focuses on identifying and mitigating the avalanche threat. Snow science is a discipline in itself, but by following these basic tenets, units can intelligently navigate the risks of operating in avalanche terrain and respond to avalanches when they occur.\n- Chapter 6 provides details on movement techniques unique to the mountain environment and introduces basic climbing equipment and principles. This chapter also provides information on over-snow mobility including the use of alpine ski techniques, snowshoeing, the wear and application of crampons, and ice climbing.\n- Chapter 7 elaborates on many of the principles found in TC 3-25.26. Specifically, it focuses on the nuance of orientation and navigating and route finding under conditions where the most direct route is often undesirable due to limitations imposed by technical terrain features.\n- Chapter 8 provides step-by-step guides to the knots military mountaineers will require during system construction and navigating terrain problems. A thorough understanding and working knowledge of these knots and principles are required before attempting any of the tasks detailed in the remainder of this training circular. All unit members operating in mountainous terrain need to be proficient in the contents of this chapter. As this knowledge is extremely perishable, refresher training on these topics should be a recurring part of any training schedule.\n- Chapter 9 details the general principles of anchor construction and provides step-by-step instructions for constructing tree, rock, earth, snow, and ice anchors. As most mountaineering accidents occur at the anchor, increased focus should be given to gaining Soldier experience in anchor site selection and construction.\n- Chapter 10 covers under what conditions it is appropriate to move on and off rope. Specifically addressed are top rope climbing, lead climbing, alpine belay techniques, and three-man climbing techniques. Top rope climbing is the preferred method to familiarize untrained personnel and level 1 mountaineers with the principles of climbing. In an operational environment, leaders must balance the need for speed and security with the inherent fall hazards associated with climbing outside of a training environment.\n- Chapter 11 discusses fixed ropes. Moving along a fixed rope is a terrific way to reduce fall hazards and increase control of the element while moving through technical terrain. In a limited amount of time, inexperienced personnel can be taught to navigate difficult terrain successfully and safely along fixed ropes. Also discussed in this chapter are principles of rappelling and more advanced methods of ascending and descending while hanging from a fixed rope.\n- Chapter 12 is an overview on how operating in a mountainous environment often requires moving Soldiers, weapon systems, and equipment up, over, down, and around steep rugged terrain. This chapter also delivers instructions on the principles of mechanical advantage for lifting and creating friction in lowering.\n- Chapter 13 covers the advantages, disadvantages, and applicability of individual, team, and belayed crossing techniques. Seasonal snowmelt will frequently create water obstacles of varying width, depth, and current. Ideally, any personnel who may be required to perform stream crossings are competent swimmers. Risk management during any water crossing should include personnel serving in a lifeguard/safety role and medics prepared to treat hypothermia.\n- Chapter 14 discusses the fundamentals of glacier travel and crevasse rescue. Glaciers cover 10 percent of the earth's land. Climate change has increased the trafficability of the Arctic Northwest Passage and technological gains have made it possible to access natural resources in several inhospitable climates where it was previously infeasible. The Army's ability to maneuver and fight on glaciers will become increasingly relevant in the coming years.\n- Chapter 15 elaborates on the requirements for units operating in these environments to prepare for prolonged field care and practice high- and low-angle rescue scenarios.\n- Chapter 16 outlines techniques for establishing tensioned rope systems used to move equipment and casualties over linear-vertical terrain obstacles. These techniques can save time and reduce the risk associated with crossing such obstacles. Mountain streams and ravines present a significant hazard and barrier to dismounted troop and equipment movement.\n- Appendix A describes prominent classification systems for general dismounted movement in terrain, as well as various types of rock climbing and ice climbing routes. Military mountaineers require a common language for classifying routes so that difficulties associated with navigating them can be clearly communicated during operations.\n- Appendix B discusses the use of nonmilitary route planning resources, such as online collections of climbing routes and guidebooks. Open-source route planning tools complement doctrinal techniques and military resources. Given that few suitable mountaineering sites exist on military installations, off-post sites need to be considered for training.\n- Appendix C covers general standards for mountaineering equipment and identifies the contents and implications of various Army mountaineering kits. Throughout this publication, military mountaineering equipment is presented and discussed along with the techniques to employ it as applicable. However, certain general aspects of military mountaineering equipment do not fit into the flow of any of this training circular's primary chapters.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/1.h1",
+  "manual": "TC3-97.61",
+  "para": "1.h1",
+  "chapter": "Chapter 1",
+  "heading": "Mountain Environment",
+  "pages": [
+   21
+  ],
+  "text": "Around the world, mountain ranges form natural borders and boundaries. Historically, they have formed the edge of human settlement and wilderness; today, mountains still define many national borders and conflict regions. Mountain environments are demanding and tough, with conditions that interfere with all warfighting functions. To fight in the complex terrain of mountainous regions, military mountaineers must become familiar with the significant challenges that this environment presents. This rugged terrain will prove to be an overwhelming challenge to the untrained and inexperienced Soldier. Military mountaineers must understand how mountain environment characteristics affect them, the mission, their equipment, and the enemy during military operations. Rough terrain slows movements and canalizes troops into narrow corridors. Steep slopes make vehicle traffic possible only on roads that require extensive engineering and are vulnerable to attack and natural hazards, such as rockslides and avalanches. Harsh weather limits air resupply and close air support. Radio communications can only be maintained by securing exposed ridge tops. Key terrain often requires significant effort to secure and an even larger commitment to sustain. To succeed in this environment, Soldiers must be prepared mentally and physically.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/1-1",
   "manual": "TC3-97.61",
   "para": "1-1",
@@ -333,16 +423,17 @@
   "chapter": "Chapter 1",
   "heading": "ICE",
   "pages": [
-   27
+   27,
+   28
   ],
-  "text": "Ice forms in a few different ways as described below. Any movement on ice demands crampons. (See",
+  "text": "Ice forms in a few different ways as described below. Any movement on ice demands crampons. (See chapter 6, section II.)\n- Alpine ice forms in steep, sheltered couloirs and on glaciers, where firm snow consolidates into a mass of ice. It forms in a plane at the angle of the slope. Even at moderate angles, it can be physically demanding due to the lack of stances for rest and the hardness of the ice.\n- Waterfall ice forms when ambient temperatures are cold enough to freeze water quickly and water flows or seeps over cliffs and exposed rock faces. Waterfall ice can form much steeper flows than alpine ice, often with freestanding vertical columns or overhangs where drips freeze quickly. However, waterfall ice also forms bulges and steps that allow stances to rest and place protection.\n- Verglas is a thin sheet of ice that forms when rain or dripping water freezes on colder rocks. Verglas is too thin to climb like ice and makes conventional rock climbing impossible.",
   "notices": []
  },
  {
   "id": "TC3-97.61/1-29",
   "manual": "TC3-97.61",
   "para": "1-29",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "GLACIERS",
   "pages": [
    28
@@ -354,7 +445,7 @@
   "id": "TC3-97.61/1-30",
   "manual": "TC3-97.61",
   "para": "1-30",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "SECTION III - TERRAIN ANALYSIS",
   "pages": [
    28
@@ -366,7 +457,7 @@
   "id": "TC3-97.61/1-31",
   "manual": "TC3-97.61",
   "para": "1-31",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "OBSERVATION AND FIELDS OF FIRE",
   "pages": [
    28
@@ -378,7 +469,7 @@
   "id": "TC3-97.61/1-32",
   "manual": "TC3-97.61",
   "para": "1-32",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "OBSERVATION AND FIELDS OF FIRE",
   "pages": [
    28
@@ -390,7 +481,7 @@
   "id": "TC3-97.61/1-33",
   "manual": "TC3-97.61",
   "para": "1-33",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "OBSERVATION AND FIELDS OF FIRE",
   "pages": [
    28
@@ -402,7 +493,7 @@
   "id": "TC3-97.61/1-34",
   "manual": "TC3-97.61",
   "para": "1-34",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "OBSERVATION AND FIELDS OF FIRE",
   "pages": [
    28
@@ -414,7 +505,7 @@
   "id": "TC3-97.61/1-35",
   "manual": "TC3-97.61",
   "para": "1-35",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "AVENUES OF APPROACH",
   "pages": [
    28
@@ -426,7 +517,7 @@
   "id": "TC3-97.61/1-36",
   "manual": "TC3-97.61",
   "para": "1-36",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "KEY AND DECISIVE TERRAIN",
   "pages": [
    29
@@ -438,7 +529,7 @@
   "id": "TC3-97.61/1-37",
   "manual": "TC3-97.61",
   "para": "1-37",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "KEY AND DECISIVE TERRAIN",
   "pages": [
    29
@@ -450,7 +541,7 @@
   "id": "TC3-97.61/1-38",
   "manual": "TC3-97.61",
   "para": "1-38",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "OBSTACLES",
   "pages": [
    29
@@ -462,7 +553,7 @@
   "id": "TC3-97.61/1-39",
   "manual": "TC3-97.61",
   "para": "1-39",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "COVER AND CONCEALMENT",
   "pages": [
    29
@@ -474,7 +565,7 @@
   "id": "TC3-97.61/1-40",
   "manual": "TC3-97.61",
   "para": "1-40",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "COVER AND CONCEALMENT",
   "pages": [
    29
@@ -486,7 +577,7 @@
   "id": "TC3-97.61/1-41",
   "manual": "TC3-97.61",
   "para": "1-41",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "MOUNTAIN CLASSIFICATIONS",
   "pages": [
    29
@@ -498,7 +589,7 @@
   "id": "TC3-97.61/1-42",
   "manual": "TC3-97.61",
   "para": "1-42",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "OPERATIONAL TERRAIN LEVELS",
   "pages": [
    29,
@@ -511,7 +602,7 @@
   "id": "TC3-97.61/1-43",
   "manual": "TC3-97.61",
   "para": "1-43",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "OPERATIONAL TERRAIN LEVELS",
   "pages": [
    30
@@ -523,7 +614,7 @@
   "id": "TC3-97.61/1-44",
   "manual": "TC3-97.61",
   "para": "1-44",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "OPERATIONAL TERRAIN LEVELS",
   "pages": [
    30
@@ -532,10 +623,22 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/1.h2",
+  "manual": "TC3-97.61",
+  "para": "1.h2",
+  "chapter": "Chapter 1",
+  "heading": "Level Description Operational Significance",
+  "pages": [
+   30
+  ],
+  "text": "I Valleys and main lines of Contains operational centers of gravity such as roads, communication population centers, and sustainment routes. Achieving objectives in level I drives operations into higher terrain. II Ridges, slopes, and passes that Directly controls or influences level I terrain. Provides tactical overlook level I terrain advantage through observation, fires, and maneuver. III Summit regions and high Can influence or control level II terrain but sometimes is beyond mountain terrain far removed operational relevance. Can enable flanking, infiltration, and from level I shaping operations by skilled troops. High resource requirement to conduct and sustain operations.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/1-45",
   "manual": "TC3-97.61",
   "para": "1-45",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "DISMOUNTED MOBILITY CLASSIFICATION",
   "pages": [
    31
@@ -547,7 +650,7 @@
   "id": "TC3-97.61/1-46",
   "manual": "TC3-97.61",
   "para": "1-46",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "DISMOUNTED MOBILITY CLASSIFICATION",
   "pages": [
    31
@@ -559,7 +662,7 @@
   "id": "TC3-97.61/1-47",
   "manual": "TC3-97.61",
   "para": "1-47",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "DISMOUNTED MOBILITY CLASSIFICATION",
   "pages": [
    31
@@ -571,7 +674,7 @@
   "id": "TC3-97.61/1-48",
   "manual": "TC3-97.61",
   "para": "1-48",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "DISMOUNTED MOBILITY CLASSIFICATION",
   "pages": [
    31
@@ -583,7 +686,7 @@
   "id": "TC3-97.61/1-49",
   "manual": "TC3-97.61",
   "para": "1-49",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "DISMOUNTED MOBILITY CLASSIFICATION",
   "pages": [
    31
@@ -595,7 +698,7 @@
   "id": "TC3-97.61/1-50",
   "manual": "TC3-97.61",
   "para": "1-50",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "DISMOUNTED MOBILITY CLASSIFICATION",
   "pages": [
    31
@@ -604,10 +707,22 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/1.h3",
+  "manual": "TC3-97.61",
+  "para": "1.h3",
+  "chapter": "Chapter 1",
+  "heading": "Class Terrain Mobility Requirements Skill Level Required",
+  "pages": [
+   31
+  ],
+  "text": "1 Gentler slopes or trails. Walking techniques. Unskilled (with some 2 Steeper or rugged terrain. Some use of hands. assistance)mountaineers.and basic Easy climbing. Fixed ropes where Basic mountaineers 3 exposed. (with assistance from 4 Sleep or exposed climbing. Fixed ropes required. assault climbers). Near vertical. Technical climbing Assault climbers. 5 required.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/1-51",
   "manual": "TC3-97.61",
   "para": "1-51",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "Class Terrain Mobility Requirements Skill Level Required",
   "pages": [
    32
@@ -619,7 +734,7 @@
   "id": "TC3-97.61/1-52",
   "manual": "TC3-97.61",
   "para": "1-52",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "SECTION IV - MOUNTAIN WEATHER",
   "pages": [
    32
@@ -631,7 +746,7 @@
   "id": "TC3-97.61/1-53",
   "manual": "TC3-97.61",
   "para": "1-53",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "SECTION IV - MOUNTAIN WEATHER",
   "pages": [
    32
@@ -643,7 +758,7 @@
   "id": "TC3-97.61/1-54",
   "manual": "TC3-97.61",
   "para": "1-54",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "MOUNTAIN WEATHER FACTORS",
   "pages": [
    32
@@ -655,7 +770,7 @@
   "id": "TC3-97.61/1-55",
   "manual": "TC3-97.61",
   "para": "1-55",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "ATMOSPHERIC PRESSURE, TEMPERATURE, HUMIDITY",
   "pages": [
    32
@@ -667,7 +782,7 @@
   "id": "TC3-97.61/1-56",
   "manual": "TC3-97.61",
   "para": "1-56",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "ATMOSPHERIC PRESSURE, TEMPERATURE, HUMIDITY",
   "pages": [
    32
@@ -679,7 +794,7 @@
   "id": "TC3-97.61/1-57",
   "manual": "TC3-97.61",
   "para": "1-57",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "ATMOSPHERIC PRESSURE, TEMPERATURE, HUMIDITY",
   "pages": [
    32
@@ -691,7 +806,7 @@
   "id": "TC3-97.61/1-58",
   "manual": "TC3-97.61",
   "para": "1-58",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "VISIBILITY, CLOUD COVER, AND PRECIPITATION",
   "pages": [
    32,
@@ -704,7 +819,7 @@
   "id": "TC3-97.61/1-59",
   "manual": "TC3-97.61",
   "para": "1-59",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "VISIBILITY, CLOUD COVER, AND PRECIPITATION",
   "pages": [
    33
@@ -716,7 +831,7 @@
   "id": "TC3-97.61/1-60",
   "manual": "TC3-97.61",
   "para": "1-60",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "VISIBILITY, CLOUD COVER, AND PRECIPITATION",
   "pages": [
    33
@@ -728,7 +843,7 @@
   "id": "TC3-97.61/1-61",
   "manual": "TC3-97.61",
   "para": "1-61",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "WIND VELOCITY",
   "pages": [
    33
@@ -740,7 +855,7 @@
   "id": "TC3-97.61/1-62",
   "manual": "TC3-97.61",
   "para": "1-62",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "WIND VELOCITY",
   "pages": [
    33
@@ -752,7 +867,7 @@
   "id": "TC3-97.61/1-63",
   "manual": "TC3-97.61",
   "para": "1-63",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "WIND VELOCITY",
   "pages": [
    33
@@ -761,10 +876,22 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/1.h4",
+  "manual": "TC3-97.61",
+  "para": "1.h4",
+  "chapter": "Chapter 1",
+  "heading": "Weather Condition Flat to Moderate Terrain Effects Added Mountain Effects",
+  "pages": [
+   34
+  ],
+  "text": "- Sunburn. * Increased risk of sunburn and snow\n- Snow blindness. blindness. Sunshine * Temperature differences * Severe, unexpected temperature variations between sun and shade. between sun and shade.\n- Avalanches.\n- Wind chill. * Increased risk and severity of wind chill.\n- Blowing debris or driven snow causing Wind reduced visibility.\n- Avalanches.\n- Reduced visibility. * Landslides. Rain * Cooler temperatures. * Flash floods.\n- Avalanches.\n- Cold-weather injuries. * Increased risk and severity of common\n- Reduced mobility and visibility. effects. Snow * Snow blindness. * Avalanches.\n- Blowing snow.\n- Rain/snow. * Extended duration and intensity greatly\n- Reduced visibility. affecting visibility and mobility. Storms * Lightning. * Extremely high winds.\n- Avalanches. Fog * Reduced mobility or visibility. * Increased frequency and duration. Cloudiness * Reduced visibility. * Greatlyelevations.decreased visibility at higher",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/1-64",
   "manual": "TC3-97.61",
   "para": "1-64",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "PLANNING FOR WEATHER",
   "pages": [
    34
@@ -776,7 +903,7 @@
   "id": "TC3-97.61/1-65",
   "manual": "TC3-97.61",
   "para": "1-65",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "PLANNING FOR WEATHER",
   "pages": [
    34
@@ -788,7 +915,7 @@
   "id": "TC3-97.61/1-66",
   "manual": "TC3-97.61",
   "para": "1-66",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "PLANNING FOR WEATHER",
   "pages": [
    34
@@ -800,7 +927,7 @@
   "id": "TC3-97.61/1-67",
   "manual": "TC3-97.61",
   "para": "1-67",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "PLANNING FOR WEATHER",
   "pages": [
    34
@@ -812,7 +939,7 @@
   "id": "TC3-97.61/1-68",
   "manual": "TC3-97.61",
   "para": "1-68",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "WEATHER FORECASTING",
   "pages": [
    34,
@@ -825,7 +952,7 @@
   "id": "TC3-97.61/1-69",
   "manual": "TC3-97.61",
   "para": "1-69",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "WEATHER FORECASTING",
   "pages": [
    35
@@ -837,7 +964,7 @@
   "id": "TC3-97.61/1-70",
   "manual": "TC3-97.61",
   "para": "1-70",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "WEATHER FORECASTING",
   "pages": [
    35
@@ -849,7 +976,7 @@
   "id": "TC3-97.61/1-71",
   "manual": "TC3-97.61",
   "para": "1-71",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "WEATHER FORECASTING",
   "pages": [
    35
@@ -861,7 +988,7 @@
   "id": "TC3-97.61/1-72",
   "manual": "TC3-97.61",
   "para": "1-72",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "DETERIORATING TRENDS",
   "pages": [
    35
@@ -873,7 +1000,7 @@
   "id": "TC3-97.61/1-73",
   "manual": "TC3-97.61",
   "para": "1-73",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "IMPROVING TRENDS",
   "pages": [
    35
@@ -885,7 +1012,7 @@
   "id": "TC3-97.61/1-74",
   "manual": "TC3-97.61",
   "para": "1-74",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "CLOUDS",
   "pages": [
    36
@@ -897,7 +1024,7 @@
   "id": "TC3-97.61/1-75",
   "manual": "TC3-97.61",
   "para": "1-75",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "High-Level Clouds",
   "pages": [
    36
@@ -909,7 +1036,7 @@
   "id": "TC3-97.61/1-76",
   "manual": "TC3-97.61",
   "para": "1-76",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "Mid-Level Clouds",
   "pages": [
    36
@@ -921,7 +1048,7 @@
   "id": "TC3-97.61/1-77",
   "manual": "TC3-97.61",
   "para": "1-77",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "Low-Level Clouds",
   "pages": [
    36
@@ -933,12 +1060,24 @@
   "id": "TC3-97.61/1-78",
   "manual": "TC3-97.61",
   "para": "1-78",
-  "chapter": "chapter 6, section II.)",
+  "chapter": "Chapter 1",
   "heading": "Vertical Development (Cumulonimbus)",
   "pages": [
    36
   ],
   "text": "Large, vertical development clouds often form on the steep, leading edge of a cold front. They can develop as individual towers or form a line of towers called a squall line. Their formation is fueled by vigorous convective updrafts. These storms tend to develop during the afternoon and early evening when the effects of heating from the sun are the strongest.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/2.h1",
+  "manual": "TC3-97.61",
+  "para": "2.h1",
+  "chapter": "Chapter 2",
+  "heading": "Training Military Mountaineers",
+  "pages": [
+   37
+  ],
+  "text": "Operational success in complex, compartmentalized, and objectively hazardous terrain largely rests on the shoulders of a unit's military mountaineers. Often, these are the only unit members with significant experience living and moving in mountainous terrain. Units with highly experienced mountaineers and well-developed mountain programs will be better prepared to engage in mountain warfare and will likely prove more successful. Military mountaineers serve as advisors for the development of such programs and trainers for mountain knowledge and skills; they also ensure safe training conduct in hazardous terrain. When used effectively, mountaineers provide their units with the ability to successfully live in extreme environments and move efficiently in terrain inaccessible to other units. Additionally, advanced and master military mountaineers serve as planners and advisors to commanders for combat operations in mountainous terrain. They are the primary means for a commander to lead units through complex terrain, emplace special teams at inaccessible points of domination, and conduct casualty evacuation (CASEVAC) in 5th-class terrain. The selection, formal training, and development of military mountaineers are critical to the effectiveness of all units operating in mountainous terrain.",
   "notices": []
  },
  {
@@ -1423,6 +1562,18 @@
    44
   ],
   "text": "Even the most accomplished mountaineers require periodic sustainment training. Most often, this can be accomplished by participating in level 2 training. However, new mountaineering techniques are regularly developed, so whenever possible, level 3 mountaineers should undergo specialty training that is focused on increasing unit capability IAW the commander's intent. Additional training in mountain rescue operations and avalanche forecasting may be particularly useful to units anticipating operations in more committing mountainous terrain. Opportunities exist for this at Army mountain training centers or through appropriately certified civilian mountaineering training organizations. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/3.h1",
+  "manual": "TC3-97.61",
+  "para": "3.h1",
+  "chapter": "Chapter 3",
+  "heading": "Environmental Injuries",
+  "pages": [
+   45
+  ],
+  "text": "Operations in mountainous areas will expose Soldiers to a variety of harsh environmental conditions not found in lowland areas. Soldiers exposed to these conditions are at a heightened risk of becoming a casualty. This risk increases with lack of experience and training. Troops conducting operations in mountainous regions often encounter cold temperatures that can degrade physical performance, impact morale, and create cold-weather casualties. The lack of oxygen in high-altitude environments impairs many aspects of normal Soldier tasks. Soldiers may develop altitude illnesses that can produce debilitating symptoms and require immediate MEDEVAC. If not accounted for in the planning process, these conditions will negatively impact the mission. Soldiers will become fatigued sooner in this environment and must reduce their pace or lighten their load to remain healthy and effective. With experience and proper training, Soldiers will become more durable and lethal in this environment.",
   "notices": []
  },
  {
@@ -2537,6 +2688,30 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/4.h1",
+  "manual": "TC3-97.61",
+  "para": "4.h1",
+  "chapter": "Chapter 4",
+  "heading": "Mountain Subsistence and Sustainment",
+  "pages": [
+   61
+  ],
+  "text": "Units receiving mountain training show a marked advantage in harsh mountain environments than those that do not. Normal activities, such as navigating, communicating, and moving, require specialized techniques. To gain confidence and experience, Soldiers must conduct realistic mountain training. They should be expected to perform under any environmental conditions. Extended training exercises test the sustainment mechanisms in place for the unit and expose the Soldier to the isolation common to mountain operations. Training should reflect",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/4.h2",
+  "manual": "TC3-97.61",
+  "para": "4.h2",
+  "chapter": "Chapter 4",
+  "heading": "the harsh mountain environment and should focus on the following:",
+  "pages": [
+   61
+  ],
+  "text": "- Fitness and nutrition.\n- Ability to survive and operate in a cold-weather environment.\n- Resupply methods.\n- Soldier load management.\n- Bivouac considerations.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/4-1",
   "manual": "TC3-97.61",
   "para": "4-1",
@@ -2787,6 +2962,18 @@
    64
   ],
   "text": "Vitamins allow chemical reactions in the body to happen so that they may use the energy found in the three macronutrients. Without these reactions, the energy from the calories in the macronutrients cannot be turned into adenosine triphosphate that the cells in our body use for energy, allowing them to function. Vitamins and minerals are found in vegetables, fruits, and meats. There are many different micronutrients, and it can become hard to track ingestion of all types. Physically active Soldiers should pay special attention to consume adequate amounts of iron, vitamin D, and antioxidants through a balanced diet. If a diet deficient in fresh foods containing essential vitamins and minerals is not available during a deployment, vitamin supplements are a suitable substitute.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/4.h3",
+  "manual": "TC3-97.61",
+  "para": "4.h3",
+  "chapter": "Chapter 4",
+  "heading": "Resting Energy Expenditure (Calories Used at Rest)",
+  "pages": [
+   64
+  ],
+  "text": "- Each Soldier's resting energy expenditure is different.\n- It is important to know one's resting energy expenditure to know how many calories to consume.\n- Resting energy expenditures can be multiplied by activity factors to get total caloric requirements for different levels of exertion. This is important to know to ensure Soldiers get proper nourishment while operating in challenging terrain. (See the Special Operations Forces Nutrition Guide, pages 4 to 5, for detailed information on performing these calculations.)",
   "notices": []
  },
  {
@@ -3929,6 +4116,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/5.h1",
+  "manual": "TC3-97.61",
+  "para": "5.h1",
+  "chapter": "Chapter 5",
+  "heading": "Avalanche",
+  "pages": [
+   83
+  ],
+  "text": "World War I is remembered for the brutal fighting in the trenches in France and Belgium. However, in the fighting between Italy and the Austro-Hungarian Empire, Soldiers saw some of the most intense mountain fighting in human history. After the Italians checked the Austrian offensive through the passes of the Alps, both sides fought higher and higher into the mountains. Small, light units of mountaineers clashed over new ground high in the peaks, while the armies dug in on the peaks they had secured. Positions and paths were blasted out of the rock and carved through the glaciers to move personnel and materiel to the fighting in the heights. By the winter of 1916, the line had mostly stabilized, and both armies were hunkering down for winter. Both sides had established extensive networks of trails and camps to support their forward positions; however, much of the infrastructure had been built in avalanche paths. In the second week of December, a major snowstorm blew in, loading the slopes and causing massive avalanches across the range. Both nations suppressed the number of casualties they received, and no official Italian records exist, but what evidence did survive paints a grim picture. The lowest estimates place casualties at around 4,000 during the storm. Some records support numbers as high as 10,000. Today, their bodies are still melting out of the glaciers below.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/5-1",
   "manual": "TC3-97.61",
   "para": "5-1",
@@ -4634,6 +4833,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/6.h1",
+  "manual": "TC3-97.61",
+  "para": "6.h1",
+  "chapter": "Chapter 6",
+  "heading": "Mountain Mobility",
+  "pages": [
+   103
+  ],
+  "text": "A unit's ability to maneuver through difficult and hazardous terrain provides it with access to the most tactically advantageous areas in the mountains. Units with Soldiers trained to a high level of mobility can move further, faster, and more safely through all levels of terrain. Mobility skill is the primary tool to manage risk when there is a fall hazard. Rope systems and belays can be used to mitigate fall risk during movement but require more time to complete, more technical training to accomplish, and can result in increased exposure to enemy attack. By far, the greatest combat multiplier in the mountains is high mobility skill. Units anticipating combat operations should focus on building individual movement skills over nearly all other special technical or tactical skills.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/6-1",
   "manual": "TC3-97.61",
   "para": "6-1",
@@ -5233,14 +5444,14 @@
   "pages": [
    113
   ],
-  "text": "During military operations, the least difficult routes possible should be selected for travel. (See",
+  "text": "During military operations, the least difficult routes possible should be selected for travel. (See chapter 7 for more information on planning technical movement routes.)",
   "notices": []
  },
  {
   "id": "TC3-97.61/6-51",
   "manual": "TC3-97.61",
   "para": "6-51",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "ROCK-CLIMBING TECHNIQUES",
   "pages": [
    113
@@ -5252,7 +5463,7 @@
   "id": "TC3-97.61/6-52",
   "manual": "TC3-97.61",
   "para": "6-52",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "ROCK-CLIMBING TECHNIQUES",
   "pages": [
    113
@@ -5264,7 +5475,7 @@
   "id": "TC3-97.61/6-53",
   "manual": "TC3-97.61",
   "para": "6-53",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Maintaining Balance",
   "pages": [
    113
@@ -5276,7 +5487,7 @@
   "id": "TC3-97.61/6-54",
   "manual": "TC3-97.61",
   "para": "6-54",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Maintaining Balance",
   "pages": [
    113
@@ -5288,7 +5499,7 @@
   "id": "TC3-97.61/6-55",
   "manual": "TC3-97.61",
   "para": "6-55",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Maintaining Balance",
   "pages": [
    113
@@ -5300,7 +5511,7 @@
   "id": "TC3-97.61/6-56",
   "manual": "TC3-97.61",
   "para": "6-56",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Contact",
   "pages": [
    113
@@ -5312,7 +5523,7 @@
   "id": "TC3-97.61/6-57",
   "manual": "TC3-97.61",
   "para": "6-57",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Contact",
   "pages": [
    114
@@ -5324,7 +5535,7 @@
   "id": "TC3-97.61/6-58",
   "manual": "TC3-97.61",
   "para": "6-58",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Contact",
   "pages": [
    115
@@ -5336,7 +5547,7 @@
   "id": "TC3-97.61/6-59",
   "manual": "TC3-97.61",
   "para": "6-59",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Contact",
   "pages": [
    115
@@ -5348,7 +5559,7 @@
   "id": "TC3-97.61/6-60",
   "manual": "TC3-97.61",
   "para": "6-60",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Slab and Face Climbing",
   "pages": [
    115
@@ -5360,7 +5571,7 @@
   "id": "TC3-97.61/6-61",
   "manual": "TC3-97.61",
   "para": "6-61",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Slab and Face Climbing",
   "pages": [
    116
@@ -5372,7 +5583,7 @@
   "id": "TC3-97.61/6-62",
   "manual": "TC3-97.61",
   "para": "6-62",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Slab and Face Climbing",
   "pages": [
    116
@@ -5384,7 +5595,7 @@
   "id": "TC3-97.61/6-63",
   "manual": "TC3-97.61",
   "para": "6-63",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Resting During Climbing",
   "pages": [
    117
@@ -5396,7 +5607,7 @@
   "id": "TC3-97.61/6-64",
   "manual": "TC3-97.61",
   "para": "6-64",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Specific Moves",
   "pages": [
    118
@@ -5408,7 +5619,7 @@
   "id": "TC3-97.61/6-65",
   "manual": "TC3-97.61",
   "para": "6-65",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Specific Moves",
   "pages": [
    119
@@ -5420,7 +5631,7 @@
   "id": "TC3-97.61/6-66",
   "manual": "TC3-97.61",
   "para": "6-66",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Specific Moves",
   "pages": [
    119
@@ -5432,7 +5643,7 @@
   "id": "TC3-97.61/6-67",
   "manual": "TC3-97.61",
   "para": "6-67",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Specific Moves",
   "pages": [
    119
@@ -5444,7 +5655,7 @@
   "id": "TC3-97.61/6-68",
   "manual": "TC3-97.61",
   "para": "6-68",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Crack Climbing",
   "pages": [
    122
@@ -5456,7 +5667,7 @@
   "id": "TC3-97.61/6-69",
   "manual": "TC3-97.61",
   "para": "6-69",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Jamming",
   "pages": [
    123
@@ -5468,7 +5679,7 @@
   "id": "TC3-97.61/6-70",
   "manual": "TC3-97.61",
   "para": "6-70",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Hand Jams",
   "pages": [
    123
@@ -5480,7 +5691,7 @@
   "id": "TC3-97.61/6-71",
   "manual": "TC3-97.61",
   "para": "6-71",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Hand Jams",
   "pages": [
    124
@@ -5492,7 +5703,7 @@
   "id": "TC3-97.61/6-72",
   "manual": "TC3-97.61",
   "para": "6-72",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Hand Jams",
   "pages": [
    124
@@ -5504,7 +5715,7 @@
   "id": "TC3-97.61/6-73",
   "manual": "TC3-97.61",
   "para": "6-73",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Foot Jams",
   "pages": [
    124
@@ -5516,7 +5727,7 @@
   "id": "TC3-97.61/6-74",
   "manual": "TC3-97.61",
   "para": "6-74",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Foot Jams",
   "pages": [
    124
@@ -5528,7 +5739,7 @@
   "id": "TC3-97.61/6-75",
   "manual": "TC3-97.61",
   "para": "6-75",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Arm Jams",
   "pages": [
    124
@@ -5540,7 +5751,7 @@
   "id": "TC3-97.61/6-76",
   "manual": "TC3-97.61",
   "para": "6-76",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Types of Arm Jams",
   "pages": [
    124
@@ -5552,7 +5763,7 @@
   "id": "TC3-97.61/6-77",
   "manual": "TC3-97.61",
   "para": "6-77",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Dihedral and Chimney Climbing",
   "pages": [
    126
@@ -5564,7 +5775,7 @@
   "id": "TC3-97.61/6-78",
   "manual": "TC3-97.61",
   "para": "6-78",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Dihedral and Chimney Climbing",
   "pages": [
    126
@@ -5576,7 +5787,7 @@
   "id": "TC3-97.61/6-79",
   "manual": "TC3-97.61",
   "para": "6-79",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Dihedral and Chimney Climbing",
   "pages": [
    126
@@ -5588,7 +5799,7 @@
   "id": "TC3-97.61/6-80",
   "manual": "TC3-97.61",
   "para": "6-80",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Traversing",
   "pages": [
    129
@@ -5600,7 +5811,7 @@
   "id": "TC3-97.61/6-81",
   "manual": "TC3-97.61",
   "para": "6-81",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Traversing",
   "pages": [
    129
@@ -5612,7 +5823,7 @@
   "id": "TC3-97.61/6-82",
   "manual": "TC3-97.61",
   "para": "6-82",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Traversing",
   "pages": [
    130
@@ -5624,7 +5835,7 @@
   "id": "TC3-97.61/6-83",
   "manual": "TC3-97.61",
   "para": "6-83",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Topping Out or Gaining Ledges",
   "pages": [
    130
@@ -5636,7 +5847,7 @@
   "id": "TC3-97.61/6-84",
   "manual": "TC3-97.61",
   "para": "6-84",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Down Climbing",
   "pages": [
    131
@@ -5648,7 +5859,7 @@
   "id": "TC3-97.61/6-85",
   "manual": "TC3-97.61",
   "para": "6-85",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Down Climbing",
   "pages": [
    131
@@ -5660,7 +5871,7 @@
   "id": "TC3-97.61/6-86",
   "manual": "TC3-97.61",
   "para": "6-86",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Down Climbing",
   "pages": [
    131
@@ -5672,7 +5883,7 @@
   "id": "TC3-97.61/6-87",
   "manual": "TC3-97.61",
   "para": "6-87",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Down Climbing",
   "pages": [
    131
@@ -5684,7 +5895,7 @@
   "id": "TC3-97.61/6-88",
   "manual": "TC3-97.61",
   "para": "6-88",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Down Climbing",
   "pages": [
    131
@@ -5696,7 +5907,7 @@
   "id": "TC3-97.61/6-89",
   "manual": "TC3-97.61",
   "para": "6-89",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "TRAINING FOR ROCK CLIMBING",
   "pages": [
    132
@@ -5708,7 +5919,7 @@
   "id": "TC3-97.61/6-90",
   "manual": "TC3-97.61",
   "para": "6-90",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "TRAINING FOR ROCK CLIMBING",
   "pages": [
    132
@@ -5720,7 +5931,7 @@
   "id": "TC3-97.61/6-91",
   "manual": "TC3-97.61",
   "para": "6-91",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "TRAINING FOR ROCK CLIMBING",
   "pages": [
    132
@@ -5732,7 +5943,7 @@
   "id": "TC3-97.61/6-92",
   "manual": "TC3-97.61",
   "para": "6-92",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SECTION II - MOVEMENT OVER SNOW AND ICE",
   "pages": [
    133
@@ -5744,7 +5955,7 @@
   "id": "TC3-97.61/6-93",
   "manual": "TC3-97.61",
   "para": "6-93",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "MOBILITY OVER SNOW AND ICE",
   "pages": [
    133
@@ -5756,7 +5967,7 @@
   "id": "TC3-97.61/6-94",
   "manual": "TC3-97.61",
   "para": "6-94",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "EQUIPMENT FOR SNOW AND ICE",
   "pages": [
    133
@@ -5768,7 +5979,7 @@
   "id": "TC3-97.61/6-95",
   "manual": "TC3-97.61",
   "para": "6-95",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "EQUIPMENT FOR SNOW AND ICE",
   "pages": [
    134
@@ -5780,7 +5991,7 @@
   "id": "TC3-97.61/6-96",
   "manual": "TC3-97.61",
   "para": "6-96",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "EQUIPMENT FOR SNOW AND ICE",
   "pages": [
    135
@@ -5792,7 +6003,7 @@
   "id": "TC3-97.61/6-97",
   "manual": "TC3-97.61",
   "para": "6-97",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "EQUIPMENT FOR SNOW AND ICE",
   "pages": [
    135
@@ -5804,7 +6015,7 @@
   "id": "TC3-97.61/6-98",
   "manual": "TC3-97.61",
   "para": "6-98",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "EQUIPMENT FOR SNOW AND ICE",
   "pages": [
    136
@@ -5816,7 +6027,7 @@
   "id": "TC3-97.61/6-99",
   "manual": "TC3-97.61",
   "para": "6-99",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "EQUIPMENT FOR SNOW AND ICE",
   "pages": [
    136
@@ -5828,7 +6039,7 @@
   "id": "TC3-97.61/6-100",
   "manual": "TC3-97.61",
   "para": "6-100",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "EQUIPMENT FOR SNOW AND ICE",
   "pages": [
    137
@@ -5840,7 +6051,7 @@
   "id": "TC3-97.61/6-101",
   "manual": "TC3-97.61",
   "para": "6-101",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "MILITARY OPERATIONS IN SNOW- AND ICE-COVERED TERRAIN",
   "pages": [
    138
@@ -5852,7 +6063,7 @@
   "id": "TC3-97.61/6-102",
   "manual": "TC3-97.61",
   "para": "6-102",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "MILITARY OPERATIONS IN SNOW- AND ICE-COVERED TERRAIN",
   "pages": [
    138
@@ -5864,7 +6075,7 @@
   "id": "TC3-97.61/6-103",
   "manual": "TC3-97.61",
   "para": "6-103",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "MOVEMENT OVER SNOW",
   "pages": [
    139
@@ -5876,7 +6087,7 @@
   "id": "TC3-97.61/6-104",
   "manual": "TC3-97.61",
   "para": "6-104",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "MOVEMENT OVER SNOW",
   "pages": [
    139
@@ -5888,7 +6099,7 @@
   "id": "TC3-97.61/6-105",
   "manual": "TC3-97.61",
   "para": "6-105",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "MOVEMENT OVER SNOW",
   "pages": [
    139
@@ -5900,7 +6111,7 @@
   "id": "TC3-97.61/6-106",
   "manual": "TC3-97.61",
   "para": "6-106",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "BOOT PACKING",
   "pages": [
    139
@@ -5912,7 +6123,7 @@
   "id": "TC3-97.61/6-107",
   "manual": "TC3-97.61",
   "para": "6-107",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "BOOT PACKING",
   "pages": [
    139
@@ -5924,7 +6135,7 @@
   "id": "TC3-97.61/6-108",
   "manual": "TC3-97.61",
   "para": "6-108",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "GLISSADING",
   "pages": [
    140
@@ -5936,7 +6147,7 @@
   "id": "TC3-97.61/6-109",
   "manual": "TC3-97.61",
   "para": "6-109",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "GLISSADING",
   "pages": [
    140
@@ -5948,7 +6159,7 @@
   "id": "TC3-97.61/6-110",
   "manual": "TC3-97.61",
   "para": "6-110",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "FLATFOOTING",
   "pages": [
    141
@@ -5960,7 +6171,7 @@
   "id": "TC3-97.61/6-111",
   "manual": "TC3-97.61",
   "para": "6-111",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "FLATFOOTING",
   "pages": [
    141
@@ -5972,7 +6183,7 @@
   "id": "TC3-97.61/6-112",
   "manual": "TC3-97.61",
   "para": "6-112",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Ascending",
   "pages": [
    142
@@ -5984,7 +6195,7 @@
   "id": "TC3-97.61/6-113",
   "manual": "TC3-97.61",
   "para": "6-113",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Ascending",
   "pages": [
    142
@@ -5996,7 +6207,7 @@
   "id": "TC3-97.61/6-114",
   "manual": "TC3-97.61",
   "para": "6-114",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Ascending",
   "pages": [
    143
@@ -6008,7 +6219,7 @@
   "id": "TC3-97.61/6-115",
   "manual": "TC3-97.61",
   "para": "6-115",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Ascending",
   "pages": [
    143
@@ -6020,7 +6231,7 @@
   "id": "TC3-97.61/6-116",
   "manual": "TC3-97.61",
   "para": "6-116",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Ascending",
   "pages": [
    143
@@ -6032,7 +6243,7 @@
   "id": "TC3-97.61/6-117",
   "manual": "TC3-97.61",
   "para": "6-117",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Ascending",
   "pages": [
    144
@@ -6044,7 +6255,7 @@
   "id": "TC3-97.61/6-118",
   "manual": "TC3-97.61",
   "para": "6-118",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Ascending",
   "pages": [
    144
@@ -6056,7 +6267,7 @@
   "id": "TC3-97.61/6-119",
   "manual": "TC3-97.61",
   "para": "6-119",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Ascending",
   "pages": [
    145
@@ -6068,7 +6279,7 @@
   "id": "TC3-97.61/6-120",
   "manual": "TC3-97.61",
   "para": "6-120",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Ascending",
   "pages": [
    146
@@ -6080,7 +6291,7 @@
   "id": "TC3-97.61/6-121",
   "manual": "TC3-97.61",
   "para": "6-121",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Descending",
   "pages": [
    147
@@ -6092,7 +6303,7 @@
   "id": "TC3-97.61/6-122",
   "manual": "TC3-97.61",
   "para": "6-122",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Descending",
   "pages": [
    147
@@ -6104,7 +6315,7 @@
   "id": "TC3-97.61/6-123",
   "manual": "TC3-97.61",
   "para": "6-123",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Descending",
   "pages": [
    147
@@ -6116,7 +6327,7 @@
   "id": "TC3-97.61/6-124",
   "manual": "TC3-97.61",
   "para": "6-124",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Descending",
   "pages": [
    147
@@ -6128,7 +6339,7 @@
   "id": "TC3-97.61/6-125",
   "manual": "TC3-97.61",
   "para": "6-125",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Descending",
   "pages": [
    147
@@ -6140,7 +6351,7 @@
   "id": "TC3-97.61/6-126",
   "manual": "TC3-97.61",
   "para": "6-126",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Descending",
   "pages": [
    147
@@ -6152,7 +6363,7 @@
   "id": "TC3-97.61/6-127",
   "manual": "TC3-97.61",
   "para": "6-127",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SELF-ARREST",
   "pages": [
    148
@@ -6164,7 +6375,7 @@
   "id": "TC3-97.61/6-128",
   "manual": "TC3-97.61",
   "para": "6-128",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SELF-ARREST",
   "pages": [
    148
@@ -6176,7 +6387,7 @@
   "id": "TC3-97.61/6-129",
   "manual": "TC3-97.61",
   "para": "6-129",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SELF-ARREST",
   "pages": [
    148
@@ -6188,7 +6399,7 @@
   "id": "TC3-97.61/6-130",
   "manual": "TC3-97.61",
   "para": "6-130",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SELF-ARREST",
   "pages": [
    148
@@ -6200,7 +6411,7 @@
   "id": "TC3-97.61/6-131",
   "manual": "TC3-97.61",
   "para": "6-131",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SELF-ARREST",
   "pages": [
    148
@@ -6212,7 +6423,7 @@
   "id": "TC3-97.61/6-132",
   "manual": "TC3-97.61",
   "para": "6-132",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SELF-ARREST",
   "pages": [
    148
@@ -6224,7 +6435,7 @@
   "id": "TC3-97.61/6-133",
   "manual": "TC3-97.61",
   "para": "6-133",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SNOWSHOES AND SKIS",
   "pages": [
    149
@@ -6236,7 +6447,7 @@
   "id": "TC3-97.61/6-134",
   "manual": "TC3-97.61",
   "para": "6-134",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SNOWSHOES AND SKIS",
   "pages": [
    149
@@ -6248,7 +6459,7 @@
   "id": "TC3-97.61/6-135",
   "manual": "TC3-97.61",
   "para": "6-135",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SNOWSHOES AND SKIS",
   "pages": [
    149,
@@ -6261,7 +6472,7 @@
   "id": "TC3-97.61/6-136",
   "manual": "TC3-97.61",
   "para": "6-136",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "ICE CLIMBING",
   "pages": [
    150
@@ -6273,7 +6484,7 @@
   "id": "TC3-97.61/6-137",
   "manual": "TC3-97.61",
   "para": "6-137",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "ICE CLIMBING",
   "pages": [
    151
@@ -6285,7 +6496,7 @@
   "id": "TC3-97.61/6-138",
   "manual": "TC3-97.61",
   "para": "6-138",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "ICE CLIMBING",
   "pages": [
    151
@@ -6297,7 +6508,7 @@
   "id": "TC3-97.61/6-139",
   "manual": "TC3-97.61",
   "para": "6-139",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "ICE CLIMBING DURING MILITARY OPERATIONS",
   "pages": [
    151
@@ -6309,7 +6520,7 @@
   "id": "TC3-97.61/6-140",
   "manual": "TC3-97.61",
   "para": "6-140",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "ICE CLIMBING DURING MILITARY OPERATIONS",
   "pages": [
    151
@@ -6321,7 +6532,7 @@
   "id": "TC3-97.61/6-141",
   "manual": "TC3-97.61",
   "para": "6-141",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "ICE CLIMBING ROUTE SELECTION",
   "pages": [
    152
@@ -6333,19 +6544,19 @@
   "id": "TC3-97.61/6-142",
   "manual": "TC3-97.61",
   "para": "6-142",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "ICE CLIMBING ROUTE SELECTION",
   "pages": [
    152
   ],
-  "text": "During military operations, the least difficult routes possible should be selected for travel. (See",
+  "text": "During military operations, the least difficult routes possible should be selected for travel. (See chapter 7 for more information on planning technical movement routes.)",
   "notices": []
  },
  {
   "id": "TC3-97.61/6-143",
   "manual": "TC3-97.61",
   "para": "6-143",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "BASIC ICE CLIMBING TECHNIQUES",
   "pages": [
    152
@@ -6357,7 +6568,7 @@
   "id": "TC3-97.61/6-144",
   "manual": "TC3-97.61",
   "para": "6-144",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "BASIC ICE CLIMBING TECHNIQUES",
   "pages": [
    152
@@ -6369,7 +6580,7 @@
   "id": "TC3-97.61/6-145",
   "manual": "TC3-97.61",
   "para": "6-145",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Using Ice Tools",
   "pages": [
    152
@@ -6381,7 +6592,7 @@
   "id": "TC3-97.61/6-146",
   "manual": "TC3-97.61",
   "para": "6-146",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Using Ice Tools",
   "pages": [
    152
@@ -6393,7 +6604,7 @@
   "id": "TC3-97.61/6-147",
   "manual": "TC3-97.61",
   "para": "6-147",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Using Ice Tools",
   "pages": [
    152
@@ -6405,7 +6616,7 @@
   "id": "TC3-97.61/6-148",
   "manual": "TC3-97.61",
   "para": "6-148",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Using Ice Tools",
   "pages": [
    152
@@ -6417,7 +6628,7 @@
   "id": "TC3-97.61/6-149",
   "manual": "TC3-97.61",
   "para": "6-149",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Using Ice Tools",
   "pages": [
    152
@@ -6429,7 +6640,7 @@
   "id": "TC3-97.61/6-150",
   "manual": "TC3-97.61",
   "para": "6-150",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Using Crampons",
   "pages": [
    153
@@ -6441,7 +6652,7 @@
   "id": "TC3-97.61/6-151",
   "manual": "TC3-97.61",
   "para": "6-151",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Using Crampons",
   "pages": [
    153
@@ -6453,7 +6664,7 @@
   "id": "TC3-97.61/6-152",
   "manual": "TC3-97.61",
   "para": "6-152",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Using Crampons",
   "pages": [
    153
@@ -6465,7 +6676,7 @@
   "id": "TC3-97.61/6-153",
   "manual": "TC3-97.61",
   "para": "6-153",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Body Positioning and Moving Efficiently",
   "pages": [
    153,
@@ -6478,7 +6689,7 @@
   "id": "TC3-97.61/6-154",
   "manual": "TC3-97.61",
   "para": "6-154",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Body Positioning and Moving Efficiently",
   "pages": [
    154
@@ -6490,7 +6701,7 @@
   "id": "TC3-97.61/6-155",
   "manual": "TC3-97.61",
   "para": "6-155",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Body Positioning and Moving Efficiently",
   "pages": [
    154
@@ -6502,7 +6713,7 @@
   "id": "TC3-97.61/6-156",
   "manual": "TC3-97.61",
   "para": "6-156",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Body Positioning and Moving Efficiently",
   "pages": [
    154
@@ -6514,7 +6725,7 @@
   "id": "TC3-97.61/6-157",
   "manual": "TC3-97.61",
   "para": "6-157",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Special Moves",
   "pages": [
    155
@@ -6526,7 +6737,7 @@
   "id": "TC3-97.61/6-158",
   "manual": "TC3-97.61",
   "para": "6-158",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Special Moves",
   "pages": [
    155
@@ -6538,7 +6749,7 @@
   "id": "TC3-97.61/6-159",
   "manual": "TC3-97.61",
   "para": "6-159",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Special Moves",
   "pages": [
    155
@@ -6550,7 +6761,7 @@
   "id": "TC3-97.61/6-160",
   "manual": "TC3-97.61",
   "para": "6-160",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "Special Moves",
   "pages": [
    155
@@ -6562,7 +6773,7 @@
   "id": "TC3-97.61/6-161",
   "manual": "TC3-97.61",
   "para": "6-161",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "MIXED CLIMBING CONSIDERATIONS",
   "pages": [
    155
@@ -6574,7 +6785,7 @@
   "id": "TC3-97.61/6-162",
   "manual": "TC3-97.61",
   "para": "6-162",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "MIXED CLIMBING CONSIDERATIONS",
   "pages": [
    156
@@ -6586,7 +6797,7 @@
   "id": "TC3-97.61/6-163",
   "manual": "TC3-97.61",
   "para": "6-163",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "TRAINING FOR ICE CLIMBING",
   "pages": [
    156
@@ -6598,7 +6809,7 @@
   "id": "TC3-97.61/6-164",
   "manual": "TC3-97.61",
   "para": "6-164",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "TRAINING FOR ICE CLIMBING",
   "pages": [
    156
@@ -6610,7 +6821,7 @@
   "id": "TC3-97.61/6-165",
   "manual": "TC3-97.61",
   "para": "6-165",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "TRAINING FOR ICE CLIMBING",
   "pages": [
    156
@@ -6622,7 +6833,7 @@
   "id": "TC3-97.61/6-166",
   "manual": "TC3-97.61",
   "para": "6-166",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "SECTION III - LOAD MANAGEMENT FOR MOBILITY",
   "pages": [
    156
@@ -6634,7 +6845,7 @@
   "id": "TC3-97.61/6-167",
   "manual": "TC3-97.61",
   "para": "6-167",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "LOAD MANAGEMENT",
   "pages": [
    156
@@ -6646,20 +6857,20 @@
   "id": "TC3-97.61/6-168",
   "manual": "TC3-97.61",
   "para": "6-168",
-  "chapter": "chapter 7 for more information on planning technical movement routes.)",
+  "chapter": "Chapter 6",
   "heading": "PLANNING",
   "pages": [
    156
   ],
-  "text": "When planning packing lists, leaders must consider the level of mobility necessary during movement first. Once identified, loads should be reduced IAW it. Commanders should consider modifying requirements for the protective posture for Soldiers operating in difficult terrain. When Soldiers must move dismounted in mountainous terrain, plate carriers, lower profile armor plates, and lower profile tactical load-bearing harnesses can allow them to move further, faster, and more efficiently, resulting in increased maneuver capability. Trends of past enemy engagements in a unit's area of operation should be considered to determine if ammunition and other munitions requirements could be reduced. Equipment used infrequently must be considered for reduction or removal entirely from standard packing lists. \"Ounces equal pounds,\" and units that try to carry equipment for every contingency are less mobile and less effective in rugged terrain. (See",
+  "text": "When planning packing lists, leaders must consider the level of mobility necessary during movement first. Once identified, loads should be reduced IAW it. Commanders should consider modifying requirements for the protective posture for Soldiers operating in difficult terrain. When Soldiers must move dismounted in mountainous terrain, plate carriers, lower profile armor plates, and lower profile tactical load-bearing harnesses can allow them to move further, faster, and more efficiently, resulting in increased maneuver capability. Trends of past enemy engagements in a unit's area of operation should be considered to determine if ammunition and other munitions requirements could be reduced. Equipment used infrequently must be considered for reduction or removal entirely from standard packing lists. \"Ounces equal pounds,\" and units that try to carry equipment for every contingency are less mobile and less effective in rugged terrain. (See chapter 4 for general load management guidance.)",
   "notices": []
  },
  {
   "id": "TC3-97.61/6-169",
   "manual": "TC3-97.61",
   "para": "6-169",
-  "chapter": "chapter 4 for general load management guidance.)",
-  "heading": "",
+  "chapter": "Chapter 6",
+  "heading": "PLANNING",
   "pages": [
    156
   ],
@@ -6670,8 +6881,8 @@
   "id": "TC3-97.61/6-170",
   "manual": "TC3-97.61",
   "para": "6-170",
-  "chapter": "chapter 4 for general load management guidance.)",
-  "heading": "",
+  "chapter": "Chapter 6",
+  "heading": "PLANNING",
   "pages": [
    156
   ],
@@ -6682,7 +6893,7 @@
   "id": "TC3-97.61/6-171",
   "manual": "TC3-97.61",
   "para": "6-171",
-  "chapter": "chapter 4 for general load management guidance.)",
+  "chapter": "Chapter 6",
   "heading": "SCRAMBLING AND CLIMBING LOAD MANAGEMENT",
   "pages": [
    157
@@ -6694,7 +6905,7 @@
   "id": "TC3-97.61/6-172",
   "manual": "TC3-97.61",
   "para": "6-172",
-  "chapter": "chapter 4 for general load management guidance.)",
+  "chapter": "Chapter 6",
   "heading": "SCRAMBLING AND CLIMBING LOAD MANAGEMENT",
   "pages": [
    157
@@ -6706,13 +6917,25 @@
   "id": "TC3-97.61/6-173",
   "manual": "TC3-97.61",
   "para": "6-173",
-  "chapter": "chapter 4 for general load management guidance.)",
+  "chapter": "Chapter 6",
   "heading": "SCRAMBLING AND CLIMBING LOAD MANAGEMENT",
   "pages": [
    157,
    158
   ],
   "text": "Weapons must be slung on the back or to the side of the pack during sustained climbing. Lead climbers may need to leave weapons behind or carry smaller weapons, such as pistols, during particularly difficult sections of climbing to reduce fall risk. Follow-on Soldiers who are protected by rope systems would then carry their weapon through the section. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/7.h1",
+  "manual": "TC3-97.61",
+  "para": "7.h1",
+  "chapter": "Chapter 7",
+  "heading": "Navigation in Mountainous Terrain",
+  "pages": [
+   159
+  ],
+  "text": "The goals, strategies, and tools available to Soldiers for navigation in mountainous terrain are no different from other types of terrain. However, mountainous terrain makes using those tools to stay on course much more difficult. Additionally, straying off course while navigating in this terrain can prove extremely hazardous and detrimental to mission success. The difficulty of planning routes and calculating movement timelines also increases significantly with the steepness and complexity of terrain. Soldiers and leaders who learn how to mitigate these challenges effectively can not only successfully navigate in mountainous terrain but also better use the terrain for cover and concealment.",
   "notices": []
  },
  {
@@ -7309,6 +7532,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/7.h2",
+  "manual": "TC3-97.61",
+  "para": "7.h2",
+  "chapter": "Chapter 7",
+  "heading": "Elevation +/- Time",
+  "pages": [
+   165
+  ],
+  "text": "Start Point 021312 150 meters +150 meters 33 degrees 2.5 kilometers 1:00 756466 Checkpoint 1 047411 300 meters +45 meters 99 degrees 0.5 kilometers 0:15 Trail Junction 763891 Checkpoint 2 050763 345 meters +75 meters 110 degrees 4.3 kilometers 1:15 Stream 765271 Checkpoint 3 085430 420 meters -220 meters 330 degrees 2.2 kilometers 0:20 Ridge High 749519 Point Checkpoint 4 094052 200 meters N/A N/A N/A 2:50 Objective 767046 Legend: N/A-not applicable",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/7-50",
   "manual": "TC3-97.61",
   "para": "7-50",
@@ -7343,6 +7578,18 @@
    166
   ],
   "text": "Computing movement rates in the mountains is extremely difficult, especially when there is snow cover. Since snow can be expected in the mountains for most months of the year, units should have some experience in basic snow travel. The following rates are listed as a guide (see table 7-2). Rates are given for movement over flat or gently rolling terrain for individuals carrying a rifle and loaded rucksack.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/7.h3",
+  "manual": "TC3-97.61",
+  "para": "7.h3",
+  "chapter": "Chapter 7",
+  "heading": "Movement Technique Unbroken Trail Broken Trail",
+  "pages": [
+   166
+  ],
+  "text": "On foot (no snow cover) 2.0 to 3.0 kph (cross-country) 3.0 to 4.0 kph (trail walking) On foot (less than 1 foot of snow) 1.6 to 3.2 kph 2.0 to 3.2 kph On foot (more than 1 foot of snow) 0.4 to 1.2 kph 2.0 to 3.2 kph Snowshoeing 1.6 to 3.2 kph 3.2 to 4.0 kph Skiing 1.0 to 5.6 kph 4.8 to 5.6 kph Skijoring N/A 3.0 to 24 kph Legend: kph-kilometers per hour, N/A-not applicable",
   "notices": []
  },
  {
@@ -7548,6 +7795,18 @@
    168
   ],
   "text": "Commanders must understand that these skills take time to develop and that a degree of investment is necessary to create mountain Soldiers capable of such tasks. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/8.h1",
+  "manual": "TC3-97.61",
+  "para": "8.h1",
+  "chapter": "Chapter 8",
+  "heading": "Knot Tying and Rope Management",
+  "pages": [
+   169
+  ],
+  "text": "The rope is a vital piece of equipment to the mountaineer. It is used to address many of the problems and hazards encountered in the mountains. When climbing, rappelling, or building rope installations, the mountaineer must know how to utilize and maintain this equipment. Misuse can cause serious injury or death. This chapter discusses equipment, terminology, knots, hitches, rope management techniques, care, and maintenance.",
   "notices": []
  },
  {
@@ -8005,6 +8264,18 @@
    177
   ],
   "text": "Introducing a knot reduces the rope's strength by a quarter to almost half of its original strength. Certain knots retain more strength than others do. This depends on knot structure. (See table 8-1 for some examples of the remaining rope strength associated with common knots.)",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/8.h2",
+  "manual": "TC3-97.61",
+  "para": "8.h2",
+  "chapter": "Chapter 8",
+  "heading": "Type of Knot Rope Strength",
+  "pages": [
+   177
+  ],
+  "text": "No knot 100 percent Clove hitch 60 to 65 percent Water hitch 60 to 70 percent Figure eight 75 to 80 percent Overhead 60 to 65 percent Bowline 70 to 75 percent Two half hitches 60 to 70 percent",
   "notices": []
  },
  {
@@ -9358,6 +9629,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/9.h1",
+  "manual": "TC3-97.61",
+  "para": "9.h1",
+  "chapter": "Chapter 9",
+  "heading": "Anchor Selection and Construction",
+  "pages": [
+   215
+  ],
+  "text": "Understanding anchors is an important fundamental that must be understood early in the path to becoming a military mountaineer. An anchor is the point where manufactured equipment for mountaineering meets the surface of the earth. Great varieties of natural features are found in different operational environments that a Soldier could use to construct an anchor. Anchors are found in all rope systems and are built in many ways. This chapter gives Soldiers the tools to assess terrain for the suitability of anchor construction for a wide variety of rope systems. This chapter also exposes Soldiers to the principles of anchor construction that ensure they are building solid anchors in a wide variety of terrain for many different purposes. Anchor selection in mountainous terrain requires a certain degree of knowledge and substantial experience. Most mountaineering accidents occur at the anchor. Inexperienced Soldiers should stick to selecting anchor features that are obviously stronger than necessary and choose simple rigging techniques with which they are familiar.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/9-1",
   "manual": "TC3-97.61",
   "para": "9-1",
@@ -10636,6 +10919,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/10.h1",
+  "manual": "TC3-97.61",
+  "para": "10.h1",
+  "chapter": "Chapter 10",
+  "heading": "Rope Systems for Climbing",
+  "pages": [
+   255
+  ],
+  "text": "There is an inherent risk to moving in the mountains. Much of the terrain is high consequence, where a misjudged foothold, a loose rock, a slip, trip, or fall can kill. However, troops fighting in the mountains are often exposed to greater risk by not being able to move through the terrain. Examples exist throughout history. Modern examples include the assaults on Riva Ridge and Monte la Difensa in Italy, both examples of failed conventional assaults, where defensive positions in the heights were taken by assaults through more difficult terrain. More recently, the Indians retaking hilltops in the Kargil Conflict display all the same principles. Successful offensive operations in the mountains require troops who can move in difficult terrain and under poor conditions. The alternative is costly, often unsuccessful attacks where the defenders hold significant tactical advantage. To manage the risk involved with movement through these types of terrain, Soldiers must be trained in a variety of rope systems for climbing.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/10-1",
   "manual": "TC3-97.61",
   "para": "10-1",
@@ -11473,6 +11768,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/10.h2",
+  "manual": "TC3-97.61",
+  "para": "10.h2",
+  "chapter": "Chapter 10",
+  "heading": "Belayer Climber Command Description",
+  "pages": [
+   274
+  ],
+  "text": "THAT'S ME This command is said when the climber feels tension from the rope as the belayer takes all the slack out of the system. This command is intended to let belayers know that they have tension to the climber and the rope is not caught somewhere. BELAY ON This command is given when all slack between the climber and belayer has been taken out of the rope, and the belayer has control of the break strand with at least one hand. SLACK The climber may use this command to release some tension in the rope. This may be necessary in situations where the rope may be caught on a flake of rock and the climber can safely adjust it. TAKE This command is used to tell the belayer to take in more rope. It is also used when there is unwanted slack in the system, climbers have reached the top of the climb and are preparing to be lowered down, or if they feel they may fall and would like additional tension. ROCK or ICE ROCK or ICE This command is used to describe any falling object. Anyone can use this command, when necessary. I'VE GOT YOU The command is given when the climber reaches the top or needs to be lowered for any reason. The belayer will say TAKE, place two hands on the brake strand, and then give the command. ON YOU Once climbers sit back into their harnesses and are ready to be lowered, they will give the belayer this command. The belayer should never begin to lower the climber until this command is given. BELAY OFF Once climbers are safely on the ground and have good footing, they will give this command to let the belayer know they can take them off belay.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/10-69",
   "manual": "TC3-97.61",
   "para": "10-69",
@@ -12036,15 +12343,15 @@
   "pages": [
    287
   ],
-  "text": "Consider climber skill when selecting routes for training. Climbs should be challenging but achievable with a couple of tries. Routes for new climbers should not exceed intermediate difficulty (see",
+  "text": "Consider climber skill when selecting routes for training. Climbs should be challenging but achievable with a couple of tries. Routes for new climbers should not exceed intermediate difficulty (see appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are too difficult, steep, or strenuous, where they cannot first focus on the processes. Established bolted climbs are often an excellent place to begin lead climbing training. Traditionally protected routes can be attempted after proficiency has been achieved with these. For initial training, the length of climbs is ideally less than half the length of the available ropes to allow quick transitions to rappel and maximize repetitions. These shorter lengths also make it easier for the supervising trainer to ascend next to the climber when necessary.",
   "notices": []
  },
  {
   "id": "TC3-97.61/10-116",
   "manual": "TC3-97.61",
   "para": "10-116",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
-  "heading": "",
+  "chapter": "Chapter 10",
+  "heading": "TRAINING CONSIDERATIONS FOR LEAD CLIMBING",
   "pages": [
    287
   ],
@@ -12055,8 +12362,8 @@
   "id": "TC3-97.61/10-117",
   "manual": "TC3-97.61",
   "para": "10-117",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
-  "heading": "",
+  "chapter": "Chapter 10",
+  "heading": "TRAINING CONSIDERATIONS FOR LEAD CLIMBING",
   "pages": [
    287
   ],
@@ -12067,7 +12374,7 @@
   "id": "TC3-97.61/10-118",
   "manual": "TC3-97.61",
   "para": "10-118",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "SECTION VI - ALPINE BELAY TECHNIQUES",
   "pages": [
    288
@@ -12079,7 +12386,7 @@
   "id": "TC3-97.61/10-119",
   "manual": "TC3-97.61",
   "para": "10-119",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "BODY BELAYS",
   "pages": [
    288
@@ -12091,7 +12398,7 @@
   "id": "TC3-97.61/10-120",
   "manual": "TC3-97.61",
   "para": "10-120",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "SHOULDER BELAY",
   "pages": [
    289
@@ -12103,7 +12410,7 @@
   "id": "TC3-97.61/10-121",
   "manual": "TC3-97.61",
   "para": "10-121",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "SHOULDER BELAY",
   "pages": [
    290
@@ -12115,7 +12422,7 @@
   "id": "TC3-97.61/10-122",
   "manual": "TC3-97.61",
   "para": "10-122",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "SECTION VII - CLIMBING IN A TEAM OF THREE",
   "pages": [
    291
@@ -12127,7 +12434,7 @@
   "id": "TC3-97.61/10-123",
   "manual": "TC3-97.61",
   "para": "10-123",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "SECTION VII - CLIMBING IN A TEAM OF THREE",
   "pages": [
    291
@@ -12139,7 +12446,7 @@
   "id": "TC3-97.61/10-124",
   "manual": "TC3-97.61",
   "para": "10-124",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "CATERPILLAR",
   "pages": [
    291
@@ -12151,7 +12458,7 @@
   "id": "TC3-97.61/10-125",
   "manual": "TC3-97.61",
   "para": "10-125",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "CATERPILLAR",
   "pages": [
    291
@@ -12163,7 +12470,7 @@
   "id": "TC3-97.61/10-126",
   "manual": "TC3-97.61",
   "para": "10-126",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "END ROPING",
   "pages": [
    291,
@@ -12176,7 +12483,7 @@
   "id": "TC3-97.61/10-127",
   "manual": "TC3-97.61",
   "para": "10-127",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "END ROPING",
   "pages": [
    292
@@ -12188,7 +12495,7 @@
   "id": "TC3-97.61/10-128",
   "manual": "TC3-97.61",
   "para": "10-128",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "PARALLEL",
   "pages": [
    292
@@ -12200,7 +12507,7 @@
   "id": "TC3-97.61/10-129",
   "manual": "TC3-97.61",
   "para": "10-129",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "PARALLEL",
   "pages": [
    292
@@ -12212,7 +12519,7 @@
   "id": "TC3-97.61/10-130",
   "manual": "TC3-97.61",
   "para": "10-130",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "PARALLEL",
   "pages": [
    293
@@ -12224,7 +12531,7 @@
   "id": "TC3-97.61/10-131",
   "manual": "TC3-97.61",
   "para": "10-131",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "PARALLEL",
   "pages": [
    293
@@ -12236,13 +12543,25 @@
   "id": "TC3-97.61/10-132",
   "manual": "TC3-97.61",
   "para": "10-132",
-  "chapter": "appendix A for more on climbing classification). A common mistake is to place Soldiers on climbs that are",
+  "chapter": "Chapter 10",
   "heading": "FIXED STRANDS",
   "pages": [
    293,
    294
   ],
   "text": "It is also possible for leaders to fix the strand of rope they led onto the anchor at the top. This frees up leaders from any belaying responsibilities and allows them the ability to provide security, if necessary. This concept of the leader fixing strands of rope after leading a pitch provides many options for moving Soldiers through terrain. Leaders are not limited to just fixing the strand of rope they led on. They can pull up the rope, fix the middle, and have two strands for others to ascend if the rope reaches. The leader could trail another rope and fix it in another location after having reached the top. Having second climbers ascend rather than climb removes any possibility of a second not being able to reach the top due to a lack of climbing ability. The second would then ascend the rope rather than climb on belay. It is not appropriate in all terrain due to various terrain hazards. The weighted rope can dislodge loose rock. The rope is easily damaged or cut if it runs over a sharp edge while the followers ascend. (See chapter 11 for more information on ascending ropes.)",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/11.h1",
+  "manual": "TC3-97.61",
+  "para": "11.h1",
+  "chapter": "Chapter 11",
+  "heading": "Fixed Ropes",
+  "pages": [
+   295
+  ],
+  "text": "Fixed ropes are an important part of military mountaineering as they facilitate the movement of Soldiers through rugged terrain. Fixed ropes allow large groups of Soldiers to safely access terrain that provides tactical advantage over the enemy. They have proven useful in past conflicts. During World War II, they were successfully used during Operation Neptune (commonly referred to as D-day) and the famous assault on Riva Ridge by the 10th Mountain Division. Proficiency in using fixed ropes allows units to overcome mobility limitations and, therefore, achieve greater lethality in mountainous terrain.",
   "notices": []
  },
  {
@@ -13047,14 +13366,14 @@
   "pages": [
    308
   ],
-  "text": "Anchors that support the maximum force rappellers could exert should be established as described in",
+  "text": "Anchors that support the maximum force rappellers could exert should be established as described in chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
   "notices": []
  },
  {
   "id": "TC3-97.61/11-68",
   "manual": "TC3-97.61",
   "para": "11-68",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "RETRIEVABLE RAPPELS",
   "pages": [
    308
@@ -13066,7 +13385,7 @@
   "id": "TC3-97.61/11-69",
   "manual": "TC3-97.61",
   "para": "11-69",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "RETRIEVABLE RAPPELS",
   "pages": [
    308
@@ -13078,7 +13397,7 @@
   "id": "TC3-97.61/11-70",
   "manual": "TC3-97.61",
   "para": "11-70",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "RETRIEVABLE RAPPELS",
   "pages": [
    308
@@ -13090,7 +13409,7 @@
   "id": "TC3-97.61/11-71",
   "manual": "TC3-97.61",
   "para": "11-71",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Half-Rope Length",
   "pages": [
    309
@@ -13102,7 +13421,7 @@
   "id": "TC3-97.61/11-72",
   "manual": "TC3-97.61",
   "para": "11-72",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Half-Rope Length",
   "pages": [
    309
@@ -13114,7 +13433,7 @@
   "id": "TC3-97.61/11-73",
   "manual": "TC3-97.61",
   "para": "11-73",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Half-Rope Length",
   "pages": [
    309
@@ -13126,7 +13445,7 @@
   "id": "TC3-97.61/11-74",
   "manual": "TC3-97.61",
   "para": "11-74",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Full-Length Rope",
   "pages": [
    309
@@ -13138,7 +13457,7 @@
   "id": "TC3-97.61/11-75",
   "manual": "TC3-97.61",
   "para": "11-75",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Full-Length Rope",
   "pages": [
    309
@@ -13150,7 +13469,7 @@
   "id": "TC3-97.61/11-76",
   "manual": "TC3-97.61",
   "para": "11-76",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Rappel Rope Retrieval",
   "pages": [
    309
@@ -13162,7 +13481,7 @@
   "id": "TC3-97.61/11-77",
   "manual": "TC3-97.61",
   "para": "11-77",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Rappel Rope Retrieval",
   "pages": [
    309
@@ -13174,7 +13493,7 @@
   "id": "TC3-97.61/11-78",
   "manual": "TC3-97.61",
   "para": "11-78",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "RAPPELS WITH FIXED STRANDS",
   "pages": [
    309
@@ -13186,7 +13505,7 @@
   "id": "TC3-97.61/11-79",
   "manual": "TC3-97.61",
   "para": "11-79",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Half-Rope Length",
   "pages": [
    309
@@ -13198,7 +13517,7 @@
   "id": "TC3-97.61/11-80",
   "manual": "TC3-97.61",
   "para": "11-80",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Full-Rope Length",
   "pages": [
    309
@@ -13210,7 +13529,7 @@
   "id": "TC3-97.61/11-81",
   "manual": "TC3-97.61",
   "para": "11-81",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Full-Rope Length",
   "pages": [
    309
@@ -13222,7 +13541,7 @@
   "id": "TC3-97.61/11-82",
   "manual": "TC3-97.61",
   "para": "11-82",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "RAPPEL INSTALLATION SPECIAL TECHNIQUES",
   "pages": [
    310
@@ -13234,7 +13553,7 @@
   "id": "TC3-97.61/11-83",
   "manual": "TC3-97.61",
   "para": "11-83",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Damaged Rope",
   "pages": [
    310
@@ -13246,7 +13565,7 @@
   "id": "TC3-97.61/11-84",
   "manual": "TC3-97.61",
   "para": "11-84",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Damaged Rope",
   "pages": [
    310
@@ -13258,7 +13577,7 @@
   "id": "TC3-97.61/11-85",
   "manual": "TC3-97.61",
   "para": "11-85",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Damaged Rope",
   "pages": [
    310
@@ -13270,7 +13589,7 @@
   "id": "TC3-97.61/11-86",
   "manual": "TC3-97.61",
   "para": "11-86",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Damaged Rope",
   "pages": [
    310
@@ -13282,7 +13601,7 @@
   "id": "TC3-97.61/11-87",
   "manual": "TC3-97.61",
   "para": "11-87",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Damaged Rope",
   "pages": [
    310
@@ -13294,7 +13613,7 @@
   "id": "TC3-97.61/11-88",
   "manual": "TC3-97.61",
   "para": "11-88",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Short Rope",
   "pages": [
    311
@@ -13306,7 +13625,7 @@
   "id": "TC3-97.61/11-89",
   "manual": "TC3-97.61",
   "para": "11-89",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Short Rope",
   "pages": [
    311
@@ -13318,7 +13637,7 @@
   "id": "TC3-97.61/11-90",
   "manual": "TC3-97.61",
   "para": "11-90",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Short Rope",
   "pages": [
    311
@@ -13330,7 +13649,7 @@
   "id": "TC3-97.61/11-91",
   "manual": "TC3-97.61",
   "para": "11-91",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Short Rope",
   "pages": [
    311
@@ -13342,7 +13661,7 @@
   "id": "TC3-97.61/11-92",
   "manual": "TC3-97.61",
   "para": "11-92",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Threat of Cut Rope Using a Retrievable System",
   "pages": [
    311
@@ -13354,7 +13673,7 @@
   "id": "TC3-97.61/11-93",
   "manual": "TC3-97.61",
   "para": "11-93",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Threat of Cut Rope Using a Retrievable System",
   "pages": [
    311
@@ -13366,7 +13685,7 @@
   "id": "TC3-97.61/11-94",
   "manual": "TC3-97.61",
   "para": "11-94",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Threat of Cut Rope Using a Retrievable System",
   "pages": [
    311
@@ -13378,7 +13697,7 @@
   "id": "TC3-97.61/11-95",
   "manual": "TC3-97.61",
   "para": "11-95",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "RAPPELLING TECHNIQUES",
   "pages": [
    311
@@ -13390,7 +13709,7 @@
   "id": "TC3-97.61/11-96",
   "manual": "TC3-97.61",
   "para": "11-96",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "RAPPELLING TECHNIQUES",
   "pages": [
    311
@@ -13402,7 +13721,7 @@
   "id": "TC3-97.61/11-97",
   "manual": "TC3-97.61",
   "para": "11-97",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Hasty Rappel",
   "pages": [
    311
@@ -13414,7 +13733,7 @@
   "id": "TC3-97.61/11-98",
   "manual": "TC3-97.61",
   "para": "11-98",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Hasty Rappel",
   "pages": [
    311
@@ -13426,7 +13745,7 @@
   "id": "TC3-97.61/11-99",
   "manual": "TC3-97.61",
   "para": "11-99",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Hasty Rappel",
   "pages": [
    312
@@ -13438,7 +13757,7 @@
   "id": "TC3-97.61/11-100",
   "manual": "TC3-97.61",
   "para": "11-100",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Hasty Rappel",
   "pages": [
    312
@@ -13450,7 +13769,7 @@
   "id": "TC3-97.61/11-101",
   "manual": "TC3-97.61",
   "para": "11-101",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Munter Hitch Rappel",
   "pages": [
    312
@@ -13462,7 +13781,7 @@
   "id": "TC3-97.61/11-102",
   "manual": "TC3-97.61",
   "para": "11-102",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Munter Hitch Rappel",
   "pages": [
    312,
@@ -13475,7 +13794,7 @@
   "id": "TC3-97.61/11-103",
   "manual": "TC3-97.61",
   "para": "11-103",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Munter Hitch Rappel",
   "pages": [
    313
@@ -13487,7 +13806,7 @@
   "id": "TC3-97.61/11-104",
   "manual": "TC3-97.61",
   "para": "11-104",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Munter Hitch Rappel",
   "pages": [
    313
@@ -13499,7 +13818,7 @@
   "id": "TC3-97.61/11-105",
   "manual": "TC3-97.61",
   "para": "11-105",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Figure-Eight Descender",
   "pages": [
    313
@@ -13511,7 +13830,7 @@
   "id": "TC3-97.61/11-106",
   "manual": "TC3-97.61",
   "para": "11-106",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Figure-Eight Descender",
   "pages": [
    313
@@ -13523,7 +13842,7 @@
   "id": "TC3-97.61/11-107",
   "manual": "TC3-97.61",
   "para": "11-107",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Figure-Eight Descender",
   "pages": [
    313
@@ -13535,7 +13854,7 @@
   "id": "TC3-97.61/11-108",
   "manual": "TC3-97.61",
   "para": "11-108",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Figure-Eight Descender",
   "pages": [
    314
@@ -13547,7 +13866,7 @@
   "id": "TC3-97.61/11-109",
   "manual": "TC3-97.61",
   "para": "11-109",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Tube-Style Devices",
   "pages": [
    314
@@ -13559,7 +13878,7 @@
   "id": "TC3-97.61/11-110",
   "manual": "TC3-97.61",
   "para": "11-110",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Tube-Style Devices",
   "pages": [
    314
@@ -13571,7 +13890,7 @@
   "id": "TC3-97.61/11-111",
   "manual": "TC3-97.61",
   "para": "11-111",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Tube-Style Devices",
   "pages": [
    315
@@ -13583,7 +13902,7 @@
   "id": "TC3-97.61/11-112",
   "manual": "TC3-97.61",
   "para": "11-112",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Tube-Style Devices",
   "pages": [
    315
@@ -13595,7 +13914,7 @@
   "id": "TC3-97.61/11-113",
   "manual": "TC3-97.61",
   "para": "11-113",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Extending Rappel Devices",
   "pages": [
    315
@@ -13607,7 +13926,7 @@
   "id": "TC3-97.61/11-114",
   "manual": "TC3-97.61",
   "para": "11-114",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Extending Rappel Devices",
   "pages": [
    316
@@ -13619,7 +13938,7 @@
   "id": "TC3-97.61/11-115",
   "manual": "TC3-97.61",
   "para": "11-115",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Hands-Free Backup",
   "pages": [
    316
@@ -13631,7 +13950,7 @@
   "id": "TC3-97.61/11-116",
   "manual": "TC3-97.61",
   "para": "11-116",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Hands-Free Backup",
   "pages": [
    316
@@ -13643,7 +13962,7 @@
   "id": "TC3-97.61/11-117",
   "manual": "TC3-97.61",
   "para": "11-117",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Hands-Free Backup",
   "pages": [
    316
@@ -13655,7 +13974,7 @@
   "id": "TC3-97.61/11-118",
   "manual": "TC3-97.61",
   "para": "11-118",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Rucksack Support",
   "pages": [
    316
@@ -13667,7 +13986,7 @@
   "id": "TC3-97.61/11-119",
   "manual": "TC3-97.61",
   "para": "11-119",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Belaying Rappellers",
   "pages": [
    317
@@ -13679,7 +13998,7 @@
   "id": "TC3-97.61/11-120",
   "manual": "TC3-97.61",
   "para": "11-120",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "RAPPEL SITE OPERATION",
   "pages": [
    317
@@ -13691,7 +14010,7 @@
   "id": "TC3-97.61/11-121",
   "manual": "TC3-97.61",
   "para": "11-121",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "RAPPEL SITE OPERATION",
   "pages": [
    317
@@ -13703,7 +14022,7 @@
   "id": "TC3-97.61/11-122",
   "manual": "TC3-97.61",
   "para": "11-122",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Duties and Responsibilities of the Rappel Site Supervisor",
   "pages": [
    318
@@ -13715,7 +14034,7 @@
   "id": "TC3-97.61/11-123",
   "manual": "TC3-97.61",
   "para": "11-123",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Duties and Responsibilities of the Rappel Site Supervisor",
   "pages": [
    318
@@ -13727,7 +14046,7 @@
   "id": "TC3-97.61/11-124",
   "manual": "TC3-97.61",
   "para": "11-124",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Communication",
   "pages": [
    318
@@ -13739,7 +14058,7 @@
   "id": "TC3-97.61/11-125",
   "manual": "TC3-97.61",
   "para": "11-125",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Communication",
   "pages": [
    318
@@ -13751,7 +14070,7 @@
   "id": "TC3-97.61/11-126",
   "manual": "TC3-97.61",
   "para": "11-126",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Communication",
   "pages": [
    318
@@ -13763,7 +14082,7 @@
   "id": "TC3-97.61/11-127",
   "manual": "TC3-97.61",
   "para": "11-127",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Increasing Speed and Efficiency",
   "pages": [
    318
@@ -13775,7 +14094,7 @@
   "id": "TC3-97.61/11-128",
   "manual": "TC3-97.61",
   "para": "11-128",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Increasing Speed and Efficiency",
   "pages": [
    318
@@ -13787,7 +14106,7 @@
   "id": "TC3-97.61/11-129",
   "manual": "TC3-97.61",
   "para": "11-129",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Increasing Speed and Efficiency",
   "pages": [
    318
@@ -13799,7 +14118,7 @@
   "id": "TC3-97.61/11-130",
   "manual": "TC3-97.61",
   "para": "11-130",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Increasing Speed and Efficiency",
   "pages": [
    318
@@ -13811,7 +14130,7 @@
   "id": "TC3-97.61/11-131",
   "manual": "TC3-97.61",
   "para": "11-131",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "MULTIPITCH RAPPELLING",
   "pages": [
    318
@@ -13823,7 +14142,7 @@
   "id": "TC3-97.61/11-132",
   "manual": "TC3-97.61",
   "para": "11-132",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "MULTIPITCH RAPPELLING",
   "pages": [
    318,
@@ -13836,7 +14155,7 @@
   "id": "TC3-97.61/11-133",
   "manual": "TC3-97.61",
   "para": "11-133",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "MULTIPITCH RAPPELLING",
   "pages": [
    319
@@ -13848,7 +14167,7 @@
   "id": "TC3-97.61/11-134",
   "manual": "TC3-97.61",
   "para": "11-134",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "MULTIPITCH RAPPELLING",
   "pages": [
    319
@@ -13860,7 +14179,7 @@
   "id": "TC3-97.61/11-135",
   "manual": "TC3-97.61",
   "para": "11-135",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "SECTION III - ASCENDING AND DESCENDING TRANSITIONS",
   "pages": [
    319
@@ -13872,7 +14191,7 @@
   "id": "TC3-97.61/11-136",
   "manual": "TC3-97.61",
   "para": "11-136",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "SECTION III - ASCENDING AND DESCENDING TRANSITIONS",
   "pages": [
    319
@@ -13884,7 +14203,7 @@
   "id": "TC3-97.61/11-137",
   "manual": "TC3-97.61",
   "para": "11-137",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "TECHNIQUES",
   "pages": [
    319
@@ -13896,7 +14215,7 @@
   "id": "TC3-97.61/11-138",
   "manual": "TC3-97.61",
   "para": "11-138",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "SPECIAL EQUIPMENT",
   "pages": [
    319
@@ -13908,7 +14227,7 @@
   "id": "TC3-97.61/11-139",
   "manual": "TC3-97.61",
   "para": "11-139",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "SPECIAL EQUIPMENT",
   "pages": [
    319
@@ -13920,7 +14239,7 @@
   "id": "TC3-97.61/11-140",
   "manual": "TC3-97.61",
   "para": "11-140",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "TRANSITIONS ON SINGLE-STRAND SYSTEMS",
   "pages": [
    320
@@ -13932,7 +14251,7 @@
   "id": "TC3-97.61/11-141",
   "manual": "TC3-97.61",
   "para": "11-141",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "TRANSITIONS ON SINGLE-STRAND SYSTEMS",
   "pages": [
    320
@@ -13944,7 +14263,7 @@
   "id": "TC3-97.61/11-142",
   "manual": "TC3-97.61",
   "para": "11-142",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Rapid Ascent and Descent Method",
   "pages": [
    320
@@ -13956,7 +14275,7 @@
   "id": "TC3-97.61/11-143",
   "manual": "TC3-97.61",
   "para": "11-143",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Ascent to Descent",
   "pages": [
    320
@@ -13968,7 +14287,7 @@
   "id": "TC3-97.61/11-144",
   "manual": "TC3-97.61",
   "para": "11-144",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Ascent to Descent",
   "pages": [
    320
@@ -13980,7 +14299,7 @@
   "id": "TC3-97.61/11-145",
   "manual": "TC3-97.61",
   "para": "11-145",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Ascent to Descent",
   "pages": [
    320
@@ -13992,7 +14311,7 @@
   "id": "TC3-97.61/11-146",
   "manual": "TC3-97.61",
   "para": "11-146",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Ascent to Descent",
   "pages": [
    320
@@ -14004,7 +14323,7 @@
   "id": "TC3-97.61/11-147",
   "manual": "TC3-97.61",
   "para": "11-147",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Ascent to Descent",
   "pages": [
    321
@@ -14016,7 +14335,7 @@
   "id": "TC3-97.61/11-148",
   "manual": "TC3-97.61",
   "para": "11-148",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Ascent to Descent",
   "pages": [
    321
@@ -14028,7 +14347,7 @@
   "id": "TC3-97.61/11-149",
   "manual": "TC3-97.61",
   "para": "11-149",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Descent to Ascent",
   "pages": [
    321
@@ -14040,7 +14359,7 @@
   "id": "TC3-97.61/11-150",
   "manual": "TC3-97.61",
   "para": "11-150",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Descent to Ascent",
   "pages": [
    321
@@ -14052,7 +14371,7 @@
   "id": "TC3-97.61/11-151",
   "manual": "TC3-97.61",
   "para": "11-151",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Descent to Ascent",
   "pages": [
    321
@@ -14064,7 +14383,7 @@
   "id": "TC3-97.61/11-152",
   "manual": "TC3-97.61",
   "para": "11-152",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Descent to Ascent",
   "pages": [
    321
@@ -14076,7 +14395,7 @@
   "id": "TC3-97.61/11-153",
   "manual": "TC3-97.61",
   "para": "11-153",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Transitioning from Descent to Ascent",
   "pages": [
    321
@@ -14088,7 +14407,7 @@
   "id": "TC3-97.61/11-154",
   "manual": "TC3-97.61",
   "para": "11-154",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Improvised Rapid Ascent and Descent Method",
   "pages": [
    321
@@ -14100,7 +14419,7 @@
   "id": "TC3-97.61/11-155",
   "manual": "TC3-97.61",
   "para": "11-155",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Improvised Rapid Ascent and Descent Method",
   "pages": [
    322
@@ -14112,7 +14431,7 @@
   "id": "TC3-97.61/11-156",
   "manual": "TC3-97.61",
   "para": "11-156",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "TRANSITIONS ON TWO-STRAND SYSTEMS",
   "pages": [
    322
@@ -14124,7 +14443,7 @@
   "id": "TC3-97.61/11-157",
   "manual": "TC3-97.61",
   "para": "11-157",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Prusik Ascent Method",
   "pages": [
    322
@@ -14136,7 +14455,7 @@
   "id": "TC3-97.61/11-158",
   "manual": "TC3-97.61",
   "para": "11-158",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Prusik Ascent Method",
   "pages": [
    322
@@ -14148,7 +14467,7 @@
   "id": "TC3-97.61/11-159",
   "manual": "TC3-97.61",
   "para": "11-159",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Prusik Ascent Method",
   "pages": [
    322
@@ -14160,7 +14479,7 @@
   "id": "TC3-97.61/11-160",
   "manual": "TC3-97.61",
   "para": "11-160",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Prusik Ascent Method",
   "pages": [
    322
@@ -14172,7 +14491,7 @@
   "id": "TC3-97.61/11-161",
   "manual": "TC3-97.61",
   "para": "11-161",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Prusik Ascent Method",
   "pages": [
    322
@@ -14184,7 +14503,7 @@
   "id": "TC3-97.61/11-162",
   "manual": "TC3-97.61",
   "para": "11-162",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "Other Methods",
   "pages": [
    322
@@ -14196,7 +14515,7 @@
   "id": "TC3-97.61/11-163",
   "manual": "TC3-97.61",
   "para": "11-163",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "OTHER TRANSITION SITUATIONS AND TECHNIQUES",
   "pages": [
    322
@@ -14208,7 +14527,7 @@
   "id": "TC3-97.61/11-164",
   "manual": "TC3-97.61",
   "para": "11-164",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "OTHER TRANSITION SITUATIONS AND TECHNIQUES",
   "pages": [
    322
@@ -14220,12 +14539,24 @@
   "id": "TC3-97.61/11-165",
   "manual": "TC3-97.61",
   "para": "11-165",
-  "chapter": "chapter 9. All rigging should be inspected by a qualified advanced military mountaineer, at a minimum.",
+  "chapter": "Chapter 11",
   "heading": "OTHER TRANSITION SITUATIONS AND TECHNIQUES",
   "pages": [
    322
   ],
   "text": "An experienced level 3 mountaineer should supervise all sustainment and improvement training on these transition techniques.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/12.h1",
+  "manual": "TC3-97.61",
+  "para": "12.h1",
+  "chapter": "Chapter 12",
+  "heading": "Hauling and Lowering Techniques",
+  "pages": [
+   323
+  ],
+  "text": "Mountain warfare requires moving Soldiers, weapons, and equipment up, over, and down steep, rugged terrain. It is vital that Soldiers understand the principles and fundamental concepts of hauling and lowering heavy loads both efficiently and safely.",
   "notices": []
  },
  {
@@ -14627,6 +14958,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/12.h2",
+  "manual": "TC3-97.61",
+  "para": "12.h2",
+  "chapter": "Chapter 12",
+  "heading": "Knot Pass Special Note",
+  "pages": [
+   341
+  ],
+  "text": "- A wide array of situations require a knot pass. It is not feasible to cover them in-depth in this training circular.\n- The conduct of a safe knot pass with a lowering system under tension can be complicated and technical. It should be conducted or overseen by a level 2 mountaineer.\n- Seek qualified instruction to gain proficiency in the skills mentioned below.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/12-34",
   "manual": "TC3-97.61",
   "para": "12-34",
@@ -14672,6 +15015,18 @@
    342
   ],
   "text": "The construction and operation of lowering systems requires training, experience, and judgement. Soldiers and leaders must understand what they are doing and why they are doing it. Strive to use the right amount of friction for the terrain, situation, and load.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/13.h1",
+  "manual": "TC3-97.61",
+  "para": "13.h1",
+  "chapter": "Chapter 13",
+  "heading": "Mountain Stream Crossing",
+  "pages": [
+   343
+  ],
+  "text": "In 480 BC, Persian King Xerxes constructed a pontoon bridge that spanned a mile and a quarter across the Hellespont. After a previous failure to take Greece, the king weighed the options of either finding alternate routes to the north that added months to his expedition or pinpoint potential water crossing locations for his army. Xerxes insisted on the fastest and most direct route across the Aegean inlet for his 300,000 men. While negotiating the linear obstacle involved massive resources and engineering, it would save precious time for his army to reach their objective.",
   "notices": []
  },
  {
@@ -15168,6 +15523,18 @@
    352
   ],
   "text": "Observing and analyzing the top of the water can give military mountaineers an indication of what to expect beneath the surface. Water is not often clear enough to see all the hazards that could make the crossing difficult or have adverse effects on personnel attempting to cross. The following are common clues that can provide ideas of what lies beneath the surface.\n- Riffles or ripples--if they are lined up, there are likely one or several rocks that form a line. In shallower water, it could mean a stable, rocky riverbed.\n- Holes, souse holes, or keepers--depressions that can form from water moving around an obstacle. The rise and drop on the surface can be visibly seen. Avoid stepping here as these rises and drops could suction Soldiers' feet and debris can fall.\n- Convergences and their depth--can increase the force the water has on someone attempting to cross.\n- Eddy or back eddy--swirling of water and the reverse current created when water flows over or around an object or terrain. The consistency of a current is very unpredictable. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/14.h1",
+  "manual": "TC3-97.61",
+  "para": "14.h1",
+  "chapter": "Chapter 14",
+  "heading": "Glacier Travel and Crevasse Rescue",
+  "pages": [
+   353
+  ],
+  "text": "Ten percent of the Earth's land mass is covered by glaciers. Glaciers are rivers of ice flowing under the influence of gravity, constantly restructuring the mountains around them. They often provide the best route in otherwise impassable terrain but can contain crevasses and other hazards that can cause injury, death, or compromise a unit's mission. Soldiers operating in glaciated terrain must understand these hazards, be well versed in the fundamentals of glacier travel, and be proficient with crevasse rescue techniques.",
   "notices": []
  },
  {
@@ -15999,6 +16366,18 @@
    372
   ],
   "text": "In the absence of glaciated terrain, units can still conduct simulated training exercises focusing on the basic strategies for roping up and preparing individual and team equipment. Crevasse rescue skills can be rehearsed using short sections of steep terrain. This should be conducted in locations without serious falling hazard, and back-up ropes or belays should be considered while techniques are being learned. Having a few unit members with advanced level training will improve the quality and outcomes of this training.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/15.h1",
+  "manual": "TC3-97.61",
+  "para": "15.h1",
+  "chapter": "Chapter 15",
+  "heading": "Mountain Rescue and Evacuation",
+  "pages": [
+   373
+  ],
+  "text": "A unit's capability to conduct mountain rescue and evacuation is a critical part of mountain operations. Swift and efficient rescue can mean the difference between success and failure of a mission or even the survival of a casualty. In mountainous terrain, even relatively minor injuries may require evacuation. The type of injury, distance to be moved, terrain, training level of the team, and litter capabilities determine the evacuation technique chosen. Air evacuation is preferred. However, the weather, tactical situation, or operational ceiling of the aircraft may make this impossible. Therefore, it is imperative that all personnel are trained in mountain evacuation techniques and are self-sufficient. Casualties should be triaged before evacuation. The most experienced medical personnel available perform triage (physician, physician's assistant, or medic).",
   "notices": []
  },
  {
@@ -16857,6 +17236,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/16.h1",
+  "manual": "TC3-97.61",
+  "para": "16.h1",
+  "chapter": "Chapter 16",
+  "heading": "Rope Bridges",
+  "pages": [
+   391
+  ],
+  "text": "Operations in mountainous terrain often encounter obstacles, such as fast flowing water, ravines, or rock fields. Well-trained mountaineers can exploit this terrain with the use of rope bridges and high lines. These allow units to take the terrain out of the equation by using a rope suspended in the air to cross the obstacle. High lines are a type of rope bridge. The two terms are often used synonymously, and the techniques are relatively interchangeable; however, for the purposes of this training circular, we will refer to rope bridges when used for assisting personnel for river crossings and the term \"high lines\" to denote rope installations used to span longer or higher gaps in terrain.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/16-1",
   "manual": "TC3-97.61",
   "para": "16-1",
@@ -17006,7 +17397,7 @@
   "notices": [
    {
     "kind": "WARNING",
-    "text": "No more than four personnel should be used to tighten the rope when a simple 3:1 or a transport tightening system is used to apply tension. Using more personnel can overtighten the rope and bring the rope critically close to failure. REDUNDANCY"
+    "text": "No more than four personnel should be used to tighten the rope when a simple 3:1 or a transport tightening system is used to apply tension. Using more personnel can overtighten the rope and bring the rope critically close to failure."
    }
   ]
  },
@@ -17015,7 +17406,7 @@
   "manual": "TC3-97.61",
   "para": "16-13",
   "chapter": "Chapter 16",
-  "heading": "SIMPLE 3:1 TIGHTENING SYSTEM",
+  "heading": "REDUNDANCY",
   "pages": [
    395
   ],
@@ -17397,6 +17788,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/A.h1",
+  "manual": "TC3-97.61",
+  "para": "A.h1",
+  "chapter": "Appendix A",
+  "heading": "Climbing Route Classification",
+  "pages": [
+   405
+  ],
+  "text": "The most important tools for risk management in the mountains are route selection and evaluation. Accurately evaluating and selecting routes in high consequence terrain requires a well-developed understanding of technical route classification systems and experience climbing the terrain they describe. Route classifications allow military mountaineers to identify appropriate routes for their Soldiers' skill levels and the technical rope systems required to move on them safely. Misunderstanding or miscommunicating route difficulty can place the life of the mountaineer or the lives of the Soldiers they lead in danger. The U.S. military does not have its own technical route classification systems. Therefore, military mountaineers must use those developed for civilian mountaineering. The classifications discussed in this chapter breakdown and describe the difficulty associated with routes in various types of terrain. Understanding them provides military mountaineers with the base from which to build route identification and selection experience.",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/A-1",
   "manual": "TC3-97.61",
   "para": "A-1",
@@ -17770,6 +18173,18 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/B.h1",
+  "manual": "TC3-97.61",
+  "para": "B.h1",
+  "chapter": "Appendix B",
+  "heading": "FORMULA UNITS MODIFIERS",
+  "pages": [
+   411
+  ],
+  "text": "# of units x 60 min 1 unit for every 1 km of travel Descending: Ascending: Modifier 1 unit for every 100 meters change (gain Walking 6 Walking 4 or loss) *Multiply total units by 60 (min)* Skiing 10 Skiing 4 Bushwhacking 2 Bushwhacking 2 Legend: #-number; km-kilometer; min-minute",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/B-20",
   "manual": "TC3-97.61",
   "para": "B-20",
@@ -17926,6 +18341,78 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/C.h1",
+  "manual": "TC3-97.61",
+  "para": "C.h1",
+  "chapter": "Appendix C",
+  "heading": "Item Quantity",
+  "pages": [
+   413
+  ],
+  "text": "Mountaineering harness 40 Locking carabiner 80 Nonlocking carabiner 80 Belay device 40 Sewn webbing (24-inch) 80 7-mm cord, 200-meter spool 1 10-mm static rope, 200-meter spool 1 Rope washer 1 Rope cutter 1 Visual users guide (pamphlet) 40 Legend: mm-millimeter",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h2",
+  "manual": "TC3-97.61",
+  "para": "C.h2",
+  "chapter": "Appendix C",
+  "heading": "NSN Product Name Product Description",
+  "pages": [
+   413
+  ],
+  "text": "Army Mountain Kit (AMK)-High- AMK-HAMK 1 of 3 modules 8465-00-NSH-0148 Angle Mountaineering Kit (HAMK) Module Legend: NSN-national stock number",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h3",
+  "manual": "TC3-97.61",
+  "para": "C.h3",
+  "chapter": "Appendix C",
+  "heading": "Class",
+  "pages": [
+   414
+  ],
+  "text": "Harness,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h4",
+  "manual": "TC3-97.61",
+  "para": "C.h4",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-8910 I* -",
+  "pages": [
+   414
+  ],
+  "text": "Mountaineering 8465-01-578-8898 Carabiner H -1 8465-01-578-8906 Carabiner X* - 8465-00-NSH-0198 HAMK-Single Pack 8465-01-578-7850 BelayMountaineeringDevice, - - Webbing,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h5",
+  "manual": "TC3-97.61",
+  "para": "C.h5",
+  "chapter": "Appendix C",
+  "heading": "I* I",
+  "pages": [
+   414
+  ],
+  "text": "Mountaineering 8305-01-578-8909 Visual User's Guide, - -",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h6",
+  "manual": "TC3-97.61",
+  "para": "C.h6",
+  "chapter": "Appendix C",
+  "heading": "HAMK",
+  "pages": [
+   414
+  ],
+  "text": "Belay Device, 8465-00- Belay Device, Mountaineering 8465-01-578-7850 - - NSH-0205 Mountaineering Replacement Kit 8465-00- Carabine Type H(1) 8465-01-578-8898 Carabiner H(1) - NSH-0206 Replacement Kit 8465-00- Carabiner Type X 8465-01-578-8906 Carabiner X* - NSH-0207 Replacement Kit Harness, 8465-00- Harness, Mountaineering 8465-01-578-8910 I* - NSH-0208 Mountaineering Replacement Kit Webbing, 8305-00- Webbing, Mountaineering 8305-01-578-8909 I* III NSH-0002 Mountaineering Replacement Kit 4020-00- Rope Replacement 4020-01-577-8714 Rope, Kernmantle IV* I NSH-0013 Kit (HAMK) 4020-01-577-8686 Rope, Kernmantle IV* I 4940-00- Rope Maintenance 4940-01-582-8347 Rope, Cutter, Electric - - NSH-0000 Kit Washer, Rope - - 7610-00- Visual User's Guide, 4940-01-582-5658 Visual User's Guide, - - NSH-0007 HAMK (Set of 10) HAMK Note. Asterisks beside type numbers (for example, I, X) correspond to supply codes and differ from size or class numbers. The legend explains the type (supply) codes. Legend: HAMK-high-angle mountaineering kit; I-subsistence, rations; IV-construction materials, lumber, sandbands; NSN-national stock number; X-nonmilitary items, landscaping",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/C-4",
   "manual": "TC3-97.61",
   "para": "C-4",
@@ -17938,6 +18425,282 @@
   "notices": []
  },
  {
+  "id": "TC3-97.61/C.h7",
+  "manual": "TC3-97.61",
+  "para": "C.h7",
+  "chapter": "Appendix C",
+  "heading": "Item Quantity",
+  "pages": [
+   415
+  ],
+  "text": "Mountaineering harness 3 Locking carabiner 9 Nonlocking carabiner 30 Belay device 3 Sewn webbing (24-inch) 20 7-mm cord, 200-meter spool 1 9-mm dynamic rope, 60-meter pre-cut 2 Rope washer 1 Rope cutter 1 Set, spring-loaded camming devices 1 Nut tool 3 Trigger repair kit for cams 6 Assault climber bags 3 Set, chock anchors 1 Mechanical ascender 3 Legend: mm-millimeter",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h8",
+  "manual": "TC3-97.61",
+  "para": "C.h8",
+  "chapter": "Appendix C",
+  "heading": "NSN Product Name Product Description",
+  "pages": [
+   415
+  ],
+  "text": "Army Mountain Kit (AMK)-Assault 8465-00-NSH-0149 AMK-ACTK 1 of 3 modules Climber Team Kit (ACTK) Module Legend: NSN-national stock number",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h9",
+  "manual": "TC3-97.61",
+  "para": "C.h9",
+  "chapter": "Appendix C",
+  "heading": "Class",
+  "pages": [
+   415
+  ],
+  "text": "Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h10",
+  "manual": "TC3-97.61",
+  "para": "C.h10",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-6458 I* 1",
+  "pages": [
+   415
+  ],
+  "text": "Chock Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h11",
+  "manual": "TC3-97.61",
+  "para": "C.h11",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-6642 I* 2",
+  "pages": [
+   415
+  ],
+  "text": "Chock Anchor, Rock, Anchor, Rock, 8465-01-578-6671 Chock I* 3 8465-00-NSH-0201 Chock, Replacement Kit 8465-01-578-6823 Anchor, Rock, I* 4 Chock Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h12",
+  "manual": "TC3-97.61",
+  "para": "C.h12",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-6849 I* 5",
+  "pages": [
+   415
+  ],
+  "text": "Chock Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h13",
+  "manual": "TC3-97.61",
+  "para": "C.h13",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-6852 I* 6",
+  "pages": [
+   415
+  ],
+  "text": "Chock",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h14",
+  "manual": "TC3-97.61",
+  "para": "C.h14",
+  "chapter": "Appendix C",
+  "heading": "Class",
+  "pages": [
+   416
+  ],
+  "text": "Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h15",
+  "manual": "TC3-97.61",
+  "para": "C.h15",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-6859 I* 7",
+  "pages": [
+   416
+  ],
+  "text": "Chock Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h16",
+  "manual": "TC3-97.61",
+  "para": "C.h16",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-7082 I* 8",
+  "pages": [
+   416
+  ],
+  "text": "Chock Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h17",
+  "manual": "TC3-97.61",
+  "para": "C.h17",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-7089 I* 9",
+  "pages": [
+   416
+  ],
+  "text": "Chock Anchor, Rock, Anchor, Rock, 8465-00-NSH-0201 Chock, 8465-01-578-7162 I* 10 Chock Replacement Kit Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h18",
+  "manual": "TC3-97.61",
+  "para": "C.h18",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-7310 I* 11",
+  "pages": [
+   416
+  ],
+  "text": "Chock Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h19",
+  "manual": "TC3-97.61",
+  "para": "C.h19",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-7347 I* 12",
+  "pages": [
+   416
+  ],
+  "text": "Chock Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h20",
+  "manual": "TC3-97.61",
+  "para": "C.h20",
+  "chapter": "Appendix C",
+  "heading": "8465-01-578-7490 I* 13",
+  "pages": [
+   416
+  ],
+  "text": "Chock Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h21",
+  "manual": "TC3-97.61",
+  "para": "C.h21",
+  "chapter": "Appendix C",
+  "heading": "I* 3",
+  "pages": [
+   416
+  ],
+  "text": "Camming Device Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h22",
+  "manual": "TC3-97.61",
+  "para": "C.h22",
+  "chapter": "Appendix C",
+  "heading": "I* 4",
+  "pages": [
+   416
+  ],
+  "text": "Anchor, Rock, Camming Device Camming Device, Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h23",
+  "manual": "TC3-97.61",
+  "para": "C.h23",
+  "chapter": "Appendix C",
+  "heading": "8465-00-NSH-0202 - I* 5",
+  "pages": [
+   416
+  ],
+  "text": "Type I Camming Device Replacement Kit Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h24",
+  "manual": "TC3-97.61",
+  "para": "C.h24",
+  "chapter": "Appendix C",
+  "heading": "I* 6",
+  "pages": [
+   416
+  ],
+  "text": "Camming Device Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h25",
+  "manual": "TC3-97.61",
+  "para": "C.h25",
+  "chapter": "Appendix C",
+  "heading": "I* 7",
+  "pages": [
+   416
+  ],
+  "text": "Camming Device Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h26",
+  "manual": "TC3-97.61",
+  "para": "C.h26",
+  "chapter": "Appendix C",
+  "heading": "II* 00",
+  "pages": [
+   416
+  ],
+  "text": "Camming Device Anchor, Rock, Anchor, Rock, II* 0 Camming Device, Camming Device",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h27",
+  "manual": "TC3-97.61",
+  "para": "C.h27",
+  "chapter": "Appendix C",
+  "heading": "8465-00-NSH-0203 -",
+  "pages": [
+   416
+  ],
+  "text": "Type II Anchor, Rock, Replacement Kit Camming Device II* 1 Anchor, Rock,",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h28",
+  "manual": "TC3-97.61",
+  "para": "C.h28",
+  "chapter": "Appendix C",
+  "heading": "II* 2",
+  "pages": [
+   416
+  ],
+  "text": "Camming Device Ascender, Ascender, 8465-01-579-3239 Mechanical (Left) I* - 8465-00-NSH-0204 Mechanical- Single Pack 8465-01-579-3245 Ascender, II* - Mechanical (Right) Bag, Assault Bag, Assault 8465-00-NSH-0215 Climber Kit 8465-01-578-8828 - - Climber (Set of 3) Belay Device, Belay Device, 8465-00-NSH-0216 Mountaineering 8465-01-578-7850 - - Mountaineering Kit (Set of 3) Harness, Harness, 8465-00-NSH-0217 Mountaineering 8465-01-578-8910 I* - Mountaineering Kit (Set of 3)",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h29",
+  "manual": "TC3-97.61",
+  "para": "C.h29",
+  "chapter": "Appendix C",
+  "heading": "Class",
+  "pages": [
+   417
+  ],
+  "text": "Pick, Chock Kit 4020-00-NSH-0008 4240-01-582-5611 Pick, Chock - - (Set of 3) Rope, Rope 4020-01-577-8686 Kernmantle I* III 4020-00-NSH-0011 Replacement Kit (ACTK) 4020-01-577-8748 Rope, III* I Kernmantle Visual User's Visual User's 7610-00-NSH-0005 Guide, ACTK 7610-00-NSH-0003 - - Guide, ACTK (Set of 10) Note. Asterisks beside type numbers (for example, I, II) correspond to supply codes and differ from size or class numbers. The legend explains the type (supply) codes. Legend: ACTK-assault climbing team kit; I-subsistence, rations; II-expendables or durable items; III-petroleum, oils, and lubricants; NSN-national stock number",
+  "notices": []
+ },
+ {
   "id": "TC3-97.61/C-5",
   "manual": "TC3-97.61",
   "para": "C-5",
@@ -17947,6 +18710,922 @@
    417
   ],
   "text": "The SIMK is designed to outfit a platoon with safety and mobility equipment for operations in snowand ice-covered mountainous terrain. This kit should be used in conjunction with the HAMK and ACTK, if planning to conduct operations above 2nd-class terrain. Table C-7 lists HAMK components, and tables C-8 and C-9, page 398, contain product and national stock number information for HAMKs.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h30",
+  "manual": "TC3-97.61",
+  "para": "C.h30",
+  "chapter": "Appendix C",
+  "heading": "Item Quantity",
+  "pages": [
+   417
+  ],
+  "text": "Avalanche Transceiver 43 Snow Picket Anchor 8 Avalanche Probe 20 Snowshoes 43 Avalanche Shovel 20 Crampon 43 Mountaineering Axe 40 Ice Tool 3 Ice Screw 16 mm 10 Ice Screw 19 mm 10 Legend: mm--millimeter",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h31",
+  "manual": "TC3-97.61",
+  "para": "C.h31",
+  "chapter": "Appendix C",
+  "heading": "NSN Product Name Product Description",
+  "pages": [
+   417
+  ],
+  "text": "Army Mountain Kit (AMK)-Snow and 8465-00-NSH-0146 AMK-SIMK 1 of 3 modules Ice Mobility Kit (SIMK) Module Legend: NSN-national stock number",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h32",
+  "manual": "TC3-97.61",
+  "para": "C.h32",
+  "chapter": "Appendix C",
+  "heading": "Class",
+  "pages": [
+   418
+  ],
+  "text": "8465-01-578-7741 Axe, Ice I* III 8465-01-578-8908 Crampon I* - Snowshow, 8465-01-558-9958 - - SIMK Mobility Kit Assault, Military",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h33",
+  "manual": "TC3-97.61",
+  "para": "C.h33",
+  "chapter": "Appendix C",
+  "heading": "8465-00-NSH-0200",
+  "pages": [
+   418
+  ],
+  "text": "- Single Pack Crampon, Center",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h34",
+  "manual": "TC3-97.61",
+  "para": "C.h34",
+  "chapter": "Appendix C",
+  "heading": "8465-01-NSH-0147 - -",
+  "pages": [
+   418
+  ],
+  "text": "Strap Extender Visual User's",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h35",
+  "manual": "TC3-97.61",
+  "para": "C.h35",
+  "chapter": "Appendix C",
+  "heading": "7610-00-NSH-0004 - -",
+  "pages": [
+   418
+  ],
+  "text": "Guide, SIMK Anchor, Ice, 8465-00-NSH-0209 Screw 16-cm 8465-01-578-6433 Anchor, Ice, Screw I* 1 Replacement Kit Anchor, Ice, 8465-00-NSH-0210 Screw 19-cm 8465-01-578-6447 Anchor, Ice, Screw - III Replacement Kit Anchor, Snow 8465-00-NSH-0211 8465-01-578-8717 Anchor, Snow I* I Replacement Kit Anchor, Snow Kit 8465-00-NSH-0218 8465-01-578-8717 Anchor, Snow I* I (Set of 4) Crampon Kit 8465-00-NSH-0220 8465-01-578-8908 Crampon I* - (Set of 2) Crampon, Center Crampon, Center 8465-00-NSH-0221 Strap Extender 8465-00-NSH-0147 - - Strap Extender Kit (Set of 2) Shovel, 4240-00-NSH-0017 Avalanche with 4240-01-582-8261 Shovel, Avalanche - - Probe Kit 4240-01-582-8278 Probe - - Snowshow, Snowshow, 8465-00-NSH-0222 Assault, Military 8465-01-558-9958 - - Assault, Military Kit (Set of 2) Transreceiver, Transreceiver, 8465-00-NSH-0223 Avalanche Kit 8465-01-572-3962 - - Avalanche (Set of 2) Visual User's Visual User's 7610-00-NSH-0006 Guide, SIMK 7610-00-NSH-0004 - - Guide, SIMK (Set of 10) Note. Asterisks beside type numbers (for example, I, II) correspond to supply codes and differ from size or class numbers. The legend explains the type (supply) codes. Legend: cm-centimeter; I-subsistence, rations; NSN-national stock number; SIMK-snow and ice mobility kit",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h36",
+  "manual": "TC3-97.61",
+  "para": "C.h36",
+  "chapter": "Appendix C",
+  "heading": "Glossary",
+  "pages": [
+   419
+  ],
+  "text": "The glossary lists acronyms and terms with Army or joint definitions. Where Army and joint definitions differ, (Army) precedes the definition. Terms for which TC 3-97.61 is the proponent are marked with an asterisk (*). The proponent publication for other terms is listed in parentheses after the definition. The majority of terms are defined IAW current common usage across the mountaineering community.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h37",
+  "manual": "TC3-97.61",
+  "para": "C.h37",
+  "chapter": "Appendix C",
+  "heading": "SECTION I - ACRONYMS AND ABBREVIATIONS",
+  "pages": [
+   419,
+   420
+  ],
+  "text": "degrees degree ABD assisted braking device ACTK assault climbing team kit AMS acute mountain sickness AR Army regulation ATP Army techniques publication BHK big honking knot C Celsius cam camming device CASEVAC casualty evacuation CE European Conformity or Conformite Europeene cm centimeter CPR cardio-pulmonary resuscitation CTA Common Table of Allowances DA Department of the Army DROP determine level of mobility, reduce redundant or nonessential equipment, organize resupply, police Soldiers F Fahrenheit FM field manual GPS Global Positioning System HACE high-altitude cerebral edema HAMK high-angle mountaineering kit HAPE high-altitude pulmonary edema kN kilonewton IAW in accordance with LOC line of communication MA mechanical advantage MEDEVAC medical evacuation METT-TC (I) mission, enemy, terrain and weather, troops and support available, time available, civil considerations, and informational considerations mm millimeter MMB Master Mountaineer Board MOLLE modular lightweight load-carrying equipment mph miles per hour NCOIC noncommissioned officer in charge OAKOC observation and fields of fire, avenues of approach, key terrain, obstacles, and cover and concealment [military aspects of terrain] OIC officer in charge PFD personal flotation device SIMK snow and ice mobility kit simul-climbing simultaneous climbing SOP standard operating procedure SOSES shape, orientation, size, elevation, slope SSSF static system safety factor TB MED technical bulletin (medical) TC training circular TTP tactics, techniques, and procedures UIAA Union des International Alpine Association U.S. United States USARIEM TN U.S. Army Research Institute of Environmental Medicine technical note UV ultraviolet VB vapor barrier VDA vertical danger area YDS Yosemite Decimal System",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h38",
+  "manual": "TC3-97.61",
+  "para": "C.h38",
+  "chapter": "Appendix C",
+  "heading": "*advanced military mountaineer",
+  "pages": [
+   420
+  ],
+  "text": "A Soldier who has graduated from the Basic Military Mountaineer Course and at least one of the Advanced Military Mountaineer courses. An advanced military mountaineer has been trained in advanced mountaineering techniques and is also known as a level 2 mountaineer.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h39",
+  "manual": "TC3-97.61",
+  "para": "C.h39",
+  "chapter": "Appendix C",
+  "heading": "*aid climbing",
+  "pages": [
+   420
+  ],
+  "text": "Climbing technique in which standing on or pulling oneself up via devices attached to fixed or placed protection is used to make upward progress.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h40",
+  "manual": "TC3-97.61",
+  "para": "C.h40",
+  "chapter": "Appendix C",
+  "heading": "*assault climber",
+  "pages": [
+   420
+  ],
+  "text": "A role assigned to a Soldier or team during tactical operations who is responsible for the location and establishment of technical routes in class 3 or higher terrain; ideally, a level 2 mountaineer.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h41",
+  "manual": "TC3-97.61",
+  "para": "C.h41",
+  "chapter": "Appendix C",
+  "heading": "*basic military mountaineer",
+  "pages": [
+   420
+  ],
+  "text": "A Soldier who graduated from the Basic Military Mountaineer Course. Basic military mountaineers have been trained in basic mountaineering techniques, such as fundamental mobility skills necessary to move safely and efficiently in mountainous terrain, and are also known as level 1 military mountaineers.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h42",
+  "manual": "TC3-97.61",
+  "para": "C.h42",
+  "chapter": "Appendix C",
+  "heading": "*belay",
+  "pages": [
+   420
+  ],
+  "text": "A system of using a rope as a backup in steep terrain to arrest a Soldier's fall should one occur.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h43",
+  "manual": "TC3-97.61",
+  "para": "C.h43",
+  "chapter": "Appendix C",
+  "heading": "*bolt",
+  "pages": [
+   421
+  ],
+  "text": "A type of rock protection or anchoring component comprised of an expansion bolt or glue-in shaft attached to a hanger to which a carabiner can be attached.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h44",
+  "manual": "TC3-97.61",
+  "para": "C.h44",
+  "chapter": "Appendix C",
+  "heading": "*brake strand",
+  "pages": [
+   421
+  ],
+  "text": "The strand of a rope system that controls the rate at which a load is lowered or a rappeller descends.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h45",
+  "manual": "TC3-97.61",
+  "para": "C.h45",
+  "chapter": "Appendix C",
+  "heading": "carabiner",
+  "pages": [
+   421
+  ],
+  "text": "A D-shaped or oval-shaped metal link, with one spring-hinged side, that is used in mountaineering as a connector between soft materials and to capture a freely running rope.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h46",
+  "manual": "TC3-97.61",
+  "para": "C.h46",
+  "chapter": "Appendix C",
+  "heading": "*cold-weather injury",
+  "pages": [
+   421
+  ],
+  "text": "Any preventable injury resulting from exposure to cold environmental conditions.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h47",
+  "manual": "TC3-97.61",
+  "para": "C.h47",
+  "chapter": "Appendix C",
+  "heading": "*coil",
+  "pages": [
+   421
+  ],
+  "text": "A secure configuration of rope that allows for easy transport without tangling.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h48",
+  "manual": "TC3-97.61",
+  "para": "C.h48",
+  "chapter": "Appendix C",
+  "heading": "couloir",
+  "pages": [
+   421
+  ],
+  "text": "Narrow snow- or ice-filled gully.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h49",
+  "manual": "TC3-97.61",
+  "para": "C.h49",
+  "chapter": "Appendix C",
+  "heading": "dynamic rope",
+  "pages": [
+   421
+  ],
+  "text": "Kernmantle rope designed to stretch and absorb force, primarily used to protect climbers from fall injuries.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h50",
+  "manual": "TC3-97.61",
+  "para": "C.h50",
+  "chapter": "Appendix C",
+  "heading": "fall protection",
+  "pages": [
+   421
+  ],
+  "text": "Any anchor clipped to a running rope used in belay systems that limits the distance a roped climber falls, should a fall occur.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h51",
+  "manual": "TC3-97.61",
+  "para": "C.h51",
+  "chapter": "Appendix C",
+  "heading": "friction hitch",
+  "pages": [
+   421
+  ],
+  "text": "A type of hitch tied with webbing or cordage around a rope that can be moved easily while no force is applied to it but cinches and becomes fixed when tensioned.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h52",
+  "manual": "TC3-97.61",
+  "para": "C.h52",
+  "chapter": "Appendix C",
+  "heading": "guidebook",
+  "pages": [
+   421
+  ],
+  "text": "A publication containing detailed climbing routes and approach route information.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h53",
+  "manual": "TC3-97.61",
+  "para": "C.h53",
+  "chapter": "Appendix C",
+  "heading": "gully",
+  "pages": [
+   421
+  ],
+  "text": "A channel caused by erosion, especially by water running down a slope; it is generally narrower and steeper than a draw.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h54",
+  "manual": "TC3-97.61",
+  "para": "C.h54",
+  "chapter": "Appendix C",
+  "heading": "hands-free backup",
+  "pages": [
+   421
+  ],
+  "text": "A rigging technique, involving friction hitches or mechanical devices that prevent a load from falling should control of a brake strand be lost.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h55",
+  "manual": "TC3-97.61",
+  "para": "C.h55",
+  "chapter": "Appendix C",
+  "heading": "hauling system",
+  "pages": [
+   421
+  ],
+  "text": "A technical rope system used to move a load up steep or vertical terrain comprised of rigging that generates increased mechanical advantage and captures progress.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h56",
+  "manual": "TC3-97.61",
+  "para": "C.h56",
+  "chapter": "Appendix C",
+  "heading": "high-strength tie off",
+  "pages": [
+   421
+  ],
+  "text": "A single-point anchoring method that retains maximum installation rope strength and releasability, using multiple-round turns around the anchor object to create friction, and securing the end back to itself ensuring no force is applied to any component knots or carabiners.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h57",
+  "manual": "TC3-97.61",
+  "para": "C.h57",
+  "chapter": "Appendix C",
+  "heading": "installation rope",
+  "pages": [
+   421
+  ],
+  "text": "The primary load-bearing rope or strand in a rope system.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h58",
+  "manual": "TC3-97.61",
+  "para": "C.h58",
+  "chapter": "Appendix C",
+  "heading": "kernmantle rope",
+  "pages": [
+   421
+  ],
+  "text": "A rope constructed with a load-bearing core of twisted synthetic fibers and a protective outer sheath of interwoven synthetic fibers.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h59",
+  "manual": "TC3-97.61",
+  "para": "C.h59",
+  "chapter": "Appendix C",
+  "heading": "knot",
+  "pages": [
+   422
+  ],
+  "text": "The fixed portion of a rope that has been manipulated around itself, another object, or both during the process of being tied for some purpose. Sometimes referred to as a \"hard knot\" since its condition will remain intact until actively untied.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h60",
+  "manual": "TC3-97.61",
+  "para": "C.h60",
+  "chapter": "Appendix C",
+  "heading": "*lead climbing",
+  "pages": [
+   422
+  ],
+  "text": "Climbing a route while attached to the end of a rope to place devices in rock, ice, or snow for fall protection with a belayer located below.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h61",
+  "manual": "TC3-97.61",
+  "para": "C.h61",
+  "chapter": "Appendix C",
+  "heading": "*lead climber",
+  "pages": [
+   422
+  ],
+  "text": "The first climber to negotiate a route, for whom a top belay is not possible, and who assumes the most risk of injury in a fall.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h62",
+  "manual": "TC3-97.61",
+  "para": "C.h62",
+  "chapter": "Appendix C",
+  "heading": "*load management",
+  "pages": [
+   422
+  ],
+  "text": "The act or strategy of planning and packing loads to reduce negative impacts on Soldier physical performance.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h63",
+  "manual": "TC3-97.61",
+  "para": "C.h63",
+  "chapter": "Appendix C",
+  "heading": "*lowering system",
+  "pages": [
+   422
+  ],
+  "text": "A technical rope system used to move a load down steep or vertical terrain in a controlled fashion using friction hitches or mechanical devices.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h64",
+  "manual": "TC3-97.61",
+  "para": "C.h64",
+  "chapter": "Appendix C",
+  "heading": "*master military mountaineer",
+  "pages": [
+   422
+  ],
+  "text": "A Soldier extensively trained and experienced with mountaineering techniques who the commander appoints to serve as a subject matter expert. Master military mountaineers are graduates of the Basic Military Mountaineer Course and Advanced Military Mountaineer Course. They possess all the skills of the advanced military mountaineer and have extensive practical experience in a variety of mountain environments in both winter and summer conditions.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h65",
+  "manual": "TC3-97.61",
+  "para": "C.h65",
+  "chapter": "Appendix C",
+  "heading": "*mechanical advantage",
+  "pages": [
+   422
+  ],
+  "text": "Reduction in the force required to move a load, which comes at the cost of time and distance. Specific rope rigging techniques in mountaineering generate mechanical advantage.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h66",
+  "manual": "TC3-97.61",
+  "para": "C.h66",
+  "chapter": "Appendix C",
+  "heading": "multipoint anchor",
+  "pages": [
+   422
+  ],
+  "text": "More than one fixed object joined with technical rigging to form an anchor system capable of suspending the weight or arresting the fall of an attached load.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h67",
+  "manual": "TC3-97.61",
+  "para": "C.h67",
+  "chapter": "Appendix C",
+  "heading": "natural anchor",
+  "pages": [
+   422
+  ],
+  "text": "A natural fixed object (such as a tree, rock formation, or ice formation) to which a rope system can be secured, and is of sufficient size, weight, and security to suspend the weight of or arrest the fall of an attached load.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h68",
+  "manual": "TC3-97.61",
+  "para": "C.h68",
+  "chapter": "Appendix C",
+  "heading": "pitch",
+  "pages": [
+   422
+  ],
+  "text": "A section of a climb that comprises the distance between two belay stations, which can be up to a standard rope length (60 meters).",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h69",
+  "manual": "TC3-97.61",
+  "para": "C.h69",
+  "chapter": "Appendix C",
+  "heading": "prolonged field care",
+  "pages": [
+   422
+  ],
+  "text": "The continued delivery of medical care prior to patient movement beyond the holding capability of that role of care. (JP 4-02)",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h70",
+  "manual": "TC3-97.61",
+  "para": "C.h70",
+  "chapter": "Appendix C",
+  "heading": "redundancy (in rigging)",
+  "pages": [
+   422
+  ],
+  "text": "The condition in which a rope system will not fail as the result of any single component of the system failing.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h71",
+  "manual": "TC3-97.61",
+  "para": "C.h71",
+  "chapter": "Appendix C",
+  "heading": "safety knot",
+  "pages": [
+   422
+  ],
+  "text": "A backup knot tied to prevent a primary knot from slipping loose.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h72",
+  "manual": "TC3-97.61",
+  "para": "C.h72",
+  "chapter": "Appendix C",
+  "heading": "scrambling",
+  "pages": [
+   422
+  ],
+  "text": "The act of moving over difficult or broken terrain, characterized by using mostly walking techniques but requires some use of the hands for balance or other specific climbing techniques.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h73",
+  "manual": "TC3-97.61",
+  "para": "C.h73",
+  "chapter": "Appendix C",
+  "heading": "self-equalizing anchor",
+  "pages": [
+   423
+  ],
+  "text": "A multipoint anchor comprised of adjustable strands from each anchor component to a shared attachment point that allows for maximum load sharing even when direction of pull changes during use.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h74",
+  "manual": "TC3-97.61",
+  "para": "C.h74",
+  "chapter": "Appendix C",
+  "heading": "*simul-climbing",
+  "pages": [
+   423
+  ],
+  "text": "A belay technique involving two Soldiers climbing simultaneously while attached to the ends of a rope which runs through the fall protection.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h75",
+  "manual": "TC3-97.61",
+  "para": "C.h75",
+  "chapter": "Appendix C",
+  "heading": "snowpack",
+  "pages": [
+   423
+  ],
+  "text": "The entire mass of snow covering a given area of terrain.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h76",
+  "manual": "TC3-97.61",
+  "para": "C.h76",
+  "chapter": "Appendix C",
+  "heading": "static rope",
+  "pages": [
+   423
+  ],
+  "text": "Kernmantle rope designed for minimal stretch under load, primarily used for hauling, lowering, and anchor systems construction.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h77",
+  "manual": "TC3-97.61",
+  "para": "C.h77",
+  "chapter": "Appendix C",
+  "heading": "*technical route",
+  "pages": [
+   423
+  ],
+  "text": "A route through steep or broken mountainous terrain that presents significant risk of fall injury and requires special movement techniques or ropes to ensure adequate safety for Soldiers moving through it.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h78",
+  "manual": "TC3-97.61",
+  "para": "C.h78",
+  "chapter": "Appendix C",
+  "heading": "*vertical danger area",
+  "pages": [
+   423,
+   424
+  ],
+  "text": "Steep terrain that significantly restricts a unit's ability to maneuver, thereby putting the unit at significant tactical disadvantage should enemy contact be made while moving through the VDA. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h79",
+  "manual": "TC3-97.61",
+  "para": "C.h79",
+  "chapter": "Appendix C",
+  "heading": "References",
+  "pages": [
+   425
+  ],
+  "text": "All websites accessed on 30 September 2025.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h80",
+  "manual": "TC3-97.61",
+  "para": "C.h80",
+  "chapter": "Appendix C",
+  "heading": "REQUIRED PUBLICATIONS",
+  "pages": [
+   425
+  ],
+  "text": "These documents must be available to the intended users of this publication. DOD Dictionary of Military and Associated Terms. 15 August 2025. FM 1-02.1. Operational Terms. 28 February 2024. FM 1-02.2. Military Symbols. 23 January 2025.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h81",
+  "manual": "TC3-97.61",
+  "para": "C.h81",
+  "chapter": "Appendix C",
+  "heading": "RELATED PUBLICATIONS",
+  "pages": [
+   425
+  ],
+  "text": "These documents are cited in this publication.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h82",
+  "manual": "TC3-97.61",
+  "para": "C.h82",
+  "chapter": "Appendix C",
+  "heading": "JOINT AND DEPARTMENT OF DEFENSE PUBLICATIONS",
+  "pages": [
+   425
+  ],
+  "text": "Most joint publications are available online: https://www.jcs.mil/Doctrine. JP 4-02. Joint Health Services. 29 August 2023.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h83",
+  "manual": "TC3-97.61",
+  "para": "C.h83",
+  "chapter": "Appendix C",
+  "heading": "ARMY PUBLICATIONS",
+  "pages": [
+   425
+  ],
+  "text": "Most Army doctrinal publications are available online: https://armypubs.army.mil/. AR 5-25. Army Weather Functional Activities. 14 August 2023. AR 40-25/OPNAVINST 10110.1/MCO 10110.49/AFI 44-141. Nutrition and Menu Standards for Human Performance Optimization. 3 January 2017. AR 115-10/AFI 15-157 (IP). Weather Support for the U.S. Army. 2 September 2021. ATP 2-01.3. Intelligence Preparation of the Operational Environment. 1 March 2019. ATP 3-21.18. Foot Marches. 24 July 2025. ATP 3-21.50. Infantry Small-Unit Mountain and Cold Weather Operations. 29 July 2025. ATP 3-50.21. Survival. 18 September 2018. ATP 3-90.97. Mountain Warfare and Cold Weather Operations. 29 April 2016. ATP 4-02.13. Casualty Evacuation. 30 June 2021. ATP 4-48. Aerial Delivery. 28 August 2023. CTA 50-900. Clothing and Individual Equipment. 19 December 2023. FM 6-27/MCTP 11-10C. The Commander's Handbook on the Law of Land Warfare. 7 August 2019. FM 7-22. Holistic Health and Fitness. 1 October 2020. TB MED 505. Altitude Acclimatization and Illness Management. 30 September 2010. TC 3-25.26. Map Reading and Land Navigation. 15 November 2013.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h84",
+  "manual": "TC3-97.61",
+  "para": "C.h84",
+  "chapter": "Appendix C",
+  "heading": "WEBSITES",
+  "pages": [
+   425
+  ],
+  "text": "The Mountain Project. https://www.mountainproject.com/. Special Operations Forces Nutrition Guide. Available online: https://navyseals.com/wpcontent/uploads/2012/12/special-operations-nutrition-guide.pdf. Summit Post. https://www.summitpost.org/. USARIEM TN-01/4. Nutrition Guidance for Military Operations in Temperate and Extreme Environments. 23 May 2001. Available online: https://apps.dtic.mil/sti/pdfs/ADA390352.pdf.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h85",
+  "manual": "TC3-97.61",
+  "para": "C.h85",
+  "chapter": "Appendix C",
+  "heading": "PRESCRIBED FORMS",
+  "pages": [
+   426
+  ],
+  "text": "Unless otherwise indicated, DA Forms are available online: https://armypubs.army.mil. DA Form 5752-R. Rope Log (Usage and History).",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h86",
+  "manual": "TC3-97.61",
+  "para": "C.h86",
+  "chapter": "Appendix C",
+  "heading": "REFERENCED FORMS",
+  "pages": [
+   426
+  ],
+  "text": "Unless otherwise indicated, DA Forms are available online: https://armypubs.army.mil. DA Form 2028. Recommended Changes to Publications and Blank Forms.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h87",
+  "manual": "TC3-97.61",
+  "para": "C.h87",
+  "chapter": "Appendix C",
+  "heading": "Index",
+  "pages": [
+   427
+  ],
+  "text": "Entries are by paragraph number. climber, second. 10-99 1 1 simple. 12-10",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h88",
+  "manual": "TC3-97.61",
+  "para": "C.h88",
+  "chapter": "Appendix C",
+  "heading": "3 crevasse rescue. 14-62 2 1 simple. 12-10",
+  "pages": [
+   427
+  ],
+  "text": "3:1 tensioning system. 16-12 device. 10-63, 10-102 3 1 simple. 12-10 guide mode. 10-103, 10- 5 1 complex, 313",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h89",
+  "manual": "TC3-97.61",
+  "para": "C.h89",
+  "chapter": "Appendix C",
+  "heading": "A 124 5 1 simple. 12-10",
+  "pages": [
+   427
+  ],
+  "text": "ablation zone. 14-3 lead climber. 10-84 6 1 compound. 12-11 accumulation zone. 14-3 rescue, 372, 15-39, 15-60 7 1 complex. 12-12 stream crossing. 13-26 9 1 compound. 12-11 adjustment halt, 89 tandem prusik. 15-61 hauling systems, simple, 2 1. advanced military mountaineer. terrain. 10-121 14-66 2-11, 6-11, 6-37, 6-47, 6-139 top rope. 10-64 high-strength tie off. 9-21 aerial resupply. 4-87 bivouac. 4-90",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h90",
+  "manual": "TC3-97.61",
+  "para": "C.h90",
+  "chapter": "Appendix C",
+  "heading": "aerobic capacity. 4-5 bollard. 9-104 I",
+  "pages": [
+   427
+  ],
+  "text": "A-frame. 16-29 bolts. 9-40 installation rope. 8-91",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h91",
+  "manual": "TC3-97.61",
+  "para": "C.h91",
+  "chapter": "Appendix C",
+  "heading": "aid climbing. 10-19 definition. 9-39 K",
+  "pages": [
+   427
+  ],
+  "text": "altimeters. 7-11, 7-30 boulders. 1-20 kernmantle rope. 8-3, 8-5 anabatic winds. 1-63 butterfly coil. 8-136 knot",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h92",
+  "manual": "TC3-97.61",
+  "para": "C.h92",
+  "chapter": "Appendix C",
+  "heading": "anaerobic capacity. 4-6 C definition. 8-30",
+  "pages": [
+   427
+  ],
+  "text": "anchors camming devices. 9-55 knots ice. 9-71 alpine butterfly. 8-60 multipoint, 201 carabiner. 8-13 autoblock. 8-95 multi-point. 9-72 CASEVAC. 15-4, 15-6 bends. 8-32 pre-equalized. 9-16 chimney climbing technique. 6- big honking (BHK). 8-121 rock. 9-24 77 bowline. 8-78 self-equalizing. 9-15 bowline on a bight. 8-84 class terrains. 1-46 single-point, 197 clove hitch. 8-104 snow. 9-101 couloir. 1-8 directional figure-eight knot. top rope. 10-55 crevasse rescue, 350, 14-12 8-57 tree. 9-18 double fisherman's. 8-72",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h93",
+  "manual": "TC3-97.61",
+  "para": "C.h93",
+  "chapter": "Appendix C",
+  "heading": "artificial rock protection. 9-27 D figure eight on a bight. 8-48",
+  "pages": [
+   427
+  ],
+  "text": "dynamic rope. 8-7 figure-eight bend. 8-63 ascending techniques (rope), figure-eight slip. 8-45",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h94",
+  "manual": "TC3-97.61",
+  "para": "C.h94",
+  "chapter": "Appendix C",
+  "heading": "283, 11-38, 11-137 E flat overhand. 8-69",
+  "pages": [
+   427
+  ],
+  "text": "atmospheric pressure. 1-55 EARNEST-H. 9-17 garda hitch aka ratchet, avalanche alpine clutch. 8-118",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h95",
+  "manual": "TC3-97.61",
+  "para": "C.h95",
+  "chapter": "Appendix C",
+  "heading": "equipment. 5-46 F girth hitch. 8-87",
+  "pages": [
+   427
+  ],
+  "text": "problems. 5-30 fair weather cumulus. 1-76 hitches. 8-33 search and rescue, 77, 5-40 fall protection. 2-24 friction. 8-34",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h96",
+  "manual": "TC3-97.61",
+  "para": "C.h96",
+  "chapter": "Appendix C",
+  "heading": "backpacks. 6-17 G inline figure eight. 8-44",
+  "pages": [
+   427
+  ],
+  "text": "MOLLE. 6-46 glacier features. 14-7 loop, 159 back-stacking. 8-143 gully. 1-8 mule.Munter8-115hitch. 8-109 balance. 6-3, 6-53",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h97",
+  "manual": "TC3-97.61",
+  "para": "C.h97",
+  "chapter": "Appendix C",
+  "heading": "H overhand safety. 8-43",
+  "pages": [
+   427,
+   428
+  ],
+  "text": "base layers. 4-34 prusik. 8-90 basic military mountaineer. 2-8 hands-free backup. 11-115 rerouted figure-eight. 8-51 belay hauling system. 12-1 safety knot alpine. 10-118 hauling systems definition. 8-27 Entries are by paragraph number.",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h98",
+  "manual": "TC3-97.61",
+  "para": "C.h98",
+  "chapter": "Appendix C",
+  "heading": "square knot. 8-75 R bridges. 14-49",
+  "pages": [
+   428
+  ],
+  "text": "super Munter hitch. 8-112 redundancy (in rigging). 16-13 types of. 1-24 tripletwo-loopbowline.figure8-81eight. 8-54 rope climbing team. 2-8 snowpackdefinition, 7 rope drag. 10-91",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h99",
+  "manual": "TC3-97.61",
+  "para": "C.h99",
+  "chapter": "Appendix C",
+  "heading": "M static rope. 8-5",
+  "pages": [
+   428
+  ],
+  "text": "rope rescue systems. 15-51",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h100",
+  "manual": "TC3-97.61",
+  "para": "C.h100",
+  "chapter": "Appendix C",
+  "heading": "N water contaminants. 4-76",
+  "pages": [
+   428
+  ],
+  "text": "scrambling. 6-33 natural anchor. 9-26 water purification. 4-81 simul-climbing. 7-63",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h101",
+  "manual": "TC3-97.61",
+  "para": "C.h101",
+  "chapter": "Appendix C",
+  "heading": "P smearing. 6-60",
+  "pages": [
+   428
+  ],
+  "text": "pitch. 10-16 snow",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h102",
+  "manual": "TC3-97.61",
+  "para": "C.h102",
+  "chapter": "Appendix C",
+  "heading": "26 November 2025",
+  "pages": [
+   429
+  ],
+  "text": "By Order of the Secretary of the Army:",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h103",
+  "manual": "TC3-97.61",
+  "para": "C.h103",
+  "chapter": "Appendix C",
+  "heading": "RANDY A. GEORGE",
+  "pages": [
+   429
+  ],
+  "text": "General, United States Army Chief of Staff Official:",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h104",
+  "manual": "TC3-97.61",
+  "para": "C.h104",
+  "chapter": "Appendix C",
+  "heading": "MATTHEW L. SANNITO",
+  "pages": [
+   429
+  ],
+  "text": "Administrative Assistant to the Secretary of the Army 2532801",
+  "notices": []
+ },
+ {
+  "id": "TC3-97.61/C.h105",
+  "manual": "TC3-97.61",
+  "para": "C.h105",
+  "chapter": "Appendix C",
+  "heading": "DISTRIBUTION:",
+  "pages": [
+   429,
+   430
+  ],
+  "text": "Active Army, Army National Guard, and United States Army Reserve. Distributed in electronic media only (EMO). This page intentionally left blank.",
   "notices": []
  }
 ]

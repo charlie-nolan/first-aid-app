@@ -662,16 +662,28 @@
   "heading": "BIOLOGICAL AGENT EXPOSURE",
   "pages": [
    41,
-   42,
-   43
+   42
   ],
-  "text": "Potential biological agents. The biological agents discussed in this section are listed below. These agents can be disseminated as an aerosol to specifically induce an effective dose via the respiratory tract.\n- Smallpox\n- Tularemia\n- Cholera Staphylococcal Enterotoxin B (SEB)\n- Toxins The following topics will be covered for each potential biological agent:\n- Symptoms of exposure\n- Transmission of infectious agent\n- Incubation period of infectious agent\n- Treatment of disease\n- Vaccination Treatment of disease: none, other than supportive care.",
+  "text": "Potential biological agents. The biological agents discussed in this section are listed below. These agents can be disseminated as an aerosol to specifically induce an effective dose via the respiratory tract.\n- Smallpox\n- Tularemia\n- Cholera Staphylococcal Enterotoxin B (SEB)\n- Toxins The following topics will be covered for each potential biological agent:\n- Symptoms of exposure\n- Transmission of infectious agent\n- Incubation period of infectious agent\n- Treatment of disease\n- Vaccination",
   "notices": [
    {
     "kind": "NOTE",
-    "text": "Page numbers in the following text refer to FM 8-33, Control of Communicable Diseases in Man, 16th Edition, The American Public Health Association, Washington, D.C., 1995. Smallpox This systemic viral disease was declared globally eradicated in 1979 by the World Health Organization. The only known samples of the diseasecausing Variola Virus are in the \"hot\" labs at the Centers for Disease Control (CDC) in Atlanta, GA, and in the CDC's Russian counterpart in Moscow. Vaccines are stockpiled. (page 425) Symptoms of exposure are sudden onset of fever, headache, severe backache, malaise, rigors, and occasionally, abdominal pain. After two to three days, temperature falls and a rash appears. The rash develops into macules, papules, vesicles, pustules, and finally, scabs. The casualty is infectious during the entire term of the disease, which is usually three to four weeks. The first work is the worst. Transmission of infectious agent. Transmission of the disease is by respiratory discharge, bed linens, the patient's clothing, or skin contact with the scabs. Complete sterile handling should be enforced with complete quarantine for up to four weeks after the rash appears. Incubation period of infectious agent averages from 7 to 12 days, with"
+    "text": "Page numbers in the following text refer to FM 8-33, Control of Communicable Diseases in Man, 16th Edition, The American Public Health Association, Washington, D.C., 1995."
    }
   ]
+ },
+ {
+  "id": "USAMRICD-FMCC/42.1",
+  "manual": "USAMRICD-FMCC",
+  "para": "42.1",
+  "chapter": "",
+  "heading": "Smallpox",
+  "pages": [
+   42,
+   43
+  ],
+  "text": "This systemic viral disease was declared globally eradicated in 1979 by the World Health Organization. The only known samples of the diseasecausing Variola Virus are in the \"hot\" labs at the Centers for Disease Control (CDC) in Atlanta, GA, and in the CDC's Russian counterpart in Moscow. Vaccines are stockpiled. (page 425) Symptoms of exposure are sudden onset of fever, headache, severe backache, malaise, rigors, and occasionally, abdominal pain. After two to three days, temperature falls and a rash appears. The rash develops into macules, papules, vesicles, pustules, and finally, scabs. The casualty is infectious during the entire term of the disease, which is usually three to four weeks. The first work is the worst. Transmission of infectious agent. Transmission of the disease is by respiratory discharge, bed linens, the patient's clothing, or skin contact with the scabs. Complete sterile handling should be enforced with complete quarantine for up to four weeks after the rash appears. Incubation period of infectious agent averages from 7 to 12 days, with Treatment of disease: none, other than supportive care.",
+  "notices": []
  },
  {
   "id": "USAMRICD-FMCC/43.1",
@@ -1065,11 +1077,7 @@
   "notices": [
    {
     "kind": "NOTE",
-    "text": "The four decontamination augmentees assist in moving patients between clothing removal and skin decontamination litters. They can also replace litter bearers during casualty decontamination as needed, remove contaminated litters, and replace clean litters during transfers between clothing removal and skin decontamination. Additionally, the augmentees bag waste from the litter decontamination area, replace chlorine solutions after every two patients, and pour old chlorine solutions onto waste in the bags, thus allowing the liquid to absorb into the clothing. Ambulatory Casualty Decontamination Area: 4 Decontamination Augmentees 1 Medic Litter Decontamination Point: Not manned"
-   },
-   {
-    "kind": "NOTE",
-    "text": "Augmentees decontaminate the litters by scrubbing a 5% chlorine solution over the entire surface. If canvas litters are used, the augmentees will remove any barrier materials used to protect the wooden handles and canvas cover and place these materials in a plastic bag. The augmentees must scrub the canvas litter with 5% chlorine solution and reapply new barrier materials. Separate litter cycles must be maintained. Clothing removal litters must not be used as skin decontamination litters. When not decontaminating a litter, two of the augmentees will transport waste to the dirty dump."
+    "text": "The four decontamination augmentees assist in moving patients between clothing removal and skin decontamination litters. They can also replace litter bearers during casualty decontamination as needed, remove contaminated litters, and replace clean litters during transfers between clothing removal and skin decontamination. Additionally, the augmentees bag waste from the litter decontamination area, replace chlorine solutions after every two patients, and pour old chlorine solutions onto waste in the bags, thus allowing the liquid to absorb into the clothing."
    }
   ]
  },
@@ -1077,6 +1085,35 @@
   "id": "USAMRICD-FMCC/65.2",
   "manual": "USAMRICD-FMCC",
   "para": "65.2",
+  "chapter": "",
+  "heading": "Ambulatory Casualty Decontamination Area:",
+  "pages": [
+   65
+  ],
+  "text": "4 Decontamination Augmentees 1 Medic",
+  "notices": []
+ },
+ {
+  "id": "USAMRICD-FMCC/65.3",
+  "manual": "USAMRICD-FMCC",
+  "para": "65.3",
+  "chapter": "",
+  "heading": "Litter Decontamination Point:",
+  "pages": [
+   65
+  ],
+  "text": "Not manned",
+  "notices": [
+   {
+    "kind": "NOTE",
+    "text": "Augmentees decontaminate the litters by scrubbing a 5% chlorine solution over the entire surface. If canvas litters are used, the augmentees will remove any barrier materials used to protect the wooden handles and canvas cover and place these materials in a plastic bag. The augmentees must scrub the canvas litter with 5% chlorine solution and reapply new barrier materials. Separate litter cycles must be maintained. Clothing removal litters must not be used as skin decontamination litters. When not decontaminating a litter, two of the augmentees will transport waste to the dirty dump."
+   }
+  ]
+ },
+ {
+  "id": "USAMRICD-FMCC/65.4",
+  "manual": "USAMRICD-FMCC",
+  "para": "65.4",
   "chapter": "",
   "heading": "Clean Treatment Area:",
   "pages": [
@@ -1086,9 +1123,9 @@
   "notices": []
  },
  {
-  "id": "USAMRICD-FMCC/65.4",
+  "id": "USAMRICD-FMCC/65.6",
   "manual": "USAMRICD-FMCC",
-  "para": "65.4",
+  "para": "65.6",
   "chapter": "",
   "heading": "Logistical Support Point:",
   "pages": [
@@ -1257,7 +1294,7 @@
   "notices": [
    {
     "kind": "NOTE",
-    "text": "The dedicated tools mentioned in this section must be obtained prior to deployment and used exclusively by the medical treatment squad for site preparation. This will ensure that tools are available at the critical time. After site preparation is complete, all tools must be kept on the \"clean\" side of the hot line. Suggested Equipment Minimums During the site set-up, the saying \"Do more with less!\" should be followed. Only the minimum amount of equipment needed to support patient decon should be set up on the soon to be dirty side of the hot line. Additionally, only the minimum amount of medical supplies needed to support the contaminated emergency treatment point should be set out. During the conduct of decon operations, any resupply items should be obtained from the clean side of the hot line on as needed basis. By keeping equipment and supplies to the barest minimum required, the site OIC/NCOIC will ensure that only minimal items must be dealt with during disestablishment of the decontamination site. A suggested minimum list of equipment needed to set up a litter decon area and ambulatory decon area is provided below. Most of this equipment is provided in the MES Chem Agent Patient Decontamination."
+    "text": "The dedicated tools mentioned in this section must be obtained prior to deployment and used exclusively by the medical treatment squad for site preparation. This will ensure that tools are available at the critical time. After site preparation is complete, all tools must be kept on the \"clean\" side of the hot line."
    }
   ]
  },
@@ -1265,6 +1302,18 @@
   "id": "USAMRICD-FMCC/76.1",
   "manual": "USAMRICD-FMCC",
   "para": "76.1",
+  "chapter": "",
+  "heading": "Suggested Equipment Minimums",
+  "pages": [
+   76
+  ],
+  "text": "During the site set-up, the saying \"Do more with less!\" should be followed. Only the minimum amount of equipment needed to support patient decon should be set up on the soon to be dirty side of the hot line. Additionally, only the minimum amount of medical supplies needed to support the contaminated emergency treatment point should be set out. During the conduct of decon operations, any resupply items should be obtained from the clean side of the hot line on as needed basis. By keeping equipment and supplies to the barest minimum required, the site OIC/NCOIC will ensure that only minimal items must be dealt with during disestablishment of the decontamination site. A suggested minimum list of equipment needed to set up a litter decon area and ambulatory decon area is provided below. Most of this equipment is provided in the MES Chem Agent Patient Decontamination.",
+  "notices": []
+ },
+ {
+  "id": "USAMRICD-FMCC/76.2",
+  "manual": "USAMRICD-FMCC",
+  "para": "76.2",
   "chapter": "",
   "heading": "* Arrival/Triage Area",
   "pages": [
@@ -1415,10 +1464,9 @@
   "heading": "Step 3. Monitor for Completeness of Decontamination",
   "pages": [
    85,
-   86,
-   87
+   86
   ],
-  "text": "The CAM should be used for this step. If it is not available, M8 or hot line using the three-man patient carry. Prior to transfer of the casualty, the dirty team washes their TAP aprons, gloves, and lower part of the protective hood with the 5% Cl solution. The team members should wash each other, with each member being deconnned standing with his arms spread out to the sides, allowing the team member performing the decontamination to get into all the folds of the TAP apron. logistical support of the ongoing operation. A logistics support point should be established upwind between 30 to 50 meters of the hot line. At this point, the Cl solutions are prepared and 1 or 2 quart canteens are also stockpiled for use by all the soldiers manning the site. The logistics support point should have one 400 gallon water buffalo or initially, twenty 5 gallon water cans. Medical supplies, chemical casualty treatment, and decontamination MESs can be located at this point along with additional decontamination supplies.",
+  "text": "The CAM should be used for this step. If it is not available, M8 or hot line using the three-man patient carry. Prior to transfer of the casualty, the dirty team washes their TAP aprons, gloves, and lower part of the protective hood with the 5% Cl solution. The team members should wash each other, with each member being deconnned standing with his arms spread out to the sides, allowing the team member performing the decontamination to get into all the folds of the TAP apron.",
   "notices": [
    {
     "kind": "NOTE",
@@ -1426,8 +1474,22 @@
    },
    {
     "kind": "NOTE",
-    "text": "Straddling the hot line is the casualty pass-over point, which is in a shuffle pit. The shuffle pit is composed of two parts Super Tropical Bleach (STB) and three parts earth (by volume). The shuffle pit should be deep enough to cover the bottom of the protective overboots and large enough that the dirty team, two litter stands supporting a clean litter, and the clean team can occupy it at one time. Clean Side Actions"
-   },
+    "text": "Straddling the hot line is the casualty pass-over point, which is in a shuffle pit. The shuffle pit is composed of two parts Super Tropical Bleach (STB) and three parts earth (by volume). The shuffle pit should be deep enough to cover the bottom of the protective overboots and large enough that the dirty team, two litter stands supporting a clean litter, and the clean team can occupy it at one time."
+   }
+  ]
+ },
+ {
+  "id": "USAMRICD-FMCC/86.1",
+  "manual": "USAMRICD-FMCC",
+  "para": "86.1",
+  "chapter": "",
+  "heading": "Clean Side Actions",
+  "pages": [
+   86,
+   87
+  ],
+  "text": "logistical support of the ongoing operation. A logistics support point should be established upwind between 30 to 50 meters of the hot line. At this point, the Cl solutions are prepared and 1 or 2 quart canteens are also stockpiled for use by all the soldiers manning the site. The logistics support point should have one 400 gallon water buffalo or initially, twenty 5 gallon water cans. Medical supplies, chemical casualty treatment, and decontamination MESs can be located at this point along with additional decontamination supplies.",
+  "notices": [
    {
     "kind": "NOTE",
     "text": "As the dirty team prepares to bring the casualty to the hot line, the clean team opens a blanket or other covering appropriate for the environmental conditions. 1. The dirty team brings the decontaminated casualty to the hot line on the litter and places the litter on the stands. Three dirty team members log-roll the casualty up and off the litter. A fourth dirty team member removes the litter. The clean team replaces the litter. The dirty team lowers the casualty onto the clean litter and moves away. 2. After the dirty team moves away, the blanket is folded over the casualty, and the casualty is moved from the pass-over point to a holding area 30 to 50 meters upwind. 3. In the clean treatment area, the patient can now be retriaged, treated, and evacuated. In a hot climate, the patient will probably be significantly dehydrated, the rehydration process must begin immediately. Overhead cover should be provided for casualties in the holding area."

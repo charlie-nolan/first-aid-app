@@ -1,5 +1,166 @@
 [
  {
+  "id": "ATP4-02.11/0.h1",
+  "manual": "ATP4-02.11",
+  "para": "0.h1",
+  "chapter": "",
+  "heading": "MARCH 2026",
+  "pages": [
+   1
+  ],
+  "text": "Distribution Restriction: Approved for public release, distribution is unlimited. This publication supersedes TC 4-02.1, dated 21 January 2016.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h2",
+  "manual": "ATP4-02.11",
+  "para": "0.h2",
+  "chapter": "",
+  "heading": "HEADQUARTERS, DEPARTMENT OF THE ARMY",
+  "pages": [
+   2,
+   3
+  ],
+  "text": "This publication is available at the Army Publishing Directorate site (https://armypubs.army.mil), and the Central Army Registry site (https://atiam.train.army.mil/catalog/dashboard). Army Techniques Publication (ATP) Headquarters No. 4-02.11 Department of the Army Washington, DC, 23 March 2026",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h3",
+  "manual": "ATP4-02.11",
+  "para": "0.h3",
+  "chapter": "",
+  "heading": "Page",
+  "pages": [
+   3,
+   4
+  ],
+  "text": "Distribution Restriction: Approved for public release, distribution is unlimited. This publication supersedes TC 4-02.1, dated 21 January 2016 Tactical Combat Casualty Care Phases ................................................................................. 31 Tactical Combat Casualty Care During Operations ................................................................ 35 Tactical Combat Casualty Care Clinical Practice Guideline ................................................... 37 CHAPTER 4 ..........................................................................................................................................43 MASSIVE BLEEDING CONTROL ............................................................................................... 43 Overview of Massive Bleeding Control ................................................................................... 43 Equipment used for Massive Bleeding Control ....................................................................... 47 Tier 1 Skills for Massive Bleeding Control .............................................................................. 48 Tier 2 Skills for Massive Bleeding Control .............................................................................. 52 Expedient Techniques for Hemorrhage Control ..................................................................... 57 CHAPTER 5 ..........................................................................................................................................59 AIRWAY CONTROL .................................................................................................................... 59 Overview of Airway Control ..................................................................................................... 59 Equipment used for Airway Control ........................................................................................ 60 Tier 1 Skills for Airway Control ................................................................................................ 60 Tier 2 Skills for Airway Control ................................................................................................ 65 Expedient Techniques for Airway Control ............................................................................... 66 CHAPTER 6 ..........................................................................................................................................73 RESPIRATION AND BREATHING CONTROL........................................................................... 73 Overview of Respiration and Breathing .................................................................................. 73 Equipment used for Respiration and Breathing Control ......................................................... 73 Tier 1 Skills for Respiration and Breathing Control ................................................................. 74 Tier 2 Skills for Respiration and Breathing Control ................................................................. 76 Expedient Techniques for Respiration and Breathing Control ................................................ 79 CHAPTER 7 ..........................................................................................................................................83 CIRCULATION CONTROL .......................................................................................................... 83 Overview of Circulation Control .............................................................................................. 83 Equipment used for Circulation Control .................................................................................. 84 Tier 1 Skills for Circulation Control.......................................................................................... 85 Tier 2 Skills for Circulation Control.......................................................................................... 86 Expedient Techniques for Circulation Control ........................................................................ 87 CHAPTER 8 ..........................................................................................................................................89 HYPOTHERMIA CONTROL ........................................................................................................ 89 Overview of Hypothermia Control ........................................................................................... 89 Equipment used for Hypothermia Control ............................................................................... 91 Tier 1 Skills Used for Hypothermia Control ............................................................................. 92 Tier 2 Skills Used for Hypothermia Control ............................................................................. 92 Expedient Skills Used for Hypothermia Control ...................................................................... 92 CHAPTER 9 ..........................................................................................................................................93",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h4",
+  "manual": "ATP4-02.11",
+  "para": "0.h4",
+  "chapter": "",
+  "heading": "AND MECHANISM OF INJURY, INJURY TYPE, SIGNS AND SYMPTOMS, AND",
+  "pages": [
+   5,
+   6
+  ],
+  "text": "Overview of Pain, Antibiotics, Wounds, and Splinting and Mechanism of Injury, Injury Type, Signs and Symptoms, and Treatments ................................................................................... 93 CHAPTER 10 ....................................................................................................................................... 97 EYE TRAUMA .............................................................................................................................. 97 Overview of Eye Trauma ......................................................................................................... 97 Equipment used for the treatment of Eye Trauma .................................................................. 97 Tier 1 Skills used to Treat Eye Trauma ................................................................................... 97 Tier 2 Skills used to Treat Eye Trauma ................................................................................. 105 Expedient Skills used to Treat Eye Trauma .......................................................................... 105 CHAPTER 11 ..................................................................................................................................... 107 HEAD INJURY............................................................................................................................ 107 Overview of Head Injuries ..................................................................................................... 107 Equipment used for the Treatment of a Head Injury ............................................................. 109 Tier 1 Skills for the Treatment of a Head Injury ..................................................................... 109 Tier 2 Skills for the Treatment of a Head Injury ..................................................................... 109 Expedient Skills used for the Treatment of Head, Neck, and Facial Injuries ........................ 110 CHAPTER 12 ..................................................................................................................................... 115 BURNS ....................................................................................................................................... 115 Overview of Burns ................................................................................................................. 115 Equipment used for the Treatment of Burns ......................................................................... 117 Tier 1 Skills for the Treatment of Burns ................................................................................. 117 Tier 2 Skills for the Treatment of Burns ................................................................................. 118 Expedient Skills used for the Treatment of Burns ................................................................. 118 CHAPTER 13 ..................................................................................................................................... 121 FRACTURES AND SPLINTING................................................................................................. 121 Overview of Fractures ........................................................................................................... 121 Equipment used for the Treatment of Fractures.................................................................... 122 Tier 1 Skills for the Treatment of Fractures ........................................................................... 123 Tier 2 Skills for the Treatment of Fractures ........................................................................... 123 Expedient Techniques for Splints, Padding, Bandages, Slings, and Swathes ..................... 124 CHAPTER 14 ..................................................................................................................................... 141 EXPEDIENT TECHNIQUES FOR OTHER SECONDARY INJURIES....................................... 141 Overview of Secondary Injuries ............................................................................................. 141 Abdominal Wounds ............................................................................................................... 141 Bandaging.............................................................................................................................. 143 Impalement Injuries ............................................................................................................... 149 CHAPTER 15 ..................................................................................................................................... 151 CASUALTY MONITORING AND EVACUATION PREPARATION .......................................... 151 Casualty Monitoring .............................................................................................................. 151 Pre-Evacuation Procedures, Communication, and Documentation ..................................... 152 Evacuation Equipment and Casualty Packaging .................................................................. 157 Casualty Staging ................................................................................................................... 158 Evacuation Care After-Action Review ................................................................................... 158 PART THREE .....................................................................................................................................159",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h5",
+  "manual": "ATP4-02.11",
+  "para": "0.h5",
+  "chapter": "",
+  "heading": "FIRST AID IN A CHEMICAL, BIOLOGICAL, RADIOLOGICAL, AND NUCLEAR",
+  "pages": [
+   6,
+   7
+  ],
+  "text": "General Information for First Aid in a Chemical, Biological, Radiological, and Nuclear Environment .......................................................................................................................... 189 First Aid In a Chemical Environment..................................................................................... 191 First Aid in a Biological Environment .................................................................................... 206 First Aid in a Radiological and Nuclear Environment ............................................................ 208 CHAPTER 20 ......................................................................................................................................209 COMBAT AND OPERATIONAL STRESS CONTROL ............................................................. 209 Overview of Combat and Operational Stress Control ........................................................... 209 Psychological First Aid .......................................................................................................... 209 Combat and Operational Stress Reaction ............................................................................ 211 APPENDIX A ......................................................................................................................................217 FIRST AID CASE AND KITS, AUTHORIZED MEDICAL ALLOWANCE LIST ........................ 217 First Aid Case and Kits, Authorized Medical Allowance List for First Aid Case and Kits, Authorized Medical Allowance List for United States Marine Corps ..................................... 221 APPENDIX B ...................................................................................................................................... 224 RESCUE EQUIPMENT .............................................................................................................. 224 Glossary ............................................................................................................................................ 227 References ........................................................................................................................................ 231 Index .................................................................................................................................................. 235",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h6",
+  "manual": "ATP4-02.11",
+  "para": "0.h6",
+  "chapter": "",
+  "heading": "Tables",
+  "pages": [
+   10
+  ],
+  "text": "This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h7",
+  "manual": "ATP4-02.11",
+  "para": "0.h7",
+  "chapter": "",
+  "heading": "Preface",
+  "pages": [
+   11
+  ],
+  "text": "Army Techniques Publication (ATP) 4-02.11 serves as a primary doctrine reference for holistic casualty response. Implementation of the techniques presented in this publication enable Service members to execute casualty response, render first aid, and prevent greater harm to injured Service members. The principal audience for ATP 4-02.11 is Army personnel as well as employees of civilian agencies executing and supporting operations. Commanders, staffs, and subordinates ensure their decisions and actions comply with applicable United States, international, and in some cases host-nation laws and regulations. Commanders at all levels ensure that their Service members operate in accordance with the law of armed conflict and the rules of engagement. Refer to Field Manual 6-27/Marine Corps Tactical Publication 11-10C for more information on The Commander's Handbook on the Law of Land Warfare. This publication implements or is in consonance with the following North Atlantic Treaty Organization (NATO) Standardization Agreement (STANAG) and the standards of the American, British, Canadian, Australian, and New Zealand (ABCANZ) standards:",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h8",
+  "manual": "ATP4-02.11",
+  "para": "0.h8",
+  "chapter": "",
+  "heading": "TITLE NATO STANAG ABCANZ",
+  "pages": [
+   11,
+   12
+  ],
+  "text": "Aeromedical Evacuation 3204 CBRN First Aid Handbook 2358 Coalition Health Interoperability Handbook 256 First Aid Dressings, First Aid Kits, and Emergency Medical 2126 Care Kits Land Operational Reports 2020 NATO Land Urgent Voice Messages (LUVM) Pocket Book 2627 Pre-Hospital Combat Casualty Care Standards for ABCANZ 2121 Soldiers Requirement for Training in Casualty Care for All Military 2122 Personnel Tactical Combat Casualty Care Card 2136 ATP 4-02.11 uses joint terms where applicable. Selected joint and Army terms and definitions appear in both the glossary and the text. Terms for which ATP 4-02.11 is the proponent publication (the authority) are bold and italicized in the text and are marked with an asterisk (*) in the glossary. For other term definitions shown in the text, the term is italicized, and the number of the proponent publication follows the definition. This publication applies to the Active Army, Army National Guard/Army National Guard of the United States, and United States Army Reserve unless otherwise stated. Throughout this publication, as appropriate, reference is made to the major policy guidance affecting each specific topic. These references should not be considered as the only policy guidance available. When issues arise that require consideration of policy guidance, the issue should be thoroughly researched and, as appropriate, coordinated with the supporting staff judge advocate, governmental or nongovernmental agency involved. The Army proponent and preparing agency of ATP 4-02.11 is the United States Army Medical Center of Excellence. Send comments and recommendations on Department of Army Form 2028 (Recommended Changes to Publications and Blank Forms) to Commander, United States Army Medical Center of Excellence, ATTN: ATMC-FD (ATP 4-02.11), 2377 Greeley Road, Suite B, JBSA Fort Sam Houston, TX 78234-7731; by e-mail to usarmy.jbsa.medical-coe.mbx.ameddcs-medical-doctrine@army.mil; or submit an electronic Department of the Army Form 2028. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h9",
+  "manual": "ATP4-02.11",
+  "para": "0.h9",
+  "chapter": "",
+  "heading": "Introduction",
+  "pages": [
+   13
+  ],
+  "text": "ATP 4-02.11 provides discussion on casualty response and first aid procedures for nonmedical personnel in environments from home station to combat situations. This publication is meant to be used by trainers and individuals being trained based on common first aid tasks. These tasks are meant to reinforce and maintain proficiency in the correct procedures for providing first aid throughout a Service member's time in Service. ATP 4-02.11 is designed to facilitate training and first aid competencies by bridging first aid training across the spectrum of assignments from initial military training to permanent duty station and deployment. ATP 4- 02.11 introduces Tactical Combat Casualty Care (TCCC) with first aid tasks and procedures associated with combat situations. Training scenarios can be completed by combining individual and multiple first aid tasks with collective tasks. ATP 4-02.11 consists of three parts, 20 chapters, and two appendixes.\n- Part One, Casualty Response\n- Chapter 1, Casualty Response\n- Chapter 2, Casualty Extraction and Movement\n- Part Two, Fundamentals of Tactical Combat Casualty Care\n- Chapter 3, Tactical Combat Casualty Care\n- Chapter 4, Massive Bleeding Control\n- Chapter 5, Airway Control\n- Chapter 6, Respiration and Breathing Control\n- Chapter 7, Circulation Control\n- Chapter 8, Hypothermia Control\n- Chapter 9, Secondary Injury Assessment Using Pain, Antibiotics, Wounds, Splinting and Mechanism of Injury, Injury Type, Signs and Symptoms and Treatments\n- Chapter 10, Eye Trauma\n- Chapter 11, Head Injury\n- Chapter 12, Burns\n- Chapter 13, Fractures and Splinting\n- Chapter 14, Expedient Techniques for Other Secondary Injuries\n- Chapter 15, Casualty Monitoring and Evacuation Preparation\n- Part Three, First Aid Procedures for Non-Tactical Combat Casualty Care Injuries\n- Chapter 16, Bites and Stings\n- Chapter 17, Climatic and Environmental Injuries\n- Chapter 18, Sickle Cell Trait\n- Chapter 19, First Aid in a Chemical, Biological, Radiological, and Nuclear Environment\n- Chapter 20, Combat and Operational Stress Control\n- Appendix A, First Aid Case and Kits, Authorized Medical Allowance List\n- Appendix B, Rescue Equipment The United States Army Medical Center of Excellence (MEDCoE) is reorganizing the placement of terms and definitions found in proponent publications within Army 4-02 series publications. Based on current doctrinal changes, certain terms for which ATP 4-02.11 is the proponent that has been added, rescinded, or modified for purposes of this publication. The Glossary has acronyms and defined terms. See introductory table-1 on and introductory table-2 on for specific term changes.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h10",
+  "manual": "ATP4-02.11",
+  "para": "0.h10",
+  "chapter": "",
+  "heading": "Term Remarks",
+  "pages": [
+   14
+  ],
+  "text": "care under fire establishes term definition and proponent publication casualty response establishes term definition and proponent publication tactical evacuation care establishes term definition and proponent publication tactical field care establishes term definition and proponent publication",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h11",
+  "manual": "ATP4-02.11",
+  "para": "0.h11",
+  "chapter": "",
+  "heading": "Term Remarks",
+  "pages": [
+   14
+  ],
+  "text": "modifies term and changes proponent publication to combat lifesaver",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h12",
+  "manual": "ATP4-02.11",
+  "para": "0.h12",
+  "chapter": "",
+  "heading": "ATP 4-02.11",
+  "pages": [
+   14
+  ],
+  "text": "modifies term and changes proponent publication to first aid",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/0.h13",
+  "manual": "ATP4-02.11",
+  "para": "0.h13",
+  "chapter": "",
+  "heading": "CASUALTY RESPONSE",
+  "pages": [
+   15
+  ],
+  "text": "Casualty response is of paramount importance to military units and leaders in winning our Nations's wars and providing a critical role in ensuring the welfare and effectiveness of the armed forces. In the unpredictable and high-stakes environment of warfare, casualties are an unfortunate reality. Whether it is injuries sustained on the battlefield or the loss of fellow Service members, casualty response encompasses the immediate and long-term actions taken to mitigate the impact of these incidents. Effective casualty response saves lives but also boosts the morale of troops, enhances unit cohesion, allows leaders to maintain operational readiness, and win our Nations's wars.",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/1-1",
   "manual": "ATP4-02.11",
   "para": "1-1",
@@ -45,6 +206,78 @@
    15
   ],
   "text": "Department of Defense Instruction (DODI) 1322.24, directs standardized combat casualty care training for all Service members and Department of Defense (DOD)-expeditionary civilians. According to DODI 1322.24, all Service members will be trained and proficient in basic lifesaving TCCC skills. The TCCC skills replace legacy military first aid skills. This evidence-based approach to combat casualty care reflects the lessons of nearly two decades of war and has the potential to reduce preventable prehospital trauma-related deaths.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/1.h1",
+  "manual": "ATP4-02.11",
+  "para": "1.h1",
+  "chapter": "Chapter 1",
+  "heading": "Care Under Fire Tactical Field Care",
+  "pages": [
+   16
+  ],
+  "text": "- Rapid casualty assessment.\n- Ensure scene safety.\n- Follow casualty treatment procedures to render\n- Move the casualty to safety. any treatments indicated.\n- Identify and control life-threatening bleeding. * Seek help as directed by unit standing operating procedure.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/1.h2",
+  "manual": "ATP4-02.11",
+  "para": "1.h2",
+  "chapter": "Chapter 1",
+  "heading": "Care Under Fire Tactical Field Care",
+  "pages": [
+   16
+  ],
+  "text": "- Suppress hostile fire to minimize the risk of * Maintain security and situation awareness. injury to personnel. * Perform casualty assessments.\n- Minimize additional injury to previously injured * Follow casualty treatment procedures to render Service members. any treatments indicated.\n- Assist in providing self-aid and moving * Support the combat medic or corpsman, as casualties, if feasible. directed.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/1.h3",
+  "manual": "ATP4-02.11",
+  "para": "1.h3",
+  "chapter": "Chapter 1",
+  "heading": "Care Under Fire Tactical Field Care",
+  "pages": [
+   16
+  ],
+  "text": "- Suppress hostile fire to minimize the risk of injury to personnel. * Assume the primary role for casualty\n- Minimize additional injury to previously injured assessment and treatment. Service members. * Manage and direct the casualty response.\n- Assist in providing self-aid and moving * System using all available responders. casualties, if feasible.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/1.h4",
+  "manual": "ATP4-02.11",
+  "para": "1.h4",
+  "chapter": "Chapter 1",
+  "heading": "In TACEVAC the Combat Medic or Corpsman:",
+  "pages": [
+   16
+  ],
+  "text": "- Reassess casualties for the arrival of evacuation assets.\n- Communicate findings to the TACEVAC medical personnel.\n- Ensure Proper staging and support loading.\n- Secure casualties on the evacuation platform.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/1.h5",
+  "manual": "ATP4-02.11",
+  "para": "1.h5",
+  "chapter": "Chapter 1",
+  "heading": "Care Under Fire Tactical Field Care",
+  "pages": [
+   16
+  ],
+  "text": "- Suppress hostile fire to minimize new or * Provide casualty assessment and treatment additional injury to casualties. when functioning as the unit medic.\n- Assist in providing self-aid and moving * Manage and direct casualty response efforts casualties, if feasible. utilizing all available responders.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/1.h6",
+  "manual": "ATP4-02.11",
+  "para": "1.h6",
+  "chapter": "Chapter 1",
+  "heading": "In TACEVAC the Combat Paramedic or Provider",
+  "pages": [
+   16
+  ],
+  "text": "- Reassess casualties for the arrival of evacuation assets.\n- Communicate findings to the TACEVAC medical personnel.\n- Ensure proper staging and support loading.\n- Secure casualties on the evacuation platform.",
   "notices": []
  },
  {
@@ -1236,6 +1469,18 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/1.h7",
+  "manual": "ATP4-02.11",
+  "para": "1.h7",
+  "chapter": "Chapter 1",
+  "heading": "Legend:",
+  "pages": [
+   34
+  ],
+  "text": "AH hospital ship LCE logistics combat element CRTS casualty receiving and treatment ship LHA amphibious assault ship, general FEBA forward edge of battle area LHD amphibious assault ship, multipurpose GCE ground combat element LZ landing zone casualty receiving and surgical company treatment ship evacuation section unit aid station shock trauma platoon Dismounted corpsman",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/1-103",
   "manual": "ATP4-02.11",
   "para": "1-103",
@@ -1411,7 +1656,7 @@
   "notices": [
    {
     "kind": "WARNING",
-    "text": "Avoid manual carries for casualties with suspected neck or spine injuries, unless immediate life-threatening hazards are present. Seek medical advice on appropriate movement and transportation protocols. CASUALTY MOVEMENT"
+    "text": "Avoid manual carries for casualties with suspected neck or spine injuries, unless immediate life-threatening hazards are present. Seek medical advice on appropriate movement and transportation protocols."
    }
   ]
  },
@@ -1420,7 +1665,7 @@
   "manual": "ATP4-02.11",
   "para": "2-6",
   "chapter": "Chapter 2",
-  "heading": "CASUALTY EXTRACTION",
+  "heading": "CASUALTY MOVEMENT",
   "pages": [
    38
   ],
@@ -1559,6 +1804,42 @@
    40
   ],
   "text": "It's important to note that the current Standard Training Publication contains tasks and training guidance that are not aligned with the current standards for continuity training across the operational force. Once the revised STP 8-68W13-SG-TG is approved, it will be available for download on the Army Publishing Directorate and Central Army Register websites. In the meantime, for the most up-to-date Combat Medic Specialist tasks, refer to the Individual Critical Task Lists posted on the Central Army Register website. You can find these by searching for \"68W ICTLs\" in the search window. This ensures that you are using the most current and applicable training materials available. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/2.h1",
+  "manual": "ATP4-02.11",
+  "para": "2.h1",
+  "chapter": "Chapter 2",
+  "heading": "TCCC is crucial for ensuring the safety and health of Service members in combat-",
+  "pages": [
+   41
+  ],
+  "text": "related situations. Specifically designed for battlefield conditions, TCCC provides a",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/2.h2",
+  "manual": "ATP4-02.11",
+  "para": "2.h2",
+  "chapter": "Chapter 2",
+  "heading": "comprehensive approach to casualty care, focusing on immediate treatment and",
+  "pages": [
+   41
+  ],
+  "text": "management. In the fast-paced environment of warfare, adherence to TCCC principles can significantly improve survival outcomes. It equips military units and leaders with the necessary knowledge and skills to provide timely and effective care to injured personnel, thereby reducing fatalities and enhancing survival rates. This publication",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/2.h3",
+  "manual": "ATP4-02.11",
+  "para": "2.h3",
+  "chapter": "Chapter 2",
+  "heading": "essential role in saving the lives of Service members and enhancing the overall",
+  "pages": [
+   41
+  ],
+  "text": "effectiveness of units.",
   "notices": []
  },
  {
@@ -4133,7 +4414,7 @@
   "notices": [
    {
     "kind": "CAUTION",
-    "text": "Do NOT use blood or other body fluids to lubricate the NPA. TIER 1 SKILLS FOR AIRWAY CONTROL"
+    "text": "Do NOT use blood or other body fluids to lubricate the NPA."
    }
   ]
  },
@@ -4142,7 +4423,7 @@
   "manual": "ATP4-02.11",
   "para": "5-9",
   "chapter": "Chapter 5",
-  "heading": "EQUIPMENT USED FOR AIRWAY CONTROL",
+  "heading": "TIER 1 SKILLS FOR AIRWAY CONTROL",
   "pages": [
    74
   ],
@@ -4264,6 +4545,23 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/5.h1",
+  "manual": "ATP4-02.11",
+  "para": "5.h1",
+  "chapter": "Chapter 5",
+  "heading": "Remove any visible objects, but do not perform a blind finger",
+  "pages": [
+   77
+  ],
+  "text": "sweep.",
+  "notices": [
+   {
+    "kind": "CAUTION",
+    "text": "The head-tilt/chin-lift technique is an important procedure in opening the airway; however, use extreme care because excess force in performing this maneuver may cause further spinal injury. In a casualty with a suspected neck injury or severe head trauma, the safest approach to opening the airway is the jaw-thrust technique because in most cases, it can be accomplished without extending the neck."
+   }
+  ]
+ },
+ {
   "id": "ATP4-02.11/5-19",
   "manual": "ATP4-02.11",
   "para": "5-19",
@@ -4273,12 +4571,7 @@
    77
   ],
   "text": "Place one hand on the casualty's forehead and apply firm, backward pressure with the palm to tilt the head back. Place the fingertips of the other hand under the bony part of the lower jaw and lift, bringing the chin forward. The thumb should not be used to lift the chin (see figure 5-5). Note. The fingers should not press deeply into the soft tissue under the chin because the airway may be obstructed.",
-  "notices": [
-   {
-    "kind": "CAUTION",
-    "text": "The head-tilt/chin-lift technique is an important procedure in opening the airway; however, use extreme care because excess force in performing this maneuver may cause further spinal injury. In a casualty with a suspected neck injury or severe head trauma, the safest approach to opening the airway is the jaw-thrust technique because in most cases, it can be accomplished without extending the neck."
-   }
-  ]
+  "notices": []
  },
  {
   "id": "ATP4-02.11/5-20",
@@ -4449,6 +4742,18 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/5.h2",
+  "manual": "ATP4-02.11",
+  "para": "5.h2",
+  "chapter": "Chapter 5",
+  "heading": "abdominal thrust procedure abdominal thrust",
+  "pages": [
+   82
+  ],
+  "text": "- Each thrust should be a separate and distinct movement.\n- Continue performing abdominal thrusts until the obstruction is expelled or the casualty becomes unresponsive.\n- If the casualty becomes unresponsive, call for help as you proceed with the steps to open the airway.",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/5-34",
   "manual": "ATP4-02.11",
   "para": "5-34",
@@ -4564,6 +4869,23 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/5.h3",
+  "manual": "ATP4-02.11",
+  "para": "5.h3",
+  "chapter": "Chapter 5",
+  "heading": "(tongue-jaw lift) (crossed-finger method)",
+  "pages": [
+   86
+  ],
+  "text": "- Insert the index finger of the other hand down along the inside of their cheek to the base of the tongue. Use a hooking motion from the side of the mouth toward the center to dislodge the foreign body (see figure 5-20).",
+  "notices": [
+   {
+    "kind": "WARNING",
+    "text": "Take care not to force the object deeper into the airway by pushing it with the finger."
+   }
+  ]
+ },
+ {
   "id": "ATP4-02.11/6-1",
   "manual": "ATP4-02.11",
   "para": "6-1",
@@ -4573,12 +4895,7 @@
    87
   ],
   "text": "After establishing an open airway, it is important to evaluate the casualty's respirations and maintain that airway in an open position. This is the \"R\" of MARCH-PAWS. Respiratory distress means difficulty breathing (rapid or abnormally slow breathing), in other words, it is difficult for the casualty to get air in or out. Airway and respiration are not addressed in CUF; however, they must be addressed in TFC.",
-  "notices": [
-   {
-    "kind": "WARNING",
-    "text": "Take care not to force the object deeper into the airway by pushing it with the finger."
-   }
-  ]
+  "notices": []
  },
  {
   "id": "ATP4-02.11/6-2",
@@ -4775,6 +5092,18 @@
    90
   ],
   "text": "At this point in the MARCH-PAWS protocol, the responder's role is to carefully roll the casualty to examine both the front and back of the torso for any signs of chest trauma. It is crucial for the responder to identify and acknowledge if the casualty has a potentially life-threatening chest injury that is causing respiratory distress. The responder must then effectively communicate these findings to the medical personnel arriving on the scene, ensuring that the casualty receives the appropriate medical attention promptly.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/6.h1",
+  "manual": "ATP4-02.11",
+  "para": "6.h1",
+  "chapter": "Chapter 6",
+  "heading": "DO NOT pack chest wounds with a hemostatic (or other)",
+  "pages": [
+   90
+  ],
+  "text": "dressing. REPORT a severe chest injury to medical personnel immediately.",
   "notices": []
  },
  {
@@ -5288,6 +5617,18 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/7.h1",
+  "manual": "ATP4-02.11",
+  "para": "7.h1",
+  "chapter": "Chapter 7",
+  "heading": "Alert medical personnel if the casualty is presenting signs of",
+  "pages": [
+   98
+  ],
+  "text": "shock.",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/7-7",
   "manual": "ATP4-02.11",
   "para": "7-7",
@@ -5297,6 +5638,30 @@
    98
   ],
   "text": "If the casualty has both indicators of mental confusion and weak or absent radial pulse of shock, the casualty has lost a significant amount of blood. Shock will lead to the casualty's death if not quickly recognized and treated. Table 7-1 provides an overview of the effects of blood loss and highlights why it is important to quickly apply a TQ during CUF, reassess, and evaluate for additional bleeding sources during TFC.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/7.h2",
+  "manual": "ATP4-02.11",
+  "para": "7.h2",
+  "chapter": "Chapter 7",
+  "heading": "Remaining Loss",
+  "pages": [
+   98
+  ],
+  "text": "4,500cc 500cc Possible increased HR. Usually, no effects. 4,000cc 1,000cc Radial pulse >100. Unlikely to die from this Breathing is probably normal. amount of loss. 3,500cc 1,500cc Change in mental status. If there is no further Weak radial pulse >100. blood loss, still unlikely Increased respirations. to die. 3,000cc 2,000cc Confusion and lethargy. Very possibly fatal if not Very weak radial pulse >120. managed. High respiratory rate >35. 2,500cc 2,500cc Unconscious. Fatal without immediate No radial pulse, carotid pulse, and rapid interventions. HR >140. Respirations >35.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/7.h3",
+  "manual": "ATP4-02.11",
+  "para": "7.h3",
+  "chapter": "Chapter 7",
+  "heading": "Legend:",
+  "pages": [
+   98
+  ],
+  "text": "cc cubic centimeter HR heart rate > greater than",
   "notices": []
  },
  {
@@ -7254,6 +7619,18 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/11.h1",
+  "manual": "ATP4-02.11",
+  "para": "11.h1",
+  "chapter": "Chapter 11",
+  "heading": "Injury Physical damage to the body or body part of a Service member? (Yes/No)",
+  "pages": [
+   124
+  ],
+  "text": "EvaluationDistance HEADSWasapproximateSAMPLE----- SomethingEarHeadachesAmnesia,Doubletheringing?Servicevisiondistancealteredfeelsormembervomiting?orwrongdizziness?consciousness,fromwithintheor isblast.not50 metersright?or lossofoftheconsciousness?blast? Record the (Yes/No)(Yes/No)(Yes/No)(Yes/No)(Yes/No)(Yes/No)Not Applicable",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/11-23",
   "manual": "ATP4-02.11",
   "para": "11-23",
@@ -8578,7 +8955,7 @@
    },
    {
     "kind": "CAUTION",
-    "text": "DO NOT give casualties with abdominal wounds food or water (moistening the lips is allowed). BANDAGING"
+    "text": "DO NOT give casualties with abdominal wounds food or water (moistening the lips is allowed)."
    }
   ]
  },
@@ -8587,7 +8964,7 @@
   "manual": "ATP4-02.11",
   "para": "14-12",
   "chapter": "Chapter 14",
-  "heading": "ABDOMINAL WOUNDS",
+  "heading": "BANDAGING",
   "pages": [
    157
   ],
@@ -8955,6 +9332,18 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/15.h1",
+  "manual": "ATP4-02.11",
+  "para": "15.h1",
+  "chapter": "Chapter 15",
+  "heading": "Legend:",
+  "pages": [
+   168
+  ],
+  "text": "AVPU alert, verbal, pain, and unresponsive M male BN battalion MG milligram CRIC cricothyrotomy MVC motor vehicle collision DD Form Department of Defense form NPA nasopharyngeal DD-MMM-YY day-month-year O2 oxygen ET-Tube endotracheal tube OX oximeter EVAC evacuation PO by mouth F female R right GSW gunshot wound RPG rocket propelled grenade IED improvised explosive device Sat saturation INF infantry SGA supraglottic airway IV intravenous TCCC tactical combat casualty care L left TQ tourniquet",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/15-18",
   "manual": "ATP4-02.11",
   "para": "15-18",
@@ -8964,6 +9353,43 @@
    168
   ],
   "text": "All Service members should have at least one or more DD Form 1380s within their first aid kit. For additional information and instructions on completing the DD Form 1380 refer to AR 40-66. Use the",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/15.h2",
+  "manual": "ATP4-02.11",
+  "para": "15.h2",
+  "chapter": "Chapter 15",
+  "heading": "following steps to complete a DD Form 1380:",
+  "pages": [
+   168
+  ],
+  "text": "- Remove the DD Form 1380 from the casualty's first aid kit.\n- Complete all entries as fully as possible. Note. As the DD Form 1380 is the first, and sometimes the only record of treatment of combat casualties, accuracy and thoroughness of information provided is of the utmost importance.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/15.h3",
+  "manual": "ATP4-02.11",
+  "para": "15.h3",
+  "chapter": "Chapter 15",
+  "heading": "* Front of DD Form 1380 (figure 15-2):",
+  "pages": [
+   168
+  ],
+  "text": "- Battle Roster # - Write first letter of the casualty's first name, then write first letter of the casualty's last name, write the last four numbers of the casualty's identification number. In",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/15.h4",
+  "manual": "ATP4-02.11",
+  "para": "15.h4",
+  "chapter": "Chapter 15",
+  "heading": "figure 15-2, the Service member's battle roster number is \"BL6553.\"",
+  "pages": [
+   169,
+   170
+  ],
+  "text": "- Evacuation (EVAC) - Mark an \"X\" on the casualty's evacuation precedence (Urgent; Priority; or Routine).\n- Name - Write casualty's name (Last, First).\n- Last 4 - Write last four numbers of casualty's identification number.\n- Sex - Mark an \"X\" on the casualty's sex Male (M) or Female (F).\n- Date - Write date of injury in DD-MMM-YY format. For example, \"29-JUN-13.\"\n- Time - Write 24-hour time of injury and indicate whether Local (L) or Zulu (Z) time. For example, \"1300Z.\"\n- Service - Write casualty's branch of service (United States Army [USA], United States Air Force [USAF], United States Coast Guard [USCG], United States Navy [USN], United States Marine Corps [USMC], and United States Space Force [USSF]. For U.S. civilians write \"U.S. CIV\". For non-U.S. personnel, write \"NON-U.S.\" or a standard abbreviation for the casualty's nationality.\n- Unit - Write casualty's unit name.\n- Allergies - Write casualty's known drug allergies. If no drug allergies, write no known drug allergies (NKDA).\n- Mechanism of Injury - Mark an \"X\" on the mechanism or cause of injury (mark all that apply) (artillery, blunt, burn, fall, grenade, gunshot wound [GSW], improvised explosive device [IED], landmine, motor vehicle crash or collision [MVC], rocket-propelled grenade -propelled grenade [RPG], and other (specify).\n- Injury - Mark an \"X\" at the site of the injury(s) on the body picture. For burn injuries, circle the burn percentage(s) on the figure. If multiple mechanisms of injury and multiple injuries, draw a line between the mechanism of injury and the anatomical site of the injury.\n- TQ: R Arm - If a TQ is applied to the right arm, write the type of TQ (hasty or deliberate) used, and the time of TQ application.\n- TQ: L Arm - If a TQ is applied to the left arm, write the type of TQ (hasty or deliberate) used, and the time of TQ application.\n- TQ: R Leg - If a TQ is applied to the right leg, write the type of TQ (hasty or deliberate) used, and the time of TQ application.\n- TQ: L Leg - If a TQ is applied to the left leg, write type of TQ (hasty or deliberate) used, and the time of TQ application.\n- Time - Write the time that vital signs are taken.\n- Pulse (rate and location) - Write casualty's pulse rate.\n- Blood Pressure - Write casualty's blood pressure.\n- Respiratory Rate - Write casualty's respiratory rate.\n- AVPU - Write casualty's level of consciousness.\n- Pain Scale (0-10) - Write casualty's level of pain in numeric rating scale of 0 to 10, with 0 being no pain and 10 being the worst pain.\n- Back of Card (figure 15-2 on page 154):\n- Battle Roster # - Write first letter of casualty's first name, then first letter of casualty's last name, write the last four numbers of the casualty's identification number. In figure 15-2, the Service member's battle roster number is \"LD2270.\"\n- Evacuation (EVAC) - Mark an \"X\" on the casualty's evacuation precedence (Urgent, Priority, or Routine).\n- C - Mark an \"X\" for all Circulation hemorrhage control interventions. For TQ, mark category (Extremity, Junctional, and, or Truncal) and write name of TQ(s) used. For dressings, mark category (Hemostatic, Pressure, and, or Other) and write type of dressing(s) used.\n- A - Mark an \"X\" for all airway interventions (Intact, NPA, cricothyroidotomy (known as CRIC), endotracheal (known as ET) tube, supraglottic airway (SGA) and write the type of device(s) used.\n- B - Mark an \"X\" for all Breathing interventions oxygen (O2), needle decompression (Needle- D), Chest-Tube, (Chest-Seal) and write the type of device(s) used.\n- C: Fluid - Circulation resuscitation interventions. Write name, volume, route, and time of any fluids given.\n- C: Blood Product - Circulation resuscitation interventions. Write name, volume, route, and time of any blood products given. Note. When more space is needed for documentation, attach another DD Form 1380 to the original by safety pin or other means. The second form will be labeled DD Form 1380 #2, showing the Service member's name and unit.\n- Analgesic Medications - Write name, dose, route, and time that any analgesics are given.\n- Antibiotic Medications - Write name, dose, route, and time that any antibiotics are given.\n- Other Medications - Write name, dose, route, and time of any other administered medications.\n- Other - Mark an \"X\" for other treatments administered (combat pill pack, eye shield (mark right (R) or left (L)), splint, hypothermia prevention) and the type of device(s) used.\n- Notes - Use this space to record any other pertinent information or clarifications.\n- First Responder Name - Print the first responder's name (Last, First).\n- First Responder Last 4 - Write the last four numbers of the first responder's social security number or identification number.\n- Attach the completed DD Form 1380 to the casualty in a visible area where follow on medical staff will see it. Note. Do not attach DD Form 1380 to the casualty's body armor, as this equipment most likely will be separated from the casualty once they arrive at the MTF.",
   "notices": []
  },
  {
@@ -9240,6 +9666,18 @@
    172
   ],
   "text": "It is critical that documentation of personnel, injury, and treatment be annotated using DD Form 1380 and should be completed prior to any handoff of the casualty. If care cannot be documented using the DD Form 1380 at the point of care by the first responder or CLS, it should be documented using the TCCC after action review, found on the JTS website, as soon as possible (within 72 hours) after treatment. The nonmedical first responder or CLS should follow up with the supporting unit medical personnel to complete and submit the TCCC after action review.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/15.h5",
+  "manual": "ATP4-02.11",
+  "para": "15.h5",
+  "chapter": "Chapter 15",
+  "heading": "In the operational environment, Service members are exposed to risks and receive",
+  "pages": [
+   173
+  ],
+  "text": "injuries beyond those caused by an operational event. First aid skills play a vital role in ensuring the safety and well-being of Service members. As personnel participate in outdoor activities and training, the potential for accidents or injuries increases. Having a solid foundation in first aid equips Service members with the necessary knowledge and abilities to respond swiftly and effectively in times of emergencies. Whether it's treating minor cuts and bruises, providing initial care for more serious injuries, or even saving lives, the importance of first aid skills cannot be overstated. By acquiring these skills, Service members not only become more responsible and capable individuals, but they also contribute to creating a safer environment for themselves and others.",
   "notices": []
  },
  {
@@ -10307,7 +10745,7 @@
   "notices": [
    {
     "kind": "WARNING",
-    "text": "Service members should use extreme caution when starting fad diets or taking over-the-counter herbal supplements. Death and severe injury may occur in individuals using dietary or herbal supplements without medical monitoring. A trained health care provider should supervise weight loss and the use of weight loss supplements. HEAT INJURIES"
+    "text": "Service members should use extreme caution when starting fad diets or taking over-the-counter herbal supplements. Death and severe injury may occur in individuals using dietary or herbal supplements without medical monitoring. A trained health care provider should supervise weight loss and the use of weight loss supplements."
    }
   ]
  },
@@ -10316,7 +10754,7 @@
   "manual": "ATP4-02.11",
   "para": "17-5",
   "chapter": "Chapter 17",
-  "heading": "OVERVIEW OF CLIMATIC INJURIES",
+  "heading": "HEAT INJURIES",
   "pages": [
    188
   ],
@@ -10328,7 +10766,7 @@
   "manual": "ATP4-02.11",
   "para": "17-6",
   "chapter": "Chapter 17",
-  "heading": "OVERVIEW OF CLIMATIC INJURIES",
+  "heading": "HEAT INJURIES",
   "pages": [
    188
   ],
@@ -10340,7 +10778,7 @@
   "manual": "ATP4-02.11",
   "para": "17-7",
   "chapter": "Chapter 17",
-  "heading": "OVERVIEW OF CLIMATIC INJURIES",
+  "heading": "HEAT INJURIES",
   "pages": [
    188
   ],
@@ -10352,7 +10790,7 @@
   "manual": "ATP4-02.11",
   "para": "17-8",
   "chapter": "Chapter 17",
-  "heading": "OVERVIEW OF CLIMATIC INJURIES",
+  "heading": "HEAT INJURIES",
   "pages": [
    188
   ],
@@ -11486,6 +11924,30 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/19.h1",
+  "manual": "ATP4-02.11",
+  "para": "19.h1",
+  "chapter": "Chapter 19",
+  "heading": "member",
+  "pages": [
+   207
+  ],
+  "text": "Antidote Treatment - Nerve Treatment Nerve Agent, Auto-Injector (ATNAA). 3 each. Convulsant Antidote Nerve Agent (CANA) or Advanced Anticonvulsant 1 each. System (AAS). Doxycycline 100mg tablets or Ciprofloxacin 500mg tablets. 15 days of supply or (bottle of 30 tablets). Pyridostigmine Bromide Tablets 30mg. 42 tablets (on 2 blister packs). Note: Not issued unless expressly authorized by Office of The Surgeon General (OTSG). Potassium Iodine tablets, (KI). 14 tablets on 1 strip. Note: Not issued unless expressly authorized by Office of The Surgeon General (OTSG). Reactive Skin Decontamination Lotion (RSDL). 1 pouch of 3 packets. Individual Soldier's Guide to Medical CBRN Defense Materiel. 1 each.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/19.h2",
+  "manual": "ATP4-02.11",
+  "para": "19.h2",
+  "chapter": "Chapter 19",
+  "heading": "Legend:",
+  "pages": [
+   207
+  ],
+  "text": "AAS advanced anticonvulsant system mg milligrams ATNAA antidote treatment - nerve treatment nerve OTSG office of the surgeon general agent, auto - injector CANA convulsant antidote nerve agent RSDL reactive skin decontamination lotion CBRN chemical, biological, radiological, and nuclear KI potassium iodine",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/19-23",
   "manual": "ATP4-02.11",
   "para": "19-23",
@@ -11633,6 +12095,18 @@
    209
   ],
   "text": "The signs and symptoms experienced after nerve agent exposure (table 19-2 on page 196) will determine which and how many auto injectors can be given to a Service member. Fourth generation agents and opioid exposures have very similar signs and symptoms and should be considered if the nerve agent treatment does not reverse or diminish signs and symptoms as expected after auto injector use.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/19.h3",
+  "manual": "ATP4-02.11",
+  "para": "19.h3",
+  "chapter": "Chapter 19",
+  "heading": "Severity Signs and Symptoms Treatment",
+  "pages": [
+   210
+  ],
+  "text": "Mild Unexplained runny nose. Self-aid Unexplained sudden headache. 1 - Antidote Treatment - Nerve Sudden drooling. Agent, and Auto Injector. Difficulty in seeing (dimness of vision and pinpoint pupils). Tightness in the chest or difficulty in breathing. Wheezing and coughing. Localized sweating and muscular twitching around the contaminated skin. Stomach cramps. Nausea with or without vomiting. Increased heart rate followed by a decreased heart rate. Severe Confused behavior. Buddy aid Increased wheezing and increased dyspnea 3 - Antidote Treatment - Nerve (difficulty in breathing). Agent, and Auto Injector. Temporarily stop breathing. 1 - Convulsant Antidote - Nerve Severely pinpoint pupils. Agent. Red eyes with tearing. Vomiting. Note. Casualties with severe symptoms may be able to treat Severe muscular twitching and general weakness. themselves and must receive prompt Involuntary urination and defecation. buddy aid, combat lifesaver aid, and Convulsions. prompt follow-on medical treatment if they are to survive. Unconsciousness. Respiratory failure. Increased or decreased heart rate.",
   "notices": []
  },
  {
@@ -11808,6 +12282,42 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/19.h4",
+  "manual": "ATP4-02.11",
+  "para": "19.h4",
+  "chapter": "Chapter 19",
+  "heading": "Antidote Treatment - Nerve Agent Autoinjector",
+  "pages": [
+   214
+  ],
+  "text": "Step 1. Obtain one ATNAA. Step 2. Check injection site. Step 3. Hold ATNAA with dominant hand. Step 4. Grasp safety cap with non-dominant hand and remove from injector. Step 5. Clear hard objects from injection site. Step 6. Inject ATNAA at injection site applying even pressure to the injector. Hold in place for 10 seconds. Step 7. Bend needle of used injector by pressing on a hard surface to form a hook. Step 8. Attach used injector to blouse pocket flap of BDO and or JSLIST. Step 9. Massage injection site, mission permitting.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/19.h5",
+  "manual": "ATP4-02.11",
+  "para": "19.h5",
+  "chapter": "Chapter 19",
+  "heading": "Legend:",
+  "pages": [
+   214
+  ],
+  "text": "antidote treatment - nerve treatment nerve joint service lightweight integrated suit",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/19.h6",
+  "manual": "ATP4-02.11",
+  "para": "19.h6",
+  "chapter": "Chapter 19",
+  "heading": "ATNAA JSLIST",
+  "pages": [
+   214
+  ],
+  "text": "agent, auto-injector technology BDO battle dress overgarment Note. If you continue to have symptoms of nerve agent poisoning, seek someone else to check your symptoms and administer your remaining sets of injections, if required.",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/19-48",
   "manual": "ATP4-02.11",
   "para": "19-48",
@@ -11831,6 +12341,42 @@
     "text": "DO NOT inject into areas close to the hip, knee, or thighbone."
    }
   ]
+ },
+ {
+  "id": "ATP4-02.11/19.h7",
+  "manual": "ATP4-02.11",
+  "para": "19.h7",
+  "chapter": "Chapter 19",
+  "heading": "ATNAA CANA or AAS",
+  "pages": [
+   215
+  ],
+  "text": "Step 1. Mask the casualty and position them on Step 1. Obtain buddy's CANA or AAS. their side (swimmer's position). Step 2. Position yourself near the casualty's thigh. Step 2. Check injection site. Step 3. Obtain buddy's three or remaining Step 3. Hold CANA or AAS in a closed fist with ATNAAs. dominant hand. Step 4. Grasp safety cap with non-dominant hand Step 4. Check injection site. and remove from injector. Step 5. Hold ATNAA in a closed fist with dominant Step 5. Clear hard objects from injection site. hand. Step 6. Inject CANA or AAS at injection site by Step 6. Grasp safety cap with non-dominant hand applying even pressure to the injector, not a and remove from injector. jabbing motion. Hold in place for 10 seconds. Step 7. Bend needle of injector by pressing on a Step 7. Clear hard objects from injection site. hard surface to form a hook. Step 8. Inject ATNAA at injection site by applying Step 8. Attach used injector to blouse pocket flap even pressure to the injector, not a jabbing motion. of BDO or JSLIST. Hold in place for 10 seconds. Step 9. Bend needle of injector by pressing on a Step 9. Massage injection site, mission permitting. hard surface to form a hook. Step 10. Attach all used injectors to blouse pocket flap of BDO or JSLIST. Step 11. Massage injection site, mission permitting.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/19.h8",
+  "manual": "ATP4-02.11",
+  "para": "19.h8",
+  "chapter": "Chapter 19",
+  "heading": "Legend:",
+  "pages": [
+   215
+  ],
+  "text": "advanced anticonvulsant system CANA convulsant antidote nerve agent AAS antidote treatment - nerve treatment nerve joint service lightweight integrated suit",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/19.h9",
+  "manual": "ATP4-02.11",
+  "para": "19.h9",
+  "chapter": "Chapter 19",
+  "heading": "ATNAA JSLIST",
+  "pages": [
+   215
+  ],
+  "text": "agent, auto injector technology BDO battle dress overgarment",
+  "notices": []
  },
  {
   "id": "ATP4-02.11/19-49",
@@ -12865,6 +13411,66 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/20.h1",
+  "manual": "ATP4-02.11",
+  "para": "20.h1",
+  "chapter": "Chapter 20",
+  "heading": "PHYSICAL SIGNS* EMOTIONAL SIGNS*",
+  "pages": [
+   228
+  ],
+  "text": "1. Trembling, tearful. 1. Anxiety, indecisiveness. 2. Jumpiness, nervousness. 2. Irritable, complaining. 3. Cold sweat, dry mouth. 3. Forgetful, unable to concentrate. 4. Pounding heart, dizziness. 4. Easily startled by noise, movement. 5. Insomnia, nightmares. 5. Grief, tearful. 6. Nausea, vomiting, and diarrhea. 6. Anger, beginning to lose confidence in self and unit. 7. Fatigue. 8. Thousand-yard stare. 9. Difficulty thinking, speaking, and communicating.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/20.h2",
+  "manual": "ATP4-02.11",
+  "para": "20.h2",
+  "chapter": "Chapter 20",
+  "heading": "SELF- AND BUDDY AID",
+  "pages": [
+   228
+  ],
+  "text": "1. Continue mission performance and focus on the immediate mission. 2. Expect Service members to perform the assigned duties. 3. Always remain calm; be directive, and in control. 4. Let Service member know their reaction is normal, and that there is nothing seriously wrong with them. 5. Keep the Service member informed of the situation, objectives, expectations, and support. Control rumors. 6. Build Service members' confidence, talk about succeeding. 7. Keep Service member productive (when not resting) through recreational activities, equipment, maintenance, and resupply. 8. Ensure Service members maintain good personal hygiene. 9. Ensure Service member eats, drinks, and sleeps as soon as possible. 10. Let the Service member talk about their feelings. Do not \"put down\" their feelings of grief or worry. Give practical advice and put emotions into perspective.\n- Most or all of these signs are present in mild stress reaction. They can be present in any normal Service member in combat, yet they can still do their job.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/20.h3",
+  "manual": "ATP4-02.11",
+  "para": "20.h3",
+  "chapter": "Chapter 20",
+  "heading": "PHYSICAL SIGNS * EMOTIONAL SIGNS *",
+  "pages": [
+   229
+  ],
+  "text": "1. Constantly moves around. 1. Rapid and/or inappropriate talking. 2. Argumentative, reckless movements, or 2. Flinching or ducking at sudden sounds. actions. 3. Shaking, trembling (whole body or arms). 3. Inattentive to personal hygiene. 4. Cannot use parts of the body, no physical reason 4. Indifferent to danger. (hands, arms, or legs). 5. Cannot see, hear, or feel (partial or complete loss of 5. Memory loss. senses). 6. Severe stuttering, mumbling, or cannot speak 6. Physical exhaustion, crying. at all. 7. Freezing under fire, or total immobility. 7. Insomnia, nightmares. 8. Vacant stares, staggers, and sways when they stand. 8. Seeing or hearing things that do not exist. 9. Panic running under fire. 9. Rapid emotional shifts. 10. Social withdrawal. 11. Apathetic. 12. Hysterical outbursts. 13. Frantic or strange behavior.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/20.h4",
+  "manual": "ATP4-02.11",
+  "para": "20.h4",
+  "chapter": "Chapter 20",
+  "heading": "TREATMENT PROCEDURES **",
+  "pages": [
+   229
+  ],
+  "text": "1. If a Service member's behavior endangers the mission, self, or others, do whatever is necessary to control them. 2. If the Service member is upset, calmly talk them into cooperating. 3. If concerned about the Service member's reliability:\n- Unload their weapon.\n- Take weapons if seriously concerned.\n- Physically restrain them only when necessary for safety or transportation. 4. Reassure everyone that the signs are probably just stress reaction and will quickly improve. 5. If stress reaction signs continue:\n- Get the Service member to a safer place.\n- Do not leave the Service member alone, keep someone they know with them.\n- Notify the senior noncommissioned officer or officer.\n- Have the Service member examined by medical personnel. 6. Give the Service member easy tasks to do when they are not sleeping, eating, or resting. 7. Assure the Service member they will return to full duty in 24 hours; and return them to normal duty as soon as they are ready.\n- These signs are present in addition to the signs of mild stress reaction. ** Do these procedures in addition to the self- and buddy aid care.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/20.h5",
+  "manual": "ATP4-02.11",
+  "para": "20.h5",
+  "chapter": "Chapter 20",
+  "heading": "Preventive Measures",
+  "pages": [
+   230
+  ],
+  "text": "1. Welcome new Service members into your team and get to know them quickly. If you are new, be active in making friends. 2. Be physically fit (strength, endurance, and agility). 3. Know and practice lifesaving self- and buddy aid. 4. Practice rapid relaxation techniques. 5. Help each other out when things are tough at home or in the unit. 6. Keep informed; ask your leader questions, ignore rumors. 7. Work together to give everyone food, water, shelter, hygiene, and sanitation. 8. Sleep when the mission and safety permit; let everyone get time to sleep. Follow these sleep rules:\n- Sleep only in safe places and by standard operating procedure.\n- If possible, sleep six to nine hours per day.\n- Try to get at least four hours of sleep per day.\n- Get good sleep before going on sustained operations.\n- Take a nap when you can but allow time to wake up fully.\n- Catch up on sleep after going without.",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/20-36",
   "manual": "ATP4-02.11",
   "para": "20-36",
@@ -12937,6 +13543,30 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/A.h1",
+  "manual": "ATP4-02.11",
+  "para": "A.h1",
+  "chapter": "Appendix A",
+  "heading": "National Stock Number Item Number Per Kit",
+  "pages": [
+   231
+  ],
+  "text": "6510-01-624-0840 Vented Chest Seal 1 6510-01-503-2117 Compressed Gauze 2 6510-01-598-8418 Bandage, Gauze 2 6515-01-632-0059 Gloves 2 6515-01-529-1187 Nasopharyngeal Airway/Lubricating Jelly Combo* 1 6515-01-630-5551 Eye Shield 2 5110-01-578-4889 Safety Cutting Hook 1 6515-01-521-7976 Tourniquet 2 Part number 35124 Mini marker 1 6510-01-549-0927 Combat Medic Tape 1 6510-01-562-3325 Hemostatic Dressing 2 6510-01-587-6579 Cravat, Triangular Dressing (Sterile) 1 DD Form 1380 1 8465-01-633-7981 JFAK Bag 1 8465-01-633-9717 Tourniquet Pouch 2",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h2",
+  "manual": "ATP4-02.11",
+  "para": "A.h2",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   231
+  ],
+  "text": "DD department of defense JFAK joint first aid kit pr* pair Not provided in the Marines JFAK",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/A-2",
   "manual": "ATP4-02.11",
   "para": "A-2",
@@ -12973,6 +13603,30 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/A.h3",
+  "manual": "ATP4-02.11",
+  "para": "A.h3",
+  "chapter": "Appendix A",
+  "heading": "National Stock Number Nomenclature Number Per Kit",
+  "pages": [
+   232
+  ],
+  "text": "8465-01-531-3647 100 Round Squad Automatic Weapon (SAW) Utility 1 Pouch, MOLLE II 6515-01-521-7976 Combat Application Tourniquet 1 6510-01-460-0849 Bandage Kit, Elastic 1 6510-01-503-2117 Bandage, Gauze, 4 1/2IN, 100 1 6510-00-926-8883 Surgical Adhesive Tape, 2IN, 6 1 6515-01-180-0467 Nasopharyngeal Airway 1 6515-01-519-9161 Patient Exam Gloves, 100 4 6545-01-586-7691 Contents Kit, IFAK Resupply 1 6545-01-531-3147 Insert (Folding Panels with Cord) 1 6510-01-562-3325 Dressing, Combat Gauze 1",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h4",
+  "manual": "ATP4-02.11",
+  "para": "A.h4",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   232
+  ],
+  "text": "IFAK individual first aid kit IN inch MOLLE modular lightweight load-carrying equipment",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/A-5",
   "manual": "ATP4-02.11",
   "para": "A-5",
@@ -12982,6 +13636,30 @@
    232
   ],
   "text": "This IFAK includes two Combat Application TQs, which are stored in pouches that attach to the kit bag. The Generation II IFAK also contains a vented chest seal and eye shield. The Generation II IFAK is like the JFAK. Designers added DD Form 1380, June 2014, a permanent marker, and strap cutter. The kit weighs one pound and contains expendable medical items. See figure A-2 on page 219 and table A-3 on page 219.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h5",
+  "manual": "ATP4-02.11",
+  "para": "A.h5",
+  "chapter": "Appendix A",
+  "heading": "National Stock Number Nomenclature Number Per Kit",
+  "pages": [
+   233
+  ],
+  "text": "6545-01-584-1582 U.S. Army IFAK 1 6515-01-521-7976 Combat Application Tourniquet 2 6510-01-492-2275 Bandage Kit, Elastic 1 6510-01-503-2117 Bandage, Gauze, 4 1/2IN, 100s 1 6510-00-926-8883 Surgical Adhesive Tape, 2IN, 6s 1 6515-01-180-0467 Nasopharyngeal Airway 1 6515-01-519-9161 Patient Exam Gloves, 100s 4 6510-01-562-3325 Dressing, Combat Gauze 1 4240-01-570-0319 Strap Cutter, Rescue 1 6510-01-549-0939 Bolin Chest Seal 1 6515-01-449-1016 Eye Shield, Fox 1 7520-00-312-6124 Marker, Tube Type 1",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h6",
+  "manual": "ATP4-02.11",
+  "para": "A.h6",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   233
+  ],
+  "text": "IFAK individual first aid kit s singles IN inches U.S. United States",
   "notices": []
  },
  {
@@ -13006,6 +13684,54 @@
    233
   ],
   "text": "The U.S. Army CLS carries a small aid bag, also classified as a medical equipment set (MES). It contains supplies for controlling bleeding, relieving tension pneumothorax, and performing other procedures. The CLS bag authorization is contained in CTA 8-100, with unit basis of issue plan of one per: squad, crew, team as determined by the unit commander. For a current listing of the supplies found in the MES refer to the Army Medical Logistics Command website on the Medical Materiel Information Portal tab, which is managed by United States Army Medical Materiel Agency. The prescribed packing list can be located under unit assemblage code (UAC) 245# nomenclature of MES CLS. The # in the UAC code is a place holder as the last character is changed as the assemblage list is updated. At the time of publication, the current version of the MES CLS is UAC 245C. Table A-4 on page 220 is the listing of supplies for the MES CLS with UAC",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h7",
+  "manual": "ATP4-02.11",
+  "para": "A.h7",
+  "chapter": "Appendix A",
+  "heading": "245C. The most recent and active assemblage list should",
+  "pages": [
+   234
+  ],
+  "text": "CLS.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h8",
+  "manual": "ATP4-02.11",
+  "para": "A.h8",
+  "chapter": "Appendix A",
+  "heading": "Nomenclature",
+  "pages": [
+   234
+  ],
+  "text": "Adhesive Tape Surgical Airway, Nasopharyngeal Atropine Injection Bag, Combat Casualty Care Bandage, Elastic Bandage, Gauze Bandage, Emergency Trauma Bandage, Hemostatic Bandage, Triangular Cravat Bandage Kit Blanket, Heating Blanket, Survival Diazepam Injection Dressing, Chest Seal Dressing, Chest Seal Dressing, First Aid DD Form 1380 Gloves, Pat Exam 25pr Gloves, Patient Exam Leash Shears, Trauma Light, Tactical Exam Marker, Laboratory Needle Decompression Pad, Isopropyl Alcohol Scissors, Bandage Shield Eye, Surgical Splint, Universal Tourniquet, Nonpneumatic",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h9",
+  "manual": "ATP4-02.11",
+  "para": "A.h9",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   234
+  ],
+  "text": "DD department of defense EA each KT kit PG package",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h10",
+  "manual": "ATP4-02.11",
+  "para": "A.h10",
+  "chapter": "Appendix A",
+  "heading": "EA 2",
+  "pages": [
+   234
+  ],
+  "text": "pr pair RO roll",
   "notices": []
  },
  {
@@ -13117,6 +13843,66 @@
   "notices": []
  },
  {
+  "id": "ATP4-02.11/A.h11",
+  "manual": "ATP4-02.11",
+  "para": "A.h11",
+  "chapter": "Appendix A",
+  "heading": "Nomenclature",
+  "pages": [
+   236
+  ],
+  "text": "Alcohol Pad 200s Bandage, Gauze Bear Claw Glove Kit Large 25pr Benchmade Strap Cutter Blast Dressing Burn Dressing Shaped into a 45x45x63 Triangular Bandage Tourniquet Combat Eye Shield Combat Gauze XL Hemostatic 4x4 Combat Life Saver Bag Combat Medical Tape 50 Department of Defense Form 1380 Decompression Needle 14GA, Decompression Needle Dressing Burn Burntec Hydrogel 4IN x 16IN Dressing Kit, Chest Wound H and H 30FR Nasopharyngeal Airway, Plastic, 30FR, Beveled MM Long, Single-Use Compression Emergency Trauma Dressing 8x10 Flat SAM Splint Surgi lube Packets 5 Gram 144s Trauma Shears Combat Lifesaver Trauma Bag-Coyote",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h12",
+  "manual": "ATP4-02.11",
+  "para": "A.h12",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   236
+  ],
+  "text": "EA each FR French GA gauge IN inch MM millimeter",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h13",
+  "manual": "ATP4-02.11",
+  "para": "A.h13",
+  "chapter": "Appendix A",
+  "heading": "EA 1",
+  "pages": [
+   236
+  ],
+  "text": "Sterilized EA 3",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h14",
+  "manual": "ATP4-02.11",
+  "para": "A.h14",
+  "chapter": "Appendix A",
+  "heading": "EA 2",
+  "pages": [
+   236
+  ],
+  "text": "Tip, 155",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/A.h15",
+  "manual": "ATP4-02.11",
+  "para": "A.h15",
+  "chapter": "Appendix A",
+  "heading": "EA 1",
+  "pages": [
+   236
+  ],
+  "text": "pr pair S singles SAM Structural Aluminum Malleable XL extra large",
+  "notices": []
+ },
+ {
   "id": "ATP4-02.11/B-1",
   "manual": "ATP4-02.11",
   "para": "B-1",
@@ -13176,6 +13962,612 @@
    240
   ],
   "text": "It is equipped for horizontal hoisting by helicopter or vertical hoisting in caves or industrial confined spaces. When the patient is packaged, the litter becomes rigid. It is rolled for storage in a backpack, which is included with the system. The litter system weighs approximately 17 pounds. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h1",
+  "manual": "ATP4-02.11",
+  "para": "B.h1",
+  "chapter": "Appendix B",
+  "heading": "SECTION I - ACRONYMS AND ABBREVIATIONS",
+  "pages": [
+   241,
+   242,
+   243
+  ],
+  "text": "AAS advanced anticonvulsant system ABCANZ American, British, Canadian, Australian, and New Zealand AFMAN air force manual AFTTP air force tactics, techniques, and procedures AR army regulation ATNAA antidote treatment - nerve treatment nerve agent, auto-injector ATP army techniques publication AVPU alert, verbal, pain, and unresponsive BAS battalion aid station BVM bag valve mask CANA convulsant antidote nerve agent CASEVAC casualty evacuation CBRN chemical, biological, radiological, and nuclear CCP casualty collection point CLS combat lifesaver CoTCCC committee on tactical combat casualty care CPG clinical practice guideline CPR cardiopulmonary resuscitation CUF care under fire CWMP combat wound medication pack DA department of the army DD department of defense (form) DOD Department of Defense DODI Department of Defense Instruction DODM Department of Defense Manual ECAST exercise collapse associated with sickle cell trait EMT emergency medical treatment FM field manual G6PD glucose-6 phosphate dehydrogenase HACE high-altitude cerebral edema HAPE high-altitude pulmonary edema HM Hospital Corpsman HSS health service support IAW in accordance with IFAK individual first aid kit JFAK joint first aid kit JP joint publication JTS joint trauma system KIA killed in action LZ landing zone MARCH massive hemorrhaging, airway, respiration, circulation, and hypothermia MCRP marine corps reference publication MCTP marine corps tactical publication MEDEVAC medical evacuation MES medical equipment set MG milligrams MIST mechanism of injury, injury type, signs and symptoms, and treatments MMPM multimodal patient movement MTF medical treatment facility NAPP nerve agent pyridostigmine pretreatment NATO north atlantic treaty organization NDC needle decompression of the chest NPA nasopharyngeal airway NTRP navy tactical reference publication PAWS pain, antibiotics, wounds, splinting PDD pressure delivery device PET patient evacuation team POI point of injury RSDL reactive skin decontamination lotion SCD sickle cell disease SCT sickle cell trait SOP standard operating procedure STANAG standardization agreement STP soldier training publication TB MED technical bulletin medical TC training circular TCCC tactical combat casualty care TFC tactical field care TQ tourniquet U.S. United States UAC unit assemblage code USA United States Army USAF United States Air Force USCG United States Coast Guard USMC United States Marine Corps USN United States Navy UV ultraviolet WALK warrior aid and litter kit WP white phosphorus",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h2",
+  "manual": "ATP4-02.11",
+  "para": "B.h2",
+  "chapter": "Appendix B",
+  "heading": "battalion aid station",
+  "pages": [
+   243
+  ],
+  "text": "The forward-most medically staffed treatment location organic to the maneuver battalion. (ATP 4-02.4).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h3",
+  "manual": "ATP4-02.11",
+  "para": "B.h3",
+  "chapter": "Appendix B",
+  "heading": "*care under fire",
+  "pages": [
+   243
+  ],
+  "text": "The first phase of care in tactical combat casualty care where very limited care is provided for the casualty while the enemy threat is still active. Also known as CUF or care under threat.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h4",
+  "manual": "ATP4-02.11",
+  "para": "B.h4",
+  "chapter": "Appendix B",
+  "heading": "casualty",
+  "pages": [
+   243
+  ],
+  "text": "Any person who is lost to the organization by having been declared dead, duty status - whereabouts unknown, excused absence-whereabouts unknown, missing, ill, or injured. (JP 4-02).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h5",
+  "manual": "ATP4-02.11",
+  "para": "B.h5",
+  "chapter": "Appendix B",
+  "heading": "casualty collection point",
+  "pages": [
+   243
+  ],
+  "text": "A location that may or may not be staffed, where casualties are assembled for evacuation to a medical treatment facility. (ATP 4-02.2).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h6",
+  "manual": "ATP4-02.11",
+  "para": "B.h6",
+  "chapter": "Appendix B",
+  "heading": "casualty evacuation",
+  "pages": [
+   243
+  ],
+  "text": "(Joint) The unregulated movement of casualties aboard any vehicle. Also called CASEVAC. (JP 4-02). (Army) The movement of casualties aboard nonmedical vehicles or aircraft without en route medical care. (ATP 4-02.13).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h7",
+  "manual": "ATP4-02.11",
+  "para": "B.h7",
+  "chapter": "Appendix B",
+  "heading": "*casualty response",
+  "pages": [
+   243
+  ],
+  "text": "The immediate and organized care, evacuation and reporting of those injured or killed in action.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h8",
+  "manual": "ATP4-02.11",
+  "para": "B.h8",
+  "chapter": "Appendix B",
+  "heading": "*combat lifesaver",
+  "pages": [
+   243
+  ],
+  "text": "(Joint) Nonmedical Department of Defense person who has received additional trauma training and equipment, providing enhanced medical treatment beyond self-aid/buddy aid. (JP 4-02). (Army) A Soldier trained and equipped to provide enhanced first aid as a secondary mission, known as CLS.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h9",
+  "manual": "ATP4-02.11",
+  "para": "B.h9",
+  "chapter": "Appendix B",
+  "heading": "*first aid",
+  "pages": [
+   243
+  ],
+  "text": "The immediate lifesaving measures performed on casualties or military working animals.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h10",
+  "manual": "ATP4-02.11",
+  "para": "B.h10",
+  "chapter": "Appendix B",
+  "heading": "first responder",
+  "pages": [
+   243
+  ],
+  "text": "Is anyone who provides initial and immediate treatment to self or others. (JP 4-02).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h11",
+  "manual": "ATP4-02.11",
+  "para": "B.h11",
+  "chapter": "Appendix B",
+  "heading": "medical evacuation",
+  "pages": [
+   243
+  ],
+  "text": "The timely and effective movement of the wounded, injured, or ill to and between medical treatment facilities on dedicated and properly marked medical platforms with en route care provided by medical personnel. Also called MEDEVAC. (ATP 4-02.2).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h12",
+  "manual": "ATP4-02.11",
+  "para": "B.h12",
+  "chapter": "Appendix B",
+  "heading": "medical treatment facility",
+  "pages": [
+   243
+  ],
+  "text": "(Joint) A facility established for the purpose of furnishing medical and/or dental care to eligible individuals. Also called MTF. (JP 4-02). (Army) Any facility established for the purpose of providing medical treatment. (FM 4-02).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h13",
+  "manual": "ATP4-02.11",
+  "para": "B.h13",
+  "chapter": "Appendix B",
+  "heading": "patient",
+  "pages": [
+   243
+  ],
+  "text": "(Joint) A sick, injured, wounded, or other person receiving medical care, dental care, or other medical treatment. (JP 4-02). (Army) A patient is a wounded, ill and injured Soldier who receives medical care or treatment from medically trained personnel. (ATP 4-02.10).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h14",
+  "manual": "ATP4-02.11",
+  "para": "B.h14",
+  "chapter": "Appendix B",
+  "heading": "tactical combat casualty care",
+  "pages": [
+   244
+  ],
+  "text": "The deliberate integration of tactics and medicine to treat casualties during combat. Also called TCCC. (JP 4-02).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h15",
+  "manual": "ATP4-02.11",
+  "para": "B.h15",
+  "chapter": "Appendix B",
+  "heading": "*tactical evacuation care",
+  "pages": [
+   244
+  ],
+  "text": "The third phase of care in tactical combat casualty care. Care provided during transportation from the battelefield to a medical treatment facility.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h16",
+  "manual": "ATP4-02.11",
+  "para": "B.h16",
+  "chapter": "Appendix B",
+  "heading": "*tactical field care",
+  "pages": [
+   244
+  ],
+  "text": "The second phase of care in tactical combat casualty care. Care provided once the threat has been neutralized, the scene is safe or the casualty has moved or been moved out of the immediate threat situation. Also known as TFC.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h17",
+  "manual": "ATP4-02.11",
+  "para": "B.h17",
+  "chapter": "Appendix B",
+  "heading": "triage",
+  "pages": [
+   244
+  ],
+  "text": "Triage is the system of sorting and prioritizing casualties based on the tactical situation, mission, and available resources (FM 4-02).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h18",
+  "manual": "ATP4-02.11",
+  "para": "B.h18",
+  "chapter": "Appendix B",
+  "heading": "References",
+  "pages": [
+   245
+  ],
+  "text": "All URLs were accessed on 09 June 2025.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h19",
+  "manual": "ATP4-02.11",
+  "para": "B.h19",
+  "chapter": "Appendix B",
+  "heading": "REQUIRED PUBLICATIONS",
+  "pages": [
+   245
+  ],
+  "text": "These documents must be available to the intended users of this publication. DOD Dictionary of Military and Associated Terms. October 2025. FM 1-02.1. Operational Terms. 28 February 2024. FM 1-02.2. Military Symbols. 23 January 2025.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h20",
+  "manual": "ATP4-02.11",
+  "para": "B.h20",
+  "chapter": "Appendix B",
+  "heading": "RELATED PUBLICATIONS",
+  "pages": [
+   245
+  ],
+  "text": "These documents are cited in this publication.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h21",
+  "manual": "ATP4-02.11",
+  "para": "B.h21",
+  "chapter": "Appendix B",
+  "heading": "JOINT/DEPARTMENT OF DEFENSE PUBLICATIONS",
+  "pages": [
+   245
+  ],
+  "text": "Joint publications are available online at https://www.jcs.mil/doctrine/. Department of Defense publications are available online at https://www.esd.whs.mil/DD. DODI 1322.24. Medical Readiness Training. 16 March 2018. DODI 1322.31. Common Military Training. 20 February 2020. DODI 6040.47. Joint Trauma System. 28 September 2016. DODI 6465.01. Erythrocyte Glucose-6-Phosphate Dehydrogenase Deficiency (G6PD) and Sickle Cell Trait Screening Programs. 17 July 2015. DODI 6490.11. DOD Policy Guidance for Management of Mild Traumatic Brain Injury/Concussion in the Deployed Setting. 18 September 2012. DODM 3150-08. Nuclear Weapon Accident Response Procedures (NARP). 22 August 2013. JP 3-11. Operations in Chemical, Biological, Radiological, and Nuclear Environments. 29 September 2024. JP 4-02. Joint Health Service. 29 August 2023.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h22",
+  "manual": "ATP4-02.11",
+  "para": "B.h22",
+  "chapter": "Appendix B",
+  "heading": "ARMY PUBLICATIONS",
+  "pages": [
+   245,
+   246
+  ],
+  "text": "These doctrinal publications are available online at https://armypubs.army.mil. AR 40-66. Medical Record Administration and Health Care Documentation. 17 June 2008. AR 350-1. Army Training and Leader Development. 1 June 2025. AR 600-8-104. Army Military Human Resource Records Management. 29 June 2023. AR 638-8. Army Casualty Program. 7 June 2019. ATP 1-0.1. Techniques for Human Resources Support to Operations. 16 November 2023. ATP 3-11.32/MCRP 10-10E.11/NTTP 3-11.27/AFTTP 3-2.46. (U) Multi-Service Tactics, Techniques, and Procedures for Chemical, Biological, Radiological, and Nuclear Protection. 24 January 2024. ATP 3-11.33/MCRP 10-10E.12/NTTP 3-11.26/AFTTP 3-2.60. (U) Multi-Service Tactics, Techniques, and Procedures for Chemical, Biological, Radiological, and Nuclear Contamination Mitigation. 24 January 2024. ATP 4-02.2. Medical Evacuation. 12 July 2019. ATP 4-02.4. Medical Platoon. 12 May 2021. ATP 4-02.7/MCRP 4-11.1F/NTTP 4-02.7/AFTTP 3-42.3. Multi-Service Tactics, Techniques, and Procedures for Health Service Support in a Chemical, Biological, Radiological, and Nuclear Environment. 15 March 2016. ATP 4-02.10. Army Hospitalization (Role 3). 14 August 2025. ATP 4-02.13. Casualty Evacuation. 30 June 2021. ATP 4-02.83/MCRP 4-11.1B/NTRP 4-02.21/AFMAN 44-161(I). Multiservice Tactics, Techniques, and Procedures for Treatment of Nuclear and Radiological Casualties. 5 May 2014. ATP 4-02.84/MCRP 3-40A.3/NTRP 4-02.23/AFMAN 44-156_IP. Multi-Service Tactics, Techniques, and Procedures for Treatment of Biological Warfare Agent Casualties. 21 November 2019. ATP 4-02.85/MCRP 3-40A.1/NTRP 4-02.22/AFTTP(I) 3-2.69. Multi-Service Tactics, Techniques, and Procedures for Treatment of Chemical Warfare Agent Casualties and Conventional Military Chemical Injuries. 2 August 2016. ATP 4-46/MCRP 3-40G.3/NTTP 4-06/AFTTP 3-2.51. Multi-Service Tactics, Techniques, and Procedures for Mortuary Affairs in Theater of Operations. 3 August 2022. ATP 5-19. Risk Management. 9 November 2021. CTA 8-100. Army Medical Expendable/Durable Items. 17 September 2024. FM 4-02. Army Health System. 17 November 2020. FM 6-27/MCTP 11-10C. The Commander's Handbook on the Law of Land Warfare. 7 August 2019. FM 6-99. U.S. Army Report and Message Formats. 17 May 2021. STP 8-68W13-SM-TG. Soldiers Manual and Trainers Guide, MOS 68W, Combat Medic Specialist, Skills Levels 1/2/3 with Readiness Requirements. 6 March 2025. STP 21-1-SMCT. Soldier's Manuel of Common Tasks, Warrior Skills Level 1. 20 November 2025. TB MED 507. Heat Stress Control and Heat Casualty Management. 12 April 2022. TC 4-02.3. Field Hygiene and Sanitation. 6 May 2015.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h23",
+  "manual": "ATP4-02.11",
+  "para": "B.h23",
+  "chapter": "Appendix B",
+  "heading": "AMERICAN, BRITISH, CANADIAN, AND AUSTRALIAN ARMIES PUBLICATION AND STANDARD",
+  "pages": [
+   246
+  ],
+  "text": "These documents are available online at the Protected Internet eXchange (PiX) - ABCANZ Product Library page at: https://pixtoday.net/article/article/226065. ABCANZ Publication 256. Coalition Health Interoperability Handbook, Edition 3. 12 April 2013. ABCANZ Standard Number 2121. Pre-Hospital Combat Casualty Care Standards for ABCANZ Soldiers. 20 October 2023. ABCANZ Technical Standard Number 2136. Tactical Combat Casualty Care Card Documentation for ABCANZ Soldiers and Marines. 9 October 2023. Defense Health Agency are available online at: https://health.mil. DHA-PI 6025.14. Active-Duty Service Member (ADSM) Erythrocyte Glucose-6 Phosphate Dehydrogenase (G6PD) Deficiency and Sickle Cell Trait (SCT) Screening. 6 December 2018.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h24",
+  "manual": "ATP4-02.11",
+  "para": "B.h24",
+  "chapter": "Appendix B",
+  "heading": "NORTH ATLANTIC TREATY ORGANIZATION STANDARDIZATION AGREEMENTS",
+  "pages": [
+   246,
+   247
+  ],
+  "text": "These documents are available online at https://nso.nato.int/. (Must request access to protected site) STANAG 2020. Land Operational Reports. Edition 4. 13 January 2021. (ATP-105, Edition A, Version 1. 13 January 2021). STANAG 2122. Requirement for Training in Casualty Care for all Military Personnel. Edition 5. 4 October 2022. (AMedP-8.15, Edition B, Version 1. 4 October 2022). STANAG 2126. First Aid Dressings, First Aid Kits and Emergency Medical Care Kits. Edition 7. 28 March 2018. (AMedP-8.7, Edition A, Version 1. 28 March 2018). STANAG 2358. CBRN First Aid Handbook. Edition 5. 15 February 2018. (AMedP-7.2, Edition A, Version 1. 15 February 2018). STANAG 2627. NATO Land Urgent Voice Messages (LUVM) Pocket Book. Edition 2. 03 March 2020. (ATP-97, Edition B. Version 1. 3 March 2020). STANAG 3204. Aeromedical Evacuation. Edition 9. 6 July 2020. (AAMedP-1.1, Edition B, Version 1, 6 July 2020).",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h25",
+  "manual": "ATP4-02.11",
+  "para": "B.h25",
+  "chapter": "Appendix B",
+  "heading": "WEB SITES",
+  "pages": [
+   247
+  ],
+  "text": "American Medical Society for Sports Medicine page at: https://www.amssm.org/. Central Army Register page at: https://rdl.train.army.mil/catalog/search. Defense Agency-Public Health page at: https://www.army.mil/usaphc. Deployed Medicine home page at: https://deployedmedicine.com/. Joint Trauma System page at: https://jts.health.mil/. Medical Materiel information portal home page at: https://www.amlc.army.mil/USAMMA/Information- Portal/. Military Health System page at: https://health.mil. National Institute of Health page at: https://ors.od.nih.gov/.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h26",
+  "manual": "ATP4-02.11",
+  "para": "B.h26",
+  "chapter": "Appendix B",
+  "heading": "PRESCRIBED FORMS",
+  "pages": [
+   247
+  ],
+  "text": "This section contains no entries.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h27",
+  "manual": "ATP4-02.11",
+  "para": "B.h27",
+  "chapter": "Appendix B",
+  "heading": "REFERENCE FORMS",
+  "pages": [
+   247,
+   248
+  ],
+  "text": "Unless otherwise indicated, DA forms are available on the Army Publishing Directorate Web site at https: //armypubs.army.mil. DD Forms are available on Executive Service Directorate Web site at https://www.esd.whs.mil/Directive/forms. DA Form 1156. Casualty Feeder Card. DA Form 2028. Recommended Changes to Publications and Blank Forms. DD Form 1380. Tactical Combat Casualty Care (TCCC) Card. DD Form 3019. Resuscitation Record. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h28",
+  "manual": "ATP4-02.11",
+  "para": "B.h28",
+  "chapter": "Appendix B",
+  "heading": "Index",
+  "pages": [
+   249
+  ],
+  "text": "Entries are by paragraph number. Recertification, 3-15, 3-20 -",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h29",
+  "manual": "ATP4-02.11",
+  "para": "B.h29",
+  "chapter": "Appendix B",
+  "heading": "A 3-22 I",
+  "pages": [
+   249
+  ],
+  "text": "Acknowledge, Care, and Escort, Training, 3-16-3-19,3-28 Injury/evaluation/distance, 11-21, 20-38 - 20-40 Combat Wound Medication Pack, 11-23 Airway, Nasopharyngeal, 5-3, 5-8, 9-4 Inspection, Precombat, 1-70, 1-79, 5-22, 6-5 - 6-6, 6-13, 15-4, A-1 Committee on Tactical Combat 3-110, 3-114",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h30",
+  "manual": "ATP4-02.11",
+  "para": "B.h30",
+  "chapter": "Appendix B",
+  "heading": "Alert, Verbal, Pain, and Casualty Care, 1-6, 3-77, 3-112 J",
+  "pages": [
+   249
+  ],
+  "text": "Unresponsive, 11-30, 11-34, - 3-113, 4-30, 4-33, 4-35, 5-8, 15-5, 15-18 6-8, 6-10, 6-24, 6-44, 9-7, 12-6, Joint Trauma System, 1-3, 1-6, 3- Antidote Treatment - Nerve 12-7, A-1 1, 3-4, 3-84, 3-86, 15-17, 15-41",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h31",
+  "manual": "ATP4-02.11",
+  "para": "B.h31",
+  "chapter": "Appendix B",
+  "heading": "Treatment Nerve Agent, Convulsant Antidote Nerve Agent, K",
+  "pages": [
+   249
+  ],
+  "text": "Auto-Injector, 19-13, 19-22, 19-35 - 19-38, 19-48, 19-50 - Killed In Action, 1-29, 1-32, 1-40, 19-35 - 19-41, 19-48 - 19-49 19-51 1-41, 1-60, 1-70",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h32",
+  "manual": "ATP4-02.11",
+  "para": "B.h32",
+  "chapter": "Appendix B",
+  "heading": "Army Training Requirements and D Kit,",
+  "pages": [
+   249
+  ],
+  "text": "Resources System, 3-17 Defense Collaboration Services, Individual First Aid, 3-101, 3-",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h33",
+  "manual": "ATP4-02.11",
+  "para": "B.h33",
+  "chapter": "Appendix B",
+  "heading": "9, A-14",
+  "pages": [
+   249
+  ],
+  "text": "Battalion Aid Station, 1-9, 1-16, Defense Health Agency, 1-6, 3-35, Joint First Aid, 3-101, 3-102, 3-",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h34",
+  "manual": "ATP4-02.11",
+  "para": "B.h34",
+  "chapter": "Appendix B",
+  "heading": "Biological Warfare, 19-9, 19-88 - E Warrior Aid and Litter, B-1 - B3",
+  "pages": [
+   249
+  ],
+  "text": "19-89",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h35",
+  "manual": "ATP4-02.11",
+  "para": "B.h35",
+  "chapter": "Appendix B",
+  "heading": "C 17, 1-35, 1-53, 1-75 Landing force support party, 1-",
+  "pages": [
+   249
+  ],
+  "text": "Cardiopulmonary Resuscitation, Evacuation, 105, 1-106 1-101, 6-44 - 6-52, 17-15, Casualty, 1-10, 1-19, 1-51, 1- Landing zone See Zone, Landing 17-19 109 - 1-112",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h36",
+  "manual": "ATP4-02.11",
+  "para": "B.h36",
+  "chapter": "Appendix B",
+  "heading": "Care Under Fire, 3-36 - 3-42, Medical, 1-15, 1-19, 1-44 - 1- M",
+  "pages": [
+   249
+  ],
+  "text": "3-47 - 3-49, 3-52, - 3-59, 3-99, 50, 15-20-15-24 Mask, Bag Valve, 5-25-5-27, 6-5, 4-2, 4-7, 4-9, 4-11, 4-60 - 4-63, Multimodal patient movement, 6-7, 6-50 15-1 1-54 Massive Bleeding, 3-40, 3-42, 3-",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h37",
+  "manual": "ATP4-02.11",
+  "para": "B.h37",
+  "chapter": "Appendix B",
+  "heading": "Casualty Assessment, 2-3, 3-45, F 49,3-95, 3-103, 4-1, 4-3, 4-9, 4-",
+  "pages": [
+   249
+  ],
+  "text": "3-52, 3-77, 3-81, 3-94 - 3-100, Forward Resuscitative Care,1- 27, 4-32, 4-36, 4-37, 4-40, 5-1 9-1, 15-2, 19-20 109, 1-111 - 1-112 Massive Hemorrhaging, Airway, Casualty Evacuation See Respiration, Circulation, And",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h38",
+  "manual": "ATP4-02.11",
+  "para": "B.h38",
+  "chapter": "Appendix B",
+  "heading": "Evacuation, Casualty G Hypothermia, 3-96 - 3-97",
+  "pages": [
+   249
+  ],
+  "text": "Chemical, Biological, Radiological, Glucose-6 Phosphate Mechanism of Injury, Injury Type, and Nuclear, 1-19, 1-85, 6-26, Dehydrogenase, 18-13 Signs and Symptoms, and",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h39",
+  "manual": "ATP4-02.11",
+  "para": "B.h39",
+  "chapter": "Appendix B",
+  "heading": "19-2, 19-3, 19-5, 19-11, 19-12, H Treatment, 1-49, 9-1 - 9-3, 15-",
+  "pages": [
+   249
+  ],
+  "text": "19-20-19-22, 19-89, 19-96 15, 15-24 Health Service Support, 1-89 - 1- Clinical Practice Guideline, 1-6, 96 Medical Evacuation See 3-35, 3-84-3-85, 19-2 Evacuation, Medical Helicopter Landing Zone See Combat and Operational Stress Zone, Helicopter Landing, Medical Equipment Set, A-7 Reactions, 20-18, 20-20, 20-38 Hemorrhage Medical Readiness Training, 1-4, Combat Lifesaver, 1-1, 1-3, 1-12, See Massive Bleeding, 1-5, 3-1, 3-4, 3-33 1-21, 1-53, 1-74, 1-81 - 1-84 high-altitude cerebral edema, 17- Medical Treatment Facility, 1-10, Combat Lifesaver (continued) 49, 17-55-17-57 1-16, 1-22, 3-57, 18-16, 18-18, Bag/Kit, 3-23 - 3-24, 3-29 - 18-22 3-31, A-7, A-12 high-altitude17-49, 17-54pulmonary-17-55 edema, Military Acute Concussive Evaluation 2, 11-24",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h40",
+  "manual": "ATP4-02.11",
+  "para": "B.h40",
+  "chapter": "Appendix B",
+  "heading": "Military Decision-Making Process, Point, Casualty Collection, 1-8, T",
+  "pages": [
+   250
+  ],
+  "text": "1-25, 1-62 1-9, 1-21 - 1-33, 1-37, 1-38, Tactical Evacuation Care, 3-36, 3- Mission-Oriented Protective 1-56, 1-62, 2-7 - 2-9 56 3-58, 3-61 - 3-63, 15-9 Posture, 1-85, 19-45 Pressure Delivery Device, 4-84, 4- Tactical Field Care, 3-36, 3-51 - Multimodal patient movement See 87 3-52, 3-54 - 3-55, 3-58 - 3-59,",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h41",
+  "manual": "ATP4-02.11",
+  "para": "B.h41",
+  "chapter": "Appendix B",
+  "heading": "Evacuation, Multimodal patient R 7-1, 7-2 8-6, 13-12, 15-9, 15-26",
+  "pages": [
+   250
+  ],
+  "text": "movement Reactive Skin Decontamination Tactical Standard Operating",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h42",
+  "manual": "ATP4-02.11",
+  "para": "B.h42",
+  "chapter": "Appendix B",
+  "heading": "N-O Lotion, 1-86, 19-42 - 19-43 Procedure, 1-25, 1-29, 1-83, 3-",
+  "pages": [
+   250
+  ],
+  "text": "53, 15-22, 19-45 Needle Decompression of the Resupply, 1-29, 1-40, 1-69, 3-24, Chest, 6-23, 6-35-6-38 3-109, 3-110 Tourniquet, 2-3, 4-27 - 4-30, 4-32,",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h43",
+  "manual": "ATP4-02.11",
+  "para": "B.h43",
+  "chapter": "Appendix B",
+  "heading": "Nerve Agent Pyridostigmine S 1",
+  "pages": [
+   250
+  ],
+  "text": "Pretreatment, 19-24 - 19-26 Shock Trauma Platoon, 1-105, 1- Troop Leading Procedures, 1-25,",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h44",
+  "manual": "ATP4-02.11",
+  "para": "B.h44",
+  "chapter": "Appendix B",
+  "heading": "Pain, Antibiotics, Wounds, Sickle Cell, U-V",
+  "pages": [
+   250
+  ],
+  "text": "Splinting,3-94 - 3-100, 9-1, 9-2, Disease, 18-1 9-4, 15-14 Exercise Collapse Associated Ultraviolet, 10-2 Patient Evacuation Team, 1-111, with Sickle Cell Trait, 18-3 - Unit Assemblage Code, A-7",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h45",
+  "manual": "ATP4-02.11",
+  "para": "B.h45",
+  "chapter": "Appendix B",
+  "heading": "1-112 18-12,- 18-20,18-1418-22- 18-16,- 18-2318-18 W-Y",
+  "pages": [
+   250
+  ],
+  "text": "Platoon Sergeant, 1-26, 1-30, 1- Trait, 18-1 White Phosphorus, 19-79 - 19-83 40, 1-48, 1-55, 1-56, 1-64, 1-68, 1-71, -1-74, 1-76, 2-6, 2-8, 2-9 Standard Operating Procedure, 1- Wounded In Action, 1-34 - 1-35 19, 1-26,",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h46",
+  "manual": "ATP4-02.11",
+  "para": "B.h46",
+  "chapter": "Appendix B",
+  "heading": "Z",
+  "pages": [
+   250
+  ],
+  "text": "Zone, Helicopter Landing, 1-21, 1- 29, 1-46, 1-65, 1-70, 15-40",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h47",
+  "manual": "ATP4-02.11",
+  "para": "B.h47",
+  "chapter": "Appendix B",
+  "heading": "23 March 2026",
+  "pages": [
+   251
+  ],
+  "text": "By Order of the Secretary of the Army:",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h48",
+  "manual": "ATP4-02.11",
+  "para": "B.h48",
+  "chapter": "Appendix B",
+  "heading": "RANDY A. GEORGE",
+  "pages": [
+   251
+  ],
+  "text": "General, United States Army Chief of Staff Official:",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h49",
+  "manual": "ATP4-02.11",
+  "para": "B.h49",
+  "chapter": "Appendix B",
+  "heading": "MATTHEW L. SANNITO",
+  "pages": [
+   251
+  ],
+  "text": "Administrative Assistant to the Secretary of the Army 2607502",
+  "notices": []
+ },
+ {
+  "id": "ATP4-02.11/B.h50",
+  "manual": "ATP4-02.11",
+  "para": "B.h50",
+  "chapter": "Appendix B",
+  "heading": "DISTRIBUTION:",
+  "pages": [
+   251,
+   252
+  ],
+  "text": "Active Army, Army National Guard, and United States Army Reserve. Distributed in electronic media only (EMO). This page intentionally left blank.",
   "notices": []
  }
 ]

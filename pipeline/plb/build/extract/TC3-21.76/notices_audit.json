@@ -2,7 +2,10 @@
  "keyword_lines": 22,
  "notices_kept": 15,
  "missing": 3,
- "inline_notes": [],
+ "inline_notes": [
+  "TC3-21.76/12.h11: ...SAFETY NOTE: During training, the unit should adhere...",
+  "TC3-21.76/B.h23: ...cific location of the pickup. (NOTE: the color of the Based on Medic or pane..."
+ ],
  "keyword_elsewhere": [
   "TC3-21.76/2-4 (heading): STEP 2. ISSUE A WARNING ORDER"
  ],

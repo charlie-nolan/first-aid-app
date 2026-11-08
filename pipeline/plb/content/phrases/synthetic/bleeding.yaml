@@ -1,0 +1,324 @@
+# Synthetic utterances for the voice stress test (plb voice). HELD-OUT: don't copy these
+# into the tree's phrases wholesale, or the test stops measuring anything. Add a phrase to
+# the tree when the report shows a real gap, then write a few new utterances for that gap.
+#
+# Written by Claude (LLM) 2026-11-08 for Charlie's review: everyday and backcountry
+# civilian speech, stressed and casual, first and third person, kids and adults, a few
+# speech-to-text slips. Violent/military wording kept out on purpose.
+#
+# expect: node -> utterances that should open it. "utterance | other/node" lists extra
+#   nodes that are also a fine answer.
+# off_topic: topic (no tree yet, or another tree) -> utterances that must NOT open a
+#   Bleeding card. Once that topic has a tree, they must land in it instead.
+
+expect:
+  bleeding/start:
+    - he's bleeding really bad
+    - she won't stop bleeding
+    - it won't stop bleeding
+    - so much blood
+    - there's blood everywhere
+    - blood all over the place
+    - the bleeding is really heavy
+    - bleeding a lot
+    - it's gushing blood
+    - blood keeps coming out
+    - what do i do about bleeding
+    - how to stop bleeding
+    - stop bleeding
+    - make the bleeding stop
+    - someone's bleeding
+    - my friend is bleeding
+    - my kid is bleeding
+    - my son cut himself and it's bleeding a lot
+    - bad cut lots of blood
+    - huge cut
+    - big gash
+    - deep gash
+    - he slipped with the knife
+    - cut myself really bad
+    - i cut myself
+    - cut myself carving
+    - knife slipped
+    - whittling accident
+    - axe slipped
+    - the hatchet hit his foot
+    - chopping wood and cut my shin | bleeding/limb
+    - fell on a sharp rock
+    - fell and split my head open
+    - he fell off his bike and is bleeding
+    - glass cut
+    - stepped on broken glass | bleeding/limb
+    - dog bit him and it's bleeding
+    - bitten by a dog
+    - bleeding badly help
+    - hemorrhage
+    - bleeding out
+    - his finger is cut off
+    - cut off finger
+    - severed finger
+    - bleedin bad
+    - bleeding won't quit
+    - blood soaked through
+    - soaked in blood
+
+  bleeding/limb:
+    - bleeding from the leg
+    - bleeding from the arm
+    - my leg won't stop bleeding
+    - her arm won't stop bleeding
+    - cut on my leg
+    - cut my arm
+    - gash on my thigh
+    - deep cut on his calf
+    - cut on her wrist
+    - cut my wrist on a rock
+    - my hand is bleeding
+    - hand cut
+    - cut my hand
+    - cut his hand open
+    - sliced my palm
+    - foot is bleeding
+    - cut my foot on a rock
+    - bleeding from the knee
+    - my shin is bleeding
+    - bleeding arm or leg
+    - blood coming from his leg
+
+  bleeding/tq:
+    - how do you use a tourniquet
+    - tourniquet help
+    - how to tie a tourniquet
+    - put the tourniquet on
+    - tourniquet instructions
+    - turniket
+    - tournicate
+    - where does the tourniquet go
+    - how high do i put the tourniquet
+    - how tight does a tourniquet go
+    - tighten the tourniquet
+    - i have a tourniquet
+    - i've got a tourniquet
+    - there's a tourniquet in the kit
+    - should i use a tourniquet
+    - when do i use a tourniquet
+    - windlass
+
+  bleeding/tq_one_hand:
+    - tourniquet by myself
+    - i'm alone and need a tourniquet
+    - tourniquet one hand
+    - one hand tourniquet
+    - put a tourniquet on my own leg
+    - tourniquet on my own arm
+    - how do i tourniquet myself
+    - self tourniquet
+
+  bleeding/tq_second:
+    - tourniquet isn't stopping it
+    - tourniquet didn't work
+    - still bleeding with the tourniquet on
+    - tourniquet on and still bleeding
+    - bleeding through the tourniquet
+    - add another tourniquet
+    - put on another tourniquet
+    - need a second one
+    - second tourniquet
+
+  bleeding/pack:
+    - no tourniquet what do i do
+    - we don't have a tourniquet
+    - there's no tourniquet
+    - don't have a tourniquet
+    - i don't have one
+    - pack it with gauze
+    - stuff gauze in the wound
+    - fill the wound with gauze
+    - how do i pack it
+    - packing a wound
+    - wound packing steps
+    - gauze in the cut
+    - put gauze in it
+
+  bleeding/improv_tq:
+    - make a tourniquet
+    - make my own tourniquet
+    - improvise a tourniquet
+    - tourniquet out of a belt
+    - use a belt as a tourniquet
+    - use a bandana as a tourniquet
+    - tourniquet with a stick
+    - diy tourniquet
+    - makeshift tourniquet
+    - homemade tourniquet with a shirt
+
+  bleeding/pressure:
+    - press on it
+    - push on the wound
+    - press hard on the cut
+    - hold pressure on it
+    - keep pressure on it
+    - apply direct pressure
+    - direct pressure
+    - how long do i hold pressure
+    - just pressure
+    - hold it tight
+
+  bleeding/junctional:
+    - bleeding where the tourniquet can't go
+    - can't put a tourniquet there
+    - tourniquet won't fit
+    - bleeding near the hip
+    - bleeding at the shoulder | bleeding/armpit
+
+  bleeding/neck:
+    - bleeding neck
+    - his neck is cut
+    - cut on her neck
+    - my neck is bleeding
+    - throat is bleeding
+    - cut throat bleeding
+    - bleeding from the throat
+
+  bleeding/armpit:
+    - bleeding under the arm
+    - cut in the armpit
+    - armpit is bleeding
+    - his armpit won't stop bleeding
+
+  bleeding/groin:
+    - groin is bleeding
+    - cut in the groin
+    - bleeding between the legs
+    - bleeding high on the inner thigh
+    - cut near the crotch
+    - bleeding from the top of the leg | bleeding/limb
+
+  bleeding/dressing:
+    - bleeding stopped what now
+    - it stopped bleeding
+    - the bleeding stopped
+    - how do i bandage it
+    - bandage the wound
+    - wrap the wound
+    - put a bandage on
+    - wrap it up
+    - is the bandage too tight
+    - bandage too tight
+    - fingers turning blue after the bandage
+    - his toes are cold below the bandage
+    - pressure wrap
+    - elastic bandage
+
+# Must not open a Bleeding card (no tree yet). Ordered as in the wilderness trees plan.
+off_topic:
+  cpr:
+    - he's not breathing
+    - she's not breathing
+    - not breathing
+    - no pulse
+    - start cpr
+    - how do i do cpr
+    - chest compressions
+    - rescue breaths
+    - he collapsed and isn't moving
+    - unresponsive
+  choking:
+    - he's choking
+    - my kid is choking
+    - choking on food
+    - can't breathe something stuck in his throat
+    - heimlich
+    - back blows
+  hypothermia:
+    - he's shivering and can't stop
+    - so cold i can't feel my hands
+    - hypothermia
+    - fell in the creek and he's freezing
+    - she's cold and confused
+    - how do i warm someone up
+    - stopped shivering
+  heat:
+    - heat stroke
+    - heat exhaustion
+    - she's dizzy from the heat
+    - too hot and throwing up
+    - he stopped sweating and he's confused
+    - overheating on the trail
+  allergy:
+    - bee sting
+    - stung by a wasp
+    - allergic reaction
+    - his throat is swelling
+    - where is the epipen
+    - hives all over
+  snakebite:
+    - snake bite
+    - bitten by a rattlesnake
+    - a snake bit my leg | bleeding/limb
+    - was that snake poisonous
+  fracture:
+    - i think it's broken
+    - broken arm
+    - broken leg
+    - sprained ankle
+    - twisted my ankle
+    - my wrist might be broken
+    - how do i make a splint
+    - dislocated shoulder
+    - bone is sticking out | bleeding/start | bleeding/limb
+  frostbite:
+    - frostbite
+    - my toes are numb and white
+    - fingers are frozen
+  burns:
+    - burned my hand on the stove
+    - burn from the campfire
+    - boiling water spilled on her
+    - bad sunburn
+    - blister from a burn
+  drowning:
+    - pulled him out of the water
+    - near drowning
+    - he was underwater
+  altitude:
+    - altitude sickness
+    - bad headache up high
+    - can't breathe at altitude
+  dehydration:
+    - dehydrated
+    - haven't had water all day
+    - dark pee
+  blisters:
+    - blister on my heel
+    - hot spot on my foot
+    - moleskin
+  signaling:
+    - we're lost
+    - how do i signal for help
+    - signal a helicopter
+    - which way is north
+  lightning:
+    - lightning storm
+    - he got struck by lightning
+    - thunder is close
+  minor_wounds:
+    - paper cut | bleeding/start | bleeding/pressure | bleeding/dressing
+    - scraped my knee | bleeding/limb | bleeding/pressure | bleeding/dressing
+    - splinter in my finger
+    - got a fish hook stuck in my thumb
+    - tick bite
+    - mosquito bites
+  nosebleed:
+    - nosebleed | bleeding/start
+    - my nose is bleeding | bleeding/start
+    - bloody nose | bleeding/start
+  everyday:
+    - what time is it
+    - turn on the flashlight
+    - how much battery is left
+    - go back
+    - show me the map
+    - where is the nearest water
+    - how do i start a fire
+    - read the next page

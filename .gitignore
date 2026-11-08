@@ -30,5 +30,16 @@ qwen work/
 pipeline/plb/sources/
 *.pdf
 
+# Personal-use copies of copyrighted books (Charlie's own device only, never committed):
+# the list of them, the PDFs, their extracts and any library built with them
+pipeline/plb/sources.personal.yaml
+pipeline/plb/sources_personal/
+pipeline/plb/content/config.personal.yaml
+pipeline/plb/build/extract_personal/
+pipeline/plb/build/intermediate_personal/
+pipeline/plb/build/library_personal.bin
+pipeline/plb/content/trees_personal/
+pipeline/plb/content/cites.personal.lock.yaml
+
 # ESP-IDF build folders
 firmware/build-*/
