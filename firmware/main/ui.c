@@ -244,13 +244,15 @@ void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s) {
     unsigned nf = cart_font_sizes(c);
     if (nf && s->font >= nf) s->font = (uint8_t)(nf - 1);
     if (s->family >= cart_font_families(c)) s->family = 0;
-    /* Boot and wake go back to the page being read; the Library is a menu item
-     * (Charlie, 2026-11-08: not a default page). A fresh start opens the first
-     * topic that isn't a reference book. */
+    /* Boot and wake open the Home tiles (Injury / Survival); TALK there goes back
+     * to the page being read. The Library is a menu item (Charlie, 2026-11-08:
+     * not a default page). A fresh start's reading window is the first topic that
+     * isn't a reference book. */
     if (fresh && c->n_trees && tree_is_ref(c, c->home_tree % c->n_trees))
         for (unsigned t = 0; t < c->n_trees; t++)
             if (!tree_is_ref(c, (uint16_t)t)) { s->win[0].node = cart_tree(c, (uint16_t)t).root; break; }
-    u->mode = M_READ; u->back_mode = M_READ; u->list_sel = 0; u->lib_folder = 0xFF;
+    u->mode = M_HOME; u->back_mode = M_READ; u->list_sel = 0; u->lib_folder = 0xFF;
+    u->home_lvl = 0; u->home_page = 0;   /* Home tiles on every boot and wake (Charlie, 2026-11-08) */
 }
 
 static void clamp_page(ui_t *u) {
@@ -337,7 +339,7 @@ static void to_passage(ui_t *u, int k) {
 }
 
 /* ------------------------------------------------------------- the menu */
-enum { MI_FLASH, MI_SOS, MI_IR, MI_MESH, MI_FONT, MI_FAMILY, MI_CLEAN, MI_CONTEXT, MI_LIBRARY, MI_WINDOW, MI_SIG_OFF, MI_SLEEP };
+enum { MI_FLASH, MI_SOS, MI_IR, MI_MESH, MI_FONT, MI_FAMILY, MI_CLEAN, MI_CONTEXT, MI_HOME, MI_LIBRARY, MI_WINDOW, MI_SIG_OFF, MI_SLEEP };
 #ifndef CONFIG_LIB_FULL_REFRESH_EVERY
 #define CONFIG_LIB_FULL_REFRESH_EVERY 15
 #endif
@@ -350,7 +352,7 @@ static int menu_items(const ui_t *u, int *out) {
     if (cart_font_families(u->c) > 1) out[n++] = MI_FAMILY;
     out[n++] = MI_CLEAN;
     if (cart_ctx_dims(u->c)) out[n++] = MI_CONTEXT;
-    out[n++] = MI_LIBRARY;
+    out[n++] = MI_HOME; out[n++] = MI_LIBRARY;
     if (!u->has_window_keys) out[n++] = MI_WINDOW;
     out[n++] = MI_SIG_OFF; out[n++] = MI_SLEEP;
     return n;
@@ -367,6 +369,7 @@ static void menu_label(const ui_t *u, int item, char *b, size_t cap) {
     case MI_FAMILY:  snprintf(b, cap, "Font: %s", cart_font_family_name(u->c, u->s->family)); break;
     case MI_CLEAN:   snprintf(b, cap, "Clean screen every %d pages", u->s->clean ? u->s->clean : CONFIG_LIB_FULL_REFRESH_EVERY); break;
     case MI_CONTEXT: snprintf(b, cap, "Where and when..."); break;
+    case MI_HOME:    snprintf(b, cap, "Home"); break;
     case MI_LIBRARY: snprintf(b, cap, "Library"); break;
     case MI_WINDOW:  snprintf(b, cap, "Next window (%d of %d)", u->s->cur + 1, UI_WINDOWS); break;
     case MI_SIG_OFF: snprintf(b, cap, "All signals off"); break;
@@ -590,6 +593,7 @@ static void render_wake(ui_t *u, cart_fb_t *fb) {
     draw_fit(u, fb, 0, 0, 2, base_of(u, 0, l.ftr_y + 1), UI_W - 10 - rw, b);
 }
 
+static void render_home(ui_t *u, cart_fb_t *fb);
 void ui_render(ui_t *u, cart_fb_t *fb) {
     char b[64];
     fb_clear(fb);
@@ -608,6 +612,7 @@ void ui_render(ui_t *u, cart_fb_t *fb) {
     case M_CTX_DIMS: draw_list(u, fb, "Where and when", 0, (int)cart_ctx_dims(u->c), u->list_sel, lbl_dim, "Pages that don't fit are hidden"); break;
     case M_CTX_VALUES: { uint8_t v[97]; draw_list(u, fb, "Pick one", 0, ctx_values(u, v), u->list_sel, lbl_value, 0); break; }
     case M_MENU: { int it[LIST_MAX]; draw_list(u, fb, "Menu", 0, menu_items(u, it), u->list_sel, lbl_menu, "Hold BACK: front light"); break; }
+    case M_HOME: render_home(u, fb); break;
     case M_PICK:
         if (u->has_window_keys) {
             char ab[4][64];
@@ -671,6 +676,118 @@ static void open_library(ui_t *u) {                       /* opens on the folder
     uint16_t e[VIS_MAX]; int k = lib_entries(u, e);
     for (int i = 0; i < k; i++) if (e[i] == n->tree) u->list_sel = (uint8_t)i;
 }
+/* Open a topic or manual: a manual resumes where it was last read. */
+static void open_tree(ui_t *u, unsigned t) {
+    uint16_t root = cart_tree(u->c, (uint16_t)t).root;
+    uint16_t last = t < UI_LAST_TREES ? u->s->last[t] : 0, leaf, path[WALK_DEPTH]; int plen;
+    const cart_node_t *ln = last ? cart_node(u->c, last) : 0;
+    u->mode = M_READ;
+    if (ln && ln->tree == t && leaf_walk(u, root, last, 0, &leaf, path, &plen)) open_at(u, leaf, path, plen, 0);
+    else { W(u)->nhist = 0; W(u)->node = CART_NONE; go_node(u, root); W(u)->nhist = 0; }   /* BACK from its first page goes back up */
+}
+
+/* ------------------------------------------------------------- Home tiles
+ * Charlie, 2026-11-08: the first screen is two tiles, Injury and Survival; each
+ * opens into more tiles (its Library folders, then their topics), and a topic's
+ * questions are tiles too (the answer screens). One corner button per tile; a
+ * level with more than 4 entries shows 3 and a "More" tile. Survival = the
+ * Survival and Terrain folders; every other folder is Injury. */
+static const char *HOME_CAT[2] = { "Injury", "Survival" };
+static int home_cat_of(ui_t *u, unsigned t) {
+    char g[40];
+    if (!tree_group(u, t, g, sizeof g)) return 0;
+    return !strcmp(g, "Survival") || !strcmp(g, "Terrain");
+}
+static int home_entries(ui_t *u, uint16_t *out) {          /* lvl 0: 0/1; lvl 1: folders (LIB_FOLDER+t) and loose trees; lvl 2: trees */
+    int n = 0;
+    if (u->home_lvl == 0) { out[0] = 0; out[1] = 1; return 2; }
+    uint16_t e[VIS_MAX]; uint8_t keep = u->lib_folder;
+    u->lib_folder = u->home_lvl == 2 ? u->home_grp : 0xFF;
+    int k = lib_entries(u, e);
+    u->lib_folder = keep;
+    for (int pass = 0; pass < 2; pass++)                     /* signed-off topics first, then manuals */
+        for (int i = 0; i < k; i++) {
+            unsigned t = e[i] >= LIB_FOLDER ? e[i] - LIB_FOLDER : e[i];
+            if (u->home_lvl == 1 && home_cat_of(u, t) != u->home_cat) continue;
+            if (e[i] < LIB_FOLDER && tree_is_ref(u->c, (uint16_t)t) != pass) continue;
+            if (e[i] >= LIB_FOLDER && pass) continue;
+            out[n++] = e[i];
+        }
+    return n;
+}
+static int home_tiles(ui_t *u, uint16_t *e, int n, int *idx) {   /* entries on this page; idx[i] = -1 is "More" */
+    if (n <= 4) { for (int i = 0; i < n; i++) idx[i] = i; return n; }
+    int pages = (n + 2) / 3; if (u->home_page >= pages) u->home_page = 0;
+    int m = 0;
+    for (int i = u->home_page * 3; i < n && m < 3; i++) idx[m++] = i;
+    while (m < 3) idx[m++] = -2;                             /* blank, so "More" stays bottom right */
+    idx[m++] = -1;
+    (void)e; return m;
+}
+static void home_label(ui_t *u, uint16_t v, char *b, size_t cap) {
+    if (u->home_lvl == 0) { snprintf(b, cap, "%s", HOME_CAT[v & 1]); return; }
+    if (v >= LIB_FOLDER) { tree_group(u, v - LIB_FOLDER, b, cap); return; }
+    char t[64]; T(u, cart_tree(u->c, v).title, t, sizeof t);
+    snprintf(b, cap, "%s%s", tree_is_ref(u->c, v) ? REF_MARK ": " : "", t);
+}
+static void open_home(ui_t *u) { u->mode = M_HOME; u->list_sel = 0; }
+static void home_up(ui_t *u) {
+    if (u->home_lvl == 2) {
+        u->home_lvl = 1; u->home_page = 0;
+        uint16_t e[VIS_MAX];
+        if (home_entries(u, e) <= 1) u->home_lvl = 0;          /* the folder level was skipped on the way in */
+    } else u->home_lvl = 0;
+    u->home_page = 0; u->list_sel = 0;
+}
+static void home_pick(ui_t *u, uint16_t v) {
+    u->home_page = 0; u->list_sel = 0;
+    if (u->home_lvl == 0) {
+        u->home_cat = (uint8_t)v; u->home_lvl = 1;
+        uint16_t e[VIS_MAX]; int n = home_entries(u, e);
+        if (n == 1 && e[0] >= LIB_FOLDER) { u->home_grp = (uint8_t)(e[0] - LIB_FOLDER); u->home_lvl = 2; }   /* one folder: open it */
+    } else if (v >= LIB_FOLDER) { u->home_grp = (uint8_t)(v - LIB_FOLDER); u->home_lvl = 2; }
+    else open_tree(u, v);
+}
+static void render_home(ui_t *u, cart_fb_t *fb) {
+    uint16_t e[VIS_MAX]; int n = home_entries(u, e);
+    char title[48];
+    if (u->home_lvl == 0) snprintf(title, sizeof title, "Home");
+    else if (u->home_lvl == 1) snprintf(title, sizeof title, "%s", HOME_CAT[u->home_cat & 1]);
+    else tree_group(u, u->home_grp, title, sizeof title);
+    if (!u->has_window_keys) {                               /* no corner buttons: a plain list */
+        header(u, fb, title, 0);
+        lay_t l = layout(u); unsigned size = u->s->font;
+        int lh = cart_font_line_height(u->c, ST(u, size)), per = l.body_h / lh; if (per < 1) per = 1;
+        int top = (u->list_sel / per) * per; char b[96];
+        for (int i = top; i < n && i < top + per; i++) {
+            int y = l.body_y + (i - top) * lh;
+            home_label(u, e[i], b, sizeof b);
+            draw_fit(u, fb, size, 0, 6, base_of(u, size, y), UI_W - 12, b);
+            if (i == u->list_sel) fb_xor_rect(fb, 2, y, UI_W - 4, lh);
+        }
+        footer(u, fb, u->home_lvl ? "TALK: open. BACK: up" : "TALK: open. BACK: back to reading");
+        return;
+    }
+    int idx[4], m = home_tiles(u, e, n, idx);
+    char ab[4][64];
+    for (int i = 0; i < m; i++) {
+        if (idx[i] == -2) ab[i][0] = 0;
+        else if (idx[i] < 0) snprintf(ab[i], sizeof ab[i], "More...");
+        else home_label(u, e[idx[i]], ab[i], sizeof ab[i]);
+    }
+    char right[16] = "";
+    if (n > 4) snprintf(right, sizeof right, "%d/%d", u->home_page + 1, (n + 2) / 3);
+    header(u, fb, title, right);
+    if (!n) { lay_t l = layout(u); draw_wrap(u, fb, 1, 6, l.body_y, UI_W - 12, l.body_h, "Nothing here yet."); }
+    else if (u->home_lvl == 0) {                              /* the two big tiles: largest text */
+        uint8_t keep = u->s->font; unsigned nf = cart_font_sizes(u->c);
+        if (nf) u->s->font = (uint8_t)(nf - 1);
+        draw_answers(u, fb, m, ab);
+        u->s->font = keep;
+    } else draw_answers(u, fb, m, ab);
+    footer(u, fb, u->home_lvl ? "Press the button by a tile. BACK: up" : "Press the button by a tile. TALK: back to reading");
+}
+
 static void talk_short(ui_t *u) {
     ui_window_t *w = W(u);
     pages_t P; node_pages(u, w->node, &P);
@@ -684,7 +801,7 @@ static void talk_short(ui_t *u) {
 static void back(ui_t *u) {
     ui_window_t *w = W(u);
     if (w->nhist) { w->node = w->hist[--w->nhist]; w->page = 0; w->sel = 0; }
-    else open_menu(u);                                     /* the Library is in the menu */
+    else open_home(u);                                     /* top of a topic: back to its Home tiles */
 }
 
 static ui_act_t menu_select(ui_t *u, ui_act_t a) {
@@ -706,6 +823,7 @@ static ui_act_t menu_select(ui_t *u, ui_act_t a) {
         return a;
     }
     case MI_CONTEXT: u->mode = M_CTX_DIMS; u->list_sel = 0; return a;
+    case MI_HOME:    open_home(u); return a;
     case MI_LIBRARY: open_library(u); return a;
     case MI_WINDOW: u->s->cur = (uint8_t)((u->s->cur + 1) % UI_WINDOWS); u->mode = M_READ; return a;
     case MI_SLEEP: a.sleep_now = 1; return a;
@@ -791,16 +909,32 @@ ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
         else if (b == B_BACK) u->mode = u->mode == M_MENU ? u->back_mode : M_READ;
         else if (b == B_TALK && n) {
             if (u->mode == M_LIBRARY && e[u->list_sel] >= LIB_FOLDER) { u->lib_folder = (uint8_t)(e[u->list_sel] - LIB_FOLDER); u->list_sel = 0; }
-            else if (u->mode == M_LIBRARY) {
-                unsigned t = e[u->list_sel]; uint16_t root = cart_tree(u->c, (uint16_t)t).root;
-                uint16_t last = t < UI_LAST_TREES ? u->s->last[t] : 0, leaf, path[WALK_DEPTH]; int plen;
-                const cart_node_t *ln = last ? cart_node(u->c, last) : 0;
-                if (ln && ln->tree == t && leaf_walk(u, root, last, 0, &leaf, path, &plen)) open_at(u, leaf, path, plen, 0);   /* resume the manual */
-                else { W(u)->nhist = 0; W(u)->node = CART_NONE; go_node(u, root); W(u)->nhist = 0; }   /* BACK from a topic's first page returns to its folder */
-            }
+            else if (u->mode == M_LIBRARY) open_tree(u, e[u->list_sel]);
             else if (u->mode == M_PICK) go_node(u, u->picks[u->list_sel]);
             else a = menu_select(u, a);
         } else a.redraw = RD_NONE;
+        break;
+    }
+    case M_HOME: {
+        uint16_t e[VIS_MAX]; int n = home_entries(u, e);
+        if (k == E_LONG) { if (b == B_DOWN) open_menu(u); else a.redraw = RD_NONE; break; }
+        if (!u->has_window_keys) {
+            if (b == B_DOWN && n) list_step(u, n, +1);
+            else if (b == B_UP && n) list_step(u, n, -1);
+            else if (b == B_TALK && n) home_pick(u, e[u->list_sel < n ? u->list_sel : 0]);
+            else if (b == B_BACK) { if (u->home_lvl) home_up(u); else u->mode = M_READ; }
+            else a.redraw = RD_NONE;
+            break;
+        }
+        int c = corner_of(b);
+        if (c >= 0) {
+            int idx[4], m = home_tiles(u, e, n, idx);
+            if (c >= m || idx[c] == -2) { a.redraw = RD_NONE; break; }
+            if (idx[c] < 0) u->home_page++;                  /* "More" */
+            else home_pick(u, e[idx[c]]);
+        } else if (b == B_TALK) u->mode = M_READ;            /* back to the page being read */
+        else if (b == B_BACK) { if (u->home_lvl) home_up(u); else a.redraw = RD_NONE; }
+        else a.redraw = RD_NONE;
         break;
     }
     case M_CTX_DIMS: case M_CTX_VALUES: {

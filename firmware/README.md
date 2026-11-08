@@ -92,6 +92,14 @@ add `menuconfig` before `flash`, then look under **Librarian**.
 | BACK | go back; at the start of a window, the library | step the front light: off, dim, bright |
 | Window L / R (Plus) | switch between the 5 windows | smaller / larger text |
 
+**Home tiles.** Every boot and wake opens Home: two tiles, Injury and Survival,
+each next to a corner button. Each opens into more tiles: its Library folders
+(Survival = the Survival and Terrain folders, everything else is Injury), then
+their topics, signed-off topics first. A level with more than 4 entries shows 3
+and a "More..." tile (bottom right). BACK goes up a level, TALK on Home goes back
+to the page being read, and the Library list and Home are both in the menu.
+Boards without corner buttons get the same levels as a list.
+
 **Answer screens (Plus).** When a question has 4 answers or fewer, its last page
 puts each answer in a screen corner, next to its button: top left = Window L,
 top right = Window R, bottom left = UP, bottom right = DOWN. One press answers.
