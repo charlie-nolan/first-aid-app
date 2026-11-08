@@ -15,10 +15,12 @@
 "lots of blood": bleeding/start
 "blood is spurting": bleeding/start
 "blood is pumping out": bleeding/start
-"my friend was shot": bleeding/start
-"gunshot wound": bleeding/start
-"stab wound": bleeding/start
-"someone got stabbed": bleeding/start
+"axe cut": bleeding/start
+"hatchet slipped": bleeding/start
+"dog bite bleeding": bleeding/start
+"cut myself with a knife": bleeding/start
+"fell on a rock and it's bleeding badly": bleeding/start
+"chainsaw cut": bleeding/start
 "deep cut": bleeding/start
 "amputation": bleeding/start
 
@@ -27,7 +29,8 @@
 "he's bleeding from his arm": bleeding/limb
 "leg is bleeding": bleeding/limb
 "my arm is bleeding": bleeding/limb
-"gunshot wound to the leg": bleeding/limb
+"cut my leg on the trail": bleeding/limb
+"deep cut on my hand": bleeding/limb
 "she cut her hand badly": bleeding/limb
 "leg bleeding": bleeding/limb
 
@@ -79,7 +82,7 @@
 "his neck is bleeding": bleeding/neck
 "bleeding in the armpit": bleeding/armpit
 "armpit bleeding": bleeding/armpit
-"shot in the shoulder": bleeding/armpit
+"cut under my arm": bleeding/armpit
 "bleeding from the groin": bleeding/groin
 "bleeding in the groin": bleeding/groin
 "inner thigh bleeding": bleeding/groin

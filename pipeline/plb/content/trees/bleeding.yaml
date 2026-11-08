@@ -25,10 +25,12 @@ phrases:
   - "there's so much blood"
   - blood is spurting
   - blood is pumping out
-  - my friend was shot
-  - gunshot wound
-  - stab wound
-  - someone got stabbed
+  - axe cut
+  - hatchet slipped
+  - dog bite bleeding
+  - cut myself with a knife
+  - "fell on a rock and it's bleeding badly"
+  - chainsaw cut
   - deep cut
 nodes:
   start:
@@ -42,7 +44,7 @@ nodes:
   limb:
     label: Have a tourniquet?
     cite: [ATP4-02.11/4-6, ATP4-02.11/4-9]
-    phrases: [bleeding arm, bleeding leg, arm bleeding, leg bleeding, my leg is bleeding a lot, "he's bleeding from his arm", leg is bleeding, my arm is bleeding, gunshot wound to the leg, she cut her hand badly]
+    phrases: [bleeding arm, bleeding leg, arm bleeding, leg bleeding, my leg is bleeding a lot, "he's bleeding from his arm", leg is bleeding, my arm is bleeding, cut my leg on the trail, deep cut on my hand, she cut her hand badly]
     choices:
       - {label: "Yes, have a tourniquet", to: tq, kind: kit}
       - {label: "No tourniquet", to: pack, kind: nothing}
@@ -114,7 +116,7 @@ nodes:
   armpit:
     label: Armpit bleeding
     cite: [ATP4-02.11/4-77]
-    phrases: [armpit bleeding, bleeding from the armpit, bleeding shoulder, bleeding in the armpit, shot in the shoulder]
+    phrases: [armpit bleeding, bleeding from the armpit, bleeding shoulder, bleeding in the armpit, cut under my arm]
     choices:
       - {label: "Bleeding stopped", to: dressing}
 
