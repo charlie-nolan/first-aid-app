@@ -1,0 +1,214 @@
+# Voice stress test
+
+264 synthetic utterances against 96 registered phrases (96 in the home list). Recogniser stand-in, threshold 0.72. These are proxy numbers for finding gaps; the bench is the real test.
+
+## Results
+
+| Context | hit | near | miss | OFF step | WRONG topic |
+|---|---|---|---|---|---|
+| home | 51 | 5 | 105 | 11 | 0 |
+| in-topic | 51 | 5 | 105 | 11 | 0 |
+
+Off-topic (topics with no tree yet, heard at home): 91 correctly ignored, **1 opened a card** they shouldn't.
+
+`near` = the topic's first screen or a step on the way. `OFF step` = the right topic but a card for a different situation. The home list holds every phrase while the library has fewer than 200, so home and in-topic only differ once it grows past that.
+
+## Threshold sweep (in-topic, and off-topic false triggers)
+
+| threshold | hit | near | miss | OFF step | WRONG | off-topic FALSE |
+|---|---|---|---|---|---|---|
+| 0.6 | 85 | 14 | 56 | 17 | 0 | 2 |
+| 0.65 | 76 | 13 | 68 | 15 | 0 | 2 |
+| 0.7 | 63 | 5 | 93 | 11 | 0 | 1 |
+| 0.72 | 51 | 5 | 105 | 11 | 0 | 1 |
+| 0.75 | 40 | 5 | 116 | 11 | 0 | 0 |
+| 0.8 | 27 | 3 | 140 | 2 | 0 | 0 |
+| 0.85 | 16 | 3 | 153 | 0 | 0 | 0 |
+| 0.9 | 8 | 1 | 163 | 0 | 0 | 0 |
+
+## Per node (in-topic)
+
+| node | hit | near | miss | OFF step |
+|---|---|---|---|---|
+| bleeding/armpit | 2 | 0 | 1 | 1 |
+| bleeding/dressing | 3 | 0 | 11 | 0 |
+| bleeding/groin | 1 | 0 | 5 | 0 |
+| bleeding/improv_tq | 4 | 0 | 2 | 4 |
+| bleeding/junctional | 1 | 0 | 3 | 1 |
+| bleeding/limb | 2 | 0 | 16 | 3 |
+| bleeding/neck | 3 | 1 | 2 | 1 |
+| bleeding/pack | 6 | 0 | 7 | 0 |
+| bleeding/pressure | 3 | 2 | 5 | 0 |
+| bleeding/start | 13 | 0 | 35 | 0 |
+| bleeding/tq | 8 | 0 | 8 | 1 |
+| bleeding/tq_one_hand | 3 | 1 | 4 | 0 |
+| bleeding/tq_second | 2 | 1 | 6 | 0 |
+
+## Landed on the wrong step
+
+| context | said | wanted | heard as | score |
+|---|---|---|---|---|
+| home | bleeding from the arm | bleeding/limb | "bleeding from the armpit" -> bleeding/armpit | 0.79 |
+| in-topic | bleeding from the arm | bleeding/limb | "bleeding from the armpit" -> bleeding/armpit | 0.79 |
+| home | cut my arm | bleeding/limb | "cut under my arm" -> bleeding/armpit | 0.77 |
+| in-topic | cut my arm | bleeding/limb | "cut under my arm" -> bleeding/armpit | 0.77 |
+| home | bleeding from the knee | bleeding/limb | "bleeding from the neck" -> bleeding/neck | 0.80 |
+| in-topic | bleeding from the knee | bleeding/limb | "bleeding from the neck" -> bleeding/neck | 0.80 |
+| home | i have a tourniquet | bleeding/tq | "i dont have a tourniquet" -> bleeding/pack | 0.81 |
+| in-topic | i have a tourniquet | bleeding/tq | "i dont have a tourniquet" -> bleeding/pack | 0.81 |
+| home | use a belt as a tourniquet | bleeding/improv_tq | "use a tourniquet" -> bleeding/tq | 0.77 |
+| in-topic | use a belt as a tourniquet | bleeding/improv_tq | "use a tourniquet" -> bleeding/tq | 0.77 |
+| home | use a bandana as a tourniquet | bleeding/improv_tq | "use a tourniquet" -> bleeding/tq | 0.77 |
+| in-topic | use a bandana as a tourniquet | bleeding/improv_tq | "use a tourniquet" -> bleeding/tq | 0.77 |
+| home | diy tourniquet | bleeding/improv_tq | "tourniquet" -> bleeding/tq | 0.82 |
+| in-topic | diy tourniquet | bleeding/improv_tq | "tourniquet" -> bleeding/tq | 0.82 |
+| home | makeshift tourniquet | bleeding/improv_tq | "tourniquet" -> bleeding/tq | 0.75 |
+| in-topic | makeshift tourniquet | bleeding/improv_tq | "tourniquet" -> bleeding/tq | 0.75 |
+| home | can't put a tourniquet there | bleeding/junctional | "put on a tourniquet" -> bleeding/tq | 0.77 |
+| in-topic | can't put a tourniquet there | bleeding/junctional | "put on a tourniquet" -> bleeding/tq | 0.77 |
+| home | bleeding from the throat | bleeding/neck | "bleeding from the groin" -> bleeding/groin | 0.76 |
+| in-topic | bleeding from the throat | bleeding/neck | "bleeding from the groin" -> bleeding/groin | 0.76 |
+| home | bleeding under the arm | bleeding/armpit | "bleeding arm" -> bleeding/limb | 0.78 |
+| in-topic | bleeding under the arm | bleeding/armpit | "bleeding arm" -> bleeding/limb | 0.78 |
+
+## Wrong topic or false trigger
+
+| context | said | wanted | heard as | score |
+|---|---|---|---|---|
+| home | how do i make a splint | fracture (no tree yet) | "how do i make a tourniquet" -> bleeding/improv_tq | 0.73 |
+
+## Phrases that pull in the wrong asks
+
+- "use a tourniquet" (bleeding/tq): 4
+- "tourniquet" (bleeding/tq): 4
+- "bleeding from the armpit" (bleeding/armpit): 2
+- "cut under my arm" (bleeding/armpit): 2
+- "bleeding from the neck" (bleeding/neck): 2
+- "i dont have a tourniquet" (bleeding/pack): 2
+- "put on a tourniquet" (bleeding/tq): 2
+- "bleeding from the groin" (bleeding/groin): 2
+- "bleeding arm" (bleeding/limb): 2
+- "how do i make a tourniquet" (bleeding/improv_tq): 1
+
+## Missed or landed one step off (in-topic)
+
+Candidates for new phrases on the wanted node, after a read for tone.
+
+| said | wanted | best guess | score |
+|---|---|---|---|
+| he's bleeding really bad | bleeding/start | "help bleeding" -> bleeding/start | 0.62 |
+| blood all over the place | bleeding/start | "bandage too tight" -> bleeding/dressing | 0.43 |
+| the bleeding is really heavy | bleeding/start | "the bandage is too tight" -> bleeding/dressing | 0.56 |
+| bleeding a lot | bleeding/start | "bleeding" -> bleeding/start | 0.69 |
+| it's gushing blood | bleeding/start | "lots of blood" -> bleeding/start | 0.50 |
+| blood keeps coming out | bleeding/start | "blood is pumping out" -> bleeding/start | 0.65 |
+| what do i do about bleeding | bleeding/start | "how do i stop bleeding" -> bleeding/start | 0.60 |
+| make the bleeding stop | bleeding/start | "stop the bleeding" -> bleeding/start | 0.71 |
+| my friend is bleeding | bleeding/start | "my arm is bleeding" -> bleeding/limb | 0.70 |
+| my kid is bleeding | bleeding/start | "my arm is bleeding" -> bleeding/limb | 0.69 |
+| my son cut himself and it's bleeding a lot | bleeding/start | "my leg is bleeding a lot" -> bleeding/limb | 0.62 |
+| huge cut | bleeding/start | "deep cut" -> bleeding/start | 0.54 |
+| big gash | bleeding/start | "stuff the wound with gauze" -> bleeding/pack | 0.30 |
+| deep gash | bleeding/start | "deep cut" -> bleeding/start | 0.54 |
+| he slipped with the knife | bleeding/start | "cut myself with a knife" -> bleeding/start | 0.48 |
+| cut myself really bad | bleeding/start | "cut myself with a knife" -> bleeding/start | 0.58 |
+| i cut myself | bleeding/start | "cut myself with a knife" -> bleeding/start | 0.58 |
+| cut myself carving | bleeding/start | "cut myself with a knife" -> bleeding/start | 0.61 |
+| knife slipped | bleeding/start | "hatchet slipped" -> bleeding/start | 0.54 |
+| whittling accident | bleeding/start | "wound packing" -> bleeding/pack | 0.18 |
+| axe slipped | bleeding/start | "hatchet slipped" -> bleeding/start | 0.57 |
+| the hatchet hit his foot | bleeding/start | "hatchet slipped" -> bleeding/start | 0.42 |
+| chopping wood and cut my shin | bleeding/start | "chainsaw cut" -> bleeding/start | 0.41 |
+| fell on a sharp rock | bleeding/start | "fell on a rock and its bleeding badly" -> bleeding/start | 0.54 |
+| fell and split my head open | bleeding/start | "fell on a rock and its bleeding badly" -> bleeding/start | 0.34 |
+| he fell off his bike and is bleeding | bleeding/start | "his neck is bleeding" -> bleeding/neck | 0.60 |
+| glass cut | bleeding/start | "axe cut" -> bleeding/start | 0.56 |
+| stepped on broken glass | bleeding/start | "one handed tourniquet" -> bleeding/tq_one_hand | 0.33 |
+| bitten by a dog | bleeding/start | "dog bite bleeding" -> bleeding/start | 0.38 |
+| hemorrhage | bleeding/start | "homemade tourniquet" -> bleeding/improv_tq | 0.15 |
+| his finger is cut off | bleeding/start | "his neck is bleeding" -> bleeding/neck | 0.46 |
+| cut off finger | bleeding/start | "cut throat" -> bleeding/neck | 0.48 |
+| severed finger | bleeding/start | "severe bleeding" -> bleeding/start | 0.22 |
+| blood soaked through | bleeding/start | "blood is spurting" -> bleeding/start | 0.49 |
+| soaked in blood | bleeding/start | "spurting blood" -> bleeding/start | 0.51 |
+| my leg won't stop bleeding | bleeding/limb | "leg is bleeding" -> bleeding/limb | 0.71 |
+| her arm won't stop bleeding | bleeding/limb | "arm bleeding" -> bleeding/limb | 0.71 |
+| cut on my leg | bleeding/limb | "cut my leg on the trail" -> bleeding/limb | 0.60 |
+| gash on my thigh | bleeding/limb | "the bandage is too tight" -> bleeding/dressing | 0.44 |
+| deep cut on his calf | bleeding/limb | "deep cut" -> bleeding/start | 0.68 |
+| cut on her wrist | bleeding/limb | "cut throat" -> bleeding/neck | 0.46 |
+| cut my wrist on a rock | bleeding/limb | "cut my leg on the trail" -> bleeding/limb | 0.52 |
+| my hand is bleeding | bleeding/limb | "my arm is bleeding" -> bleeding/limb | 0.68 |
+| hand cut | bleeding/limb | "deep cut" -> bleeding/start | 0.58 |
+| cut my hand | bleeding/limb | "deep cut on my hand" -> bleeding/limb | 0.72 |
+| cut his hand open | bleeding/limb | "deep cut on my hand" -> bleeding/limb | 0.54 |
+| sliced my palm | bleeding/limb | "cut under my arm" -> bleeding/armpit | 0.25 |
+| foot is bleeding | bleeding/limb | "bleeding" -> bleeding/start | 0.68 |
+| cut my foot on a rock | bleeding/limb | "cut my leg on the trail" -> bleeding/limb | 0.52 |
+| my shin is bleeding | bleeding/limb | "my arm is bleeding" -> bleeding/limb | 0.69 |
+| blood coming from his leg | bleeding/limb | "hes bleeding from his arm" -> bleeding/limb | 0.56 |
+| put the tourniquet on | bleeding/tq | "put on a tourniquet" -> bleeding/tq | 0.72 |
+| tourniquet instructions | bleeding/tq | "tourniquet" -> bleeding/tq | 0.71 |
+| where does the tourniquet go | bleeding/tq | "where do i put the tourniquet" -> bleeding/tq | 0.66 |
+| how tight does a tourniquet go | bleeding/tq | "how to use a tourniquet" -> bleeding/tq | 0.71 |
+| tighten the tourniquet | bleeding/tq | "tourniquet" -> bleeding/tq | 0.71 |
+| i've got a tourniquet | bleeding/tq | "tourniquet" -> bleeding/tq | 0.63 |
+| there's a tourniquet in the kit | bleeding/tq | "tourniquet" -> bleeding/tq | 0.55 |
+| windlass | bleeding/tq | "wound packing" -> bleeding/pack | 0.17 |
+| i'm alone and need a tourniquet | bleeding/tq_one_hand | "do i need a second tourniquet" -> bleeding/tq_second | 0.54 |
+| tourniquet one hand | bleeding/tq_one_hand | "one handed tourniquet" -> bleeding/tq_one_hand | 0.71 |
+| put a tourniquet on my own leg | bleeding/tq_one_hand | "put a tourniquet on myself" -> bleeding/tq_one_hand | 0.71 |
+| how do i tourniquet myself | bleeding/tq_one_hand | "tourniquet on myself" -> bleeding/tq_one_hand | 0.71 |
+| self tourniquet | bleeding/tq_one_hand | "tourniquet" -> bleeding/tq | 0.78 |
+| tourniquet isn't stopping it | bleeding/tq_second | "the tourniquet isnt working" -> bleeding/tq_second | 0.61 |
+| tourniquet didn't work | bleeding/tq_second | "tourniquet" -> bleeding/tq | 0.67 |
+| tourniquet on and still bleeding | bleeding/tq_second | "still bleeding with tourniquet" -> bleeding/tq_second | 0.60 |
+| bleeding through the tourniquet | bleeding/tq_second | "still bleeding after the tourniquet" -> bleeding/tq_second | 0.68 |
+| add another tourniquet | bleeding/tq_second | "tourniquet" -> bleeding/tq | 0.67 |
+| put on another tourniquet | bleeding/tq_second | "put on a tourniquet" -> bleeding/tq | 0.88 |
+| need a second one | bleeding/tq_second | "do i need a second tourniquet" -> bleeding/tq_second | 0.61 |
+| no tourniquet what do i do | bleeding/pack | "no tourniquet" -> bleeding/pack | 0.68 |
+| i don't have one | bleeding/pack | "i dont have a tourniquet" -> bleeding/pack | 0.69 |
+| pack it with gauze | bleeding/pack | "pack the wound" -> bleeding/pack | 0.47 |
+| how do i pack it | bleeding/pack | "how do i pack a wound" -> bleeding/pack | 0.66 |
+| packing a wound | bleeding/pack | "pack a wound" -> bleeding/pack | 0.71 |
+| gauze in the cut | bleeding/pack | "bandage too tight" -> bleeding/dressing | 0.49 |
+| put gauze in it | bleeding/pack | "put pressure on it" -> bleeding/pressure | 0.59 |
+| improvise a tourniquet | bleeding/improv_tq | "tourniquet" -> bleeding/tq | 0.66 |
+| tourniquet with a stick | bleeding/improv_tq | "tourniquet" -> bleeding/tq | 0.62 |
+| press on it | bleeding/pressure | "press on the wound" -> bleeding/pressure | 0.62 |
+| press hard on the cut | bleeding/pressure | "press on the wound" -> bleeding/pressure | 0.62 |
+| apply direct pressure | bleeding/pressure | "direct pressure" -> bleeding/pack | 0.87 |
+| direct pressure | bleeding/pressure | "direct pressure" -> bleeding/pack | 1.00 |
+| how long do i hold pressure | bleeding/pressure | "hold pressure" -> bleeding/pressure | 0.68 |
+| just pressure | bleeding/pressure | "direct pressure" -> bleeding/pack | 0.57 |
+| hold it tight | bleeding/pressure | "bandage too tight" -> bleeding/dressing | 0.54 |
+| bleeding where the tourniquet can't go | bleeding/junctional | "bleeding where a tourniquet wont fit" -> bleeding/junctional | 0.65 |
+| tourniquet won't fit | bleeding/junctional | "tourniquet" -> bleeding/tq | 0.68 |
+| bleeding near the hip | bleeding/junctional | "bleeding" -> bleeding/start | 0.61 |
+| bleeding neck | bleeding/neck | "bleeding" -> bleeding/start | 0.79 |
+| cut on her neck | bleeding/neck | "deep cut on my hand" -> bleeding/limb | 0.48 |
+| throat is bleeding | bleeding/neck | "bleeding" -> bleeding/start | 0.66 |
+| cut in the armpit | bleeding/armpit | "bleeding in the armpit" -> bleeding/armpit | 0.69 |
+| cut in the groin | bleeding/groin | "bleeding in the groin" -> bleeding/groin | 0.68 |
+| bleeding between the legs | bleeding/groin | "bleeding" -> bleeding/start | 0.59 |
+| bleeding high on the inner thigh | bleeding/groin | "inner thigh bleeding" -> bleeding/groin | 0.59 |
+| cut near the crotch | bleeding/groin | "cut throat" -> bleeding/neck | 0.50 |
+| bleeding from the top of the leg | bleeding/groin | "bleeding from the groin" -> bleeding/groin | 0.63 |
+| bleeding stopped what now | bleeding/dressing | "bleeding" -> bleeding/start | 0.58 |
+| it stopped bleeding | bleeding/dressing | "bleeding" -> bleeding/start | 0.65 |
+| the bleeding stopped | bleeding/dressing | "bleeding" -> bleeding/start | 0.66 |
+| how do i bandage it | bleeding/dressing | "check the bandage" -> bleeding/dressing | 0.43 |
+| wrap the wound | bleeding/dressing | "pack the wound" -> bleeding/pack | 0.69 |
+| put a bandage on | bleeding/dressing | "put a tourniquet on myself" -> bleeding/tq_one_hand | 0.54 |
+| wrap it up | bleeding/dressing | "put pressure on it" -> bleeding/pressure | 0.23 |
+| fingers turning blue after the bandage | bleeding/dressing | "the bandage is too tight" -> bleeding/dressing | 0.54 |
+| his toes are cold below the bandage | bleeding/dressing | "the bandage is too tight" -> bleeding/dressing | 0.53 |
+| pressure wrap | bleeding/dressing | "pressure dressing" -> bleeding/dressing | 0.59 |
+| elastic bandage | bleeding/dressing | "pressure bandage" -> bleeding/dressing | 0.55 |
+
+## Registered phrases that sound alike (different nodes, same list)
+
+| score | phrase | node | phrase | node | |
+|---|---|---|---|---|---|
+| 0.825 | tourniquet | bleeding/tq | no tourniquet | bleeding/pack | same topic |

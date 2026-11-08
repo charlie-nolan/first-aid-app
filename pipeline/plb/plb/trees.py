@@ -49,6 +49,11 @@ KINDS = {"kit", "improvised", "nothing", "next"}
 SHELVES = {"first-aid", "survival", "bushcraft", "plants", "fire", "traps", "weather"}
 # "reference" is reserved for the generated, unreviewed manual shelf (plb/shelf.py)
 LABEL_MAX = 40
+# Buttons first (Charlie 2026-11-08): the device must work perfectly with buttons alone.
+# A question shows each answer next to one of the 4 corner buttons, so a node has at
+# most 4 answers. A fork that needs more becomes two short questions.
+ANSWERS_MAX = 4
+PRESSES_WARN = 6   # answer presses from a topic's first screen to its deepest card
 BANNED_PLANT = re.compile(r"\b(mushroom|fung(us|i)|toadstool|morel|chanterelle|puffball)", re.I)
 
 
@@ -101,6 +106,8 @@ class Built:
     # (phrase, node, where, always, tree_id, is_entry)
     node_phrases: list[tuple[str, int, str, bool, str, bool]] = field(default_factory=list)
     issues: list[Issue] = field(default_factory=list)
+    # tree id -> (most answer presses from the root to any card, that card's key)
+    presses: dict[str, tuple[int, str]] = field(default_factory=dict)
 
     @property
     def errors(self):
@@ -291,6 +298,10 @@ def build_trees(tree_dir: Path, sections: dict[str, dict], figures: dict[str, di
                     b.issues.append(Issue("error", w, f"unknown choice kind {kind!r}"))
                 _check_label(ch.get("label", ""), w + " choice", b)
                 choices.append({"label": ch.get("label", ""), "to": key_to_id[tgt], "kind": kind})
+            if len(choices) > ANSWERS_MAX:
+                b.issues.append(Issue("error", w, f"{len(choices)} answers; at most {ANSWERS_MAX} "
+                                                  "(one per corner button). Split it into two "
+                                                  "short questions"))
             kinds = {c["kind"] for c in choices}
             if kinds & {"kit", "improvised"} and "nothing" not in kinds:
                 b.issues.append(Issue("error", w, "has kit/improvised branches but no 'nothing' "
@@ -320,16 +331,25 @@ def build_trees(tree_dir: Path, sections: dict[str, dict], figures: dict[str, di
                             "emergency": bool(n.get("emergency")),
                             "tags": _check_tags(n.get("tags"), w + " tags", voc, b)})
 
-        # reachability
+        # reachability, and the fewest answer presses to reach each card (breadth-first)
         ids = {key_to_id[f"{tid}/{k}"] for k in t["nodes"]}
-        seen, stack = set(), [key_to_id[root_key]]
         by_id = {n["id"]: n for n in b.nodes}
-        while stack:
-            x = stack.pop()
-            if x in seen or x not in by_id:
-                continue
-            seen.add(x)
-            stack += [c["to"] for c in by_id[x]["choices"]]
+        depth = {key_to_id[root_key]: 0}
+        queue = [key_to_id[root_key]]
+        while queue:
+            x = queue.pop(0)
+            for c in by_id[x]["choices"] if x in by_id else []:
+                if c["to"] not in depth:
+                    depth[c["to"]] = depth[x] + 1
+                    queue.append(c["to"])
+        seen = set(depth)
+        if depth:
+            far = max(depth, key=lambda x: depth[x])
+            b.presses[tid] = (depth[far], by_id[far]["key"] if far in by_id else str(far))
+            if depth[far] > PRESSES_WARN:
+                b.issues.append(Issue("warning", where, f"{by_id[far]['key']} takes {depth[far]} "
+                                                        f"presses to reach (aim for {PRESSES_WARN} "
+                                                        "or fewer)"))
         for x in sorted(ids - seen):
             b.issues.append(Issue("warning", where, f"node {by_id[x]['key']} is unreachable from root"))
 

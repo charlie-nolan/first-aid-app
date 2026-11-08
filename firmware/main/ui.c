@@ -107,7 +107,7 @@ static void draw_pic(ui_t *u, cart_fb_t *fb, uint16_t id, int y0, int h, cart_pi
 static int vis_choices(ui_t *u, const cart_node_t *n, uint8_t *out);
 typedef struct {
     const cart_node_t *n;
-    int fig, nomatch, npas, per, choice_pages, total, nch;
+    int fig, nomatch, npas, per, choice_pages, total, nch, grid;
     uint8_t pp[MAXP];                    /* pages per passage */
     uint8_t ch[64];                      /* visible choice indexes */
 } pages_t;
@@ -129,7 +129,8 @@ static void node_pages(ui_t *u, uint16_t id, pages_t *P) {
     }
     P->per = l.body_h / cart_font_line_height(u->c, ST(u, u->s->font)); if (P->per < 1) P->per = 1;
     P->nch = vis_choices(u, P->n, P->ch);
-    P->choice_pages = P->nch ? (P->nch + P->per - 1) / P->per : 0;
+    P->grid = u->has_window_keys && P->nch && P->nch <= 4;   /* one answer per corner button */
+    P->choice_pages = !P->nch ? 0 : P->grid ? 1 : (P->nch + P->per - 1) / P->per;
     P->total += P->fig + P->nomatch + P->choice_pages;
     if (!P->total) P->total = 1;
 }
@@ -318,6 +319,33 @@ static void lbl_value(ui_t *u, int i, char *b, size_t cap) {
 static void lbl_menu(ui_t *u, int i, char *b, size_t cap) { int it[LIST_MAX]; menu_items(u, it); menu_label(u, it[i], b, cap); }
 static void lbl_pick(ui_t *u, int i, char *b, size_t cap) { const cart_node_t *n = cart_node(u->c, u->picks[i]); T(u, n ? n->label : CART_NONE, b, cap); }
 
+/* Answer screen: up to 4 answers, each in the corner next to its button
+ * (TL = WIN_L, TR = WIN_R, BL = UP, BR = DOWN). One press answers. */
+static const ui_btn_t CORNER[4] = { B_WIN_L, B_WIN_R, B_UP, B_DOWN };
+static int corner_of(ui_btn_t b) { for (int i = 0; i < 4; i++) if (CORNER[i] == b) return i; return -1; }
+static void fb_corner_mark(cart_fb_t *fb, int corner, int y_top, int y_bot) {
+    int right = corner & 1, bottom = corner >> 1;
+    for (int r = 0; r < 7; r++) {                            /* filled right triangle in the screen corner */
+        int y = bottom ? y_bot - r : y_top + r;
+        for (int x = 0; x < 7 - r; x++) fb_px(fb, right ? UI_W - 1 - x : x, y);
+    }
+}
+static void draw_answers(ui_t *u, cart_fb_t *fb, int n, char lab[][64]) {
+    lay_t l = layout(u);
+    int top = l.body_y - 2, bot = l.ftr_y - 1, mid = (top + bot) / 2, cx = UI_W / 2;
+    unsigned size = u->s->font;
+    int rows = n > 2 ? 2 : 1;
+    if (rows == 2) fb_hline(fb, 0, UI_W - 1, mid);
+    for (int y = top; y <= (rows == 2 ? bot : mid); y++) fb_px(fb, cx, y);
+    for (int i = 0; i < n && i < 4; i++) {
+        int right = i & 1, bottom = i >> 1;
+        int y0 = bottom ? mid + 2 : top + 1, y1 = bottom ? bot - 1 : (rows == 2 ? mid - 1 : bot - 1);
+        int x0 = right ? cx + 4 : 10, w = cx - 14;
+        fb_corner_mark(fb, i, top + 1, bot - 1);
+        draw_wrap(u, fb, size, x0, y0 + 1, w, y1 - y0, lab[i]);
+    }
+}
+
 static void render_read(ui_t *u, cart_fb_t *fb) {
     lay_t l = layout(u);
     ui_window_t *w = W(u);
@@ -356,6 +384,11 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
     } else if (seg == SEG_NOMATCH) {
         draw_wrap(u, fb, 2, 6, l.body_y, UI_W - 12, l.body_h, T(u, cart_string(u->c, "NO_MATCH"), cite, sizeof cite));
         footer(u, fb, T(u, cart_string(u->c, "DISCLAIMER"), cite, sizeof cite));
+    } else if (P.grid) {
+        char ab[4][64];
+        for (int i = 0; i < P.nch; i++) lbl_choice(u, P.ch[i], ab[i], sizeof ab[i]);
+        draw_answers(u, fb, P.nch, ab);
+        footer(u, fb, "Press the button by your answer. TALK: read again");
     } else {
         unsigned size = u->s->font; int lh = cart_font_line_height(u->c, ST(u, size));
         int top = sub * P.per;
@@ -395,7 +428,15 @@ void ui_render(ui_t *u, cart_fb_t *fb) {
     case M_CTX_DIMS: draw_list(u, fb, "Where and when", 0, (int)cart_ctx_dims(u->c), u->list_sel, lbl_dim, "Pages that don't fit are hidden"); break;
     case M_CTX_VALUES: { uint8_t v[97]; draw_list(u, fb, "Pick one", 0, ctx_values(u, v), u->list_sel, lbl_value, 0); break; }
     case M_MENU: { int it[LIST_MAX]; draw_list(u, fb, "Menu", 0, menu_items(u, it), u->list_sel, lbl_menu, "Hold BACK: front light"); break; }
-    case M_PICK: draw_list(u, fb, "Did you mean...", 0, u->npicks, u->list_sel, lbl_pick, 0); break;
+    case M_PICK:
+        if (u->has_window_keys) {
+            char ab[4][64];
+            for (int i = 0; i < u->npicks; i++) lbl_pick(u, i, ab[i], sizeof ab[i]);
+            header(u, fb, "Did you mean...", 0);
+            draw_answers(u, fb, u->npicks, ab);
+            footer(u, fb, "Press the button by your answer. BACK: cancel");
+        } else draw_list(u, fb, "Did you mean...", 0, u->npicks, u->list_sel, lbl_pick, 0);
+        break;
     case M_MSG: { lay_t l = layout(u); header(u, fb, "", 0); draw_wrap(u, fb, 1, 6, l.body_y, UI_W - 12, l.body_h, u->msg ? u->msg : "");
                   footer(u, fb, T(u, cart_string(u->c, "DISCLAIMER"), b, sizeof b)); break; }
     }
@@ -442,7 +483,8 @@ static void talk_short(ui_t *u) {
     ui_window_t *w = W(u);
     pages_t P; node_pages(u, w->node, &P);
     if (!P.n) return;
-    if (P.choice_pages && w->page >= first_choice_page(&P)) {
+    if (P.grid && w->page >= first_choice_page(&P)) { w->page = 0; w->sel = 0; }   /* answer screen: read again */
+    else if (P.choice_pages && w->page >= first_choice_page(&P)) {
         cart_choice_t ch = cart_node_choice(u->c, P.n, P.ch[w->sel]);
         go_node(u, ch.to);
     } else if (P.choice_pages) { w->page = (uint8_t)first_choice_page(&P); w->sel = 0; }
@@ -513,6 +555,15 @@ ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
             else a.redraw = RD_NONE;
             break;
         }
+        {                                                  /* answer screen: a corner button answers */
+            ui_window_t *w = W(u); pages_t P; node_pages(u, w->node, &P);
+            int c = corner_of(b);
+            if (P.grid && c >= 0 && w->page >= first_choice_page(&P)) {
+                if (c < P.nch) { go_node(u, cart_node_choice(u->c, P.n, P.ch[c]).to); break; }
+                if (b == B_UP) { step(u, -1, 0); break; }       /* spare bottom-left: back to the text */
+                a.redraw = RD_NONE; break;
+            }
+        }
         if (b == B_DOWN) step(u, +1, !u->has_window_keys);
         else if (b == B_UP) step(u, -1, 0);
         else if (b == B_TALK) talk_short(u);
@@ -525,6 +576,11 @@ ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
         uint8_t v[VIS_MAX];
         int n = u->mode == M_LIBRARY ? vis_trees(u, v) : u->mode == M_MENU ? menu_items(u, it) : u->npicks;
         if (b == B_DOWN && k == E_LONG && u->mode != M_MENU) { open_menu(u); break; }
+        if (u->mode == M_PICK && u->has_window_keys && k == E_SHORT && corner_of(b) >= 0) {
+            int c = corner_of(b);
+            if (c < u->npicks) go_node(u, u->picks[c]); else a.redraw = RD_NONE;
+            break;
+        }
         if (b == B_DOWN) list_step(u, n, +1);
         else if (b == B_UP) list_step(u, n, -1);
         else if (b == B_BACK) u->mode = u->mode == M_MENU ? u->back_mode : M_READ;

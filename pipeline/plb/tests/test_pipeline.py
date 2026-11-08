@@ -149,6 +149,8 @@ def test_good_tree_builds_and_passes(repo):
     pics = json.loads((out / "pictures.json").read_text())
     assert pics[0]["w"] <= 250 and pics[0]["h"] <= 122
     assert (out / "phrases.txt").read_text() == "0\tdemo topic\n1\tthe thing\n"
+    assert json.loads((out / "manifest.json").read_text())["presses"] == {
+        "demo": {"most": 1, "card": "demo/kit"}}
 
 
 @pytest.mark.parametrize("mutate,expect", [
@@ -159,6 +161,8 @@ def test_good_tree_builds_and_passes(repo):
     (lambda t: t["nodes"]["imp"].update({"label": "x" * 41}), "label over"),
     (lambda t: t["nodes"]["imp"].update({"phrases": ["the thing"]}), "already opens node"),
     (lambda t: t["nodes"]["start"].update({"figure": f"{FIX_ID}/fig/9-9"}), "not extracted"),
+    (lambda t: t["nodes"]["start"]["choices"].extend(
+        [{"label": f"More {i}", "to": "none"} for i in range(2)]), "at most 4"),
 ])
 def test_rule_violations_fail(repo, mutate, expect):
     import copy

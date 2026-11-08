@@ -131,6 +131,8 @@ def main(argv=None) -> int:
         return rc
     if a.cmd in ("build", "test", "pack"):
         out, issues = build(root, personal=a.personal)
+        for tid, p in json.loads((out / "manifest.json").read_text()).get("presses", {}).items():
+            print(f"{tid}: up to {p['most']} button presses to reach a card ({p['card']})")
         if a.cmd == "build":
             print(f"intermediate -> {out}")
             return _report(issues)
