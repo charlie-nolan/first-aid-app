@@ -197,20 +197,117 @@ def join_words(ws: list[dict]) -> str:
     return out
 
 
-def read_lines(pdf_path: Path, margin_top: float = 0.07, margin_bottom: float = 0.07):
-    """Yield (page_obj, [Line]) skipping running headers/footers."""
+DEGREE_GLYPHS = {"0", "o", "O", "\u00b0", "\u00ba", "\u02da"}
+
+
+def mark_superscript_degrees(words: list[dict]) -> None:
+    """A raised, small "0"/"o" right after a number is a degree sign set as a superscript
+    ("100-102" + raised "0" + "F" -> "100-102°F"), not a digit. Decided from the glyph's
+    size and rise against the number before it, never from the text alone."""
+    for w in words:
+        if w["text"] not in DEGREE_GLYPHS:
+            continue
+        for v in words:
+            if v is w or not v["text"][-1:].isdigit():
+                continue
+            if abs(v["x1"] - w["x0"]) > 1.5 or w["size"] > 0.75 * v["size"]:
+                continue
+            raised = (v["bottom"] - w["bottom"]) > 0.25 * v["size"]
+            overlaps = w["bottom"] > v["top"] and w["top"] < v["bottom"]
+            if raised and overlaps:
+                w["text"] = "\u00b0"
+                w["size"] = v["size"]                 # joins like a normal glyph of the line
+                break
+
+
+def running_lines(pages_words: list[list[dict]], heights: list[float], band: float = 0.12) -> set:
+    """Text that repeats near the top or bottom of many pages (running headers/footers),
+    with digits removed so page numbers don't matter."""
+    from collections import Counter
+    seen: Counter = Counter()
+    for words, h in zip(pages_words, heights):
+        keys = set()
+        for r in group_rows([w for w in words if w["top"] < h * band or w["bottom"] > h * (1 - band)]):
+            keys.add(_running_key(r))
+        seen.update(k for k in keys if k)
+    n = len(pages_words)
+    return {k for k, c in seen.items() if c >= max(3, 0.2 * n)}
+
+
+def _running_key(row: list[dict]) -> str:
+    return re.sub(r"[\d\s]+", " ", " ".join(w["text"] for w in row)).strip().lower()
+
+
+def column_bands(words: list[dict], page_width: float) -> list[list[dict]]:
+    """Parts of a page set in two columns (Aerie's evacuation-criteria list, sidebars beside
+    text): rows that keep breaking at the same x form a band; inside it the left column is
+    read before the right one. Full-width text above and below is left in order."""
+    rows = group_rows(words)
+    starts = []                                         # (row index, x where the right part starts)
+    for i, r in enumerate(rows):
+        for a, b in zip(r, r[1:]):
+            if b["x0"] - a["x1"] > 18 and page_width * 0.3 < b["x0"] < page_width * 0.75:
+                starts.append((i, b["x0"]))
+                break
+    if len(starts) < 4:
+        return [words]
+    from collections import Counter
+    xs = Counter(round(x / 12) for _, x in starts)
+    key, count = xs.most_common(1)[0]
+    if count < 4:
+        return [words]
+    hits = [i for i, x in starts if abs(round(x / 12) - key) <= 1]
+    gutter = min(x for i, x in starts if i in hits) - 2
+    lo, hi = min(hits), max(hits)
+    # extend the band over rows that sit only in the right column next to it
+    while hi + 1 < len(rows) and min(w["x0"] for w in rows[hi + 1]) >= gutter:
+        hi += 1
+    while lo > 0 and min(w["x0"] for w in rows[lo - 1]) >= gutter:
+        lo -= 1
+    before = [w for r in rows[:lo] for w in r]
+    band = [w for r in rows[lo:hi + 1] for w in r]
+    after = [w for r in rows[hi + 1:] for w in r]
+    left = [w for w in band if w["x0"] < gutter]
+    right = [w for w in band if w["x0"] >= gutter]
+    return [x for x in (before, left, right, after) if x]
+
+
+def read_lines(pdf_path: Path, margin_top: float = 0.07, margin_bottom: float = 0.07,
+               margins: str = "fixed", columns: bool = False):
+    """Yield (page_obj, [Line]) skipping running headers/footers.
+
+    margins="fixed" drops the top and bottom 7% of every page. margins="auto" drops only
+    text that repeats there across pages (running headers/footers) and lone page numbers,
+    so body lines set close to the edge (Aerie) are kept. columns=True reads two-column
+    bands of a page column by column."""
     import pdfplumber
 
     with pdfplumber.open(pdf_path) as doc:
+        running: set = set()
+        if margins == "auto":
+            pw = [p.extract_words(use_text_flow=True, x_tolerance_ratio=0.1) for p in doc.pages]
+            running = running_lines(pw, [p.height for p in doc.pages])
         for pno, page in enumerate(doc.pages, start=1):
             h = page.height
             words = page.extract_words(extra_attrs=["fontname", "size"], keep_blank_chars=False,
                                        use_text_flow=True, x_tolerance_ratio=0.1)
             # size-1 words are invisible labels ("62B") left by the typesetter
-            words = [w for w in words
-                     if w["top"] >= h * margin_top and w["bottom"] <= h * (1 - margin_bottom)
-                     and w["size"] >= 3]
-            rows = [r for col in split_columns(words, page.width) for r in group_rows(col)]
+            words = [w for w in words if w["size"] >= 3]
+            mark_superscript_degrees(words)
+            if margins == "auto":
+                keep = []
+                for r in group_rows(words):
+                    edge = r[0]["top"] < h * 0.12 or r[-1]["bottom"] > h * 0.88
+                    if edge and (_running_key(r) in running
+                                 or re.fullmatch(r"[\divxlc ]+", " ".join(w["text"] for w in r).lower())):
+                        continue
+                    keep += r
+                words = keep
+            else:
+                words = [w for w in words
+                         if w["top"] >= h * margin_top and w["bottom"] <= h * (1 - margin_bottom)]
+            parts = column_bands(words, page.width) if columns else split_columns(words, page.width)
+            rows = [r for col in parts for r in group_rows(col)]
             raw = decode_cids([join_words(ws) for ws in rows])
             lines = []
             for ws, text in zip(rows, raw):
@@ -277,6 +374,16 @@ def table_row_text(hdr: list[str], cells: list[list[str]]) -> str:
     return f"{first}: " + " ".join(rest) if first else " ".join(rest)
 
 
+def ends_box(notice: dict, line: Line, t: str) -> bool:
+    """A heading after a CAUTION/NOTE box, not more box text. Box text itself is often bold
+    (Army WARNING boxes), so only a line set larger than the box text, or a short bold line
+    after plain box text, counts; the box must already have some text."""
+    if "style" not in notice or not t or t.endswith(".") or len(t) > 60:
+        return False
+    size, bold = notice["style"]
+    return line.size > size + 0.5 or (line.bold and not bold)
+
+
 def is_heading(line: Line, body_size: float) -> bool:
     t = line.text.strip()
     if not t or len(t) > 80 or PARA_RE.match(t) or FIG_RE.match(t) or t.endswith("."):
@@ -290,7 +397,8 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             dpi: int = 200, numbering: str = "dash",
             skip_pages: tuple[int, ...] = (),
             table_pages: tuple[int, ...] | str = (),
-            chapter_pattern: str | None = None) -> tuple[list[Section], list[Figure]]:
+            chapter_pattern: str | None = None, margins: str = "fixed",
+            columns: bool = False) -> tuple[list[Section], list[Figure]]:
     """numbering: "dash" (Army "2-15."), "decimal" (Air Force "4.7.3.") or "headings"
     (no paragraph numbers: each heading starts a section, numbered "<page>.<n>").
     skip_pages: 1-based pages that are not part of the publication (a reseller's note).
@@ -360,7 +468,7 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             sections.append(sec)
             last_row = {"sec": sec, "cells": cells, "hdr": hdr}
 
-    for page, lines in read_lines(pdf_path):
+    for page, lines in read_lines(pdf_path, margins=margins, columns=columns):
         if page.page_number in skip_pages:
             continue
         tables = page.find_tables() if table_pages == "all" or page.page_number in table_pages else []
@@ -391,16 +499,20 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             if notice is not None:
                 gap = ln.top - notice["bottom"] if ln.page == notice["page"] else 99
                 if (gap > 1.8 * max(ln.bottom - ln.top, 6) or chap_re.match(t)
-                        or FIG_RE.match(t) or para_re.match(t) or NOTICE_RE.match(t)):
+                        or FIG_RE.match(t) or para_re.match(t) or NOTICE_RE.match(t)
+                        or ends_box(notice, ln, t)):           # a box ends at the next heading
                     end_notice()
                 else:
                     notice["parts"].append(t)
+                    notice.setdefault("style", (ln.size, ln.bold))   # the box's own text style
                     notice["bottom"], notice["page"] = ln.bottom, ln.page
                     continue
             nm = NOTICE_RE.match(t)
             if nm:
                 notice = {"kind": nm["kind"], "parts": [nm["rest"]] if nm["rest"] else [],
                           "bottom": ln.bottom, "page": ln.page}
+                if nm["rest"]:
+                    notice["style"] = (ln.size, ln.bold)
                 continue
             if chap_re.match(t):
                 flush()

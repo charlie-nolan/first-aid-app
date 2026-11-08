@@ -391,3 +391,98 @@ def test_personal_trees_and_lock_stay_personal(tmp_path):
     assert "PERS" not in public_lock and "PUB/3.1" in public_lock
     assert "PERS/3.1" in (root / "content" / "cites.personal.lock.yaml").read_text()
     assert not check_cite_lock(root, trees, personal=True)
+
+
+def _pdf(tmp_path, pages):
+    pdf = tmp_path / "t.pdf"
+    c = canvas.Canvas(str(pdf), pagesize=letter)
+    for draw in pages:
+        draw(c)
+        c.showPage()
+    c.save()
+    return pdf
+
+
+def test_superscript_degree_after_number(tmp_path):
+    """Aerie p91: "100-102" + raised 6 pt "0" + "F" printed 100-102°F; read it as degrees."""
+    from plb.extract import read_lines
+
+    def draw(c):
+        x, y = 72, H - 120
+        for text, size, rise in [("1-1. Bath at 100-102", 11, 0), ("0", 6.4, 4.5), ("F (38-39", 11, 0),
+                                 ("0", 6.4, 4.5), ("C) for 30 minutes. Mix H", 11, 0), ("2", 6.4, -2),
+                                 ("O with 10 parts.", 11, 0)]:
+            c.setFont("Helvetica", size); c.drawString(x, y + rise, text)
+            x += stringWidth(text, "Helvetica", size)
+    pdf = _pdf(tmp_path, [draw])
+    text = " ".join(l.text for _, ls in read_lines(pdf) for l in ls)
+    assert "100-102 degrees F (38-39 degrees C)" in " ".join(text.split())
+    assert "H2O" in text.replace(" ", "")                 # a subscript is not a degree sign
+
+
+def test_auto_margins_keep_body_lines_near_the_edge(tmp_path):
+    """Aerie sets body text 40 pt from the top and 45 pt from the bottom; fixed 7% margins
+    cut it. Auto margins drop only the running header/footer."""
+    from plb.extract import read_lines
+
+    def page(n):
+        def draw(c):
+            c.setFont("Helvetica", 10); c.drawString(450, H - 22, "Running Header")
+            c.drawString(36, 22, f"{n} Book Title Footer")
+            c.setFont("Helvetica", 11)
+            c.drawString(72, H - 46, f"Top body line {'abcde'[n - 1] * 3}.")
+            c.drawString(72, H / 2, "Middle body line.")
+            c.drawString(72, 52, f"Bottom body line {'vwxyz'[n - 1] * 3}.")
+        return draw
+    pdf = _pdf(tmp_path, [page(n) for n in range(1, 6)])
+    fixed = [l.text for _, ls in read_lines(pdf) for l in ls]
+    auto = [l.text for _, ls in read_lines(pdf, margins="auto") for l in ls]
+    assert "Top body line aaa." not in fixed
+    assert "Top body line aaa." in auto and "Bottom body line xxx." in auto
+    assert not any("Running Header" in t or "Book Title Footer" in t for t in auto)
+
+
+def test_two_column_band_reads_left_then_right(tmp_path):
+    """Aerie p118: full-width text, then a two-column list, then full-width text again."""
+    from plb.extract import read_lines
+
+    def draw(c):
+        c.setFont("Helvetica", 11)
+        c.drawString(60, H - 100, "Full width introduction line that runs across the page.")
+        for i in range(6):
+            c.drawString(60, H - 130 - 14 * i, f"Left item {i}")
+            c.drawString(360, H - 130 - 14 * i, f"Right item {i}")
+        c.drawString(60, H - 240, "Full width closing line that runs across the page.")
+    pdf = _pdf(tmp_path, [draw])
+    texts = [l.text for _, ls in read_lines(pdf, columns=True) for l in ls]
+    assert texts[0].startswith("Full width introduction")
+    assert texts[1:7] == [f"Left item {i}" for i in range(6)]
+    assert texts[7:13] == [f"Right item {i}" for i in range(6)]
+    assert texts[-1].startswith("Full width closing")
+    plain = [l.text for _, ls in read_lines(pdf) for l in ls]
+    assert "Left item 0 Right item 0" in plain             # default reading is unchanged
+
+
+def test_notice_box_stops_at_next_heading(tmp_path):
+    """Aerie 50.1: a NOTE box ran into the following bold heading and its text."""
+    def draw(c):
+        y = lines(c, H - 100, ["1-1. Alpha placeholder paragraph."]) - 8
+        y = lines(c, y, ["NOTE: Placeholder note text inside the box."])
+        y = lines(c, y, ["NEXT PLACEHOLDER HEADING"], "Helvetica-Bold", 11)
+        lines(c, y, ["1-2. Bravo placeholder paragraph."])
+    secs, _, _ = run(tmp_path, draw)
+    assert secs["1-1"]["notices"] == [{"kind": "NOTE", "text": "Placeholder note text inside the box."}]
+    assert secs["1-2"]["heading"] == "NEXT PLACEHOLDER HEADING"
+
+
+def test_bold_box_text_stays_in_the_box(tmp_path):
+    """Army WARNING boxes set their text in bold: it is box text, not a heading."""
+    def draw(c):
+        y = lines(c, H - 100, ["1-1. Alpha placeholder paragraph."]) - 8
+        y = lines(c, y, ["WARNING"], "Helvetica-Bold", 10)
+        y = lines(c, y, ["Placeholder casualties moved this way may not", "receive placeholder care."],
+                  "Helvetica-Bold", 10) - 8
+        lines(c, y, ["1-2. Bravo placeholder paragraph."])
+    secs, _, _ = run(tmp_path, draw)
+    assert secs["1-1"]["notices"] == [{"kind": "WARNING", "text":
+        "Placeholder casualties moved this way may not receive placeholder care."}]
