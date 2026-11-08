@@ -1,6 +1,7 @@
 # Voice stress test and card text check
 
-Both run on the desktop at build time. Nothing here goes on the device.
+Both run on the desktop at build time, fully offline, with no AI model or network
+service anywhere. Nothing here goes on the device.
 
 ## `plb verbatim`: is every card word for word what the book prints?
 
@@ -18,16 +19,14 @@ footers and page numbers, and compares.
 ```
 plb verbatim                 # signed-off topics (fails on any MISMATCH)
 plb verbatim --all           # also the unreviewed shelf (slow, about 2 min)
-plb verbatim --judge         # also ask Claude about each MISMATCH (needs an API key)
 plb --personal verbatim      # personal books too; the report stays in build/
 ```
 
-The judge only answers "extraction artifact or changes meaning?" for each diff. It is
-advisory and never clears a card; a person reads every MISMATCH.
+A person reads every MISMATCH; nothing clears a card automatically.
 
 ## `plb voice`: many ways to say it, against the real phrase list
 
-`content/phrases/synthetic/*.yaml` holds held-out utterances (written by Claude, read by
+`content/phrases/synthetic/*.yaml` holds held-out utterances (read and signed off by
 Charlie): per node, how a scared hiker or parent might ask, plus `off_topic` asks for
 topics with no tree yet that must not open a card. Don't copy them into the trees
 wholesale, or the test stops measuring anything.
@@ -45,7 +44,6 @@ opened a card). It also lists registered phrases that sound alike across nodes.
 ```
 plb voice                         # report -> build/voice-report.md; fails on OFF/WRONG/FALSE
 plb voice --threshold 0.65
-plb voice --generate bleeding     # Claude writes build/synthetic-bleeding.yaml to review
 ```
 
 Snapshots of the first run are in `docs/reports/`.
