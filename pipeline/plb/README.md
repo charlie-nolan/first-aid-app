@@ -17,6 +17,7 @@ pip install -e '.[test]'
 plb ingest ATP3-50.21 ~/Downloads/atp3-50-21.pdf   # or: plb fetch (if the hosts are reachable)
 plb extract ATP3-50.21
 plb grep tourniquet
+plb validate                  # schema check of content/ only (fast, no PDFs)
 plb build && plb test
 # packing needs the romkit deps too: pip install numpy Pillow freetype-py uharfbuzz
 plb pack --packer "python3 /mnt/project-files/romkit/pack.py"
@@ -31,6 +32,11 @@ plb extract ATP3-50.21 --figure-cmd "python -m plb.marker"
 plb extract ATP3-50.21 --figure-cmd "python -m plb.marker --marker-out ~/subaru_cyberdeck/test_batch_out"
 ```
 Marker images are matched to "Figure X-Y." captions in its markdown. Images with no caption are kept as `ID/img/p<page>-<n>` and cited by page. Passage text always comes from plb's direct PDF text, never from Marker.
+
+## Schemas and CI
+`plb/schema.py` holds Pydantic schemas for `content/trees/*.yaml`, `config.yaml`, `contexts.yaml`, `strings.yaml` and `phrases/expect.yaml`. They catch shape mistakes (a misspelt key like `cites:` or `choises:`, a wrong type, a choice to a missing node, a bad citation form) before anything is built. `plb build`/`plb test` run them too.
+
+GitHub Actions (`.github/workflows/ci.yml`) runs on every PR: `plb validate` on the committed content, these tests (including a fixture manual packed into a real `library.bin` and read back through the C reader), and the romkit reader tests. CI never needs the manual PDFs or personal-only sources.
 
 ## Rules the builder enforces
 - No text of our own on screen: passages are verbatim from a pinned manual. The only exceptions are navigation labels (at most 40 chars) and `content/strings.yaml`.

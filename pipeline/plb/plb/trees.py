@@ -28,6 +28,9 @@ Tree YAML (content/trees/*.yaml):
           - {label: Can improvise one, to: tq_improv, kind: improvised}
           - {label: Nothing, to: pressure, kind: nothing}
 
+The shape of this file (keys, types, key spelling) is checked first by the Pydantic
+schema in plb/schema.py; `plb validate` runs that check alone, without the manuals.
+
 Tags are checked against content/contexts.yaml (default: 50 states + DC by postal
 code, groups like pnw, seasons, activities). Untagged = global.
 
@@ -215,7 +218,13 @@ def build_trees(tree_dir: Path, sections: dict[str, dict], figures: dict[str, di
         if len(voc[dim] - groups) > n:
             b.issues.append(Issue("error", "contexts.yaml", f"{len(voc[dim] - groups)} {dim} values, "
                                                             f"the ROM has {n} bits"))
-    loaded = load_trees(tree_dir)
+    from .schema import validate_tree
+    loaded = []
+    for path, t in load_trees(tree_dir):
+        bad = validate_tree(t, path.name)
+        b.issues += bad
+        if not bad:                # a malformed tree is reported once, by the schema, and skipped
+            loaded.append((path, t))
     # pass 1: assign dense node ids
     key_to_id: dict[str, int] = {}
     for _, t in loaded:

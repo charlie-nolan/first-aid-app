@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Pocket First-Aid Librarian builder: manuals -> cited trees -> library.bin input"
 requires-python = ">=3.10"
 license = {text = "GPL-3.0-or-later"}
-dependencies = ["pdfplumber>=0.10", "pypdfium2>=4", "Pillow>=10", "PyYAML>=6", "beautifulsoup4>=4.12"]
+dependencies = ["pdfplumber>=0.10", "pypdfium2>=4", "Pillow>=10", "PyYAML>=6", "beautifulsoup4>=4.12", "pydantic>=2.5"]
 
 [project.optional-dependencies]
 test = ["pytest>=7", "reportlab>=4"]

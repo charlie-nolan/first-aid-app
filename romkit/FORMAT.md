@@ -57,12 +57,15 @@ line prefixes into these.
   `u16 label_text, u16 first_npas, u16 first_choice, u8 n_passages, u8 n_choices,
   u16 figure, u16 tree, u8 flags, u8 n_lookalikes, u16 reserved`.
   Flags: 1 = emergency (readable from the battery reserve), 2 = species page,
-  4 = no-match leaf (show the `NO_MATCH` string).
+  4 = no-match leaf (show the `NO_MATCH` string), 8 = unreviewed (reference shelf:
+  verbatim manual text nobody has signed off; `cart_node_unreviewed()`, show an
+  "Unreviewed" header).
 - `NPAS`: `u16` passage indexes. A node's passages are
   `NPAS[first_npas .. first_npas + n_passages + n_lookalikes)`, look-alikes last.
 - `CHOI` (6 B each): `u16 to_node, u16 label_text, u8 kind, u8 pad`.
   Kind: 0 next, 1 kit, 2 improvised, 3 nothing, 4 yes, 5 no.
-- `TREE` (8 B each): `u16 title_text, u16 root_node, u16 shelf_text, u8 emergency, u8 pad`.
+- `TREE` (8 B each): `u16 title_text, u16 root_node, u16 shelf_text, u8 flags, u8 pad`.
+  Flags: 1 = emergency, 2 = unreviewed (reference shelf).
 - `CMDS`: `u16 node[n_cmds]`, indexed by ESP-SR command id.
 - `SRCS`: `u16 title_text[n_sources]`.
 - `STRS` (4 B each): `u16 name_text, u16 value_text` for the fixed UI strings
@@ -114,7 +117,7 @@ Bitter. `cart_font_families()` and `cart_font_family_name()` list the families.
   only pairs of a quarter pixel or more; then bitmaps (w*h bits, MSB first, each
   starting on a byte). Glyph slot 127 is the bullet. 12.4 fixed point throughout.
 
-## Context tags and voice lists: `NTAG`, `TAGN`, `PHRS` (optional, added 2026-11-06)
+## Context tags and voice lists: `TAGP`, `TAGI`, `TAGN`, `PHRS` (optional, added 2026-11-06)
 
 Content is filtered by a sticky context: a state, plus optional season and
 activity. Tags and contexts are 96 bits: region bits 0-63 (by default the 50 US
@@ -126,8 +129,12 @@ dimension in the context means show all. Within one dimension a node matches if 
 has no tags there, the context has nothing chosen there, or they share a bit.
 Nodes flagged emergency always match.
 
-- `NTAG`: 12 bytes per node, three `u32` words (bits 0-31, 32-63, 64-95). A node
-  with no tags in a dimension inherits its tree's.
+- `TAGP`: palette of distinct tag sets, 12 bytes each (three `u32` words: bits
+  0-31, 32-63, 64-95).
+- `TAGI`: one `u32` per tagged node, `node << 16 | palette index`, sorted by node;
+  the reader binary-searches it. Untagged nodes (global) cost nothing. A node with
+  no tags in a dimension inherits its tree's. (Replaced the per-node `NTAG` on
+  2026-11-07: 145 KB for the 12,083-node library, almost all untagged.)
 - `TAGN`: `u8 n_dims, 3 pad`; `n_dims` x `{u16 name_text, u8 shift, u8 width}`;
   then `u16 label_text[96]` per bit (`0xFFFF` unused).
 - `PHRS`: 6 bytes per ESP-SR command id: `u16 spoken_text, u16 node, u8 flags, u8 pad`.

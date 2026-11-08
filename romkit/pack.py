@@ -9,7 +9,7 @@ in place from memory-mapped flash; see FORMAT.md):
   header   'CRT1' u16 ver u16 n_chunks u32 total_size u32 crc32
            u16 home_tree u16 sleep_picture u16 n_nodes u16 n_texts
            then n_chunks x {char tag[4], u32 offset, u32 size}
-  chunks   SYMS HUFF TIDX TEXT PASG NODE NPAS CHOI TREE CMDS SRCS PICX PICD STRS FONT NTAG TAGN PHRS
+  chunks   SYMS HUFF TIDX TEXT PASG NODE NPAS CHOI TREE CMDS SRCS PICX PICD STRS FONT TAGP TAGI TAGN PHRS
 """
 import json, os, re, struct, sys, zlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -20,6 +20,8 @@ CHOICE_KIND = {'next': 0, 'kit': 1, 'improvised': 2, 'nothing': 3, 'yes': 4, 'no
 NODE_FLAG_EMERGENCY = 1      # readable from the battery reserve
 NODE_FLAG_SPECIES = 2
 NODE_FLAG_NO_MATCH = 4       # plant key dead end: show the NO_MATCH string
+NODE_FLAG_UNREVIEWED = 8     # reference shelf: verbatim manual text nobody has signed off
+TREE_FLAG_EMERGENCY, TREE_FLAG_UNREVIEWED = 1, 2
 
 
 def device_text(s):
@@ -82,6 +84,7 @@ def pack(d, out_bin, max_syms=textcodec.MAX_SYMS - 1):
         t = tree_list[tree_index[n['tree']]] if n.get('tree') in tree_index else None
         flags = NODE_FLAG_EMERGENCY if (n.get('emergency') or (t and t.get('emergency'))) else 0
         flags |= (NODE_FLAG_SPECIES if n.get('species') else 0) | (NODE_FLAG_NO_MATCH if n.get('no_match') else 0)
+        flags |= NODE_FLAG_UNREVIEWED if (n.get('unreviewed') or (t and t.get('unreviewed'))) else 0
         fig = pic_index.get(n.get('figure'), NONE)
         node_b += struct.pack('<HHHBBHHBBH', S.add(n.get('label'), raw=True), first_p, first_c,
                               len(n.get('passages', [])), len(n.get('choices', [])),
@@ -90,7 +93,9 @@ def pack(d, out_bin, max_syms=textcodec.MAX_SYMS - 1):
     choi = bytes(choi)
 
     tree_b = b''.join(struct.pack('<HHHBx', S.add(t['title'], raw=True), t['root'],
-                                  S.add(t.get('shelf'), raw=True), 1 if t.get('emergency') else 0)
+                                  S.add(t.get('shelf'), raw=True),
+                                  (TREE_FLAG_EMERGENCY if t.get('emergency') else 0) |
+                                  (TREE_FLAG_UNREVIEWED if t.get('unreviewed') else 0))
                       for t in tree_list)
 
     n_cmds = max([p['cmd_id'] for p in phrases], default=-1) + 1
@@ -99,9 +104,9 @@ def pack(d, out_bin, max_syms=textcodec.MAX_SYMS - 1):
         assert cmds[p['cmd_id']] in (NONE, p['node']), f'cmd {p["cmd_id"]} maps to two nodes'
         cmds[p['cmd_id']] = p['node']
 
-    # context tags + per-section voice lists (optional chunks NTAG, TAGN, PHRS)
+    # context tags + per-section voice lists (optional chunks TAGP, TAGI, TAGN, PHRS)
     bits, labels, groups = contexts.parse_vocab(trees.get('contexts'))
-    ntag = contexts.pack_masks(contexts.node_masks(tree_list, nodes, bits, groups))
+    tagp, tagi = contexts.pack_sparse(contexts.node_masks(tree_list, nodes, bits, groups))
     tagn = contexts.tagn_chunk(labels, lambda s: S.add(s, raw=True))
     phrs = contexts.phrs_chunk(phrases, n_cmds, nodes, tree_list, lambda s: S.add(s, raw=True))
 
@@ -142,7 +147,7 @@ def pack(d, out_bin, max_syms=textcodec.MAX_SYMS - 1):
         (b'PICX', struct.pack(f'<{len(picx)}I', *picx)), (b'PICD', bytes(picd)),
         (b'STRS', strs),
         (b'FONT', fontpack.build()),
-        (b'NTAG', ntag), (b'TAGN', tagn), (b'PHRS', phrs),
+        (b'TAGP', tagp), (b'TAGI', tagi), (b'TAGN', tagn), (b'PHRS', phrs),
     ]
     HDR = 28
     pos = HDR + 12 * len(chunks)

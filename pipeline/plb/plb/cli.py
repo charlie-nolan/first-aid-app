@@ -3,6 +3,7 @@
     plb fetch [ID]                 try each manual's URLs (needs network access to the hosts)
     plb ingest ID FILE.pdf         add a PDF you downloaded yourself; pins its sha256
     plb extract [ID ...]           PDF -> build/extract/ID/{sections,figures}.json + figure PNGs
+    plb validate                   schema-check content/ (trees, config, strings); no PDFs needed
     plb build                      trees + sections -> build/intermediate/ (the packer's input)
     plb test [--reader-cmd CMD]    build, then run every check; non-zero exit on any error
     plb pack --packer CMD          build + test, then hand build/intermediate to the packer
@@ -52,6 +53,7 @@ def main(argv=None) -> int:
     e = sub.add_parser("extract"); e.add_argument("ids", nargs="*")
     e.add_argument("--no-figures", action="store_true")
     e.add_argument("--figure-cmd", help="external extractor: CMD PDF OUTDIR, must write figures.json")
+    sub.add_parser("validate")
     sub.add_parser("build")
     sub.add_parser("lock", help="pin the content hash of every section a reviewed topic cites")
     t = sub.add_parser("test"); t.add_argument("--reader-cmd"); t.add_argument("--library")
@@ -120,6 +122,13 @@ def main(argv=None) -> int:
         print(f"locked {n} cited sections -> content/cites.lock.yaml"
               + (" + content/cites.personal.lock.yaml" if a.personal else ""))
         return _report(issues)
+    if a.cmd == "validate":
+        from .schema import validate_content
+        content = root / "content"
+        n = len(list((content / "trees").glob("*.yaml")))
+        rc = _report(validate_content(content))
+        print(f"checked {n} tree file(s) in {content}")
+        return rc
     if a.cmd in ("build", "test", "pack"):
         out, issues = build(root, personal=a.personal)
         if a.cmd == "build":

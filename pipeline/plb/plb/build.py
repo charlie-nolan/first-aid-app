@@ -22,6 +22,7 @@ import yaml
 from . import phrases as ph
 from .extract import load_figures, load_sections
 from .pictures import build_picture
+from .schema import validate_content
 from .sources import PERSONAL_EXTRACT, PERSONAL_TREES, load_manifest
 from .trees import DEFAULT_CONTEXTS, Issue, build_trees, pretty_manual
 
@@ -89,7 +90,7 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
         pissues.append(Issue("warning", "config.yaml", f"library_order names unknown trees: "
                                                        f"{sorted(unknown)}"))
     b.trees.sort(key=lambda t: order.get(t["id"], len(order)))   # stable for the rest
-    issues = b.issues + pissues
+    issues = validate_content(root / "content", trees=False) + b.issues + pissues
 
     sleep = config.get("sleep_picture")
     if sleep and sleep not in figures and not (root / str(sleep)).exists():
