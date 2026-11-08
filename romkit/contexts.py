@@ -95,6 +95,19 @@ def pack_masks(masks):
     return b''.join(struct.pack('<III', m & 0xFFFFFFFF, (m >> 32) & 0xFFFFFFFF, m >> 64) for m in masks)
 
 
+def pack_sparse(masks):
+    """Only tagged nodes cost anything. TAGP: palette of distinct masks (12 B each).
+    TAGI: u32 (node << 16 | palette index) per tagged node, sorted by node."""
+    pal, idx = [], {}
+    entries = []
+    for node, m in enumerate(masks):
+        if not m: continue
+        if m not in idx: idx[m] = len(pal); pal.append(m)
+        entries.append(node << 16 | idx[m])
+    assert len(pal) < 65536
+    return pack_masks(pal), struct.pack(f'<{len(entries)}I', *entries)
+
+
 def tagn_chunk(labels, add_text):
     """u8 n_dims, 3 pad; dims[n] {u16 name_text, u8 shift, u8 width}; u16 label_text[96]"""
     b = struct.pack('<B3x', len(DIMS))

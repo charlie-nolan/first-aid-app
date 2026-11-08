@@ -3,6 +3,7 @@
     plb fetch [ID]                 try each manual's URLs (needs network access to the hosts)
     plb ingest ID FILE.pdf         add a PDF you downloaded yourself; pins its sha256
     plb extract [ID ...]           PDF -> build/extract/ID/{sections,figures}.json + figure PNGs
+    plb validate                   schema-check content/ (trees, config, strings); no PDFs needed
     plb build                      trees + sections -> build/intermediate/ (the packer's input)
     plb test [--reader-cmd CMD]    build, then run every check; non-zero exit on any error
     plb pack --packer CMD          build + test, then hand build/intermediate to the packer
@@ -46,6 +47,7 @@ def main(argv=None) -> int:
     e = sub.add_parser("extract"); e.add_argument("ids", nargs="*")
     e.add_argument("--no-figures", action="store_true")
     e.add_argument("--figure-cmd", help="external extractor: CMD PDF OUTDIR, must write figures.json")
+    sub.add_parser("validate")
     sub.add_parser("build")
     t = sub.add_parser("test"); t.add_argument("--reader-cmd"); t.add_argument("--library")
     p = sub.add_parser("pack"); p.add_argument("--packer", required=True,
@@ -81,6 +83,13 @@ def main(argv=None) -> int:
                 subprocess.run(shlex.split(a.figure_cmd) + [str(pdf), str(out)], check=True)
                 figs = json.loads((out / "figures.json").read_text())
             print(f"{m.id}: {len(secs)} sections, {len(figs)} figures -> {out}")
+        return rc
+    if a.cmd == "validate":
+        from .schema import validate_content
+        content = root / "content"
+        n = len(list((content / "trees").glob("*.yaml")))
+        rc = _report(validate_content(content))
+        print(f"checked {n} tree file(s) in {content}")
         return rc
     if a.cmd in ("build", "test", "pack"):
         out, issues = build(root)
