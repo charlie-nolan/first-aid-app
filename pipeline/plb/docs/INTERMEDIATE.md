@@ -16,3 +16,11 @@
 Context filtering (romkit FORMAT.md, 2026-11-06): `trees[].tags` and `nodes[].tags` are `{region|season|activity: [ids]}`. Region ids are postal codes, group names, `all`, or `-xx` exclusions. Untagged means global. `nodes[].emergency: true` makes a node never filtered. `phrases[].always: true` puts a phrase in every voice list. There is no global phrase cap. Instead, for every tree, always + all entry phrases + that tree's own phrases must fit in 200.
 
 Labels (tree titles, node and choice labels) are at most 40 chars. They are the only hand-written text apart from `strings.json`.
+
+## Reference shelf (Charlie, 2026-11-07)
+
+With `reference_shelf: true` in content/config.yaml, plb appends one tree per extracted manual: `id: "ref-<MANUAL>"`, `shelf: "reference"`, `unreviewed: true`. Inside it:
+- Index nodes (chapter, heading group, "1-1 to 1-40" block) have `passages: []` and only `choices`.
+- Section nodes have one verbatim passage plus its notices, with the citation on each passage. Their label is "<para> <heading>".
+
+No list has more than 40 choices. `unreviewed` is on every tree and every node: true on the shelf, false everywhere else. The shelf has no pictures, phrases, tags or emergency flags. `plb test` fails if a reviewed topic links into it or a phrase opens it.

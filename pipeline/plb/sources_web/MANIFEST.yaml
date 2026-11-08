@@ -1,0 +1,55 @@
+# Public-domain web sources for the wilderness first-aid topics (lightning, heat, cold).
+# Fetched with curl on the date shown; sha256 pins the exact copy. US Government works
+# (NOAA/NWS, FEMA/DHS). Third-party material linked from these pages (e.g. NOLS PDFs)
+# is NOT included and must not be quoted. cdc.gov pages (NIOSH heat/cold, CDC Yellow
+# Book altitude) refused non-browser downloads and are not here yet.
+sources:
+- file: nws-backcountry-lightning.pdf
+  url: https://www.weather.gov/media/safety/backcountry_lightning.pdf
+  publisher: NOAA National Weather Service
+  fetched: '2026-11-08'
+  sha256: 0183c1a3b7140753a9d26f1cb9c1785000b23dce4684e8d10456c4566ef6a2fe
+  status: US Government work (17 USC 105)
+  bytes: 5159464
+- file: nws-lightning-outdoors.html
+  url: https://www.weather.gov/safety/lightning-outdoors
+  publisher: NOAA National Weather Service
+  fetched: '2026-11-08'
+  sha256: 5af39d9a11bb3d38c27956d94e7e4e313eb9f9965e2e6ab2402329d28ab04f9f
+  status: US Government work (17 USC 105)
+  bytes: 33488
+- file: nws-lightning-struck.html
+  url: https://www.weather.gov/safety/lightning-struck
+  publisher: NOAA National Weather Service
+  fetched: '2026-11-08'
+  sha256: 51221e8165f388da453f17a0a61bb7b7dff15fa50c191a0942bf773e8022f8cf
+  status: US Government work (17 USC 105)
+  bytes: 29717
+- file: nws-lightning.html
+  url: https://www.weather.gov/safety/lightning
+  publisher: NOAA National Weather Service
+  fetched: '2026-11-08'
+  sha256: bd9fc65d3cd4fa93b774d144d2e5bbfedeb3e025a5436b9632c4c07bfea41d07
+  status: US Government work (17 USC 105)
+  bytes: 28063
+- file: ready-heat.html
+  url: https://www.ready.gov/heat
+  publisher: FEMA / DHS (Ready.gov)
+  fetched: '2026-11-08'
+  sha256: de7959a3f1eaa0c08424f6b2962c5c1713ede719f3f095c52c741565c7a7524e
+  status: US Government work (17 USC 105)
+  bytes: 68174
+- file: ready-lightning.html
+  url: https://www.ready.gov/thunderstorms-lightning
+  publisher: FEMA / DHS (Ready.gov)
+  fetched: '2026-11-08'
+  sha256: 3869841e873f3933d38b82fd5cd7772223d390ba612b39dfbe3ec2f6fa9caa33
+  status: US Government work (17 USC 105)
+  bytes: 59271
+- file: ready-winter.html
+  url: https://www.ready.gov/winter-weather
+  publisher: FEMA / DHS (Ready.gov)
+  fetched: '2026-11-08'
+  sha256: 9ca13b2f9851bf664cf72a328bcb7aabd65cf120419ee830fb9dc5774eb92062
+  status: US Government work (17 USC 105)
+  bytes: 64848

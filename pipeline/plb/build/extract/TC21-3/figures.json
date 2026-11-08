@@ -1,0 +1,770 @@
+[
+ {
+  "id": "TC21-3/fig/2-1",
+  "manual": "TC21-3",
+  "num": "2-1",
+  "title": "Insulation.",
+  "page": 9,
+  "bbox": [
+   247.63997,
+   375.85997000000003,
+   364.35997,
+   526.7120199999999
+  ],
+  "png": "TC21-3_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/2-2",
+  "manual": "TC21-3",
+  "num": "2-2",
+  "title": "C-0-L-D.",
+  "page": 10,
+  "bbox": [
+   121.99998,
+   67.93997000000002,
+   489.99995,
+   171.57202999999993
+  ],
+  "png": "TC21-3_fig_2-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/2-3",
+  "manual": "TC21-3",
+  "num": "2-3",
+  "title": "Cold-wet versus cold-dry.",
+  "page": 11,
+  "bbox": [
+   44.96,
+   43.519999999999996,
+   567.0400000000001,
+   156.69199000000003
+  ],
+  "png": "TC21-3_fig_2-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/2-4",
+  "manual": "TC21-3",
+  "num": "2-4",
+  "title": "Sleeping pad.",
+  "page": 15,
+  "bbox": [
+   201.13998,
+   220.39995999999996,
+   410.85997,
+   320.19211
+  ],
+  "png": "TC21-3_fig_2-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/2-5",
+  "manual": "TC21-3",
+  "num": "2-5",
+  "title": "Load-carrying equipment.",
+  "page": 17,
+  "bbox": [
+   141.13998,
+   137.11993000000007,
+   470.85995,
+   375.75199
+  ],
+  "png": "TC21-3_fig_2-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/2-6",
+  "manual": "TC21-3",
+  "num": "2-6",
+  "title": "Snowshoe and snowshoe binding.",
+  "page": 18,
+  "bbox": [
+   147.85999,
+   68.0,
+   464.13996,
+   202.29211999999995
+  ],
+  "png": "TC21-3_fig_2-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/2-7",
+  "manual": "TC21-3",
+  "num": "2-7",
+  "title": "Snowshoe binding attached to VB boot.",
+  "page": 18,
+  "bbox": [
+   122.35999,
+   68.0,
+   489.63998999999995,
+   433.83213
+  ],
+  "png": "TC21-3_fig_2-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/2-8",
+  "manual": "TC21-3",
+  "num": "2-8",
+  "title": "Insulated canteen with cup.",
+  "page": 20,
+  "bbox": [
+   222.85999,
+   67.93998999999997,
+   389.13999,
+   212.07202999999993
+  ],
+  "png": "TC21-3_fig_2-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/3-1",
+  "manual": "TC21-3",
+  "num": "3-1",
+  "title": "Ten-man arctic tent.",
+  "page": 22,
+  "bbox": [
+   171.13998,
+   524.53995,
+   440.85995,
+   651.3919
+  ],
+  "png": "TC21-3_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/3-2",
+  "manual": "TC21-3",
+  "num": "3-2",
+  "title": "Windbreak.",
+  "page": 23,
+  "bbox": [
+   134.71999,
+   372.37997,
+   477.21993,
+   515.67203
+  ],
+  "png": "TC21-3_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/3-3",
+  "manual": "TC21-3",
+  "num": "3-3",
+  "title": "Deadmen.",
+  "page": 24,
+  "bbox": [
+   134.35999,
+   67.93998999999997,
+   477.63999,
+   206.07202999999993
+  ],
+  "png": "TC21-3_fig_3-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/3-4",
+  "manual": "TC21-3",
+  "num": "3-4",
+  "title": "Yukon stove.",
+  "page": 26,
+  "bbox": [
+   44.96,
+   43.519999999999996,
+   567.0400000000001,
+   72.81204000000002
+  ],
+  "png": "TC21-3_fig_3-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/3-5",
+  "manual": "TC21-3",
+  "num": "3-5",
+  "title": "Tripod for gas can.",
+  "page": 26,
+  "bbox": [
+   246.49997,
+   178.75995,
+   365.49996999999996,
+   331.83213
+  ],
+  "png": "TC21-3_fig_3-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/3-6",
+  "manual": "TC21-3",
+  "num": "3-6",
+  "title": "Gasoline cooking stove, M1950.",
+  "page": 27,
+  "bbox": [
+   159.49998,
+   330.98,
+   452.49995,
+   489.27213
+  ],
+  "png": "TC21-3_fig_3-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/4-1",
+  "manual": "TC21-3",
+  "num": "4-1",
+  "title": "Weapons will 'sweat\" when taken in to a heated shelter.",
+  "page": 29,
+  "bbox": [
+   111.62,
+   389.65999999999997,
+   500.32001,
+   677.85212
+  ],
+  "png": "TC21-3_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/4-2",
+  "manual": "TC21-3",
+  "num": "4-2",
+  "title": "Bipods and tripods will sink in the snow.",
+  "page": 30,
+  "bbox": [
+   145.63998,
+   386.17996,
+   466.35995,
+   596.9720199999999
+  ],
+  "png": "TC21-3_fig_4-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/6-1",
+  "manual": "TC21-3",
+  "num": "6-1",
+  "title": "Mechanisms of heat loss from the body.",
+  "page": 35,
+  "bbox": [
+   172.63998,
+   68.0,
+   439.35995,
+   271.29212000000007
+  ],
+  "png": "TC21-3_fig_6-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/6-2",
+  "manual": "TC21-3",
+  "num": "6-2",
+  "title": "Wind-chill chart.",
+  "page": 37,
+  "bbox": [
+   166.21999,
+   68.00001999999995,
+   445.71996,
+   239.79211999999995
+  ],
+  "png": "TC21-3_fig_6-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/6-3",
+  "manual": "TC21-3",
+  "num": "6-3",
+  "title": "Snow blindness.",
+  "page": 40,
+  "bbox": [
+   194.35999,
+   469.93997,
+   417.63999,
+   587.01212
+  ],
+  "png": "TC21-3_fig_6-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/7-1",
+  "manual": "TC21-3",
+  "num": "7-1",
+  "title": "Location of tent.",
+  "page": 47,
+  "bbox": [
+   44.96,
+   43.519999999999996,
+   567.0400000000001,
+   72.81204000000002
+  ],
+  "png": "TC21-3_fig_7-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/7-2",
+  "manual": "TC21-3",
+  "num": "7-2",
+  "title": "Cross-tree type latrine.",
+  "page": 49,
+  "bbox": [
+   137.35999,
+   178.51993000000004,
+   474.63999,
+   294.15198999999996
+  ],
+  "png": "TC21-3_fig_7-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/7-3",
+  "manual": "TC21-3",
+  "num": "7-3",
+  "title": "Ten-man tent.",
+  "page": 49,
+  "bbox": [
+   182.05998,
+   566.2999500000001,
+   429.93997,
+   705.03199
+  ],
+  "png": "TC21-3_fig_7-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/8-1",
+  "manual": "TC21-3",
+  "num": "8-1",
+  "title": "Using skis or snowshoes.",
+  "page": 50,
+  "bbox": [
+   210.85999,
+   361.81998,
+   401.13999,
+   445.95201
+  ],
+  "png": "TC21-3_fig_8-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/8-2",
+  "manual": "TC21-3",
+  "num": "8-2",
+  "title": "Improvised snowshoes.",
+  "page": 52,
+  "bbox": [
+   217.99998,
+   67.93997000000002,
+   393.99995,
+   269.0720299999999
+  ],
+  "png": "TC21-3_fig_8-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/9-1",
+  "manual": "TC21-3",
+  "num": "9-1",
+  "title": "Determining direction using North Star.",
+  "page": 55,
+  "bbox": [
+   203.71999,
+   386.53998,
+   408.21999,
+   506.67192
+  ],
+  "png": "TC21-3_fig_9-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/9-2",
+  "manual": "TC21-3",
+  "num": "9-2",
+  "title": "Determining direction using Southern Cross.",
+  "page": 56,
+  "bbox": [
+   222.85999,
+   67.93997000000002,
+   389.13999,
+   183.57202999999993
+  ],
+  "png": "TC21-3_fig_9-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-1",
+  "manual": "TC21-3",
+  "num": "10-1",
+  "title": "One-man shelter.",
+  "page": 60,
+  "bbox": [
+   225.49998,
+   234.19994999999994,
+   386.49996,
+   315.9921
+  ],
+  "png": "TC21-3_fig_10-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-2",
+  "manual": "TC21-3",
+  "num": "10-2",
+  "title": "Two-man shelter.",
+  "page": 60,
+  "bbox": [
+   178.99998,
+   421.99997,
+   432.99998,
+   542.7920300000001
+  ],
+  "png": "TC21-3_fig_10-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-3",
+  "manual": "TC21-3",
+  "num": "10-3",
+  "title": "Single lean-to.",
+  "page": 61,
+  "bbox": [
+   211.21999,
+   67.93997000000002,
+   400.71997,
+   192.57202999999993
+  ],
+  "png": "TC21-3_fig_10-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-4",
+  "manual": "TC21-3",
+  "num": "10-4",
+  "title": "Tree-pit shelter.",
+  "page": 61,
+  "bbox": [
+   231.85999,
+   533.89993,
+   380.13996,
+   663.7519
+  ],
+  "png": "TC21-3_fig_10-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-5",
+  "manual": "TC21-3",
+  "num": "10-5",
+  "title": "Snow wall.",
+  "page": 62,
+  "bbox": [
+   178.63998,
+   234.32001000000002,
+   433.35998,
+   427.95201
+  ],
+  "png": "TC21-3_fig_10-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-6",
+  "manual": "TC21-3",
+  "num": "10-6",
+  "title": "Snow trench.",
+  "page": 62,
+  "bbox": [
+   202.63998,
+   561.7399399999999,
+   409.35997,
+   680.31199
+  ],
+  "png": "TC21-3_fig_10-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-7",
+  "manual": "TC21-3",
+  "num": "10-7",
+  "title": "Snow cave.",
+  "page": 64,
+  "bbox": [
+   193.63998,
+   178.82001000000002,
+   418.36,
+   320.61213000000004
+  ],
+  "png": "TC21-3_fig_10-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-8",
+  "manual": "TC21-3",
+  "num": "10-8",
+  "title": "Individual snow house.",
+  "page": 64,
+  "bbox": [
+   239.71999,
+   509.59995000000004,
+   372.21999,
+   610.89202
+  ],
+  "png": "TC21-3_fig_10-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-9",
+  "manual": "TC21-3",
+  "num": "10-9",
+  "title": "Snow house.",
+  "page": 65,
+  "bbox": [
+   160.63998,
+   233.89995999999996,
+   451.35995,
+   438.03202
+  ],
+  "png": "TC21-3_fig_10-9.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-10",
+  "manual": "TC21-3",
+  "num": "10-10",
+  "title": "Hunting land animals.",
+  "page": 67,
+  "bbox": [
+   185.35999,
+   68.00001999999995,
+   426.64,
+   226.29211999999995
+  ],
+  "png": "TC21-3_fig_10-10.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-11",
+  "manual": "TC21-3",
+  "num": "10-11",
+  "title": "Snaring a rabbit.",
+  "page": 67,
+  "bbox": [
+   195.49998,
+   470.29999,
+   416.49998,
+   618.09203
+  ],
+  "png": "TC21-3_fig_10-11.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-12",
+  "manual": "TC21-3",
+  "num": "10-12",
+  "title": "Water hemlock.",
+  "page": 69,
+  "bbox": [
+   197.71999,
+   68.00001999999995,
+   414.21997,
+   256.29211999999995
+  ],
+  "png": "TC21-3_fig_10-12.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-13",
+  "manual": "TC21-3",
+  "num": "10-13",
+  "title": "Baneberry.",
+  "page": 69,
+  "bbox": [
+   197.71999,
+   68.00001999999995,
+   414.21997,
+   476.61213000000004
+  ],
+  "png": "TC21-3_fig_10-13.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-14",
+  "manual": "TC21-3",
+  "num": "10-14",
+  "title": "Half hitch.",
+  "page": 70,
+  "bbox": [
+   262.63998,
+   67.93997000000002,
+   349.35997999999995,
+   171.57202999999993
+  ],
+  "png": "TC21-3_fig_10-14.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-15",
+  "manual": "TC21-3",
+  "num": "10-15",
+  "title": "Overhand.",
+  "page": 70,
+  "bbox": [
+   202.99998,
+   263.89995999999996,
+   408.99998,
+   379.53202
+  ],
+  "png": "TC21-3_fig_10-15.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-16",
+  "manual": "TC21-3",
+  "num": "10-16",
+  "title": "Square.",
+  "page": 70,
+  "bbox": [
+   171.13998,
+   499.45993,
+   440.85995,
+   615.8118999999999
+  ],
+  "png": "TC21-3_fig_10-16.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-17",
+  "manual": "TC21-3",
+  "num": "10-17",
+  "title": "Clove hitch.",
+  "page": 71,
+  "bbox": [
+   173.35999,
+   68.0,
+   438.63993000000005,
+   173.79211999999995
+  ],
+  "png": "TC21-3_fig_10-17.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-18",
+  "manual": "TC21-3",
+  "num": "10-18",
+  "title": "Double sheet bend.",
+  "page": 71,
+  "bbox": [
+   155.71999,
+   252.37994000000003,
+   456.21993,
+   340.23199999999997
+  ],
+  "png": "TC21-3_fig_10-18.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/10-19",
+  "manual": "TC21-3",
+  "num": "10-19",
+  "title": "Bowline.",
+  "page": 71,
+  "bbox": [
+   186.85999,
+   418.81998,
+   425.14,
+   545.61204
+  ],
+  "png": "TC21-3_fig_10-19.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/C-1",
+  "manual": "TC21-3",
+  "num": "C-1",
+  "title": "Visual emergency signals.",
+  "page": 74,
+  "bbox": [
+   120.85999,
+   132.13995,
+   491.13998999999995,
+   418.77200999999997
+  ],
+  "png": "TC21-3_fig_C-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/C-2",
+  "manual": "TC21-3",
+  "num": "C-2",
+  "title": "Emergency hand signals.",
+  "page": 75,
+  "bbox": [
+   119.71999,
+   67.94000000000005,
+   492.21999,
+   363.572
+  ],
+  "png": "TC21-3_fig_C-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TC21-3/fig/C-3",
+  "manual": "TC21-3",
+  "num": "C-3",
+  "title": "Standard aircraft acknowledgements.",
+  "page": 75,
+  "bbox": [
+   119.71999,
+   67.94000000000005,
+   492.21999,
+   679.1119
+  ],
+  "png": "TC21-3_fig_C-3.png",
+  "restricted": false,
+  "dpi": 200
+ }
+]

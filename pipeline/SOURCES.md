@@ -2,7 +2,7 @@
 
 The cloud builder can't reach these hosts, so please download each PDF and upload it to the thread. Each upload gets hashed and pinned in `sources.yaml`.
 
-Rule: US Government works only, and the cover must say **"Approved for public release; distribution is unlimited."** If a manual carries a different distribution letter (B to F, CUI, FOUO), skip it. Watch out for figures marked "used with permission" or "©": the builder flags those and leaves them out.
+Rule: US Government works only, and the cover must say **"Approved for public release; distribution is unlimited."** If a manual carries a different distribution letter (B to F, CUI, FOUO), skip it. Exception (Charlie, 2026-11-07): US Government works that print no distribution statement at all, such as older or civilian titles, are public domain under 17 USC 105 and may be used once the cover has been checked; sources.yaml records them as "US Government work (17 USC 105), no statement printed". This applies to the Ship's Medicine Chest, FEMA CERT and Poisonous Snakes of the World. Watch out for figures marked "used with permission" or "©": the builder flags those and leaves them out.
 
 Links marked *mirror* are third-party copies. Prefer the official site (armypubs.army.mil, e-publishing.af.mil, dtic.mil, govinfo.gov) when you can reach it, and check the edition date matches.
 

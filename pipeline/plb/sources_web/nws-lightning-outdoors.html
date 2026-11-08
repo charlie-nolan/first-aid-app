@@ -1,0 +1,535 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+<title>When a Safe Building or Vehicle is Nearby</title>
+<meta name="DC.title" content="When a Safe Building or Vehicle is Nearby" />
+<meta name="DC.description" content="When a Safe Building or Vehicle is Nearby" />
+<meta name="DC.creator" content="US Department of Commerce, NOAA, National Weather Service" />
+<meta name="DC.date.created" scheme="ISO8601" content="August 18th 2026 2:15 PM" />
+<meta name="DC.language" scheme="DCTERMS.RFC1766" content="EN-US" />
+<meta name="DC.keywords" content="When a Safe Building or Vehicle is Nearby" />
+<meta name="DC.publisher" content="NOAA's National Weather Service" />
+<meta name="DC.contributor" content="National Weather Service" />
+<meta name="DC.rights" content="/disclaimer.php" />
+<meta name="rating" content="General" />
+<meta name="robots" content="index,follow" />
+
+
+        <link href="/css/weatherstyle.css" rel="stylesheet" type="text/css" />
+        <link href="/css/template.css" rel="stylesheet" type="text/css" />
+        <link href="/css/myfcst.css" rel="stylesheet" type="text/css" />
+        <link href="/css/ForecastSearch.css" rel="stylesheet" type="text/css" />
+        <link href="/css/pointforecast.css" rel="stylesheet" type="text/css" />
+        <link href="/css/jqueryui10_3_1custom/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-migrate-1.4.1.js"></script>        <script type="text/javascript" src="/js/jquery-ui-1.10.3.custom.min.js"></script>        <script type="text/javascript" src="/js/jquery.hoverIntent.minified.js"></script>        <script type="text/javascript" src="/js/ForecastSearch.js"></script>        <script type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&sub-agency=NOAA&yt=true&pga4=G-736JJ6NL0V"></script>        <script type="text/javascript" src="/js/topNavMenu.js"></script>        <script type="text/javascript" src="/js/NidsESRI.js"></script>        <script type="text/javascript" src="/js/nwsexit.js"></script>
+
+
+        <link href="/css/widgets.css" rel="stylesheet" type="text/css" />
+        <link href="/css/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+
+        <script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-migrate-1.4.1.js"></script>
+        <script type="text/javascript" src="/js/jquery-ui-1.10.3.custom.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.hoverIntent.minified.js"></script>
+        <script type="text/javascript" src="/js/ForecastSearch.js"></script>
+        <script type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=DOC&subagency=NOAA&pua=G-736JJ6NL0V"></script>	
+        <script type="text/javascript" src="/js/topNavMenu.js"></script>
+        <script type="text/javascript" src="/js/NidsESRI.js"></script>
+        <script type="text/javascript" src="/js/widgets.js"></script>
+        <script type="text/javascript" src="/js/jquery.cycle2.min.js"></script>
+        <script type="text/javascript" src="/js/jquery.colorbox-min.js"></script>
+        <script type="text/javascript" src="/js/nwsexit.js"></script>
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-736JJ6NL0V"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+            gtag('config', 'G-736JJ6NL0V');
+            gtag('config', 'UA-40768555-2');
+    </script>
+
+    </head>
+
+    <body>
+        <div class="header">
+    <div class="header-content">
+        <a href="https://www.weather.gov" class="header-nws"><img src="/bundles/templating/images/header/header.png" alt="National Weather Service"/></a>
+        <a href="http://www.commerce.gov" class="header-doc"><img src="/bundles/templating/images/header/header_doc.png" alt="United States Department of Commerce"/></a>
+        <a href="http://www.noaa.gov" class="header-noaa" title="National Oceanic and Atmospheric Administration"></a>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<div class="header-shadow">
+    <div class="header-shadow-content"></div>
+</div>
+<script>
+    var domains = {
+        weather: "https://www.weather.gov",
+        forecast: "https://forecast.weather.gov",
+        airquality: "https://airquality.weather.gov",
+        aviation: "https://aviationweather.gov",
+        water: "https://water.weather.gov",
+        graphical: "https://graphical.weather.gov",
+        api: "https://api.weather.gov",
+        radar: "https://radar.weather.gov",
+        esriGeocode: "https://geocode.arcgis.com"
+    }
+</script>
+
+
+        <div class="center">
+
+            <div class="content">
+    <div class="topnav">
+        <ul id="topnav">
+            <li>
+                <script type="text/javascript">
+                    function goBack() {
+                        if (document.referrer.toLowerCase().indexOf("weather.gov") != -1) {
+                            history.back();
+                        } else {
+                            document.location.href = "https://www.weather.gov";
+                        }
+                    }
+                </script>
+                <div class="topMenuNavList home">
+                    <a href="#" onclick="goBack();">HOME</a>
+                </div>
+            </li>
+                            <li>
+                    <div class="topMenuNavList section-link">
+                        <a href="https://www.weather.gov/forecastmaps/">FORECAST</a>
+                    </div>
+                                                                        <div style="opacity: 0;" class="sub">
+                                <ul>
+                                                                            <li>
+                                            <a href="https://www.weather.gov">Local</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://digital.weather.gov">Graphical</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://aviationweather.gov">Aviation</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/marine/">Marine</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://water.noaa.gov">Rivers and Lakes</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.nhc.noaa.gov">Hurricanes</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.spc.noaa.gov">Severe Weather</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/fire/">Fire Weather</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://gml.noaa.gov/grad/solcalc/">Sunrise/Sunset</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.cpc.ncep.noaa.gov">Long Range Forecasts</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.cpc.ncep.noaa.gov">Climate Prediction</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.swpc.noaa.gov">Space Weather</a>
+                                        </li>
+                                                                    </ul>
+                            </div>
+                                                            </li>
+                            <li>
+                    <div class="topMenuNavList section-link">
+                        <a href="https://www.weather.gov/wrh/climate">PAST WEATHER</a>
+                    </div>
+                                                                        <div style="opacity: 0;" class="sub">
+                                <ul>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/wrh/climate">Past Weather</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://gml.noaa.gov/grad/solcalc/">Astronomical Data</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.climate.gov/maps-data/dataset/past-weather-zip-code-data-table">Certified Weather Data</a>
+                                        </li>
+                                                                    </ul>
+                            </div>
+                                                            </li>
+                            <li>
+                    <div class="topMenuNavList section-link">
+                        <a href="https://www.weather.gov/safety/">SAFETY</a>
+                    </div>
+                                                                                </li>
+                            <li>
+                    <div class="topMenuNavList section-link">
+                        <a href="https://www.weather.gov/informationcenter">INFORMATION</a>
+                    </div>
+                                                                        <div style="opacity: 0;" class="sub">
+                                <ul>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/wrn/wea">Wireless Emergency Alerts</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/wrn/">Weather-Ready Nation</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/owlie/publication_brochures">Brochures</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/coop/">Cooperative Observers</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/briefing/">Daily Briefing</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/hazstat">Damage/Fatality/Injury Statistics</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="http://mag.ncep.noaa.gov">Forecast Models</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/gis/">GIS Data Portal</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/nwr">NOAA Weather Radio</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/publications/">Publications</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/skywarn/">SKYWARN Storm Spotters</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/stormready">StormReady</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/tsunamiready/">TsunamiReady</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/notification/">Service Change Notices</a>
+                                        </li>
+                                                                    </ul>
+                            </div>
+                                                            </li>
+                            <li>
+                    <div class="topMenuNavList section-link">
+                        <a href="https://www.weather.gov/education/">EDUCATION</a>
+                    </div>
+                                                                                </li>
+                            <li>
+                    <div class="topMenuNavList section-link">
+                        <a href="https://www.weather.gov/news">NEWS</a>
+                    </div>
+                                                                                </li>
+                            <li>
+                    <div class="topMenuNavList section-link">
+                        <a href="https://www.weather.gov/search/">SEARCH</a>
+                    </div>
+                                            <div style="opacity: 0;" class="sub">
+                            <ul class="no-links">
+                            <li><!-- Begin search code -->
+                                <div id="site-search">
+                                    <form method="get" action="https://search.usa.gov/search" style="margin-bottom: 0; margin-top: 0;">
+                                        <input type="hidden" name="v:project" value="firstgov" />
+                                        <label for="query">Search For</label>
+                                        <input type="text" name="query" id="query" size="12" />
+                                        <input type="submit" value="Go" />
+                                        <p>
+                                            <input type="radio" name="affiliate" checked="checked" value="nws.noaa.gov" id="nws" />
+                                            <label for="nws" class="search-scope">NWS</label>
+                                            <input type="radio" name="affiliate" value="noaa.gov" id="noaa" />
+                                            <label for="noaa" class="search-scope">All NOAA</label>
+                                        </p>
+                                    </form>
+                                </div>
+                            </li>
+                            </ul>
+                        </div>
+                                    </li>
+                            <li class="last">
+                    <div class="topMenuNavList section-link">
+                        <a href="https://www.weather.gov/about/">ABOUT</a>
+                    </div>
+                                                                        <div style="opacity: 0;" class="sub">
+                                <ul>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/about/">About NWS</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/organization">Organization</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://sites.google.com/a/noaa.gov/nws-insider/">For NWS Employees</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/ncep/">National Centers</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.noaa.gov/nws-careers">Careers</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/contact">Contact Us</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://forecast.weather.gov/glossary.php">Glossary</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.weather.gov/socialmedia">Social Media</a>
+                                        </li>
+                                                                            <li>
+                                            <a href="https://www.noaa.gov/NWStransformation">NWS Transformation</a>
+                                        </li>
+                                                                    </ul>
+                            </div>
+                                                            </li>
+                    </ul>
+    </div>
+</div>
+
+
+            <div class="center-content">
+
+                
+                
+
+                <div class="full-width-border">
+                    <div class="partial-width-borderbottom">
+
+                        <!-- area for the myforecast widget and wwamap data -->
+
+                        <div class="div-full">    
+                        <div class="div-full breadcrumb">
+    <div class="sitename">
+        <p class="sitename-name">Safety</p>
+        <p class="sitename-class">National Program</p>
+    </div>
+    <div class="location">
+        <h1 class='location-pagetitle'>When a Safe Building or Vehicle is Nearby</h1>
+        <div class='location-breadcrumb'>
+            <a href="https://www.weather.gov">Weather.gov</a>
+                                                &gt; <a href="https://www.weather.gov/safety">Safety</a>
+                                &gt; When a Safe Building or Vehicle is Nearby
+                    </div>
+    </div>
+</div>
+
+                        
+                        
+                        
+                        <div class="div-full">
+<div class="cms-content"><div class="two-third-first">
+<div id="hmenu">&nbsp;</div>
+<img alt="Drought" src="/images/safety/sign-county9-12.png" style="width: 600px; margin-top: 15px; margin-bottom: 15px;" /></div>
+
+<div align="right" class="one-third-last"><a href=" https://www.weather.gov/wrn/"><img alt="" src="/images/wrn/Icons/161022_wrn.png" style="width: 115px; margin-top: 8px; margin-bottom: 8px;" /></a>
+
+<div style=" border-top-left-radius:10px; width: 250px; background: #1a2757; padding-bottom: 6px;
+    padding-top: 6px; text-align: center; border-bottom: 1px solid white;"><span style="font-size:16px;"><strong><span style="color:#FFFFFF;">&nbsp;Lightning Resources</span></strong></span></div>
+
+<div id="id01">&nbsp;</div>
+</div>
+
+<div class="div-full">There is little you can do to substantially reduce your risk if you are outside in a thunderstorm. The only completely safe action is to get inside a safe building or vehicle.
+<h3 class="rsc" style="padding-left: 30px;"><a class="toggle" href="#" id="#fld123"><span class="control">+</span>Plan Ahead</a></h3>
+
+<div class="div-full toggle" id="fld123" style="display:none;">
+<div>
+<div style=" width:890px; margin-left: 40px; margin-right:5px;">
+<p>Your best source of up-to-date weather information is a&nbsp;<a href="http://www.nws.noaa.gov/nwr/">NOAA Weather Radio (NWR).</a>&nbsp;Portable weather radios are handy for outdoor activities. If you don&#39;t have NWR, stay up to date via internet, smart phone, radio or TV. If you&#39;re in a group, make sure the group has a lightning safety plan and are ready to use it. If you&#39;re in a large group, you&#39;ll need extra time to get everyone to a safe place. NWS recommends having proven professional lightning detection equipment that will alert your group when lightning is nearing the event site.</p>
+</div>
+</div>
+</div>
+
+<h3 class="rsc" style="padding-left: 30px;"><a class="toggle" href="#" id="#fld13"><span class="control">+</span>Coach of Outdoor Sports Team</a></h3>
+
+<div class="div-full toggle" id="fld13">
+<div>
+<div style=" width:890px; margin-left: 40px; margin-right:5px;">
+<p>Your little league team has an evening game at the local recreational park. The weather forecast calls for partly cloudy skies, with a chance of thunderstorms by early evening. When you arrive at the park, you notice the only safe buildings are the restrooms. Shortly after sunset, the sky gets cloudy and you see bright flashes in the sky. What should you do? Get everyone into vehicles or the restrooms. Do NOT stay in the dugouts; they are&nbsp;<em>not</em>&nbsp;safe during lightning activity. Once in a safe place, wait 30 minutes after the last rumble of thunder before resuming play.</p>
+</div>
+</div>
+</div>
+
+<h3 class="rsc" style="padding-left: 30px;"><a class="toggle" href="#" id="#fld15"><span class="control">+</span>At the Beach or Lake</a></h3>
+
+<div class="div-full toggle" id="fld15">
+<div>
+<div style=" width:890px; margin-left: 40px; margin-right:5px;">
+<p>Your family plans to go to the beach today. The weather forecast calls for a nice morning followed by a 30 percent chance of afternoon thunderstorms. When you get to the beach, you see that the only nearby structures are open-sided picnic shelters. The parking lot is a 5 minute walk from the beach. By early afternoon skies are darkening and hear distant thunder. What should you do? Go to your car! Do NOT seek shelter under the beach picnic shelters. Wait 30 minutes until after the last rumble of thunder before going back to the beach.</p>
+</div>
+</div>
+</div>
+
+<h3 class="rsc" style="padding-left: 30px;"><a class="toggle" href="#" id="#fld16"><span class="control">+</span>Camping, Climbing and Other Wilderness Activities</a></h3>
+
+<div class="div-full toggle" id="fld16">
+<div>
+<div style=" width:890px; margin-left: 40px; margin-right:5px;">
+<p>You&#39;re cooking dinner on the camp stove when you hear distant rumbles of thunder. Your tent and a large open sided picnic shelter are nearby. Your vehicle is about quarter of a mile away parked at the trail head. What should you do? Go to your vehicle! The tent and picnic shelter are NOT safe places. Wait 30 minutes until after the last rumble of thunder before going back to the campsite. For those who cannot get to a vehicle, here are tips from the<a href="http://www.weather.gov/nwsexit.php?site=nws&amp;url=https://www.cmc.org/Portals/0/GoverningDocs/NOLS%20Lightning%20Safety%20Guidelines.pdf">&nbsp;National Outdoor Leadership School</a>&nbsp;on what to do in the back country, in a canoe, etc., as a last resort</p>
+</div>
+</div>
+</div>
+
+<p><strong>When a Safe Location is&nbsp;<em>not&nbsp;</em>Nearby</strong></p>
+
+<p>If you&nbsp;<strong>absolutely</strong>&nbsp;cannot get to safety, you can&nbsp;<em>slightly</em>&nbsp;lessen the threat of being struck with the following tips.&nbsp;But don&#39;t kid yourself--you are NOT safe outside. Know the weather patterns of the area you plan to visit. For example, in mountainous areas, thunderstorms typically develop in the early afternoon, so plan to hike early in the day and be down the mountain by noon. Listen to the weather forecast for the outdoor area you plan to visit. The forecast may be very different from the one near your home. If there is a high chance of thunderstorms, stay inside.</p>
+
+<ul type="disc">
+	<li>Avoid open fields, the top of a hill or a ridge top.</li>
+	<li>Stay away from tall, isolated trees or other tall objects. If you are in a forest, stay near a lower stand of trees.</li>
+	<li>If you are in a group, spread out to avoid the current traveling between group members.</li>
+	<li>If you are camping in an open area, set up camp in a valley, ravine or other low area. Remember, a tent offers NO protection from lighting.</li>
+	<li>Stay away from water, wet items, such as ropes, and metal objects, such as fences and poles. Water and metal do not attract lightning but they are excellent conductors of electricity. The current from a lightning flash will easily travel for long distances.</li>
+</ul>
+
+<h3 class="rsc" style="padding-left: 30px;"><a class="toggle" href="#" id="#fld30"><span class="control">+</span>Motorcyclist/Bicyclist</a></h3>
+
+<div class="div-full toggle" id="fld30">
+<div>
+<div style=" width:890px; margin-left: 40px; margin-right:5px;">
+<p>Protect yourself when on a bicycle, motorcycle or dirt bike. Carry a portable NOAA Weather Radio or listen to commercial radio. If you see threatening skies in the distance and you are near a safe building, pull over and wait 30 minutes after the last rumble of thunder before resuming your ride.</p>
+</div>
+</div>
+</div>
+
+<h3 class="rsc" style="padding-left: 30px;"><a class="toggle" href="#" id="#fld31"><span class="control">+</span>On the Water</a></h3>
+
+<div class="div-full toggle" id="fld31">
+<div>
+<div style=" width:890px; margin-left: 40px; margin-right:5px;">
+<p>The vast majority of lightning injuries and deaths on boats occur on&nbsp;<a href="https://www.cdc.gov/disasters/lightning/wateractivities.html">small boats with NO cabin</a>. It is crucial to listen to weather information when you are boating. If thunderstorms are forecast, do not go out. If you are out and cannot get back to land and safety, drop anchor and get as low as possible. Large boats with cabins, especially those with&nbsp;<a href="http://www.weather.gov/nwsexit.php?site=nws&amp;url=http://boatsafe.com/nauticalknowhow/lightning.htm">lightning protection systems</a>&nbsp;properly installed, or metal marine vessels are relatively safe. Remember to stay inside the cabin and away from any metal surfaces. Stay off the radio unless it is an emergency!</p>
+</div>
+</div>
+</div>
+
+<h3 class="rsc" style="padding-left: 30px;"><a class="toggle" href="#" id="#fld32"><span class="control">+</span>Scuba Divers</a></h3>
+
+<div class="div-full toggle" id="fld32">
+<div>
+<div style=" width:890px; margin-left: 40px; margin-right:5px;">
+<p>If the boat you are in does not have a cabin you can get into during lightning activity, then you are safer diving deep into the water for the duration of the storm or as long as possible.</p>
+</div>
+</div>
+</div>
+
+<h3 class="rsc" style="padding-left: 30px;"><a class="toggle" href="#" id="#fld33"><span class="control">+</span>Cavers</a></h3>
+
+<div class="div-full toggle" id="fld33">
+<div>
+<div style=" width:890px; margin-left: 40px; margin-right:5px;">Cave entrances are dangerous during thunderstorms. Small overhangs can allow arcs to cross the gap. Even caves that go well into the ground can be struck, either via the entrance or through the ground. Going well into a cave increases your safety somewhat. Once as deep into the cave as possible, avoid touching metal, standing in water and touching both the cave ceiling and floor.</div>
+</div>
+</div>
+
+<p><strong>More Information</strong></p>
+
+<ul>
+	<li><a href="/media/safety/backcountry_lightning.pdf">Lightning Risk Management for Backcountry Campers and Hikers</a></li>
+	<li><a href="https://www.weather.gov/safety/lightning-sports">Lightning and Outdoors Sports</a></li>
+	<li><a href="http://www.weather.gov/safety/lightning-job">Lightning Safety on the Job</a></li>
+</ul>
+<script type="text/javascript">
+					$(document).ready(function() {
+						function toggleBlock() {
+							$($(this).attr("id")).toggle();
+							if ($($(this).attr("id")).css("display") == "none" ) {
+								$(this).children(".control").html("&#43;");
+							}
+							else {
+								$(this).children(".control").html("&ndash;");
+							};
+							return false;
+						}						
+
+						$("div.toggle:gt(0)").css({'display':'none'});
+						$("a.toggle").attr("title","Click to expand and contract");
+						$("a.toggle").click(toggleBlock);
+						$(".atoggle").keypress(toggleBlock);						
+
+					});
+			</script></div>
+<link href="/source/safety/css/menuFd.css" rel="stylesheet" type="text/css" /><script src="/source/safety/js/menu.js">
+</script><script src="/source/safety/js/lightningMenu.js">
+</script><script src="/source/safety/js/lightningMenuRs.js"></script><script src="/source/safety/js/menuWrap.js"></script>
+</div>
+</div>
+<div style="clear:both"></div>
+                        </div>
+  
+                    </div><!-- end of <div class="partial-width-borderbottom"> -->
+                </div><!-- <div class="full-width-border"> -->
+
+                <div class="partial-width-borderbottom feature-block">
+                    <!-- area for features, frontpage thumbs, and custom page -->
+                    
+                    
+                </div><!-- end of <div class="partial-width-borderbottom feature-block"> -->
+
+                <div class="full-width-first">
+                    
+                </div>
+
+
+                <div style="clear:both;"></div>
+
+            </div><!-- <div class="center-content"> -->
+
+        </div><!-- end of <div class="center"> -->
+
+        <!-- sitemap area -->
+        <div class="footer">
+            
+        </div><!-- end of <div class="footer"> -->
+
+        <!-- legal footer area -->
+        <div class="footer-legal">
+            <div class="footer-legal">
+    <div class="footer-legal-content">
+
+        <div class="one-sixth-first" id="footer_legal_gov">
+            <a href="http://www.usa.gov"><img src="/bundles/templating/images/footer/usa_gov.png" alt="usa.gov" width="110" height="30" /></a>
+        </div>
+
+        <div class="one-half-first" id="footer_legal_info">
+            <p>
+                <a href="http://www.commerce.gov">US Dept of Commerce</a><br />
+                <a href="http://www.noaa.gov">National Oceanic and Atmospheric Administration</a><br />
+                <a href="https://www.weather.gov">National Weather Service</a><br />
+                Safety<br />                1325 East West Highway<br />
+                                Silver Spring, MD 20910
+                <br /><br />
+                <br /><a href="mailto:wrn.feedback@noaa.gov">Comments? Questions? Please Contact Us.</a>
+            </p>
+        </div>
+
+        <div class="one-third-last" id="footer_required_links">
+            <div class="div-half">
+                <a href="https://www.weather.gov/disclaimer">Disclaimer</a><br />
+                <a href="http://www.cio.noaa.gov/services_programs/info_quality.html">Information Quality</a><br />
+                <a href="https://www.weather.gov/help">Help</a><br />
+                <a href="/glossary">Glossary</a>
+            </div>
+
+            <div class="div-half">
+                <a href="https://www.weather.gov/privacy">Privacy Policy</a><br />
+                <a href="https://www.noaa.gov/foia-freedom-of-information-act">Freedom of Information Act (FOIA)</a><br />
+                <a href="https://www.weather.gov/about">About Us</a><br />
+                <a href="https://www.weather.gov/careers">Career Opportunities</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div><!-- end of <div class="footer-legal"> -->
+
+        <script type="text/javascript" src="//www.weather.gov/js/govshutdown.js"></script>
+    </body>
+</html>

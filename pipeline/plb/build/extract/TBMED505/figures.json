@@ -1,0 +1,210 @@
+[
+ {
+  "id": "TBMED505/fig/2-1",
+  "manual": "TBMED505",
+  "num": "2-1",
+  "title": "Relationship between barometric pressure and increasing altitude",
+  "page": 16,
+  "bbox": [
+   127.28,
+   454.4,
+   486.43499999999995,
+   674.492
+  ],
+  "png": "TBMED505_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/2-2",
+  "manual": "TBMED505",
+  "num": "2-2",
+  "title": "Reduction in the oxygen partial pressure gradient from inspired air to venous",
+  "page": 18,
+  "bbox": [
+   137.78,
+   233.60000000000002,
+   475.48400000000004,
+   562.5919999999999
+  ],
+  "png": "TBMED505_fig_2-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/2-3",
+  "manual": "TBMED505",
+  "num": "2-3",
+  "title": "Scheme for categorizing altitude based on the relationship between altitude and",
+  "page": 20,
+  "bbox": [
+   69.137,
+   219.79999999999995,
+   527.644,
+   649.9519999999998
+  ],
+  "png": "TBMED505_fig_2-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/2-4",
+  "manual": "TBMED505",
+  "num": "2-4",
+  "title": "Representative time course for altitude acclimatization of low altitude residents",
+  "page": 25,
+  "bbox": [
+   77.0,
+   123.20000000000005,
+   535.0,
+   462.332
+  ],
+  "png": "TBMED505_fig_2-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/3-1",
+  "manual": "TBMED505",
+  "num": "3-1",
+  "title": "Recommended staging altitude and duration combinations to produce effective",
+  "page": 33,
+  "bbox": [
+   68.0,
+   219.79999999999995,
+   543.64,
+   499.472
+  ],
+  "png": "TBMED505_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/3-2",
+  "manual": "TBMED505",
+  "num": "3-2",
+  "title": "Recommended graded ascent profiles to produce effective altitude acclimatization",
+  "page": 34,
+  "bbox": [
+   68.0,
+   330.19999999999993,
+   543.46,
+   610.5919
+  ],
+  "png": "TBMED505_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/4-1",
+  "manual": "TBMED505",
+  "num": "4-1",
+  "title": "Relationship between increasing elevation and decline in maximal oxygen uptake",
+  "page": 41,
+  "bbox": [
+   111.08,
+   112.15999999999997,
+   397.0,
+   404.97200000000004
+  ],
+  "png": "TBMED505_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/4-2",
+  "manual": "TBMED505",
+  "num": "4-2",
+  "title": "Relationship between intensity of pack load carriage effort (percent maximal",
+  "page": 43,
+  "bbox": [
+   116.0,
+   235.88,
+   507.82,
+   519.752
+  ],
+  "png": "TBMED505_fig_4-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/4-3",
+  "manual": "TBMED505",
+  "num": "4-3",
+  "title": "Increase in percent maximal oxygen uptake despite no change in task",
+  "page": 44,
+  "bbox": [
+   128.0,
+   261.20000000000005,
+   499.0,
+   548.3719000000001
+  ],
+  "png": "TBMED505_fig_4-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/4-4",
+  "manual": "TBMED505",
+  "num": "4-4",
+  "title": "The effect of increasing elevation on sustained task duration",
+  "page": 45,
+  "bbox": [
+   153.56,
+   162.20000000000005,
+   513.1,
+   509.072
+  ],
+  "png": "TBMED505_fig_4-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/4-5",
+  "manual": "TBMED505",
+  "num": "4-5",
+  "title": "Reduction in climbing rate with increasing elevation due to hypoxia in",
+  "page": 46,
+  "bbox": [
+   69.5,
+   150.79999999999995,
+   509.754,
+   539.1919999999998
+  ],
+  "png": "TBMED505_fig_4-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/5-1",
+  "manual": "TBMED505",
+  "num": "5-1",
+  "title": "Effect of increasing altitude on several sensory and neurocognitive functions",
+  "page": 52,
+  "bbox": [
+   159.44,
+   268.1,
+   475.36,
+   537.512
+  ],
+  "png": "TBMED505_fig_5-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED505/fig/6-1",
+  "manual": "TBMED505",
+  "num": "6-1",
+  "title": "Decision tree for differential diagnosis of acute mountain sickness",
+  "page": 61,
+  "bbox": [
+   68.42,
+   579.5,
+   256.84000000000003,
+   659.9719999999999
+  ],
+  "png": "TBMED505_fig_6-1.png",
+  "restricted": false,
+  "dpi": 200
+ }
+]

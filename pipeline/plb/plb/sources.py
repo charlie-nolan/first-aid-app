@@ -16,6 +16,9 @@ from pathlib import Path
 import yaml
 
 PUBLIC_RELEASE = "approved for public release"
+# US Government works with no distribution statement printed (older or civilian titles) are
+# public domain under 17 USC 105; they are allowed once someone has checked the cover.
+US_GOV_WORK = "17 usc 105"
 
 
 @dataclass
@@ -33,10 +36,26 @@ class Manual:
         return root / self.file
 
 
-def load_manifest(path: Path) -> list[Manual]:
+PERSONAL_MANIFEST = "sources.personal.yaml"   # gitignored: personal-use copies, never shipped
+PERSONAL_EXTRACT = "extract_personal"          # build/<this>/<id>, kept apart from build/extract
+PERSONAL_TREES = "trees_personal"         # content/trees_personal/, gitignored
+PERSONAL_LOCK = "cites.personal.lock.yaml"  # content/, gitignored: holds personal-book refs
+
+
+def load_manifest(path: Path, personal: bool = False) -> list[Manual]:
+    """sources.yaml, plus sources.personal.yaml next to it when `personal` is set. Personal
+    entries are copyrighted books Charlie keeps for his own device only: they are read only
+    for a --personal build and must be marked `personal: true`."""
     data = yaml.safe_load(path.read_text())
+    entries = list(data["manuals"])
+    ppath = path.parent / PERSONAL_MANIFEST
+    if personal and ppath.exists():
+        for m in (yaml.safe_load(ppath.read_text()) or {}).get("manuals") or []:
+            if m.get("personal") is not True:
+                raise SystemExit(f"{ppath}: {m.get('id')} must be marked personal: true")
+            entries.append(m)
     out = []
-    for m in data["manuals"]:
+    for m in entries:
         out.append(Manual(id=m["id"], title=m["title"], edition=str(m["edition"]),
                           file=m["file"], urls=m.get("urls") or [], sha256=m.get("sha256"),
                           distribution=str(m.get("distribution", "unverified")), raw=m))
@@ -124,17 +143,26 @@ def fetch(root: Path, manifest: Path, manual_id: str | None = None, timeout: int
     return log
 
 
-def verify(root: Path, manifest: Path) -> list[str]:
+def verify(root: Path, manifest: Path, personal: bool = False) -> list[str]:
     """Problems that block a release build (missing files, unpinned or changed hashes)."""
     problems = []
-    for m in load_manifest(manifest):
+    for m in load_manifest(manifest, personal):
         p = m.path(root)
         if not p.exists():
             continue  # manuals are optional until a tree cites them
+        for pg in m.raw.get("pages") or []:          # web manuals: every saved page is pinned
+            pp = root / pg["file"]
+            if not pp.exists():
+                problems.append(f"{m.id}: page {pg['file']} missing")
+            elif sha256_file(pp) != pg.get("sha256"):
+                problems.append(f"{m.id}: page {pg['file']} changed since it was pinned")
         if not m.sha256:
             problems.append(f"{m.id}: hash not pinned (run plb ingest)")
         elif sha256_file(p) != m.sha256:
             problems.append(f"{m.id}: file changed since it was pinned")
-        if PUBLIC_RELEASE not in m.distribution.lower() and "unlimited" not in m.distribution.lower():
+        dist = m.distribution.lower()
+        if PUBLIC_RELEASE not in dist and "unlimited" not in dist and "no releasability" not in dist \
+                and US_GOV_WORK not in dist and m.raw.get("personal") is not True:
+            # personal books are copyrighted by design; they never reach a normal build
             problems.append(f"{m.id}: distribution not confirmed public release ({m.distribution})")
     return problems
