@@ -506,7 +506,7 @@ static void draw_answers(ui_t *u, cart_fb_t *fb, int n, char lab[][64]) {
     unsigned size = u->s->font;
     int rows = n > 2 ? 2 : 1;
     if (rows == 2) fb_hline(fb, 0, UI_W - 1, mid);
-    for (int y = top; y <= (rows == 2 ? bot : mid); y++) fb_px(fb, cx, y);
+    for (int y = top; y <= bot; y++) fb_px(fb, cx, y);           /* full height, also for 2 tiles */
     for (int i = 0; i < n && i < 4; i++) {
         int right = i & 1, bottom = i >> 1;
         int y0 = bottom ? mid + 2 : top + 1, y1 = bottom ? bot - 1 : (rows == 2 ? mid - 1 : bot - 1);
