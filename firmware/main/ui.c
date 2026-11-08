@@ -173,12 +173,15 @@ static int vis_choices(ui_t *u, const cart_node_t *n, uint8_t *out) {
         if (cart_node_visible(u->c, cart_node_choice(u->c, n, i).to, &u->s->ctx)) out[k++] = (uint8_t)i;
     return k;
 }
-/* Reference shelf: trees packed with shelf "reference" are whole manuals that no
+/* Unreviewed trees (the packer's unreviewed flag) are whole manuals that no
  * one has signed off for first aid yet. They are listed and read like any tree,
- * but every page says "Unreviewed", and they never fill the default windows. */
+ * but every page says "Unreviewed", and they never fill the default windows.
+ * Libraries packed before the flag existed only mark them with shelf
+ * "reference", so that still counts. */
 static int tree_is_ref(const cart_t *c, uint16_t t) {
     if (t >= c->n_trees) return 0;
     cart_tree_t tr = cart_tree(c, t);
+    if (tr.unreviewed) return 1;
     if (tr.shelf == CART_NONE) return 0;
     char b[16]; cart_text(c, tr.shelf, 0, b, sizeof b);
     return strcmp(b, "reference") == 0;
