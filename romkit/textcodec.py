@@ -33,10 +33,12 @@ def repair(seqs, n_alpha, max_syms=MAX_SYMS, min_count=3):
     heap = [(-len(v), k) for k, v in occ.items()]
     heapq.heapify(heap)
 
+    touched = set()          # pairs that gained occurrences in this merge; pushed once at the end
+
     def add(i):
         j = nxt[i]
         if i >= 0 and j >= 0:
-            p = (sym[i], sym[j]); occ[p].add(i); heapq.heappush(heap, (-len(occ[p]), p))
+            p = (sym[i], sym[j]); occ[p].add(i); touched.add(p)
 
     def rem(i):
         j = nxt[i]
@@ -67,6 +69,10 @@ def repair(seqs, n_alpha, max_syms=MAX_SYMS, min_count=3):
             if pi >= 0: add(pi)
             add(i)
         occ.pop(p, None)
+        for q in touched:
+            n = len(occ.get(q, ()))
+            if n >= min_count: heapq.heappush(heap, (-n, q))
+        touched.clear()
         rules.append(p)
         new += 1
 

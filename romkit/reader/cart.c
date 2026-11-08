@@ -31,7 +31,8 @@ int cart_open(cart_t *c, const void *rom, uint32_t len, int check_crc) {
     {
         const uint8_t *d = b + 28 + 12 * i, *p = b + rd32(d + 4);
         if (!memcmp(d, "FONT", 4)) c->font = p;
-        else if (!memcmp(d, "NTAG", 4)) c->ntag = p;
+        else if (!memcmp(d, "TAGP", 4)) c->tagp = p;
+        else if (!memcmp(d, "TAGI", 4)) { c->tagi = p; c->n_tagi = rd32(d + 8) / 4; }
         else if (!memcmp(d, "TAGN", 4)) c->tagn = p;
         else if (!memcmp(d, "PHRS", 4)) { c->phrs = p; c->n_phrs = rd32(d + 8) / 6; }
     }
@@ -54,7 +55,11 @@ cart_choice_t cart_node_choice(const cart_t *c, const cart_node_t *n, unsigned i
 }
 cart_tree_t cart_tree(const cart_t *c, uint16_t id) {
     const uint8_t *p = c->tree + 8u * id;
-    return (cart_tree_t){ rd16(p), rd16(p + 2), rd16(p + 4), p[6] };
+    return (cart_tree_t){ rd16(p), rd16(p + 2), rd16(p + 4), (uint8_t)(p[6] & 1), (uint8_t)(p[6] >> 1 & 1) };
+}
+int cart_node_unreviewed(const cart_t *c, uint16_t node) {
+    const cart_node_t *n = cart_node(c, node);
+    return n && (n->flags & CART_NODE_UNREVIEWED) != 0;
 }
 uint16_t cart_cmd_node(const cart_t *c, uint16_t cmd) { return cmd < c->n_cmds ? rd16(c->cmds + 2u * cmd) : CART_NONE; }
 uint16_t cart_source_title(const cart_t *c, uint16_t s) { return s == CART_NONE ? CART_NONE : rd16(c->srcs + 2u * s); }
@@ -264,9 +269,17 @@ int cart_page(const cart_t *c, uint16_t id, unsigned style, int page, cart_fb_t 
 }
 /* ---- context and voice lists ---- */
 cart_tags_t cart_node_tags(const cart_t *c, uint16_t node) {
-    cart_tags_t t = {{0, 0, 0}};
-    if (c->ntag && node < c->n_nodes)
-        for (int i = 0; i < 3; i++) t.w[i] = rd32(c->ntag + 12u * node + 4 * i);
+    cart_tags_t t = {{0, 0, 0}};                         /* untagged = global */
+    if (!c->tagp || !c->tagi) return t;
+    uint32_t lo = 0, hi = c->n_tagi;                    /* binary search the tagged nodes */
+    while (lo < hi) {
+        uint32_t mid = (lo + hi) / 2, e = rd32(c->tagi + 4 * mid);
+        if ((e >> 16) == node) {
+            for (int i = 0; i < 3; i++) t.w[i] = rd32(c->tagp + 12u * (e & 0xFFFF) + 4 * i);
+            return t;
+        }
+        if ((e >> 16) < node) lo = mid + 1; else hi = mid;
+    }
     return t;
 }
 unsigned cart_ctx_dims(const cart_t *c) { return c->tagn ? c->tagn[0] : 0; }
