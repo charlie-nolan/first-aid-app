@@ -22,7 +22,7 @@ import yaml
 from . import phrases as ph
 from .extract import load_figures, load_sections
 from .pictures import build_picture
-from .sources import PERSONAL_EXTRACT, load_manifest
+from .sources import PERSONAL_EXTRACT, PERSONAL_TREES, load_manifest
 from .trees import DEFAULT_CONTEXTS, Issue, build_trees, pretty_manual
 
 
@@ -40,6 +40,9 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
     extract_dir = extract_dir or root / "build" / "extract"
     personal_dir = root / "build" / PERSONAL_EXTRACT
     tree_dir = tree_dir or root / "content" / "trees"
+    if personal and (root / "content" / PERSONAL_TREES).is_dir():
+        # trees citing personal books live in the gitignored content/trees_personal/
+        tree_dir = [tree_dir, root / "content" / PERSONAL_TREES]
     manuals = {m.id: m.raw | {"sha256": m.sha256, "distribution": m.distribution}
                for m in load_manifest(root / "sources.yaml", personal)}
     dirs = sorted(p for p in extract_dir.glob("*") if p.is_dir())

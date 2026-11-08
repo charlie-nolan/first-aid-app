@@ -101,9 +101,10 @@ def main(argv=None) -> int:
         return rc
     if a.cmd == "lock":
         from .check import write_cite_lock
-        out, issues = build(root)
-        n = write_cite_lock(root, json.loads((out / "trees.json").read_text()))
-        print(f"locked {n} cited sections -> content/cites.lock.yaml")
+        out, issues = build(root, personal=a.personal)
+        n = write_cite_lock(root, json.loads((out / "trees.json").read_text()), a.personal)
+        print(f"locked {n} cited sections -> content/cites.lock.yaml"
+              + (" + content/cites.personal.lock.yaml" if a.personal else ""))
         return _report(issues)
     if a.cmd in ("build", "test", "pack"):
         out, issues = build(root, personal=a.personal)

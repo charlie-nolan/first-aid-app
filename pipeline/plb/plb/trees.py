@@ -134,9 +134,11 @@ def citation_for(manual_id: str, para: str, manuals: dict[str, dict],
     return f"{book}, {where}, {head}" if head and head != where else f"{book}, {where}"
 
 
-def load_trees(tree_dir: Path) -> list[tuple[Path, dict]]:
+def load_trees(tree_dir) -> list[tuple[Path, dict]]:
+    """tree_dir: one folder, or a list (content/trees, then content/trees_personal)."""
     out = []
-    for p in sorted(tree_dir.glob("*.yaml")):
+    dirs = tree_dir if isinstance(tree_dir, (list, tuple)) else [tree_dir]
+    for p in [p for d in dirs for p in sorted(Path(d).glob("*.yaml"))]:
         data = yaml.safe_load(p.read_text())
         if data:
             out.append((p, data))

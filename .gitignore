@@ -38,3 +38,5 @@ pipeline/plb/content/config.personal.yaml
 pipeline/plb/build/extract_personal/
 pipeline/plb/build/intermediate_personal/
 pipeline/plb/build/library_personal.bin
+pipeline/plb/content/trees_personal/
+pipeline/plb/content/cites.personal.lock.yaml

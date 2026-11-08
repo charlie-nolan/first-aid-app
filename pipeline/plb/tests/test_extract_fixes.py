@@ -351,3 +351,43 @@ def test_chapter_pattern_with_title_on_next_line(tmp_path):
     secs = json.loads((out / "sections.json").read_text())
     assert [(s["chapter"], s["heading"], s["text"]) for s in secs] == [
         ("Section One: Introduction", "Placeholder Heading", "Placeholder body text under the heading.")]
+
+
+def test_personal_trees_and_lock_stay_personal(tmp_path):
+    """content/trees_personal/ is read only with personal=True, and its cites are locked in
+    the gitignored cites.personal.lock.yaml, never in the committed cites.lock.yaml."""
+    from plb.build import build
+    from plb.check import write_cite_lock, check_cite_lock
+    root = tmp_path / "repo"
+    (root / "content" / "trees").mkdir(parents=True)
+    (root / "content" / "trees_personal").mkdir()
+    (root / "content" / "config.yaml").write_text(yaml.safe_dump({}))
+    (root / "sources.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PUB", "title": "Public", "edition": "1", "file": "s/p.pdf"}]}))
+    (root / "sources.personal.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PERS", "title": "Personal", "edition": "1", "file": "s/q.pdf", "personal": True}]}))
+    for d, mid in (("extract", "PUB"), ("extract_personal", "PERS")):
+        out = root / "build" / d / mid
+        out.mkdir(parents=True)
+        (out / "sections.json").write_text(json.dumps([{
+            "id": f"{mid}/3.1", "manual": mid, "para": "3.1", "chapter": "", "heading": "H",
+            "pages": [3], "text": f"Placeholder {mid} words here.", "notices": []}]))
+        (out / "figures.json").write_text("[]")
+    tree = lambda tid, cites: {"id": tid, "title": tid, "shelf": "first-aid", "root": "a",
+                               "nodes": {"a": {"label": "Start", "cite": cites}}}
+    (root / "content" / "trees" / "pub.yaml").write_text(yaml.safe_dump(tree("pub", ["PUB/3.1"])))
+    (root / "content" / "trees_personal" / "wild.yaml").write_text(
+        yaml.safe_dump(tree("wild", ["PERS/3.1", "PUB/3.1"])))
+
+    out, issues = build(root)
+    assert [t["id"] for t in json.loads((out / "trees.json").read_text())["trees"]] == ["pub"]
+
+    out, issues = build(root, personal=True)
+    trees = json.loads((out / "trees.json").read_text())
+    assert {t["id"] for t in trees["trees"]} == {"pub", "wild"}
+    assert not [i for i in issues if i.level == "error"]
+    write_cite_lock(root, trees, personal=True)
+    public_lock = (root / "content" / "cites.lock.yaml").read_text()
+    assert "PERS" not in public_lock and "PUB/3.1" in public_lock
+    assert "PERS/3.1" in (root / "content" / "cites.personal.lock.yaml").read_text()
+    assert not check_cite_lock(root, trees, personal=True)

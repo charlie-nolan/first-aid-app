@@ -38,6 +38,8 @@ class Manual:
 
 PERSONAL_MANIFEST = "sources.personal.yaml"   # gitignored: personal-use copies, never shipped
 PERSONAL_EXTRACT = "extract_personal"          # build/<this>/<id>, kept apart from build/extract
+PERSONAL_TREES = "trees_personal"         # content/trees_personal/, gitignored
+PERSONAL_LOCK = "cites.personal.lock.yaml"  # content/, gitignored: holds personal-book refs
 
 
 def load_manifest(path: Path, personal: bool = False) -> list[Manual]:
