@@ -20,15 +20,17 @@ from pathlib import Path
 import yaml
 
 from .extract import load_sections
+from .sources import PERSONAL_EXTRACT
 from .phrases import normalize
 from .sources import verify
 from .trees import Issue
 
 
 def run_checks(root: Path, inter: Path, build_issues: list[Issue],
-               reader_cmd: str | None = None, library: Path | None = None) -> list[Issue]:
+               reader_cmd: str | None = None, library: Path | None = None,
+               personal: bool = False) -> list[Issue]:
     issues = list(build_issues)
-    issues += [Issue("error", "sources", p) for p in verify(root, root / "sources.yaml")]
+    issues += [Issue("error", "sources", p) for p in verify(root, root / "sources.yaml", personal)]
 
     trees = json.loads((inter / "trees.json").read_text())
     cmds = json.loads((inter / "phrases.json").read_text())
@@ -80,7 +82,9 @@ def run_checks(root: Path, inter: Path, build_issues: list[Issue],
             issues.append(Issue("error", "phrases", f"cmd {c['cmd_id']} points at missing node"))
 
     # 4. passages verbatim + ASCII + coverage
-    sections = load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir()))
+    sections = load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir())
+                             + (sorted(p for p in (root / "build" / PERSONAL_EXTRACT).glob("*")
+                                       if p.is_dir()) if personal else []))
     for p in passages:
         base = p["id"].split("#")[0].split("~")[0]
         sec = sections.get(base)

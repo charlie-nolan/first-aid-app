@@ -299,3 +299,55 @@ def test_ruled_table_rows_read_cell_by_cell(tmp_path):
     assert secs["1.t2"]["pages"] == [1, 2] and secs["1.t1"]["heading"] == "Table 3.2: Placeholder Chart"
     texts = " ".join(s["text"] for s in secs.values())
     assert "Placeholder text after the table." in texts and "Kind Layers Signs" not in texts
+
+def test_default_build_excludes_personal_sources(tmp_path):
+    """A personal (copyrighted, own-device-only) book is used only with personal=True."""
+    from plb.build import build
+    root = tmp_path / "repo"
+    (root / "content" / "trees").mkdir(parents=True)
+    (root / "content" / "config.yaml").write_text(yaml.safe_dump({"reference_shelf": True}))
+    (root / "content" / "config.personal.yaml").write_text(
+        yaml.safe_dump({"library_prepend": {"Wild": ["ref-PERS"]}}))
+    (root / "sources.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PUB", "title": "Public", "edition": "1", "file": "s/p.pdf"}]}))
+    (root / "sources.personal.yaml").write_text(yaml.safe_dump({"manuals": [
+        {"id": "PERS", "title": "Personal", "edition": "1", "file": "s/q.pdf", "personal": True,
+         "cite_as": "Pers 1e", "cite_style": "page"}]}))
+    sec = lambda mid, para, page: {"id": f"{mid}/{para}", "manual": mid, "para": para,
+                                   "chapter": "", "heading": "Placeholder Heading",
+                                   "pages": [page], "text": "Placeholder text.", "notices": []}
+    for d, mid in (("extract", "PUB"), ("extract_personal", "PERS")):
+        out = root / "build" / d / mid
+        out.mkdir(parents=True)
+        (out / "sections.json").write_text(json.dumps([sec(mid, "3.1", 3)]))
+        (out / "figures.json").write_text("[]")
+
+    out, _ = build(root)
+    trees = json.loads((out / "trees.json").read_text())
+    passages = (out / "passages.jsonl").read_text()
+    assert [t["id"] for t in trees["trees"]] == ["ref-PUB"]
+    assert "PERS" not in passages and "Pers 1e" not in passages
+
+    out, _ = build(root, personal=True)
+    trees = json.loads((out / "trees.json").read_text())
+    assert {t["id"] for t in trees["trees"]} == {"ref-PUB", "ref-PERS"}
+    assert out.name == "intermediate_personal"
+    assert "Pers 1e, p3, Placeholder Heading" in (out / "passages.jsonl").read_text()
+
+
+def test_chapter_pattern_with_title_on_next_line(tmp_path):
+    """Books that don't say "Chapter" (Aerie: "Section One:" then "Introduction" below it)."""
+    pdf = tmp_path / "t.pdf"
+    c = canvas.Canvas(str(pdf), pagesize=letter)
+    c.setFont("Helvetica-Bold", 30)
+    c.drawString(72, H - 120, "Section One:"); c.drawString(72, H - 160, "Introduction")
+    y = H - 200
+    y = lines(c, y, ["Placeholder Heading"], "Helvetica-Bold", 14)
+    lines(c, y, ["Placeholder body text under the heading."])
+    c.showPage(); c.save()
+    out = tmp_path / "out"
+    extract(pdf, "T", out, figures=False, numbering="headings",
+            chapter_pattern=r"^Section\s+(?:One|Two)\b:?")
+    secs = json.loads((out / "sections.json").read_text())
+    assert [(s["chapter"], s["heading"], s["text"]) for s in secs] == [
+        ("Section One: Introduction", "Placeholder Heading", "Placeholder body text under the heading.")]

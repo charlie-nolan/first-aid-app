@@ -36,10 +36,24 @@ class Manual:
         return root / self.file
 
 
-def load_manifest(path: Path) -> list[Manual]:
+PERSONAL_MANIFEST = "sources.personal.yaml"   # gitignored: personal-use copies, never shipped
+PERSONAL_EXTRACT = "extract_personal"          # build/<this>/<id>, kept apart from build/extract
+
+
+def load_manifest(path: Path, personal: bool = False) -> list[Manual]:
+    """sources.yaml, plus sources.personal.yaml next to it when `personal` is set. Personal
+    entries are copyrighted books Charlie keeps for his own device only: they are read only
+    for a --personal build and must be marked `personal: true`."""
     data = yaml.safe_load(path.read_text())
+    entries = list(data["manuals"])
+    ppath = path.parent / PERSONAL_MANIFEST
+    if personal and ppath.exists():
+        for m in (yaml.safe_load(ppath.read_text()) or {}).get("manuals") or []:
+            if m.get("personal") is not True:
+                raise SystemExit(f"{ppath}: {m.get('id')} must be marked personal: true")
+            entries.append(m)
     out = []
-    for m in data["manuals"]:
+    for m in entries:
         out.append(Manual(id=m["id"], title=m["title"], edition=str(m["edition"]),
                           file=m["file"], urls=m.get("urls") or [], sha256=m.get("sha256"),
                           distribution=str(m.get("distribution", "unverified")), raw=m))
@@ -127,10 +141,10 @@ def fetch(root: Path, manifest: Path, manual_id: str | None = None, timeout: int
     return log
 
 
-def verify(root: Path, manifest: Path) -> list[str]:
+def verify(root: Path, manifest: Path, personal: bool = False) -> list[str]:
     """Problems that block a release build (missing files, unpinned or changed hashes)."""
     problems = []
-    for m in load_manifest(manifest):
+    for m in load_manifest(manifest, personal):
         p = m.path(root)
         if not p.exists():
             continue  # manuals are optional until a tree cites them
@@ -146,6 +160,7 @@ def verify(root: Path, manifest: Path) -> list[str]:
             problems.append(f"{m.id}: file changed since it was pinned")
         dist = m.distribution.lower()
         if PUBLIC_RELEASE not in dist and "unlimited" not in dist and "no releasability" not in dist \
-                and US_GOV_WORK not in dist:
+                and US_GOV_WORK not in dist and m.raw.get("personal") is not True:
+            # personal books are copyrighted by design; they never reach a normal build
             problems.append(f"{m.id}: distribution not confirmed public release ({m.distribution})")
     return problems

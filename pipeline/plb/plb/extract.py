@@ -289,12 +289,17 @@ def is_heading(line: Line, body_size: float) -> bool:
 def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             dpi: int = 200, numbering: str = "dash",
             skip_pages: tuple[int, ...] = (),
-            table_pages: tuple[int, ...] = ()) -> tuple[list[Section], list[Figure]]:
+            table_pages: tuple[int, ...] | str = (),
+            chapter_pattern: str | None = None) -> tuple[list[Section], list[Figure]]:
     """numbering: "dash" (Army "2-15."), "decimal" (Air Force "4.7.3.") or "headings"
     (no paragraph numbers: each heading starts a section, numbered "<page>.<n>").
     skip_pages: 1-based pages that are not part of the publication (a reseller's note).
     table_pages: 1-based pages whose ruled tables are read cell by cell (one section per row,
-    "<page>.t<n>") instead of line by line, which interleaves the columns."""
+    "<page>.t<n>") instead of line by line, which interleaves the columns; "all" = every page.
+    chapter_pattern: extra regex for chapter lines in books that don't say "Chapter"
+    (Aerie: "Section One:")."""
+    chap_re = re.compile(f"(?:{CHAPTER_RE.pattern})|(?:{chapter_pattern})") if chapter_pattern \
+        else CHAPTER_RE
     out_dir.mkdir(parents=True, exist_ok=True)
     fig_dir = out_dir / "figures"
     para_re = DECIMAL_RE if numbering == "decimal" else PARA_RE
@@ -339,7 +344,8 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
         hdr = [normalize(c or "").strip() for c in rows[0]]
         for row in rows[1:]:
             cells = [table_cell_items(c) for c in row]
-            if not cells[0] and last_row is not None:          # continues the row above
+            if not cells[0] and last_row is not None and len(cells) == len(last_row["cells"]):
+                # continues the row above
                 for k, items in enumerate(cells[1:], 1):
                     last_row["cells"][k].extend(items)
                 if page.page_number not in last_row["sec"].pages:
@@ -357,7 +363,9 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
     for page, lines in read_lines(pdf_path):
         if page.page_number in skip_pages:
             continue
-        tables = page.find_tables() if page.page_number in table_pages else []
+        tables = page.find_tables() if table_pages == "all" or page.page_number in table_pages else []
+        tables = [t for t in tables                               # a real grid, not a ruled box
+                  if len(t.rows) >= 2 and len(t.rows[0].cells) >= 2]
         if tables:
             boxes = [t.bbox for t in tables]
             lines = [l for l in lines if not any(b[1] - 2 <= l.top and l.bottom <= b[3] + 2
@@ -369,7 +377,10 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
         body = sizes[len(sizes) // 2]
         toc_page = sum(bool(FIG_RE.match(l.text) and TOC_PAGENO_RE.search(l.text))
                        for l in lines) >= 3
+        skip_line = -1
         for i, ln in enumerate(lines):
+            if i == skip_line:
+                continue
             t = ln.text.strip()
             while todo and ln.top > todo[0].bbox[3]:             # a table sat above this line
                 flush()
@@ -379,7 +390,7 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             keyword_lines += len(NOTICE_WORD_RE.findall(t))
             if notice is not None:
                 gap = ln.top - notice["bottom"] if ln.page == notice["page"] else 99
-                if (gap > 1.8 * max(ln.bottom - ln.top, 6) or CHAPTER_RE.match(t)
+                if (gap > 1.8 * max(ln.bottom - ln.top, 6) or chap_re.match(t)
                         or FIG_RE.match(t) or para_re.match(t) or NOTICE_RE.match(t)):
                     end_notice()
                 else:
@@ -391,9 +402,15 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
                 notice = {"kind": nm["kind"], "parts": [nm["rest"]] if nm["rest"] else [],
                           "bottom": ln.bottom, "page": ln.page}
                 continue
-            if CHAPTER_RE.match(t):
+            if chap_re.match(t):
                 flush()
                 chapter, heading = t, ""
+                # "Section One:" with its title on the next line in the same type
+                # (Aerie): one chapter name, "Section One: Introduction"
+                nxt = lines[i + 1] if i + 1 < len(lines) else None
+                if t.endswith(":") and nxt and abs(nxt.size - ln.size) < 0.5 and nxt.bold == ln.bold:
+                    chapter = f"{t} {nxt.text.strip()}"
+                    skip_line = i + 1
                 continue
             if FIG_RE.match(t):
                 caps = split_captions(t)

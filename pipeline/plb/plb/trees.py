@@ -114,6 +114,14 @@ def citation_for(manual_id: str, para: str, manuals: dict[str, dict],
     """'ATP 4-02.11, para 4-37'. Heading-only sections ("2.h1") have no real paragraph
     number, so they cite their place instead: 'front matter, Preface' or 'Ch 2, <heading>'."""
     book = pretty_manual(manual_id, manuals)
+    if manuals.get(manual_id, {}).get("cite_style") == "page" and sec:
+        # 'Aerie WM 15e, p42, Splinting': books without paragraph numbers cite the page
+        head = " ".join(re.sub(r"^[\s*#\-]+", "", sec.get("heading") or "").split())
+        head = head.title() if head.isupper() else head
+        head = head if len(head) <= 40 else head[:37].rstrip() + "..."
+        page = (sec.get("pages") or [None])[0]
+        page = page - int(manuals[manual_id].get("page_offset") or 0) if page else page
+        return ", ".join(x for x in [book, f"p{page}" if page else "", head] if x)
     if ".h" not in para:
         return f"{book}, para {para}"
     sec = sec or {}
