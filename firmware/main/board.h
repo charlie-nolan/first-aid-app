@@ -64,5 +64,11 @@
 /* Light levels, 10-bit PWM duty (0..1023). Tune on the bench. */
 #define DUTY_FRONT_DIM     20
 #define DUTY_FRONT_BRIGHT  120
+#if CONFIG_LIB_BOARD_PLUS
 #define DUTY_FLASHLIGHT    400
+#else
+/* bench board: full on; the series resistors set the brightness (Charlie, 2026-11-08:
+ * white beads as bright as the bench allows, 2x10 ohm per bead). SOS uses DUTY_STROBE. */
+#define DUTY_FLASHLIGHT    1023
+#endif
 #define DUTY_STROBE        1023
