@@ -29,3 +29,6 @@ qwen work/
 # Downloaded source manuals (large; kept on this machine only)
 pipeline/plb/sources/
 *.pdf
+
+# ESP-IDF build folders
+firmware/build-*/
