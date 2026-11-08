@@ -160,6 +160,7 @@ def verify(root: Path, manifest: Path, personal: bool = False) -> list[str]:
             problems.append(f"{m.id}: file changed since it was pinned")
         dist = m.distribution.lower()
         if PUBLIC_RELEASE not in dist and "unlimited" not in dist and "no releasability" not in dist \
-                and US_GOV_WORK not in dist:
+                and US_GOV_WORK not in dist and m.raw.get("personal") is not True:
+            # personal books are copyrighted by design; they never reach a normal build
             problems.append(f"{m.id}: distribution not confirmed public release ({m.distribution})")
     return problems

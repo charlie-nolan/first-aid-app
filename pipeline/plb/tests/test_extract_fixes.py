@@ -333,3 +333,19 @@ def test_default_build_excludes_personal_sources(tmp_path):
     assert {t["id"] for t in trees["trees"]} == {"ref-PUB", "ref-PERS"}
     assert out.name == "intermediate_personal"
     assert "Pers 1e, p3, Placeholder Heading" in (out / "passages.jsonl").read_text()
+
+
+def test_chapter_pattern_with_title_on_next_line(tmp_path):
+    """Books that don't say "Chapter" (Aerie: "Section One:" then "Introduction" below it)."""
+    pdf = tmp_path / "t.pdf"
+    c = canvas.Canvas(str(pdf), pagesize=letter)
+    y = lines(c, H - 120, ["Section One:", "Introduction"], "Helvetica-Bold", 30) - 20
+    y = lines(c, y, ["Placeholder Heading"], "Helvetica-Bold", 14)
+    lines(c, y, ["Placeholder body text under the heading."])
+    c.showPage(); c.save()
+    out = tmp_path / "out"
+    extract(pdf, "T", out, figures=False, numbering="headings",
+            chapter_pattern=r"^Section\s+(?:One|Two)\b:?")
+    secs = json.loads((out / "sections.json").read_text())
+    assert [(s["chapter"], s["heading"], s["text"]) for s in secs] == [
+        ("Section One: Introduction", "Placeholder Heading", "Placeholder body text under the heading.")]
