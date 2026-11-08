@@ -19,9 +19,11 @@ then word- and letter-level similarity), accepted above a threshold. It is a pro
 the real recogniser, good for finding phrases that are missing or too alike; bench
 numbers from the device are what count. The threshold is swept in the report.
 
-Two listening contexts, as the firmware loads them (cart_voice_list):
-  home      always + every topic's entry phrases (after wake, at the Library)
-  in-topic  home + the current topic's own node phrases
+Two listening contexts, as the firmware loads them (cart_voice_list, romkit/reader/cart.c):
+  home      always, then every topic's entry phrases, then every other phrase, up to the
+            200-command MultiNet list (after wake, at the Library)
+  in-topic  the same, but the current topic's own node phrases rank before the rest
+While the library has fewer than 200 phrases, both lists hold every phrase.
 """
 from __future__ import annotations
 
@@ -37,6 +39,7 @@ import yaml
 from .phrases import normalize
 
 THRESHOLD = 0.72
+VOICE_MAX = 200   # CART_VOICE_MAX in romkit/reader/cart.h (MultiNet list size)
 SWEEP = (0.6, 0.65, 0.7, 0.72, 0.75, 0.8, 0.85, 0.9)
 NONE = "none"
 
@@ -181,17 +184,23 @@ def run(root: Path, inter: Path, utt_path: Path, thr: float = THRESHOLD) -> dict
     up = ancestors(trees)
     utts = load_utterances(utt_path)
     registered = {c["phrase"] for c in cmds}
-    home = [c for c in cmds if c["always"] or c["entry"]]
-    by_tree = defaultdict(list)
-    for c in cmds:
-        by_tree[c["tree"]].append(c)
+    def voice_list(tree: str | None) -> list[dict]:     # mirrors cart_voice_list
+        def rank(c):
+            return 1 if c["always"] else 2 if c["entry"] else 3 if c["tree"] == tree else 4
+        out, seen = [], set()
+        for c in sorted(cmds, key=rank):                 # stable: phrase order within a rank
+            if c["phrase"] not in seen:
+                seen.add(c["phrase"])
+                out.append(c)
+        return out[:VOICE_MAX]
+    home = voice_list(None)
 
     rows = []
     for u in utts:
         ctxs = {"home": home}
         t = u["topic"]
         if t in tree_ids:
-            ctxs["in-topic"] = home + [c for c in by_tree[t] if c not in home]
+            ctxs["in-topic"] = voice_list(t)
         for ctx, cands in ctxs.items():
             top = best_matches(u["text"], cands)
             rows.append({**u, "ctx": ctx, "registered": normalize(u["text"]) in registered,
@@ -276,8 +285,8 @@ def report_md(rep: dict) -> str:
     L += ["", f"Off-topic (topics with no tree yet, heard at home): {off.get('hit', 0)} correctly "
               f"ignored, **{off.get('FALSE', 0)} opened a card** they shouldn't.", "",
           "`near` = the topic's first screen or a step on the way. `OFF step` = the right topic "
-          "but a card for a different situation. At the home screen only topic entry phrases are "
-          "loaded, so a specific ask usually lands on the topic's first screen: that is expected.",
+          "but a card for a different situation. The home list holds every phrase while the "
+          "library has fewer than 200, so home and in-topic only differ once it grows past that.",
           "", "## Threshold sweep (in-topic, and off-topic false triggers)", "",
           "| threshold | hit | near | miss | OFF step | WRONG | off-topic FALSE |",
           "|---|---|---|---|---|---|---|"]

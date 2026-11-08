@@ -173,5 +173,6 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
     manifest["counts"] = {"trees": len(b.trees), "nodes": len(nodes), "passages": len(b.passages),
                           "phrases": len(cmds), "pictures": len(pics)}
     manifest["errors"] = len([i for i in issues if i.level == "error"])
+    manifest["presses"] = {tid: {"most": n, "card": key} for tid, (n, key) in sorted(b.presses.items())}
     (out / "manifest.json").write_text(json.dumps(manifest, indent=1))
     return out, issues

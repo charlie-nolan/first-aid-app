@@ -92,6 +92,15 @@ add `menuconfig` before `flash`, then look under **Librarian**.
 | BACK | go back; at the start of a window, the library | step the front light: off, dim, bright |
 | Window L / R (Plus) | switch between the 5 windows | smaller / larger text |
 
+**Answer screens (Plus).** When a question has 4 answers or fewer, its last page
+puts each answer in a screen corner, next to its button: top left = Window L,
+top right = Window R, bottom left = UP, bottom right = DOWN. One press answers.
+TALK goes back to the question's text, BACK to the previous question, and a
+spare bottom-left corner turns back a page. The voice "Did you mean..." picker
+works the same way. The plain bench board has no corner buttons, so it keeps the
+list (DOWN to move, TALK to open). Trees are capped at 4 answers per question
+(`plb build` fails otherwise), so every card works with buttons alone.
+
 Quick (partial) refreshes leave faint ghosts; every 5th refresh is a full one
 (the black-white flash), and pressing any two buttons together forces one.
 The serial log prints each refresh and how long BUSY stayed high. "BUSY never
