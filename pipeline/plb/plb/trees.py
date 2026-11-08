@@ -10,6 +10,8 @@ Tree YAML (content/trees/*.yaml):
     title: Bleeding
     shelf: first-aid            # first-aid | survival | bushcraft | plants | fire | traps | weather
     emergency: true             # usable from the low-battery reserve; never filtered
+    unreviewed: true            # draft not yet signed off: no voice, never emergency,
+                                # shown as Unreviewed; `plb lock` skips it
     tags: {region: [all, -fl, -hi], season: [winter]}   # optional context filter
     root: start
     phrases: [bleeding, "bleeding won't stop"]    # open the root node
@@ -257,8 +259,10 @@ def build_trees(tree_dir: Path, sections: dict[str, dict], figures: dict[str, di
             b.issues.append(Issue("error", where, f"root {t.get('root')!r} is not a node"))
             continue
         plants = t.get("shelf") == "plants"
+        draft = bool(t.get("unreviewed"))
         b.trees.append({"id": tid, "title": t["title"], "shelf": t["shelf"],
                         "root": key_to_id[root_key], "emergency": bool(t.get("emergency")),
+                        "unreviewed": draft,
                         "tags": _check_tags(t.get("tags"), where + " tags", voc, b)})
         for ph in t.get("phrases") or []:
             say, always = _phrase(ph)
@@ -328,7 +332,7 @@ def build_trees(tree_dir: Path, sections: dict[str, dict], figures: dict[str, di
                             "passages": pids, "lookalikes": look, "figure": fig,
                             "choices": choices, "species": bool(n.get("species")),
                             "no_match": bool(n.get("no_match")),
-                            "emergency": bool(n.get("emergency")),
+                            "emergency": bool(n.get("emergency")), "unreviewed": draft,
                             "tags": _check_tags(n.get("tags"), w + " tags", voc, b)})
 
         # reachability, and the fewest answer presses to reach each card (breadth-first)

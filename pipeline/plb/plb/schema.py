@@ -140,6 +140,7 @@ class TreeFile(_Strict):
     shelf: Shelf
     root: NodeKey
     emergency: bool = False
+    unreviewed: bool = False      # a draft Charlie hasn't signed off: marked on the device
     tags: dict[str, Any] | None = None
     phrases: list[Phrase] = []
     nodes: dict[NodeKey, Node] = Field(min_length=1)
