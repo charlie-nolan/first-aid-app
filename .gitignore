@@ -40,3 +40,6 @@ pipeline/plb/build/intermediate_personal/
 pipeline/plb/build/library_personal.bin
 pipeline/plb/content/trees_personal/
 pipeline/plb/content/cites.personal.lock.yaml
+
+# ESP-IDF build folders
+firmware/build-*/

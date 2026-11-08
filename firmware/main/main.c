@@ -58,9 +58,34 @@ static void voice_follow(void) {                    /* new section or context: s
 static void show(int how) {
     if (how == RD_NONE) return;
     ui_render(&ui, &fb);
-    bool full = how == RD_FULL || ++partials >= 10;   /* a full refresh every 10 partials clears ghosting */
+    bool full = how == RD_FULL || ++partials >= 5;    /* a full refresh every 5 partials clears ghosting */
     if (full) partials = 0;
     epd_show(fb_bits, full);
+}
+
+/* Any two buttons pressed together = full screen refresh (clears ghosting).
+ * Both buttons are then ignored until each is released, so the combo does
+ * nothing else. Returns true when the event is used up here. */
+static uint8_t held_mask, swallow_mask;
+static bool combo_filter(const app_msg_t *m) {
+    uint8_t bit = (uint8_t)(1u << m->btn);
+    if (m->kind == E_PRESS) {
+        if (held_mask && !(held_mask & bit)) {
+            swallow_mask |= held_mask | bit;
+            held_mask |= bit;
+            if (ui.talk_armed || ui.listening) { ui.talk_armed = 0; ui.listening = 0; voice_stop(false); }
+            ESP_LOGI(TAG, "two-button refresh");
+            partials = 0;
+            ui_render(&ui, &fb);
+            epd_show(fb_bits, true);
+            return true;
+        }
+        held_mask |= bit;
+    } else if (m->kind == E_RELEASE) {
+        held_mask &= (uint8_t)~bit;
+        if (swallow_mask & bit) { swallow_mask &= (uint8_t)~bit; return true; }
+    }
+    return (swallow_mask & bit) != 0;
 }
 
 static void go_to_sleep(uint32_t timer_s) {
@@ -128,6 +153,7 @@ void app_main(void) {
         app_msg_t m;
         if (xQueueReceive(app_q, &m, pdMS_TO_TICKS(1000))) {
             last = esp_timer_get_time();
+            if (m.type == MSG_BUTTON && combo_filter(&m)) continue;
             ui_act_t a = m.type == MSG_BUTTON ? ui_event(&ui, (ui_btn_t)m.btn, (ui_evkind_t)m.kind, m.held_ms)
                                               : ui_voice(&ui, m.cmd, m.prob, m.n);
             if (a.voice == VO_START) voice_start();
