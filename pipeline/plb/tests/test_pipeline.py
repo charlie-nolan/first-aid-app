@@ -317,6 +317,97 @@ def test_marker_adapter_maps_captions(repo, tmp_path):
     assert any("used with permission" in e for e in errors(issues))
 
 
+def test_notices_follow_their_paragraph(repo):
+    p = repo / "build" / "extract" / FIX_ID / "sections.json"
+    secs = json.loads(p.read_text())
+    for s in secs:
+        if s["para"] == "1-2":
+            s["notices"] = [{"kind": "CAUTION", "text": "Placeholder caution box text."}]
+    p.write_text(json.dumps(secs))
+    write_tree(repo, GOOD_TREE)                      # kit node cites an excerpt of 1-2
+    out, issues = build(repo)
+    assert errors(run_checks(repo, out, issues)) == []
+    nodes = {n["key"]: n for n in json.loads((out / "trees.json").read_text())["nodes"]}
+    assert nodes["demo/kit"]["passages"][-1] == f"{FIX_ID}/1-2~caution1"
+    ps = {json.loads(l)["id"]: json.loads(l) for l in (out / "passages.jsonl").read_text().splitlines()}
+    assert ps[f"{FIX_ID}/1-2~caution1"]["text"] == "## CAUTION\nPlaceholder caution box text."
+    # tampering with a notice is caught by the verbatim check
+    pj = out / "passages.jsonl"
+    pj.write_text(pj.read_text().replace("Placeholder caution box", "Made up"))
+    assert any("not verbatim" in e for e in errors(run_checks(repo, out, issues)))
+
+
+def test_reference_shelf(repo):
+    (repo / "content" / "config.yaml").write_text("reference_shelf: true\n")
+    write_tree(repo, GOOD_TREE)
+    p = repo / "build" / "extract" / FIX_ID / "sections.json"
+    secs = json.loads(p.read_text())
+    secs[1]["notices"] = [{"kind": "WARNING", "text": "Placeholder warning."}]
+    p.write_text(json.dumps(secs))
+    out, issues = build(repo)
+    assert errors(run_checks(repo, out, issues)) == []
+    t = json.loads((out / "trees.json").read_text())
+    ref = [x for x in t["trees"] if x["shelf"] == "reference"]
+    assert len(ref) == 1 and ref[0]["unreviewed"] and not ref[0]["emergency"]
+    assert not [x for x in t["trees"] if x["shelf"] != "reference"][0]["unreviewed"]
+    nodes = {n["id"]: n for n in t["nodes"]}
+    leaves = [n for n in nodes.values() if n["tree"] == ref[0]["id"] and n["passages"]]
+    assert len(leaves) == len(secs) and all(n["unreviewed"] and not n["figure"] for n in leaves)
+    assert any(pid.endswith("~warning1") for n in leaves for pid in n["passages"])
+    ph = json.loads((out / "phrases.json").read_text())
+    assert not any(nodes[c["node"]]["unreviewed"] for c in ph)
+
+
+def test_reference_shelf_pages_long_lists(repo):
+    from plb.shelf import add_reference_shelf
+    from plb.trees import Built
+    b = Built()
+    secs = [{"id": f"M/1-{i}", "manual": "M", "para": f"1-{i}", "chapter": "Chapter 1",
+             "heading": "", "text": f"t{i}"} for i in range(1, 101)]
+    add_reference_shelf(b, {"M": secs}, {}, list_max=40)
+    assert max(len(n["choices"]) for n in b.nodes) <= 40
+    root = next(n for n in b.nodes if n["id"] == b.trees[0]["root"])
+    assert [c["label"] for c in root["choices"]] == ["1-1 to 1-40", "1-41 to 1-80", "1-81 to 1-100"]
+
+
+def test_reference_shelf_labels_distinct_and_titles_short(repo):
+    from plb.shelf import TITLE_MAX, add_reference_shelf
+    from plb.trees import Built
+    b = Built()
+    secs = [{"id": f"M/1-{i}", "manual": "M", "para": f"1-{i}", "chapter": "Chapter 1",
+             "heading": "SAME HEADING", "text": f"Distinct opening words number {i} here."}
+            for i in range(1, 5)]
+    add_reference_shelf(b, {"M": secs}, {"M": {"cite_as": "A Very Long Manual Name That Will Not Fit"}})
+    labels = [n["label"] for n in b.nodes if n["passages"]]
+    assert len(set(labels)) == 4 and labels[0].startswith("1-1 Distinct opening")
+    assert len(b.trees[0]["title"]) <= TITLE_MAX
+    assert b.trees[0]["full_title"] == "A Very Long Manual Name That Will Not Fit"
+
+
+@pytest.mark.parametrize("line,is_chapter", [
+    ("Chapter 4", True), ("CHAPTER 1. INTRODUCTION", True), ("Appendix A", True),
+    ("Chapter 12 Cold Weather", True), ("APPENDIX G", True),
+    ("chapter 6, see paragraph 6-2", False), ("Chapter 1 describes the desert", False),
+    ("Appendix C).", False), ("Chapter 7 for details", False), ("Chapter 3, Section II", False),
+])
+def test_chapter_heading_vs_cross_reference(line, is_chapter):
+    from plb.extract import CHAPTER_RE
+    assert bool(CHAPTER_RE.match(line)) is is_chapter
+
+
+def test_library_groups_order_and_strings(repo):
+    (repo / "content" / "config.yaml").write_text(yaml.safe_dump({
+        "reference_shelf": True,
+        "library_groups": {"First aid": [f"ref-{FIX_ID}", "demo"]}}))
+    write_tree(repo, GOOD_TREE)
+    out, issues = build(repo)
+    assert errors(issues) == []
+    trees = json.loads((out / "trees.json").read_text())["trees"]
+    assert [t["id"] for t in trees] == [f"ref-{FIX_ID}", "demo"]
+    s = json.loads((out / "strings.json").read_text())
+    assert s["GROUP#0"] == s["GROUP#1"] == "First aid"
+
+
 # ---- full chain: fixture manual -> trees -> romkit packer -> library.bin -> C reader ----
 ROMKIT = Path(__file__).resolve().parents[3] / "romkit"
 

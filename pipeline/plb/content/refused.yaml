@@ -1,0 +1,11 @@
+# Passages that must never appear in a reviewed (signed-off) topic, because they
+# contradict the primary source or carry a known error. The reference shelf still
+# shows them as unreviewed book text. Each entry: ref (MANUAL/para) and why;
+# optional `text` refuses only passages containing that exact fragment.
+- ref: ATP3-50.21/2.h64
+  why: "SNAKEBITES says 'Use a constricting band'; ATP 4-02.11 16-40 says no tourniquet"
+- ref: TC4-02.1/21.h2
+  why: "snakebite constricting band 'per local protocols'; contradicts ATP 4-02.11 16-40"
+- ref: FEMA-CERT/114.2
+  text: "(37"
+  why: "book prints 95 F (37 C); 95 F is 35 C. Quote only from 'Because hypothermia...' on"

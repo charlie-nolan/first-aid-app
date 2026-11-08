@@ -1,0 +1,14 @@
+{
+ "keyword_lines": 26,
+ "notices_kept": 21,
+ "missing": 5,
+ "inline_notes": [],
+ "keyword_elsewhere": [
+  "USAMRICD-FMCC/106.1 (text): LISTER, or BLOOD agents T-401 DANGER - NERVE: G agents or VX T-402",
+  "USAMRICD-FMCC/106.1 (text): - NERVE: G agents or VX T-402 DANGER - BLISTER: HD (sulfur mustard",
+  "USAMRICD-FMCC/106.1 (text): ER: HD (sulfur mustard) T-403 DANGER - BLISTER: CX (phosgene oxime",
+  "USAMRICD-FMCC/106.1 (text): ER: CX (phosgene oxime) T-404 DANGER - BLOOD: AC (hydrogen cyanide",
+  "USAMRICD-FMCC/106.1 (text): AC or CK in HIGH CONC) T-404A DANGER - BLOOD: AC (hydrogen cyanide"
+ ],
+ "figure_gaps": []
+}

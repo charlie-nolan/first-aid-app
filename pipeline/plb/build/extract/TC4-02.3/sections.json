@@ -1,0 +1,2268 @@
+[
+ {
+  "id": "TC4-02.3/0.h1",
+  "manual": "TC4-02.3",
+  "para": "0.h1",
+  "chapter": "",
+  "heading": "May 2015",
+  "pages": [
+   1
+  ],
+  "text": "DISTRIBUTION RESTRICTION: Approved for public release; distribution is unlimited.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/0.h2",
+  "manual": "TC4-02.3",
+  "para": "0.h2",
+  "chapter": "",
+  "heading": "Headquarters, Department of the Army",
+  "pages": [
+   2
+  ],
+  "text": "This publication is available at Army Knowledge Online (https://armypubs.us.army.mil/doctrine/index.html). To receive publishing updates, please subscribe at http://www.apd.army.mil/AdminPubs/new_subscribe.asp.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/0.h3",
+  "manual": "TC4-02.3",
+  "para": "0.h3",
+  "chapter": "",
+  "heading": "*TC 4-02.3",
+  "pages": [
+   3
+  ],
+  "text": "Training Circular (TC) Headquarters No. 4-02.3 Department of the Army Washington, DC, 6 May 2015",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3.h1",
+  "manual": "TC4-02.3",
+  "para": "3.h1",
+  "chapter": "Chapter 3 UNIT-LEVEL PREVENTIVE MEDICINE MEASURES ....................................... 3-1",
+  "heading": "Contents",
+  "pages": [
+   4
+  ],
+  "text": "Plan for and Enforce Preventive Measures for Carbon Monoxide Poisoning and Fire Prevention ............................................................................................. 3-6 Plan for and Enforce Preventive Measures for Toxic Industrial Materials .......... 3-7 Plan for and Enforce Protective Measures for Noise Hazards ............................ 3-7 Plan for and Enforce Sleep Discipline ................................................................. 3-7 Ensure Welfare, Safety, and Health of the Unit .................................................. 3-8",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h1",
+  "manual": "TC4-02.3",
+  "para": "A.h1",
+  "chapter": "Appendix A TECHNIQUES AND PROCEDURES FOR DISINFECTING WATER ............... A-1",
+  "heading": "Preface",
+  "pages": [
+   5
+  ],
+  "text": "Training Circular (TC) 4-02.3 provides hygiene and sanitation guidance for Soldiers in the field and while deployed. The publication outlines individual and leader responsibilities and describes individual and leader preventive medicine measures and guidance for Soldiers. Implementation of the techniques presented in this publication enable individual Soldiers to remain healthy in the field and enable commanders to maintain a fit and healthy force capable of accomplishing the mission in any environment. The principal audience for TC 4-02.3 is commanders, subordinate leaders, individual Soldiers, Department of Defense (DOD) civilians and contractors. Commanders, staffs, and subordinates ensure their decisions and actions comply with applicable United States (U.S.), international, and, in some cases, host-nation laws and regulations. Commanders at all levels ensure their Soldiers operate in accordance with the law of war and the rules of engagement. (See Field Manual [FM] 27-10.) This publication is in consonance with the following North Atlantic Treaty Organization Standardization Agreements:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h2",
+  "manual": "TC4-02.3",
+  "para": "A.h2",
+  "chapter": "Appendix A TECHNIQUES AND PROCEDURES FOR DISINFECTING WATER ............... A-1",
+  "heading": "Standardization Agreements",
+  "pages": [
+   5
+  ],
+  "text": "Requirement for Training in First-Aid, Emergency Care in Combat 2122 Situations and Basic Hygiene for All Military Personnel Requirements for Water Potability During Field Operations and in 2136 Emergency Situations--Allied Medical Publication-4.9 Emergency Supply of Water in Operations 2885 Protection of Hearing 2899 Essential Field Sanitary Requirements 2982 This publication uses joint terms where applicable. Selected joint and Army terms and definitions appear in both the glossary and the text. This publication is not the proponent for any Army terms. Unless otherwise stated in this publication, the use of masculine nouns and pronouns does not refer exclusively to men. Training Circular 4-02.3 applies to the Active Army, Army National Guard/Army National Guard of the United States, and United States Army Reserve unless otherwise stated. The proponent and the preparing agency of this publication is the United States Army Medical Department Center and School, United States Army Health Readiness Center of Excellence. Send comments and recommendations on a DA Form 2028 (Recommended Changes to Publications and Blank Forms) to Commander, United States Army Medical Department Center and School, United States Army Health Readiness Center of Excellence, ATTN: MCCS-FC-DL (TC 4-02.3), 2377 Greeley Road, Building 4011, Suite D, JBSA Fort Sam Houston, Texas 78234-7731; by e-mail to usarmy.jbsa.medcomameddcs.mbx.ameddcs-medical-doctrine@mail.mil; or submit an electronic DA Form 2028. Recommended changes should be keyed to the specific page, paragraph, and line number. A rationale for each proposed change is required to aid in the evaluation and adjudication of each comment.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h3",
+  "manual": "TC4-02.3",
+  "para": "A.h3",
+  "chapter": "Appendix A TECHNIQUES AND PROCEDURES FOR DISINFECTING WATER ............... A-1",
+  "heading": "Introduction",
+  "pages": [
+   6
+  ],
+  "text": "Training Circular 4-02.3 remains generally consistent with FM 21-10/MCRP 4-11.1D on key topics while adopting updated terminology and concepts as necessary. It is designed to be used in conjunction with Army Techniques Publication (ATP) 4-25.12. The material presented in this publication reflects enduring practices of field hygiene, sanitation, and preventive medicine measures. Implementation of these techniques and procedures enable commanders to preserve the health of their Soldiers in order for them to accomplish the units' mission. Additionally the discussion contained in this text is designed as a quick reference and ready resource for the individual Soldiers to employ appropriate preventive medicine measures to protect themselves from health threats commonly encountered while in the field or deployed. Summary of changes include-- The revision of FM 21-10/MCRP 4-11.1D includes designating this publication as a TC and renumbering it as TC 4-02.3 in compliance with the Army's Doctrine 2015 Initiative. Training Circular 4-02.3 consists of three chapters and one appendix as follows: Chapter 1 provides a brief history of disease in military operations, identifies health threats confronted by Soldiers while in the field or deployed, and introduces preventive medicine measures. Chapter 2 identifies individual preventive medicine measures and responsibilities. Chapter 3 identifies leader responsibilities and collective preventive medicine measures. Appendix A provides information on water purification techniques for individual water storage systems.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-1",
+  "manual": "TC4-02.3",
+  "para": "1-1",
+  "chapter": "Chapter 1",
+  "heading": "DISEASE AND NONBATTLE INJURIES",
+  "pages": [
+   7
+  ],
+  "text": "Disease and nonbattle injuries (DNBIs) have been a costly consequence of military operations for as long as there have been armies. Historically around 80 percent of reported casualties among U.S. military personnel have been attributed to DNBI. The result has been tens of thousands of U.S. military personnel who have died, were severely disabled, or temporarily rendered incapable of performing their duties. High numbers of DNBI casualties has had a significant impact on unit readiness and severely jeopardized the ability of some units to accomplish their mission. Note. Disease and nonbattle injury casualties are defined as Soldiers who are lost to their organization by reason of disease or injury and who are not battle casualties.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-2",
+  "manual": "TC4-02.3",
+  "para": "1-2",
+  "chapter": "Chapter 1",
+  "heading": "DISEASE AND NONBATTLE INJURIES",
+  "pages": [
+   7
+  ],
+  "text": "To reduce the high rates of DNBI, the armed forces of the U.S. implemented fundamental changes in the way that they address field hygiene and sanitation and health threats endemic to an area of operations. Although incidences of DNBI have declined since the end of the Vietnam War there is no doubt that they still adversely affect U.S. military forces. Table 1-1 depicts percentages of DNBI recorded in U.S. military operations from 1991 to 2003. Percentage of casualties attributed to disease and nonbattle injury by operation and date Operation Desert Shield/Desert Storm, 1991 6.5 percent Operation Joint Endeavor, 1995 7.1 percent Operation Joint Guardian, 1999 8.1 percent Operation Enduring Freedom, 2001 5 percent Operation Iraqi Freedom, 2003 4 percent",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-3",
+  "manual": "TC4-02.3",
+  "para": "1-3",
+  "chapter": "Chapter 1",
+  "heading": "DISEASE AND NONBATTLE INJURIES",
+  "pages": [
+   7
+  ],
+  "text": "The reduction in DNBI casualty rates can be attributed to--\n- Command emphasis.\n- Proactive leaders and unit field sanitation teams.\n- Awareness of the threat.\n- Education and training.\n- Ready access to safe rations, potable water, laundry, shower, and latrine facilities.\n- Improved preventive medicine measures, personal protection equipment, and chemoprophylaxis and medical treatment protocols.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-4",
+  "manual": "TC4-02.3",
+  "para": "1-4",
+  "chapter": "Chapter 1",
+  "heading": "HEALTH THREATS",
+  "pages": [
+   8
+  ],
+  "text": "The environments in which U.S. military forces routinely operate present significant health threats to Soldiers in the field and when deployed. Health threats most commonly encountered by U.S. military personnel include--\n- Endemic diseases.\n- Food- and waterborne diseases.\n- Hazardous plants and animals.\n- Entomological hazards (nuisance pests and disease-carrying vectors).\n- Toxic industrial materials (industrial and agricultural).\n- Deployment-related stress.\n- Sleep deprivation.\n- Hazardous noise.\n- Climatic or environmental extremes (heat, cold, high altitudes).",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-5",
+  "manual": "TC4-02.3",
+  "para": "1-5",
+  "chapter": "Chapter 1",
+  "heading": "PREDISPOSING FACTORS",
+  "pages": [
+   8
+  ],
+  "text": "Predisposing factors are things which make a Soldier more susceptible to becoming a DNBI casualty. These include--\n- Breakdown in basic hygiene and sanitation practices.\n- Weakening of the natural defenses of the human body.\n- Harshness of the environment.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-6",
+  "manual": "TC4-02.3",
+  "para": "1-6",
+  "chapter": "Chapter 1",
+  "heading": "BREAKDOWN IN BASIC HYGIENE AND SANITATION PRACTICES",
+  "pages": [
+   8
+  ],
+  "text": "Basic hygiene and sanitation practices may begin to breakdown when Soldiers are not able to readily and regularly access potable water, safe rations, showers, latrines, and laundry facilities. Soldiers may become apathetic and begin neglecting their personal hygiene and fail to properly dispose of potentially hazardous solid and human waste products.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-7",
+  "manual": "TC4-02.3",
+  "para": "1-7",
+  "chapter": "Chapter 1",
+  "heading": "NATURAL DEFENSES OF THE HUMAN BODY",
+  "pages": [
+   8
+  ],
+  "text": "Extended periods of time in the field and prolonged deployments in austere environments place tremendous stress on the human body. These stresses can negatively impact the body's natural defense mechanisms and can weaken its ability to efficiently protect against disease. When Soldiers are placed in high-stress situations for extended periods of time coupled with significant climatic changes, interrupted sleep periods or sleep deprivation, and irregular meals they become more susceptible to illness and injury.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-8",
+  "manual": "TC4-02.3",
+  "para": "1-8",
+  "chapter": "Chapter 1",
+  "heading": "HARSHNESS OF THE ENVIRONMENT",
+  "pages": [
+   8
+  ],
+  "text": "Harsh environments are a reality of U.S. military operations. Conducting operations in these environments exposes Soldiers to extremes of heat or cold, high altitude environments, endemic diseases, food- and waterborne disease, hazardous pests and animals, entomological hazards, toxic industrial materials (industrial and agricultural), deployment-related stress, and hazardous noise.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-9",
+  "manual": "TC4-02.3",
+  "para": "1-9",
+  "chapter": "Chapter 1",
+  "heading": "PREVENTIVE MEDICINE MEASURES",
+  "pages": [
+   8
+  ],
+  "text": "Preventive medicine measures are simple, common sense actions that every Soldier can and must perform to preserve his health and avoid unnecessary injury while in the field or when deployed. Note. In order to be effective, preventive medicine measures must be an item of command interest.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-10",
+  "manual": "TC4-02.3",
+  "para": "1-10",
+  "chapter": "Chapter 1",
+  "heading": "PREVENTIVE MEDICINE MEASURES",
+  "pages": [
+   9
+  ],
+  "text": "The principles of preventive medicine measures are--\n- Soldiers perform individual techniques of preventive medicine measures.\n- Field sanitation teams train Soldiers in preventive medicine measures and advise commanders and unit leaders on implementation of unit-level preventive medicine measures.\n- Commanders and subordinate leaders provide for and enforce preventive medicine measures.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/1-11",
+  "manual": "TC4-02.3",
+  "para": "1-11",
+  "chapter": "Chapter 1",
+  "heading": "PREVENTIVE MEDICINE MEASURES",
+  "pages": [
+   9,
+   10
+  ],
+  "text": "The key point to remember is that disciplined, well trained, physically fit, and appropriately supported Soldiers can avoid becoming DNBI casualties and remain healthy to successfully perform their mission while in the field and deployed. This is especially true when they are aware of the threats present in their area of operations and provided the information and resources necessary to counter the threat. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-1",
+  "manual": "TC4-02.3",
+  "para": "2-1",
+  "chapter": "Chapter 2",
+  "heading": "SOLDIER RESPONSIBILITIES",
+  "pages": [
+   11
+  ],
+  "text": "Regulations state that individual Soldiers are responsible for their own well-being. For example, AR 40-5 states that every Soldier is responsible for his own well-being and that he will implement and employ all protective measures possible to preserve his health. Each Soldier, as a minimum, will protect against--\n- Skin diseases by washing the body as often as practicable.\n- Heat injury in hot and sunny climates by following work or rest and water consumption guidelines, by properly adhering to uniform wear policies, and by using sunscreen on exposed body parts.\n- Cold injury in cold climates by wearing proper cold-weather clothing and frequently changing socks to keep feet dry, by careful handling of gasoline-type liquids, and by avoiding contact between skin and cold metal.\n- Mosquito, fly, tick, and other arthropod-borne diseases by using insect repellents, netting, and insecticide aerosols; by taking approved chemoprophylaxis; and by wearing the uniform properly.\n- Enteric (gastrointestinal) diseases by using water purification procedures whenever water quality is uncertain and by avoiding foods prepared by unapproved food vendors, and by properly disposing of bodily wastes. (Refer to Appendix A for water disinfection techniques and procedures).",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-2",
+  "manual": "TC4-02.3",
+  "para": "2-2",
+  "chapter": "Chapter 2",
+  "heading": "PERSONAL HYGIENE",
+  "pages": [
+   11
+  ],
+  "text": "Personal hygiene refers to a set of practices intended to preserve the health of the individual Soldier and consequently the health of every Soldier who must work and live in close proximity to them.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-3",
+  "manual": "TC4-02.3",
+  "para": "2-3",
+  "chapter": "Chapter 2",
+  "heading": "PERSONAL HYGIENE",
+  "pages": [
+   11
+  ],
+  "text": "To maintain an effective personal hygiene regimen, each Soldier must maintain a supply of personal hygiene items for use when they are going to the field or deploying. Note. Soldiers being deployed for unspecified periods of time should consider packing a 90-day supply of prescription medications and standard toiletry articles until sustainment of these items can be assured.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-4",
+  "manual": "TC4-02.3",
+  "para": "2-4",
+  "chapter": "Chapter 2",
+  "heading": "PERSONAL HYGIENE",
+  "pages": [
+   11,
+   12
+  ],
+  "text": "Personal hygiene items may include, but is not limited to, the following items:\n- Absorbent body powder.\n- Alcohol-based hand sanitizer.\n- Antiperspirant/deodorant.\n- Comb.\n- Dental floss.\n- Department of Defense-approved insect repellent.\n- Eye drops.\n- Feminine hygiene products.\n- Foot powder.\n- Hairbrush.\n- Lip balm.\n- Prescription medications (for example, birth control, blood pressure, and so forth).\n- Sanitizing wipes.\n- Shampoo.\n- Shaving kit.\n- Soap.\n- Sunscreen lotion.\n- Toilet tissue.\n- Toothbrush.\n- Toothpaste.\n- Towels.\n- Washcloths. Note. Alcohol-based hand sanitizer, sunscreen, and DOD-approved insect repellents are available through unit supply channels for issue to Soldiers as needed.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-5",
+  "manual": "TC4-02.3",
+  "para": "2-5",
+  "chapter": "Chapter 2",
+  "heading": "SKIN CARE",
+  "pages": [
+   12
+  ],
+  "text": "The skin is the largest organ of the human body and protects the body from disease-causing bacteria and viruses. The skin also provides protection from the direct rays of the sun, insulates the body from cold, and helps to regulate the temperature of the body in hot environments.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-6",
+  "manual": "TC4-02.3",
+  "para": "2-6",
+  "chapter": "Chapter 2",
+  "heading": "SKIN CARE",
+  "pages": [
+   12
+  ],
+  "text": "As the body's first line of defense it is essential that Soldiers protect their skin by keeping it as clean as possible. Showering regularly helps to reduce bacteria that are resident on the skin and can help to prevent infection from scrapes, cuts, punctures, and cracked skin. Soldiers can protect their skin by--\n- Showering or bathing regularly to keep the skin clean.\n- Using absorbent body powder to control moisture buildup. Pay particular attention to areas where wetness is a problem (such as underarms, between the thighs and buttocks, feet, and, for females, under the breasts).\n- Wearing the uniform properly and modifying the wear of the uniform when directed. Utility uniforms are designed to fit loosely to allow for ventilation and provide protection from the sun.\n- Wear moisture wicking undergarments designed to pull moisture away from the skin.\n- Changing into clean dry socks and applying antifungal foot powder to protect the feet from prolonged periods of dampness.\n- Applying DOD-approved insect repellent when needed. Note. Use of insect repellents must always be in compliance with the manufacturer's instructions.\n- Applying sunscreen to exposed skin.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-7",
+  "manual": "TC4-02.3",
+  "para": "2-7",
+  "chapter": "Chapter 2",
+  "heading": "SHOWERING",
+  "pages": [
+   12
+  ],
+  "text": "Under ideal conditions Soldiers should shower daily, or at least once every week to maintain good personal hygiene. Frequent showering prevents skin infections and helps to prevent potential parasite infestations. When showers are not available, washing daily with a washcloth and soap and water is advised. Particular attention should be given to sweaty areas or places that become wet--armpits, feet, genitals, between thighs and buttocks, and under breasts.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-8",
+  "manual": "TC4-02.3",
+  "para": "2-8",
+  "chapter": "Chapter 2",
+  "heading": "SHOWERING",
+  "pages": [
+   12,
+   13
+  ],
+  "text": "It is highly recommended that female Soldiers who are menstruating have daily access to shower facilities. This however does not mean that there must be a fixed facility with hot and cold running water on site. In situations where shower facilities are not available, female Soldiers can establish a private space with adequate drainage and bathe using a washcloth and soap and water. A full canteen of water should be adequate for one Soldier and a five-gallon water container for multiple Soldiers. Provisions for heating water would be preferred, but may not always be possible. The site designated for Soldiers to wash themselves must provide privacy and security.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-9",
+  "manual": "TC4-02.3",
+  "para": "2-9",
+  "chapter": "Chapter 2",
+  "heading": "SHOWERING",
+  "pages": [
+   13
+  ],
+  "text": "Female Soldiers who are not menstruating should be treated the same as male Soldiers with regard to accessing fixed shower facilities. Shower runs should be coordinated without gender preference influencing their frequency. Soldiers should avoid using perfume, cologne, or scented soaps, which can attract insects. However, unscented lotion can be used to keep the skin from drying, cracking, and becoming infected. Cosmetics are not authorized in the field. Frequent showering also helps to prevent genital and urinary tract infections.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-10",
+  "manual": "TC4-02.3",
+  "para": "2-10",
+  "chapter": "Chapter 2",
+  "heading": "LAUNDERING CLOTHING REGULARLY",
+  "pages": [
+   13
+  ],
+  "text": "Laundering of uniforms is critically important for preventing parasite infestation since head and body lice are generally spread by direct contact with infested Soldiers, their uniforms, or bedding.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-11",
+  "manual": "TC4-02.3",
+  "para": "2-11",
+  "chapter": "Chapter 2",
+  "heading": "LAUNDERING CLOTHING REGULARLY",
+  "pages": [
+   13
+  ],
+  "text": "The following are steps that can be taken to help prevent and control the spread of head and body lice:\n- Shower and bathe regularly and change into properly laundered uniforms at least once a week.\n- Do not share clothing, beds, bedding, and towels used by a Soldier known to harbor parasites.\n- Fumigation or dusting with DOD-approved insecticides may be necessary to control and prevent the spread of body lice.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-12",
+  "manual": "TC4-02.3",
+  "para": "2-12",
+  "chapter": "Chapter 2",
+  "heading": "HAND WASHING AND SANITIZING",
+  "pages": [
+   13
+  ],
+  "text": "One of the most effective practices that Soldiers can perform to protect themselves and others from the spread of disease is to thoroughly wash or sanitize their hands frequently. Regular washing or sanitizing of the hands denies disease-causing bacteria and viruses from gaining easy entry into the body. Soldiers who fail to wash their hands frequently increase the risk of spreading germs picked up from other sources and possibly infecting themselves when touching their eyes, nose, or mouth. One of the most common ways Soldiers catch a cold is by rubbing their nose or their eyes with an unwashed hand which has been contaminated with a cold-causing virus.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-13",
+  "manual": "TC4-02.3",
+  "para": "2-13",
+  "chapter": "Chapter 2",
+  "heading": "HAND WASHING AND SANITIZING",
+  "pages": [
+   13
+  ],
+  "text": "Germs can be spread directly to others or onto surfaces that others might touch which may cause other Soldiers around you to become sick. The important thing to remember is that, in addition to colds, serious diseases like infectious diarrhea and meningitis can easily be prevented when Soldiers make a habit of frequently washing their hands.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-14",
+  "manual": "TC4-02.3",
+  "para": "2-14",
+  "chapter": "Chapter 2",
+  "heading": "HAND WASHING AND SANITIZING",
+  "pages": [
+   13
+  ],
+  "text": "When to wash and or sanitize the hands (at a minimum)--\n- Before eating or snacking.\n- After eating or snacking.\n- Before handling or preparing food.\n- After using the latrine.\n- After handling anything that could potentially transfer germs.\n- Frequently during the work day to keep your hands free of germs.\n- After coming into contact with any local flora or fauna.\n- After physical contact with local nationals. Note. Maintain cultural awareness to ensure that no insult is conveyed when this is done.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-15",
+  "manual": "TC4-02.3",
+  "para": "2-15",
+  "chapter": "Chapter 2",
+  "heading": "HAND WASHING AND SANITIZING",
+  "pages": [
+   13,
+   14
+  ],
+  "text": "Ways to clean or sanitize the hands is through the use of--\n- Soap and potable water. Note. Nonpotable water should only be used as a last resort. Nonpotable water may be contaminated which would negate the benefits of hand washing.\n- Alcohol-based hand sanitizing solutions when soap and water are not available. Note. Alcohol-based hand sanitizers are not effective if the Soldier's hands are caked with dirt or grease.\n- Alcohol wipes (included in the accessory packet of every meal, ready-to-eat, individual) to clean hands.\n- Commercial cleansing wipes if available.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-16",
+  "manual": "TC4-02.3",
+  "para": "2-16",
+  "chapter": "Chapter 2",
+  "heading": "ORAL HYGIENE",
+  "pages": [
+   14
+  ],
+  "text": "The issue of oral hygiene is a readiness issue. Soldiers who fail to maintain a vigorous oral hygiene regimen can quickly become nondeployable. When neglected bacteria in the mouth use starches and sugar to produce acids that can quickly result in gingivitis and tooth decay. Not brushing for just a few days can cause inflammation of the gums and result in irritated and bleeding gums. If gum disease already exists, it can quickly become worse. To prevent tooth decay and gum disease Soldiers must maintain good oral hygiene practices at all times by--\n- Flossing their teeth.\n- Brushing their teeth.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-17",
+  "manual": "TC4-02.3",
+  "para": "2-17",
+  "chapter": "Chapter 2",
+  "heading": "FLOSSING",
+  "pages": [
+   14
+  ],
+  "text": "Flossing is important because it removes food particles from between the teeth and under the gums where brushing cannot reach. Soldiers should floss at least once per day.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-18",
+  "manual": "TC4-02.3",
+  "para": "2-18",
+  "chapter": "Chapter 2",
+  "heading": "BRUSHING",
+  "pages": [
+   14
+  ],
+  "text": "Soldiers should brush at least twice a day, especially before sleeping. Brushing should include the use of fluoride toothpaste to brush all the surfaces of the teeth using a circular motion. Soldiers should not rinse, eat, or drink anything for at least 30 minutes after brushing to allow the fluoride to stay on the teeth longer and protect them better. If toothpaste is not available, Soldiers should brush their teeth anyway. Brushing should include the tongue and the roof of the mouth. Soldiers can also enhance their oral hygiene by chewing the gum contained in the accessory packet of every field ration. The gum is made with a sweetener that helps control the buildup of oral bacteria and reduces tooth decay when used regularly.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-19",
+  "manual": "TC4-02.3",
+  "para": "2-19",
+  "chapter": "Chapter 2",
+  "heading": "BRUSHING",
+  "pages": [
+   14
+  ],
+  "text": "Soldiers must brush regularly even when running water is not available. While in the field this can be accomplished by keeping a small toothbrush in a ventilated toothbrush cover or case and kept in a convenient pocket. Note. After brushing, rinse the toothbrush by pouring a small amount of water over the bristles.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-20",
+  "manual": "TC4-02.3",
+  "para": "2-20",
+  "chapter": "Chapter 2",
+  "heading": "BRUSHING",
+  "pages": [
+   14
+  ],
+  "text": "If a toothbrush is not available, Soldiers can rinse their mouths with water after eating then wrap a piece of cloth around a finger and wipe the surfaces of the teeth and gums.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-21",
+  "manual": "TC4-02.3",
+  "para": "2-21",
+  "chapter": "Chapter 2",
+  "heading": "SANITATION",
+  "pages": [
+   14
+  ],
+  "text": "Sanitation involves the appropriate and hygienic disposal and treatment of all solid waste and unhealthy human waste, such as sewerage and drainage. Refer to ATP 4-25.12 for detailed discussion on waste management in the field.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-22",
+  "manual": "TC4-02.3",
+  "para": "2-22",
+  "chapter": "Chapter 2",
+  "heading": "SANITATION",
+  "pages": [
+   15
+  ],
+  "text": "Proper management of waste materials generated in the field is critical in protecting the health of Soldiers and the environment. Handling these materials improperly can create dangerous working conditions, damage vital natural resources, impede mission accomplishment, and cause irreparable harm to training areas. Poor waste management practices can also lead to criminal and civil penalties, substantial cleanup costs, and detract from the military's relationships with local communities and host nations. As a result, the DOD demands integration of environmental considerations into all military planning and decision making.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-23",
+  "manual": "TC4-02.3",
+  "para": "2-23",
+  "chapter": "Chapter 2",
+  "heading": "WASTE MANAGEMENT IN THE FIELD",
+  "pages": [
+   15
+  ],
+  "text": "Individual Soldier waste management responsibilities include the following:\n- Proper collection, handling, and disposal of liquid and solid human waste.\n- Collection and disposal of trash.\n- Cleanliness of individual living and work spaces.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-24",
+  "manual": "TC4-02.3",
+  "para": "2-24",
+  "chapter": "Chapter 2",
+  "heading": "COLLECTION, HANDLING , AND DISPOSAL OF LIQUID AND SOLID HUMAN WASTE",
+  "pages": [
+   15
+  ],
+  "text": "Failure to properly dispose of human waste provides a fertile environment for filth flies, rats, mice, and other disease-carrying pests.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-25",
+  "manual": "TC4-02.3",
+  "para": "2-25",
+  "chapter": "Chapter 2",
+  "heading": "COLLECTION, HANDLING , AND DISPOSAL OF LIQUID AND SOLID HUMAN WASTE",
+  "pages": [
+   15
+  ],
+  "text": "Prevention of disease is relatively simple when basic sanitation practices are established and enforced. When Soldiers use latrine facilities, the problem of pests is minimized or eliminated.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-26",
+  "manual": "TC4-02.3",
+  "para": "2-26",
+  "chapter": "Chapter 2",
+  "heading": "Portable Latrines",
+  "pages": [
+   15
+  ],
+  "text": "Portable latrine systems enable Soldiers to relieve themselves in highly mobile and fluid environments by providing a rapidly accessible, clean, and private environment for both men and women. These systems can easily be carried on vehicles and quickly set up by untrained personnel. These systems have long shelf lives and require no external support. Collection bags can be conveniently disposed of along with trash.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-27",
+  "manual": "TC4-02.3",
+  "para": "2-27",
+  "chapter": "Chapter 2",
+  "heading": "Improvised Latrines",
+  "pages": [
+   15
+  ],
+  "text": "The types of improvised latrines listed below can be used for field use. Generally, the use of improvised latrines in the U.S. is prohibited. The use of improvised latrines such as cat holes and slit trenches has become less common due to ecological and statutory restrictions.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-28",
+  "manual": "TC4-02.3",
+  "para": "2-28",
+  "chapter": "Chapter 2",
+  "heading": "COLLECTION AND DISPOSAL OF TRASH",
+  "pages": [
+   15
+  ],
+  "text": "The primary options for disposal of nonhazardous solid waste in the field are burning, burial, or backhauling. Within the U.S. all solid waste generated during field exercises must be backhauled to garrison or picked up by contractors. During overseas training exercises, host-nation requirements must be followed which normally require the same policies of backhauling or contract disposal. If incineration, burning, or landfilling is used during contingency operations, additional security measures must be taken to deter scavenging by local populations. For detailed discussion regarding the methods for the collection and disposal of nonhazardous solid waste refer to ATP 4-25.12.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-29",
+  "manual": "TC4-02.3",
+  "para": "2-29",
+  "chapter": "Chapter 2",
+  "heading": "COLLECTION AND DISPOSAL OF TRASH",
+  "pages": [
+   16
+  ],
+  "text": "Methods for the collection and disposal of nonhazardous solid waste include--\n- Incineration.\n- Burn pits.\n- Burial.\n- Landfilling.\n- Tactical burial.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-30",
+  "manual": "TC4-02.3",
+  "para": "2-30",
+  "chapter": "Chapter 2",
+  "heading": "MAINTENANCE OF INDIVIDUAL LIVING AND WORK SPACES",
+  "pages": [
+   16
+  ],
+  "text": "Routine maintenance and regular cleaning of living and work spaces is vitally important for maintaining the health of the individual Soldier and for those Soldiers who must live and work in close proximity to each other.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-31",
+  "manual": "TC4-02.3",
+  "para": "2-31",
+  "chapter": "Chapter 2",
+  "heading": "MAINTENANCE OF INDIVIDUAL LIVING AND WORK SPACES",
+  "pages": [
+   16
+  ],
+  "text": "For example, bringing food into these areas and then leaving uneaten food items or failing to remove trash associated with meals can quickly attract disease carrying arthropods, rodents, and other potentially dangerous pests.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-32",
+  "manual": "TC4-02.3",
+  "para": "2-32",
+  "chapter": "Chapter 2",
+  "heading": "MAINTENANCE OF INDIVIDUAL LIVING AND WORK SPACES",
+  "pages": [
+   16
+  ],
+  "text": "Eating in designated areas and keeping trash to a minimum reduces the likelihood that pests will be attracted to these areas and thus reduce the potential for infestation and the spread of disease.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-33",
+  "manual": "TC4-02.3",
+  "para": "2-33",
+  "chapter": "Chapter 2",
+  "heading": "PHYSICAL FITNESS",
+  "pages": [
+   16
+  ],
+  "text": "Physical fitness plays a large part in a Soldier's ability to cope with combat and operational stress, fight infection and disease, and avoid common musculoskeletal injuries. In cases where injuries do occur well-conditioned Soldiers generally recover more quickly. Physical training also helps Soldiers acclimatize more quickly and effectively in hot weather environments.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-34",
+  "manual": "TC4-02.3",
+  "para": "2-34",
+  "chapter": "Chapter 2",
+  "heading": "PHYSICAL FITNESS",
+  "pages": [
+   16
+  ],
+  "text": "Leaders must be aware of the positive morale benefits associated with vigorous physical training opportunities and should consider deploying with physical fitness and sports equipment to provide variety in their physical training programs.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-35",
+  "manual": "TC4-02.3",
+  "para": "2-35",
+  "chapter": "Chapter 2",
+  "heading": "WATER- AND FOODBORNE ILLNESS",
+  "pages": [
+   16
+  ],
+  "text": "Soldiers must be aware of the disease potential associated with the consumption of water and foods from unapproved sources. Avoiding water- and or foodborne illness is relatively simple when Soldiers adhere to a few basic rules, these include--\n- Do not consume foods, drinks, ice, or dairy products from civilian vendors unless approved by veterinary personnel.\n- Washing or disinfecting the hands.\n- Soldiers should consider every source of water to be unpotable and foods to be contaminated unless specifically authorized by leaders. In situations where there is a suspicion of contamination, the Soldier should disinfect all water using the information contained in Appendix A of this publication.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-36",
+  "manual": "TC4-02.3",
+  "para": "2-36",
+  "chapter": "Chapter 2",
+  "heading": "ARTHROPODS, RODENTS, AND OTHER ANIMAL THREATS",
+  "pages": [
+   16
+  ],
+  "text": "Of the 80 diseases said to be of military importance, over two-thirds are caused by pathogens transmitted by arthropods, rodents, and other animals. In addition to disease, these pests can inflict severe physical, psychological, and economic stresses that threaten the military mission. For example, arthropod bites can be painfully distracting and can lead to secondary infections, dermatitis, or allergic reactions.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-37",
+  "manual": "TC4-02.3",
+  "para": "2-37",
+  "chapter": "Chapter 2",
+  "heading": "ARTHROPODS, RODENTS, AND OTHER ANIMAL THREATS",
+  "pages": [
+   16
+  ],
+  "text": "Soldiers can avoid the incidence of vector-borne diseases and the associated discomfort caused by stinging and biting arthropods by adhering to established preventive medicine measures. For other animal threats, refer to ATP 4-25.12.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-38",
+  "manual": "TC4-02.3",
+  "para": "2-38",
+  "chapter": "Chapter 2",
+  "heading": "DEPARTMENT OF DEFENSE INSECT REPELLENT SYSTEM",
+  "pages": [
+   17
+  ],
+  "text": "Insect repellents are one commonly used form of preventive medicine measures. They provide commanders with a quick and inexpensive measure to protect Soldiers. They can be applied quickly and effectively to prevent arthropod-borne disease. Repellents are often the only means of protection against arthropod-borne diseases in environments when vector control measures are not possible or when the speed of military developments prevents the use of chemoprophylaxis or vaccines.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-39",
+  "manual": "TC4-02.3",
+  "para": "2-39",
+  "chapter": "Chapter 2",
+  "heading": "DEPARTMENT OF DEFENSE INSECT REPELLENT SYSTEM",
+  "pages": [
+   17
+  ],
+  "text": "The frequent application of DOD-approved insect repellents is so important because many of the disease-causing pathogens of military importance are carried (vectored) and transmitted by ticks, chigger mites, fleas, and body lice. In order to transmit the disease all of these vectors must come into close contact with Soldiers' uniforms before they bite.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-40",
+  "manual": "TC4-02.3",
+  "para": "2-40",
+  "chapter": "Chapter 2",
+  "heading": "DEPARTMENT OF DEFENSE INSECT REPELLENT SYSTEM",
+  "pages": [
+   17
+  ],
+  "text": "When used properly, the DOD Insect Repellent System will prevent disease, pain associated with the annoyance caused by bites of arthropods such as mosquitoes, sand flies, ticks and chiggers. The system consists of three components--\n- Permethrin on uniforms and mosquito nets. Note. Current issue Army Combat Uniforms and pop-up bed nets are factory treated with the insect repellent permethrin to ward off stinging and biting arthropods.\n- Application of DOD-approved insect repellent to exposed skin.\n- Proper wear of the uniform.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-41",
+  "manual": "TC4-02.3",
+  "para": "2-41",
+  "chapter": "Chapter 2",
+  "heading": "MOSQUITO BED NETS",
+  "pages": [
+   17
+  ],
+  "text": "When operating in areas where stinging and biting arthropods are present mosquito bed nets regardless of configuration must always be used to protect Soldiers when resting or sleeping. Standard issue permethrin and insecticide spray can be applied to the mesh or sprayed on insects that may be trapped inside the netting. Detailed instructions for the use of bed nets can be found in the Armed Forces Pest Management Board Technical Guide Number 36.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-42",
+  "manual": "TC4-02.3",
+  "para": "2-42",
+  "chapter": "Chapter 2",
+  "heading": "IMMUNIZATIONS AND CHEMOPROPHYLAXIS",
+  "pages": [
+   17
+  ],
+  "text": "Although immunizations and chemoprophylactic measures are considered individual preventive medicine measures the time and place of their administration is usually not controlled by the individual Soldier but rather by the direction of the commander and medical professionals administering or observing their administration.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-43",
+  "manual": "TC4-02.3",
+  "para": "2-43",
+  "chapter": "Chapter 2",
+  "heading": "IMMUNIZATIONS AND CHEMOPROPHYLAXIS",
+  "pages": [
+   17
+  ],
+  "text": "Various vaccines are available for some viral pathogens (yellow fever virus, Japanese encephalitis virus). Even when appropriate chemoprophylaxis or vaccination is available for the disease of greatest concern, their use entails considerable medical management. When risk is unknown or considered to be low, personal protection measures may be the appropriate strategy for prevention. Therefore, the proper use of other preventive medicine measures described earlier offer the most practical means of interrupting and preventing arthropod-borne disease transmission.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-44",
+  "manual": "TC4-02.3",
+  "para": "2-44",
+  "chapter": "Chapter 2",
+  "heading": "IMMUNIZATIONS AND CHEMOPROPHYLAXIS",
+  "pages": [
+   17
+  ],
+  "text": "In summary, there are three required components for effective personal protection--\n- First, the measure itself must be effective when properly used.\n- Second, the development and continual maintenance of a well-defined education program is a must.\n- Third, every Soldier must be informed about the importance of preventive medicine measures for reducing the occurrence of disease caused by pest- or arthropod-borne pathogens.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-45",
+  "manual": "TC4-02.3",
+  "para": "2-45",
+  "chapter": "Chapter 2",
+  "heading": "HEAT INJURY",
+  "pages": [
+   18
+  ],
+  "text": "To avoid heat injury--\n- Soldiers must become acclimatized. Significant heat acclimatization requires at least three to five days and full acclimatization can take up to two weeks.\n- Use sunscreen on all exposed body parts.\n- Drink plenty of water, depending on the heat and activity level, Soldiers may need to drink from 1/2 to 1 1/2 quarts of water per hour. Three gallons or 12-quarts per day in hot, dry climates. Drinking water is a must in order to prevent heat Illness.\n- Use work or rest cycles, as leaders direct. A rest period helps prevent dangerous increases in body temperatures by minimizing heat production.\n- Eat all meals to replace salts; eating all meals in the field will usually provide the body's requirements for salts. Field rations are designed to meet the daily requirements for minerals and electrolytes (sodium).\n- Modify the uniform, when directed/authorized by the commander to reduce heat stress and to protect against ultraviolet radiation.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-46",
+  "manual": "TC4-02.3",
+  "para": "2-46",
+  "chapter": "Chapter 2",
+  "heading": "COLD INJURY",
+  "pages": [
+   18
+  ],
+  "text": "To avoid cold injury--\n- Wear clothing as directed by commanders and leaders.\n- Wear clothing in loose layers (top and bottom). Avoid tight clothing, including tight underwear.\n- Keep clothing clean and dry.\n- Remove or loosen excess clothing when working or in heated areas to prevent sweating.\n- Wear headgear to prevent body heat loss. The body loses large amounts of heat through the head.\n- Change wet or damp clothes as soon as possible.\n- Keep the body warm by continuing to move, if possible.\n- Exercise large muscle groups (arms, shoulders, trunk, and legs) frequently to keep warm.\n- If Soldiers must remain in a small area, exercise the toes, feet, fingers, and hands.\n- Avoid the use of alcohol as it makes the body lose heat faster.\n- Avoid standing directly on cold, wet ground, when possible.\n- Avoid tobacco products. Using tobacco products decreases blood flow to the skin.\n- Eat all meals to maintain energy.\n- Drink plenty of water or warm nonalcoholic fluids. Dark yellow urine indicates that Soldiers are not drinking enough fluids. Note. Dehydration can occur in cold climates.\n- Buddies should monitor each other for cold-weather injury. Note. Soldiers must not attempt to rewarm frozen body parts unless under medical supervision.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-47",
+  "manual": "TC4-02.3",
+  "para": "2-47",
+  "chapter": "Chapter 2",
+  "heading": "COLD INJURY",
+  "pages": [
+   18,
+   19
+  ],
+  "text": "Protect the feet--\n- Have several pairs of issue boot socks. Keep socks clean and dry. Change wet or damp socks as soon as possible.\n- Wash feet daily, if possible.\n- Apply foot powder on feet and in boots when changing socks.\n- Avoid tight-fitting socks and boots (fully lace boots up, as loose as possible).\n- Wear overshoes to keep boots dry.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-48",
+  "manual": "TC4-02.3",
+  "para": "2-48",
+  "chapter": "Chapter 2",
+  "heading": "COLD INJURY",
+  "pages": [
+   19
+  ],
+  "text": "Protect the hands--\n- Wear gloves with inserts or mittens with inserts.\n- Warm hands under clothing if they become numb.\n- Avoid skin contact with snow, fuel, or bare metal.\n- Waterproof gloves by treating with waterproofing compounds.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-49",
+  "manual": "TC4-02.3",
+  "para": "2-49",
+  "chapter": "Chapter 2",
+  "heading": "COLD INJURY",
+  "pages": [
+   19
+  ],
+  "text": "Protect the face and ears--\n- Cover face and ears with a scarf or other material, if available.\n- Wear insulated cap with flaps down or wear a balaclava and secure under chin.\n- Warm face and ears by covering them with hands. Do not rub face and ears.\n- Do not use face camouflage when windchill is minus 10 degrees Fahrenheit or below. The dark colors of the camouflage make detection of cold-weather injury difficult (frostbite).",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-50",
+  "manual": "TC4-02.3",
+  "para": "2-50",
+  "chapter": "Chapter 2",
+  "heading": "COLD INJURY",
+  "pages": [
+   19
+  ],
+  "text": "Protect eyes by--\n- Wearing sunglasses.\n- Wearing issued eye protection.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-51",
+  "manual": "TC4-02.3",
+  "para": "2-51",
+  "chapter": "Chapter 2",
+  "heading": "COLD INJURY",
+  "pages": [
+   19
+  ],
+  "text": "Protect fellow Soldiers by watching for signs of frostbite on the Soldier's exposed skin. Note. The affected skin will appear as pale, gray, or waxy areas. Refer to ATTP 3-97.11/MCRP 3-35.1D.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-52",
+  "manual": "TC4-02.3",
+  "para": "2-52",
+  "chapter": "Chapter 2",
+  "heading": "TOXIC INDUSTRIAL MATERIALS",
+  "pages": [
+   19
+  ],
+  "text": "Recognize and prepare for toxic industrial material threats in the following areas:\n- Occupational hazards--\n- Exhaust from engines and fuel space heaters.\n- Gases from weapons firing, such as rockets and M8 smoke.\n- Solvents used to clean weapons.\n- Greases and oil from vehicle maintenance repair.\n- Detergents used to clean equipment.\n- Industrial hazards--\n- Compressed gases.\n- Industrial solvents.\n- Hazardous chemical waste.\n- Materials and water used at waste sewage and water treatment plants.\n- Biological and radiological hazards include--\n- Medical waste.\n- Materials used at medical research facilities.\n- Radioactive isotopes.\n- Substances at nuclear power plants.\n- Depleted uranium.\n- If necessary request preventive medicine assistance in identifying sources.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-53",
+  "manual": "TC4-02.3",
+  "para": "2-53",
+  "chapter": "Chapter 2",
+  "heading": "TOXIC INDUSTRIAL MATERIALS",
+  "pages": [
+   20
+  ],
+  "text": "Recognize the injury as follows:\n- Carbon monoxide is a colorless, odorless, and tasteless gas that causes headache, sleepiness, coma, and death.\n- Smoke used for obscuration and signaling is extremely irritating and can cause severe coughing, wheezing, and lung damage, if inhaled.\n- Bore/gun gases are extremely irritating and react with body fluids to produce hydrochloric acid in the throat, lungs, and eyes. It causes coughing, acid burns to tissues, and flu-like lung disease.\n- Fuel, solvents, grease, and oils cause skin rashes, burns, drying, and infections. They also cause damage to the liver, blood, and brain. Note. Many toxic industrial materials are known carcinogens.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-54",
+  "manual": "TC4-02.3",
+  "para": "2-54",
+  "chapter": "Chapter 2",
+  "heading": "MATERIALS",
+  "pages": [
+   20
+  ],
+  "text": "To avoid carbon monoxide poisoning from petroleum or fossil fueled space heaters or vehicle engine exhaust--\n- Ensure that living spaces are well ventilated when using petroleum or fossil fueled space heaters.\n- Run engines outdoors or with vehicle bay or shop exhaust ventilation systems as the primary system with the secondary system being shop doors and windows open.\n- Keep sleeping area windows open slightly for ventilation and air movement.\n- DO NOT sleep in vehicles with the engine running or use engine exhaust for heat.\n- DO NOT park vehicles with the engines running near air intakes to tents, trailers, or environmental control units.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-55",
+  "manual": "TC4-02.3",
+  "para": "2-55",
+  "chapter": "Chapter 2",
+  "heading": "MATERIALS",
+  "pages": [
+   20
+  ],
+  "text": "To avoid inhaling bore or gun gases--\n- Use onboard vehicle ventilation systems.\n- Keep bore evacuator well maintained.\n- Try to keep some air movement in gun emplacements.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-56",
+  "manual": "TC4-02.3",
+  "para": "2-56",
+  "chapter": "Chapter 2",
+  "heading": "MATERIALS",
+  "pages": [
+   20
+  ],
+  "text": "When using solvents, grease, and oils--\n- Only use authorized safety solvent.\n- Never substitute an unauthorized solvent to clean equipment. For example, do not use a degreasing agent like denatured alcohol instead of an authorized nontoxic, nonhazardous solvent preservative cleaning agent.\n- Wear coveralls, if available, and rubber gloves.\n- Wash or change clothing often, especially when soiled by chemicals or fuel.\n- Always follow label instructions for use and safety precautions.\n- Use ventilation systems in areas where fumes are present or when conditions and materials dictate.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-57",
+  "manual": "TC4-02.3",
+  "para": "2-57",
+  "chapter": "Chapter 2",
+  "heading": "MATERIALS",
+  "pages": [
+   20
+  ],
+  "text": "When required to handle biological waste--\n- Always use disposable rubber gloves when working with biological materials.\n- Wear coveralls or rubberized aprons, as necessary.\n- Wear goggles or safety glasses, as necessary.\n- Wear facemasks and air-filtered breathing masks approved for specific tasks, when removing or working with biological waste.\n- Dispose of biological waste materials according to unit standard operating procedures and product label instructions.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-58",
+  "manual": "TC4-02.3",
+  "para": "2-58",
+  "chapter": "Chapter 2",
+  "heading": "NOISE HAZARDS",
+  "pages": [
+   21
+  ],
+  "text": "There are several personal protective devices available to lessen the risk of hearing loss. These devices primarily consist of various types of earplugs and earmuffs. An important consideration in selecting these devices is their ability to be worn comfortably and consistently when hearing protection is required.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-59",
+  "manual": "TC4-02.3",
+  "para": "2-59",
+  "chapter": "Chapter 2",
+  "heading": "NOISE HAZARDS",
+  "pages": [
+   21
+  ],
+  "text": "When Soldiers are subjected to extremely high, steady-state noise levels (greater than 103 decibel, Aweighting time-weighted average or greater than 165 decibel, A-weighting), earplugs and earmuffs must be worn together to prevent hearing loss.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-60",
+  "manual": "TC4-02.3",
+  "para": "2-60",
+  "chapter": "Chapter 2",
+  "heading": "NOISE HAZARDS",
+  "pages": [
+   21
+  ],
+  "text": "Soldiers protect themselves from noise hazards by--\n- Wearing properly fitted earplugs and or earmuffs.\n- Keeping earplugs and earmuffs clean to prevent ear infections.\n- Avoiding high intensity noise areas or limiting the time spent in hazardous noise environments only to the time required to perform critical tasks.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-61",
+  "manual": "TC4-02.3",
+  "para": "2-61",
+  "chapter": "Chapter 2",
+  "heading": "SLEEP DEPRIVATION",
+  "pages": [
+   21
+  ],
+  "text": "Sleep deprivation degrades performance and leads to errors in judgment. Quality sleep is essential to sustain performance, and performance is critical to the successful outcome of operations.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-62",
+  "manual": "TC4-02.3",
+  "para": "2-62",
+  "chapter": "Chapter 2",
+  "heading": "SLEEP DEPRIVATION",
+  "pages": [
+   21
+  ],
+  "text": "Seven to eight hours of sleep in each 24-hour period will sustain performance indefinitely. Sleep periods do not need to be taken all at one time, they can be divided into two or more sleep periods (including naps) per 24-hour time period as long as seven or more hours of sleep is obtained.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-63",
+  "manual": "TC4-02.3",
+  "para": "2-63",
+  "chapter": "Chapter 2",
+  "heading": "SLEEP DEPRIVATION",
+  "pages": [
+   21
+  ],
+  "text": "Naps also add to recuperative sleep time. A nap boosts both immediate and long-term performance. The benefits of a short nap are evident for up to two days after the nap.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-64",
+  "manual": "TC4-02.3",
+  "para": "2-64",
+  "chapter": "Chapter 2",
+  "heading": "SLEEP DEPRIVATION",
+  "pages": [
+   21
+  ],
+  "text": "Performance will be degraded with less than eight hours of sleep every 24-hours. Less than seven hours of sleep within every 24-hour period will result in stabilizing performance at a lower level, and less than four hours of sleep in every 24 hours will degrade performance continuously and rapidly with no stabilization.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-65",
+  "manual": "TC4-02.3",
+  "para": "2-65",
+  "chapter": "Chapter 2",
+  "heading": "SLEEP DEPRIVATION",
+  "pages": [
+   21
+  ],
+  "text": "To the extent possible, sleep in a quiet, undisturbed environment away from other activity and protected from wake up and wait intrusions. Sleeping in noisy active environments with frequent awakenings is far less restorative.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/2-66",
+  "manual": "TC4-02.3",
+  "para": "2-66",
+  "chapter": "Chapter 2",
+  "heading": "SLEEP DEPRIVATION",
+  "pages": [
+   21,
+   22
+  ],
+  "text": "When working on limited or no sleep, caffeine in doses of 200 to 300 milligrams (the equivalent of two to three cups of coffee) every three to four hours will improve performance. Sleep, like fuel, ammunition, food, and water is necessary to sustain performance. It is a command responsibility to ensure all personnel get adequate restorative sleep. Refer to FM 6-22.5. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-1",
+  "manual": "TC4-02.3",
+  "para": "3-1",
+  "chapter": "Chapter 3",
+  "heading": "LEADER RESPONSIBILITIES",
+  "pages": [
+   23
+  ],
+  "text": "Commanders are standard bearers for their units. As such they must set the example for personnel assigned or attached to their unit. They must always maintain high standards and remember that the most effective preventive medicine measures are the ones which they employ and demonstrate in the presence of their subordinates. Additional resources available to the commander include subordinate leaders, unit field sanitation teams, and supporting preventive medicine assets.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-2",
+  "manual": "TC4-02.3",
+  "para": "3-2",
+  "chapter": "Chapter 3",
+  "heading": "LEADER RESPONSIBILITIES",
+  "pages": [
+   23
+  ],
+  "text": "For leaders to ensure that Soldiers are adhering to established preventive medicine measures, they must diligently monitor their Soldiers for compliance and strictly enforce unit policies regarding implementation and adherence to preventive medicine measures and standards of personal hygiene.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-3",
+  "manual": "TC4-02.3",
+  "para": "3-3",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR FIELD HYGIENE AND SANITATION FACILITIES",
+  "pages": [
+   23
+  ],
+  "text": "When occupying a new or unimproved area, commanders must plan for and procure field hygiene and sanitation facilities and equipment. These facilities and equipment include latrine, shower, hand washing, and laundry facilities. Planning considerations should include the type and number of facilities needed to meet the male to female requirements of the organization. For detailed discussion on this topic refer to ATP 4-25.12.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-4",
+  "manual": "TC4-02.3",
+  "para": "3-4",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR PERSONAL HYGIENE",
+  "pages": [
+   23
+  ],
+  "text": "Provide shower facilities in the field. All Soldiers should shower at least once a week and have a clean change of uniform to reduce the health hazard associated with body lice and other health hazards.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-5",
+  "manual": "TC4-02.3",
+  "para": "3-5",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR PERSONAL HYGIENE",
+  "pages": [
+   23
+  ],
+  "text": "Inspect Soldiers' personal equipment to ensure that--\n- They have sufficient personal hygiene supplies--soap, washcloths, towels, a toothbrush, dental floss, fluoride toothpaste, and razor and razor blades (females should have sanitary napkins or tampons).\n- Undergarments are cotton (not silk, nylon, or polyester).\n- Uniforms fit properly.\n- Soldiers have several pairs of issue boot socks; the number will depend on the type and length of the mission.\n- Soldiers receive annual dental examinations and needed oral health care. Make sure all oral health appointments are kept. Use lulls in operational intensity to ensure that Soldiers maintain good oral health status.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-6",
+  "manual": "TC4-02.3",
+  "para": "3-6",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR PHYSICAL TRAINING",
+  "pages": [
+   23
+  ],
+  "text": "Ensure that leaders at all levels recognize the benefits of physical fitness. Leaders must be role models, leading by example.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-7",
+  "manual": "TC4-02.3",
+  "para": "3-7",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR PHYSICAL TRAINING",
+  "pages": [
+   23
+  ],
+  "text": "Take a positive approach to physical fitness with Soldiers. A physically fit Soldier is less likely to be an operational loss from disease or injury. Refer to FM 7-22 for information on physical readiness training.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-8",
+  "manual": "TC4-02.3",
+  "para": "3-8",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR SAFE WATER",
+  "pages": [
+   24
+  ],
+  "text": "Leaders plan for and provide safe water by--\n- Knowing the location of approved water distribution points.\n- Making sure his unit has an adequate supply of--\n- Iodine water purification tablets (1 bottle for each individual).\n- Field chlorination kits.\n- Bulk chlorine.\n- Chlorination kits (water purification).\n- Ensuring water trailers and tankers (400 gallons and above) are inspected by preventive medicine personnel semiannually.\n- Inspecting water containers before use.\n- Checking the residual chlorine of bulk water supplies (five-gallon cans, water pillows, water trailers) before drinking and at least daily thereafter.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-9",
+  "manual": "TC4-02.3",
+  "para": "3-9",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR SAFE FOOD",
+  "pages": [
+   24
+  ],
+  "text": "Leaders plan for and provide safe food by ensuring that--\n- Foods are maintained at appropriate temperatures and served within specified time periods to ensure that the foods are safe to consume.\n- Food service personnel are inspected daily and those who are ill or have skin infections are referred for medical evaluation.\n- Make sure foods, drinks, and ice are purchased from civilian vendors approved by preventive medicine personnel.\n- Food service personnel and Soldiers use hand washing devices as appropriate.\n- All food waste is transported to an approved disposal site, buried, or burned daily (at least 30 meters from food preparation area and water sources).",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-10",
+  "manual": "TC4-02.3",
+  "para": "3-10",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR ARTHROPOD, RODENT, AND ANIMAL THREATS",
+  "pages": [
+   24
+  ],
+  "text": "Leaders plan for arthropod, rodent, and animal threats by--\n- Obtaining information on biting and stinging arthropods, reptiles, and animals from supporting preventive medicine personnel.\n- Using his field sanitation teams to--\n- Train Soldiers in preventive medicine measures.\n- Control insects and other medically important arthropods.\n- Control rodents and other medically important animals.\n- Remind Soldiers to avoid handling insects, arthropods, snakes, and animals to prevent bites or injury.\n- Keep Soldiers from eating in sleeping or work areas to avoid attracting insects, rodents, and animals.\n- Ensuring that--\n- Animal mascots are not kept.\n- Each Soldier has a bed net in good repair and treated with permethrin repellent.\n- Immunizations are current. Prophylaxis (for example, antimalarial tablets) is available for issue as required.\n- Laundry and shower facilities are available.\n- Field sanitation team supplies and equipment are available and replenished as necessary.\n- Assistance from a preventive medicine unit (through medical or command channels) when control of biting arthropods, rodents, or animals is beyond the capabilities of the unit.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-11",
+  "manual": "TC4-02.3",
+  "para": "3-11",
+  "chapter": "Chapter 3",
+  "heading": "Enforce Individual Preventive Medicine Measures",
+  "pages": [
+   25
+  ],
+  "text": "Leaders enforce individual preventive medicine measures by ensuring that--\n- Uniforms are impregnated with permethrin before field training or deployment. Each Soldier has DOD skin and clothing insect repellent and uses them. Note. Food handlers must not use insect repellent on their hands when preparing and serving food or when cleaning food service equipment.\n- Soldiers keep their shirts buttoned, sleeves rolled down, and pants bloused inside boots.\n- Soldiers shower regularly (field expedients will do); a field shower with a clean change of uniform should be accomplished once each week to control body lice.\n- The use of aftershave lotions, colognes, perfumes, and scented soaps are discontinued to prevent attraction of insects.\n- Permethrin-treated bed nets and the DOD-approved aerosol insecticide are used as necessary.\n- Soldiers take antimalarial tablets or other prophylaxis (when directed by the commander).\n- The field sanitation team inspects regularly to identify suspected lice infestations and to refer affected Soldiers for medical treatment.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-12",
+  "manual": "TC4-02.3",
+  "para": "3-12",
+  "chapter": "Chapter 3",
+  "heading": "Minimize Exposure to Arthropod, Rodent, and Animal Threats",
+  "pages": [
+   25
+  ],
+  "text": "Leaders can minimize exposure to arthropod, rodent, and animal threats if the mission permits by--\n- Using their field sanitation teams to assist in selecting areas to establish base camp sites.\n- Occupying areas away from insect and arthropod breeding areas such as natural bodies of water.\n- Avoiding areas with high grass or dense vegetation.\n- Using field sanitation team recommendations and assistance in applying pesticides for area control around living areas. Treatment of natural bodies of water is beyond the scope of the field sanitation team.\n- Draining or filling in temporary standing water sites in occupied area (empty cans, used tires, or wheel ruts after rains).\n- Clearing vegetation in and around occupied area.\n- Maintaining area sanitation by enforcing good sanitation practices.\n- Properly disposing of all waste.\n- Protecting all food supplies.\n- Ensuring that the company area is regularly policed.\n- Removing, controlling, or killing pests (feral dogs, feral cats, wild animals, snakes, rats, mice, lice, and flies).",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-13",
+  "manual": "TC4-02.3",
+  "para": "3-13",
+  "chapter": "Chapter 3",
+  "heading": "MINIMIZE EXPOSURE TO POISONOUS PLANTS AND TOXIC FRUITS",
+  "pages": [
+   25,
+   26
+  ],
+  "text": "Leaders can minimize exposure to poisonous plants and toxic fruits by--\n- Obtaining information on indigenous poisonous plants and toxic fruits through unit medical channels or from the commands' preventive medicine representative.\n- Providing information on the kinds of poisonous plants and fruits that may be found in the unit area.\n- Using unit field sanitation teams to train Soldiers in preventive medicine measures for indigenous poisonous plants and toxic fruits.\n- Have leaders monitoring and enforcing individual preventive medicine measures by ensuring that Soldiers properly wear the uniform and avoid--\n- Poisonous plants where possible.\n- Consuming potentially dangerous vegetation and fruits.\n- Putting grasses and twigs in the mouth.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-14",
+  "manual": "TC4-02.3",
+  "para": "3-14",
+  "chapter": "Chapter 3",
+  "heading": "PLAN AND PREPARE FOR HOT WEATHER OPERATIONS",
+  "pages": [
+   26
+  ],
+  "text": "Leaders plan for hot weather operations by--\n- Maximizing physical fitness and heat acclimatization opportunities before deployment.\n- Using field sanitation teams to train individuals and their leaders in preventive medicine measures against heat illness.\n- Acclimatizing personnel to high temperatures as gradually as the mission will allow.\n- Briefing Soldiers on the danger of sunburn and skin rashes and the importance of using sunscreen and maintaining good personal hygiene.\n- Obtaining weather forecasts for time, area of training, and mission.\n- Ensuring that Soldiers have adequate supplies of potable water available (up to three gallons per day per Soldier just for drinking).\n- Knowing the location of water distribution points.\n- Reinforcing the buddy system to maximize rehydration and minimize heat injuries.\n- Ensuring medical support is available for treatment of heat injuries.\n- Placing leaders to observe for and react to heat injury during dispersed training (road marches) or real-world operations.\n- Training during the cooler hours of the morning if the mission permits.\n- Serving heavy meals in the evening, rather than at noon.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-15",
+  "manual": "TC4-02.3",
+  "para": "3-15",
+  "chapter": "Chapter 3",
+  "heading": "OBTAINING AND USING HEAT CONDITION INFORMATION",
+  "pages": [
+   26
+  ],
+  "text": "Leaders must obtain and use heat condition information to plan for training and conducting operations.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-16",
+  "manual": "TC4-02.3",
+  "para": "3-16",
+  "chapter": "Chapter 3",
+  "heading": "OBTAINING AND USING HEAT CONDITION INFORMATION",
+  "pages": [
+   26
+  ],
+  "text": "Leaders must obtain heat condition information per unit standard operating procedure measures or contact the local supporting preventive medicine detachment or section. Heat condition information may be reported as--\n- Category: one, two, three, four, or five. Refer to ATP 4-25.12 for information on heat categories.\n- Wet bulb-globe temperature index.\n- Use heat condition information to determine required water intake and work or rest cycles.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-17",
+  "manual": "TC4-02.3",
+  "para": "3-17",
+  "chapter": "Chapter 3",
+  "heading": "ENFORCE INDIVIDUAL PREVENTIVE MEDICINE MEASURES",
+  "pages": [
+   26,
+   27
+  ],
+  "text": "Leaders must enforce individual preventive medicine measures by--\n- Enforcing water intake by observing Soldiers and ensuring that they are drinking adequate amounts of water before, during, and after periods of exertion and when at rest. Encourage frequent drinking of water in small amounts. Note. Beverage powders should not be mixed and stored in personal hydration systems.\n- Ensuring that Soldiers consume meals to replace electrolytes.\n- Ensuring that Soldiers practice good field hygiene.\n- Ensuring that Soldiers use the buddy system to monitor each other for signs of heat illness.\n- Checking Soldiers' canteens for water; not beverages.\n- Making sure Soldiers have adequate time to eat and drink as mission permits. Permit personnel to consume carbohydrate and/or electrolyte beverages (sports drinks) as supplemental nutrients under conditions of extreme calorie and water requirements; such as extremely vigorous activities.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-18",
+  "manual": "TC4-02.3",
+  "para": "3-18",
+  "chapter": "Chapter 3",
+  "heading": "ENFORCE INDIVIDUAL PREVENTIVE MEDICINE MEASURES",
+  "pages": [
+   27
+  ],
+  "text": "Prevent heat injuries by--\n- Enforcing work or rest cycles when the mission permits. Permitting personnel to work or rest in the shade, if possible.\n- Encouraging Soldiers to eat all meals for needed salts.\n- Adjusting workload to size of individuals, when possible.\n- Ensuring Soldiers have access to and use sunscreen.\n- Prepare for heat casualties and decreased performance when water and work or rest cycle recommendations cannot be met.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-19",
+  "manual": "TC4-02.3",
+  "para": "3-19",
+  "chapter": "Chapter 3",
+  "heading": "MODIFY WEAR OF THE UNIFORM",
+  "pages": [
+   27
+  ],
+  "text": "When the situation requires and the tactical situation permits, commanders and leaders must modify the wear of the uniform to ensure that--\n- Soldier's skin is covered and protected while in the sun.\n- Uniforms are worn loose at neck, wrists, and lower legs (unblouse pants based on the heat category). Note. If the health threat from biting arthropods is high, keep sleeves rolled down and pants bloused in boots.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-20",
+  "manual": "TC4-02.3",
+  "para": "3-20",
+  "chapter": "Chapter 3",
+  "heading": "IDENTIFY SPECIAL CONSIDERATIONS",
+  "pages": [
+   27
+  ],
+  "text": "Leaders must identify special considerations to prevent heat illness. For example, they must identify and modify training or physical activity for Soldiers with high-risk conditions of heat injuries, such as--\n- Diseases or injuries, especially fevers, vomiting, diarrhea, heat rash, or sunburn.\n- Use of alcohol within the last 24 hours.\n- Overweight or unfit.\n- Over 40 years old.\n- Fatigue or lack of sleep.\n- Taking medication (especially for high blood pressure, colds, or diarrhea).\n- Previous heat stroke or severe heat exhaustion.\n- Lack of recent experience in hot environments.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-21",
+  "manual": "TC4-02.3",
+  "para": "3-21",
+  "chapter": "Chapter 3",
+  "heading": "PLAN AND PREPARE FOR COLD WEATHER OPERATIONS",
+  "pages": [
+   27,
+   28
+  ],
+  "text": "Leaders can effectively plan for the cold by--\n- Using their field sanitation teams to train individuals and their leaders in preventive medicine measures against cold. Obtain weather forecast for time, area of training, and mission.\n- Ensuring that the following are available as the tactical situation permits--\n- Covered vehicles for troop transport.\n- Cold-weather clothing.\n- Laundry services.\n- Providing--\n- Warming tents or areas.\n- Hot rations and hot beverages.\n- Plenty of fresh drinking water.\n- Inspecting Soldiers (before starting training or mission) to ensure that each Soldier has--\n- Availability, proper fit, and wear of cold-weather gear.\n- Clean, dry, proper-fitting clothing.\n- Several pairs of socks, depending on the nature and duration of the mission.\n- Leaders must also ensure that--\n- Soldiers pulling guard duty or other sedentary duties are rotated frequently.\n- Medical support is available for treatment should cold-weather injuries occur.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-22",
+  "manual": "TC4-02.3",
+  "para": "3-22",
+  "chapter": "Chapter 3",
+  "heading": "OBTAIN AND USE WINDCHILL INFORMATION",
+  "pages": [
+   28
+  ],
+  "text": "Leaders can obtain temperature and windchill information (as directed by unit standard operating procedures or contact the local supporting preventive medicine detachment or section) to plan for training and operations.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-23",
+  "manual": "TC4-02.3",
+  "para": "3-23",
+  "chapter": "Chapter 3",
+  "heading": "OBTAIN AND USE WINDCHILL INFORMATION",
+  "pages": [
+   28
+  ],
+  "text": "These guidelines are generalized for worldwide use. Commanders of units with extensive extreme cold-weather training and specialized equipment may opt to use less conservative guidelines. Note. Any dry clothing (mittens, scarves, or masks) or material which reduces wind exposure will help protect the covered skin.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-24",
+  "manual": "TC4-02.3",
+  "para": "3-24",
+  "chapter": "Chapter 3",
+  "heading": "OBTAIN AND USE WINDCHILL INFORMATION",
+  "pages": [
+   28
+  ],
+  "text": "Leaders must understand that--\n- Cold injuries can and do occur in nonfreezing temperatures. Hypothermia can occur in mildly cool weather.\n- Immersion syndrome (trench foot) injuries can occur at any point on the windchill chart and--\n- Are much more likely to occur than frostbite at LITTLE DANGER windchill temperatures, especially on extended exercises or missions and in wet environments.\n- Can lead to permanent disability, just like frostbite.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-25",
+  "manual": "TC4-02.3",
+  "para": "3-25",
+  "chapter": "Chapter 3",
+  "heading": "IDENTIFY SPECIAL CONSIDERATIONS",
+  "pages": [
+   28
+  ],
+  "text": "Leaders must identify special conditions that place Soldiers at high risk of cold injuries. These special considerations include--\n- Previous trench foot or frostbite.\n- Fatigue.\n- Use of alcohol.\n- Significant injuries.\n- Poor nutrition.\n- Use of medications that cause drowsiness.\n- Little previous experience in cold weather.\n- Immobilized or subject to greatly reduced activity.\n- Soldiers wearing wet clothing.\n- Sleep deprivation.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-26",
+  "manual": "TC4-02.3",
+  "para": "3-26",
+  "chapter": "Chapter 3",
+  "heading": "CARBON MONOXIDE POISONING AND FIRE PREVENTION",
+  "pages": [
+   28
+  ],
+  "text": "Leaders must identify the special hazards of carbon monoxide poisoning and fire that may affect cold-weather operations and enforce preventive medicine measures to prevent carbon monoxide poisoning and fire-related injuries.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-27",
+  "manual": "TC4-02.3",
+  "para": "3-27",
+  "chapter": "Chapter 3",
+  "heading": "CARBON MONOXIDE POISONING AND FIRE PREVENTION",
+  "pages": [
+   29
+  ],
+  "text": "Leaders must enforce individual preventive medicine measures which include Soldiers--\n- Repairing engines outside or vent engine exhaust to outside.\n- Keeping sleeping areas well ventilated.\n- Not using vehicle engines as heaters.\n- Using and maintaining onboard ventilation systems.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-28",
+  "manual": "TC4-02.3",
+  "para": "3-28",
+  "chapter": "Chapter 3",
+  "heading": "INDUSTRIAL MATERIALS",
+  "pages": [
+   29
+  ],
+  "text": "Leaders must identify sources of toxic industrial materials that may be encountered in their unit area of operations. It may be necessary to request preventive medicine assistance in identifying sources.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-29",
+  "manual": "TC4-02.3",
+  "para": "3-29",
+  "chapter": "Chapter 3",
+  "heading": "INDUSTRIAL MATERIALS",
+  "pages": [
+   29
+  ],
+  "text": "Identify sources as follows:\n- Obtain safer chemicals for unit operations, if available.\n- Observe cautions and warnings posted in technical manuals dealing with solvents, corrosives, and other hazardous materials. Refer to the safety data sheets that accompany toxic materials.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-30",
+  "manual": "TC4-02.3",
+  "para": "3-30",
+  "chapter": "Chapter 3",
+  "heading": "INDUSTRIAL MATERIALS",
+  "pages": [
+   29
+  ],
+  "text": "Leaders ensure that Soldiers--\n- Are trained and drilled to protect themselves around hydrogen chloride and M8 smoke.\n- Maintain bore/gun gas evacuation systems.\n- Use approved safety solvents.\n- Have adequate clean gloves, coveralls, and other protective gear.\n- Follow label instructions on chemical containers.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-31",
+  "manual": "TC4-02.3",
+  "para": "3-31",
+  "chapter": "Chapter 3",
+  "heading": "HAZARDS",
+  "pages": [
+   29
+  ],
+  "text": "Leaders must identify noise hazards in the unit area and plan for avoidance of or protection from hazardous noise levels. If necessary, request preventive medicine assistance in identifying sources. Identify hazards as follows:\n- Ensure that hearing conservation is part of the unit standard operating procedures.\n- Ensure all Soldiers are medically fitted for hearing protectors and are issued multiple sets.\n- Ensure all Soldiers have annual hearing test or screening.\n- Control noise sources.\n- Isolate by distance; that is, keep troops away from noise, if possible.\n- Isolate by barrier; for example, use sandbags.\n- Use organic equipment controls; for example, keep mufflers and engine covers in good repair.\n- Train Soldiers to accomplish their mission while wearing hearing protectors.\n- Post noise-hazard signs in noise-hazardous areas and on noise-hazardous equipment.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-32",
+  "manual": "TC4-02.3",
+  "para": "3-32",
+  "chapter": "Chapter 3",
+  "heading": "HAZARDS",
+  "pages": [
+   29
+  ],
+  "text": "Leaders ensure that Soldiers--\n- Wear earplugs or other hearing protective devices.\n- Do not remove inserts from aircraft or tracked vehicle helmets.\n- Avoid unnecessary exposure.\n- Limit necessary exposure to short, infrequent, and mission-essential times.\n- Clean their hearing protectors.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-33",
+  "manual": "TC4-02.3",
+  "para": "3-33",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR AND ENFORCE SLEEP DISCIPLINE",
+  "pages": [
+   29,
+   30
+  ],
+  "text": "Sleep is a biological need, critical for sustaining the mental abilities needed for success on the battlefield. Soldiers require seven to eight hours of good quality sleep every 24-hour period to sustain operational readiness. Soldiers who lose sleep will accumulate a sleep debt over time that will seriously impair their performance. The only way to pay off this debt is by obtaining the needed sleep. The demanding nature of military operations often creates situations where obtaining sleep may be difficult or even impossible for more than short periods. While essential for many aspects of operational success, sheer determination or willpower cannot offset the mounting effects of inadequate sleep. This concept is applicable for all levels of military operations including basic training and in all operational environments. For this reason, sleep should be viewed as being as critical as any logistical item of resupply, like water, food, fuel, and ammunition. Commanders need to plan proactively for the allocation of adequate sleep for themselves and their subordinates. Note. Unit sleep plans should be based on guidance provided in FM 6-22.5.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-34",
+  "manual": "TC4-02.3",
+  "para": "3-34",
+  "chapter": "Chapter 3",
+  "heading": "PLAN FOR AND ENFORCE SLEEP DISCIPLINE",
+  "pages": [
+   30
+  ],
+  "text": "Ways to overcome performance degradation include--\n- Find time for Soldiers to nap, change routines, or rotate jobs (if cross-trained) upon signs of diminished performance.\n- Have those Soldiers most affected by sleep loss execute a self-paced task.\n- Have the Soldiers to execute a task as a team, using the buddy system.\n- Do not allow Soldiers to be awakened for meals while in flight to a new location, especially if the time zone of the destination is several hours different than that of point of departure.\n- Encourage Soldiers to empty their bladder before going to bed. Awakening to urinate interrupts sleep and getting in and out of bed may disturb others and interrupt their sleep.\n- Allocate sleep by priority. Leaders, on whose decisions mission success and unit survival depend, must get the highest priority and largest allocation of sleep. Second priority is given to Soldiers that have guard duty and to those whose jobs require them to perform calculations, make judgments, sustain attention, evaluate information, and perform tasks that require a degree of precision and alertness.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-35",
+  "manual": "TC4-02.3",
+  "para": "3-35",
+  "chapter": "Chapter 3",
+  "heading": "ENSURE WELFARE, SAFETY, AND HEALTH OF THE UNIT",
+  "pages": [
+   30
+  ],
+  "text": "Leaders can ensure the welfare, safety, and health of their Soldiers by--\n- Ensuring that the best and safest water, food, equipment, shelter, sanitation, and sleep possible are provided.\n- Educating Soldiers to maintain professional pride and personal caring for themselves, each other, and their equipment.\n- Knowing the personal backgrounds and the military skills of your Soldiers. Chat with them informally about themselves. Be attentive and understanding while listening to Soldiers.\n- Utilizing group support and counseling for Soldiers who may have problems at home.\n- Assigning jobs to maintain a balance between having qualified Soldiers in key positions while sharing the load, hardship, and risks fairly.\n- Using challenging and difficult environments during training to increase the unit's coping skills and confidence.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-36",
+  "manual": "TC4-02.3",
+  "para": "3-36",
+  "chapter": "Chapter 3",
+  "heading": "REDUCE UNCERTAINTY",
+  "pages": [
+   30,
+   31
+  ],
+  "text": "Leaders can reduce uncertainty by--\n- Briefing unit personnel on the situation, objectives, and conditions that the mission or environment may involve.\n- Explaining reasons for hardships, delays, and changes.\n- Preparing Soldiers for the worst and putting unexpected challenges or reversals in a positive perspective.\n- Dealing with rumors firmly and honestly and preventing the spread of rumors.\n- Making contingency plans and following standard operating procedures to reduce the effects of surprise.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-37",
+  "manual": "TC4-02.3",
+  "para": "3-37",
+  "chapter": "Chapter 3",
+  "heading": "PROMOTE UNIT COHESION",
+  "pages": [
+   31
+  ],
+  "text": "Leaders can promote unit cohesion by--\n- Using equipment drills, physical fitness training, team sports, and field stress training to stimulate mutual reliance and closeness.\n- Bringing unit members together for meals, award ceremonies, and other special occasions.\n- Integrating new members by assigning sponsors and ensuring rapid familiarization.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/3-38",
+  "manual": "TC4-02.3",
+  "para": "3-38",
+  "chapter": "Chapter 3",
+  "heading": "IMPART UNIT PRIDE",
+  "pages": [
+   31,
+   32
+  ],
+  "text": "Leaders can impart unit cohesion by--\n- Educating Soldiers in the history and tradition of the small unit and its parent units.\n- Honoring the historical examples of initiative, endurance, and resilience, of overcoming heavy odds, and of self-sacrifice. This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-1",
+  "manual": "TC4-02.3",
+  "para": "A-1",
+  "chapter": "Appendix A",
+  "heading": "WATER DISINFECTANTS USED AT UNIT LEVEL",
+  "pages": [
+   33
+  ],
+  "text": "Individual Soldiers in the field rely on the following methods to disinfect nonpotable water:\n- Calcium hypochlorite.\n- Water purification tablets or sachets, chlorine.\n- Water purification tablets, iodine.\n- Boiling.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-2",
+  "manual": "TC4-02.3",
+  "para": "A-2",
+  "chapter": "Appendix A",
+  "heading": "CALCIUM HYPOCHLORITE",
+  "pages": [
+   33
+  ],
+  "text": "Calcium hypochlorite is a white granular or powdered chemical. It is supplied in six-ounce jars as a component part of the field sanitation kit. When fresh, it typically contains 68 to 70 percent by weight of available chlorine. It is commonly referred to as high-test hypochlorite. The active component in calcium hypochlorite is chlorine. The chlorine content of calcium hypochlorite is the component that attacks the cell walls of bacteria which then interrupts and prevents the cells vital functions subsequently killing the organism.",
+  "notices": [
+   {
+    "kind": "CAUTION",
+    "text": "Calcium hypochlorite is a strong oxidizing agent. When not properly stored it can cause irritation of mucus membranes and the respiratory tract, and corrode metal. Store calcium hypochlorite according to information found on the products safety data sheet."
+   }
+  ]
+ },
+ {
+  "id": "TC4-02.3/A-3",
+  "manual": "TC4-02.3",
+  "para": "A-3",
+  "chapter": "Appendix A",
+  "heading": "CHLORINATION KIT (WATER PURIFICATION)",
+  "pages": [
+   33
+  ],
+  "text": "Contents of the chlorination kit (water purification) include an emergency disinfectant mixed with a settling aid. The settling aid helps remove dirt and other suspended particles from water by flocculation and sedimentation. When available it should be used when the water being treated is cloudy or discolored and the operational situation is such that the treatment bag can remain motionless for the required settling period and can then be filtered. The treatment kit includes three packages of ten tablets each, a treatment bag, and a cloth filter. Each tablet adds eight milligrams per liter of chlorine to one quart of water. Some kits contain three packages of 10 powders, other components, and the treatment steps remain the same.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-4",
+  "manual": "TC4-02.3",
+  "para": "A-4",
+  "chapter": "Appendix A",
+  "heading": "IODINE TABLETS",
+  "pages": [
+   33
+  ],
+  "text": "Iodine water purification tablets are used to disinfect water contained in small containers such as canteens, personal hydration systems, and five-gallon water cans. The tablets are composed of an iodine compound, come in bottles of 50 tablets, and are available through military supply channels. The tablets are subject to deterioration in storage. They must be inspected for signs of physical change before they are used; otherwise, they may not disinfect the water. Iodine tablets that are completely yellow or brown, that stick together, or crumble easily are no longer effective and must not be used. Iodine tablets in good condition will be steel gray in color.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-5",
+  "manual": "TC4-02.3",
+  "para": "A-5",
+  "chapter": "Appendix A",
+  "heading": "BOILING",
+  "pages": [
+   34
+  ],
+  "text": "When calcium hypochlorite, water purification tablets or sachets chlorine, or iodine tablets are not available boiling the water can render it safe for drinking after bringing the water to a rolling boil for five minutes. In an emergency, boiling water for just 15 seconds will help. Boiled water must be protected from recontamination.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-6",
+  "manual": "TC4-02.3",
+  "para": "A-6",
+  "chapter": "Appendix A",
+  "heading": "INDIVIDUAL WATER STORAGE SYSTEMS",
+  "pages": [
+   34
+  ],
+  "text": "Water storage containers used by small groups and individual Soldiers include--\n- Five-gallon water cans, although five-gallon water cans are considered bulk storage containers they are frequently employed in a manner which will require individuals and small groups of Soldiers to be directly responsible for maintaining the quality of water contained within them.\n- Canteens--come in a variety of configurations and capacities ranging from one- to two- quarts.\n- Personal hydration systems--capacities range from 40- to 100-ounces.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-7",
+  "manual": "TC4-02.3",
+  "para": "A-7",
+  "chapter": "Appendix A",
+  "heading": "GALLON WATER CANS",
+  "pages": [
+   34
+  ],
+  "text": "To disinfect bulk water supplies add and dissolve one heaping teaspoon of high-test hypochlorite (approximately 1/4 ounce) for each two gallons of water, or five milliliters (approximately seven grams) per 7.5 liters of water. The mixture will produce a stock chlorine solution of approximately 500 milligrams per liter, since the high-test hypochlorite has available chlorine equal to 70 percent of its weight.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-8",
+  "manual": "TC4-02.3",
+  "para": "A-8",
+  "chapter": "Appendix A",
+  "heading": "GALLON WATER CANS",
+  "pages": [
+   34
+  ],
+  "text": "To disinfect water, add the chlorine solution in the ratio of one part of chlorine solution to each 100 parts of water to be treated. This is roughly equal to adding one pint (16 ounces) of stock chlorine to each 12.5 gallons of water or (approximately 1/2 liter to 50 liters of water) to be disinfected. To remove any objectionable chlorine odor, aerate the disinfected water by pouring it back and forth from one clean container to another.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-9",
+  "manual": "TC4-02.3",
+  "para": "A-9",
+  "chapter": "Appendix A",
+  "heading": "GALLON WATER CANS",
+  "pages": [
+   34
+  ],
+  "text": "Table A-1 contains information for use by Soldiers when determining how much chlorine is necessary to produce potable drinking water.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h4",
+  "manual": "TC4-02.3",
+  "para": "A.h4",
+  "chapter": "Appendix A",
+  "heading": "1 mg/L 2 mg/L 5 mg/L 10 mg/L 100 mg/L",
+  "pages": [
+   35
+  ],
+  "text": "6 dp 0.75 mL 1.9 mL 3.8 mL 8 tsp",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h5",
+  "manual": "TC4-02.3",
+  "para": "A.h5",
+  "chapter": "Appendix A",
+  "heading": "1 mg/L 2 mg/L 5 mg/L 10 mg/L 100 mg/L",
+  "pages": [
+   35
+  ],
+  "text": "0.9 mL 1.7 mL 4.1 mL 8.3 mL 0.25 tsp",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h6",
+  "manual": "TC4-02.3",
+  "para": "A.h6",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   35
+  ],
+  "text": "dp drops mg/L milligrams per liter mL milliliters tsp teaspoons",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-10",
+  "manual": "TC4-02.3",
+  "para": "A-10",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   35
+  ],
+  "text": "Table A-2 identifies equivalent volumes for use by Soldiers when determining how much disinfectant is needed to produce potable water.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h7",
+  "manual": "TC4-02.3",
+  "para": "A.h7",
+  "chapter": "Appendix A",
+  "heading": "dp mL tsp tbsp oz cp pt qt L gal",
+  "pages": [
+   35
+  ],
+  "text": "dp 1 0.067 0.013 0.004 0.002 mL 15 1 0.200 0.067 0.033 0.0042 0.0021 0.0011 0.0010 tsp 74 5 1 0.333 0.167 0.021 0.010 0.005 0.005 0.001 tbsp 222 15 3 1 0.500 0.063 0.031 0.016 0.015 0.004 oz 444 30 6 2 1 0.125 0.063 0.031 0.030 0.008 cp 3550 237 48 16 8 1 0.500 0.250 0.240 0.063 pt 7100 473 96 32 16 2 1 0.500 0.480 0.125 qt 14200 946 192 64 32 4 2 1 0.960 0.25",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h8",
+  "manual": "TC4-02.3",
+  "para": "A.h8",
+  "chapter": "Appendix A",
+  "heading": "L 15000 1000 203 68 34 4.2 2.1 1.06 1 0.26",
+  "pages": [
+   35
+  ],
+  "text": "gal 56775 3785 768 256 128 16 8 4 3.785 1",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h9",
+  "manual": "TC4-02.3",
+  "para": "A.h9",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   35
+  ],
+  "text": "cp cups oz ounce dp drops pt pint gal gallon qt quart L liter tbsp tablespoon mL milliliter tsp teaspoon",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-11",
+  "manual": "TC4-02.3",
+  "para": "A-11",
+  "chapter": "Appendix A",
+  "heading": "USE CALCIUM HYPOCHLORITE TO DISINFECT WATER IN CANTEENS",
+  "pages": [
+   36
+  ],
+  "text": "The following procedures are used to purify water in a one-quart and two-quart canteen with calcium hypochlorite:\n- Fill the canteen with the cleanest, clearest water available, leaving an air space of an inch or more below the neck of the canteen.\n- Fill a canteen cup half full of water and add the calcium hypochlorite from one ampule, stirring with a clean utensil until this powder is dissolved.\n- Fill the cap of a plastic canteen half full of the solution in the cup and add it to the water in the canteen. Then place the cap on the canteen and shake it thoroughly.\n- Loosen the cap slightly and invert the canteen, letting the treated water leak onto the threads around the neck of the canteen.\n- Tighten the cap on the canteen and wait at least 30 minutes before using the water for any purpose. Note. When disinfecting two-quart canteens double the calcium hypochlorite used to disinfect a one-quart canteen.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-12",
+  "manual": "TC4-02.3",
+  "para": "A-12",
+  "chapter": "Appendix A",
+  "heading": "DISINFECT WATER",
+  "pages": [
+   36
+  ],
+  "text": "The chlorination kit (water purification) contains an emergency disinfectant mixed with a settling aid that helps remove dirt and other suspended particles from water by flocculation and sedimentation. If it is available, it should be used when the water to be treated is cloudy or discolored and the operational situation is such that the treatment bag can remain motionless for the required settling period and can then be filtered. The treatment kit includes three packages of ten tablets each, a treatment bag, and a cloth filter. Each tablet adds eight milligrams per liter of chlorine to one quart of water. Some kits contain three packages of 10 powder sachets in place of the packages of tablets. All other components and the treatment steps remain the same.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-13",
+  "manual": "TC4-02.3",
+  "para": "A-13",
+  "chapter": "Appendix A",
+  "heading": "DISINFECT WATER",
+  "pages": [
+   36,
+   37
+  ],
+  "text": "When using the chlorination kit (water purification) to disinfect an individual water supply use the kit in accordance with the manufacturer's instructions to effectively treat the water. To use the chlorination (water purification) with the provided water treatment bags follow the instructions in Table A-3. Instructions for using the chlorination kit (water purification) for bulk water container systems Add one quart of water to the water treatment bag (provided in the kit). The bag will be about",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h10",
+  "manual": "TC4-02.3",
+  "para": "A.h10",
+  "chapter": "Appendix A",
+  "heading": "Step 1",
+  "pages": [
+   37
+  ],
+  "text": "half full. A different clean container can be used if the water treatment bag is not available. Using the guide provided in the instructions and shown in the legend below, add one or two",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h11",
+  "manual": "TC4-02.3",
+  "para": "A.h11",
+  "chapter": "Appendix A",
+  "heading": "Step 2",
+  "pages": [
+   37
+  ],
+  "text": "tablets/powder sachets to the water in the bag. Step 3 Fold the bag top tightly three times and fold the tabs in. Step 4 Shake the bag for about 1 minute or until the tablet(s) or powder dissolves completely. Step 5 Let the bag sit for 3 minutes. Step 6 Swirl the water in the bag for 30 seconds. Let the bag sit for either 7 or 15 minutes based on the water temperature, as described in the",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h12",
+  "manual": "TC4-02.3",
+  "para": "A.h12",
+  "chapter": "Appendix A",
+  "heading": "Step 7",
+  "pages": [
+   37
+  ],
+  "text": "instructions and shown in the legend below. If the water is still cloudy, add an additional half tablet or one-half powder sachet and repeat",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h13",
+  "manual": "TC4-02.3",
+  "para": "A.h13",
+  "chapter": "Appendix A",
+  "heading": "Step 8",
+  "pages": [
+   37
+  ],
+  "text": "beginning with Step 4. Being careful not to disturb the settled material, pour the clear water above the settled material through the cloth filter (provided in the kit) into a clean canteen or other container. Avoid Step 9 pouring settled material onto the filter cloth. Do not drink the water from the treatment bag without filtering it. If the filter cloth from the kit is unavailable, a clean cotton T-shirt can be used. Rinse the filter and treatment bag with treated water so they can be reused. Always filter the",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h14",
+  "manual": "TC4-02.3",
+  "para": "A.h14",
+  "chapter": "Appendix A",
+  "heading": "Step 10",
+  "pages": [
+   37
+  ],
+  "text": "water through the same side of the filter cloth. Instructions for using the chlorination kit (water purification) for hydration system reservoirs Personal hydration systems require additional tablets/powder sachets based on the volume of water they hold. When using 70- and 72-ounce (two liter) reservoirs double the number of",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h15",
+  "manual": "TC4-02.3",
+  "para": "A.h15",
+  "chapter": "Appendix A",
+  "heading": "Step 1",
+  "pages": [
+   37
+  ],
+  "text": "tablets described in the instructions, and when using 100- and 102-ounce (three liter) reservoirs triple the number of tablets/sachets. Step 2 Fill a separate clean container with the amount of water to be treated. Follow directions outlined in Steps 2 through 9 (above), and add the treated water to the",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h16",
+  "manual": "TC4-02.3",
+  "para": "A.h16",
+  "chapter": "Appendix A",
+  "heading": "Step 3",
+  "pages": [
+   37
+  ],
+  "text": "hydration system. Note: The chlorination kit (water purification) should not be used in the reservoir itself, skipping the filtration step, because of the location of the drinking tube at the bottom of the reservoir. This is where all the flocculent will settle which greatly affects the quality of the water drawn into the straw during consumption.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-14",
+  "manual": "TC4-02.3",
+  "para": "A-14",
+  "chapter": "Appendix A",
+  "heading": "Step 3",
+  "pages": [
+   38
+  ],
+  "text": "Table A-4 identifies the number of tablets or powder sachets that are required to purify a specific volume of water within a given temperature range.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h17",
+  "manual": "TC4-02.3",
+  "para": "A.h17",
+  "chapter": "Appendix A",
+  "heading": "1 quart (1 liter) (2 liter) bladder (3 liter) for Step 7",
+  "pages": [
+   38
+  ],
+  "text": "77 degrees F (25 degrees C) 1 2 3 7 58 degrees F (15 degrees C) 1 2 3 15 50 degrees F (10 degrees C) 1 2 3 15 41 degrees F (5 degrees C) 2 4 6 15",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h18",
+  "manual": "TC4-02.3",
+  "para": "A.h18",
+  "chapter": "Appendix A",
+  "heading": "Legend:",
+  "pages": [
+   38
+  ],
+  "text": "degrees C degrees Celsius degrees F degrees Fahrenheit",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-15",
+  "manual": "TC4-02.3",
+  "para": "A-15",
+  "chapter": "Appendix A",
+  "heading": "USE IODINE TABLETS TO DISINFECT WATER",
+  "pages": [
+   38
+  ],
+  "text": "Iodine water purification tablets are intended to disinfect water contained in small containers such as canteens, personal hydration systems, and five-gallon water cans. The tablets are composed of an iodine compound and are available through the Army supply system in bottles of 50 tablets. The tablets are subject to deterioration in storage. They must be inspected for signs of physical change before they are used; otherwise, they may not disinfect the water. Iodine tablets that are completely yellow or brown, that stick together, or crumble easily are no longer effective and must not be used. Iodine tablets in good condition will be steel gray in color.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-16",
+  "manual": "TC4-02.3",
+  "para": "A-16",
+  "chapter": "Appendix A",
+  "heading": "USE IODINE TABLETS TO DISINFECT WATER",
+  "pages": [
+   38
+  ],
+  "text": "The information contained in paragraphs A-18 through A-20 provides specific instructions for Soldiers using iodine tablets to purify water contained in five-gallon cans, personal hydration systems, and one- and two-quart canteens.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-17",
+  "manual": "TC4-02.3",
+  "para": "A-17",
+  "chapter": "Appendix A",
+  "heading": "USE IODINE TABLETS TO DISINFECT WATER IN FIVE-GALLON WATER CANS",
+  "pages": [
+   38
+  ],
+  "text": "Steps used to disinfect water in a five-gallon water can using iodine tablets are as follows:\n- Fill a five-gallon container with the cleanest, clearest water available.\n- Dissolve 40 iodine tablets in a canteen cup full of water to disinfect any type of water.\n- Add this solution to the five-gallon container of water and agitate the solution.\n- Place the cap on the container loosely. Wait five minutes and then agitate the container vigorously to allow leakage to rinse the threads around the neck of the can.\n- Tighten the cap and wait an additional 25 minutes before using the water for any purpose.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-18",
+  "manual": "TC4-02.3",
+  "para": "A-18",
+  "chapter": "Appendix A",
+  "heading": "USE IODINE TABLETS TO DISINFECT WATER IN PERSONAL HYDRATION SYSTEMS",
+  "pages": [
+   38
+  ],
+  "text": "Steps used to disinfect water in a personal hydration system using iodine tablets are as follows:\n- Use two iodine tablets for 40-ounce water reservoirs, four iodine tablets for 70- or 72-ounce water reservoirs, and six tablets for 100- or 102-ounce reservoirs.\n- Allow 30 minutes of contact time before consuming the water.\n- If the water to be treated is cloudy or discolored, double the iodine dosage or use the chlorination kit (water purification) in a separate container.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-19",
+  "manual": "TC4-02.3",
+  "para": "A-19",
+  "chapter": "Appendix A",
+  "heading": "USE IODINE TABLETS TO DISINFECT WATER IN CANTEENS",
+  "pages": [
+   39
+  ],
+  "text": "Steps used to disinfect water in a canteen using iodine tablets are as follows:\n- Fill the canteen with the cleanest, clearest water available.\n- Add two iodine tablets to each one-quart canteen full of water, or four tablets to each two-quart canteen. A two percent solution of tincture of iodine may be used in place of iodine tablets. Note. Five drops of two percent iodine liquid are equivalent to one iodine tablet.\n- Put the cap on the canteen. Shake the canteen to dissolve tablets.\n- Wait five minutes, then loosen the cap and tip the canteen over to allow leakage around the canteen threads.\n- Tighten the cap and wait an additional 25 minutes before drinking.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-20",
+  "manual": "TC4-02.3",
+  "para": "A-20",
+  "chapter": "Appendix A",
+  "heading": "SYSTEMS",
+  "pages": [
+   39
+  ],
+  "text": "Regular maintenance of individual water storage systems is necessary to maintain the equipment and prevent illness from water that may have become contaminated by being stored in unclean individual water storage systems.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-21",
+  "manual": "TC4-02.3",
+  "para": "A-21",
+  "chapter": "Appendix A",
+  "heading": "SYSTEMS",
+  "pages": [
+   39
+  ],
+  "text": "The first step to clean five-gallon water cans is to refer to TM 10-7200-200-13, then follow this preventive maintenance plan--\n- Visually inspect the can and the cap frequently while in use. After coming out of the field, look them over again. Look for leaks, scratches, or other damage. Check inside the can and cap to make sure they are clean.\n- Clean the cans when they are dirty by washing them inside and out to include the cap. Use one ounce of an approved detergent for each gallon of hot water. Keep the water temperature below 180 degrees Fahrenheit. Water that is hotter will warp the plastic can. Wash with a clean cloth, sponge, or fiber brush. Note. Do not use abrasives like scouring powder, steel wool, and metal sponges. They will scratch the can's surface and make it harder to clean in the future.\n- Add one-gallon of the soap solution. Shake the can vigorously for one minute and then drain the solution. Drain some of the cleaning solution through the spigot to clean it.\n- Rinse the can at least twice with warm water to remove the soap solution. Rinse clean water through the spigot to remove residual detergent.\n- Sanitize the can prior to filling it with potable water.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-22",
+  "manual": "TC4-02.3",
+  "para": "A-22",
+  "chapter": "Appendix A",
+  "heading": "CLEANING AND SANITIZING PERSONAL HYDRATION SYSTEMS",
+  "pages": [
+   39
+  ],
+  "text": "The best way to care for the personal hydration system reservoir is to thoroughly clean and dry it after each use, especially if it has been filled with anything other than water. Failure to routinely clean the hydration system may result in mold or discoloration of the components. If this happens the system can be thoroughly cleaned and put back into service.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-23",
+  "manual": "TC4-02.3",
+  "para": "A-23",
+  "chapter": "Appendix A",
+  "heading": "CLEANING AND SANITIZING THE HYDRATION SYSTEM RESERVOIR",
+  "pages": [
+   39,
+   40
+  ],
+  "text": "The hydration system reservoir should be cleaned by--\n- Removing the reservoir (water bladder) from the pack.\n- Cleaning the reservoir with mild soap and hot water by scrubbing the inside with a bottlebrush.\n- Air drying the reservoir by leaving the top opened.\n- Filling the reservoir with water and adding two teaspoons of baking soda to remove odors. Let it sit overnight. Rinse thoroughly and air dry.\n- Sanitizing the reservoir with water and two teaspoons of liquid (unscented) bleach. Let it sit for 30 minutes.\n- Rinse thoroughly and air dry. Run the water and bleach cleaning solution through the tube and scrub it with a long pipe cleaner, a flexible wire covered with cloth, or one of the specially made brushes. Be careful not to puncture the tube.\n- Machine washing the pack in cold water with a mild detergent, and letting it air dry. Soldiers may also hand wash the pack in a field environment.\n- Drying the pack thoroughly and completely before storing. This is the safest way to store the pack.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A-24",
+  "manual": "TC4-02.3",
+  "para": "A-24",
+  "chapter": "Appendix A",
+  "heading": "CLEANING AND SANITIZING THE RESERVOIR BITE VALVE",
+  "pages": [
+   40
+  ],
+  "text": "Another source of potential contamination if not properly cleaned is the delivery tube and bite valve. To properly clean the tube and valve follow these steps:\n- First, pull the valve off of the tube end. Alternatively, if Soldiers just want to clean debris out of the diaphragm core, the valve body may be left on the tube's end.\n- Second, grasp the rib at the valve's face and roll it backwards. This exposes the core piece with the slit opening.\n- Third, pull the core off of the ribbed post. Then clean the valve parts with a cotton swab or toothbrush and some soapy water.\n- Finish by rinsing all parts thoroughly and repositioning the valve core on the center post of the valve body. Then roll the outer sleeve forward again to complete the job.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h19",
+  "manual": "TC4-02.3",
+  "para": "A.h19",
+  "chapter": "Appendix A",
+  "heading": "Glossary",
+  "pages": [
+   41
+  ],
+  "text": "The glossary lists acronyms and terms with Army or joint definitions. This publication is not the proponent for any terms.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h20",
+  "manual": "TC4-02.3",
+  "para": "A.h20",
+  "chapter": "Appendix A",
+  "heading": "SECTION I - ACRONYMS AND ABBREVIATIONS",
+  "pages": [
+   41,
+   42
+  ],
+  "text": "ATP Army techniques publication ATTP Army tactics, techniques, and procedures DNBI disease and nonbattle injury DOD Department of Defense FM field manual JBSA Joint Base San Antonio MCRP Marine Corps reference publication TC training circular U.S. United States This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h21",
+  "manual": "TC4-02.3",
+  "para": "A.h21",
+  "chapter": "Appendix A",
+  "heading": "REQUIRED PUBLICATIONS",
+  "pages": [
+   43
+  ],
+  "text": "These documents must be available to the intended users of this publication. This publication is available online at http://www.apd.army.mil. Accessed on 3 April 2015. ADRP 1-02, Terms and Military Symbols, 2 February 2015. This publication is available online at http://www.dtic.mil/doctrine. Accessed on 3 April 2015. JP 1-02, Department of Defense Dictionary of Military and Associated Terms, 8 November 2010.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h22",
+  "manual": "TC4-02.3",
+  "para": "A.h22",
+  "chapter": "Appendix A",
+  "heading": "RELATED PUBLICATIONS",
+  "pages": [
+   43
+  ],
+  "text": "These documents contain relevant supplemental information.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h23",
+  "manual": "TC4-02.3",
+  "para": "A.h23",
+  "chapter": "Appendix A",
+  "heading": "NORTH ATLANTIC TREATY ORGANIZATION STANDARDIZATION AGREEMENTS",
+  "pages": [
+   43
+  ],
+  "text": "These publications are available online: http://nso.nato.int/nso/. Accessed on 13 April 2015. STANAG 2122, Requirement for Training in First-Aid, Emergency Care in Combat Situations and Basic Hygiene for All Military Personnel, Edition 3, 11 November 2010. STANAG 2136, Requirements for Water Potability During Field Operations and in Emergency Situations-Allied Medical Publication-4.9, Edition 6, 21 March 2014. STANAG 2885, Emergency Supply of Water in Operations, Edition 5, 13 January 2010. STANAG 2899, Protection of Hearing, Edition 3, 7 August 2001. STANAG 2982, Essential Field Sanitary Requirements, Edition 1, 26 August 1994.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h24",
+  "manual": "TC4-02.3",
+  "para": "A.h24",
+  "chapter": "Appendix A",
+  "heading": "DEPARTMENT OF DEFENSE PUBLICATIONS",
+  "pages": [
+   43
+  ],
+  "text": "These publications are available online as indicated. Armed Forces Pest Management Board Technical Guide Number 36, Personal Protective Measures Against Insects and Other Arthropods of Military Significance, October 2009. (http://www.afpmb.org/sites/default/files/pubs/techguides/tg36.pdf) Accessed on 3 April 2015.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h25",
+  "manual": "TC4-02.3",
+  "para": "A.h25",
+  "chapter": "Appendix A",
+  "heading": "MULTISERVICE PUBLICATIONS",
+  "pages": [
+   43
+  ],
+  "text": "Most multiservice publications are available online: http://www.apd.army.mil. Accessed on 3 April 2015. ATTP 3-97.11/MCRP 3-35.1D, Cold Region Operations, 28 January 2011.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h26",
+  "manual": "TC4-02.3",
+  "para": "A.h26",
+  "chapter": "Appendix A",
+  "heading": "ARMY PUBLICATIONS",
+  "pages": [
+   43,
+   44
+  ],
+  "text": "Most Army doctrinal publications are available online: http://www.apd.army.mil. Accessed on 3 April 2015. AR 40-5, Preventive Medicine, 25 May 2007. ATP 4-25.12, Unit Field Sanitation Teams, 30 April 2014. FM 6-22.5, Combat and Operational Stress Control Manual for Leaders and Soldiers, 18 March 2009. FM 7-22, Army Physical Readiness Training, 26 October 2012. FM 27-10, The Law of Land Warfare, 18 July 1956. TM 10-7200-200-13, Operator, Organizational and Direct Support Maintenance Manual (Including Repair Parts and Special Tools List) for Can, Gasoline, Military, Steel, 5-Gallon (FSN 7240- 222-2088); Can, Water, Military, Steel, 5-Gallon (7240-242-6153); Can, Water, Aluminum; 5-Gallon (7240-242-3767); Can, Water, Military, Plastic, 5-Gallon (7240-089-3827); Case, Military, Water Can (7240-125-9061) (Reprinted w/Basic Incl C1-2) (This item is included on EM 0087), 15 February 1974. (https://www.logsa.army.mil/etms/online.cfm) Accessed on 13 April 2015.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h27",
+  "manual": "TC4-02.3",
+  "para": "A.h27",
+  "chapter": "Appendix A",
+  "heading": "RECOMMENDED READINGS",
+  "pages": [
+   44
+  ],
+  "text": "These sources contain relevant supplemental information. These documents are available online as indicated. All Army Activities (ALARACT) 170/2013, Update of ALARACT 289/2012 Factory Treated Army Combat Uniforms with Permethrin (ACU Permethrin), July 2013. (http://phc.amedd.army.mil/topics/envirohealth/epm/Pages/PermethrinFactory- TreatedArmyCombatUniforms(ACUPermethrin).aspx) Accessed on 13 April 2015. All Army Activities (ALARACT) 352/2011. Rabies Exposure, Identification, Notification, Evaluation, and Treatment Program, 15 September 2011. (https://www.us.army.mil/suite/doc/34613551) Accessed on 3 April 2015. Armed Forces Pest Management Board Technical Guide No. 41, Protection from Rodent-Borne Diseases, December 2013. (http://www.afpmb.org/sites/default/files/pubs/techguides/tg41.pdf) Accessed on 3 April 2015. DODI 4150.07, DOD Pest Management Program, 29 May 2008. (http://www.dtic.mil/whs/directives/corres/pdf/415007p.pdf) Accessed on 13 April 2015. DODI 4715.19, Use of Open-Air Burn Pits in Contingency Operations, 15 February 2011. (http://www.dtic.mil/whs/directives/corres/pdf/471519p.pdf) Accessed on 13 April 2015. DODI 6490.03, Deployment Health, 11 August 2006. (http://www.dtic.mil/whs/directives/corres/pdf/649003p.pdf) Accessed on 13 April 2015. Joint Chiefs of Staff Memorandum MCM 0028-07, Procedures for Deployment Health Surveillance, 2 November 2007. (http://www.dtic.mil/cjcs_directives/cjcs/general.htm) Accessed on 3 April 2015. TB MED 507/AFPAM 48-152 (I), Heat Stress Control and Heat Casualty Management, 7 March 2003. (http://www.apd.army.mil) Accessed on 3 April 2015. TB MED 508, Prevention and Management of Cold-Weather Injuries, 1 April 2005. (http://www.apd.army.mil) Accessed on 3 April 2015. TB MED 577/NAVMED P-5010-10/AFMAN 48-138_IP, Sanitary Control and Surveillance of Field Water Supplies, 1 May 2010. (http://www.apd.army.mil) Accessed on 3 April 2015. TB MED 593, Guidelines for Field Waste Management. 15 September 2006. (http://www.apd.army.mil) Accessed on 3 April 2015. United States Army Public Health Command Training Aid (TA-010-0711), Warning Signs and Symptoms of Heat Stress and Illness, July 2011. (http://usaphcapps.amedd.army.mil/hioshoppingcart/viewItem.aspx?id=54) Accessed on 3 April 2015.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h28",
+  "manual": "TC4-02.3",
+  "para": "A.h28",
+  "chapter": "Appendix A",
+  "heading": "PRESCRIBED FORMS",
+  "pages": [
+   44
+  ],
+  "text": "None.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h29",
+  "manual": "TC4-02.3",
+  "para": "A.h29",
+  "chapter": "Appendix A",
+  "heading": "REFERENCED FORMS",
+  "pages": [
+   44
+  ],
+  "text": "Unless otherwise indicated, DA Forms are available on the Army Publishing Directorate (APD) Web site (www.apd.army.mil). Accessed on 3 April 2015. DA Form 2028, Recommended Changes to Publications and Blank Forms.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h30",
+  "manual": "TC4-02.3",
+  "para": "A.h30",
+  "chapter": "Appendix A",
+  "heading": "Index",
+  "pages": [
+   45
+  ],
+  "text": "References are to paragraph numbers except where otherwise specified.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h31",
+  "manual": "TC4-02.3",
+  "para": "A.h31",
+  "chapter": "Appendix A",
+  "heading": "A H P",
+  "pages": [
+   45
+  ],
+  "text": "acclimatization, 2-45, 3-14 hand washing and sanitizing, personal hygiene, 1-6, 2-2--9, arthropods, 2-36, 2-40--41, 2-12--15 3-2, 3-4--5, 3-14 3-10, 3-12, 3-19 health threats, Chapter 1, physical fitness, 2-33--34, 2-36--37, 3-19 3-6--7, 3-14, 3-37",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h32",
+  "manual": "TC4-02.3",
+  "para": "A.h32",
+  "chapter": "Appendix A",
+  "heading": "3-18, 3-20 3-14, A-11, A-22",
+  "pages": [
+   45
+  ],
+  "text": "bed nets, 2-40--41, 3-10 preventive medicine measures, biological",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h33",
+  "manual": "TC4-02.3",
+  "para": "A.h33",
+  "chapter": "Appendix A",
+  "heading": "waste, 2-57 I 1-9--11",
+  "pages": [
+   45
+  ],
+  "text": "individual, Chapter 2 hazards, 2-52 immersion syndrome, 3-24 unit level, Chapter 3 bleach, household, Table A-1, immunization and A-24 chemoprophylaxis, 2-42--",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h34",
+  "manual": "TC4-02.3",
+  "para": "A.h34",
+  "chapter": "Appendix A",
+  "heading": "C individual water storage rodent, 2-36, 3-10, 3-12",
+  "pages": [
+   45
+  ],
+  "text": "calcium hypochlorite, A-1--2, systems, A-6, A-21--22",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h35",
+  "manual": "TC4-02.3",
+  "para": "A.h35",
+  "chapter": "Appendix A",
+  "heading": "A-5, A-7--9, Table A-1, iodine tablets, A-4--5, A-16-- S",
+  "pages": [
+   45
+  ],
+  "text": "A-12 20 sanitation, 2-21--22 chlorination kit (water Soldier responsibilities, 2-1",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h36",
+  "manual": "TC4-02.3",
+  "para": "A.h36",
+  "chapter": "Appendix A",
+  "heading": "purification), 3-8, A-3, L",
+  "pages": [
+   45
+  ],
+  "text": "A-13--14,A-19 Tables A-3--4, latrines,improvised,1-6 2-27 sleep2-61--66,deprivation,3-25 1-4, 1-7, cleaning and sanitizing portable, 2-26",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h37",
+  "manual": "TC4-02.3",
+  "para": "A.h37",
+  "chapter": "Appendix A",
+  "heading": "individual water storage leader responsibilities, 3-1--2 T",
+  "pages": [
+   45
+  ],
+  "text": "system, A-21--22 toxic industrial materials, 1-4, personal hydration systems, 1-8, 2-52--57, 3-28--30",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h38",
+  "manual": "TC4-02.3",
+  "para": "A.h38",
+  "chapter": "Appendix A",
+  "heading": "cold injury, 2-1, 2-46--51, noise hazards, 2-58--60, W",
+  "pages": [
+   45
+  ],
+  "text": "3-21--25 3-31--32 waste management, 2-23--29 nonpotable water, 2-15, A-1 water",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h39",
+  "manual": "TC4-02.3",
+  "para": "A.h39",
+  "chapter": "Appendix A",
+  "heading": "disease and nonbattle injuries, O chlorination kit, 3-8, A-3,",
+  "pages": [
+   45
+  ],
+  "text": "1-1--3, 1-5, 1-11 oral hygiene, 2-16, 2-18 A-13--14, Tables",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h40",
+  "manual": "TC4-02.3",
+  "para": "A.h40",
+  "chapter": "Appendix A",
+  "heading": "F individual water storage",
+  "pages": [
+   45,
+   46
+  ],
+  "text": "system, A-21--22 field sanitation teams, 1-3, 1-10, 3-1, 3-10--14, 3-21 waterborne and foodborne illness, 2-35 This page intentionally left blank.",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h41",
+  "manual": "TC4-02.3",
+  "para": "A.h41",
+  "chapter": "Appendix A",
+  "heading": "6 May 2015",
+  "pages": [
+   47
+  ],
+  "text": "By Order of the Secretary of the Army",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h42",
+  "manual": "TC4-02.3",
+  "para": "A.h42",
+  "chapter": "Appendix A",
+  "heading": "RAYMOND T. ODIERNO",
+  "pages": [
+   47
+  ],
+  "text": "General, United States Army Chief of Staff Official:",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h43",
+  "manual": "TC4-02.3",
+  "para": "A.h43",
+  "chapter": "Appendix A",
+  "heading": "GERALD B. O'KEEFE",
+  "pages": [
+   47
+  ],
+  "text": "Administrative Assistant to the Secretary of the Army 1512505",
+  "notices": []
+ },
+ {
+  "id": "TC4-02.3/A.h44",
+  "manual": "TC4-02.3",
+  "para": "A.h44",
+  "chapter": "Appendix A",
+  "heading": "DISTRIBUTION:",
+  "pages": [
+   47
+  ],
+  "text": "Active Army, Army National Guard, and United States Army Reserve: Distributed in electronic media only (EMO).",
+  "notices": []
+ }
+]

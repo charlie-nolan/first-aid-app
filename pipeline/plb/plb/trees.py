@@ -47,6 +47,7 @@ import yaml
 
 KINDS = {"kit", "improvised", "nothing", "next"}
 SHELVES = {"first-aid", "survival", "bushcraft", "plants", "fire", "traps", "weather"}
+# "reference" is reserved for the generated, unreviewed manual shelf (plb/shelf.py)
 LABEL_MAX = 40
 BANNED_PLANT = re.compile(r"\b(mushroom|fung(us|i)|toadstool|morel|chanterelle|puffball)", re.I)
 
@@ -106,29 +107,58 @@ class Built:
         return [i for i in self.issues if i.level == "error"]
 
 
-def citation_for(manual_id: str, para: str, manuals: dict[str, dict]) -> str:
+def pretty_manual(manual_id: str, manuals: dict[str, dict]) -> str:
     m = manuals.get(manual_id, {})
-    pretty = m.get("cite_as") or re.sub(r"^([A-Z]+)(\d)", r"\1 \2", manual_id)
-    return f"{pretty}, para {para}"
+    return m.get("cite_as") or re.sub(r"^([A-Z]+)(\d)", r"\1 \2", manual_id)
 
 
-def load_trees(tree_dir: Path) -> list[tuple[Path, dict]]:
+def citation_for(manual_id: str, para: str, manuals: dict[str, dict],
+                 sec: dict | None = None) -> str:
+    """'ATP 4-02.11, para 4-37'. Heading-only sections ("2.h1") have no real paragraph
+    number, so they cite their place instead: 'front matter, Preface' or 'Ch 2, <heading>'."""
+    book = pretty_manual(manual_id, manuals)
+    if manuals.get(manual_id, {}).get("cite_style") == "page" and sec:
+        # 'Aerie WM 15e, p42, Splinting': books without paragraph numbers cite the page
+        head = " ".join(re.sub(r"^[\s*#\-]+", "", sec.get("heading") or "").split())
+        head = head.title() if head.isupper() else head
+        head = head if len(head) <= 40 else head[:37].rstrip() + "..."
+        page = (sec.get("pages") or [None])[0]
+        page = page - int(manuals[manual_id].get("page_offset") or 0) if page else page
+        return ", ".join(x for x in [book, f"p{page}" if page else "", head] if x)
+    if ".h" not in para:
+        return f"{book}, para {para}"
+    sec = sec or {}
+    head = " ".join(re.sub(r"^[\s*#\-]+", "", sec.get("heading") or "").split())
+    head = head.title() if head.isupper() else head
+    head = head if len(head) <= 40 else head[:37].rstrip() + "..."
+    m = re.match(r"^(chapter|appendix)\s+(\S+?)[.:]?(\s|$)", sec.get("chapter") or "", flags=re.I)
+    where = ((("Ch " if m.group(1).lower() == "chapter" else "App ") + m.group(2)) if m
+             else (sec.get("chapter") or "front matter"))
+    return f"{book}, {where}, {head}" if head and head != where else f"{book}, {where}"
+
+
+def load_trees(tree_dir) -> list[tuple[Path, dict]]:
+    """tree_dir: one folder, or a list (content/trees, then content/trees_personal)."""
     out = []
-    for p in sorted(tree_dir.glob("*.yaml")):
+    dirs = tree_dir if isinstance(tree_dir, (list, tuple)) else [tree_dir]
+    for p in [p for d in dirs for p in sorted(Path(d).glob("*.yaml"))]:
         data = yaml.safe_load(p.read_text())
         if data:
             out.append((p, data))
     return out
 
 
-def _resolve_cite(c, sections, manuals, where, b: Built) -> str | None:
+def _resolve_cite(c, sections, manuals, where, b: Built) -> list[str]:
+    """Passage ids for one citation: the cited text, then every CAUTION/WARNING/NOTE box
+    attached to that paragraph (section["notices"]), so a step never ships without its
+    warning."""
     if isinstance(c, str):
         c = {"ref": c}
     ref = c.get("ref", "")
     sec = sections.get(ref)
     if sec is None:
         b.issues.append(Issue("error", where, f"cites {ref!r}, which is not an extracted section"))
-        return None
+        return []
     text = sec["text"]
     pid = ref
     if "from" in c or "to" in c:
@@ -136,17 +166,26 @@ def _resolve_cite(c, sections, manuals, where, b: Built) -> str | None:
         i = text.find(a) if a else 0
         if i < 0:
             b.issues.append(Issue("error", where, f"excerpt start {a!r} not found verbatim in {ref}"))
-            return None
+            return []
         j = text.find(z, i) if z else len(text)
         if j < 0:
             b.issues.append(Issue("error", where, f"excerpt end {z!r} not found after start in {ref}"))
-            return None
+            return []
         text = text[i:j + (len(z) if z else 0)]
         pid = f"{ref}#{i}-{i + len(text)}"
     if pid not in b.passages:
         b.passages[pid] = Passage(pid, sec["manual"], sec["para"], sec.get("heading", ""),
-                                  citation_for(sec["manual"], sec["para"], manuals), text)
-    return pid
+                                  citation_for(sec["manual"], sec["para"], manuals, sec), text)
+    out = [pid]
+    for i, nt in enumerate(sec.get("notices") or [], 1):
+        kind = str(nt.get("kind", "NOTE")).upper()
+        nid = f"{ref}~{kind.lower()}{i}"
+        if nid not in b.passages:
+            b.passages[nid] = Passage(nid, sec["manual"], sec["para"], kind,
+                                      citation_for(sec["manual"], sec["para"], manuals, sec),
+                                      f"## {kind}\n{nt['text']}")
+        out.append(nid)
+    return out
 
 
 def _check_tags(tags, where: str, voc: dict[str, set[str]], b) -> dict:
@@ -227,9 +266,9 @@ def build_trees(tree_dir: Path, sections: dict[str, dict], figures: dict[str, di
             _check_label(label, w, b)
             pids = []
             for c in n.get("cite") or []:
-                pid = _resolve_cite(c, sections, manuals, w, b)
-                if pid:
-                    pids.append(pid)
+                for pid in _resolve_cite(c, sections, manuals, w, b):
+                    if pid not in pids:
+                        pids.append(pid)
             if not (n.get("cite") or n.get("no_match")):
                 b.issues.append(Issue("error", w, "no citation: every node must show sourced text"))
             fig = n.get("figure")
@@ -259,9 +298,9 @@ def build_trees(tree_dir: Path, sections: dict[str, dict], figures: dict[str, di
 
             look = []
             for c in n.get("lookalikes") or []:
-                pid = _resolve_cite(c, sections, manuals, w + " lookalikes", b)
-                if pid:
-                    look.append(pid)
+                for pid in _resolve_cite(c, sections, manuals, w + " lookalikes", b):
+                    if pid not in look:
+                        look.append(pid)
             if plants:
                 blob = " ".join([label] + [b.passages[p].text for p in pids + look])
                 if BANNED_PLANT.search(blob):
@@ -305,7 +344,10 @@ def _phrase(ph) -> tuple[str, bool]:
 
 
 def _check_label(label: str, where: str, b: Built) -> None:
-    if not label:
+    if not isinstance(label, str):
+        b.issues.append(Issue("error", where, f"label {label!r} is not text (quote it in YAML; "
+                                              "a comma or yes/no unquoted breaks it)"))
+    elif not label:
         b.issues.append(Issue("error", where, "empty label"))
     elif len(label) > LABEL_MAX:
         b.issues.append(Issue("error", where, f"label over {LABEL_MAX} chars; labels are "

@@ -1,76 +1,341 @@
-# Source manuals for the Pocket First-Aid Librarian library.
-# Only US Government works marked "Approved for public release; distribution is unlimited".
-# sha256 is filled in by `plb fetch` / `plb verify` once the PDF is on disk; the build refuses
-# a PDF whose hash doesn't match a recorded one.
 manuals:
-  - id: ATP4-02.11
-    title: "Casualty Response, Tactical Combat Casualty Care, and First Aid"
-    publisher: Headquarters, Department of the Army
-    edition: "2026-03-23 (released; supersedes TC 4-02.1)"
-    distribution: unverified   # check the cover once downloaded
-    urls:
-      - https://armypubs.army.mil/epubs/DR_pubs/DR_a/ARN46159-ATP_4-02.11-000-WEB-1.pdf
-    role: primary first-aid source (Charlie, 2026-11-04)
-    notes: "Supersession per army.mil article 291504 (2026-04-01)."
-    file: sources/ATP_4-02.11.pdf
-    sha256: null
-
-  - id: TC4-02.1
-    title: "First Aid"
-    publisher: Headquarters, Department of the Army
-    edition: "January 2016, with Change 1 and Change 2 (December 2018)"
-    distribution: "Approved for public release; distribution is unlimited"
-    status: superseded by ATP 4-02.11 (2026-03-23)
-    role: backup only, for diagrams or topics ATP 4-02.11 lacks (Charlie, 2026-11-04)
-    urls:
-      - https://ciehub.info/ref/TC/4-02x1_2018.pdf   # mirror; prefer an armypubs/archive.org copy
-    file: sources/TC_4-02.1.pdf
-    sha256: null
-
-  - id: ATP3-50.21
-    title: "Survival"
-    publisher: Headquarters, Department of the Army
-    edition: "September 2018"
-    distribution: "Approved for public release; distribution is unlimited"   # confirmed from cover text
-    urls:
-      - https://irp.fas.org/doddir/army/atp3-50-21.pdf
-    notes: "Supersedes FM 3-05.70 (2002), which superseded FM 21-76 (1992)."
-    file: sources/ATP_3-50.21.pdf
-    sha256: null
-
-  - id: FM21-76
-    title: "Survival"
-    publisher: Headquarters, Department of the Army
-    edition: "June 1992"
-    distribution: "Approved for public release; distribution is unlimited"
-    status: superseded; kept only for diagrams missing from ATP 3-50.21
-    urls: []   # archive.org copy to be chosen
-    file: sources/FM_21-76.pdf
-    sha256: null
-
-  - id: AFH10-644
-    title: "Survival, Evasion, Resistance, Escape (SERE) Operations"
-    publisher: Department of the Air Force
-    edition: "27 March 2017"
-    distribution: unverified
-    urls:
-      - https://irp.fas.org/doddir/usaf/afh10-644.pdf
-      - https://static.e-publishing.af.mil/   # official host; exact path TBD
-    file: sources/AFH_10-644.pdf
-    sha256: null
-
-  # ---- Tier 2-4 (see SOURCES.md); hashes pinned on upload ----
-  - {id: ATP3-90.97, title: "Mountain Warfare and Cold Weather Operations", edition: "April 2016", distribution: unverified, urls: [https://apps.dtic.mil/sti/pdfs/AD1013626.pdf], file: sources/ATP_3-90.97.pdf, sha256: null}
-  - {id: TC21-3, title: "Soldier's Handbook for Individual Operations and Survival in Cold-Weather Areas", edition: "1986", distribution: unverified, urls: [https://archive.org/download/MManuals/Tc21-3UsArmySurvivalInColdWeather1986.pdf], file: sources/TC_21-3.pdf, sha256: null}
-  - {id: ATP3-90.98, title: "Jungle Operations", edition: "September 2020", distribution: unverified, urls: [https://irp.fas.org/doddir/army/atp3-90-98.pdf], file: sources/ATP_3-90.98.pdf, sha256: null}
-  - {id: ATP3-90.99, title: "Desert Operations", edition: "April 2021", distribution: unverified, urls: [https://irp.fas.org/doddir/army/atp3-90-99.pdf], file: sources/ATP_3-90.99.pdf, sha256: null}
-  - {id: TC3-97.61, title: "Military Mountaineering", edition: "2012", distribution: unverified, urls: [], file: sources/TC_3-97.61.pdf, sha256: null}
-  - {id: TC3-21.76, title: "Ranger Handbook", edition: "April 2017", distribution: unverified, urls: [https://irp.fas.org/doddir/army/tc3-21-76.pdf], file: sources/TC_3-21.76.pdf, sha256: null}
-  - {id: TBMED507, cite_as: "TB MED 507", title: "Heat Stress Control and Heat Casualty Management", edition: "April 2022", distribution: unverified, urls: [], file: sources/TB_MED_507.pdf, sha256: null}
-  - {id: TBMED508, cite_as: "TB MED 508", title: "Prevention and Management of Cold-Weather Injuries", edition: "2005", distribution: unverified, urls: [https://apps.dtic.mil/sti/pdfs/ADA433435.pdf], file: sources/TB_MED_508.pdf, sha256: null}
-  - {id: TBMED505, cite_as: "TB MED 505", title: "Altitude Acclimatization and Illness Management", edition: "2010", distribution: unverified, urls: [], file: sources/TB_MED_505.pdf, sha256: null}
-  - {id: TC4-02.3, title: "Field Hygiene and Sanitation", edition: "2015", distribution: unverified, urls: [https://www.armywriter.com/board/references/TC4-02x3.pdf], file: sources/TC_4-02.3.pdf, sha256: null}
-  - {id: SHIPSMED, cite_as: "Ship's Medicine Chest", title: "The Ship's Medicine Chest and Medical Aid at Sea", edition: "2003", distribution: unverified, urls: [https://irp.fas.org/doddir/milmed/ships.pdf], file: sources/Ships_Medicine_Chest.pdf, sha256: null}
-  - {id: NAVSNAKES, cite_as: "Poisonous Snakes of the World", title: "Poisonous Snakes of the World (US Navy)", edition: "TBD", distribution: unverified, urls: [https://www.archive.org/download/poisonoussnakeso00unit/poisonoussnakeso00unit_bw.pdf], file: sources/Poisonous_Snakes.pdf, sha256: null}
-  - {id: FEMA-AYR, cite_as: "FEMA Are You Ready?", title: "Are You Ready? An In-depth Guide to Citizen Preparedness", edition: "TBD", distribution: unverified, urls: [], file: sources/FEMA_Are_You_Ready.pdf, sha256: null}
-  - {id: FEMA-CERT, cite_as: "FEMA CERT Basic", title: "CERT Basic Training Participant Manual", edition: "TBD", distribution: unverified, urls: [], file: sources/FEMA_CERT.pdf, sha256: null}
+- id: ATP4-02.11
+  topic: "Army First Aid (2026)"   # shelf title on the device (<= 28 chars)
+  about: "US Army first aid and casualty care manual (2026): bleeding, airway, breathing, circulation, hypothermia, eye and head injuries, burns, moving casualties."   # catalog line, not passage text
+  title: Casualty Response, Tactical Combat Casualty Care, and First Aid
+  publisher: Headquarters, Department of the Army
+  edition: 2026-03-23 (released; supersedes TC 4-02.1)
+  distribution: Approved for public release, distribution is unlimited.
+  urls:
+  - https://armypubs.army.mil/epubs/DR_pubs/DR_a/ARN46159-ATP_4-02.11-000-WEB-1.pdf
+  role: primary first-aid source (Charlie, 2026-11-04)
+  notes: Supersession per army.mil article 291504 (2026-04-01).
+  file: sources/ATP_4-02.11.pdf
+  sha256: a4a0650f5bb14c1c7163b9b1e9f08bcc012fb3fe49ea4432f0ccaffb9af86542
+- id: TC4-02.1
+  topic: "Army First Aid (2016)"   # shelf title on the device (<= 28 chars)
+  about: "Older US Army first aid manual (2016, replaced by ATP 4-02.11): evaluating a casualty, airway, chest wounds, bleeding, burns, shock, bites and stings, heat and cold injuries."   # catalog line, not passage text
+  title: First Aid
+  publisher: Headquarters, Department of the Army
+  edition: January 2016, with Change 1 and Change 2 (December 2018)
+  distribution: Approved for public release; distribution is unlimited.
+  status: superseded by ATP 4-02.11 (2026-03-23)
+  role: backup only, for diagrams or topics ATP 4-02.11 lacks (Charlie, 2026-11-04)
+  urls:
+  - https://ciehub.info/ref/TC/4-02x1_2018.pdf
+  file: sources/TC_4-02.1.pdf
+  sha256: 03a9505bd7fa1f5a13b2ea89b18d9ac1d0d2f9bdd50b0806eb1c692b19004791
+- id: ATP3-50.21
+  topic: "Army Survival"   # shelf title on the device (<= 28 chars)
+  about: "US Army survival manual (2018): survival medicine, water, food, fire, shelter, clothing, travel and navigation, equipment, knots and rope."   # catalog line, not passage text
+  title: Survival
+  publisher: Headquarters, Department of the Army
+  edition: September 2018
+  distribution: Approved for public release; distribution is unlimited.
+  urls:
+  - https://irp.fas.org/doddir/army/atp3-50-21.pdf
+  notes: Supersedes FM 3-05.70 (2002), which superseded FM 21-76 (1992).
+  file: sources/ATP_3-50.21.pdf
+  sha256: 817746b13262e9e26e8ac7d25bf879790df369c2aa0a2600f69158ec4090461c
+- id: FM21-76
+  topic: "Army Survival (1992)"   # shelf title on the device (<= 28 chars)
+  about: "Older US Army survival manual (1992), replaced by ATP 3-50.21."   # catalog line, not passage text
+  title: Survival
+  publisher: Headquarters, Department of the Army
+  edition: June 1992
+  distribution: Approved for public release; distribution is unlimited
+  status: superseded; kept only for diagrams missing from ATP 3-50.21
+  urls: []
+  file: sources/FM_21-76.pdf
+  sha256: null
+- id: AFH10-644
+  topic: "Air Force Survival (SERE)"   # shelf title on the device (<= 28 chars)
+  about: "US Air Force survival, evasion, resistance and escape handbook (2017): survival needs, survival medicine, and living in different climates and at sea."   # catalog line, not passage text
+  title: Survival, Evasion, Resistance, Escape (SERE) Operations
+  publisher: Department of the Air Force
+  edition: 27 March 2017
+  distribution: 'RELEASABILITY: There are no releasability restrictions on this publication. (p.2; read
+    by text search 2026-11-07)'
+  urls:
+  - https://irp.fas.org/doddir/usaf/afh10-644.pdf
+  - https://static.e-publishing.af.mil/
+  file: sources/AFH_10-644.pdf
+  sha256: 7618a1b3e77ed50b3fb057e18517f83940d67b4b3fef1dd5b89cc4146f2a4bc0
+  numbering: decimal
+- id: ATP3-90.97
+  topic: "Mountain & Cold Weather Ops"   # shelf title on the device (<= 28 chars)
+  about: "US Army mountain and cold weather operations (2016): mountain terrain and weather, planning, mountaineering skills, high altitude illnesses."   # catalog line, not passage text
+  title: Mountain Warfare and Cold Weather Operations
+  edition: April 2016
+  distribution: Approved for public release. Distribution is unlimited.
+  urls:
+  - https://apps.dtic.mil/sti/pdfs/AD1013626.pdf
+  - https://archive.org/details/atp-3-90.97-mountain-warfare-and-cold-weather-operations-2016
+  file: sources/ATP_3-90.97.pdf
+  sha256: c9863d2ded0f3ac7aed29293d6ae2171113b9ad9ef6870743eea551ddd8ba30c
+- id: TC21-3
+  topic: "Cold Weather Survival"   # shelf title on the device (<= 28 chars)
+  about: "US Army soldier's handbook for living and surviving in cold weather areas (1986)."   # catalog line, not passage text
+  title: Soldier's Handbook for Individual Operations and Survival in Cold-Weather Areas
+  edition: '1986'
+  distribution: Approved for public release; distribution is unlimited.
+  urls:
+  - https://archive.org/download/MManuals/Tc21-3UsArmySurvivalInColdWeather1986.pdf
+  file: sources/TC_21-3.pdf
+  sha256: 2a689fd7717b9f42babbaca23b720c03dca0c5a0d9fb8abcab82a02c790ef570
+- id: ATP3-90.98
+  topic: "Jungle Operations"   # shelf title on the device (<= 28 chars)
+  about: "US Army/Marine Corps jungle operations (2020): jungle regions, operating and moving in the jungle, navigation, obstacles."   # catalog line, not passage text
+  title: Jungle Operations
+  edition: September 2020
+  distribution: Approved for public release; distribution is unlimited. (cover checked by eye 2026-11-07;
+    text layer is font-shifted)
+  urls:
+  - https://irp.fas.org/doddir/army/atp3-90-98.pdf
+  file: sources/ATP_3-90.98.pdf
+  sha256: bc6382ccba3b552bec79e7a8c4ed32d5d9101388d3ccd356645169fe39cd7a21
+- id: ATP3-90.99
+  topic: "Desert Operations"   # shelf title on the device (<= 28 chars)
+  about: "US Army/Marine Corps desert operations (2021): desert types and conditions, operating in the desert, notable deserts, driving."   # catalog line, not passage text
+  title: Desert Operations
+  edition: April 2021
+  distribution: Approved for public release; distribution is unlimited.
+  urls:
+  - https://irp.fas.org/doddir/army/atp3-90-99.pdf
+  file: sources/ATP_3-90.99.pdf
+  sha256: 7efa43dd8dd6e0bf65c26c47025ca515bc1a6ffa22c856aabbfb0f2d9a4db63b
+- id: TC3-97.61
+  topic: "Military Mountaineering"   # shelf title on the device (<= 28 chars)
+  about: "US Army military mountaineering (2025): mountain terrain and hazards, avalanches, movement, rock climbing, rope and knots."   # catalog line, not passage text
+  title: Military Mountaineering
+  edition: November 2025 (supersedes 26 July 2012)
+  distribution: Approved for public release; distribution is unlimited.
+  urls:
+  - https://archive.org/download/military-mountaineering-tc-3-97.61-november-2025/Military%20Mountaineering%20TC%203-97.61%20%28November%202025%29.pdf
+  - https://irp.fas.org/doddir/army/tc3-97-61.pdf
+  file: sources/TC_3-97.61.pdf
+  sha256: 9cdc483c35ebcbb9b25add51be60fffab2f13eef024b075d14c0d56b7d47ad39
+- id: TC3-21.76
+  topic: "Ranger Handbook"   # shelf title on the device (<= 28 chars)
+  about: "US Army Ranger Handbook (2017): small-unit leading, equipment, movement, patrols, and field skills."   # catalog line, not passage text
+  title: Ranger Handbook
+  edition: April 2017
+  distribution: Approved for public release; distribution is unlimited.
+  urls:
+  - https://irp.fas.org/doddir/army/tc3-21-76.pdf
+  file: sources/TC_3-21.76.pdf
+  sha256: 90a46458783d4782c08407d2dda2ecddc0c270918b15ea3368c86811fe1dd91c
+- id: TBMED507
+  topic: "Heat Illness"   # shelf title on the device (<= 28 chars)
+  about: "US Army technical bulletin on heat stress and heat illness (2022): how the body responds to heat, managing heat stress, heat illness."   # catalog line, not passage text
+  cite_as: TB MED 507
+  title: Heat Stress Control and Heat Casualty Management
+  edition: April 2022
+  distribution: APPROVED FOR PUBLIC RELEASE; DISTRIBUTION IS UNLIMITED.
+  urls:
+  - https://www.govinfo.gov/content/pkg/GOVPUB-D101-PURL-gpo216616/pdf/GOVPUB-D101-PURL-gpo216616.pdf
+  file: sources/TB_MED_507.pdf
+  sha256: 913b9c9c54942a62a303faa0a754f82adf978085f1d99f780df58432dd4fac16
+- id: TBMED508
+  topic: "Cold Injuries"   # shelf title on the device (<= 28 chars)
+  about: "US Army technical bulletin on cold weather injuries: how the body responds to cold, managing cold stress, cold injuries, cold weather clothing."   # catalog line, not passage text
+  cite_as: TB MED 508
+  title: Prevention and Management of Cold-Weather Injuries
+  edition: '2005'
+  distribution: APPROVED FOR PUBLIC RELEASE; DISTRIBUTION IS UNLIMITED.
+  urls:
+  - https://apps.dtic.mil/sti/pdfs/ADA433435.pdf
+  - https://archive.org/download/ost-military-medical-tbmed508/tbmed508.pdf
+  file: sources/TB_MED_508.pdf
+  sha256: 8583dbf92741d8e78a9079eaa793ddd0cbc9599cdccbcba0c0ce7c5752f3b106
+- id: TBMED505
+  topic: "Altitude Illness"   # shelf title on the device (<= 28 chars)
+  about: "US Army technical bulletin on altitude (2010): acclimatization, altitude risk, performance at altitude, high altitude illnesses."   # catalog line, not passage text
+  cite_as: TB MED 505
+  title: Altitude Acclimatization and Illness Management
+  edition: '2010'
+  distribution: APPROVED FOR PUBLIC RELEASE; DISTRIBUTION UNLIMITED.
+  urls:
+  - https://archive.org/download/ost-military-medical-tbmed505/tbmed505.pdf
+  file: sources/TB_MED_505.pdf
+  sha256: 6fc1da94070c0ce3d53f935a30174cfbf87da01ae9a8c41d1ad33989ef1d334a
+- id: TC4-02.3
+  topic: "Field Hygiene & Water"   # shelf title on the device (<= 28 chars)
+  about: "US Army field hygiene and sanitation (2015): preventing disease and injury in the field, insects and rodents, water disinfection."   # catalog line, not passage text
+  title: Field Hygiene and Sanitation
+  edition: May 2015
+  distribution: Approved for public release; distribution is unlimited.
+  urls:
+  - https://www.armywriter.com/board/references/TC4-02x3.pdf
+  file: sources/TC_4-02.3.pdf
+  sha256: e024b79ca8c638355eb70f33bb62bccc8070ab2d669bcfa9ad9e5c1ad9e43732
+- id: SHIPSMED
+  topic: "Medicine at Sea"   # shelf title on the device (<= 28 chars)
+  about: "US government guide to medical care aboard ships, far from a doctor (The Ship's Medicine Chest and Medical Aid at Sea)."   # catalog line, not passage text
+  cite_as: Ship's Medicine Chest
+  title: The Ship's Medicine Chest and Medical Aid at Sea
+  edition: '2003'
+  distribution: US Government work (17 USC 105), no statement printed; kept by Charlie 2026-11-07
+  urls:
+  - https://irp.fas.org/doddir/milmed/ships.pdf
+  file: sources/Ships_Medicine_Chest.pdf
+  sha256: c46a3cfcad68606ef641ba48579b57a643d22b4253fc50c01bb6598c5715de1b
+  numbering: headings
+- id: NAVSNAKES
+  topic: "Venomous Snakes"   # shelf title on the device (<= 28 chars)
+  about: "US Navy guide to venomous snakes of the world, by region."   # catalog line, not passage text
+  cite_as: Poisonous Snakes of the World
+  title: Poisonous Snakes of the World (US Navy)
+  edition: TBD
+  distribution: US Government work (17 USC 105), no statement printed; kept by Charlie 2026-11-07
+  urls:
+  - https://www.archive.org/download/poisonoussnakeso00unit/poisonoussnakeso00unit_bw.pdf
+  file: sources/Poisonous_Snakes.pdf
+  sha256: a8273ae593e356fde5cecbbb85911991da003c7fbf96c709f1f7ac58bf7c6def
+  numbering: headings
+- id: FEMA-AYR
+  topic: "Disaster Preparedness"   # shelf title on the device (<= 28 chars)
+  about: "FEMA guide to preparing for natural and man-made disasters."   # catalog line, not passage text
+  cite_as: FEMA Are You Ready?
+  title: Are You Ready? An In-depth Guide to Citizen Preparedness
+  edition: TBD
+  distribution: unverified
+  urls: []
+  file: sources/FEMA_Are_You_Ready.pdf
+  sha256: null
+- id: FEMA-CERT
+  topic: "Disaster Response (CERT)"   # shelf title on the device (<= 28 chars)
+  about: "FEMA Community Emergency Response Team basic training manual: disaster preparedness, disaster medical operations, light search and rescue."   # catalog line, not passage text
+  cite_as: FEMA CERT Basic
+  title: CERT Basic Training Participant Manual
+  edition: 2019 update (FEMA P-2057)
+  distribution: US Government work (17 USC 105), no statement printed; kept by Charlie 2026-11-07
+  urls:
+  - https://www.ready.gov/sites/default/files/2019.CERT_.Basic_.PM_FINAL_508c.pdf
+  file: sources/FEMA_CERT.pdf
+  sha256: ca297bbc329c322ccbcb252fae7a1c89fd95f93dbf72b78b165b53cafa664026
+  numbering: headings
+  table_pages: [107, 108]   # Table 3.2 burn classification chart, read cell by cell
+- id: DHS-ACTIVE-SHOOTER
+  topic: "Active Shooter Response"   # shelf title on the device (<= 28 chars)
+  about: "Department of Homeland Security booklet on how to respond to an active shooter."   # catalog line, not passage text
+  cite_as: 'DHS Active Shooter: How to Respond'
+  title: 'Active Shooter: How to Respond'
+  publisher: U.S. Department of Homeland Security
+  edition: October 2008
+  distribution: US Government work (17 USC 105), no statement printed; kept under Charlie's 2026-11-07
+    rule
+  tier: 5
+  urls:
+  - https://www.dhs.gov/xlibrary/assets/active_shooter_booklet.pdf
+  notes: CISA now hosts the booklet (cisa.gov/resources-tools/resources/active-shooter-how-respond-booklet)
+    but its page has no direct PDF link; this is the DHS original.
+  file: sources/DHS_Active_Shooter.pdf
+  sha256: c823497479deccf89317e89034cd91502305494da60ad13f4cb6f7dfec11665b
+  numbering: headings
+- id: USAMRICD-FMCC
+  topic: "Chemical Casualties"   # shelf title on the device (<= 28 chars)
+  about: "US Army course reading on field management of chemical casualties."   # catalog line, not passage text
+  cite_as: Field Management of Chemical Casualties
+  title: Field Management of Chemical Casualties Handbook
+  publisher: USAMRICD Chemical Casualty Care Division
+  edition: Second edition, July 2000
+  distribution: US Government work (17 USC 105), no statement printed; kept under Charlie's 2026-11-07
+    rule
+  tier: 5
+  urls:
+  - https://govinfo.gov/content/pkg/GOVPUB-D101-PURL-LPS76481/pdf/GOVPUB-D101-PURL-LPS76481.pdf
+  notes: GPO copy taken from a commercial "book-on-a-disc"; page 1 is that publisher's note and is skipped.
+    The handbook is course reading, not official doctrine (its own disclaimer, p.3); cite it as supplemental
+    only.
+  file: sources/USAMRICD_FMCC.pdf
+  sha256: e0f0c3d4c6998f5afd5fd4f5f4ef5b5fafa3c36430244b6bf0cd0dc1c1426075
+  numbering: headings
+  skip_pages:
+  - 1
+- id: USAMRICD-MMCC
+  topic: "Chemical Casualties (Med)"   # shelf title on the device (<= 28 chars)
+  about: "US Army handbook on medical management of chemical casualties."   # catalog line, not passage text
+  cite_as: Medical Management of Chemical Casualties
+  title: Medical Management of Chemical Casualties Handbook
+  publisher: USAMRICD Chemical Casualty Care Division
+  edition: 5th edition (2014)
+  distribution: unverified
+  tier: 5
+  urls: []
+  notes: Only from ccc.apgea.army.mil (not reachable from this machine).
+  file: sources/USAMRICD_MMCC.pdf
+  sha256: null
+- id: ATP4-02.7
+  topic: "ATP 4-02.7"   # shelf title on the device (<= 28 chars)
+  about: ""   # catalog line, not passage text
+  title: Multi-Service TTP for Health Service Support in a CBRN Environment
+  publisher: Headquarters, Department of the Army
+  edition: 15 March 2016
+  distribution: unverified
+  tier: 5
+  urls:
+  - https://irp.fas.org/doddir/army/atp4-02-7.pdf
+  file: sources/ATP_4-02.7.pdf
+  sha256: null
+- id: NWS-LIGHTNING
+  topic: Lightning Safety (NWS)
+  about: 'US National Weather Service lightning safety pages (2026): staying safe outdoors, camping and
+    climbing, and the ways lightning strikes people.'
+  title: Lightning Safety
+  publisher: NOAA National Weather Service
+  cite_as: NWS Lightning Safety
+  edition: web pages fetched 2026-11-08
+  distribution: US Government work (17 USC 105)
+  kind: web
+  file: sources_web/nws-lightning.html
+  sha256: bd9fc65d3cd4fa93b774d144d2e5bbfedeb3e025a5436b9632c4c07bfea41d07
+  urls:
+  - https://www.weather.gov/safety/lightning
+  - https://www.weather.gov/safety/lightning-outdoors
+  - https://www.weather.gov/safety/lightning-struck
+  pages:
+  - file: sources_web/nws-lightning.html
+    url: https://www.weather.gov/safety/lightning
+    sha256: bd9fc65d3cd4fa93b774d144d2e5bbfedeb3e025a5436b9632c4c07bfea41d07
+    fetched: '2026-11-08'
+    selector: .cms-content
+  - file: sources_web/nws-lightning-outdoors.html
+    url: https://www.weather.gov/safety/lightning-outdoors
+    sha256: 5af39d9a11bb3d38c27956d94e7e4e313eb9f9965e2e6ab2402329d28ab04f9f
+    fetched: '2026-11-08'
+    selector: .cms-content
+  - file: sources_web/nws-lightning-struck.html
+    url: https://www.weather.gov/safety/lightning-struck
+    sha256: 51221e8165f388da453f17a0a61bb7b7dff15fa50c191a0942bf773e8022f8cf
+    fetched: '2026-11-08'
+    selector: .cms-content
+- id: READY-GOV
+  topic: Weather Safety (Ready.gov)
+  about: 'FEMA Ready.gov pages (2026): thunderstorms and lightning, extreme heat and heat illness, winter
+    weather, frostbite and hypothermia.'
+  title: 'Ready.gov: Thunderstorms & Lightning, Extreme Heat, Winter Weather'
+  publisher: FEMA / DHS (Ready.gov)
+  cite_as: Ready.gov
+  edition: web pages fetched 2026-11-08
+  distribution: US Government work (17 USC 105)
+  kind: web
+  file: sources_web/ready-lightning.html
+  sha256: 3869841e873f3933d38b82fd5cd7772223d390ba612b39dfbe3ec2f6fa9caa33
+  urls:
+  - https://www.ready.gov/thunderstorms-lightning
+  - https://www.ready.gov/heat
+  - https://www.ready.gov/winter-weather
+  pages:
+  - file: sources_web/ready-lightning.html
+    url: https://www.ready.gov/thunderstorms-lightning
+    sha256: 3869841e873f3933d38b82fd5cd7772223d390ba612b39dfbe3ec2f6fa9caa33
+    fetched: '2026-11-08'
+  - file: sources_web/ready-heat.html
+    url: https://www.ready.gov/heat
+    sha256: de7959a3f1eaa0c08424f6b2962c5c1713ede719f3f095c52c741565c7a7524e
+    fetched: '2026-11-08'
+  - file: sources_web/ready-winter.html
+    url: https://www.ready.gov/winter-weather
+    sha256: 9ca13b2f9851bf664cf72a328bcb7aabd65cf120419ee830fb9dc5774eb92062
+    fetched: '2026-11-08'

@@ -1,0 +1,386 @@
+[
+ {
+  "id": "TBMED508/fig/2-1",
+  "manual": "TBMED508",
+  "num": "2-1",
+  "title": "Energy (heat) transfer of a soldier performing physical work in cold weather",
+  "page": 12,
+  "bbox": [
+   175.0327,
+   274.90088000000003,
+   436.94237,
+   516.4149818000001
+  ],
+  "png": "TBMED508_fig_2-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/2-2",
+  "manual": "TBMED508",
+  "num": "2-2",
+  "title": "Effect of cold stress on decreasing skin temperature, increasing peripheral",
+  "page": 14,
+  "bbox": [
+   198.07178,
+   454.29358,
+   413.78333,
+   654.0495078
+  ],
+  "png": "TBMED508_fig_2-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/2-3",
+  "manual": "TBMED508",
+  "num": "2-3",
+  "title": "Decrease in finger-skin temperature upon initial exposure to cold (water) and",
+  "page": 15,
+  "bbox": [
+   231.07999999999998,
+   316.40000000000003,
+   416.8,
+   475.21667131924545
+  ],
+  "png": "TBMED508_fig_2-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/2-4",
+  "manual": "TBMED508",
+  "num": "2-4",
+  "title": "Comparison of metabolic rates (METs) during thermoneutral rest, shivering in",
+  "page": 16,
+  "bbox": [
+   201.2,
+   399.2,
+   446.8,
+   615.5090203477992
+  ],
+  "png": "TBMED508_fig_2-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/2-5",
+  "manual": "TBMED508",
+  "num": "2-5",
+  "title": "Patterns of cold acclimatization",
+  "page": 22,
+  "bbox": [
+   44.96,
+   555.1214484368894,
+   567.0400000000001,
+   603.0601998831523
+  ],
+  "png": "TBMED508_fig_2-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/3-1",
+  "manual": "TBMED508",
+  "num": "3-1",
+  "title": "Cold strain risk",
+  "page": 26,
+  "bbox": [
+   104.0269596036626,
+   94.88467760413243,
+   544.0449289345022,
+   666.0441198009996
+  ],
+  "png": "TBMED508_fig_3-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/3-2",
+  "manual": "TBMED508",
+  "num": "3-2",
+  "title": "Approximate amount of clothing insulation needed at different air temperatures",
+  "page": 28,
+  "bbox": [
+   44.96,
+   613.80063308972,
+   567.0400000000001,
+   642.7447686954433
+  ],
+  "png": "TBMED508_fig_3-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/3-3",
+  "manual": "TBMED508",
+  "num": "3-3",
+  "title": "Effects of exercise and wind speed on finger (covered with mitten) and forehead",
+  "page": 35,
+  "bbox": [
+   44.96,
+   461.470265207257,
+   567.0400000000001,
+   480.267533857647
+  ],
+  "png": "TBMED508_fig_3-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/3-4",
+  "manual": "TBMED508",
+  "num": "3-4",
+  "title": "Windchill temperature index",
+  "page": 36,
+  "bbox": [
+   103.99561,
+   95.62818000000004,
+   474.38086,
+   337.9825878005
+  ],
+  "png": "TBMED508_fig_3-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/3-5",
+  "manual": "TBMED508",
+  "num": "3-5",
+  "title": "Time in minutes until the occurrence of cheek frostbite in the most susceptible 5",
+  "page": 36,
+  "bbox": [
+   44.96,
+   569.4946737381838,
+   567.0400000000001,
+   646.8615409406079
+  ],
+  "png": "TBMED508_fig_3-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/3-6",
+  "manual": "TBMED508",
+  "num": "3-6",
+  "title": "Energy expenditure while walking at different velocities in various terrain",
+  "page": 43,
+  "bbox": [
+   121.51489,
+   123.22705000000008,
+   490.34020999999996,
+   508.4956578005
+  ],
+  "png": "TBMED508_fig_3-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/4-1",
+  "manual": "TBMED508",
+  "num": "4-1",
+  "title": "Types of cold injuries",
+  "page": 47,
+  "bbox": [
+   230.05841247460233,
+   462.69175768090207,
+   553.2055798061074,
+   619.7195728256283
+  ],
+  "png": "TBMED508_fig_4-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/4-2",
+  "manual": "TBMED508",
+  "num": "4-2",
+  "title": "Frequency of occurrence of hospitalization for cold-weather injuries",
+  "page": 48,
+  "bbox": [
+   153.44,
+   233.60000000000002,
+   494.56,
+   520.0430161936124
+  ],
+  "png": "TBMED508_fig_4-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/4-3",
+  "manual": "TBMED508",
+  "num": "4-3",
+  "title": "Number of reported cases of cold-weather injuries from 1998-99 to 2002-03",
+  "page": 49,
+  "bbox": [
+   147.80631487999997,
+   123.5323592960001,
+   427.71999999999997,
+   383.28867966034176
+  ],
+  "png": "TBMED508_fig_4-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/4-4",
+  "manual": "TBMED508",
+  "num": "4-4",
+  "title": "Cases of cold-weather injury hospitalizations by location of Army installation",
+  "page": 50,
+  "bbox": [
+   68.0,
+   109.27999999999997,
+   544.0,
+   433.22710360224386
+  ],
+  "png": "TBMED508_fig_4-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/4-5",
+  "manual": "TBMED508",
+  "num": "4-5",
+  "title": "Rewarming curves for shivering and exercise following cold water immersion",
+  "page": 56,
+  "bbox": [
+   130.15454,
+   95.62816999999995,
+   517.6991,
+   339.5425278
+  ],
+  "png": "TBMED508_fig_4-5.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/4-6",
+  "manual": "TBMED508",
+  "num": "4-6",
+  "title": "Pictures of frostbite",
+  "page": 62,
+  "bbox": [
+   44.96,
+   618.8900497995,
+   567.0400000000001,
+   651.5285577999999
+  ],
+  "png": "TBMED508_fig_4-6.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/4-7",
+  "manual": "TBMED508",
+  "num": "4-7",
+  "title": "Nonfreezing cold injury",
+  "page": 67,
+  "bbox": [
+   44.96,
+   338.7020798,
+   567.0400000000001,
+   357.5412778005
+  ],
+  "png": "TBMED508_fig_4-7.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/4-8",
+  "manual": "TBMED508",
+  "num": "4-8",
+  "title": "Schematic of factors and mechanisms that contribute to nonfreezing cold injuries",
+  "page": 69,
+  "bbox": [
+   86.01497693452826,
+   266.4915397764852,
+   544.0,
+   652.2505197940001
+  ],
+  "png": "TBMED508_fig_4-8.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/D-1",
+  "manual": "TBMED508",
+  "num": "D-1",
+  "title": "Lightweight long underwear",
+  "page": 85,
+  "bbox": [
+   198.20035118470395,
+   379.99930787724804,
+   274.00047155238394,
+   596.3196354352261
+  ],
+  "png": "TBMED508_fig_D-1.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/D-2",
+  "manual": "TBMED508",
+  "num": "D-2",
+  "title": "Expedition-weight long underwear",
+  "page": 85,
+  "bbox": [
+   342.20059134550394,
+   379.99930787724804,
+   413.80069699983994,
+   596.3196354352261
+  ],
+  "png": "TBMED508_fig_D-2.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/D-3",
+  "manual": "TBMED508",
+  "num": "D-3",
+  "title": "Fleece-layered jacket and trousers",
+  "page": 86,
+  "bbox": [
+   180.3125,
+   123.46704,
+   251.66992,
+   323.5812737994999
+  ],
+  "png": "TBMED508_fig_D-3.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/D-4",
+  "manual": "TBMED508",
+  "num": "D-4",
+  "title": "Polyester batting jacket and",
+  "page": 86,
+  "bbox": [
+   360.30518,
+   123.22704999999996,
+   431.6626,
+   323.5812737994999
+  ],
+  "png": "TBMED508_fig_D-4.png",
+  "restricted": false,
+  "dpi": 200
+ },
+ {
+  "id": "TBMED508/fig/D-5",
+  "manual": "TBMED508",
+  "num": "D-5",
+  "title": "Gore-TexTM parka and trousers",
+  "page": 86,
+  "bbox": [
+   264.90906,
+   443.13403,
+   347.06604000000004,
+   641.4453697999999
+  ],
+  "png": "TBMED508_fig_D-5.png",
+  "restricted": false,
+  "dpi": 200
+ }
+]
