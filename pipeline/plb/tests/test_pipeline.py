@@ -315,3 +315,50 @@ def test_marker_adapter_maps_captions(repo, tmp_path):
     write_tree(repo, t)
     out3, issues = build(repo)
     assert any("used with permission" in e for e in errors(issues))
+
+
+# ---- full chain: fixture manual -> trees -> romkit packer -> library.bin -> C reader ----
+ROMKIT = Path(__file__).resolve().parents[3] / "romkit"
+
+
+def _need(ok: bool, why: str):
+    """Skip locally when the romkit toolchain is missing; CI sets PLB_REQUIRE_ROMKIT=1 to fail."""
+    import os
+    if not ok:
+        if os.environ.get("PLB_REQUIRE_ROMKIT"):
+            pytest.fail(why)
+        pytest.skip(why)
+
+
+@pytest.fixture(scope="session")
+def cartcli(tmp_path_factory) -> Path:
+    import shutil as sh
+    import subprocess
+    cc = sh.which("cc") or sh.which("gcc") or sh.which("clang")
+    _need(cc is not None and (ROMKIT / "reader" / "cart.c").exists(), "no C compiler or romkit/")
+    exe = tmp_path_factory.mktemp("cart") / "cartcli"
+    subprocess.run([cc, "-O2", "-std=c99", "-Wall", "-Werror", "-o", str(exe),
+                    str(ROMKIT / "reader" / "cart.c"), str(ROMKIT / "reader" / "cartcli.c")], check=True)
+    return exe
+
+
+def test_packed_library_reads_back_verbatim(repo, cartcli):
+    import importlib.util
+    import shlex
+    import sys
+    from plb.cli import main as plb_main
+    missing = [m for m in ("numpy", "freetype", "uharfbuzz") if importlib.util.find_spec(m) is None]
+    _need(not missing, f"romkit packer deps missing: {missing}")
+    import copy
+    t = copy.deepcopy(GOOD_TREE)
+    t["tags"] = {"region": ["pnw"]}
+    t["nodes"]["none"]["emergency"] = True
+    write_tree(repo, t)
+    (repo / "content" / "phrases" / "expect.yaml").write_text(yaml.safe_dump({"the thing": "demo/start"}))
+    packer = f"{shlex.quote(sys.executable)} {shlex.quote(str(ROMKIT / 'pack.py'))}"
+    assert plb_main(["--root", str(repo), "pack", "--packer", packer]) == 0
+    lib = repo / "build" / "library.bin"
+    assert lib.stat().st_size > 0
+    out, issues = build(repo)
+    issues = run_checks(repo, out, issues, reader_cmd=str(cartcli), library=lib)
+    assert errors(issues) == []

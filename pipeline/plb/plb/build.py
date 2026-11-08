@@ -22,6 +22,7 @@ import yaml
 from . import phrases as ph
 from .extract import load_figures, load_sections
 from .pictures import build_picture
+from .schema import validate_content
 from .sources import load_manifest
 from .trees import DEFAULT_CONTEXTS, Issue, build_trees
 
@@ -50,7 +51,7 @@ def build(root: Path, out: Path | None = None, extract_dir: Path | None = None,
         contexts.update(yaml.safe_load((root / "content" / "contexts.yaml").read_text()) or {})
     b = build_trees(tree_dir, sections, figures, manuals, contexts)
     cmds, pissues = ph.build_commands(b.node_phrases, max_phrases=max_phrases)
-    issues = b.issues + pissues
+    issues = validate_content(root / "content", trees=False) + b.issues + pissues
 
     sleep = config.get("sleep_picture")
     if sleep and sleep not in figures and not (root / str(sleep)).exists():

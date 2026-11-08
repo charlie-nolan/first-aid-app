@@ -1,0 +1,74 @@
+# Runs on every PR and on pushes to main. Uses only test fixtures and the bench
+# cartridge: no manual PDFs, no extracts and nothing personal-only (Aerie) is needed.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  content:
+    name: Content schema (trees, config, strings)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pipeline/plb/pyproject.toml
+      - run: pip install -e pipeline/plb
+      - name: plb validate
+        working-directory: pipeline/plb
+        run: plb validate
+
+  pipeline:
+    name: Pipeline tests + fixture library.bin
+    runs-on: ubuntu-latest
+    env:
+      PLB_REQUIRE_ROMKIT: "1"   # the packer + C reader test must run, not skip
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pipeline/plb/pyproject.toml
+      - run: pip install -e 'pipeline/plb[test]' -r romkit/requirements.txt
+      - name: pytest (pipeline/plb)
+        working-directory: pipeline/plb
+        run: python -m pytest -q
+
+  romkit:
+    name: romkit reader + bench cartridge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: romkit/requirements.txt
+      - run: pip install pytest -r romkit/requirements.txt
+      - name: pytest (romkit)
+        working-directory: romkit
+        run: python -m pytest -q tests
+      - name: Rebuild the bench cartridge and check it matches the committed one
+        run: |
+          python3 firmware/tools/make_test_library.py
+          git diff --exit-code --stat -- firmware/library/library.bin firmware/library/phrases.txt \
+            firmware/library/test/*.json firmware/library/test/*.jsonl
+      - name: cartcli smoke test
+        run: |
+          gcc -O2 -std=c99 -Wall -o cartcli romkit/reader/cart.c romkit/reader/cartcli.c
+          ./cartcli firmware/library/library.bin info
+          ./cartcli firmware/library/library.bin voice home Washington,winter
