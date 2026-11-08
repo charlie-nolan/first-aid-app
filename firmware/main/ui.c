@@ -698,6 +698,13 @@ static int home_cat_of(ui_t *u, unsigned t) {
     if (!tree_group(u, t, g, sizeof g)) return 0;
     return !strcmp(g, "Survival") || !strcmp(g, "Terrain");
 }
+static int home_rank(ui_t *u, unsigned t) {               /* 0 signed off, 1 draft topic, 2 manual (shelf "reference") */
+    if (!tree_is_ref(u->c, (uint16_t)t)) return 0;
+    cart_tree_t tr = cart_tree(u->c, (uint16_t)t);
+    char b[16] = "";
+    if (tr.shelf != CART_NONE) cart_text(u->c, tr.shelf, 0, b, sizeof b);
+    return strcmp(b, "reference") ? 1 : 2;
+}
 static int home_entries(ui_t *u, uint16_t *out) {          /* lvl 0: 0/1; lvl 1: folders (LIB_FOLDER+t) and loose trees; lvl 2: trees */
     int n = 0;
     if (u->home_lvl == 0) { out[0] = 0; out[1] = 1; return 2; }
@@ -705,11 +712,11 @@ static int home_entries(ui_t *u, uint16_t *out) {          /* lvl 0: 0/1; lvl 1:
     u->lib_folder = u->home_lvl == 2 ? u->home_grp : 0xFF;
     int k = lib_entries(u, e);
     u->lib_folder = keep;
-    for (int pass = 0; pass < 2; pass++)                     /* signed-off topics first, then manuals */
+    for (int pass = 0; pass < 3; pass++)                     /* signed-off topics, then draft topics, then manuals */
         for (int i = 0; i < k; i++) {
             unsigned t = e[i] >= LIB_FOLDER ? e[i] - LIB_FOLDER : e[i];
             if (u->home_lvl == 1 && home_cat_of(u, t) != u->home_cat) continue;
-            if (e[i] < LIB_FOLDER && tree_is_ref(u->c, (uint16_t)t) != pass) continue;
+            if (e[i] < LIB_FOLDER && home_rank(u, t) != pass) continue;
             if (e[i] >= LIB_FOLDER && pass) continue;
             out[n++] = e[i];
         }
