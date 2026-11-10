@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Run all the desktop back-work in the background, one step after another, with logs.
-#   pipeline/gpu/run_all.sh            start it (returns at once; safe to close the terminal)
+#   pipeline/gpu/run_all.sh            start it (SKIP_DRAFTS=1 to leave out the tree drafts) (returns at once; safe to close the terminal)
 #   tail -f $WORK/logs/run_all.log     watch it
 # Steps: bake the cards -> draft the 15 trees with the local model -> voice clips ->
 # ranker experiments. A failed step is logged and the next one still runs.
@@ -19,7 +19,9 @@ run() { local name=$1; shift; echo; echo "===== $(date '+%F %T') $name"; "$@" > 
         && echo "ok: $name" || echo "FAILED: $name (see $LOGS/$name.log)"; tail -3 "$LOGS/$name.log"; }
 
 run bake ./bake.sh
-if command -v ollama >/dev/null; then
+if [ "${SKIP_DRAFTS:-0}" = 1 ]; then
+    echo "skip draft_trees (SKIP_DRAFTS=1)"
+elif command -v ollama >/dev/null; then
     ollama list | grep -q "${MODEL%%:*}" || ollama pull "$MODEL"
     wait_for_gpu 5000
     run draft_trees python draft_trees.py --model "$MODEL"
