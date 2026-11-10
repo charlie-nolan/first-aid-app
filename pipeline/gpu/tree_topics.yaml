@@ -1,0 +1,84 @@
+# Public wilderness first-aid trees to draft (from the 2026-11-08 tree plan, in priority order).
+# draft_trees.py hands each topic to a LOCAL model (Ollama on the desktop GPU) with the full
+# text of these sections. The model may only cite the sections listed here, so the choice of
+# source passages stays the plan's (and Charlie's); the model arranges the questions, writes
+# the short navigation labels and voice phrases. Every draft is validated by plb and lands in
+# content/drafts/ for Charlie's review: nothing here ships until it is signed off and moved
+# into content/trees/.
+#
+# cite entries use the tree YAML form: "ID/para" or {ref, from, to} for a verbatim excerpt.
+topics:
+  - id: cpr
+    title: Not breathing, CPR
+    emergency: true
+    cites: [ATP4-02.11/5-16, ATP4-02.11/5-17, ATP4-02.11/5-18, ATP4-02.11/6-45, ATP4-02.11/6-47,
+            ATP4-02.11/6-49, ATP4-02.11/6-50, ATP4-02.11/6-51]
+    notes: Open the airway first, then compressions. Adult, child and infant variants if 6-45 covers them.
+  - id: choking
+    title: Choking
+    emergency: true
+    cites: [ATP4-02.11/5-15, ATP4-02.11/5-33, ATP4-02.11/5.h2]
+    notes: "Back blows first, then abdominal thrusts. Voice phrases must never mention choking agents or gas."
+  - id: hypothermia
+    title: Hypothermia
+    emergency: true
+    cites:
+      - {ref: FEMA-CERT/114.2, from: "Because hypothermia can set in", to: "in the recovery position."}
+      - SHIPSMED/43.1
+      - SHIPSMED/218.1
+    avoid: ["FEMA-CERT/114.2 temperature sentence (the book prints 37 C for 95 F): only the excerpt above"]
+    notes: Signs and first steps from CERT; Ship's Medicine Chest for depth and cold-water rescue.
+  - id: heat
+    title: Heat stroke and heat exhaustion
+    emergency: true
+    cites: [FEMA-CERT/115.2, FEMA-CERT/115.3, FEMA-CERT/116.1, ATP4-02.11/17-10, ATP4-02.11/17-11, ATP4-02.11/17-15]
+    notes: One tree, two branches. "Confused or hot dry skin" goes straight to the heat stroke card.
+  - id: allergy
+    title: Allergic reaction, bee sting
+    emergency: true
+    cites: [FEMA-CERT/116.2, FEMA-CERT/116.3, ATP4-02.11/7-30, ATP4-02.11/7-32, ATP4-02.11/7-34]
+    notes: No drug doses. Epinephrine only as "their own auto-injector, if available" where a passage says so.
+  - id: snakebite
+    title: Snake bite
+    emergency: true
+    cites: [ATP4-02.11/16-40, ATP4-02.11/16-36, ATP4-02.11/16-38]
+    avoid: [ATP3-50.21 SNAKEBITES (constricting band), TC4-02.1/21.h2 (constricting band)]
+  - id: fracture
+    title: Fractures, sprains, splinting
+    cites: [FEMA-CERT/110.2, FEMA-CERT/110.3, FEMA-CERT/111.2, FEMA-CERT/112.1, FEMA-CERT/112.2,
+            FEMA-CERT/112.4, ATP4-02.11/13-27, ATP4-02.11/13-31, ATP4-02.11/13-34]
+    notes: Kit splint / improvised splint (cardboard, sticks) / nothing (hold it still) branches. Never straighten.
+  - id: frostbite
+    title: Frostbite
+    cites: [FEMA-CERT/114.3, ATP4-02.11/17-25, ATP4-02.11/17-28]
+    notes: Don't rewarm if it may refreeze.
+  - id: burns
+    title: Burns
+    cites: [FEMA-CERT/108.1, FEMA-CERT/107.3, FEMA-CERT/107.t1, ATP4-02.11/12-3, ATP4-02.11/12-20]
+    avoid: [ATP3-50.21 BURNS ("extreme measures")]
+  - id: drowning
+    title: Near-drowning
+    emergency: true
+    cites: [SHIPSMED/220.1, SHIPSMED/215.7]
+    notes: Links to the CPR and hypothermia trees by phrase, not by copying their cards.
+  - id: altitude
+    title: Altitude sickness
+    cites: [ATP3-90.97/A-3, ATP3-90.97/A-4, ATP3-90.97/A-5, ATP3-90.97/A-6]
+    notes: Stop going up, go down. No drug doses (TB MED 505 tables are not used).
+  - id: dehydration
+    title: Dehydration
+    cites: [SHIPSMED/40.2, SHIPSMED/41.1, TC3-97.61/3-5]
+  - id: blisters
+    title: Blisters and hot spots
+    cites: [TC3-97.61/3-31, TC3-97.61/3-34]
+  - id: signaling
+    title: Signaling when lost
+    shelf: survival
+    cites: [AFH10-644/21.5.8, AFH10-644/21.5.8.1, AFH10-644/21.5.9.1, AFH10-644/21.5.10, AFH10-644/21.5.11]
+    notes: Mirror, three fires, ground-to-air signals. The device's own SOS strobe is in the menu.
+  - id: lightning
+    title: Lightning
+    emergency: true
+    shelf: survival
+    cites: [NWS-LIGHTNING/2.h5, NWS-LIGHTNING/3.h1]
+    notes: "Where to be in the backcountry. Someone struck: call for help, start CPR."

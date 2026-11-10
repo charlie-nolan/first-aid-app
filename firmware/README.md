@@ -101,6 +101,11 @@ works the same way. The plain bench board has no corner buttons, so it keeps the
 list (DOWN to move, TALK to open). Trees are capped at 4 answers per question
 (`plb build` fails otherwise), so every card works with buttons alone.
 
+**Voice bench build (Plus).** `sdkconfig.voicebench` adds a serial test mode for
+`pipeline/gpu/bench_loop.py`: send `L <ms>` to listen, `T <tree>` to load a section's
+voice list; each result prints as a `VB ...` line and the board never sleeps. Build it
+with `pipeline/gpu/build_plus.sh --bench --flash`.
+
 Quick (partial) refreshes leave faint ghosts; every 5th refresh is a full one
 (the black-white flash), and pressing any two buttons together forces one.
 The serial log prints each refresh and how long BUSY stayed high. "BUSY never
