@@ -1,0 +1,2 @@
+# Voice bench build (Plus): serial-triggered listening for pipeline/gpu/bench_loop.py
+CONFIG_LIB_VOICE_BENCH=y

@@ -53,7 +53,7 @@ static void update(uint8_t mode, bool full) {
     vTaskDelay(pdMS_TO_TICKS(2));
     int ms = wait_busy();
     if (ms < 20) {
-        if (!busy_warned) ESP_LOGW(TAG, "BUSY never went high: check the BUSY wire (D3). Using fixed waits.");
+        if (!busy_warned) ESP_LOGW(TAG, "BUSY never went high: check the BUSY wire (D3 plain, D17 Plus). Using fixed waits.");
         busy_warned = true;
         vTaskDelay(pdMS_TO_TICKS(full ? 3000 : 800));
     }

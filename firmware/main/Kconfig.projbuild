@@ -25,6 +25,17 @@ config LIB_VOICE
     depends on LIB_BOARD_PLUS
     default y
 
+config LIB_VOICE_BENCH
+    bool "Voice bench mode (serial-triggered listening, for tools/gpu/bench_loop.py)"
+    depends on LIB_VOICE
+    default n
+    help
+        Bench testing only. Reads lines from the USB serial port:
+          L <ms>      listen for <ms> milliseconds, then print the result
+          T <tree>    load the voice list for one section (-1 = home list)
+        Each result prints as one line starting with "VB ". The board never
+        sleeps in this mode. Leave it off for normal use.
+
 config LIB_MESH_ACTIVE_LOW
     bool "Mesh board power switch is active low"
     depends on LIB_BOARD_PLUS

@@ -170,6 +170,9 @@ void app_main(void) {
         int64_t now = esp_timer_get_time();
         if (now - last_bat > 10 * 1000000LL) { last_bat = now; update_battery(); }
         bool busy = lights_signal_active() || ui.listening;
+#if CONFIG_LIB_VOICE_BENCH
+        busy = true;                                 /* bench mode: stay awake for the clip loop */
+#endif
         if (!busy && now - last > (int64_t)CONFIG_LIB_IDLE_SECONDS * 1000000LL) go_to_sleep(0);
     }
 }

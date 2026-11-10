@@ -79,6 +79,10 @@ battery_t power_battery(void) {
     }
     if (!n) return b;
     b.mv = sum / n * CONFIG_LIB_BAT_DIVIDER_X100 / 100;
+    if (b.mv < 2500) {      /* no cell fitted (bench, USB power): a real LiPo never reads this low */
+        b.pct = -1;
+        return b;           /* not reserve, not critical: never sleep or lock pages for a missing battery */
+    }
     b.pct = pct_of(b.mv);
     int64_t now = esp_timer_get_time();
     if (!nhist || now - last_hist_us > 10 * 1000000LL) {
