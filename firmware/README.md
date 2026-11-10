@@ -70,7 +70,11 @@ The first build takes a few minutes; after that only changed files rebuild.
 
 ## Flash the Plus
 
-    idf.py -B build-plus -D SDKCONFIG=build-plus/sdkconfig -D "SDKCONFIG_DEFAULTS=sdkconfig.defaults;sdkconfig.plus" flash monitor
+    idf.py -B build-plus -D SDKCONFIG=build-plus/sdkconfig -D "SDKCONFIG_DEFAULTS=sdkconfig.defaults;sdkconfig.plus" -D DEPENDENCIES_LOCK=dependencies.plus.lock flash monitor
+
+The Plus keeps its own dependency lock (it adds ESP-SR; the plain build must not). ESP-IDF 5.3
+ignores `$CONFIG{...}` rules in `main/idf_component.yml`, so the top `CMakeLists.txt` reads
+`CONFIG_LIB_VOICE` from the sdkconfig and passes it to the component manager as `LIB_VOICE`.
 
 This also downloads ESP-SR and writes its English speech model to the `model` partition.
 
