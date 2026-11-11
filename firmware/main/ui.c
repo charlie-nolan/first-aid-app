@@ -339,12 +339,13 @@ static void to_passage(ui_t *u, int k) {
 }
 
 /* ------------------------------------------------------------- the menu */
-enum { MI_FLASH, MI_SOS, MI_IR, MI_MESH, MI_FONT, MI_FAMILY, MI_CLEAN, MI_CONTEXT, MI_HOME, MI_LIBRARY, MI_WINDOW, MI_SIG_OFF, MI_SLEEP };
+enum { MI_CPR, MI_FLASH, MI_SOS, MI_IR, MI_MESH, MI_FONT, MI_FAMILY, MI_CLEAN, MI_CONTEXT, MI_HOME, MI_LIBRARY, MI_WINDOW, MI_SIG_OFF, MI_SLEEP };
 #ifndef CONFIG_LIB_FULL_REFRESH_EVERY
 #define CONFIG_LIB_FULL_REFRESH_EVERY 15
 #endif
 static int menu_items(const ui_t *u, int *out) {
     int n = 0;
+    if (u->menu_cpr) out[n++] = MI_CPR;           /* opened from a CPR page: hold DOWN, TALK starts the pace */
     out[n++] = MI_FLASH; out[n++] = MI_SOS;
     if (u->has_ir) out[n++] = MI_IR;
     if (u->has_mesh) out[n++] = MI_MESH;
@@ -354,6 +355,7 @@ static int menu_items(const ui_t *u, int *out) {
     if (cart_ctx_dims(u->c)) out[n++] = MI_CONTEXT;
     out[n++] = MI_HOME; out[n++] = MI_LIBRARY;
     if (!u->has_window_keys) out[n++] = MI_WINDOW;
+    if (!u->menu_cpr) out[n++] = MI_CPR;
     out[n++] = MI_SIG_OFF; out[n++] = MI_SLEEP;
     return n;
 }
@@ -361,6 +363,7 @@ static void menu_label(const ui_t *u, int item, char *b, size_t cap) {
     static const char *sizes[] = { "small", "medium", "large" };
     const char *on = "  [on]";
     switch (item) {
+    case MI_CPR:     snprintf(b, cap, "CPR pace light%s", u->signal == SIG_CPR ? on : ""); break;
     case MI_FLASH:   snprintf(b, cap, "Flashlight%s", u->signal == SIG_FLASHLIGHT ? on : ""); break;
     case MI_SOS:     snprintf(b, cap, "SOS flash (white)%s", u->signal == SIG_SOS_WHITE ? on : ""); break;
     case MI_IR:      snprintf(b, cap, "SOS flash (IR)%s", u->signal == SIG_IR ? on : ""); break;
@@ -407,7 +410,7 @@ static void header(ui_t *u, cart_fb_t *fb, const char *left, const char *right) 
         char p[8]; snprintf(p, sizeof p, "%d%%", u->battery_pct);
         xr -= draw_right(u, fb, 0, 0, xr, base, p) + 6;
     }
-    snprintf(r, sizeof r, "%s%s", u->listening ? "MIC  " : "", right ? right : "");
+    snprintf(r, sizeof r, "%s%s%s", u->signal == SIG_CPR ? "PACE  " : "", u->listening ? "MIC  " : "", right ? right : "");
     int rw = draw_right(u, fb, 0, 0, xr, base, r) + (UI_W - 2 - xr);
     draw_fit(u, fb, 0, 1, 2, base, UI_W - 10 - rw, left);
     fb_hline(fb, 0, UI_W - 1, l.hdr_h);
@@ -663,7 +666,17 @@ static void list_step(ui_t *u, int n, int dir) {
     if (s >= n) s = 0;
     u->list_sel = (uint8_t)s;
 }
-static void open_menu(ui_t *u) { u->back_mode = u->mode == M_WAKE ? M_READ : u->mode; u->mode = M_MENU; u->list_sel = 0; }
+/* The CPR tree is found by its title, so the pace light needs no new cartridge field. */
+static int in_cpr_tree(ui_t *u) {
+    const cart_node_t *n = cart_node(u->c, W(u)->node);
+    if (!n || n->tree >= u->c->n_trees) return 0;
+    char t[16]; T(u, cart_tree(u->c, n->tree).title, t, sizeof t);
+    return (t[0] | 0x20) == 'c' && (t[1] | 0x20) == 'p' && (t[2] | 0x20) == 'r' && (t[3] == 0 || t[3] == ' ');
+}
+static void open_menu(ui_t *u) {
+    u->menu_cpr = (u->mode == M_READ || u->mode == M_WAKE) && in_cpr_tree(u);
+    u->back_mode = u->mode == M_WAKE ? M_READ : u->mode; u->mode = M_MENU; u->list_sel = 0;
+}
 static void open_library(ui_t *u) {                       /* opens on the folder holding the current topic */
     u->mode = M_LIBRARY; u->list_sel = 0; u->lib_folder = 0xFF;
     const cart_node_t *n = cart_node(u->c, W(u)->node);
@@ -816,6 +829,7 @@ static ui_act_t menu_select(ui_t *u, ui_act_t a) {
     if (u->list_sel >= n) return a;
     int item = it[u->list_sel], sig = -1;
     switch (item) {
+    case MI_CPR:   sig = u->signal == SIG_CPR ? SIG_OFF : SIG_CPR; break;
     case MI_FLASH: sig = u->signal == SIG_FLASHLIGHT ? SIG_OFF : SIG_FLASHLIGHT; break;
     case MI_SOS:   sig = u->signal == SIG_SOS_WHITE ? SIG_OFF : SIG_SOS_WHITE; break;
     case MI_IR:    sig = u->signal == SIG_IR ? SIG_OFF : SIG_IR; break;
@@ -836,6 +850,7 @@ static ui_act_t menu_select(ui_t *u, ui_act_t a) {
     case MI_SLEEP: a.sleep_now = 1; return a;
     }
     if (sig >= 0) { a.signal = (int8_t)sig; u->signal = (uint8_t)sig; }
+    if (item == MI_CPR) u->mode = u->back_mode;      /* straight back to the CPR page, pace running */
     return a;
 }
 
