@@ -76,3 +76,5 @@
 #define DUTY_FLASHLIGHT    1023
 #endif
 #define DUTY_STROBE        1023
+/* CPR pace flash on the front light (D19 edge LEDs on the Plus; the shared D4 bead on the bench) */
+#define DUTY_CPR_PACE      1023

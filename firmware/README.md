@@ -86,7 +86,7 @@ add `menuconfig` before `flash`, then look under **Librarian**.
 
 | Button | Short press | Hold (0.7 s) |
 |---|---|---|
-| DOWN | next page / next choice (wraps on the plain board) | Menu: flashlight, SOS (white or IR), mesh, text size, font (Lexend/Bitter), where and when, library, sleep |
+| DOWN | next page / next choice (wraps on the plain board) | Menu: CPR pace light, flashlight, SOS (white or IR), mesh, text size, font (Lexend/Bitter), where and when, library, sleep |
 | UP (Plus) | previous page / choice | Library (all trees) |
 | TALK | jump to the choices, then open the highlighted one | Plus: speak while held, release to look it up |
 | BACK | go back; at the start of a window, the library | step the front light: off, dim, bright |
@@ -108,6 +108,15 @@ spare bottom-left corner turns back a page. The voice "Did you mean..." picker
 works the same way. The plain bench board has no corner buttons, so it keeps the
 list (DOWN to move, TALK to open). Trees are capped at 4 answers per question
 (`plb build` fails otherwise), so every card works with buttons alone.
+
+**CPR pace light.** On any page of the CPR tree, hold DOWN and press TALK: the
+menu opens with "CPR pace light" at the top, and TALK starts it and goes straight
+back to the page. The front light (D19 edge LEDs on the Plus, the shared D4 output
+on the bench) gives one short flash per compression at 110 a minute, the middle of
+the 100 to 120 a minute in ATP 4-02.11 para 6-45. The header shows PACE while it
+runs, the board does not idle into sleep, and the same menu item (or "All signals
+off") stops it. Outside the CPR tree the item sits near the bottom of the menu.
+The CPR tree is found by its title ("CPR"), so no cartridge change is needed.
 
 Quick (partial) refreshes leave faint ghosts; every 15th refresh is a full one (menuconfig > Librarian to change it)
 (the black-white flash), and pressing any two buttons together forces one.

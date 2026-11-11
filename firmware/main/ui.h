@@ -20,7 +20,7 @@ extern const uint8_t ui_sleep_art[];   /* sleep_art.c: built-in sleep picture */
 
 typedef enum { B_TALK, B_BACK, B_WIN_L, B_WIN_R, B_UP, B_DOWN, B_COUNT } ui_btn_t;
 typedef enum { E_PRESS, E_SHORT, E_LONG, E_RELEASE } ui_evkind_t;
-typedef enum { SIG_OFF, SIG_FLASHLIGHT, SIG_SOS_WHITE, SIG_IR } ui_signal_t;
+typedef enum { SIG_OFF, SIG_FLASHLIGHT, SIG_SOS_WHITE, SIG_IR, SIG_CPR } ui_signal_t;   /* SIG_CPR: compression pace on the front light */
 typedef enum { M_WAKE, M_READ, M_LIBRARY, M_MENU, M_PICK, M_MSG, M_CTX_DIMS, M_CTX_VALUES, M_HOME } ui_mode_t;
 enum { RD_NONE, RD_PARTIAL, RD_FULL };
 enum { VO_NONE, VO_START, VO_STOP, VO_CANCEL };
@@ -68,6 +68,7 @@ typedef struct {
     ui_saved_t *s;
     ui_mode_t mode, back_mode;
     uint8_t list_sel, listening, talk_armed, ctx_dim;
+    uint8_t menu_cpr;               /* menu opened from the CPR tree: pace light listed first */
     uint8_t lib_folder;             /* Library: 0xFF = top level, else the first tree of the open folder */
     uint8_t home_lvl, home_cat, home_grp, home_page;   /* Home tiles: 0 Injury/Survival, 1 folders, 2 topics */
     uint16_t picks[3]; uint8_t npicks;
