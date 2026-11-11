@@ -96,13 +96,17 @@ Pin map: `firmware/main/board.h`. Parts lists, wiring and enclosure files will g
 | `firmware/` | ESP-IDF C firmware and the PC screen simulator |
 | `romkit/` | Cartridge format: packer, text and picture codecs, font packer, C reader, tests |
 | `pipeline/` | `plb`, the PDF-to-cartridge builder, plus GPU helper scripts |
-| `docs/` | Notes on the guide content |
+| `docs/` | Notes on the guide content, and [`DESIGN_HISTORY.md`](docs/DESIGN_HISTORY.md): how the design evolved |
 | `hardware/` | Parts lists, wiring and enclosure files (coming) |
 | `model/` | Reserved; v1 has no model |
 
 `firmware/components/cart` points at `../../../romkit/reader`, so keep `firmware/` and `romkit/`
 side by side. CI runs the content schema check, the pipeline tests and the cartridge reader tests
 on every pull request, using only test fixtures (no manual PDFs needed).
+
+## How the design evolved
+
+Every idea, how it changed, the dead ends and the key decisions are in [`docs/DESIGN_HISTORY.md`](docs/DESIGN_HISTORY.md).
 
 ## Status
 
