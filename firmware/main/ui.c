@@ -593,7 +593,7 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
             int y = l.body_y + (i - top) * lh;
             lbl_choice(u, P.ch[i], b, sizeof b);
             if (u->voice_numbers && i < 4) {                   /* first four answers can be said by number */
-                char t[64]; snprintf(t, sizeof t, "%d  %s", i + 1, b); memcpy(b, t, sizeof b); b[sizeof b - 1] = 0;
+                char t[80]; snprintf(t, sizeof t, "%d  %s", i + 1, b); memcpy(b, t, sizeof b); b[sizeof b - 1] = 0;
             }
             draw_fit(u, fb, size, 0, 6, base_of(u, size, y), UI_W - 12, b);
             if (i == w->sel) fb_xor_rect(fb, 2, y, UI_W - 4, lh);
