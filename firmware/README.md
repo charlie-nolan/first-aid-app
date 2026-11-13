@@ -118,6 +118,11 @@ runs, the board does not idle into sleep, and the same menu item (or "All signal
 off") stops it. Outside the CPR tree the item sits near the bottom of the menu.
 The CPR tree is found by its title ("CPR"), so no cartridge change is needed.
 
+**Voice bench build (Plus).** `sdkconfig.voicebench` adds a serial test mode for
+`pipeline/gpu/bench_loop.py`: send `L <ms>` to listen, `T <tree>` to load a section's
+voice list; each result prints as a `VB ...` line and the board never sleeps. Build it
+with `pipeline/gpu/build_plus.sh --bench --flash`.
+
 Quick (partial) refreshes leave faint ghosts; every 15th refresh is a full one (menuconfig > Librarian to change it)
 (the black-white flash), and pressing any two buttons together forces one.
 The serial log prints each refresh and how long BUSY stayed high. "BUSY never

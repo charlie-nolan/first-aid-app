@@ -8,6 +8,7 @@
 #if CONFIG_LIB_VOICE
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "board.h"
 #include "app.h"
 #include "power.h"
@@ -65,6 +66,18 @@ void voice_load(uint16_t tree, const cart_tags_t *ctx) {
 static void post(const esp_mn_results_t *r) {
     app_msg_t m = { .type = MSG_VOICE };
     for (int i = 0; r && i < r->num && i < 3; i++) { m.cmd[i] = r->command_id[i]; m.prob[i] = r->prob[i]; m.n = (int8_t)(i + 1); }
+#if CONFIG_LIB_VOICE_BENCH
+    /* one machine-readable line per result: VB <n> <cmd>:<prob>:<phrase>|... */
+    printf("VB %d", m.n);
+    for (int i = 0; i < m.n; i++) {
+        char s[64] = "";
+        if (cart_phrase_count(cart)) cart_text(cart, cart_phrase(cart, (uint16_t)m.cmd[i]).text, 0, s, sizeof s);
+        printf("%s%d:%.3f:%s", i ? "|" : " ", m.cmd[i], m.prob[i], s);
+    }
+    printf("\n");
+    fflush(stdout);
+    return;             /* bench build: results only go to serial, so the screen and list stay put */
+#endif
     xQueueSend(app_q, &m, 0);
 }
 
@@ -97,6 +110,32 @@ static void task(void *arg) {
     }
 }
 
+#if CONFIG_LIB_VOICE_BENCH
+/* Bench mode: tools/gpu/bench_loop.py plays a clip into the mic and sends
+ * "L <ms>"; we listen that long and print a VB line. Polls stdin (the USB
+ * serial console reads without blocking when no driver is installed). */
+static void bench_task(void *arg) {
+    char line[32]; int n = 0;
+    printf("VB ready\n"); fflush(stdout);
+    for (;;) {
+        int ch = getchar();
+        if (ch == EOF) { vTaskDelay(pdMS_TO_TICKS(10)); continue; }
+        if (ch != '\n' && ch != '\r') { if (n < (int)sizeof line - 1) line[n++] = (char)ch; continue; }
+        line[n] = 0; n = 0;
+        if (line[0] == 'L') {
+            int ms = atoi(line + 1); if (ms < 200 || ms > 8000) ms = 3000;
+            voice_start();
+            vTaskDelay(pdMS_TO_TICKS(ms));
+            voice_stop(true);
+        } else if (line[0] == 'T') {
+            int t = atoi(line + 1);
+            voice_load(t < 0 ? CART_NONE : (uint16_t)t, 0);
+            printf("VB list %d\n", t); fflush(stdout);
+        }
+    }
+}
+#endif
+
 bool voice_init(const cart_t *c) {
     srmodel_list_t *models = esp_srmodel_init("model");
     char *name = models ? esp_srmodel_filter(models, ESP_MN_PREFIX, ESP_MN_ENGLISH) : 0;
@@ -119,6 +158,9 @@ bool voice_init(const cart_t *c) {
     ESP_ERROR_CHECK(i2s_channel_init_pdm_rx_mode(rx, &pc));
     go = xSemaphoreCreateBinary();
     xTaskCreatePinnedToCore(task, "voice", 8192, 0, 6, 0, 1);
+#if CONFIG_LIB_VOICE_BENCH
+    xTaskCreatePinnedToCore(bench_task, "vbench", 4096, 0, 5, 0, 0);
+#endif
     return true;
 }
 
