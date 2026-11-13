@@ -503,18 +503,35 @@ static void fb_corner_mark(cart_fb_t *fb, int corner, int y_top, int y_bot) {
         for (int x = 0; x < 7 - r; x++) fb_px(fb, right ? UI_W - 1 - x : x, y);
     }
 }
+/* Voice boards: the corner mark is the tile's number (1-4, reading order), white on
+ * black, so "say the number" and "press the button by it" point at the same corner. */
+static int num_style(const ui_t *u) { unsigned nf = cart_font_sizes(u->c); return ST(u, nf > 1 ? 1 : 0); }
+static int num_box_w(ui_t *u) {
+    if (!u->voice_numbers) return 7;
+    return cart_draw_str(u->c, num_style(u), 1, 0, 0, 0, "4") + 5;
+}
+static void fb_corner_num(ui_t *u, cart_fb_t *fb, int corner, int y_top, int y_bot) {
+    int right = corner & 1, bottom = corner >> 1, st = num_style(u);
+    int lh = cart_font_line_height(u->c, (unsigned)st), bw = num_box_w(u);
+    char d[2] = { (char)('1' + corner), 0 };
+    int x = right ? UI_W - bw : 0, y = bottom ? y_bot - lh + 1 : y_top;
+    cart_draw_str(u->c, (unsigned)st, 1, fb, x + 3, y + lh - lh / 4, d);
+    fb_xor_rect(fb, x, y, bw, lh);
+}
 static void draw_answers(ui_t *u, cart_fb_t *fb, int n, char lab[][64]) {
     lay_t l = layout(u);
     int top = l.body_y - 2, bot = l.ftr_y - 1, mid = (top + bot) / 2, cx = UI_W / 2;
     unsigned size = u->s->font;
-    int rows = n > 2 ? 2 : 1;
+    int rows = n > 2 ? 2 : 1, bw = num_box_w(u);
     if (rows == 2) fb_hline(fb, 0, UI_W - 1, mid);
     for (int y = top; y <= bot; y++) fb_px(fb, cx, y);           /* full height, also for 2 tiles */
     for (int i = 0; i < n && i < 4; i++) {
         int right = i & 1, bottom = i >> 1;
         int y0 = bottom ? mid + 2 : top + 1, y1 = bottom ? bot - 1 : (rows == 2 ? mid - 1 : bot - 1);
-        int x0 = right ? cx + 4 : 10, w = cx - 14;
-        fb_corner_mark(fb, i, top + 1, bot - 1);
+        int x0 = right ? cx + 4 : bw + 3, w = cx - bw - 7;
+        if (!lab[i][0]) continue;                                /* blank tile: no mark either */
+        if (u->voice_numbers) fb_corner_num(u, fb, i, top + 1, bot - 1);
+        else fb_corner_mark(fb, i, top + 1, bot - 1);
         draw_wrap(u, fb, size, x0, y0 + 1, w, y1 - y0, lab[i]);
     }
 }
@@ -567,7 +584,7 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
         char ab[4][64];
         for (int i = 0; i < P.nch; i++) lbl_choice(u, P.ch[i], ab[i], sizeof ab[i]);
         draw_answers(u, fb, P.nch, ab);
-        footer(u, fb, "Press the button by your answer. TALK: read again");
+        footer(u, fb, u->voice_numbers ? "Press or say a number. Tap TALK: read again" : "Press the button by your answer. TALK: read again");
     } else {
         unsigned size = u->s->font; int lh = cart_font_line_height(u->c, ST(u, size));
         int top = sub * P.per;
@@ -575,6 +592,9 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
         for (int i = top; i < P.nch && i < top + P.per; i++) {
             int y = l.body_y + (i - top) * lh;
             lbl_choice(u, P.ch[i], b, sizeof b);
+            if (u->voice_numbers && i < 4) {                   /* first four answers can be said by number */
+                char t[64]; snprintf(t, sizeof t, "%d  %s", i + 1, b); memcpy(b, t, sizeof b); b[sizeof b - 1] = 0;
+            }
             draw_fit(u, fb, size, 0, 6, base_of(u, size, y), UI_W - 12, b);
             if (i == w->sel) fb_xor_rect(fb, 2, y, UI_W - 4, lh);
         }
@@ -622,7 +642,7 @@ void ui_render(ui_t *u, cart_fb_t *fb) {
             for (int i = 0; i < u->npicks; i++) lbl_pick(u, i, ab[i], sizeof ab[i]);
             header(u, fb, "Did you mean...", 0);
             draw_answers(u, fb, u->npicks, ab);
-            footer(u, fb, "Press the button by your answer. BACK: cancel");
+            footer(u, fb, u->voice_numbers ? "Press or say a number. BACK: cancel" : "Press the button by your answer. BACK: cancel");
         } else draw_list(u, fb, "Did you mean...", 0, u->npicks, u->list_sel, lbl_pick, 0);
         break;
     case M_MSG: { lay_t l = layout(u); header(u, fb, "", 0); draw_wrap(u, fb, 1, 6, l.body_y, UI_W - 12, l.body_h, u->msg ? u->msg : "");
@@ -805,7 +825,8 @@ static void render_home(ui_t *u, cart_fb_t *fb) {
         draw_answers(u, fb, m, ab);
         u->s->font = keep;
     } else draw_answers(u, fb, m, ab);
-    footer(u, fb, u->home_lvl ? "Press the button by a tile. BACK: up" : "Press the button by a tile. TALK: back to reading");
+    if (u->voice_numbers) footer(u, fb, u->home_lvl ? "Press or say a number. BACK: up" : "Say a number or the problem. TALK: reading");
+    else footer(u, fb, u->home_lvl ? "Press the button by a tile. BACK: up" : "Press the button by a tile. TALK: back to reading");
 }
 
 static void talk_short(ui_t *u) {
@@ -860,7 +881,8 @@ ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
     if (b == B_BACK && k == E_LONG) { a.light_step = 1; a.redraw = RD_NONE; return a; }   /* front light, any screen */
 
     /* push-to-talk: TALK down starts listening, release recognises. A quick tap is a normal TALK press. */
-    if (b == B_TALK && u->has_voice && k == E_PRESS && (u->mode == M_WAKE || u->mode == M_READ)) u->talk_armed = 1;
+    if (b == B_TALK && u->has_voice && k == E_PRESS &&
+        (u->mode == M_WAKE || u->mode == M_READ || u->mode == M_HOME || u->mode == M_PICK)) u->talk_armed = 1;
     if (b == B_TALK && u->talk_armed) {               /* only presses that started on a reading screen */
         if (k == E_PRESS) { a.voice = VO_START; a.redraw = RD_NONE; return a; }
         if (k == E_LONG) { u->listening = 1; return a; }                  /* show MIC */
@@ -869,8 +891,8 @@ ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
             u->talk_armed = 0;
             if (held_ms >= 400) { u->listening = 0; a.voice = VO_STOP; a.redraw = RD_NONE; return a; }
             a.voice = VO_CANCEL; u->listening = 0;
-            if (u->mode == M_WAKE) u->mode = M_READ; else talk_short(u);
-            return a;
+            if (u->mode == M_WAKE) { u->mode = M_READ; return a; }
+            k = E_SHORT;                               /* a quick tap: this screen's normal TALK press */
         }
     }
     if (k != E_SHORT && k != E_LONG) { a.redraw = RD_NONE; return a; }
@@ -983,20 +1005,68 @@ ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
     return a;
 }
 
+/* ------------------------------------------------------------- voice */
+static void say(ui_t *u, const char *m) {
+    u->back_mode = u->mode == M_WAKE || u->mode == M_MSG ? M_READ : u->mode;
+    u->mode = M_MSG; u->msg = m;
+}
+/* A number = pressing the button by that tile. Numbers only answer while the tiles
+ * are on screen; on the question's text pages a number first brings up the tiles. */
+static ui_act_t voice_number(ui_t *u, int k, ui_act_t a) {
+    if (u->mode == M_HOME || u->mode == M_PICK) {
+        if (u->has_window_keys) return ui_event(u, CORNER[k], E_SHORT, 0);
+        if (u->mode == M_PICK) { if (k < u->npicks) go_node(u, u->picks[k]); return a; }
+        uint16_t e[VIS_MAX]; int n = home_entries(u, e);
+        if (k < n) home_pick(u, e[k]);
+        return a;
+    }
+    if (u->mode != M_READ) { a.redraw = RD_NONE; return a; }
+    ui_window_t *w = W(u); pages_t P; node_pages(u, w->node, &P);
+    if (!P.nch) { say(u, "No numbered answers on this page. Say back, again or home."); return a; }
+    if (w->page < first_choice_page(&P)) { w->page = (uint8_t)first_choice_page(&P); w->sel = 0; return a; }
+    if (k >= P.nch) { say(u, "No answer with that number here. Say another, or press its button."); return a; }
+    go_node(u, cart_node_choice(u->c, P.n, P.ch[k]).to);
+    return a;
+}
+static ui_act_t voice_key(ui_t *u, const int *cmd, const float *prob, int n, ui_act_t a) {
+    int k = UI_VOICE_KEY_OF(cmd[0]);
+    /* A wrong branch in a diagnostic tree costs more than asking again: be strict.
+     * Too unsure, or a different number scored almost as high: ask again. */
+    int close = n > 1 && UI_VOICE_IS_KEY(cmd[1]) && cmd[1] != cmd[0] && prob[0] - prob[1] < 0.10f;
+    if (prob[0] * 100 < u->key_min_pct || (k <= VK_4 && close)) {
+        say(u, "Say the number again, or press the button by your answer.");
+        return a;
+    }
+    if (u->mode == M_WAKE || u->mode == M_MSG) u->mode = u->mode == M_MSG ? u->back_mode : M_READ;
+    switch (k) {
+    case VK_HOME: u->mode = M_HOME; u->home_lvl = 0; u->home_page = 0; u->list_sel = 0; return a;
+    case VK_BACK:
+        if (u->mode == M_HOME) { if (u->home_lvl) home_up(u); else u->mode = M_READ; }
+        else if (u->mode == M_PICK) u->mode = M_READ;
+        else if (u->mode == M_READ) back(u);
+        return a;
+    case VK_AGAIN:
+        if (u->mode == M_READ) { W(u)->page = 0; W(u)->sel = 0; } else a.redraw = RD_NONE;
+        return a;
+    default: return voice_number(u, k, a);
+    }
+}
+
 ui_act_t ui_voice(ui_t *u, const int *cmd, const float *prob, int n) {
     ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0 };
     u->listening = 0;
+    if (n > 0 && u->voice_numbers && UI_VOICE_IS_KEY(cmd[0])) return voice_key(u, cmd, prob, n, a);
     u->npicks = 0;
     for (int i = 0; i < n && u->npicks < 3; i++) {             /* distinct nodes, best first */
+        if (cmd[i] < 0) continue;                              /* a voice key below a phrase: ignore */
         uint16_t nd = cart_cmd_node(u->c, (uint16_t)cmd[i]);
         if (nd == CART_NONE) continue;
         int dup = 0; for (int j = 0; j < u->npicks; j++) dup |= u->picks[j] == nd;
         if (!dup) u->picks[u->npicks++] = nd;
     }
-    if (!u->npicks) {
-        u->back_mode = u->mode == M_WAKE ? M_READ : u->mode; u->mode = M_MSG;
-        u->msg = "Didn't catch that. Hold TALK and say it again, or use the buttons.";
-    } else if (u->npicks == 1 || prob[0] >= 0.5f) go_node(u, u->picks[0]);
+    if (!u->npicks) say(u, u->voice_numbers ? "Didn't catch that. Hold TALK and say it again, say a number, or use the buttons."
+                                            : "Didn't catch that. Hold TALK and say it again, or use the buttons.");
+    else if (u->npicks == 1 || prob[0] >= 0.5f) go_node(u, u->picks[0]);
     else { u->mode = M_PICK; u->list_sel = 0; }               /* low confidence: let the reader pick */
     return a;
 }

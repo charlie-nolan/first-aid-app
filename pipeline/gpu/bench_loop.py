@@ -6,6 +6,9 @@ when it gets "L <ms>" on serial and prints one "VB ..." line per result.
 
     python bench_loop.py --clips $WORK/clips --port /dev/ttyACM0 [--limit 300] [--volume 0.8]
 
+Numbered tiles: make the key clips (make_clips.py --keys --out $WORK/keyclips) and run
+them against a topic's list, e.g. --tree 0, which holds the numbers plus topic phrases.
+
 Put a small speaker 20-50 cm from the board, in a quiet room (the clips carry their own
 noise). Results: <clips>/bench-<time>.jsonl and a Markdown summary next to it.
 """
@@ -26,7 +29,13 @@ def node_of_cmd() -> tuple[dict, dict]:
     keys = {n["id"]: n["key"] for n in trees["nodes"]}
     by_cmd = {c["cmd_id"]: keys[c["node"]] for c in json.loads((INTER / "phrases.json").read_text())}
     by_text = {c["spoken"].lower(): keys[c["node"]] for c in json.loads((INTER / "phrases.json").read_text())}
+    # voice keys (numbered tiles): the firmware reports them as ids -100, -101, ...
+    for k, name in enumerate(KEY_NAMES):
+        by_cmd[-100 - k] = f"key:{name}"
     return by_cmd, by_text
+
+
+KEY_NAMES = ["1", "2", "3", "4", "back", "again", "home"]   # = VK_* in firmware/main/ui.h
 
 
 def read_line(ser, prefix: str, timeout: float) -> str | None:

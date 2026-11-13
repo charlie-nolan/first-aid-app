@@ -1,0 +1,2 @@
+# Bench comparison: inside a topic, only numbers + life-threat jumps (not every topic phrase).
+CONFIG_LIB_VOICE_TOPICS_EVERYWHERE=n

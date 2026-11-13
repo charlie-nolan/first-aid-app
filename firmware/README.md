@@ -109,6 +109,11 @@ works the same way. The plain bench board has no corner buttons, so it keeps the
 list (DOWN to move, TALK to open). Trees are capped at 4 answers per question
 (`plb build` fails otherwise), so every card works with buttons alone.
 
+**Numbered tiles (Plus voice).** Answer tiles show 1-4 in the corner by their button
+(reading order). Hold TALK and say the number to pick it, or "back", "again", "home".
+Topic phrases ("I cut my hand") work on every screen. Plan and bring-up steps:
+`docs/PLUS_BRINGUP.md`.
+
 **CPR pace light.** On any page of the CPR tree, hold DOWN and press TALK: the
 menu opens with "CPR pace light" at the top, and TALK starts it and goes straight
 back to the page. The front light (D19 edge LEDs on the Plus, the shared D4 output

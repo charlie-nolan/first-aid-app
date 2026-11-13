@@ -21,6 +21,7 @@
 #include "lights.h"
 #include "power.h"
 #include "voice.h"
+void psram_test_start(void);
 #include "cart.h"
 
 static const char *TAG = "librarian";
@@ -58,6 +59,7 @@ static void voice_follow(void) {                    /* new section or context: s
     if (!ui.has_voice) return;
     const cart_node_t *n = cart_node(&cart, saved.win[saved.cur].node);
     uint16_t t = n ? n->tree : CART_NONE;
+    if (ui.mode == M_HOME || ui.mode == M_PICK) t = CART_NONE;   /* Home tiles and "Did you mean": topic list */
     if (t == voice_tree && !memcmp(&voice_ctx, &saved.ctx, sizeof voice_ctx)) return;
     voice_tree = t; voice_ctx = saved.ctx;
     voice_load(t, &saved.ctx);
@@ -166,6 +168,11 @@ void app_main(void) {
     show(RD_FULL);                                   /* wake screen */
     buttons_init();
     ui.has_voice = voice_init(&cart);
+    psram_test_start();                              /* no-op unless Kconfig LIB_PSRAM_TEST */
+#if CONFIG_LIB_VOICE && CONFIG_LIB_VOICE_NUMBERS
+    ui.voice_numbers = ui.has_voice;
+    ui.key_min_pct = CONFIG_LIB_VOICE_KEY_MIN_PCT;
+#endif
     voice_follow();
     if (ui.has_voice) ESP_LOGI(TAG, "voice ready: hold TALK and speak");
 
@@ -191,8 +198,8 @@ void app_main(void) {
         int64_t now = esp_timer_get_time();
         if (now - last_bat > 10 * 1000000LL) { last_bat = now; update_battery(); }
         bool busy = lights_signal_active() || ui.listening;
-#if CONFIG_LIB_VOICE_BENCH
-        busy = true;                                 /* bench mode: stay awake for the clip loop */
+#if CONFIG_LIB_VOICE_BENCH || CONFIG_LIB_PSRAM_TEST
+        busy = true;                                 /* bench modes: stay awake for the clip loop / soak test */
 #endif
         if (!busy && now - last > (int64_t)CONFIG_LIB_IDLE_SECONDS * 1000000LL) go_to_sleep(0);
     }

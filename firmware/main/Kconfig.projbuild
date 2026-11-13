@@ -36,6 +36,59 @@ config LIB_VOICE_BENCH
         Each result prints as one line starting with "VB ". The board never
         sleeps in this mode. Leave it off for normal use.
 
+config LIB_VOICE_NUMBERS
+    bool "Voice: numbered answer tiles (say one to four inside a topic)"
+    depends on LIB_VOICE
+    default y
+    help
+        Charlie, 2026-11-13. Voice picks the topic from the full phrase list at
+        Home. Inside a topic the list shrinks to the tile numbers (one, two,
+        three, four, with "number two" / "option two" forms) plus back, again,
+        home and the topic phrases (see LIB_VOICE_TOPICS_EVERYWHERE). Tiles show their number in the
+        corner by their button. Off: the old per-section phrase lists.
+
+config LIB_VOICE_KEY_MIN_PCT
+    int "Voice: lowest confidence (%) to act on a number"
+    depends on LIB_VOICE_NUMBERS
+    range 0 100
+    default 50
+    help
+        Below this, or when a different number scores within 10 points,
+        the screen asks to say it again instead of guessing a branch.
+        Tune on the bench (bench_loop.py --keys).
+
+config LIB_VOICE_TOPICS_EVERYWHERE
+    bool "Voice: keep every topic phrase live inside a topic too"
+    depends on LIB_VOICE_NUMBERS
+    default y
+    help
+        Charlie, 2026-11-13: plans change, so every section's entry phrase
+        ("I cut my hand", "he's not breathing") works on every screen, next
+        to the numbers. Off: only life-threat jumps stay live in a topic
+        (smaller list; compare on the bench).
+
+config LIB_VOICE_MAX_JUMPS
+    int "Voice: life-threat jump phrases kept live inside a topic"
+    depends on LIB_VOICE_NUMBERS && !LIB_VOICE_TOPICS_EVERYWHERE
+    default 24
+    help
+        Phrases marked `always: true` in the trees, and entry phrases of
+        emergency sections, so "not breathing" works from any topic.
+
+config LIB_PSRAM_TEST
+    bool "PSRAM soak test (bench: for the 120 MHz PSRAM experiment)"
+    default n
+    help
+        Runs a low-priority task that writes and checks patterns over a
+        block of PSRAM forever, alongside the normal UI and voice, and logs
+        a "PSRAM" line per pass: errors, MB/s, chip temperature. Any error
+        means the PSRAM speed is not stable on this board.
+
+config LIB_PSRAM_TEST_KB
+    int "PSRAM soak test block (KB)"
+    depends on LIB_PSRAM_TEST
+    default 2048
+
 config LIB_MESH_ACTIVE_LOW
     bool "Mesh board power switch is active low"
     depends on LIB_BOARD_PLUS
