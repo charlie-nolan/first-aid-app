@@ -29,10 +29,20 @@ def _label(s: str, limit: int = LABEL_MAX) -> str:
     return s if len(s) <= limit else s[:limit - 3].rstrip() + "..."
 
 
+WORD_NUMS = ("one two three four five six seven eight nine ten eleven twelve thirteen "
+             "fourteen fifteen sixteen seventeen eighteen nineteen twenty").split()
+
+
 def _chap_key(chap: str | None) -> str:
-    """'CHAPTER 2' and 'CHAPTER 2. PERSONAL CLOTHING' are the same chapter."""
+    """'CHAPTER 2' and 'CHAPTER 2. PERSONAL CLOTHING' are the same chapter; so are
+    'Section Four: Traumatic Emergencies' lines (Aerie), keyed as chapter 4."""
     m = re.match(r"^(chapter|appendix)\s+(\S+?)[.:]?(\s|$)", chap or "", flags=re.I)
-    return f"{m.group(1).lower()} {m.group(2).upper()}" if m else (chap or "")
+    if m:
+        return f"{m.group(1).lower()} {m.group(2).upper()}"
+    w = re.match(r"^section\s+([a-z]+)\b", chap or "", flags=re.I)
+    if w and w.group(1).lower() in WORD_NUMS:
+        return f"chapter {WORD_NUMS.index(w.group(1).lower()) + 1}"
+    return chap or ""
 
 
 def _chap_sort(key: str):

@@ -2,7 +2,7 @@
  *   gcc -O2 -Wall -Wextra -I../main -I../../romkit/reader -o sim sim.c ../main/ui.c ../../romkit/reader/cart.c
  *   ./sim ../library/library.bin OUTDIR [plain|plus] KEYS...
  * KEYS: down up talk back wl wr (short press), DOWN UP TALK BACK WL WR (long press),
- *       say:N[,M..] (voice result, command ids), low / ok (battery reserve on/off), sleep,
+ *       say:N[,M..] (voice result, command ids), num:1-4 / key:back|again|home (voice keys, plus), low / ok (battery reserve on/off), sleep,
  *       family:N (0 Lexend, 1 Bitter), font:N (text size 0-2).
  * Writes OUTDIR/NN.pbm per step (250x122, 1 = black). */
 #include "ui.h"
@@ -28,6 +28,7 @@ int main(int argc, char **argv) {
     ui_init(&u, &c, &saved);
     u.has_window_keys = u.has_voice = u.has_ir = u.has_mesh = (uint8_t)plus;
     u.has_ir = 1; u.battery_pct = plus ? 78 : -1;
+    u.voice_numbers = (uint8_t)plus; u.key_min_pct = 50;   /* Plus: numbered tiles, voice keys */
     cart_fb_t fb = { bits, UI_STRIDE, UI_W, UI_H };
     int k = 0;
     ui_render(&u, &fb); dump(argv[2], k++, "boot");
@@ -52,6 +53,12 @@ int main(int argc, char **argv) {
             for (char *p = (char *)s + 4; *p && m < 3; ) { cmd[m++] = (int)strtol(p, &p, 10); if (*p == ',') p++; }
             if (m > 1) pr[0] = 0.3f;
             a = ui_voice(&u, cmd, pr, m);
+        } else if (!strncmp(s, "num:", 4) || !strncmp(s, "key:", 4)) {
+            static const char *kn[] = { "1", "2", "3", "4", "back", "again", "home" };
+            int kk = -1; for (int j = 0; j < VK_COUNT; j++) if (!strcmp(s + 4, kn[j])) kk = j;
+            if (kk < 0) { fprintf(stderr, "bad %s\n", s); return 2; }
+            int cmd[1] = { UI_VOICE_KEY(kk) }; float pr[1] = { 0.9f };
+            a = ui_voice(&u, cmd, pr, 1);
         } else if (!strncmp(s, "family:", 7)) saved.family = (uint8_t)atoi(s + 7);
         else if (!strncmp(s, "font:", 5)) { saved.font = (uint8_t)atoi(s + 5); saved.win[saved.cur].page = 0; }
         else if (!strcmp(s, "low")) { u.low_battery = 1; u.battery_pct = 15; }

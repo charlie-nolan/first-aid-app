@@ -1,7 +1,9 @@
 /* buttons.c - polled every 10 ms (debounce = 3 equal samples). Each press
  * posts E_PRESS, then E_SHORT (released before 700 ms) or E_LONG (at 700 ms,
  * while still held), then E_RELEASE with how long it was held.
- * A button already held at boot (the one that woke us) is ignored until released. */
+ * A button already held at boot (the one that woke us) is ignored until released.
+ * Plain bench board with LIB_PLAIN_DOUBLE_TAP: a second tap of TALK, BACK or DOWN
+ * within 300 ms acts as Window R, Window L or UP, so a tap's E_SHORT waits that long. */
 #include "buttons.h"
 #include "board.h"
 #include "app.h"
@@ -9,6 +11,12 @@
 #include "freertos/task.h"
 
 #define LONG_MS 700
+#define DOUBLE_MS 300
+#if CONFIG_LIB_BOARD_PLAIN && CONFIG_LIB_PLAIN_DOUBLE_TAP
+static const int8_t alias[B_COUNT] = { [B_TALK] = B_WIN_R, [B_BACK] = B_WIN_L, [B_WIN_L] = -1, [B_WIN_R] = -1, [B_UP] = -1, [B_DOWN] = B_UP };
+#else
+static const int8_t alias[B_COUNT] = { -1, -1, -1, -1, -1, -1 };
+#endif
 static const int pins[B_COUNT] = { PIN_BTN_TALK, PIN_BTN_BACK, PIN_BTN_WIN_L, PIN_BTN_WIN_R, PIN_BTN_UP, PIN_BTN_DOWN };
 
 static void post(int b, int kind, int held) {
@@ -18,7 +26,8 @@ static void post(int b, int kind, int held) {
 
 static void task(void *arg) {
     uint8_t stable[B_COUNT], cnt[B_COUNT] = {0}, ignore[B_COUNT] = {0}, longsent[B_COUNT] = {0};
-    int held[B_COUNT] = {0};
+    int held[B_COUNT] = {0}, wait[B_COUNT] = {0}, id[B_COUNT];   /* wait: ms left for a second tap; id: what this press posts as */
+    for (int b = 0; b < B_COUNT; b++) id[b] = b;
     for (int b = 0; b < B_COUNT; b++) {
         stable[b] = pins[b] >= 0 && gpio_get_level(pins[b]) == 0;
         ignore[b] = stable[b];
@@ -29,14 +38,20 @@ static void task(void *arg) {
             if (pins[b] < 0) continue;
             uint8_t down = gpio_get_level(pins[b]) == 0;
             if (down != stable[b]) { if (++cnt[b] >= 3) { stable[b] = down; cnt[b] = 0;
-                    if (down) { held[b] = 0; longsent[b] = 0; if (!ignore[b]) post(b, E_PRESS, 0); }
+                    if (down) {
+                        held[b] = 0; longsent[b] = 0;
+                        id[b] = wait[b] > 0 ? alias[b] : b; wait[b] = 0;     /* second tap: the stand-in button */
+                        if (!ignore[b]) post(id[b], E_PRESS, 0);
+                    }
                     else if (ignore[b]) ignore[b] = 0;
-                    else { if (!longsent[b]) post(b, E_SHORT, held[b]); post(b, E_RELEASE, held[b]); }
+                    else if (!longsent[b] && id[b] == b && alias[b] >= 0) { wait[b] = DOUBLE_MS; post(b, E_RELEASE, held[b]); }
+                    else { if (!longsent[b]) post(id[b], E_SHORT, held[b]); post(id[b], E_RELEASE, held[b]); }
                 } }
             else cnt[b] = 0;
+            if (wait[b] > 0 && (wait[b] -= 10) <= 0) post(b, E_SHORT, 0);       /* no second tap: a plain tap */
             if (stable[b] && !ignore[b]) {
                 held[b] += 10;
-                if (held[b] >= LONG_MS && !longsent[b]) { longsent[b] = 1; post(b, E_LONG, held[b]); }
+                if (held[b] >= LONG_MS && !longsent[b]) { longsent[b] = 1; post(id[b], E_LONG, held[b]); }
             }
         }
     }

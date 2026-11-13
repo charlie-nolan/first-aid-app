@@ -49,7 +49,8 @@ LIGATURES = {"ﬁ": "fi", "ﬂ": "fl", "ﬀ": "ff", "ﬃ": "ffi", "ﬄ": "ffl",
              "‘": "'", "’": "'", "“": '"', "”": '"', "–": "-",
              "—": "--", "•": "*", "©": "(C)", " ": " ", "°": " degrees ",
              "º": " degrees ", "˚": " degrees ",   # CERT prints 95º F; NFKD would give "o"
-             "⁄": "/", "∕": "/"}
+             "⁄": "/", "∕": "/",
+             "®": "", "™": ""}                   # "Tylenol®" -> "Tylenol", not "Tylenol?"
 FRACTIONS = {"½": "1/2", "¼": "1/4", "¾": "3/4", "⅓": "1/3", "⅔": "2/3", "⅛": "1/8"}
 
 
@@ -395,19 +396,52 @@ def is_heading(line: Line, body_size: float) -> bool:
     return line.bold or line.size > body_size + 0.5 or (t.isupper() and len(t) > 3)
 
 
+STEP_RE = re.compile(r" (\d{1,2})\. (?=[A-Z\"(])")
+
+
+def split_numbered_steps(text: str) -> str:
+    """"1. Rest. 2. Cool. 3. Evacuate." -> one step per line. Only runs that count up from 1
+    (1, 2, 3...) are split, so a lone "Figure 1. Title" or "98.6" stays as it is; a new
+    "1." starts a new run (one paragraph can hold several lists)."""
+    cuts: list[int] = []
+    run: list[int] = []                       # where each " N. " of the current run starts
+    lead = text.startswith("1. ")             # the run's "1." opens the text: nothing to cut
+    want = 2 if lead else 1
+
+    def close():
+        if len(run) + lead >= 2:
+            cuts.extend(run)
+
+    for m in STEP_RE.finditer(text):
+        n = int(m.group(1))
+        if n == want:
+            run.append(m.start())
+            want += 1
+        elif n == 1:
+            close()
+            run[:] = [m.start()]
+            want, lead = 2, False
+    close()
+    for i in sorted(cuts, reverse=True):
+        text = text[:i] + "\n" + text[i + 1:]
+    return text
+
+
 def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             dpi: int = 200, numbering: str = "dash",
             skip_pages: tuple[int, ...] = (),
             table_pages: tuple[int, ...] | str = (),
             chapter_pattern: str | None = None, margins: str = "fixed",
-            columns: bool = False) -> tuple[list[Section], list[Figure]]:
+            columns: bool = False, split_steps: bool = False) -> tuple[list[Section], list[Figure]]:
     """numbering: "dash" (Army "2-15."), "decimal" (Air Force "4.7.3.") or "headings"
     (no paragraph numbers: each heading starts a section, numbered "<page>.<n>").
     skip_pages: 1-based pages that are not part of the publication (a reseller's note).
     table_pages: 1-based pages whose ruled tables are read cell by cell (one section per row,
     "<page>.t<n>") instead of line by line, which interleaves the columns; "all" = every page.
     chapter_pattern: extra regex for chapter lines in books that don't say "Chapter"
-    (Aerie: "Section One:")."""
+    (Aerie: "Section One:").
+    split_steps: numbered steps run together in one paragraph ("1. Handle gently. 2. Direct
+    patient...") each start a new line (Aerie)."""
     chap_re = re.compile(f"(?:{CHAPTER_RE.pattern})|(?:{chapter_pattern})") if chapter_pattern \
         else CHAPTER_RE
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -583,6 +617,9 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
 
     if numbering == "headings":
         sections = [s for s in sections if s.text or s.notices]
+    if split_steps:
+        for s in sections:
+            s.text = split_numbered_steps(s.text)
     uniq: dict[str, Figure] = {}
     for f in figs:
         uniq.setdefault(f.id, f)

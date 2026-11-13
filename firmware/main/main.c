@@ -21,6 +21,7 @@
 #include "lights.h"
 #include "power.h"
 #include "voice.h"
+void psram_test_start(void);
 #include "cart.h"
 
 static const char *TAG = "librarian";
@@ -40,27 +41,43 @@ static cart_tags_t voice_ctx;
  * power loss and reflashing the app, until the reader picks another. */
 static void ctx_load(cart_tags_t *ctx) {
     nvs_handle_t h; size_t n = sizeof *ctx;
-    if (nvs_open("librarian", NVS_READONLY, &h) == ESP_OK) { nvs_get_blob(h, "ctx", ctx, &n); nvs_close(h); }
+    if (nvs_open("librarian", NVS_READONLY, &h) == ESP_OK) {
+        nvs_get_blob(h, "ctx", ctx, &n);
+        nvs_get_u8(h, "clean", &saved.clean);          /* clean-up interval, menu setting */
+        nvs_close(h);
+    }
 }
 static void ctx_save(const cart_tags_t *ctx) {
     nvs_handle_t h;
-    if (nvs_open("librarian", NVS_READWRITE, &h) == ESP_OK) { nvs_set_blob(h, "ctx", ctx, sizeof *ctx); nvs_commit(h); nvs_close(h); }
+    if (nvs_open("librarian", NVS_READWRITE, &h) == ESP_OK) {
+        nvs_set_blob(h, "ctx", ctx, sizeof *ctx);
+        nvs_set_u8(h, "clean", saved.clean);
+        nvs_commit(h); nvs_close(h);
+    }
 }
 static void voice_follow(void) {                    /* new section or context: swap the phrase list */
     if (!ui.has_voice) return;
     const cart_node_t *n = cart_node(&cart, saved.win[saved.cur].node);
     uint16_t t = n ? n->tree : CART_NONE;
+    if (ui.mode == M_HOME || ui.mode == M_PICK) t = CART_NONE;   /* Home tiles and "Did you mean": topic list */
     if (t == voice_tree && !memcmp(&voice_ctx, &saved.ctx, sizeof voice_ctx)) return;
     voice_tree = t; voice_ctx = saved.ctx;
     voice_load(t, &saved.ctx);
 }
 
+static int clean_every(void) {                  /* page turns between clean-ups (menu setting) */
+    return saved.clean ? saved.clean : CONFIG_LIB_FULL_REFRESH_EVERY;
+}
 static void show(int how) {
     if (how == RD_NONE) return;
     ui_render(&ui, &fb);
-    bool full = how == RD_FULL || ++partials >= 5;    /* a full refresh every 5 partials clears ghosting */
-    if (full) partials = 0;
-    epd_show(fb_bits, full);
+    /* Page turns are quick partial refreshes; every N of them (default 15, as
+     * in CrossInk) one gentle clean-up flash clears the ghosts. Screens that
+     * ask for a full redraw get the same gentle clean. */
+    int mode = EPD_PARTIAL;
+    if (how == RD_FULL || ++partials >= clean_every()) mode = EPD_CLEAN;
+    if (mode != EPD_PARTIAL) partials = 0;
+    epd_show(fb_bits, mode);
 }
 
 /* Any two buttons pressed together = full screen refresh (clears ghosting).
@@ -77,7 +94,7 @@ static bool combo_filter(const app_msg_t *m) {
             ESP_LOGI(TAG, "two-button refresh");
             partials = 0;
             ui_render(&ui, &fb);
-            epd_show(fb_bits, true);
+            epd_show(fb_bits, EPD_FULL);             /* the deep clean, on request */
             return true;
         }
         held_mask |= bit;
@@ -92,7 +109,7 @@ static void go_to_sleep(uint32_t timer_s) {
     ESP_LOGI(TAG, "sleeping");
     voice_stop(false);
     ui_render_sleep(&ui, &fb);
-    epd_show(fb_bits, true);
+    epd_show(fb_bits, EPD_CLEAN);
     epd_sleep();
     lights_off_for_sleep();
     power_sleep(timer_s, saved.mesh_on);
@@ -113,6 +130,12 @@ static bool open_library(void) {
 
 static void update_battery(void) {
     battery_t b = power_battery();
+    static int8_t last_pct = -2;
+    if (b.pct != last_pct) {                            /* log changes only, so serial shows what the header shows */
+        if (b.pct < 0) ESP_LOGI(TAG, "battery: not measured (no divider on this board, or reading out of range)");
+        else ESP_LOGI(TAG, "battery: %d mV, %d%%%s%s", b.mv, b.pct, b.charging ? ", charging" : "", b.reserve ? ", reserve" : "");
+        last_pct = b.pct;
+    }
     ui.battery_pct = b.pct; ui.charging = b.charging; ui.low_battery = b.reserve;
     if (b.critical && !b.charging && !lights_signal_active()) {
         ESP_LOGW(TAG, "battery critical (%d mV): sleeping, will check again in 5 min", b.mv);
@@ -145,6 +168,11 @@ void app_main(void) {
     show(RD_FULL);                                   /* wake screen */
     buttons_init();
     ui.has_voice = voice_init(&cart);
+    psram_test_start();                              /* no-op unless Kconfig LIB_PSRAM_TEST */
+#if CONFIG_LIB_VOICE && CONFIG_LIB_VOICE_NUMBERS
+    ui.voice_numbers = ui.has_voice;
+    ui.key_min_pct = CONFIG_LIB_VOICE_KEY_MIN_PCT;
+#endif
     voice_follow();
     if (ui.has_voice) ESP_LOGI(TAG, "voice ready: hold TALK and speak");
 
@@ -170,8 +198,8 @@ void app_main(void) {
         int64_t now = esp_timer_get_time();
         if (now - last_bat > 10 * 1000000LL) { last_bat = now; update_battery(); }
         bool busy = lights_signal_active() || ui.listening;
-#if CONFIG_LIB_VOICE_BENCH
-        busy = true;                                 /* bench mode: stay awake for the clip loop */
+#if CONFIG_LIB_VOICE_BENCH || CONFIG_LIB_PSRAM_TEST
+        busy = true;                                 /* bench modes: stay awake for the clip loop / soak test */
 #endif
         if (!busy && now - last > (int64_t)CONFIG_LIB_IDLE_SECONDS * 1000000LL) go_to_sleep(0);
     }
