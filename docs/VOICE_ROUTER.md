@@ -65,7 +65,9 @@ Training-only tricks that cost the device nothing:
 
 ### On the device
 
-- Format `VXP1`: int8 rows with one float scale per row, float biases, class map, names.
+- Format `VXP1`: word and hash rows in 4 bits (format v2, default since 11-16; v1 = int8), one
+  float scale per row; dense layers int8; float biases, class map, names, then life-threat pins.
+  4-bit measured no worse than int8 (router d=32: 112 KB -> 65 KB, same top-1/top-3).
   Reader: `firmware/components/vrouter` (plain C, ~150 lines, no allocation).
 - A sentence touches only its own rows (a dozen to a few dozen), so models stay in
   memory-mapped flash (`esp_partition_mmap`) and are read in place. "Loading" an expert is

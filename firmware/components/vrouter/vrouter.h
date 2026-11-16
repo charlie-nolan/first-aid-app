@@ -31,6 +31,7 @@ enum { VR_CLS_OTHER, VR_CLS_BODY, VR_CLS_MECH, VR_CLS_SYMPTOM, VR_CLS_NEG, VR_CL
 
 typedef struct {
     uint16_t kind, V, B, C, d, hidden, k;
+    uint8_t bits;                        /* word + hash rows: 8 (VXP v1) or 4 (v2, two per byte) */
     const uint8_t *cls;                  /* [V] word class */
     const float *ws; const int8_t *w;    /* word rows */
     const float *hs; const int8_t *h;    /* hashed bigram / negation rows */

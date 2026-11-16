@@ -21,13 +21,15 @@ bool vr_open(vr_model_t *m, const void *blob, size_t len) {
     if (len < 24 || memcmp(p, "VXP1", 4)) return false;
     uint16_t f[10];
     memcpy(f, p + 4, sizeof f);
-    if (f[0] != 1) return false;
+    if (f[0] != 1 && f[0] != 2) return false;
+    m->bits = f[0] == 2 ? 4 : 8;
     m->kind = f[1]; m->V = f[2]; m->B = f[3]; m->C = f[4]; m->d = f[5]; m->hidden = f[6]; m->k = f[7];
     if (m->d > VR_MAX_D || m->hidden > VR_MAX_HIDDEN || m->k > VR_MAX_CLASSES || !m->B) return false;
     p += 24;
     m->cls = take(&p, (m->V + 3u) & ~3u);
-    m->ws = (const float *)take(&p, 4u * m->V); m->w = (const int8_t *)take(&p, (size_t)m->V * m->d);
-    m->hs = (const float *)take(&p, 4u * m->B); m->h = (const int8_t *)take(&p, (size_t)m->B * m->d);
+    size_t rb = m->bits == 4 ? m->d / 2u : m->d;             /* bytes per word / hash row */
+    m->ws = (const float *)take(&p, 4u * m->V); m->w = (const int8_t *)take(&p, (size_t)m->V * rb);
+    m->hs = (const float *)take(&p, 4u * m->B); m->h = (const int8_t *)take(&p, (size_t)m->B * rb);
     m->cs = (const float *)take(&p, 4u * m->C); m->c = (const int8_t *)take(&p, (size_t)m->C * m->d);
     m->s1 = (const float *)take(&p, 4u * m->hidden); m->b1 = (const float *)take(&p, 4u * m->hidden);
     m->w1 = (const int8_t *)take(&p, (size_t)m->hidden * m->d);
@@ -50,6 +52,18 @@ static void add_row(float *x, const int8_t *row, float s, int d) {
     for (int i = 0; i < d; i++) x[i] += row[i] * s;
 }
 
+/* Row r of a word / hash table, 8-bit or 4-bit (low nibble first, sign-extended). */
+static void add_tab(const vr_model_t *m, float *x, const int8_t *tab, size_t r, float s) {
+    const int d = m->d;
+    if (m->bits == 8) { add_row(x, tab + r * d, s, d); return; }
+    const uint8_t *b = (const uint8_t *)tab + r * (d / 2);
+    for (int i = 0; i < d / 2; i++) {
+        int lo = b[i] & 15, hi = b[i] >> 4;
+        x[2 * i] += (float)(lo > 7 ? lo - 16 : lo) * s;
+        x[2 * i + 1] += (float)(hi > 7 ? hi - 16 : hi) * s;
+    }
+}
+
 void vr_score(const vr_model_t *m, const voice_hyp_t *hyp, int ctx, float *p) {
     float xw[VR_MAX_D] = {0}, xh[VR_MAX_D] = {0}, x[VR_MAX_D], h[VR_MAX_HIDDEN];
     float sw = 0, sh = 0;
@@ -67,9 +81,9 @@ void vr_score(const vr_model_t *m, const voice_hyp_t *hyp, int ctx, float *p) {
             float w = hw * hyp->h[r].conf[j] / 100.0f;
             bool neg = id && id < m->V && m->cls[id] == VR_CLS_NEG;
             if (id && id < m->V && w > 0) {
-                add_row(xw, m->w + (size_t)id * d, m->ws[id] * w, d); sw += w;
-                if (prev) { uint32_t b = fnv1a(HASH_BIGRAM, prev, id, m->B); add_row(xh, m->h + (size_t)b * d, m->hs[b] * w, d); sh += w; }
-                if (neg_left && !neg) { uint32_t b = fnv1a(HASH_NEG, 0, id, m->B); add_row(xh, m->h + (size_t)b * d, m->hs[b] * w, d); sh += w; }
+                add_tab(m, xw, m->w, id, m->ws[id] * w); sw += w;
+                if (prev) { uint32_t b = fnv1a(HASH_BIGRAM, prev, id, m->B); add_tab(m, xh, m->h, b, m->hs[b] * w); sh += w; }
+                if (neg_left && !neg) { uint32_t b = fnv1a(HASH_NEG, 0, id, m->B); add_tab(m, xh, m->h, b, m->hs[b] * w); sh += w; }
             }
             if (neg) neg_left = NEG_WINDOW; else if (neg_left) neg_left--;
             prev = id;

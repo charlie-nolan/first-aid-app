@@ -128,13 +128,28 @@ def q_rows(m: np.ndarray):
     return np.clip(np.round(m / s[:, None]), -127, 127).astype(np.int8), s.astype(np.float32)
 
 
+def q4_rows(m: np.ndarray):
+    """4-bit rows: values -7..7, one float scale per row (half the flash of int8, no measurable loss)."""
+    s = np.abs(m).max(1) / 7.0
+    s[s == 0] = 1.0
+    return np.clip(np.round(m / s[:, None]), -7, 7).astype(np.int8), s.astype(np.float32)
+
+
+def pack4(q: np.ndarray) -> bytes:
+    """Two values per byte, low nibble first (d is even)."""
+    u = (q.astype(np.int16) & 0xF).astype(np.uint8).reshape(len(q), -1, 2)
+    return (u[:, :, 0] | (u[:, :, 1] << 4)).tobytes()
+
+
 class Packed:
     """The exact numbers the device uses (int8 rows + float scales)."""
 
-    def __init__(self, net: Net, class_map: list[int], names: list[str], kind: int):
+    def __init__(self, net: Net, class_map: list[int], names: list[str], kind: int, bits: int = 4):
+        self.bits = bits
+        rows = q4_rows if bits == 4 else q_rows
         with torch.no_grad():
-            self.W, self.Ws = q_rows(net.word_table().numpy())
-            self.Hh, self.Hs = q_rows(net.hash.weight.numpy())
+            self.W, self.Ws = rows(net.word_table().numpy())
+            self.Hh, self.Hs = rows(net.hash.weight.numpy())
             self.C, self.Cs = q_rows(net.ctx.weight.numpy()) if net.nctx else (np.zeros((0, net.d), np.int8), np.zeros(0, np.float32))
             self.W1, self.s1 = q_rows(net.fc1.weight.numpy()); self.b1 = net.fc1.bias.numpy().astype(np.float32)
             self.W2, self.s2 = q_rows(net.fc2.weight.numpy()); self.b2 = net.fc2.bias.numpy().astype(np.float32)
@@ -187,12 +202,12 @@ class Packed:
     def to_bytes(self) -> bytes:
         V, B, C = len(self.W), len(self.Hh), len(self.C)
         names = b"".join(n.encode()[:31] + b"\0" for n in self.names)
-        hdr = struct.pack("<4sHHHHHHHHHH", b"VXP1", 1, self.kind, V, B, C, self.d, self.hidden, self.k,
+        hdr = struct.pack("<4sHHHHHHHHHH", b"VXP1", 2 if self.bits == 4 else 1, self.kind, V, B, C, self.d, self.hidden, self.k,
                           len(names), 1 if self.pins else 0)
         cls = bytes(self.lex.cls)
         parts = [hdr, cls + b"\0" * (-len(cls) % 4)]
-        for q, s in ((self.W, self.Ws), (self.Hh, self.Hs), (self.C, self.Cs)):
-            parts += [s.tobytes(), q.tobytes()]
+        for j, (q, s) in enumerate(((self.W, self.Ws), (self.Hh, self.Hs), (self.C, self.Cs))):
+            parts += [s.tobytes(), pack4(q) if self.bits == 4 and j < 2 else q.tobytes()]
         parts += [self.s1.tobytes(), self.b1.tobytes(), self.W1.tobytes(),
                   self.s2.tobytes(), self.b2.tobytes(), self.W2.tobytes(),
                   np.array(self.class_map, np.uint16).tobytes(), names]
