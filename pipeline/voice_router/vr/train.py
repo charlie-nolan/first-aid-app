@@ -283,7 +283,7 @@ def run_router(a, log=print):
 
 def run_expert(a, tree, log=print):
     rdata = RouterData(CONTENT / "voice" / "topics.yaml", a.trees)
-    data = ExpertData(CONTENT / "voice" / "experts" / f"{tree}.yaml", a.trees, rdata)
+    data = ExpertData(expert_yaml(tree), a.trees, rdata)
     add_extra(a, data, "expert", tree)
     add_test(a, data, "expert", tree)
     lex = build_lexicon(rdata.all_text() + data.all_text())
@@ -303,11 +303,21 @@ def run_expert(a, tree, log=print):
     return data, lex, packed, (res_parent, res_root, res_none), time.time() - t0
 
 
+def expert_yaml(tree: str) -> Path:
+    """Seed phrases for a tree: experts/ (public trees) or gitignored experts_personal/."""
+    for sub in ("experts", "experts_personal"):
+        p = CONTENT / "voice" / sub / f"{tree}.yaml"
+        if p.exists():
+            return p
+    raise FileNotFoundError(f"no seed file for {tree} in voice/experts or voice/experts_personal")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="vr")
     ap.add_argument("cmd", choices=["router", "expert", "sweep", "curve"])
     ap.add_argument("tree", nargs="?")
-    ap.add_argument("--trees", type=Path, required=True, help="directory of tree YAML (draft or signed off)")
+    ap.add_argument("--trees", type=Path, nargs="+", required=True,
+                    help="tree YAML directories (draft or signed off), e.g. content/trees content/trees_personal")
     ap.add_argument("--out", type=Path, default=HERE / "out")
     ap.add_argument("--d", type=int, default=64)
     ap.add_argument("--hidden", type=int, default=128)

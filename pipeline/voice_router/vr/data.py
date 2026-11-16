@@ -15,9 +15,30 @@ class Example:
     ctx: int = -1          # expert: node the user is on when they speak (-1 = none)
 
 
-def load_tree(trees_dir: Path, tid: str) -> dict | None:
-    p = Path(trees_dir) / f"{tid}.yaml"
-    return yaml.safe_load(p.read_text()) if p.exists() else None
+def load_tree(trees_dir, tid: str) -> dict | None:
+    """trees_dir: one directory or a list (public trees, then trees_personal); first hit wins."""
+    for d in trees_dir if isinstance(trees_dir, (list, tuple)) else [trees_dir]:
+        p = Path(d) / f"{tid}.yaml"
+        if p.exists():
+            return yaml.safe_load(p.read_text())
+    return None
+
+
+def load_topics(topics_yaml: Path) -> dict:
+    """topics.yaml plus an optional gitignored topics.personal.yaml next to it.
+    Personal entries replace a topic's open/trees/pin (pointing it at personal trees, e.g.
+    Aerie or Red Cross) and add train/test lines; a new topic name adds a topic."""
+    d = yaml.safe_load(Path(topics_yaml).read_text())
+    pp = Path(topics_yaml).with_name("topics.personal.yaml")
+    if pp.exists():
+        for name, t in (yaml.safe_load(pp.read_text()) or {}).get("topics", {}).items():
+            base = d["topics"].setdefault(name, {"train": [], "test": []})
+            for k in ("open", "trees", "pin"):
+                if k in t:
+                    base[k] = t[k]
+            for k in ("train", "test"):
+                base[k] = base.get(k, []) + t.get(k, [])
+    return d
 
 
 def tree_texts(t: dict, top_only: bool = False) -> list[str]:
@@ -38,8 +59,8 @@ def tree_texts(t: dict, top_only: bool = False) -> list[str]:
 class RouterData:
     REJECT = "reject"
 
-    def __init__(self, topics_yaml: Path, trees_dir: Path | None):
-        d = yaml.safe_load(Path(topics_yaml).read_text())
+    def __init__(self, topics_yaml: Path, trees_dir):
+        d = load_topics(topics_yaml)
         self.names = list(d["topics"]) + [self.REJECT]
         self.topics = d["topics"]
         self.reject = d["reject"]
@@ -64,7 +85,7 @@ class RouterData:
 class ExpertData:
     """Classes: every node of the tree, then NONE (= hand back to the router)."""
 
-    def __init__(self, expert_yaml: Path, trees_dir: Path, router: RouterData | None):
+    def __init__(self, expert_yaml: Path, trees_dir, router: RouterData | None):
         d = yaml.safe_load(Path(expert_yaml).read_text())
         self.tree_id = d["tree"]
         tr = load_tree(trees_dir, self.tree_id)

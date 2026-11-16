@@ -43,3 +43,5 @@ pipeline/plb/content/cites.personal.lock.yaml
 
 # ESP-IDF build folders
 firmware/build-*/
+pipeline/plb/content/voice/topics.personal.yaml
+pipeline/plb/content/voice/experts_personal/

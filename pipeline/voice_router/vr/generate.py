@@ -18,6 +18,7 @@ import requests
 import yaml
 
 from .lexicon import tokenize
+from .data import load_topics, load_tree
 from .train import CONTENT, HERE
 
 SCHEMA = {"type": "object", "properties": {"utterances": {"type": "array", "items": {"type": "string"}}},
@@ -102,7 +103,7 @@ def write_pairs(a, topics, held, seen):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--trees", type=Path, required=True)
+    ap.add_argument("--trees", type=Path, nargs="+", required=True)
     ap.add_argument("--model", default="qwen3:30b-a3b-instruct-2507-q4_K_M")
     ap.add_argument("--ollama", default="http://127.0.0.1:11434")
     ap.add_argument("--n", type=int, default=40)
@@ -113,7 +114,7 @@ def main(argv=None):
                     "e.g. sentence-transformers/all-MiniLM-L6-v2")
     a = ap.parse_args(argv)
     a.out.mkdir(parents=True, exist_ok=True)
-    topics = yaml.safe_load((CONTENT / "voice" / "topics.yaml").read_text())
+    topics = load_topics(CONTENT / "voice" / "topics.yaml")
     held = [t for v in topics["topics"].values() for t in v["test"]] + topics["reject"]["test"]
     seen: set[str] = set()
     if a.pairs:
@@ -139,9 +140,14 @@ def main(argv=None):
         res[name] = got
         out_file.write_text(yaml.safe_dump({"topics": res}, sort_keys=False))
         print(f"{name}: {len(got)} kept of {before}", flush=True)
-    for ef in sorted((CONTENT / "voice" / "experts").glob("*.yaml")):
+    efiles = sorted((CONTENT / "voice" / "experts").glob("*.yaml")) + \
+        sorted((CONTENT / "voice" / "experts_personal").glob("*.yaml"))
+    for ef in efiles:
         e = yaml.safe_load(ef.read_text())
-        tree = yaml.safe_load((a.trees / f"{e['tree']}.yaml").read_text())
+        tree = load_tree(a.trees, e["tree"])
+        if tree is None:
+            print(f"skip {ef.name}: tree {e['tree']} not in --trees", flush=True)
+            continue
         eheld = held + [u for s in e["nodes"].values() for u in s.get("test", [])]
         nodes = {}
         nfilt = TeacherFilter(a.filter, {k: v.get("train", []) for k, v in e["nodes"].items() if v.get("train")}) \
