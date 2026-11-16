@@ -14,7 +14,11 @@ from pathlib import Path
 
 import soundfile as sf
 
-URL = "https://www.openslr.org/resources/12/{part}.tar.gz"
+import os
+
+# Mirrors in order (www.openslr.org gave ~1 MB/s from Charlie's PC, the EU mirror ~3.6 MB/s).
+MIRRORS = os.environ.get("FASR_OPENSLR", "https://openslr.elda.org https://www.openslr.org https://openslr.trmal.net").split()
+URL = "{host}/resources/12/{part}.tar.gz"
 
 
 def fetch(part: str, out: Path):
@@ -22,8 +26,16 @@ def fetch(part: str, out: Path):
     done = out / f".{part}.done"
     if done.exists():
         return
-    if not tgz.exists() or tgz.stat().st_size == 0:
-        subprocess.run(["curl", "-fL", "-C", "-", "-o", str(tgz), URL.format(part=part)], check=True)
+    if not tgz.exists():                       # downloads go to .part and are renamed only when complete,
+        part_f = tgz.with_suffix(".gz.part")   # so an interrupted run never extracts a half file
+        for i, host in enumerate(MIRRORS):     # -C - resumes a partial file from any mirror (same tarball)
+            r = subprocess.run(["curl", "-fL", "--retry", "3", "--speed-limit", "100000", "--speed-time", "60",
+                                "-C", "-", "-o", str(part_f), URL.format(host=host, part=part)])
+            if r.returncode == 0:
+                break
+            if i == len(MIRRORS) - 1:
+                raise SystemExit(f"could not download {part} from {MIRRORS}")
+        part_f.rename(tgz)
     with tarfile.open(tgz) as t:
         t.extractall(out, filter="data")
     done.touch()

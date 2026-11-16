@@ -11,6 +11,9 @@ pip install -U pip
 pip install -e "$PLB[test]"
 pip install numpy Pillow freetype-py uharfbuzz pyyaml   # romkit packer
 pip install piper-tts onnxruntime-gpu soundfile scipy   # voices + noise
+# piper-tts pulls the CPU onnxruntime, which shadows the GPU build (no CUDA provider): keep only the GPU one
+pip uninstall -y onnxruntime 2>/dev/null || true
+pip install --force-reinstall --no-deps "onnxruntime-gpu==$(pip show onnxruntime-gpu | awk '/^Version/{print $2}')"
 pip install sentence-transformers faster-whisper        # ranker experiment (uses the HF cache)
 pip install pyserial sounddevice requests               # bench loop, Ollama client
 
