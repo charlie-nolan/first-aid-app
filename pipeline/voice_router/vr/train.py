@@ -154,6 +154,26 @@ def report(title, res, packed, extra=""):
     return "\n".join(lines) + "\n"
 
 
+def add_test(a, data, kind, tree=None):
+    """Independent held-out sentences from a different model (agy), never trained on."""
+    tp = getattr(a, "test_extra", None)
+    if not tp or not tp.exists():
+        return
+    g = yaml.safe_load(tp.read_text())
+    if kind == "router":
+        data.test = []
+        for k, n in enumerate(data.names[:-1]):
+            data.test += [Example(u, k) for u in (g.get("topics") or {}).get(n, [])]
+        data.test += [Example(u, len(data.names) - 1) for u in g.get("reject", [])]
+    else:
+        idx = {k: i for i, k in enumerate(data.nodes)}
+        nodes = ((g.get("experts") or {}).get(tree) or {})
+        keep_none = [e for e in data.test if e.label == data.none]
+        data.test = [Example(u, idx[k]) for k, us in nodes.items() if k in idx for u in us] + keep_none
+    seen = {e.text for e in data.train}
+    data.test = [e for e in data.test if e.text not in seen]
+
+
 def add_extra(a, data, kind, tree=None):
     """Generated sentences (vr.generate) join training at weight 0.7: helpful, less trusted."""
     ex = getattr(a, "extra", None)
@@ -188,6 +208,7 @@ def teacher_vectors(a, lex, d):
 def run_router(a, log=print):
     data = RouterData(CONTENT / "voice" / "topics.yaml", a.trees)
     add_extra(a, data, "router")
+    add_test(a, data, "router")
     frac = getattr(a, "frac", 1.0)
     if frac < 1:                                   # learning curve: keep the first part of each topic's seeds
         keep, seen = [], Counter()
@@ -211,6 +232,7 @@ def run_expert(a, tree, log=print):
     rdata = RouterData(CONTENT / "voice" / "topics.yaml", a.trees)
     data = ExpertData(CONTENT / "voice" / "experts" / f"{tree}.yaml", a.trees, rdata)
     add_extra(a, data, "expert", tree)
+    add_test(a, data, "expert", tree)
     lex = build_lexicon(rdata.all_text() + data.all_text())
     conf = Confusions(lex)
     net = Net(lex, len(data.names), d=a.d, hidden=a.hidden, buckets=a.buckets, ctx=len(data.nodes),
@@ -239,6 +261,7 @@ def main(argv=None):
     ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--extra", type=Path, help="generated sentences from vr.generate (desktop)")
+    ap.add_argument("--test-extra", type=Path, help="independent test set (e.g. out/agy_test.yaml) replacing the seed test")
     ap.add_argument("--teacher", help="sentence-transformers model for starting word vectors (desktop), "
                     "e.g. sentence-transformers/all-MiniLM-L6-v2")
     a = ap.parse_args(argv)
