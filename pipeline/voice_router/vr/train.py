@@ -179,9 +179,12 @@ def add_test(a, data, kind, tree=None):
 
 def add_extra(a, data, kind, tree=None):
     """Generated sentences (vr.generate) join training at weight 0.7: helpful, less trusted."""
-    ex = getattr(a, "extra", None)
-    if not ex:
-        return
+    exs = getattr(a, "extra", None) or []
+    for ex in (exs if isinstance(exs, list) else [exs]):
+        _add_extra_dir(ex, data, kind, tree)
+
+
+def _add_extra_dir(ex, data, kind, tree):
     if kind == "router" and (ex / "router.yaml").exists():
         g = yaml.safe_load((ex / "router.yaml").read_text())["topics"]
         for k, n in enumerate(data.names):              # last name is "reject"
@@ -269,7 +272,7 @@ def main(argv=None):
     ap.add_argument("--buckets", type=int, default=4096)
     ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--seed", type=int, default=1)
-    ap.add_argument("--extra", type=Path, help="generated sentences from vr.generate (desktop)")
+    ap.add_argument("--extra", type=Path, nargs="+", help="generated sentences from vr.generate (desktop)")
     ap.add_argument("--test-extra", type=Path, help="independent test set (e.g. out/agy_test.yaml) replacing the seed test")
     ap.add_argument("--teacher", help="sentence-transformers model for starting word vectors (desktop), "
                     "e.g. sentence-transformers/all-MiniLM-L6-v2")
