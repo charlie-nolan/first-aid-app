@@ -1,0 +1,7 @@
+# EXPERIMENT (bring-up step 2): octal PSRAM and flash at 120 MHz instead of 80 MHz.
+# Espressif marks this experimental. Only keep it if the soak test shows 0 errors
+# for a long run, warm and cold. Build: pipeline/gpu/build_plus.sh --psram120 --flash
+CONFIG_IDF_EXPERIMENTAL_FEATURES=y
+CONFIG_SPIRAM_SPEED_120M=y
+CONFIG_ESPTOOLPY_FLASHFREQ_120M=y
+CONFIG_LIB_PSRAM_TEST=y

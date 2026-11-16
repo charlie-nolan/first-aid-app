@@ -70,7 +70,11 @@ The first build takes a few minutes; after that only changed files rebuild.
 
 ## Flash the Plus
 
-    idf.py -B build-plus -D SDKCONFIG=build-plus/sdkconfig -D "SDKCONFIG_DEFAULTS=sdkconfig.defaults;sdkconfig.plus" flash monitor
+    idf.py -B build-plus -D SDKCONFIG=build-plus/sdkconfig -D "SDKCONFIG_DEFAULTS=sdkconfig.defaults;sdkconfig.plus" -D DEPENDENCIES_LOCK=dependencies.plus.lock flash monitor
+
+The Plus keeps its own dependency lock (it adds ESP-SR; the plain build must not). ESP-IDF 5.3
+ignores `$CONFIG{...}` rules in `main/idf_component.yml`, so the top `CMakeLists.txt` reads
+`CONFIG_LIB_VOICE` from the sdkconfig and passes it to the component manager as `LIB_VOICE`.
 
 This also downloads ESP-SR and writes its English speech model to the `model` partition.
 
@@ -86,11 +90,19 @@ add `menuconfig` before `flash`, then look under **Librarian**.
 
 | Button | Short press | Hold (0.7 s) |
 |---|---|---|
-| DOWN | next page / next choice (wraps on the plain board) | Menu: flashlight, SOS (white or IR), mesh, text size, font (Lexend/Bitter), where and when, library, sleep |
+| DOWN | next page / next choice (wraps on the plain board) | Menu: CPR pace light, flashlight, SOS (white or IR), mesh, text size, font (Lexend/Bitter), where and when, library, sleep |
 | UP (Plus) | previous page / choice | Library (all trees) |
 | TALK | jump to the choices, then open the highlighted one | Plus: speak while held, release to look it up |
 | BACK | go back; at the start of a window, the library | step the front light: off, dim, bright |
 | Window L / R (Plus) | switch between the 5 windows | smaller / larger text |
+
+**Home tiles.** Every boot and wake opens Home: two tiles, Injury and Survival,
+each next to a corner button. Each opens into more tiles: its Library folders
+(Survival = the Survival and Terrain folders, everything else is Injury), then
+their topics, signed-off topics first. A level with more than 4 entries shows 3
+and a "More..." tile (bottom right). BACK goes up a level, TALK on Home goes back
+to the page being read, and the Library list and Home are both in the menu.
+Boards without corner buttons get the same levels as a list.
 
 **Answer screens (Plus).** When a question has 4 answers or fewer, its last page
 puts each answer in a screen corner, next to its button: top left = Window L,
@@ -101,12 +113,26 @@ works the same way. The plain bench board has no corner buttons, so it keeps the
 list (DOWN to move, TALK to open). Trees are capped at 4 answers per question
 (`plb build` fails otherwise), so every card works with buttons alone.
 
+**Numbered tiles (Plus voice).** Answer tiles show 1-4 in the corner by their button
+(reading order). Hold TALK and say the number to pick it, or "back", "again", "home".
+Topic phrases ("I cut my hand") work on every screen. Plan and bring-up steps:
+`docs/PLUS_BRINGUP.md`.
+
+**CPR pace light.** On any page of the CPR tree, hold DOWN and press TALK: the
+menu opens with "CPR pace light" at the top, and TALK starts it and goes straight
+back to the page. The front light (D19 edge LEDs on the Plus, the shared D4 output
+on the bench) gives one short flash per compression at 110 a minute, the middle of
+the 100 to 120 a minute in ATP 4-02.11 para 6-45. The header shows PACE while it
+runs, the board does not idle into sleep, and the same menu item (or "All signals
+off") stops it. Outside the CPR tree the item sits near the bottom of the menu.
+The CPR tree is found by its title ("CPR"), so no cartridge change is needed.
+
 **Voice bench build (Plus).** `sdkconfig.voicebench` adds a serial test mode for
 `pipeline/gpu/bench_loop.py`: send `L <ms>` to listen, `T <tree>` to load a section's
 voice list; each result prints as a `VB ...` line and the board never sleeps. Build it
 with `pipeline/gpu/build_plus.sh --bench --flash`.
 
-Quick (partial) refreshes leave faint ghosts; every 5th refresh is a full one
+Quick (partial) refreshes leave faint ghosts; every 15th refresh is a full one (menuconfig > Librarian to change it)
 (the black-white flash), and pressing any two buttons together forces one.
 The serial log prints each refresh and how long BUSY stayed high. "BUSY never
 went high" means the BUSY wire (D3) is loose; the screen then tears, so the

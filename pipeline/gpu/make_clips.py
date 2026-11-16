@@ -7,6 +7,7 @@ loudness levels. Output: 16 kHz mono WAVs plus manifest.jsonl, ready for
 bench_loop.py (real ESP-SR on the Plus) and ranker_eval.py.
 
     python make_clips.py --out $WORK/clips [--per-text 6] [--cuda]
+    python make_clips.py --keys --out $WORK/keyclips     # numbered-tile words only
 """
 from __future__ import annotations
 
@@ -22,6 +23,21 @@ sys.path.insert(0, str(PLB))
 from plb.voicetest import load_utterances  # noqa: E402
 
 SR = 16000
+
+# Numbered tiles (firmware LIB_VOICE_NUMBERS): what people will say inside a topic,
+# including the sound-alikes that should land on the same tile, and chatter that
+# should be ignored or asked again. want = the key bench_loop.py expects.
+KEY_UTTERANCES = (
+    [(w, "key:1") for w in ["one", "number one", "option one", "one please", "the first one"]]
+    + [(w, "key:2") for w in ["two", "number two", "option two", "to", "too"]]
+    + [(w, "key:3") for w in ["three", "number three", "option three", "tree"]]
+    + [(w, "key:4") for w in ["four", "number four", "option four", "for", "fore"]]
+    + [(w, "key:back") for w in ["back", "go back"]]
+    + [(w, "key:again") for w in ["again", "read again", "repeat", "say that again"]]
+    + [(w, "key:home") for w in ["home", "go home", "start over"]]
+)
+KEY_OFF_TOPIC = ["okay", "hold on", "what", "um", "wait a second", "yeah", "hey", "let me see",
+                 "are you okay", "stay with me", "ten", "won't", "free", "number"]
 CONDITIONS = [("clean", None, None), ("wind", "wind", 15), ("wind", "wind", 5),
               ("water", "water", 10), ("breath", "breath", 12)]
 
@@ -94,13 +110,18 @@ def main():
     ap.add_argument("--include-phrases", action="store_true", default=True)
     ap.add_argument("--cuda", action="store_true")
     ap.add_argument("--seed", type=int, default=7)
+    ap.add_argument("--keys", action="store_true", help="only the numbered-tile words (one..four, back, again, home)")
     a = ap.parse_args()
     rng = np.random.default_rng(a.seed); random.seed(a.seed)
     vdir = a.voices or a.out.parent / "voices"
     voices = load_voices(vdir, a.cuda)
 
-    utts = load_utterances(PLB / "content" / "phrases" / "synthetic")
-    if a.include_phrases:
+    if a.keys:
+        utts = [{"text": t, "want": [k], "topic": "keys", "file": "keys", "off_topic": False} for t, k in KEY_UTTERANCES]
+        utts += [{"text": t, "want": [], "topic": "keys", "file": "keys-off", "off_topic": True} for t in KEY_OFF_TOPIC]
+    else:
+        utts = load_utterances(PLB / "content" / "phrases" / "synthetic")
+    if a.include_phrases and not a.keys:
         inter = PLB / "build" / "intermediate"
         trees = json.loads((inter / "trees.json").read_text())
         keys = {n["id"]: n["key"] for n in trees["nodes"]}

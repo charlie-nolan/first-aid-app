@@ -36,6 +36,59 @@ config LIB_VOICE_BENCH
         Each result prints as one line starting with "VB ". The board never
         sleeps in this mode. Leave it off for normal use.
 
+config LIB_VOICE_NUMBERS
+    bool "Voice: numbered answer tiles (say one to four inside a topic)"
+    depends on LIB_VOICE
+    default y
+    help
+        Charlie, 2026-11-13. Voice picks the topic from the full phrase list at
+        Home. Inside a topic the list shrinks to the tile numbers (one, two,
+        three, four, with "number two" / "option two" forms) plus back, again,
+        home and the topic phrases (see LIB_VOICE_TOPICS_EVERYWHERE). Tiles show their number in the
+        corner by their button. Off: the old per-section phrase lists.
+
+config LIB_VOICE_KEY_MIN_PCT
+    int "Voice: lowest confidence (%) to act on a number"
+    depends on LIB_VOICE_NUMBERS
+    range 0 100
+    default 50
+    help
+        Below this, or when a different number scores within 10 points,
+        the screen asks to say it again instead of guessing a branch.
+        Tune on the bench (bench_loop.py --keys).
+
+config LIB_VOICE_TOPICS_EVERYWHERE
+    bool "Voice: keep every topic phrase live inside a topic too"
+    depends on LIB_VOICE_NUMBERS
+    default y
+    help
+        Charlie, 2026-11-13: plans change, so every section's entry phrase
+        ("I cut my hand", "he's not breathing") works on every screen, next
+        to the numbers. Off: only life-threat jumps stay live in a topic
+        (smaller list; compare on the bench).
+
+config LIB_VOICE_MAX_JUMPS
+    int "Voice: life-threat jump phrases kept live inside a topic"
+    depends on LIB_VOICE_NUMBERS && !LIB_VOICE_TOPICS_EVERYWHERE
+    default 24
+    help
+        Phrases marked `always: true` in the trees, and entry phrases of
+        emergency sections, so "not breathing" works from any topic.
+
+config LIB_PSRAM_TEST
+    bool "PSRAM soak test (bench: for the 120 MHz PSRAM experiment)"
+    default n
+    help
+        Runs a low-priority task that writes and checks patterns over a
+        block of PSRAM forever, alongside the normal UI and voice, and logs
+        a "PSRAM" line per pass: errors, MB/s, chip temperature. Any error
+        means the PSRAM speed is not stable on this board.
+
+config LIB_PSRAM_TEST_KB
+    int "PSRAM soak test block (KB)"
+    depends on LIB_PSRAM_TEST
+    default 2048
+
 config LIB_MESH_ACTIVE_LOW
     bool "Mesh board power switch is active low"
     depends on LIB_BOARD_PLUS
@@ -44,16 +97,44 @@ config LIB_MESH_ACTIVE_LOW
         n: GPIO high = mesh board on (N-FET driving the AO3401 gate).
         y: GPIO low = on (AO3401 gate driven straight from the pin).
 
+config LIB_PLAIN_BAT_D5
+    bool "Plain: read the battery on D5 (instead of the IR LED)"
+    depends on LIB_BOARD_PLAIN
+    default y
+    help
+        Two equal resistors: BAT+ -> R -> D5 -> R -> GND (100k each is ideal).
+        The IR output moves off D5. With nothing on D5 the reading is noisy or
+        out of range and is ignored, so the header just shows no battery.
+
+config LIB_PLAIN_DOUBLE_TAP
+    bool "Plain: double-tap stands in for the missing buttons"
+    depends on LIB_BOARD_PLAIN
+    default y
+    help
+        Bench testing of the 6-button UI on 3 buttons: TALK twice = Window R,
+        BACK twice = Window L, DOWN twice = UP. Single taps of those three wait
+        300 ms to see if a second tap follows. Turns on the corner answer screens.
+
 config LIB_PANEL_FLIP
     bool "Rotate the screen 180 degrees"
     default n
+
+config LIB_FULL_REFRESH_EVERY
+    int "Full e-ink refresh after this many page turns"
+    range 1 50
+    default 15
+    help
+        Page turns use the quick (partial) refresh, which leaves faint ghosts;
+        a full refresh (the black-white flash) clears them. 15 matches CrossInk.
+        Lower is cleaner, higher flashes less. Pressing any two buttons together
+        forces a full refresh at any time.
 
 config LIB_IDLE_SECONDS
     int "Seconds without a button press before deep sleep"
     default 60
 
 config LIB_BAT_DIVIDER_X100
-    int "Battery divider ratio x100 (Plus ADC_BAT on GPIO10)"
+    int "Battery divider ratio x100 (Plus ADC_BAT on GPIO10, plain D5)"
     default 200
 
 config LIB_BAT_RESERVE_MV

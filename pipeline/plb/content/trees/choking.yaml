@@ -1,0 +1,59 @@
+# DRAFT for Charlie's review (unreviewed until signed off). Every on-screen word below
+# the labels is quoted from ATP 4-02.11 (2026) chapter 5; Aerie has no choking section.
+id: choking
+title: Choking
+shelf: first-aid
+unreviewed: true
+root: start
+nodes:
+  start:
+    label: Can they cough or speak?
+    cite: [ATP4-02.11/5-30]
+    choices:
+      - {label: "Coughing hard, can speak", to: partial}
+      - {label: "Can't breathe, speak or cough", to: thrusts}
+      - {label: "Pregnant, large or belly wound", to: chest}
+      - {label: "Passed out", to: down}
+
+  partial:
+    label: Good air exchange
+    cite: [ATP4-02.11/5-14]
+    choices:
+      - {label: "Weak cough or can't breathe", to: thrusts}
+
+  thrusts:
+    label: Back blows, abdominal thrusts
+    cite: [ATP4-02.11/5-15, ATP4-02.11/5-33]
+    choices:
+      - {label: "Pregnant, large or belly wound", to: chest}
+      - {label: "They pass out", to: down}
+
+  chest:
+    label: Chest thrusts
+    cite: [ATP4-02.11/5-34]
+    choices:
+      - {label: "They pass out", to: down}
+
+  down:
+    label: Choking, then passed out
+    cite: [ATP4-02.11/5-36]
+    choices:
+      - {label: "Found already unresponsive", to: found}
+      - {label: "Still can't get air in", to: down_abd}
+      - {label: "Use chest thrusts instead", to: down_chest}
+
+  found:
+    label: Found unresponsive
+    cite: [ATP4-02.11/5-37]
+    choices:
+      - {label: "Still can't get air in", to: down_abd}
+
+  down_abd:
+    label: Thrusts, lying down
+    cite: [ATP4-02.11/5-39]
+    choices:
+      - {label: "Use chest thrusts instead", to: down_chest}
+
+  down_chest:
+    label: Chest thrusts, lying down
+    cite: [ATP4-02.11/5-40, ATP4-02.11/5-41]

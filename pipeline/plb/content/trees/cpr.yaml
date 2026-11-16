@@ -1,0 +1,46 @@
+# DRAFT for Charlie's review (unreviewed until signed off). Every on-screen word below
+# the labels is quoted from ATP 4-02.11 (2026); Aerie has no CPR section.
+id: cpr
+title: CPR
+shelf: first-aid
+unreviewed: true
+root: start
+nodes:
+  start:
+    label: Not breathing, heart stopped?
+    cite:
+      - {ref: ATP4-02.11/6-45, from: "CPR is conducted", to: "beating effectively."}
+    choices:
+      - {label: "Not breathing: start CPR", to: compress}
+      - {label: "Breathing poorly", to: breaths}
+      - {label: "Badly injured (trauma)", to: trauma}
+      - {label: "When to stop", to: stop}
+
+  compress:
+    label: Chest compressions
+    cite:
+      - {ref: ATP4-02.11/6-45, from: "- Position:", to: "starts breathing."}
+      - ATP4-02.11/6-46
+    choices:
+      - {label: "Rescue breaths", to: breaths}
+      - {label: "When to stop", to: stop}
+
+  breaths:
+    label: Rescue breathing
+    cite: [ATP4-02.11/6-49, ATP4-02.11/6-51]
+    choices:
+      - {label: "Mouth injured or other ways", to: methods}
+      - {label: "Back to compressions", to: compress}
+      - {label: "When to stop", to: stop}
+
+  methods:
+    label: Ways to give breaths
+    cite: [ATP4-02.11/6-50]
+
+  stop:
+    label: When to stop CPR
+    cite: [ATP4-02.11/6-47, ATP4-02.11/6-48]
+
+  trauma:
+    label: CPR after a bad injury
+    cite: [ATP4-02.11/6-44]

@@ -1,0 +1,3 @@
+# Bring-up step 3 comparison: English MultiNet 6 instead of MultiNet 7 (the default).
+CONFIG_SR_MN_EN_MULTINET7_QUANT=n
+CONFIG_SR_MN_EN_MULTINET6_QUANT=y

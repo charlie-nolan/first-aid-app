@@ -1,0 +1,2 @@
+# PSRAM soak test at the normal 80 MHz: the baseline to compare 120 MHz against.
+CONFIG_LIB_PSRAM_TEST=y
