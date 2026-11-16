@@ -37,7 +37,7 @@ typedef struct {
 } voice_hyp_t;
 ```
 
-Lexicon ids 0-1023, append-only (0 UNK, 1-4 one..four, 5 yes, 6 no, 7 back, 8 again, 9 home),
+Lexicon ids 0-2047 (cap raised from 1024, 11-16), append-only (0 UNK, 1-4 one..four, 5 yes, 6 no, 7 back, 8 again, 9 home),
 plus a 1-byte class per word (0 other, 1 body part, 2 mechanism, 3 symptom, 4 negation,
 5 quantity). The recognizer thread owns `pipeline/plb/content/lexicon.yaml`.
 

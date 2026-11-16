@@ -1,7 +1,7 @@
 """Lexicon: word <-> id, shared with the speech recognizer thread.
 
 Contract (agreed 2026-11-16 with "Build custom first-aid speech recognizer"):
-  ids 0..1023, 0 = UNK, 1-4 one..four, 5 yes, 6 no, 7 back, 8 again, 9 home.
+  ids 0..2047 (cap raised from 1024 on 2026-11-16), 0 = UNK, 1-4 one..four, 5 yes, 6 no, 7 back, 8 again, 9 home.
   1-byte class: 0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity.
   Ids are append-only. The real table is pipeline/plb/content/lexicon.yaml (written by the
   recognizer thread); until it exists we harvest one from our own data with the same rules.
@@ -13,7 +13,7 @@ from pathlib import Path
 
 import yaml
 
-CAP = 1024
+CAP = 2048
 RESERVED = ["<unk>", "one", "two", "three", "four", "yes", "no", "back", "again", "home"]
 NEGATION = {"not", "no", "can't", "cannot", "don't", "isn't", "won't", "without", "never",
             "didn't", "doesn't", "wasn't", "aren't", "haven't", "nothing", "none"}
