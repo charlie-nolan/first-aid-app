@@ -603,3 +603,19 @@ topics:
     test:
       - knot for a tarp
       - tie the rope to a tree
+
+# Topic pairs the router mixes up (round 2 misses on the agy test). `vr.generate --pairs`
+# writes contrast lines for both sides: clearly X, and why it isn't Y.
+confusable:
+  - [cpr, choking]
+  - [shock, panic]
+  - [chest, impaled]
+  - [abdomen, chest]
+  - [heat, cold]
+  - [burn, heat]
+  - [dehydration, heat]
+  - [shock, dehydration]
+  - [dental, fracture]
+  - [blisters, cold]
+  - [bites, impaled]
+  - [allergy, heat]

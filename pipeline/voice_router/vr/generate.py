@@ -80,6 +80,26 @@ class TeacherFilter:
         return [l for l, o in zip(lines, order) if i in o]
 
 
+def pair_prompts(topics):
+    """(topic, prompt) for each side of each confusable pair: lines that are clearly X and not Y."""
+    out = []
+    for x, y in topics.get("confusable", []):
+        tx, ty = topics["topics"][x], topics["topics"][y]
+        for me, other, t in ((x, y, tx), (y, x, ty)):
+            out.append((me, f"Topic: {me.replace('_', ' ')}. Write lines that are clearly about {me.replace('_', ' ')} "
+                            f"and could NOT be mistaken for {other.replace('_', ' ')}. Include the telling detail "
+                            f"that separates them. Examples of {me}: " + "; ".join(t["train"][:6])))
+    return out
+
+
+def write_pairs(a, topics, held, seen):
+    res: dict[str, list[str]] = {}
+    for name, prompt in pair_prompts(topics):
+        res.setdefault(name, []).extend(clean(ask(a.model, a.ollama, prompt, max(10, a.n // 2)), held, seen))
+        (a.out / "router.yaml").write_text(yaml.safe_dump({"topics": res}, sort_keys=False))
+        print(f"{name}: {len(res[name])}", flush=True)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--trees", type=Path, required=True)
@@ -87,6 +107,8 @@ def main(argv=None):
     ap.add_argument("--ollama", default="http://127.0.0.1:11434")
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("--out", type=Path, default=HERE / "out" / "generated")
+    ap.add_argument("--pairs", action="store_true", help="only write contrast lines for the `confusable` "
+                    "topic pairs in topics.yaml (into --out/router.yaml)")
     ap.add_argument("--filter", help="sentence-transformers model that drops mislabelled lines, "
                     "e.g. sentence-transformers/all-MiniLM-L6-v2")
     a = ap.parse_args(argv)
@@ -94,6 +116,8 @@ def main(argv=None):
     topics = yaml.safe_load((CONTENT / "voice" / "topics.yaml").read_text())
     held = [t for v in topics["topics"].values() for t in v["test"]] + topics["reject"]["test"]
     seen: set[str] = set()
+    if a.pairs:
+        return write_pairs(a, topics, held, seen)
     groups = {n: t["train"] for n, t in topics["topics"].items()} | {"reject": topics["reject"]["train"]}
     filt = TeacherFilter(a.filter, groups) if a.filter else None
     out_file = a.out / "router.yaml"
@@ -120,12 +144,16 @@ def main(argv=None):
         tree = yaml.safe_load((a.trees / f"{e['tree']}.yaml").read_text())
         eheld = held + [u for s in e["nodes"].values() for u in s.get("test", [])]
         nodes = {}
+        nfilt = TeacherFilter(a.filter, {k: v.get("train", []) for k, v in e["nodes"].items() if v.get("train")}) \
+            if a.filter else None
         for key, s in e["nodes"].items():
             card = tree["nodes"][key]["label"]
             got = ask(a.model, a.ollama, f"The person is inside the '{tree['title']}' guide. They want the "
                       f"card titled \"{card}\". Things they'd say to get there. Examples: "
                       + "; ".join(s.get("train", [])), max(10, a.n // 3))
             nodes[key] = clean(got, eheld, seen)
+            if nfilt:
+                nodes[key] = nfilt.keep(key, nodes[key], top=3)
             (a.out / f"expert-{e['tree']}.yaml").write_text(yaml.safe_dump({"nodes": nodes}, sort_keys=False))
         print(f"expert {e['tree']}: {sum(map(len, nodes.values()))}", flush=True)
 

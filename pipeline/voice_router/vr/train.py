@@ -40,6 +40,34 @@ def build_lexicon(texts):
     return Lexicon.load_yaml(p) if p.exists() else Lexicon.harvest(texts)
 
 
+def teacher_soft(name, exs, k, folds=5, seed=0):
+    """Distillation targets: a softmax classifier on sentence-embedding vectors (MiniLM) gives
+    each training sentence a soft label. Out-of-fold, so the teacher never grades a sentence it
+    trained on. The tiny model then learns the big model's sense of what is near what."""
+    from sentence_transformers import SentenceTransformer
+    texts = sorted({e.text for e in exs})
+    lab = {}
+    for e in exs:
+        lab.setdefault(e.text, e.label)
+    X = torch.tensor(SentenceTransformer(name).encode(texts, normalize_embeddings=True, batch_size=256))
+    y = torch.tensor([lab[t] for t in texts])
+    idx = list(range(len(texts)))
+    random.Random(seed).shuffle(idx)
+    soft = torch.zeros(len(texts), k)
+    for f in range(folds):
+        test = idx[f::folds]
+        tr = [i for i in idx if i not in set(test)]
+        W = torch.zeros(X.shape[1], k, requires_grad=True)
+        b = torch.zeros(k, requires_grad=True)
+        opt = torch.optim.Adam([W, b], lr=0.05)
+        for _ in range(300):
+            loss = torch.nn.functional.cross_entropy(X[tr] @ W * 10 + b, y[tr]) + 1e-3 * (W ** 2).sum()
+            opt.zero_grad(); loss.backward(); opt.step()
+        with torch.no_grad():
+            soft[test] = torch.softmax((X[test] @ W * 10 + b) / 2.0, -1)   # temperature 2
+    return {t: soft[i] for i, t in enumerate(texts)}
+
+
 def make_batch(exs, lex, conf, rng, buckets, noisy=3, ctx_fn=None):
     out = []
     for e in exs:
@@ -51,11 +79,11 @@ def make_batch(exs, lex, conf, rng, buckets, noisy=3, ctx_fn=None):
             if rng.random() < 0.15 and len(wi) > 2:          # word dropout
                 k = rng.randrange(len(wi)); wi = wi[:k] + wi[k + 1:]; ww = ww[:k] + ww[k + 1:]
             c = ctx_fn(e.label, rng) if ctx_fn else -1
-            out.append(((wi, ww, hi, hw, c), e.label, e.weight))
+            out.append(((wi, ww, hi, hw, c), e.label, e.weight, e.text))
     return out
 
 
-def train(net, data, lex, conf, epochs, seed, ctx_fn=None, log=None):
+def train(net, data, lex, conf, epochs, seed, ctx_fn=None, log=None, soft=None, alpha=0.5):
     torch.manual_seed(seed)
     rng = random.Random(seed)
     opt = torch.optim.AdamW(net.parameters(), lr=3e-3, weight_decay=1e-4)
@@ -67,10 +95,17 @@ def train(net, data, lex, conf, epochs, seed, ctx_fn=None, log=None):
         tot = 0.0
         for i in range(0, len(b), 64):
             chunk = b[i:i + 64]
-            logits = net([x for x, _, _ in chunk])
-            y = torch.tensor([l for _, l, _ in chunk])
-            w = torch.tensor([wt for _, _, wt in chunk])
+            logits = net([c[0] for c in chunk])
+            y = torch.tensor([c[1] for c in chunk])
+            w = torch.tensor([c[2] for c in chunk])
             loss = (torch.nn.functional.cross_entropy(logits, y, reduction="none", label_smoothing=0.05) * w).mean()
+            if soft:
+                tgt = [soft.get(c[3]) for c in chunk]
+                m = [i for i, t in enumerate(tgt) if t is not None]
+                if m:
+                    lp = torch.log_softmax(logits[m] / 2.0, -1)
+                    kl = torch.nn.functional.kl_div(lp, torch.stack([tgt[i] for i in m]), reduction="batchmean")
+                    loss = (1 - alpha) * loss + alpha * 4.0 * kl          # T^2 scaling
             opt.zero_grad(); loss.backward(); opt.step()
             tot += loss.item() * len(chunk)
         if log and (ep % 10 == 0 or ep == epochs - 1):
@@ -236,7 +271,8 @@ def run_router(a, log=print):
     conf = Confusions(lex)
     net = Net(lex, len(data.names), d=a.d, hidden=a.hidden, buckets=a.buckets, teacher=teacher_vectors(a, lex, a.d))
     t0 = time.time()
-    train(net, data, lex, conf, a.epochs, a.seed, log=log)
+    soft = teacher_soft(a.teacher, data.train + data.labels, len(data.names)) if getattr(a, "distill", False) and a.teacher else None
+    train(net, data, lex, conf, a.epochs, a.seed, log=log, soft=soft)
     packed = Packed(net, list(range(len(data.names))), data.names, kind=0)
     skipped = packed.set_pins(data.pins)
     if skipped and log:
@@ -255,7 +291,8 @@ def run_expert(a, tree, log=print):
     net = Net(lex, len(data.names), d=a.d, hidden=a.hidden, buckets=a.buckets, ctx=len(data.nodes),
               teacher=teacher_vectors(a, lex, a.d))
     t0 = time.time()
-    train(net, data, lex, conf, a.epochs, a.seed, ctx_fn=data.ctx_for, log=log)
+    soft = teacher_soft(a.teacher, data.train + data.labels, len(data.names)) if getattr(a, "distill", False) and a.teacher else None
+    train(net, data, lex, conf, a.epochs, a.seed, ctx_fn=data.ctx_for, log=log, soft=soft)
     packed = Packed(net, list(range(len(data.names))), data.names, kind=1)
     inside = [e for e in data.test if e.label != data.none]
     other = [e for e in data.test if e.label == data.none]
@@ -278,6 +315,7 @@ def main(argv=None):
     ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--extra", type=Path, nargs="+", help="generated sentences from vr.generate (desktop)")
+    ap.add_argument("--distill", action="store_true", help="also learn the --teacher model's soft labels")
     ap.add_argument("--test-extra", type=Path, help="independent test set (e.g. out/agy_test.yaml) replacing the seed test")
     ap.add_argument("--teacher", help="sentence-transformers model for starting word vectors (desktop), "
                     "e.g. sentence-transformers/all-MiniLM-L6-v2")
