@@ -31,6 +31,7 @@ HERE = Path(__file__).resolve().parents[1]
 CONTENT = HERE.parent / "plb" / "content"
 LEVELS = [0.0, 0.15, 0.3]
 ACCEPT_P, ACCEPT_MARGIN = 0.55, 0.2     # below this the device shows a pick-one-of-3 screen
+MAX_UNK_AUTO = 0.2     # many unknown words heard: never open on its own, show the tiles
 SAY_AGAIN_P = 0.08     # below this, "say that again"; otherwise never a dead end: show the tiles
 
 
@@ -113,7 +114,9 @@ def evaluate(packed, data, lex, conf, ctx_mode=None, same=None, seed=7, reps=3, 
                 c["rank_sum"] += next(i for i, o in enumerate(order) if o in ok)
                 rows_seen.append((float(p[top1]), float(margin_of(p, order)), top1 in ok))
                 margin = p[order[0]] - p[order[1]]
-                if p[top1] >= ACCEPT_P and margin >= ACCEPT_MARGIN:
+                words = [i for i, _ in nb[0]]
+                unk = sum(1 for i in words if i == 0) / max(1, len(words))
+                if p[top1] >= ACCEPT_P and margin >= ACCEPT_MARGIN and unk <= MAX_UNK_AUTO:
                     c["auto_right" if top1 in ok else "auto_wrong"] += 1
                 elif p[top1] < SAY_AGAIN_P:
                     c["say_again"] += 1

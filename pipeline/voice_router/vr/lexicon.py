@@ -36,6 +36,7 @@ class Lexicon:
         self.words = words
         self.ids = {w: i for i, w in enumerate(words)}
         self.cls = [0] * len(words)
+        self.phones: list[list[str]] = [[] for _ in words]   # ARPAbet, when lexicon.yaml has it
         for w, c in (classes or {}).items():
             if w in self.ids:
                 self.cls[self.ids[w]] = c
@@ -57,7 +58,12 @@ class Lexicon:
         d = yaml.safe_load(Path(path).read_text())
         rows = sorted(d["words"], key=lambda r: r["id"])
         words = [r["word"] for r in rows]
-        return cls(words, {r["word"]: int(r.get("class", 0)) for r in rows})
+        lex = cls(words, {r["word"]: int(r.get("class", 0)) for r in rows})
+        for r in rows:
+            ph = r.get("phones") or []
+            if ph:
+                lex.phones[r["id"]] = ph[0].split()
+        return lex
 
     @classmethod
     def harvest(cls, texts: list[str], extra_counts: dict[str, int] | None = None) -> "Lexicon":

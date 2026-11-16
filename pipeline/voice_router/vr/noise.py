@@ -15,12 +15,31 @@ from .lexicon import Lexicon
 FILLERS = ["the", "a", "and", "uh", "is", "it", "my", "his", "her", "to"]
 
 
+def _edit(a, b):
+    prev = list(range(len(b) + 1))
+    for i, x in enumerate(a, 1):
+        cur = [i]
+        for j, y in enumerate(b, 1):
+            cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (x != y)))
+        prev = cur
+    return prev[-1]
+
+
 class Confusions:
+    """Sound-alike neighbours: phoneme edit distance when the lexicon has phones
+    (recognizer thread's lexicon.yaml), spelling similarity otherwise."""
+
     def __init__(self, lex: Lexicon, k: int = 4, cutoff: float = 0.6):
         words = lex.words[1:]
         self.near: dict[int, list[int]] = {}
+        have = [i for i in range(1, len(lex)) if lex.phones[i]]
         for i, w in enumerate(lex.words):
             if i == 0:
+                continue
+            if lex.phones[i] and len(have) > len(lex) // 2:
+                p = lex.phones[i]
+                d = sorted((_edit(p, lex.phones[j]) / max(len(p), len(lex.phones[j])), j) for j in have if j != i)
+                self.near[i] = [j for dist, j in d[:k] if dist <= 0.5]
                 continue
             cands = difflib.get_close_matches(w, words, n=k + 1, cutoff=cutoff)
             self.near[i] = [lex.ids[c] for c in cands if c != w][:k]
