@@ -184,13 +184,19 @@ def add_extra(a, data, kind, tree=None):
         return
     if kind == "router" and (ex / "router.yaml").exists():
         g = yaml.safe_load((ex / "router.yaml").read_text())["topics"]
-        for k, n in enumerate(data.names[:-1]):
+        for k, n in enumerate(data.names):              # last name is "reject"
             data.train += [Example(u, k, 0.7) for u in g.get(n, [])]
     if kind == "expert" and (ex / f"expert-{tree}.yaml").exists():
         g = yaml.safe_load((ex / f"expert-{tree}.yaml").read_text())["nodes"]
         idx = {k: i for i, k in enumerate(data.nodes)}
         for k, us in g.items():
             data.train += [Example(u, idx[k], 0.7) for u in us]
+        if (ex / "router.yaml").exists():               # other topics' lines teach "none" (hand back)
+            topics = yaml.safe_load((CONTENT / "voice" / "topics.yaml").read_text())["topics"]
+            gr = yaml.safe_load((ex / "router.yaml").read_text())["topics"]
+            for n, us in gr.items():
+                if n == "reject" or topics.get(n, {}).get("open") != tree:
+                    data.train += [Example(u, data.none, 0.5) for u in us]
 
 
 def teacher_vectors(a, lex, d):
