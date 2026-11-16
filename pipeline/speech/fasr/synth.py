@@ -106,14 +106,20 @@ def main(argv=None):
     ap.add_argument("--eval-per-text", type=int, default=3)
     ap.add_argument("--cuda", action="store_true")
     ap.add_argument("--seed", type=int, default=11)
+    ap.add_argument("--workers", type=int, default=1, help="CPU processes, each speaking every Nth clip")
+    ap.add_argument("--threads", type=int, default=2, help="onnxruntime threads per CPU process")
+    ap.add_argument("--shard", default="0/1", help=argparse.SUPPRESS)
     a = ap.parse_args(argv)
+    if a.workers > 1 and a.shard == "0/1":
+        return run_workers(a, list(argv if argv is not None else sys.argv[2:]))
+    k, nsh = map(int, a.shard.split("/"))
     sys.path.insert(0, str(GPU_DIR))
     from make_clips import SR, load_voices, mix, speak
 
-    rng = random.Random(a.seed); nrng = np.random.default_rng(a.seed)
+    rng = random.Random(a.seed + 7919 * k); nrng = np.random.default_rng(a.seed + k)
     vdir = a.voices or (a.out.parent.parent / "voices")
-    voices = load_voices(vdir, a.cuda)
-    train_s, held_s = sentences(a.trees or [lx.CONTENT / "trees"], a.extra, a.templates, rng)
+    voices = load_voices(vdir, a.cuda, 0 if nsh == 1 else a.threads)
+    train_s, held_s = sentences(a.trees or [lx.CONTENT / "trees"], a.extra, a.templates, random.Random(a.seed))
     print(f"{len(train_s)} training sentences, {len(held_s)} held-out sentences, {len(voices)} voices", flush=True)
 
     def pick(split):
@@ -128,25 +134,27 @@ def main(argv=None):
     a.out.mkdir(parents=True, exist_ok=True)
     (a.out / "wav").mkdir(exist_ok=True)
     done = set()
-    for f in ("train.jsonl", "dev.jsonl", "eval.jsonl"):
-        p = a.out / f
-        if p.exists():   # resume: keep what's there
-            done |= {json.loads(l)["wav"] for l in p.read_text().splitlines() if l.strip()}
-    man = {k: (a.out / f"{k}.jsonl").open("a") for k in ("train", "dev", "eval")}
-    n = 0
+    for p in a.out.glob("*.jsonl"):   # resume: keep what's there (merged manifests and unmerged shards)
+        done |= {json.loads(l)["wav"] for l in p.read_text().splitlines() if l.strip()}
+    tag = "" if nsh == 1 else f".s{k}"
+    man = {sp: (a.out / f"{sp}{tag}.jsonl").open("a") for sp in ("train", "dev", "eval")}
+    n = skipped = 0
     jobs = [("train", i, s, j) for i, s in enumerate(train_s) for j in range(a.per_text)]
     jobs += [("dev", i, s, 0) for i, s in enumerate(train_s) if i % 20 == 0]          # unseen speakers, seen text
     jobs += [("eval", i, s, j) for i, s in enumerate(held_s) for j in range(a.eval_per_text * len(CONDITIONS))]
-    for split, i, s, j in jobs:
+    for idx, (split, i, s, j) in enumerate(jobs):
         rel = f"wav/{split}-{i:05d}-{j:02d}.wav"
-        if rel in done:
+        if idx % nsh != k or rel in done:
             continue
         name, v, spk = pick("train" if split == "train" else "held")
         speed = rng.uniform(0.8, 1.25)
         try:
             x = speak(v, s, spk, speed)
         except Exception as e:
-            print("skip", name, s, e); continue
+            print("skip", name, s, e); skipped += 1
+            if skipped > 50 and skipped > n:   # a broken voice setup, not a bad sentence: don't mark synth done
+                raise SystemExit(f"synth: {skipped} failures vs {n} clips, stopping")
+            continue
         rec = {"wav": rel, "text": s, "voice": name, "speaker": spk, "speed": round(speed, 2)}
         if split == "eval":
             label, kind, snr = CONDITIONS[j % len(CONDITIONS)]
@@ -160,4 +168,23 @@ def main(argv=None):
             for m in man.values():
                 m.flush()
             print(f"{n} clips", flush=True)
-    print(f"done: {n} new clips in {a.out}")
+    for m in man.values():
+        m.close()
+    print(f"done: {n} new clips in {a.out} ({skipped} skipped)", flush=True)
+
+
+def run_workers(a, argv: list[str]):
+    """Start N shard processes, wait, then fold their manifests into train/dev/eval.jsonl."""
+    import subprocess
+    here = Path(__file__).resolve().parents[1]
+    procs = [subprocess.Popen([sys.executable, "-m", "fasr", "synth", *argv, "--shard", f"{k}/{a.workers}"], cwd=here)
+             for k in range(a.workers)]
+    bad = [k for k, p in enumerate(procs) if p.wait() != 0]
+    for sp in ("train", "dev", "eval"):
+        with (a.out / f"{sp}.jsonl").open("a") as out:
+            for f in sorted(a.out.glob(f"{sp}.s*.jsonl")):
+                out.write(f.read_text()); f.unlink()
+    counts = {sp: sum(1 for _ in (a.out / f"{sp}.jsonl").open()) for sp in ("train", "dev", "eval")}
+    print("synth clips:", counts, flush=True)
+    if bad:
+        raise SystemExit(f"synth shards {bad} failed (finished clips are kept; rerun to resume)")

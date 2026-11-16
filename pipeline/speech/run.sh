@@ -24,7 +24,8 @@ s_setup()    { pip install -q cmudict soundfile sounddevice scipy peft "transfor
                python -c "import torch; print('torch', torch.__version__, 'cuda', torch.cuda.is_available())"; }
 s_lexicon()  { python -m fasr lexicon --trees $(tree_args) --extra $(extra_args) --min-count "${LEX_MIN:-3}"; }   # append-only
 s_opendata() { python -m fasr opendata --out "$SP/librispeech"; }
-s_synth()    { python -m fasr synth --out "$SP/tts" --voices "$WORK/voices" --trees $(tree_args) --extra $(extra_args) --cuda; }
+s_synth()    { python -m fasr synth --out "$SP/tts" --voices "$WORK/voices" --trees $(tree_args) --extra $(extra_args) \
+                 --workers "${SYNTH_WORKERS:-6}" --threads 2; }   # CPU: the GPU is shared with the deck and pretrain
 s_pretrain() { wait_for_gpu 3000; python -m fasr train --run pretrain --size "${SIZE:-s}" --hours "${PRE_HOURS:-6}" \
                  --train "$SP/librispeech/train.jsonl" --dev "$SP/librispeech/dev.jsonl"; }
 me_args()    { [ -s "$SP/me/train.jsonl" ] && printf -- '--train %s:3 ' "$SP/me/train.jsonl"
