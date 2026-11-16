@@ -34,7 +34,7 @@ WORK = Path(os.environ.get("WORK", "/mnt/data/first-aid-gpu"))
 def load_model(run: str, which: str = "best.pt") -> AcousticModel:
     d = torch.load(WORK / "speech" / "runs" / run / which, map_location="cpu")
     m = AcousticModel(d.get("size", "s"))
-    m.load_state_dict(d["model"])
+    m.load_compat(d["model"])
     return m.eval()
 
 

@@ -148,12 +148,12 @@ def main(argv=None):
     opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=1e-2)
     if ck.exists():
         d = torch.load(ck, map_location=dev)
-        model.load_state_dict(d["model"]); opt.load_state_dict(d["opt"]); state = d["state"]
+        model.load_compat(d["model"]); opt.load_state_dict(d["opt"]); state = d["state"]
         say(f"resumed {a.run} at step {state['step']}, {state['secs']/3600:.2f} h done, best PER {state['best']:.3f}")
     else:
         if a.init:
             d = torch.load(WORK / "speech" / "runs" / a.init / "best.pt", map_location=dev)
-            model.load_state_dict(d["model"])
+            model.load_compat(d["model"])
             say(f"initialised from {a.init}")
         else:
             mu, sd = feature_stats(items)

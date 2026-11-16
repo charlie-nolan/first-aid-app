@@ -12,7 +12,7 @@ def main(argv=None):
     lx.add_argument("--extra", nargs="*", default=[], type=Path)
     lx.add_argument("--min-count", type=int, default=1)
     lx.add_argument("--dry-run", action="store_true")
-    for name in ("train", "synth", "opendata", "evaluate", "whisper", "record", "export"):
+    for name in ("train", "synth", "opendata", "evaluate", "whisper", "record", "export", "adapt"):
         sub.add_parser(name, add_help=False)
     a, rest = ap.parse_known_args(argv)
     if a.cmd != "lexicon":

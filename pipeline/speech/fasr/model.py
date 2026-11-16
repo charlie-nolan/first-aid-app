@@ -63,12 +63,38 @@ class AcousticModel(nn.Module):
         self.bn0 = nn.BatchNorm1d(c)
         self.blocks = nn.Sequential(*[Block(c, k, drop) for _ in range(n)])
         self.head = nn.Conv1d(c, N_TOKENS, 1)
+        # Per-user adaptation slot ("speaker profile"), identity for the base model:
+        #   film[k] = (scale, shift) per channel after the stem (k=0) and after block k.
+        # Base training never touches it. On-device enrollment (fasr adapt) fits it, plus the
+        # user's own feature mean/std and a head bias, from 2-3 minutes of prompted speech.
+        self.register_buffer("film", torch.zeros(n + 1, 2, c))
+        self.register_buffer("head_bias", torch.zeros(N_TOKENS))
 
-    def forward(self, feats):
-        x = ((feats - self.mu) / self.sd).transpose(1, 2)
+    def features(self, feats, user_mu=None, user_sd=None):
+        mu = self.mu if user_mu is None else user_mu
+        sd = self.sd if user_sd is None else user_sd
+        x = ((feats - mu) / sd).transpose(1, 2)
         x = F.relu(self.bn0(self.stem(x)))
-        x = self.blocks(x)
-        return self.head(x).transpose(1, 2).log_softmax(-1)
+        x = self._film(x, 0)
+        for k, b in enumerate(self.blocks, 1):
+            x = self._film(b(x), k)
+        return x
+
+    def _film(self, x, k):
+        f = self.film[k]
+        return x * (1 + f[0])[None, :, None] + f[1][None, :, None]
+
+    def forward(self, feats, user_mu=None, user_sd=None):
+        x = self.features(feats, user_mu, user_sd)
+        y = self.head(x) + self.head_bias[None, :, None]
+        return y.transpose(1, 2).log_softmax(-1)
+
+    def load_compat(self, state: dict):
+        """Load a checkpoint made before the adaptation slot existed."""
+        missing, unexpected = self.load_state_dict(state, strict=False)
+        bad = [k for k in missing if k not in ("film", "head_bias")]
+        if bad or unexpected:
+            raise RuntimeError(f"checkpoint mismatch: missing {bad}, unexpected {unexpected}")
 
     @staticmethod
     def out_len(n_frames):
