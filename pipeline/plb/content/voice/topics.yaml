@@ -6,6 +6,10 @@
 # `test`:  HELD-OUT utterances, never trained on. Don't copy them into `train`, or the
 #          score stops meaning anything; write new ones for gaps the report shows.
 #
+# `pin`: life-threat word groups. If every word of a group is heard (any order, in any of
+#   the recognizer's guesses), that topic is ALWAYS on the 3 tiles, and nothing else opens on
+#   its own. A hard rule, not learned: "baby is limp and not breathing" must never rank 12th.
+#
 # Written by Claude 2026-11-16 as a DRAFT for Charlie's review: everyday backcountry
 # speech (first and third person, stressed, casual), violent/military wording left out.
 # Tree ids are the 11-10 drafts in trees-draft-all; they will change when trees are signed off.
@@ -34,6 +38,7 @@ reject:            # things that must open nothing ("say that again" screen)
 
 topics:
   bleeding:
+    pin: ['bleeding', 'blood', 'tourniquet', 'gushing', 'spurting']
     open: bleeding
     trees: [bleeding, bleeding-control]
     train:
@@ -86,6 +91,7 @@ topics:
       - his hip hurts after he fell
 
   head:
+    pin: ['knocked out', 'head injury', 'concussion', 'neck injury', 'spine']
     open: head-injuries
     trees: [head-injuries, head-and-chest-injuries, neck-and-facial-injuries]
     train:
@@ -108,6 +114,7 @@ topics:
       - fell off the ledge onto his head
 
   chest:
+    pin: ['chest wound', 'sucking chest']
     open: open-chest-wound
     trees: [open-chest-wound]
     train:
@@ -178,6 +185,7 @@ topics:
       - sunburn with blisters
 
   cold:
+    pin: ['hypothermia', 'frostbite']
     open: cold-injuries
     trees: [cold-injuries, cold-injuries-survival, thermal-regulation-and-cold-survival]
     train:
@@ -200,6 +208,7 @@ topics:
       - soaked in the rain and freezing
 
   heat:
+    pin: ['heat stroke', 'heatstroke']
     open: heat-injuries
     trees: [heat-injuries, heat-and-dehydration-management]
     train:
@@ -251,6 +260,7 @@ topics:
       - feels awful at camp high up
 
   allergy:
+    pin: ['throat swelling', 'throat closing', 'tongue swelling', 'epipen', 'anaphylaxis', 'lips swelling', "can't breathe sting", "can't breathe stung"]
     open: allergic-reactions-and-anaphylaxis
     trees: [allergic-reactions-and-anaphylaxis]
     train:
@@ -270,6 +280,7 @@ topics:
       - tongue swelling
 
   snake:
+    pin: ['snake', 'rattlesnake', 'rattler']
     open: snake-bites
     trees: [snake-bites, poisonous-snakes]
     train:
@@ -322,6 +333,7 @@ topics:
       - took too many pills
 
   cpr:
+    pin: ['not breathing', 'stopped breathing', "isn't breathing", 'no breathing', 'no pulse', 'unresponsive', 'unconscious', 'limp', 'collapsed', 'cpr', 'heart attack', 'compressions', 'resuscitation']
     open: cpr
     trees: [cpr, heart-disease-and-cardiac-emergencies]
     train:
@@ -341,6 +353,7 @@ topics:
       - not breathing and blue
 
   choking:
+    pin: ['choking', 'choke', 'heimlich', 'stuck throat']
     open: choking
     trees: [choking, airway-and-breathing]
     train:
@@ -357,6 +370,7 @@ topics:
       - grabbing his throat and can't speak
 
   shock:
+    pin: ['shock', 'clammy']
     open: shock
     trees: [shock]
     train:

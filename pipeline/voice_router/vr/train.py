@@ -107,16 +107,18 @@ def evaluate(packed, data, lex, conf, ctx_mode=None, same=None, seed=7, reps=3, 
                 ctx = ctx_mode(e.label, rng) if ctx_mode else -1
                 p = softmax(packed.logits(nb, ctx))
                 order = list(np.argsort(-p))
-                top1, top3 = order[0], order[:3]
+                top1 = order[0]
+                top3, may_auto = packed.tiles(p, nb)
                 c["top1"] += top1 in ok
                 c["top3"] += bool(ok & set(top3))
-                c["top6"] += bool(ok & set(order[:6]))           # "None of these" -> next 3
+                page2 = [o for o in order if o not in top3][:3]
+                c["top6"] += bool(ok & (set(top3) | set(page2)))   # "None of these" -> next 3
                 c["rank_sum"] += next(i for i, o in enumerate(order) if o in ok)
-                rows_seen.append((float(p[top1]), float(margin_of(p, order)), top1 in ok))
+                rows_seen.append((float(p[top1]) if may_auto else 0.0, float(margin_of(p, order)), top1 in ok))
                 margin = p[order[0]] - p[order[1]]
                 words = [i for i, _ in nb[0]]
                 unk = sum(1 for i in words if i == 0) / max(1, len(words))
-                if p[top1] >= ACCEPT_P and margin >= ACCEPT_MARGIN and unk <= MAX_UNK_AUTO:
+                if p[top1] >= ACCEPT_P and margin >= ACCEPT_MARGIN and unk <= MAX_UNK_AUTO and may_auto:
                     c["auto_right" if top1 in ok else "auto_wrong"] += 1
                 elif p[top1] < SAY_AGAIN_P:
                     c["say_again"] += 1
@@ -236,6 +238,9 @@ def run_router(a, log=print):
     t0 = time.time()
     train(net, data, lex, conf, a.epochs, a.seed, log=log)
     packed = Packed(net, list(range(len(data.names))), data.names, kind=0)
+    skipped = packed.set_pins(data.pins)
+    if skipped and log:
+        log(f"  pins skipped (word not in lexicon): {skipped}")
     res = evaluate(packed, data, lex, conf)
     return data, lex, packed, res, time.time() - t0
 
@@ -317,15 +322,20 @@ def main(argv=None):
 def golden(path, packed, data, lex, ctx=-1):
     """A few inputs + the int8 reference scores, for the C reader's host test."""
     cases = []
-    for e in data.test[:12]:
-        nb = [[(i, 100) for i in lex.encode(e.text)]]
-        cases.append({"text": e.text, "ctx": ctx, "nbest": nb, "logits": [float(v) for v in packed.logits(nb, ctx)]})
+    texts = [e.text for e in data.test[:12]] + ["baby is limp and not breathing", "he is choking and bleeding",
+                                                 "my friend collapsed after the bee sting"]
+    for t in texts:
+        nb = [[(i, 100) for i in lex.encode(t)]]
+        lg = packed.logits(nb, ctx)
+        tiles, auto = packed.tiles(softmax(lg), nb)
+        cases.append({"text": t, "ctx": ctx, "nbest": nb, "logits": [float(v) for v in lg],
+                      "tiles": [int(x) for x in tiles], "auto": bool(auto)})
     path.write_text(json.dumps({"cases": cases, "neg_ids": [i for i in range(len(lex)) if lex.is_neg(i)]}))
     with open(path.with_suffix(".txt"), "w") as f:          # same cases for the C host test
         for c in cases:
             ids = [i for i, _ in c["nbest"][0]]
             f.write(f"{c['ctx']} {len(ids)} {' '.join(map(str, ids))} {len(c['logits'])} "
-                    f"{' '.join(f'{v:.6f}' for v in c['logits'])}\n")
+                    f"{' '.join(f'{v:.6f}' for v in c['logits'])} {' '.join(map(str, c['tiles']))} {int(c['auto'])}\n")
 
 
 if __name__ == "__main__":

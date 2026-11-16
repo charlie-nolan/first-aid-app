@@ -36,6 +36,13 @@ bool vr_open(vr_model_t *m, const void *blob, size_t len) {
     m->class_map = (const uint16_t *)take(&p, 2u * m->k);
     m->names = (const char *)p;
     p += f[8];
+    m->npins = 0; m->pins = 0;
+    if (f[9] & 1) {
+        p += ((uintptr_t)p - (uintptr_t)blob) & 1;             /* 2-byte aligned */
+        memcpy(&m->npins, p, 2); p += 2;
+        m->pins = p;
+        for (int i = 0; i < m->npins && p < end; i++) p += 3 + 2 * p[2];
+    }
     return p <= end;
 }
 
@@ -96,6 +103,43 @@ void vr_top3(const vr_model_t *m, const float *p, int out[3]) {
                 for (int u = 2; u > t; u--) out[u] = out[u - 1];
                 out[t] = o; break;
             }
+}
+
+static bool heard(const voice_hyp_t *hyp, int r, uint16_t id) {
+    for (int j = 0; j < hyp->h[r].len; j++) if (hyp->h[r].id[j] == id) return true;
+    return false;
+}
+
+static uint64_t fired_pins(const vr_model_t *m, const voice_hyp_t *hyp) {
+    uint64_t f = 0;
+    const uint8_t *q = m->pins;
+    for (int i = 0; i < m->npins; i++) {
+        uint16_t cls; memcpy(&cls, q, 2); int n = q[2];
+        for (int r = 0; r < hyp->n && r < VR_MAX_HYP; r++) {
+            int all = 1;
+            for (int k = 0; k < n && all; k++) { uint16_t id; memcpy(&id, q + 3 + 2 * k, 2); all = heard(hyp, r, id); }
+            if (all && cls < 64) { f |= 1ull << cls; break; }
+        }
+        q += 3 + 2 * n;
+    }
+    return f;
+}
+
+bool vr_tiles(const vr_model_t *m, const voice_hyp_t *hyp, const float *p, int t[3]) {
+    int order[3]; vr_top3(m, p, order);
+    uint64_t f = fired_pins(m, hyp);
+    for (int i = 0; i < 3; i++) t[i] = order[i];
+    if (!f) return true;
+    for (int pass = 0; pass < 3; pass++) {                    /* best fired class not on a tile yet */
+        int best = -1;
+        for (int c = 0; c < m->k; c++)
+            if ((f >> c & 1) && t[0] != c && t[1] != c && t[2] != c && (best < 0 || p[c] > p[best])) best = c;
+        if (best < 0) break;
+        for (int j = 2; j >= 0; j--) if (!(f >> t[j] & 1)) { t[j] = best; break; }
+    }
+    for (int a = 0; a < 3; a++) for (int b = a + 1; b < 3; b++)
+        if (t[b] >= 0 && (t[a] < 0 || p[t[b]] > p[t[a]])) { int x = t[a]; t[a] = t[b]; t[b] = x; }
+    return (f >> t[0] & 1) && t[0] == order[0];
 }
 
 const char *vr_name(const vr_model_t *m, int cls) {

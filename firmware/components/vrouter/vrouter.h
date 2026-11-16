@@ -39,6 +39,8 @@ typedef struct {
     const float *s2, *b2; const int8_t *w2;
     const uint16_t *class_map;
     const char *names;                   /* k NUL-terminated names, for logs */
+    uint16_t npins;                      /* life-threat word groups (router) */
+    const uint8_t *pins;                 /* npins x { u16 class, u8 n, u16 id[n] } */
 } vr_model_t;
 
 /* Points m into blob (no copy). Returns false if the blob is not a valid VXP1. */
@@ -51,3 +53,8 @@ void vr_score(const vr_model_t *m, const voice_hyp_t *hyp, int ctx, float *p);
 void vr_top3(const vr_model_t *m, const float *p, int out[3]);
 
 const char *vr_name(const vr_model_t *m, int cls);
+
+/* The 3 tiles to show, best first, with every pinned (life-threat) class that fired forced
+ * onto them. Returns true if tiles[0] may open on its own (still subject to the caller's
+ * probability / margin / unknown-word checks): false whenever a pin fired for another class. */
+bool vr_tiles(const vr_model_t *m, const voice_hyp_t *hyp, const float *p, int tiles[3]);

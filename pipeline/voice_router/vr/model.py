@@ -141,6 +141,34 @@ class Packed:
         self.lex, self.buckets, self.kind = net.lex, net.buckets, kind
         self.d, self.hidden, self.k = net.d, net.hidden, net.k
         self.class_map, self.names = class_map, names
+        self.pins: list[tuple[int, list[int]]] = []
+
+    def set_pins(self, pins):
+        """pins: (class, "word word") -> (class, [ids]). Groups with unknown words are skipped."""
+        self.pins, skipped = [], []
+        for k, g in pins:
+            ids = self.lex.encode(g)
+            (skipped if not ids or 0 in ids else self.pins).append((k, ids) if ids and 0 not in ids else g)
+        return skipped
+
+    def fired(self, nb) -> set[int]:
+        heard = [{i for i, _ in h} for h in nb[:5]]
+        return {k for k, ids in self.pins if any(all(i in h for i in ids) for h in heard)}
+
+    def tiles(self, p, nb):
+        """The 3 tiles + whether the top answer may open on its own. Pinned topics always get a
+        tile (taking the lowest slots), and nothing opens on its own past a pinned topic."""
+        order = [int(i) for i in np.argsort(-p)]
+        f = sorted(self.fired(nb), key=lambda k: -p[k])[:3]
+        t = order[:3]
+        for k in f:
+            if k not in t:
+                for j in range(2, -1, -1):
+                    if t[j] not in f:
+                        t[j] = k
+                        break
+        t.sort(key=lambda k: -p[k])
+        return t, (not f or t[0] in f and order[0] == t[0])
 
     def logits(self, nb, ctx=-1):
         wi, ww, hi, hw = features(nb, self.lex, self.buckets)
@@ -160,7 +188,7 @@ class Packed:
         V, B, C = len(self.W), len(self.Hh), len(self.C)
         names = b"".join(n.encode()[:31] + b"\0" for n in self.names)
         hdr = struct.pack("<4sHHHHHHHHHH", b"VXP1", 1, self.kind, V, B, C, self.d, self.hidden, self.k,
-                          len(names), 0)
+                          len(names), 1 if self.pins else 0)
         cls = bytes(self.lex.cls)
         parts = [hdr, cls + b"\0" * (-len(cls) % 4)]
         for q, s in ((self.W, self.Ws), (self.Hh, self.Hs), (self.C, self.Cs)):
@@ -168,6 +196,9 @@ class Packed:
         parts += [self.s1.tobytes(), self.b1.tobytes(), self.W1.tobytes(),
                   self.s2.tobytes(), self.b2.tobytes(), self.W2.tobytes(),
                   np.array(self.class_map, np.uint16).tobytes(), names]
+        pins = struct.pack("<H", len(self.pins)) + b"".join(
+            struct.pack("<HB", k, len(ids)) + struct.pack(f"<{len(ids)}H", *ids) for k, ids in self.pins)
+        parts.append(b"\0" * (-sum(map(len, parts)) % 2) + pins)
         blob = b"".join(parts)
         return blob + b"\0" * (-len(blob) % 4)
 

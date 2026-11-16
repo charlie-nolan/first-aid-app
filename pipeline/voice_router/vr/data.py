@@ -44,6 +44,7 @@ class RouterData:
         self.topics = d["topics"]
         self.reject = d["reject"]
         self.train, self.test, self.labels = [], [], []
+        self.pins = [(k, g) for k, t in enumerate(self.topics.values()) for g in t.get("pin", [])]
         for k, (name, t) in enumerate(self.topics.items()):
             self.train += [Example(s, k) for s in t["train"]]
             self.test += [Example(s, k) for s in t["test"]]
