@@ -32,6 +32,7 @@ symptom:
   - breathe, breathing, breath, wheezing, gasping, coughing, cough, choke, gagging, blue, lips
   - vomiting, vomit, throwing, puking, nausea, nauseous, diarrhea, sweating, sweaty, clammy, fever, chills, thirsty, dehydrated
   - headache, stiff, stuck, can't, move, feel, see, talk, speak, slurred, drooping, fast, slow, racing, pounding
+  - limp, floppy, resuscitation, rescue, breaths, unresponsive, unconscious, compressions, tourniquet, epipen, anaphylaxis, gushing, choke, heatstroke
   - shock, frostbite, frostnip, hypothermia, hypothermic, heatstroke, exhaustion, exhausted, sick, hives, swelling
   - cpr, heartbeat, stopped, collapsed, choking, drowning, stroke, attack, asthma, diabetic, sugar, epipen, anaphylaxis
 negation:
@@ -86,3 +87,5 @@ phones:
   junctional: [JH AH NG K SH AH N AH L]
   splinting: [S P L IH N T IH NG]
   toothache: [T UW TH EY K]
+  compressions: [K AH M P R EH SH AH N Z]
+  vomited: [V AA M AH T IH D, V AA M IH T IH D]
