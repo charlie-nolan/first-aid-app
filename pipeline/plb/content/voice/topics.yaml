@@ -472,6 +472,7 @@ topics:
       - he got hit by lightning
 
   water:
+    scope: survival
     open: water-procurement-and-purification
     trees: [water-procurement-and-purification]
     train:
@@ -486,6 +487,7 @@ topics:
       - clean drinking water
 
   fire:
+    scope: survival
     open: firecraft-overview
     trees: [firecraft-overview, fire-starting-methods, fire-basics-principles, fire-fuel-types, fire-site-preparation]
     train:
@@ -500,6 +502,7 @@ topics:
       - fire with a ferro rod
 
   shelter:
+    scope: survival
     open: shelter-building
     trees: [shelter-building, shelter-construction-and-selection]
     train:
@@ -514,6 +517,7 @@ topics:
       - snow cave
 
   signal:
+    scope: survival
     open: signaling-for-rescue
     trees: [signaling-for-rescue, search-and-rescue-operations]
     train:
@@ -528,6 +532,7 @@ topics:
       - get help out here
 
   lost:
+    scope: survival
     open: navigation-and-terrain-crossing
     trees: [navigation-and-terrain-crossing, survival-mission-and-priorities]
     train:
@@ -594,6 +599,7 @@ topics:
       - drag him to safety
 
   knots:
+    scope: survival
     open: ropes-and-knots
     trees: [ropes-and-knots, rope-knots-and-anchors, knots-for-shelter-and-structures]
     train:

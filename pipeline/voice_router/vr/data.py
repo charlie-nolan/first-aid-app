@@ -59,8 +59,15 @@ def tree_texts(t: dict, top_only: bool = False) -> list[str]:
 class RouterData:
     REJECT = "reject"
 
-    def __init__(self, topics_yaml: Path, trees_dir):
+    def __init__(self, topics_yaml: Path, trees_dir, scope: str | None = None):
         d = load_topics(topics_yaml)
+        out, self.out_names = [], set()
+        if scope:      # e.g. "first_aid": other topics' lines teach "reject" (not covered: say again / buttons)
+            self.out_names = {n for n, t in d["topics"].items() if t.get("scope", "first_aid") != scope}
+            out = [d["topics"][n] for n in self.out_names]
+            d["topics"] = {n: t for n, t in d["topics"].items() if t.get("scope", "first_aid") == scope}
+            for k in ("train", "test"):
+                d["reject"][k] = d["reject"][k] + [u for t in out for u in t.get(k, [])]
         self.names = list(d["topics"]) + [self.REJECT]
         self.topics = d["topics"]
         self.reject = d["reject"]

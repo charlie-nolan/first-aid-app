@@ -22,7 +22,7 @@ import torch
 
 import yaml
 
-from .data import Example, ExpertData, RouterData
+from .data import Example, ExpertData, RouterData, load_topics
 from .lexicon import Lexicon
 from .model import Net, Packed, features, softmax
 from .noise import Confusions, nbest
@@ -205,6 +205,8 @@ def add_test(a, data, kind, tree=None):
         for k, n in enumerate(data.names[:-1]):
             data.test += [Example(u, k) for u in (g.get("topics") or {}).get(n, [])]
         data.test += [Example(u, len(data.names) - 1) for u in g.get("reject", [])]
+        data.test += [Example(u, len(data.names) - 1) for n in getattr(data, "out_names", ())
+                      for u in (g.get("topics") or {}).get(n, [])]
     else:
         idx = {k: i for i, k in enumerate(data.nodes)}
         nodes = ((g.get("experts") or {}).get(tree) or {})
@@ -226,13 +228,15 @@ def _add_extra_dir(ex, data, kind, tree):
         g = yaml.safe_load((ex / "router.yaml").read_text())["topics"]
         for k, n in enumerate(data.names):              # last name is "reject"
             data.train += [Example(u, k, 0.7) for u in g.get(n, [])]
+        r = len(data.names) - 1                         # out-of-scope topics' lines teach "reject"
+        data.train += [Example(u, r, 0.7) for n in getattr(data, "out_names", ()) for u in g.get(n, [])]
     if kind == "expert" and (ex / f"expert-{tree}.yaml").exists():
         g = yaml.safe_load((ex / f"expert-{tree}.yaml").read_text())["nodes"]
         idx = {k: i for i, k in enumerate(data.nodes)}
         for k, us in g.items():
             data.train += [Example(u, idx[k], 0.7) for u in us]
         if (ex / "router.yaml").exists():               # other topics' lines teach "none" (hand back)
-            topics = yaml.safe_load((CONTENT / "voice" / "topics.yaml").read_text())["topics"]
+            topics = load_topics(CONTENT / "voice" / "topics.yaml")["topics"]
             gr = yaml.safe_load((ex / "router.yaml").read_text())["topics"]
             for n, us in gr.items():
                 if n == "reject" or topics.get(n, {}).get("open") != tree:
@@ -255,7 +259,7 @@ def teacher_vectors(a, lex, d):
 
 
 def run_router(a, log=print):
-    data = RouterData(CONTENT / "voice" / "topics.yaml", a.trees)
+    data = RouterData(CONTENT / "voice" / "topics.yaml", a.trees, getattr(a, "scope", None))
     add_extra(a, data, "router")
     add_test(a, data, "router")
     frac = getattr(a, "frac", 1.0)
@@ -282,7 +286,7 @@ def run_router(a, log=print):
 
 
 def run_expert(a, tree, log=print):
-    rdata = RouterData(CONTENT / "voice" / "topics.yaml", a.trees)
+    rdata = RouterData(CONTENT / "voice" / "topics.yaml", a.trees, getattr(a, "scope", None))
     data = ExpertData(expert_yaml(tree), a.trees, rdata)
     add_extra(a, data, "expert", tree)
     add_test(a, data, "expert", tree)
@@ -322,6 +326,8 @@ def main(argv=None):
     ap.add_argument("--d", type=int, default=64)
     ap.add_argument("--hidden", type=int, default=128)
     ap.add_argument("--buckets", type=int, default=4096)
+    ap.add_argument("--scope", help="only topics with this scope (topics.yaml `scope:`, default first_aid), "
+                    "e.g. first_aid; the others' lines become reject")
     ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--extra", type=Path, nargs="+", help="generated sentences from vr.generate (desktop)")
