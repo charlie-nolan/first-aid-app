@@ -12,7 +12,7 @@ How it works, in one line: **audio -> 41 speech sounds (phonemes) -> only words 
   [`pipeline/plb/content/lexicon.yaml`](../plb/content/lexicon.yaml); anything else becomes
   `<unk>` and raises the reject score. Output = the router's `voice_hyp_t` (5-best word ids + 0-100 confidences + reject).
   New words need only a lexicon line, no retraining.
-- `fasr/lexicon.py`: builds the shared lexicon (ids 0-1023, append-only, class byte,
+- `fasr/lexicon.py`: builds the shared lexicon (ids 0-2047, append-only, class byte,
   sound spellings from CMUdict / hand list in `speech_core.yaml` / espeak-ng guess).
 - Data: LibriSpeech for general English sounds (pretrain), then Piper TTS voices speaking
   first-aid sentences (fine-tune), Charlie's own recordings, wind/water/breath/echo/mic
