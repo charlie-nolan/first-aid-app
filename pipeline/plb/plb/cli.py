@@ -110,7 +110,10 @@ def main(argv=None) -> int:
                                  chapter_pattern=m.raw.get("chapter_pattern"),
                                  margins=m.raw.get("margins", "fixed"),
                                  columns=bool(m.raw.get("columns")),
-                                 split_steps=bool(m.raw.get("split_steps")))
+                                 split_steps=bool(m.raw.get("split_steps")),
+                                 upright_only=bool(m.raw.get("upright_only")),
+                                 heading_size=m.raw.get("heading_size"),
+                                 drop_figure_labels=bool(m.raw.get("drop_figure_labels")))
             if a.figure_cmd:
                 subprocess.run(shlex.split(a.figure_cmd) + [str(pdf), str(out)], check=True)
                 figs = json.loads((out / "figures.json").read_text())

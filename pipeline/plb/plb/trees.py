@@ -293,9 +293,11 @@ def build_trees(tree_dir: Path, sections: dict[str, dict], figures: dict[str, di
 
             choices = []
             for ch in n.get("choices") or []:
-                tgt = f"{tid}/{ch.get('to')}"
+                to = str(ch.get("to"))
+                # "other-tree/node" links to a card in another tree (e.g. improvised_gear/splint)
+                tgt = to if "/" in to else f"{tid}/{to}"
                 if tgt not in key_to_id:
-                    b.issues.append(Issue("error", w, f"choice goes to unknown node {ch.get('to')!r}"))
+                    b.issues.append(Issue("error", w, f"choice goes to unknown node {to!r}"))
                     continue
                 kind = ch.get("kind", "next")
                 if kind not in KINDS:
@@ -343,7 +345,7 @@ def build_trees(tree_dir: Path, sections: dict[str, dict], figures: dict[str, di
         while queue:
             x = queue.pop(0)
             for c in by_id[x]["choices"] if x in by_id else []:
-                if c["to"] not in depth:
+                if c["to"] not in depth and c["to"] in ids:     # links into other trees end here
                     depth[c["to"]] = depth[x] + 1
                     queue.append(c["to"])
         seen = set(depth)

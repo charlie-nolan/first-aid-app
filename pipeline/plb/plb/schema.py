@@ -171,7 +171,7 @@ class TreeFile(_Strict):
             raise ValueError(f"root {self.root!r} is not a node")
         for k, n in self.nodes.items():
             for c in n.choices:
-                if c.to not in self.nodes:
+                if "/" not in c.to and c.to not in self.nodes:   # tree/node: checked at build
                     raise ValueError(f"node {k!r}: choice goes to unknown node {c.to!r}")
         return self
 

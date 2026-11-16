@@ -50,7 +50,8 @@ LIGATURES = {"ﬁ": "fi", "ﬂ": "fl", "ﬀ": "ff", "ﬃ": "ffi", "ﬄ": "ffl",
              "—": "--", "•": "*", "©": "(C)", " ": " ", "°": " degrees ",
              "º": " degrees ", "˚": " degrees ",   # CERT prints 95º F; NFKD would give "o"
              "⁄": "/", "∕": "/",
-             "®": "", "™": ""}                   # "Tylenol®" -> "Tylenol", not "Tylenol?"
+             "®": "", "™": "",                   # "Tylenol®" -> "Tylenol", not "Tylenol?"
+             "≥": ">=", "≤": "<=", "→": "->"}    # Aerie p97-98: "evacuation ≥ 1,000 meters"
 FRACTIONS = {"½": "1/2", "¼": "1/4", "¾": "3/4", "⅓": "1/3", "⅔": "2/3", "⅛": "1/8"}
 
 
@@ -276,13 +277,15 @@ def column_bands(words: list[dict], page_width: float) -> list[list[dict]]:
 
 
 def read_lines(pdf_path: Path, margin_top: float = 0.07, margin_bottom: float = 0.07,
-               margins: str = "fixed", columns: bool = False):
+               margins: str = "fixed", columns: bool = False, upright_only: bool = False,
+               drop_figure_labels: bool = False):
     """Yield (page_obj, [Line]) skipping running headers/footers.
 
     margins="fixed" drops the top and bottom 7% of every page. margins="auto" drops only
     text that repeats there across pages (running headers/footers) and lone page numbers,
     so body lines set close to the edge (Aerie) are kept. columns=True reads two-column
-    bands of a page column by column."""
+    bands of a page column by column. upright_only=True drops rotated text (the Red Cross
+    guide's vertical chapter tabs on the page edge, read letter by letter into the body)."""
     import pdfplumber
 
     with pdfplumber.open(pdf_path) as doc:
@@ -296,6 +299,16 @@ def read_lines(pdf_path: Path, margin_top: float = 0.07, margin_bottom: float = 
                                        use_text_flow=True, x_tolerance_ratio=0.1)
             # size-1 words are invisible labels ("62B") left by the typesetter
             words = [w for w in words if w["size"] >= 3]
+            if upright_only:
+                words = [w for w in words if w.get("upright", True)]
+            if drop_figure_labels:
+                # bare "Figure 3" labels printed beside photos (Red Cross WRFA) land inside
+                # sentences; in-text references are "(Figure 3)" and are kept
+                drop = set()
+                for k, w in enumerate(words[:-1]):
+                    if w["text"] == "Figure" and re.fullmatch(r"\d+[A-Z]?", words[k + 1]["text"]):
+                        drop.update((k, k + 1))
+                words = [w for k, w in enumerate(words) if k not in drop]
             mark_superscript_degrees(words)
             if margins == "auto":
                 keep = []
@@ -387,13 +400,17 @@ def ends_box(notice: dict, line: Line, t: str) -> bool:
     return line.size > size + 0.5 or (line.bold and not bold)
 
 
-def is_heading(line: Line, body_size: float) -> bool:
+def is_heading(line: Line, body_size: float, heading_size: float | None = None) -> bool:
+    """heading_size: a non-bold line must be at least this big to be a heading (Red Cross
+    WRFA sets top-level bullets a point larger than body text, so "larger than body" is
+    not enough there)."""
     t = line.text.strip()
     if not t or len(t) > 80 or PARA_RE.match(t) or FIG_RE.match(t) or t.endswith("."):
         return False
     if NOTICE_RE.match(t) or (JUNK_HEADING_RE.match(t) and any(c.isdigit() for c in t)):
         return False
-    return line.bold or line.size > body_size + 0.5 or (t.isupper() and len(t) > 3)
+    big = line.size >= heading_size if heading_size else line.size > body_size + 0.5
+    return line.bold or big or (t.isupper() and len(t) > 3)
 
 
 STEP_RE = re.compile(r" (\d{1,2})\. (?=[A-Z\"(])")
@@ -432,7 +449,10 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             skip_pages: tuple[int, ...] = (),
             table_pages: tuple[int, ...] | str = (),
             chapter_pattern: str | None = None, margins: str = "fixed",
-            columns: bool = False, split_steps: bool = False) -> tuple[list[Section], list[Figure]]:
+            columns: bool = False, split_steps: bool = False,
+            upright_only: bool = False,
+            heading_size: float | None = None,
+            drop_figure_labels: bool = False) -> tuple[list[Section], list[Figure]]:
     """numbering: "dash" (Army "2-15."), "decimal" (Air Force "4.7.3.") or "headings"
     (no paragraph numbers: each heading starts a section, numbered "<page>.<n>").
     skip_pages: 1-based pages that are not part of the publication (a reseller's note).
@@ -441,7 +461,10 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
     chapter_pattern: extra regex for chapter lines in books that don't say "Chapter"
     (Aerie: "Section One:").
     split_steps: numbered steps run together in one paragraph ("1. Handle gently. 2. Direct
-    patient...") each start a new line (Aerie)."""
+    patient...") each start a new line (Aerie).
+    upright_only: drop rotated text such as vertical chapter tabs (Red Cross WRFA).
+    heading_size: minimum size of a non-bold heading line (see is_heading).
+    drop_figure_labels: drop bare "Figure N" photo labels (Red Cross WRFA)."""
     chap_re = re.compile(f"(?:{CHAPTER_RE.pattern})|(?:{chapter_pattern})") if chapter_pattern \
         else CHAPTER_RE
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -504,7 +527,9 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
             sections.append(sec)
             last_row = {"sec": sec, "cells": cells, "hdr": hdr}
 
-    for page, lines in read_lines(pdf_path, margins=margins, columns=columns):
+    for page, lines in read_lines(pdf_path, margins=margins, columns=columns,
+                                      upright_only=upright_only,
+                                      drop_figure_labels=drop_figure_labels):
         if page.page_number in skip_pages:
             continue
         tables = page.find_tables() if table_pages == "all" or page.page_number in table_pages else []
@@ -545,9 +570,10 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
                     continue
             nm = NOTICE_RE.match(t)
             if nm:
-                notice = {"kind": nm["kind"], "parts": [nm["rest"]] if nm["rest"] else [],
+                rest = re.sub(r"^\?\s+", "", nm["rest"] or "")   # unmapped bullet glyph
+                notice = {"kind": nm["kind"], "parts": [rest] if rest else [],
                           "bottom": ln.bottom, "page": ln.page}
-                if nm["rest"]:
+                if rest:
                     notice["style"] = (ln.size, ln.bold)
                 continue
             if chap_re.match(t):
@@ -579,7 +605,7 @@ def extract(pdf_path: Path, manual_id: str, out_dir: Path, figures: bool = True,
                 start(Section(f"{manual_id}/{pm['num']}", manual_id, pm["num"], chapter, heading,
                               [ln.page]), pm["rest"])
                 continue
-            if is_heading(ln, body):
+            if is_heading(ln, body, heading_size):
                 flush()
                 heading = t
                 if numbering == "headings":
