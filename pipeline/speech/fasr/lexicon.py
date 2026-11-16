@@ -198,6 +198,8 @@ def extra_texts(paths: list[Path]) -> list[str]:
         p = Path(p).expanduser()
         files = sorted(p.rglob("*")) if p.is_dir() else [p]
         for f in files:
+            if "test" in f.name or "eval" in f.name:     # held-out sets (e.g. agy_test.yaml) never feed the lexicon
+                continue
             if f.suffix in (".yaml", ".yml"):
                 def walk(x):
                     if isinstance(x, str):
@@ -249,7 +251,7 @@ def build(tree_dirs: list[Path], extra: list[Path], existing: list[dict] | None 
     for src, tx in texts.items():       # then by frequency within each source
         c = Counter(w for t in tx for w in tokenize(t))
         for w, n in c.most_common():
-            if n >= min_count:
+            if n >= (min_count if src == "extra" else 1):   # generated text: only words seen often
                 add(w, src)
     # classes and sounds (classes for reserved/core words follow the core file)
     for r in rows:

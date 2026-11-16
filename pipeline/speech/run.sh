@@ -13,7 +13,7 @@ cd "$REPO/pipeline/speech"
 export WORK PYTHONUNBUFFERED=1
 TREES="${TREES:-$HOME/first-aid-build/pipeline/plb/content/trees}"
 PERSONAL="${PERSONAL:-$HOME/first-aid-fw/pipeline/plb/content/trees_personal}"
-GEN="${GEN:-$REPO/pipeline/voice_router/out/generated}"
+GEN="${GEN:-$HOME/first-aid-voice/pipeline/voice_router/out/generated}"   # router thread's Qwen sentences
 tree_args() { for d in "$REPO/pipeline/plb/content/trees" "$TREES" "$PERSONAL"; do [ -d "$d" ] && printf '%s ' "$d"; done; }
 extra_args() { [ -d "$GEN" ] && printf '%s' "$GEN"; }
 
@@ -22,7 +22,7 @@ step() { local name=$1; shift; if [ -e "$SP/.done/$name" ]; then echo "== $name:
 
 s_setup()    { pip install -q cmudict soundfile sounddevice scipy peft "transformers>=4.44" accelerate onnx
                python -c "import torch; print('torch', torch.__version__, 'cuda', torch.cuda.is_available())"; }
-s_lexicon()  { python -m fasr lexicon --trees $(tree_args) --extra $(extra_args); }   # append-only
+s_lexicon()  { python -m fasr lexicon --trees $(tree_args) --extra $(extra_args) --min-count "${LEX_MIN:-3}"; }   # append-only
 s_opendata() { python -m fasr opendata --out "$SP/librispeech"; }
 s_synth()    { python -m fasr synth --out "$SP/tts" --voices "$WORK/voices" --trees $(tree_args) --extra $(extra_args) --cuda; }
 s_pretrain() { wait_for_gpu 3000; python -m fasr train --run pretrain --size "${SIZE:-s}" --hours "${PRE_HOURS:-6}" \

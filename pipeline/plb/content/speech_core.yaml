@@ -54,6 +54,20 @@ other:
   - himself, herself, myself, themselves, another, other, again, still, just, now, already, yet, only, also, too, maybe
   - accident, injury, injured, wound, gash, scrape, cut, hole, blood, soaked, soaking, poking, sticking, snap, crack, cracked, pop
   - um, uh, like, well, oh, hey, hello, thanks, sorry
+  # ~200 common everyday English words (general frequency list, added 2026-11-16 at the router's request)
+  - know, knew, heard, hear, think, thought, said, say, says, tell, told, ask, asked, want, need, needs, try, tried, going, gonna, go, went, come, came, coming
+  - make, made, take, took, give, gave, put, keep, kept, let, find, found, leave, left, call, called, use, used, work, works, working, happen, happened, happening
+  - see, saw, seen, watch, wait, waiting, turn, turned, hold, holding, sit, stand, lie, lay, show, bring, brought, check, checked, worried, scared, afraid
+  - here, there, where, everywhere, somewhere, anything, something, everything, nothing, everyone, anyone, all, some, any, every, each, both, few, most, enough, whole
+  - good, better, best, worse, worst, okay, alright, sure, really, pretty, kind, sort, way, thing, things, stuff, place, time, times, today, tonight, morning, yesterday, ago, soon, later
+  - first, last, second, third, once, twice, almost, about, around, maybe, probably, actually, quite, totally, completely, suddenly, slowly, quickly, right, away
+  - if, because, than, then, while, until, since, though, even, as, for, by, out, like, what's, that's, who, whose, which, how's, where's, can, would, might, must
+  - i'd, i'll, you're, you'll, we'll, he'll, she'll, they'll, it'll, let's, there's, here's, isn't, couldn't, shouldn't, wouldn't, hasn't, hadn't
+  - man, woman, guy, girl, boy, dad, mom, brother, sister, wife, husband, partner, son, daughter, buddy, group, people, everybody, anybody
+  - camp, campsite, car, road, mountain, hill, creek, stream, woods, forest, rocks, mud, sand, grass, dirt, path, pack, backpack, boots, shoe, shoes, gear, phone
+  - fuel, gas, propane, lantern, knife, rope, stick, sticks, wood, log, logs, leaves, food, eat, meal, cup, bottle, pot
+  - hike, hiking, walking, running, climbed, slid, sliding, swimming, paddling, kayak, canoe, fishing, hunting, camping
+  - abdominal, guts, charred, compressions, eyeball, fang, fangs, puncture, wounds, cuts, bruises, scratches, cramping, vomited, coughed, breathing, burning
 
 # Hand sound spellings (ARPAbet, no stress) for words CMUdict lacks. Used before any machine guess.
 phones:
