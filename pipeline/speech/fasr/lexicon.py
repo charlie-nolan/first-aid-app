@@ -251,6 +251,8 @@ def build(tree_dirs: list[Path], extra: list[Path], existing: list[dict] | None 
     for src, tx in texts.items():       # then by frequency within each source
         c = Counter(w for t in tx for w in tokenize(t))
         for w, n in c.most_common():
+            if any(ch.isdigit() for ch in w):   # "300", "95f", "m295": not speakable as written (numbers are core words)
+                continue
             if n >= (min_count if src == "extra" else 1):   # generated text: only words seen often
                 add(w, src)
     # classes and sounds (classes for reserved/core words follow the core file)
