@@ -31,6 +31,7 @@ LEXICON = CONTENT / "lexicon.yaml"
 CORE = CONTENT / "speech_core.yaml"
 
 CAP = 2048
+VERSION = 1   # set to 2 by `fasr lexicon --renumber` (one-time rebuild)
 RESERVED = ["<unk>", "one", "two", "three", "four", "yes", "no", "back", "again", "home"]
 CLASSES = {"other": 0, "body_part": 1, "mechanism": 2, "symptom": 3, "negation": 4, "quantity": 5}
 # when a core word sits in several groups, the first group here wins
@@ -172,7 +173,9 @@ def _voice_split(which: str) -> list[str]:
     vdir = CONTENT / "voice"
     if not vdir.exists():
         return out
-    for f in [vdir / "topics.yaml", *sorted((vdir / "experts").glob("*.yaml"))]:
+    # experts_personal/ is gitignored (Aerie-based cards, PC only)
+    for f in [vdir / "topics.yaml", *sorted((vdir / "experts").glob("*.yaml")),
+              *sorted((vdir / "experts_personal").glob("*.yaml"))]:
         if not f.exists():
             continue
         d = yaml.safe_load(f.read_text()) or {}
@@ -232,9 +235,11 @@ def load_existing(path: Path = LEXICON) -> list[dict]:
 
 
 def build(tree_dirs: list[Path], extra: list[Path], existing: list[dict] | None = None,
-          min_count: int = 1) -> tuple[list[dict], dict]:
+          min_count: int = 1, renumber: bool = False) -> tuple[list[dict], dict]:
+    """renumber=True: one-time rebuild from scratch (reserved 0-9 kept). Agreed with the
+    router 2026-11-16 for the switch to wilderness-only content; append-only again after."""
     core = load_core()
-    rows = [dict(r) for r in (existing if existing is not None else load_existing())]
+    rows = [] if renumber else [dict(r) for r in (existing if existing is not None else load_existing())]
     have = {r["word"] for r in rows}
 
     def add(w: str, src: str):
@@ -289,13 +294,18 @@ HEADER = """\
 """
 
 
-def write(rows: list[dict], path: Path = LEXICON):
+def write(rows: list[dict], path: Path = LEXICON, version: int | None = None):
+    global VERSION
+    if version:
+        VERSION = version
+    elif path.exists():
+        VERSION = int((yaml.safe_load(path.read_text()) or {}).get("version", 1))
     """One row per line, so diffs show exactly which words were appended or edited."""
     import json
 
     def q(x):  # JSON is valid YAML flow style
         return json.dumps(x)
-    lines = [HEADER.rstrip("\n"), "version: 1", f"cap: {CAP}", "words:"]
+    lines = [HEADER.rstrip("\n"), f"version: {VERSION}", f"cap: {CAP}", "words:"]
     for r in rows:
         lines.append(f"- {{id: {r['id']}, word: {q(r['word'])}, class: {r['class']}, "
                      f"phones: {q(r['phones'])}, g2p: {r['g2p']}, src: {r['src']}}}")

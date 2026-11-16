@@ -12,6 +12,7 @@ def main(argv=None):
     lx.add_argument("--extra", nargs="*", default=[], type=Path)
     lx.add_argument("--min-count", type=int, default=1)
     lx.add_argument("--dry-run", action="store_true")
+    lx.add_argument("--renumber", action="store_true", help="one-time v2 rebuild (keeps ids 0-9); see lexicon.build")
     for name in ("train", "synth", "opendata", "evaluate", "whisper", "record", "export", "adapt", "devrec"):
         sub.add_parser(name, add_help=False)
     a, rest = ap.parse_known_args(argv)
@@ -22,9 +23,9 @@ def main(argv=None):
     if a.cmd == "lexicon":
         from . import lexicon
         trees = a.trees or [lexicon.CONTENT / "trees"]
-        rows, stats = lexicon.build(trees, a.extra, min_count=a.min_count)
+        rows, stats = lexicon.build(trees, a.extra, min_count=a.min_count, renumber=a.renumber)
         if not a.dry_run:
-            lexicon.write(rows)
+            lexicon.write(rows, version=2 if a.renumber else None)
         json.dump(stats, sys.stdout, indent=1)
         print()
 
