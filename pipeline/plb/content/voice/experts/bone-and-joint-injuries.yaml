@@ -1,0 +1,178 @@
+# Expert seed for the Bone and Joint Injuries draft tree (11-10 draft, unreviewed).
+# Inside the tree, someone answers the screen or jumps ahead in their own words. The
+# expert picks a node of THIS tree (or "none"); the device then shows that cited card.
+# `train` = seed utterances; `test` = HELD-OUT, never trained on.
+# Nodes that say the same thing are merged under `same:` so either one counts as right.
+#
+# Written by Claude 2026-11-16 as a DRAFT for Charlie's review.
+
+tree: bone-and-joint-injuries
+same:
+  - [keep-monitoring, monitor-circulation]
+  - [check-circulation, recheck-circulation, recheck-pulse]
+  - [kit-splint, closed-fracture]          # "splint it" lands on either
+  - [bleeding-shock, splint-after-stabilize]
+
+nodes:
+  start:
+    train: [start over, what do i check first, go back to the start]
+    test: [from the beginning]
+  bleeding-shock:
+    train:
+      - it's bleeding a lot
+      - he's pale and sweaty
+      - there's a lot of blood around the break
+      - she looks like she's going into shock
+    test:
+      - bleeding badly from the leg
+      - he's clammy and weak
+  pelvic-fracture:
+    train:
+      - his hips hurt
+      - pain in the pelvis
+      - fell on her hip and can't stand
+      - pelvis might be broken
+    test:
+      - hurts around the hip bones
+      - pelvic pain after the fall
+  notify-medics:
+    train: [who do i tell about the pelvis, call for help for the pelvis]
+    test: [get help for a broken pelvis]
+  limb-injury:
+    train:
+      - his leg looks wrong
+      - arm is bent funny
+      - the leg is deformed
+      - hurts to move the arm
+    test:
+      - her arm is crooked
+      - leg is swollen and painful
+  open-fracture:
+    train:
+      - the bone is sticking out
+      - bone through the skin
+      - there's a wound over the break
+      - i can see bone
+      - skin is broken over it
+    test:
+      - bone poking out of his shin
+      - open wound where it broke
+      - i can see the bone
+  closed-fracture:
+    train:
+      - the skin isn't broken
+      - no bone showing
+      - no cut just swelling
+      - i'm not sure if it's broken
+      - skin is fine but it's swollen
+    test:
+      - skin is not broken
+      - there's no wound just a bump
+      - not sure it's broken
+  kit-splint:
+    train:
+      - i have a sam splint
+      - we have a splint in the kit
+      - first aid kit splint
+      - use the foam splint
+    test:
+      - there's a splint in my pack
+      - got a sam splint
+  improvised-splint:
+    train:
+      - use a stick as a splint
+      - can i use my trekking pole
+      - make a splint from branches
+      - splint with a sleeping pad
+    test:
+      - i only have sticks
+      - improvise a splint with a pole
+  no-splint:
+    train:
+      - i don't have a splint
+      - nothing to make a splint
+      - no splint
+      - we have nothing to splint it with
+    test:
+      - don't have anything for a splint
+      - no splint at all
+  immobilize-joints:
+    train:
+      - how far should the splint go
+      - which joints do i lock
+      - does the splint go past the knee
+    test:
+      - splint above and below the break
+      - should it cover the elbow
+  check-circulation:
+    train:
+      - how do i check circulation
+      - check the pulse in his foot
+      - can he feel his toes
+      - check the fingers after splinting
+    test:
+      - is there still a pulse below the splint
+      - check feeling in her fingers
+  loosen-splint:
+    train:
+      - his fingers are blue
+      - toes are cold and pale
+      - the splint is too tight
+      - her hand is tingling
+      - fingers are numb after splinting
+    test:
+      - his foot went white and cold
+      - splint feels way too tight
+      - pins and needles in her fingers
+  keep-monitoring:
+    train:
+      - what now while we wait
+      - he seems okay now
+      - waiting for rescue
+    test:
+      - what do i do while we wait for help
+      - everything looks fine now
+  arm-sling:
+    train:
+      - it's his arm
+      - broken arm and no splint
+      - make a sling
+      - sling for the arm
+      - it's her wrist
+    test:
+      - how do i make a sling
+      - it's the forearm
+      - tie up the arm
+  hand-higher:
+    train:
+      - how high should the hand be
+      - where should the hand go in the sling
+    test:
+      - hand position in the sling
+  leg-anatomical:
+    train:
+      - it's his leg
+      - tie the legs together
+      - broken leg and no splint
+      - use the good leg as a splint
+    test:
+      - strap her leg to the other one
+      - it's the lower leg
+  pad-between-legs:
+    train:
+      - what goes between the legs
+      - padding between the knees
+    test:
+      - put a jacket between his legs
+  secure-legs:
+    train:
+      - how do i tie the legs
+      - where do the ties go
+    test:
+      - tie above and below the break
+  splint-after-stabilize:
+    train:
+      - bleeding stopped now what
+      - now splint it after the bleeding
+    test:
+      - bleeding is under control

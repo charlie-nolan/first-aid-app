@@ -1,0 +1,591 @@
+# Router topics: what the always-loaded voice router chooses between after the first
+# thing someone says at Home. Each topic opens one tree (`open`) and lists every draft
+# tree it covers (`trees`, used to harvest training words from labels).
+#
+# `train`: seed utterances the router learns from (the desktop generator adds many more).
+# `test`:  HELD-OUT utterances, never trained on. Don't copy them into `train`, or the
+#          score stops meaning anything; write new ones for gaps the report shows.
+#
+# Written by Claude 2026-11-16 as a DRAFT for Charlie's review: everyday backcountry
+# speech (first and third person, stressed, casual), violent/military wording left out.
+# Tree ids are the 11-10 drafts in trees-draft-all; they will change when trees are signed off.
+
+reject:            # things that must open nothing ("say that again" screen)
+  train:
+    - what time is it
+    - play some music
+    - how far is the trailhead
+    - what's for dinner
+    - turn on the flashlight
+    - is it going to be sunny tomorrow
+    - hello
+    - never mind
+    - testing testing
+    - i like this view
+    - how many miles today
+    - call my mom
+  test:
+    - what's the weather on saturday
+    - tell me a joke
+    - where did i park
+    - um okay
+    - nice day for a hike
+    - how much battery is left
+
+topics:
+  bleeding:
+    open: bleeding
+    trees: [bleeding, bleeding-control]
+    train:
+      - he's bleeding really bad
+      - it won't stop bleeding
+      - there's blood everywhere
+      - deep cut on my hand
+      - cut my leg with the axe
+      - the knife slipped and it's bleeding
+      - blood is spurting out
+      - how do i put on a tourniquet
+      - bleeding from the arm
+      - she's losing a lot of blood
+      - stop the bleeding
+      - nosebleed won't stop
+    test:
+      - so much blood
+      - i sliced my finger open
+      - the hatchet slipped and cut his shin
+      - blood keeps soaking through the bandage
+      - how tight should a tourniquet be
+      - gash on her thigh
+      - he cut himself badly
+      - bleeding a lot from the head
+
+  fracture:
+    open: bone-and-joint-injuries
+    trees: [bone-and-joint-injuries]
+    train:
+      - i think i broke my leg
+      - his arm is broken
+      - the bone is sticking out
+      - she twisted her ankle
+      - my wrist is swollen and bent
+      - how do i make a splint
+      - fell and can't put weight on my foot
+      - dislocated shoulder
+      - sprained ankle
+      - his leg looks crooked
+      - broken collarbone
+      - hurt my knee badly
+    test:
+      - i heard a snap in my ankle
+      - her forearm is deformed
+      - rolled my ankle on a rock
+      - can't move my arm after the fall
+      - splint for a broken leg
+      - think my wrist is fractured
+      - my shin bone is poking through
+      - his hip hurts after he fell
+
+  head:
+    open: head-injuries
+    trees: [head-injuries, head-and-chest-injuries, neck-and-facial-injuries]
+    train:
+      - hit his head on a rock
+      - she was knocked out
+      - concussion
+      - head injury
+      - fell and hit my head
+      - he's confused after hitting his head
+      - may have hurt his neck
+      - blow to the head
+      - passed out after the fall and hit her head
+      - neck pain after falling
+    test:
+      - he bumped his head and is acting weird
+      - she whacked her head on a branch
+      - knocked unconscious for a minute
+      - possible spine injury
+      - dizzy and throwing up after a head knock
+      - fell off the ledge onto his head
+
+  chest:
+    open: open-chest-wound
+    trees: [open-chest-wound]
+    train:
+      - chest wound
+      - something went into his chest
+      - hole in her chest
+      - air bubbling from a chest wound
+      - sucking chest wound
+      - can't breathe after a branch went into his chest
+    test:
+      - stick went through his ribs
+      - wound on the chest is bubbling
+      - punctured chest
+      - blood and air coming from her chest
+
+  abdomen:
+    open: abdominal-wounds
+    trees: [abdominal-wounds]
+    train:
+      - belly wound
+      - stomach wound
+      - cut across his abdomen
+      - intestines are showing
+      - gut injury
+      - deep cut on her stomach
+    test:
+      - his guts are coming out
+      - wound in the belly
+      - sliced his stomach open
+      - abdominal injury
+
+  impaled:
+    open: impalement-injuries
+    trees: [impalement-injuries]
+    train:
+      - something is stuck in his leg
+      - impaled on a branch
+      - stick is stuck in her arm
+      - should i pull it out
+      - object stuck in the wound
+      - fell on a sharp stick
+    test:
+      - there's a stake through his thigh
+      - a piece of metal stuck in her side
+      - do i remove the stick
+      - impaled object
+
+  burn:
+    open: burns
+    trees: [burns]
+    train:
+      - i burned my hand
+      - burned by the campfire
+      - boiling water spilled on him
+      - burn blisters
+      - she touched the stove
+      - burnt my arm
+      - scalded with hot water
+      - bad sunburn
+      - fell into the fire
+      - chemical burn
+    test:
+      - spilled boiling pasta water on my leg
+      - grabbed a hot pot handle
+      - his skin is charred
+      - burn from the camp stove
+      - singed by the fire
+      - sunburn with blisters
+
+  cold:
+    open: cold-injuries
+    trees: [cold-injuries, cold-injuries-survival, thermal-regulation-and-cold-survival]
+    train:
+      - he's freezing and shivering
+      - hypothermia
+      - she fell in the cold river
+      - frostbite on my fingers
+      - can't stop shivering
+      - toes are numb and white
+      - he's too cold and confused
+      - wet and cold
+      - frozen feet
+      - trench foot
+    test:
+      - shivering really hard
+      - fell through the ice
+      - her fingers are waxy and white
+      - he stopped shivering and is slurring
+      - my toes are frozen
+      - soaked in the rain and freezing
+
+  heat:
+    open: heat-injuries
+    trees: [heat-injuries, heat-and-dehydration-management]
+    train:
+      - heat stroke
+      - heat exhaustion
+      - he's overheating
+      - she's hot and stopped sweating
+      - too hot and dizzy
+      - collapsed in the heat
+      - heat cramps
+      - hot and confused
+    test:
+      - way too hot and throwing up
+      - fainted in the sun
+      - her skin is hot and dry
+      - overheated on the climb
+      - cramping in the heat
+
+  dehydration:
+    open: fluid-therapy-and-dehydration
+    trees: [fluid-therapy-and-dehydration, hyponatremia, nutrition-and-hydration]
+    train:
+      - dehydrated
+      - not enough water
+      - very thirsty and dizzy
+      - drank too much water
+      - haven't peed all day
+      - dark urine
+    test:
+      - we ran out of water
+      - she's really thirsty
+      - drinking tons of water and feels sick
+      - dry mouth and headache
+
+  altitude:
+    open: altitude-and-environmental-illness
+    trees: [altitude-and-environmental-illness, altitude-acclimatization-and-illness, high-altitude-survival]
+    train:
+      - altitude sickness
+      - headache at high altitude
+      - can't breathe up high
+      - mountain sickness
+      - we climbed too fast and feel sick
+      - coughing at altitude
+    test:
+      - sick on the summit
+      - pounding headache since we got up high
+      - short of breath at elevation
+      - feels awful at camp high up
+
+  allergy:
+    open: allergic-reactions-and-anaphylaxis
+    trees: [allergic-reactions-and-anaphylaxis]
+    train:
+      - allergic reaction
+      - bee sting and her face is swelling
+      - anaphylaxis
+      - throat is closing up
+      - epipen
+      - hives all over
+      - stung by a wasp and can't breathe
+      - peanut allergy
+    test:
+      - his lips are swelling
+      - got stung and broke out in hives
+      - where do i inject the epipen
+      - allergic to bees
+      - tongue swelling
+
+  snake:
+    open: snake-bites
+    trees: [snake-bites, poisonous-snakes]
+    train:
+      - snake bite
+      - bitten by a rattlesnake
+      - a snake bit my leg
+      - venomous snake
+      - rattler got him
+      - snake bit her hand
+    test:
+      - got bit by a snake on the trail
+      - rattlesnake bite
+      - snake bit his ankle
+      - two fang marks
+
+  bites:
+    open: human-and-animal-bites
+    trees: [human-and-animal-bites, dangerous-animal-encounters, marine-animal-injuries]
+    train:
+      - dog bite
+      - bitten by an animal
+      - bear encounter
+      - raccoon bit me
+      - stung by a jellyfish
+      - spider bite
+      - tick bite
+      - a bat bit him
+    test:
+      - the dog bit her hand
+      - there's a bear near camp
+      - got bit by a squirrel
+      - tick on my leg
+      - stepped on something in the ocean
+
+  poison:
+    open: symptoms-and-signs-of-poisoning
+    trees: [symptoms-and-signs-of-poisoning, poisonous-plants, edible-and-poisonous-plants, drug-overdose-and-intoxication]
+    train:
+      - he ate a poisonous plant
+      - swallowed something bad
+      - poison ivy
+      - ate wild berries and feels sick
+      - kid drank something poisonous
+      - poisoning
+      - overdose
+    test:
+      - ate a mushroom and is vomiting
+      - rash from a plant
+      - drank fuel by accident
+      - took too many pills
+
+  cpr:
+    open: cpr
+    trees: [cpr, heart-disease-and-cardiac-emergencies]
+    train:
+      - he's not breathing
+      - cpr
+      - no pulse
+      - she collapsed and isn't breathing
+      - heart attack
+      - chest pain
+      - how do i do cpr
+      - he's unresponsive
+    test:
+      - she stopped breathing
+      - can't find a pulse
+      - start chest compressions
+      - crushing chest pain
+      - not breathing and blue
+
+  choking:
+    open: choking
+    trees: [choking, airway-and-breathing]
+    train:
+      - he's choking
+      - something stuck in her throat
+      - can't breathe or talk
+      - choking on food
+      - heimlich
+      - baby is choking
+    test:
+      - she's choking on a candy
+      - food stuck in his throat
+      - abdominal thrusts
+      - grabbing his throat and can't speak
+
+  shock:
+    open: shock
+    trees: [shock]
+    train:
+      - going into shock
+      - pale and sweaty and weak
+      - shock
+      - cold clammy skin
+      - fast weak pulse
+    test:
+      - he looks gray and clammy
+      - she's in shock
+      - weak and pale after the accident
+
+  eye:
+    open: eye-injuries
+    trees: [eye-injuries, snow-blindness]
+    train:
+      - something in my eye
+      - eye injury
+      - snow blindness
+      - got sand in his eye
+      - poked in the eye with a stick
+      - eyes burning from the snow glare
+    test:
+      - stick hit her eye
+      - dirt in my eye
+      - eyes hurt from the glare
+      - scratched eyeball
+
+  blisters:
+    open: foot-care-and-blisters
+    trees: [foot-care-and-blisters]
+    train:
+      - blister on my heel
+      - foot blisters
+      - my boots are rubbing
+      - hot spot on my foot
+      - should i pop the blister
+    test:
+      - huge blister on her toe
+      - feet are rubbed raw
+      - popped blister
+
+  wound:
+    open: wound-care-and-infection
+    trees: [wound-care-and-infection, skin-irritations-and-exposure]
+    train:
+      - the cut looks infected
+      - how do i clean a wound
+      - scrape on my knee
+      - wound is red and hot
+      - pus in the cut
+      - splinter
+    test:
+      - the scratch is getting red
+      - clean out a cut
+      - his scrape has pus
+      - small cut on my finger
+
+  diarrhea:
+    open: diarrhea
+    trees: [diarrhea, digestive-issues-constipation]
+    train:
+      - diarrhea
+      - upset stomach
+      - stomach cramps and the runs
+      - throwing up and diarrhea
+      - constipated
+    test:
+      - got the runs
+      - bad stomach bug
+      - can't stop going to the bathroom
+
+  diabetes:
+    open: diabetes-and-metabolic-emergencies
+    trees: [diabetes-and-metabolic-emergencies]
+    train:
+      - diabetic
+      - low blood sugar
+      - he's diabetic and acting strange
+      - insulin
+    test:
+      - her sugar is low
+      - diabetic and shaky
+
+  lightning:
+    open: lightning-safety-weather
+    trees: [lightning-safety-weather, thunderstorm-safety, weather-hazards]
+    train:
+      - lightning
+      - thunderstorm coming
+      - struck by lightning
+      - where do we go in a lightning storm
+      - hear thunder
+    test:
+      - lightning hit near us
+      - storm rolling in on the ridge
+      - he got hit by lightning
+
+  water:
+    open: water-procurement-and-purification
+    trees: [water-procurement-and-purification]
+    train:
+      - how do i purify water
+      - find water
+      - is the stream safe to drink
+      - boil water
+      - water filter broke
+    test:
+      - make river water safe
+      - where can i find water
+      - clean drinking water
+
+  fire:
+    open: firecraft-overview
+    trees: [firecraft-overview, fire-starting-methods, fire-basics-principles, fire-fuel-types, fire-site-preparation]
+    train:
+      - how do i start a fire
+      - make a fire
+      - wet wood won't light
+      - fire starting
+      - tinder
+    test:
+      - need to light a fire
+      - build a campfire
+      - fire with a ferro rod
+
+  shelter:
+    open: shelter-building
+    trees: [shelter-building, shelter-construction-and-selection]
+    train:
+      - build a shelter
+      - need shelter for the night
+      - emergency shelter
+      - where to camp
+      - tarp shelter
+    test:
+      - make a shelter
+      - stuck out overnight
+      - snow cave
+
+  signal:
+    open: signaling-for-rescue
+    trees: [signaling-for-rescue, search-and-rescue-operations]
+    train:
+      - signal for help
+      - how do we get rescued
+      - signal a helicopter
+      - sos
+      - signal mirror
+    test:
+      - how do i signal a plane
+      - call for rescue
+      - get help out here
+
+  lost:
+    open: navigation-and-terrain-crossing
+    trees: [navigation-and-terrain-crossing, survival-mission-and-priorities]
+    train:
+      - we're lost
+      - i'm lost
+      - which way is north
+      - lost the trail
+      - cross a river
+    test:
+      - we can't find the trail
+      - don't know where we are
+      - crossing a stream safely
+
+  dental:
+    open: dental-emergencies
+    trees: [dental-emergencies]
+    train:
+      - knocked out a tooth
+      - toothache
+      - broken tooth
+      - tooth fell out
+    test:
+      - chipped his tooth
+      - bad tooth pain
+
+  carbon_monoxide:
+    open: carbon-monoxide-poisoning
+    trees: [carbon-monoxide-poisoning, carbon-monoxide-poisoning-survival]
+    train:
+      - carbon monoxide
+      - stove in the tent and headache
+      - fumes in the tent
+      - everyone in the tent feels sick
+    test:
+      - ran the heater in the tent and feel dizzy
+      - co poisoning
+
+  panic:
+    open: psychological-first-aid
+    trees: [psychological-first-aid, stress-management-and-mental-health, psychiatric-and-behavioral-emergencies]
+    train:
+      - she's panicking
+      - panic attack
+      - he's freaking out
+      - can't calm down
+      - really scared and breathing fast
+    test:
+      - having a panic attack
+      - he's hysterical
+      - help her calm down
+
+  carry:
+    open: survivor-removal-and-carries
+    trees: [survivor-removal-and-carries, casualty-evacuation, rescue-techniques]
+    train:
+      - how do i carry him
+      - he can't walk out
+      - make a stretcher
+      - move an injured person
+      - evacuate
+    test:
+      - carry her down the trail
+      - improvised stretcher
+      - drag him to safety
+
+  knots:
+    open: ropes-and-knots
+    trees: [ropes-and-knots, rope-knots-and-anchors, knots-for-shelter-and-structures]
+    train:
+      - tie a knot
+      - bowline
+      - how do i tie a rope
+      - taut line hitch
+    test:
+      - knot for a tarp
+      - tie the rope to a tree
