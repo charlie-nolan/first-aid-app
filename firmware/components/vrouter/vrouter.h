@@ -55,6 +55,11 @@ void vr_top3(const vr_model_t *m, const float *p, int out[3]);
 
 const char *vr_name(const vr_model_t *m, int cls);
 
+/* "Say that again": fold a new attempt into the earlier one (geometric mean of the two
+ * probability lists, renormalised), so the second try adds evidence instead of starting over.
+ * acc holds the running result; pass n_before = how many attempts are already in it. */
+void vr_merge(int k, float *acc, const float *p, int n_before);
+
 /* The 3 tiles to show, best first, with every pinned (life-threat) class that fired forced
  * onto them. Returns true if tiles[0] may open on its own (still subject to the caller's
  * probability / margin / unknown-word checks): false whenever a pin fired for another class. */

@@ -156,6 +156,16 @@ bool vr_tiles(const vr_model_t *m, const voice_hyp_t *hyp, const float *p, int t
     return (f >> t[0] & 1) && t[0] == order[0];
 }
 
+void vr_merge(int k, float *acc, const float *p, int n_before) {
+    if (n_before <= 0) { memcpy(acc, p, sizeof(float) * k); return; }
+    float sum = 0, wa = (float)n_before / (n_before + 1), wb = 1.0f / (n_before + 1);
+    for (int i = 0; i < k; i++) {
+        acc[i] = expf(wa * logf(acc[i] + 1e-9f) + wb * logf(p[i] + 1e-9f));
+        sum += acc[i];
+    }
+    for (int i = 0; i < k; i++) acc[i] /= sum;
+}
+
 const char *vr_name(const vr_model_t *m, int cls) {
     const char *s = m->names;
     for (int i = 0; i < cls; i++) s += strlen(s) + 1;

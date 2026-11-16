@@ -76,6 +76,8 @@ Training-only tricks that cost the device nothing:
 - Compute per utterance: ~30 rows x 64 + 64x128 + 128x35, about 15k multiply-adds: well under
   a millisecond on the S3.
 - The C reader matches the Python int8 reference to 1e-7 (host test, 12 cases each).
+- "Say that again": `vr_merge` averages the new attempt with earlier ones (geometric mean of
+  probabilities) instead of starting over. Simulated: top-3 at noise 0.3 73% -> 75%, at 0.5 68% -> 73%.
 
 ### Flash budget (16 MB Plus)
 
