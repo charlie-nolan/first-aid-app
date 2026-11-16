@@ -27,7 +27,7 @@ def load_tree(trees_dir, tid: str) -> dict | None:
 def load_topics(topics_yaml: Path) -> dict:
     """topics.yaml plus an optional gitignored topics.personal.yaml next to it.
     Personal entries replace a topic's open/trees/pin (pointing it at personal trees, e.g.
-    Aerie or Red Cross) and add train/test lines; a new topic name adds a topic."""
+    Aerie or Red Cross) and add train/test lines (replace: true swaps them); a new topic name adds a topic."""
     d = yaml.safe_load(Path(topics_yaml).read_text())
     pp = Path(topics_yaml).with_name("topics.personal.yaml")
     if pp.exists():
@@ -36,8 +36,8 @@ def load_topics(topics_yaml: Path) -> dict:
             for k in ("open", "trees", "pin"):
                 if k in t:
                     base[k] = t[k]
-            for k in ("train", "test"):
-                base[k] = base.get(k, []) + t.get(k, [])
+            for k in ("train", "test"):      # replace: true = this topic's lines are only the personal ones
+                base[k] = (t.get(k, []) if t.get("replace") else base.get(k, []) + t.get(k, []))
     return d
 
 
