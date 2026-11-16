@@ -598,6 +598,24 @@ topics:
       - improvised stretcher
       - drag him to safety
 
+  improvised:
+    open: improvised_gear
+    trees: [improvised_gear]
+    train:
+      - how do i make a tourniquet
+      - i don't have a first aid kit
+      - how to close a wound without stitches
+      - make a splint out of sticks
+      - no butterfly strips what do i use
+      - improvise a sling
+      - we have nothing to carry him with
+      - what can i use instead of a bandage
+    test:
+      - our first aid kit is gone
+      - can i use a belt as a tourniquet
+      - how do i build a stretcher
+      - i need to close this cut but have no tape
+
   knots:
     scope: survival
     open: ropes-and-knots
@@ -614,6 +632,8 @@ topics:
 # Topic pairs the router mixes up (round 2 misses on the agy test). `vr.generate --pairs`
 # writes contrast lines for both sides: clearly X, and why it isn't Y.
 confusable:
+  - [improvised, bleeding]
+  - [improvised, fracture]
   - [cpr, choking]
   - [shock, panic]
   - [chest, impaled]
