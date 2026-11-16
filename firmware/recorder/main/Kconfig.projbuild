@@ -1,0 +1,36 @@
+menu "FASR recorder"
+
+choice LIB_BOARD
+    prompt "Board"
+    default LIB_BOARD_PLAIN
+config LIB_BOARD_PLAIN
+    bool "Plain XIAO ESP32-S3 (bench: 3 buttons, mic on D4/D5 instead of the LED gates)"
+config LIB_BOARD_PLUS
+    bool "XIAO ESP32-S3 Plus"
+endchoice
+
+config LIB_PLUS_WHITE_GPIO
+    int
+    depends on LIB_BOARD_PLUS
+    default 12
+
+config REC_MIC_CLK
+    int "PDM mic CLK GPIO"
+    default 42 if LIB_BOARD_PLUS
+    default 5
+    help
+        Plain bench board: D4 (GPIO5). Unplug the LED gate jumper from D4 first.
+config REC_MIC_DATA
+    int "PDM mic DATA GPIO"
+    default 41 if LIB_BOARD_PLUS
+    default 6
+    help
+        Plain bench board: D5 (GPIO6). Unplug the LED gate jumper from D5 first.
+config REC_MIC_PWR
+    int "PDM mic power GPIO (-1 = mic wired to 3V3)"
+    default 39 if LIB_BOARD_PLUS
+    default -1
+config REC_BUFFER_KB
+    int "PSRAM kept for clips not yet copied to the PC (KB)"
+    default 6144
+endmenu

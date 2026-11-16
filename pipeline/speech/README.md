@@ -41,3 +41,13 @@ to continue. SIGUSR1/SIGUSR2 do the same; SIGTERM saves and exits; rerunning res
 `fasr evaluate` scores held-out sentences x held-out voices x 5 noise conditions (word error,
 exact-in-5-best, reject on off-topic) and writes the n-best per clip for the router thread.
 The real verdict is `pipeline/gpu/bench_loop.py` on the Plus, same clips, against MultiNet.
+
+## Recording through the device's own mic (best training data)
+
+`firmware/recorder` is a separate small firmware. It shows a sentence on the e-ink. You hold TALK, read the sentence, and let go. The clip then goes over USB to the PC.
+
+- **Plain bench board wiring:** unplug the LED gate jumpers from D4 and D5. Wire the PDM mic as CLK to D4, DAT to D5, 3V to 3V3 and GND to GND, with SEL tied to GND. The library (fonts) must already be in flash, so flash the main firmware once first.
+- **Build and flash:** `cd firmware/recorder && idf.py build flash`. For the Plus, use `idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.plus" build flash`.
+- **On the PC:** run `python -m fasr devrec`. Leave it running and clips are saved as you go to `$WORK/speech/me_dev/`. Anything not yet copied stays in PSRAM (about 3 minutes' worth) until you plug in.
+- **Buttons:** TALK hold = record. BACK = redo the last clip. DOWN = skip, and holding DOWN switches mode. The modes are TRAIN, EVAL (held-out), FREE (Whisper labels it later) and NOISE (10 s of background, used as real noise in training).
+- **Prompt list:** `python -m fasr devrec prompts` regenerates `firmware/recorder/main/prompts.txt`. It holds 400 training and 120 held-out sentences.

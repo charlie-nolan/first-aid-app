@@ -28,14 +28,19 @@ s_synth()    { python -m fasr synth --out "$SP/tts" --voices "$WORK/voices" --tr
 s_pretrain() { wait_for_gpu 3000; python -m fasr train --run pretrain --size "${SIZE:-s}" --hours "${PRE_HOURS:-6}" \
                  --train "$SP/librispeech/train.jsonl" --dev "$SP/librispeech/dev.jsonl"; }
 me_args()    { [ -s "$SP/me/train.jsonl" ] && printf -- '--train %s:3 ' "$SP/me/train.jsonl"
-               [ -s "$SP/me/labelled.jsonl" ] && printf -- '--train %s:2 ' "$SP/me/labelled.jsonl"; true; }
+               [ -s "$SP/me/labelled.jsonl" ] && printf -- '--train %s:2 ' "$SP/me/labelled.jsonl"
+               [ -s "$SP/me_dev/train.jsonl" ] && printf -- '--train %s:4 ' "$SP/me_dev/train.jsonl"   # device mic: most valuable
+               [ -s "$SP/me_dev/labelled.jsonl" ] && printf -- '--train %s:2 ' "$SP/me_dev/labelled.jsonl"; true; }
+noise_args() { [ -d "$SP/me_dev/noise" ] && printf -- '--noise-dir %s' "$SP/me_dev/noise"; true; }
 s_whisper()  { wait_for_gpu 6500; python -m fasr whisper train --train "$SP/tts/train.jsonl" $(me_args) \
                  --dev "$SP/tts/dev.jsonl" --hours "${WHISPER_HOURS:-2}"
                if [ -d "$SP/me/free" ]; then python -m fasr whisper label --audio "$SP/me/free" --out "$SP/me/labelled.jsonl"; fi
+               if [ -d "$SP/me_dev/free" ]; then python -m fasr whisper label --audio "$SP/me_dev/free" --out "$SP/me_dev/labelled.jsonl"; fi
                python -m fasr whisper score --set "$SP/tts/eval.jsonl" | tee "$SP/whisper-score.txt"; }
 s_finetune() { wait_for_gpu 3000; python -m fasr train --run firstaid --init pretrain --hours "${FT_HOURS:-3}" --lr 1e-3 \
-                 --train "$SP/tts/train.jsonl:6" --train "$SP/librispeech/train.jsonl:1" $(me_args) --dev "$SP/tts/dev.jsonl"; }
+                 --train "$SP/tts/train.jsonl:6" --train "$SP/librispeech/train.jsonl:1" $(me_args) $(noise_args) --dev "$SP/tts/dev.jsonl"; }
 s_evaluate() { sets="--set $SP/tts/eval.jsonl"; [ -s "$SP/me/eval.jsonl" ] && sets="$sets --set $SP/me/eval.jsonl"
+               [ -s "$SP/me_dev/eval.jsonl" ] && sets="$sets --set $SP/me_dev/eval.jsonl"
                python -m fasr evaluate --run firstaid $sets | tee "$SP/eval-firstaid.txt"; }
 s_export()   { python -m fasr export --run firstaid; }
 

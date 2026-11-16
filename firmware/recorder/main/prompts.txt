@@ -1,0 +1,520 @@
+T|can i use my trekking pole
+T|go home
+T|never mind
+T|number four
+T|everyone in the tent feels sick
+T|homemade tourniquet
+T|option four
+T|my boots are rubbing
+T|tooth fell out
+T|one handed tourniquet
+T|it's broken and tingling
+T|go back
+T|i'm not sure if it's broken
+T|heart attack
+T|cut throat
+T|tie a knot
+T|bleeding stopped
+T|go back
+T|stung by a jellyfish
+T|it's burned and bleeding
+T|his hip is bent
+T|fumes in the tent
+T|i can't move my head
+T|her finger is broken
+T|home
+T|his ankle is pale
+T|pain in my foot
+T|pain in my finger
+T|she fell in the cold river
+T|my wrist is swollen and bent
+T|low blood sugar
+T|hatchet slipped
+T|bad bleeding
+T|number three
+T|i can't move my foot
+T|toes are numb and white
+T|fell on a rock and it's bleeding badly
+T|say that again
+T|my back is numb
+T|it's bleeding and tingling
+T|i twisted my arm
+T|stomach wound
+T|her foot is swollen
+T|his hand is swollen
+T|he twisted his knee
+T|he got stung by a dog
+T|splint with a sleeping pad
+T|i crushed my hand
+T|blood is spurting
+T|she was bitten by a hornet
+T|altitude sickness
+T|there's something wrong with my neck
+T|i can't move my ankle
+T|how do i check circulation
+T|what goes between the legs
+T|my hip won't move
+T|heat cramps
+T|head injury
+T|bear encounter
+T|he got bitten by a hornet
+T|she was bitten by a spider
+T|her wrist is cold
+T|hear thunder
+T|how tight should the tourniquet be
+T|how many miles today
+T|his leg looks crooked
+T|my hip is bruised
+T|start over
+T|my hip is cold
+T|number one
+T|my leg feels cold
+T|coughing at altitude
+T|i can't feel my ankle
+T|it's numb and burned
+T|he's overheating
+T|his leg is pale
+T|pressure dressing
+T|something stuck in her throat
+T|a bee stung me
+T|collapsed in the heat
+T|heat exhaustion
+T|shoulder is tingling
+T|thunderstorm coming
+T|chainsaw cut
+T|toes are cold and pale
+T|no
+T|i can't feel my neck
+T|i don't have a splint
+T|what do i check first
+T|bleeding where a tourniquet won't fit
+T|my head is numb
+T|neck bleeding
+T|fast weak pulse
+T|i don't have a tourniquet
+T|his leg is swollen
+T|yes
+T|swallowed something bad
+T|bitten by a rattlesnake
+T|he's unresponsive
+T|chest wound
+T|very thirsty and dizzy
+T|i hurt my shoulder
+T|call for help for the pelvis
+T|my shoulder feels cold
+T|her hand is bleeding
+T|hot and confused
+T|how do i pack a wound
+T|make a sling
+T|armpit bleeding
+T|signal mirror
+T|make a fire
+T|the splint is too tight
+T|he's bleeding from his arm
+T|bleeding from the neck
+T|option four
+T|still bleeding after the tourniquet
+T|a spider bit me
+T|poison ivy
+T|he sprained his leg
+T|leg is tingling
+T|my knee is bruised
+T|he got bitten by a rattlesnake
+T|is it going to be sunny tomorrow
+T|blister on my heel
+T|how do i tie a rope
+T|his leg looks wrong
+T|arm bleeding
+T|number three
+T|his hip is swollen
+T|i cut my back
+T|a dog bit me
+T|number two
+T|there's something wrong with my leg
+T|it's cold and bleeding
+T|cold clammy skin
+T|number two
+T|it's cold and bruised
+T|head is pale
+T|something went into his chest
+T|trench foot
+T|frozen feet
+T|bleeding is controlled
+T|can't stop shivering
+T|boiling water spilled on him
+T|leg bleeding
+T|it's bleeding a lot
+T|skin is broken over it
+T|four
+T|move an injured person
+T|blood everywhere
+T|wrist is bleeding
+T|make a tourniquet out of a belt
+T|do i need a second tourniquet
+T|three
+T|hand is numb
+T|how do i carry him
+T|a rattlesnake bit me
+T|can he feel his toes
+T|her wrist is burned
+T|my left ankle is numb
+T|gut injury
+T|she twisted her ankle
+T|there's something wrong with my ankle
+T|her knee is burned
+T|make a splint from branches
+T|cut myself with a knife
+T|back
+T|go back
+T|number four
+T|who do i tell about the pelvis
+T|chest pain
+T|how to pack a wound
+T|the knife slipped and it's bleeding
+T|he's confused after hitting his head
+T|how do i tie the legs
+T|pain in my neck
+T|baby is choking
+T|scalded with hot water
+T|peanut allergy
+T|my leg is bleeding a lot
+T|a spider stung me
+T|i can't feel my leg
+T|there's something wrong with my hand
+T|improvised tourniquet
+T|i banged my leg
+T|number one
+T|we climbed too fast and feel sick
+T|he's too cold and confused
+T|her knee is pale
+T|help bleeding
+T|how to use a tourniquet
+T|my hip hurts
+T|the leg is deformed
+T|my left shoulder won't move
+T|fell and hit my head
+T|i broke my head
+T|my neck is swollen
+T|he got bitten by a wasp
+T|stop the bleeding
+T|inner thigh bleeding
+T|i can't feel my hip
+T|can't calm down
+T|how do i clean a wound
+T|scrape on my knee
+T|emergency shelter
+T|a tick bit me
+T|she hurt her ankle
+T|can't breathe or talk
+T|a hornet stung me
+T|option four
+T|my left ankle is swollen
+T|pain in my ankle
+T|she was stung by a dog
+T|how do i put on a tourniquet
+T|her hip is bent
+T|he can't walk out
+T|her head is numb
+T|it's swollen and swollen
+T|she burned her knee
+T|passed out after the fall and hit her head
+T|hot spot on my foot
+T|my head is swollen
+T|go home
+T|waiting for rescue
+T|he twisted his finger
+T|i banged my finger
+T|we're lost
+T|axe cut
+T|knee is pale
+T|knocked out a tooth
+T|it's his arm
+T|i can't move my leg
+T|skin is fine but it's swollen
+T|his hand is broken
+T|choking on food
+T|it's pale and pale
+T|armpit bleeding
+T|heavy bleeding
+T|i burned my foot
+T|hip is cold
+T|help someone is bleeding
+T|my leg is broken
+T|she was stung by a wasp
+T|is the bleeding life threatening
+T|arm is tingling
+T|i hurt my finger
+T|air bubbling from a chest wound
+T|poked in the eye with a stick
+T|her finger is bleeding
+T|pain in my hand
+T|start over
+T|hand is cold
+T|severe bleeding
+T|pain in my arm
+T|it's swollen and numb
+T|bleeding arm
+T|bleeding stopped
+T|arm is bent funny
+T|he hurt his ankle
+T|one handed self aid
+T|cut my leg with the axe
+T|she twisted her shoulder
+T|the skin isn't broken
+T|need shelter for the night
+T|check the fingers after splinting
+T|she was stung by a scorpion
+T|signal for help
+T|number four
+T|use the foam splint
+T|no tourniquet
+T|leg is bleeding
+T|my ankle is swollen
+T|frostbite on my fingers
+T|stove in the tent and headache
+T|no cut just swelling
+T|cut my leg on the trail
+T|i twisted my back
+T|my knee is tingling
+T|i can't move my hand
+T|my neck is bruised
+T|he cut his neck
+T|his hip is bruised
+T|my left finger is numb
+T|number two
+T|cut across his abdomen
+T|pressure dressing and checks
+T|he broke his finger
+T|shoulder is burned
+T|stung by a wasp and can't breathe
+T|how do i make a splint
+T|again
+T|bitten by an animal
+T|eye injury
+T|he sprained his wrist
+T|she's panicking
+T|a wasp stung me
+T|two
+T|my foot is bleeding
+T|i can't move my arm
+T|no tourniquet
+T|my leg is swollen
+T|is the stream safe to drink
+T|she was bitten by a scorpion
+T|the tourniquet isn't working
+T|i twisted my hip
+T|pelvis might be broken
+T|the bone is sticking out
+T|option one
+T|groin bleeding
+T|fire starting
+T|she burned her head
+T|what time is it
+T|a bat bit him
+T|sling for the arm
+T|my left neck is bent
+T|snow blindness
+T|bleeding stopped
+T|which joints do i lock
+T|he got bitten by a tick
+T|hurt my knee badly
+T|he burned his foot
+T|pressure bandage
+T|impaled on a branch
+T|signal a helicopter
+T|may have hurt his neck
+T|her wrist is broken
+T|i scraped my finger
+T|his neck is bruised
+T|her shoulder is bleeding
+T|she's losing a lot of blood
+T|headache at high altitude
+T|where do we go in a lightning storm
+T|pain in my shoulder
+T|my leg hurts
+T|start over
+T|now splint it after the bleeding
+T|go home
+T|arm is pale
+T|her knee is bleeding
+T|broken leg and no splint
+T|i can't feel my hand
+T|i hurt my arm
+T|option three
+T|i can't move my shoulder
+T|pain in my knee
+T|too hot and dizzy
+T|he broke his hand
+T|number two
+T|hurts to move the arm
+T|where do i put the tourniquet
+T|there's a wound over the break
+T|i need to tourniquet my own arm
+T|no bone showing
+T|groin bleeding
+T|option two
+T|what's for dinner
+T|she was bitten by a snake
+T|one
+T|start over
+T|eyes burning from the snow glare
+T|she hurt her arm
+T|go home
+T|how do we get rescued
+T|go home
+T|his wrist is bent
+T|my right ankle feels cold
+T|it's bent and numb
+T|my hip is bleeding
+T|bleeding in the armpit
+T|drank too much water
+T|her shoulder is pale
+T|her wrist is bruised
+T|improvised tourniquet
+T|use a stick as a splint
+T|number two
+T|fell on a sharp stick
+T|option two
+T|she twisted her leg
+T|neck armpit or groin
+T|he's diabetic and acting strange
+T|stuff the wound with gauze
+T|my left wrist is numb
+T|sprained ankle
+T|number two
+T|his ankle is burned
+T|she was bitten by a dog
+T|my hand looks wrong
+T|bleeding stopped now what
+T|spurting blood
+T|he got stung by a bee
+T|she was stung by a spider
+T|tourniquet not working
+T|no pulse
+T|my neck is tingling
+T|i can't feel my arm
+T|option four
+T|struck by lightning
+T|fell into the fire
+T|my finger is bent
+T|self aid tourniquet
+E|his guts are coming out
+E|overheated on the climb
+E|improvised stretcher
+E|sliced my palm
+E|homemade tourniquet with a shirt
+E|he looks gray and clammy
+E|chipped his tooth
+E|add another tourniquet
+E|build a campfire
+E|my shin bone is poking through
+E|i have a tourniquet
+E|it's the forearm
+E|hold pressure on it
+E|she won't stop bleeding
+E|keep pressure on it
+E|one hand tourniquet
+E|singed by the fire
+E|put a jacket between his legs
+E|how do i make a sling
+E|cut his hand open
+E|nice day for a hike
+E|she's choking on a candy
+E|don't have anything for a splint
+E|make a tourniquet
+E|bleeding where the tourniquet can't go
+E|splint above and below the break
+E|stuff gauze in the wound
+E|tick on my leg
+E|armpit is bleeding
+E|blood soaked through
+E|he's hysterical
+E|ate a mushroom and is vomiting
+E|can't find a pulse
+E|lightning hit near us
+E|bleeding between the legs
+E|the scratch is getting red
+E|drank fuel by accident
+E|snake bit his ankle
+E|get help out here
+E|tourniquet one hand
+E|still bleeding with the tourniquet on
+E|hand position in the sling
+E|eyes hurt from the glare
+E|tongue swelling
+E|pelvic pain after the fall
+E|there's no wound just a bump
+E|can't put a tourniquet there
+E|her forearm is deformed
+E|he fell off his bike and is bleeding
+E|cut throat bleeding
+E|diy tourniquet
+E|make river water safe
+E|put a tourniquet on my own leg
+E|bleeding won't quit
+E|i cut myself
+E|bleeding a lot from the head
+E|scratched eyeball
+E|got bit by a squirrel
+E|impaled object
+E|there's a bear near camp
+E|got a sam splint
+E|make a shelter
+E|my son cut himself and it's bleeding a lot
+E|spilled boiling pasta water on my leg
+E|grabbed a hot pot handle
+E|cut my hand
+E|improvise a tourniquet
+E|took too many pills
+E|there's no tourniquet
+E|wrap it up
+E|tourniquet out of a belt
+E|pack it with gauze
+E|drag him to safety
+E|cut on her wrist
+E|bleeding near the hip
+E|how do i signal a plane
+E|makeshift tourniquet
+E|call for rescue
+E|there's blood everywhere
+E|tourniquet didn't work
+E|the bleeding is really heavy
+E|tie above and below the break
+E|cut off finger
+E|pins and needles in her fingers
+E|how high do i put the tourniquet
+E|press on it
+E|strap her leg to the other one
+E|glass cut
+E|shivering really hard
+E|rash from a plant
+E|leg is swollen and painful
+E|having a panic attack
+E|her arm is crooked
+E|bandage too tight
+E|we ran out of water
+E|wound in the belly
+E|storm rolling in on the ridge
+E|tie the rope to a tree
+E|she stopped breathing
+E|snow cave
+E|fingers turning blue after the bandage
+E|bleeding under the arm
+E|the dog bit her hand
+E|his finger is cut off
+E|the bleeding stopped
+E|we can't find the trail
+E|it's the lower leg
+E|how long do i hold pressure
+E|rolled my ankle on a rock
+E|she's in shock
+E|he slipped with the knife
+E|not sure it's broken
+E|co poisoning
+E|how tight should a tourniquet be
+E|second tourniquet
+E|bleeding from the throat
+E|put gauze in it
+E|dry mouth and headache
+E|hand cut
+E|tighten the tourniquet
