@@ -31,7 +31,7 @@ HERE = Path(__file__).resolve().parents[1]
 CONTENT = HERE.parent / "plb" / "content"
 LEVELS = [0.0, 0.15, 0.3]
 ACCEPT_P, ACCEPT_MARGIN = 0.55, 0.2     # below this the device shows a pick-one-of-3 screen
-SAY_AGAIN_P = 0.2
+SAY_AGAIN_P = 0.08     # below this, "say that again"; otherwise never a dead end: show the tiles
 
 
 def build_lexicon(texts):
@@ -94,7 +94,9 @@ def evaluate(packed, data, lex, conf, ctx_mode=None, same=None, seed=7, reps=3, 
     base = nn_baseline(data.train, lex)
     same = same or {}
     res = {}
+    margin_of = lambda p, o: p[o[0]] - p[o[1]]
     for lv in LEVELS:
+        rows_seen = []
         c = Counter()
         n = 0
         for e in test:
@@ -107,6 +109,9 @@ def evaluate(packed, data, lex, conf, ctx_mode=None, same=None, seed=7, reps=3, 
                 top1, top3 = order[0], order[:3]
                 c["top1"] += top1 in ok
                 c["top3"] += bool(ok & set(top3))
+                c["top6"] += bool(ok & set(order[:6]))           # "None of these" -> next 3
+                c["rank_sum"] += next(i for i, o in enumerate(order) if o in ok)
+                rows_seen.append((float(p[top1]), float(margin_of(p, order)), top1 in ok))
                 margin = p[order[0]] - p[order[1]]
                 if p[top1] >= ACCEPT_P and margin >= ACCEPT_MARGIN:
                     c["auto_right" if top1 in ok else "auto_wrong"] += 1
@@ -117,8 +122,18 @@ def evaluate(packed, data, lex, conf, ctx_mode=None, same=None, seed=7, reps=3, 
                 heard = {i for h in nb for i, _ in h} - {0}
                 c["baseline"] += base(heard) in ok
                 n += 1
-        res[lv] = {k: v / n for k, v in c.items()} | {"n": n}
+        res[lv] = {k: v / n for k, v in c.items()} | {"n": n, "safe": safe_threshold(rows_seen)}
     return res
+
+
+def safe_threshold(rows):
+    """Lowest accept probability at which nothing in this set opens the wrong card on its own,
+    and how many would still open straight away. (Tune on a dev split once there is one.)"""
+    wrong = [p for p, m, ok in rows if not ok and m >= ACCEPT_MARGIN]
+    t = max(wrong, default=0.0) + 1e-3
+    t = max(t, ACCEPT_P)
+    auto = sum(1 for p, m, ok in rows if p >= t and m >= ACCEPT_MARGIN)
+    return {"p": round(t, 3), "auto": auto / max(1, len(rows))}
 
 
 def size_of(packed):
@@ -129,12 +144,13 @@ def report(title, res, packed, extra=""):
     lines = [f"## {title}", "", f"Model: {size_of(packed) / 1024:.0f} KB on flash "
              f"(d={packed.d}, hidden={packed.hidden}, {len(packed.W)} words, {len(packed.Hh)} hash rows, "
              f"{packed.k} classes). {extra}", "",
-             "| recognizer noise | top-1 | top-3 | auto, right | auto, WRONG | pick-of-3 has it | say again | fixed-phrase baseline top-1 |",
-             "|---|---|---|---|---|---|---|---|"]
+             "| recognizer noise | top-1 | top-3 | top-6 (after \"none of these\") | auto, right | auto, WRONG | pick-of-3 has it | say again | zero-wrong threshold (opens on its own) | fixed-phrase baseline top-1 |",
+             "|---|---|---|---|---|---|---|---|---|---|"]
     for lv, r in res.items():
         g = lambda k: f"{100 * r.get(k, 0):.0f}%"
-        lines.append(f"| {lv:.2f} | {g('top1')} | {g('top3')} | {g('auto_right')} | {g('auto_wrong')} | "
-                     f"{g('picker_right')} | {g('say_again')} | {g('baseline')} |")
+        sf = r["safe"]
+        lines.append(f"| {lv:.2f} | {g('top1')} | {g('top3')} | {g('top6')} | {g('auto_right')} | {g('auto_wrong')} | "
+                     f"{g('picker_right')} | {g('say_again')} | p>={sf['p']:.2f} ({100 * sf['auto']:.0f}%) | {g('baseline')} |")
     return "\n".join(lines) + "\n"
 
 
