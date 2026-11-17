@@ -90,8 +90,12 @@ def train(a):
         if augment:
             xs = [aug(x) for x in xs]
         f = proc.feature_extractor(xs, sampling_rate=16000, return_tensors="pt").input_features
-        lab = proc.tokenizer([r["text"] for r in rs], return_tensors="pt", padding=True).input_ids
-        lab[lab == proc.tokenizer.pad_token_id] = -100
+        tok = proc.tokenizer([r["text"] for r in rs], return_tensors="pt", padding=True)
+        # Whisper pads with <|endoftext|>, the same id that ends each text: mask by attention_mask, not by id,
+        # or every end token is masked too and the model never learns to stop (it repeats until max tokens).
+        lab = tok.input_ids.masked_fill(tok.attention_mask.eq(0), -100)
+        if (lab[:, 0] == model.config.decoder_start_token_id).all():   # the model adds <|startoftranscript|> itself
+            lab = lab[:, 1:]
         return f.to(dev, torch.float16), lab.to(dev)
 
     while st["secs"] + time.time() - t0 < budget:
