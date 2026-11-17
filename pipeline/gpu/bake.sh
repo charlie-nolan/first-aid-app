@@ -25,7 +25,7 @@ step plb validate
 step plb slots --out "$R/slots.md"
 step plb pack --packer "$PACK"
 cp build/library.bin "$R/library.bin" 2>/dev/null
-step plb verbatim --out "$R/verbatim.md"
+step plb verbatim --cards --out "$R/verbatim.md"   # reviewed public cards; ORDER does not fail
 # old phrase-list voice test, superseded by slot intake (vr.intake sim below): report only
 report plb voice --out "$R/voice.md"
 step plb review --out "$R/review"
