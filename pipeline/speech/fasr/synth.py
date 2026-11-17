@@ -64,9 +64,12 @@ def norm(s: str) -> str:
     return " ".join(lx.tokenize(s))
 
 
-def sentences(trees, extra, n_templates, rng) -> tuple[list[str], list[str]]:
+def sentences(trees, extra, n_templates, rng, style: str = "all") -> tuple[list[str], list[str]]:
+    """style "all": tree text (card titles, steps) + router phrases + extra + templates.
+    style "user": only things a person says TO the device (router/expert train phrases, the router
+    thread's Qwen sentences in extra, templates): card titles read like the manual, not like a request."""
     held = {norm(s) for s in lx.held_out_texts()}
-    pool = lx.tree_texts(trees) + lx._voice_split("train") + lx.extra_texts(extra)
+    pool = (lx.tree_texts(trees) if style == "all" else []) + lx._voice_split("train") + lx.extra_texts(extra)
     pool += template_sentences(n_templates, rng)
     # numbers and navigation words on their own, many times (they decide the tile screens)
     pool += ["one", "two", "three", "four", "number one", "number two", "number three", "number four",
@@ -106,6 +109,8 @@ def main(argv=None):
     ap.add_argument("--eval-per-text", type=int, default=3)
     ap.add_argument("--cuda", action="store_true")
     ap.add_argument("--seed", type=int, default=11)
+    ap.add_argument("--style", choices=["all", "user"], default="all",
+                    help="user = only request-style sentences (no card titles)")
     ap.add_argument("--workers", type=int, default=1, help="CPU processes, each speaking every Nth clip")
     ap.add_argument("--threads", type=int, default=2, help="onnxruntime threads per CPU process")
     ap.add_argument("--shard", default="0/1", help=argparse.SUPPRESS)
@@ -119,7 +124,7 @@ def main(argv=None):
     rng = random.Random(a.seed + 7919 * k); nrng = np.random.default_rng(a.seed + k)
     vdir = a.voices or (a.out.parent.parent / "voices")
     voices = load_voices(vdir, a.cuda, 0 if nsh == 1 else a.threads)
-    train_s, held_s = sentences(a.trees or [lx.CONTENT / "trees"], a.extra, a.templates, random.Random(a.seed))
+    train_s, held_s = sentences(a.trees or [lx.CONTENT / "trees"], a.extra, a.templates, random.Random(a.seed), a.style)
     print(f"{len(train_s)} training sentences, {len(held_s)} held-out sentences, {len(voices)} voices", flush=True)
 
     def pick(split):

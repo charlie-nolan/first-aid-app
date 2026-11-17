@@ -97,8 +97,15 @@ _BP = butter(2, [90 / (SR / 2), 7000 / (SR / 2)], "band")
 
 
 class Augment:
-    def __init__(self, noise_dir: Path | None = None, p_noise: float = 0.8, p_echo: float = 0.3, seed: int = 0):
+    def __init__(self, noise_dir: Path | None = None, p_noise: float = 0.8, p_echo: float = 0.3, seed: int = 0,
+                 mic_eq: Path | None = None, p_mic: float = 0.7):
         self.rng = np.random.default_rng(seed)
+        # device-mic colouring from `fasr micmatch` (random strength, plus a random membrane-like high cut)
+        self.mic = None
+        if mic_eq and Path(mic_eq).exists():
+            d = json.loads(Path(mic_eq).read_text())
+            self.mic = (np.array(d["freq_hz"]), np.array(d["eq_db"]))
+        self.p_mic = p_mic
         self.noise_files = sorted(Path(noise_dir).rglob("*.wav")) if noise_dir else []
         self.p_noise, self.p_echo = p_noise, p_echo
         self._cache: dict[str, np.ndarray] = {}
@@ -121,6 +128,18 @@ class Augment:
             return synth_noise(["wind", "water", "breath"][r.integers(3)], n, r)
         return r.standard_normal(n).astype(np.float32)
 
+    def _colour(self, x: np.ndarray) -> np.ndarray:
+        r = self.rng
+        f0, eq = self.mic
+        X = np.fft.rfft(x)
+        f = np.fft.rfftfreq(len(x), 1 / SR)
+        db = r.uniform(0.4, 1.2) * np.interp(f, f0, eq)
+        if r.random() < 0.4:                      # membrane / case: gentle high cut
+            fc = r.uniform(2500, 6500)
+            db -= 6 * np.log2(1 + (f / fc) ** 2) * r.uniform(0.5, 1.5)
+        db += r.uniform(-3, 3) * (f / (SR / 2))   # random tilt
+        return np.fft.irfft(X * 10 ** (db / 20), n=len(x)).astype(np.float32)
+
     def __call__(self, x: np.ndarray) -> np.ndarray:
         r = self.rng
         sp = r.uniform(0.85, 1.2)
@@ -139,6 +158,8 @@ class Augment:
             p = np.sqrt(np.mean(x ** 2)) + 1e-9
             snr = r.uniform(0, 25)
             x = x + self._noise(len(x)) * p / (10 ** (snr / 20))
+        if self.mic is not None and r.random() < self.p_mic:
+            x = self._colour(x)
         x = lfilter(*_BP, x).astype(np.float32)
         x *= r.uniform(0.05, 0.95) / (np.max(np.abs(x)) + 1e-9)
         if r.random() < 0.05:
