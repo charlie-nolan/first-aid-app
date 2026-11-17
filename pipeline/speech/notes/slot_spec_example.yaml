@@ -1,0 +1,28 @@
+# Example Mad-Libs slot menus (public words only) for testing `fasr slot`. The real menus come from
+# the router's slot maps; each value lists the words and slang that should snap to it.
+animal:
+  snake: [rattlesnake, rattler, copperhead, viper, cottonmouth, adder]
+  spider: [tarantula, widow, recluse]
+  bee or wasp: [bee, wasp, hornet, yellowjacket, stung, sting]
+  tick: [ticks]
+  dog or animal: [dog, cat, bear, raccoon, animal, coyote, bat]
+where:
+  head: [head, face, forehead, scalp, skull, eye, ear, nose, mouth, jaw]
+  neck or back: [neck, spine, back]
+  chest or belly: [chest, ribs, rib, stomach, belly, tummy, gut, abdomen]
+  arm or hand: [arm, elbow, wrist, hand, finger, fingers, thumb, shoulder, forearm]
+  leg or foot: [leg, knee, ankle, foot, feet, toe, toes, hip, thigh, shin, calf]
+what_happened:
+  fall: [fell, fall, slipped, tripped, fallen]
+  cut: [cut, sliced, gash, stabbed, knife]
+  burn: [burn, burned, burnt, scalded, fire]
+  bite or sting: [bit, bitten, bite, stung, sting]
+  crush: [crushed, pinned, trapped]
+bleeding:
+  a lot: [spurting, pumping, gushing, soaked, won't stop]
+  some: [bleeding, oozing, dripping, trickling]
+  none: [not bleeding, no blood]
+breathing:
+  normal: [breathing fine, breathing normally, breathing ok]
+  trouble: [can't breathe, short of breath, wheezing, struggling to breathe, gasping]
+  not breathing: [not breathing, stopped breathing, no breath]
