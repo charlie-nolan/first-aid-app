@@ -112,6 +112,17 @@ both run side by side, keep experts at d=32.
 Not wired into the build yet: the component compiles on its own and on the PC. Wiring it waits
 for the Plus bring-up branch (claude/project-thread-5qvx6w) and for a partition decision.
 
+## Slot-filling intake (Charlie 11-16, prototype: `vr/intake.py`)
+
+The first sentence fills in blanks ("bite", "leg", "raccoon", "gushing"); the tree then skips
+every question card those blanks already answer and asks only the rest (tiles + voice + buttons),
+landing on the same signed-off cited card in fewer steps. Per tree, a slot map names which card
+asks which blank and which answer each value takes. Rules: a blank is filled only by a word that
+was said (never guessed), negated words fill nothing, and `life_threat` values (severe bleeding,
+not breathing) open their card before any question. On device this is word-type lookup plus a
+small table per tree (a few KB); learned per-blank scorers can replace keyword lists later.
+Slot maps for the personal trees are written on the PC against the real card text.
+
 ## Results (prototype, CPU, 2026-11-16)
 
 Held-out sentences only (never trained on). Noise = fake recognizer error rate. "Auto,
