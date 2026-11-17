@@ -65,8 +65,8 @@ def _find(words: list[str], phrase: list[str], gap: int = 1) -> list[int] | None
     for i in range(len(words) - n + 1):
         if words[i:i + n] == phrase:
             return list(range(i, i + n))
-    if n < 2:
-        return None
+    if n < 2 or any(w in NEGATION or w in HEDGE for w in phrase):
+        return None                      # "no breathing" must never match "no trouble breathing"
     for i, w in enumerate(words):
         if w != phrase[0]:
             continue

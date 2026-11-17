@@ -127,3 +127,9 @@ def test_one_filler_word_but_not_a_negation():
     slots = {"allergy": {"severe": ["throat tight"], "mild": ["rash"]}}
     assert fill("a rash and now her throat is tight", slots)["allergy"] == "severe"
     assert fill("a rash but her throat not tight", slots)["allergy"] == "mild"
+
+
+def test_no_gap_inside_negated_phrase():
+    slots = {"breathing": {"no": ["no breathing", "not breathing"]}}
+    assert fill("itchy face with no trouble breathing", slots) == {}
+    assert fill("he is not breathing", slots) == {"breathing": "no"}
