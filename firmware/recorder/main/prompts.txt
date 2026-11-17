@@ -1,403 +1,403 @@
-T|peanut allergy
-T|his fingers are blue
-T|he's overheating
-T|cramps are getting strong
-T|hot spot on my foot
-T|i think i broke my leg
-T|no
-T|something stabbed into her chest
-T|can't breathe or talk
-T|we're lost
-T|he's too cold and confused
-T|mountain sickness
-T|did he lose consciousness after hit
-T|dislocated shoulder
-T|sling for the arm
-T|everyone in the tent feels sick
-T|back
-T|he's acting strange suddenly
-T|he can't walk out
-T|it's caught in her calf
-T|do i need to treat river water
-T|rattler got him
-T|he's pale and sweaty
-T|water filter broke
-T|start over
-T|cold clammy skin
-T|coughing at altitude
-T|object stuck in the wound
-T|upset stomach
-T|she looks like she's going into shock
-T|torn area on lower leg
-T|haven't peed all day
-T|should i pull it out
-T|baby is choking
-T|where do the ties go
-T|check the fingers after splinting
-T|not enough water
-T|feeling light headed
-T|she collapsed with chest pain
-T|how do we get rescued
-T|we should go down
-T|no bone showing
-T|we climbed too fast and feel sick
-T|swallowed something bad
-T|frozen feet
-T|how do i handle a pelvis injury
-T|she fell in the cold river
-T|hurts to move the arm
-T|stick is stuck in her arm
-T|urine looks like apple juice
-T|need a secure knot fast
-T|sprained ankle
-T|blood is spurting out
-T|gut wound from the branch
-T|how far is the trailhead
-T|hear thunder
-T|he's still breathing
-T|wound is red and hot
-T|listen for thunder intervals
-T|who do i tell about the pelvis
-T|i'm lost
-T|skin is broken over it
-T|skin is fine but it's swollen
-T|hold on a little longer
-T|eyes open wide now
-T|first aid kit splint
-T|just need to rest now
-T|head injury check now please
-T|waiting for rescue
-T|use a stick as a splint
-T|keep calm and don't pull
-T|how do i put on a tourniquet
-T|there's a lot of blood around the break
-T|his arm is broken
-T|chest wound
-T|intestines are showing
-T|need the splint card
-T|the leg is deformed
-T|she can't put weight on her ankle
-T|can't even wiggle toes
-T|something in my eye
-T|neck pain after falling
-T|broken skin at the elbow
-T|we have nothing to splint it with
-T|the wood is through her leg
-T|he's confused after hitting his head
-T|material between knees
-T|hole in her chest
-T|explain how to bind it properly
-T|emergency shelter
-T|scrape on my knee
-T|need to drink more now
-T|bitten by a rattlesnake
-T|four
-T|how do i make a splint
-T|two
-T|signal a helicopter
-T|it's her wrist
-T|it's stuck deep in his thigh
-T|which joints do i lock
-T|broken arm and no splint
-T|head spinning like a wheel
-T|burnt my arm
-T|can he feel his toes
-T|make a fire
-T|toes are cold and pale
-T|what's for dinner
-T|very thirsty and dizzy
-T|signal mirror
-T|blister on my heel
-T|fell on her hip and can't stand
-T|can't breathe up high
-T|bear encounter
-T|body refusing to warm up
-T|find the section on tying
-T|stung by a jellyfish
-T|did the child swallow a tooth
-T|i can see bone
-T|fell and hit my head
-T|pale and sweaty and weak
-T|this blister is new
-T|the splint is too tight
-T|i like this view
-T|build a shelter
-T|why isn't he responding
-T|sunburn on her shoulders
-T|splint with a sleeping pad
-T|the skin isn't broken
-T|deep cut on her stomach
-T|no cut just swelling
-T|he's unresponsive
-T|she's losing a lot of blood
-T|allergic reaction
-T|turn on the flashlight
-T|broken leg and no splint
-T|i'm not sure if it's broken
-T|water from stream touched it
-T|move an injured person
-T|sunburned after hiking all day
-T|need help now please
-T|how high should the hand be
-T|nothing to make a splint
-T|how do i do cpr
-T|trench foot
-T|where to camp
-T|never mind
-T|snake bit her hand
-T|can't put weight on foot
-T|scalded with hot water
-T|one
-T|fell on a sharp stick
-T|what's the best knot for this rope
-T|stomach wound
-T|how do i start a fire
-T|feels like something's wrong
-T|not sure if it's cold or fumes
-T|i have a sam splint
-T|show where we are
-T|fell and can't put weight on my foot
-T|what goes between the legs
-T|there's a wound over the break
-T|testing testing
-T|use the good leg as a splint
-T|can't stop vomiting
-T|deep wound with air leakage
-T|it's his leg
-T|bit while setting up tent
-T|how do i check circulation
-T|he's bleeding really bad
-T|his leg looks wrong
-T|she's panicking
-T|dog bite
-T|open wound near wrist
-T|lost between trees
-T|passed out after the fall and hit her head
-T|raccoon bit me
-T|water filter broke again
-T|broken collarbone
-T|arm hurts to lift
-T|where do we go in a lightning storm
-T|he's impaled on a fallen limb
-T|frostbite on my fingers
-T|it's his arm
-T|head is pounding hard
-T|the knife slipped and it's bleeding
-T|no pulse
-T|going into shock
-T|make a stretcher
-T|fast weak pulse
-T|bitten by an animal
-T|collapsed near the trailhead
-T|chest pain
-T|chemical burn
-T|snake bit me near rocks
-T|venomous snake
-T|yes
-T|is the stream safe to drink
-T|don't let him stand yet
-T|what knot works for climbing
-T|can i use my trekking pole
-T|keep it tight but not too much
-T|not even a bathroom break
-T|nosebleed won't stop
-T|can't calm down
-T|hit his head on a rock
-T|pain in the pelvis
-T|knocked out a tooth
-T|throat is closing up
-T|padding between the knees
-T|sucking chest wound
-T|low blood sugar
-T|stung by a wasp and can't breathe
-T|his leg looks crooked
-T|she's screaming when she moves her leg
-T|fell into the fire
-T|stove in the tent and headache
-T|struck by lightning
-T|he's choking
-T|play some music
-T|air bubbling from a chest wound
-T|thunderstorm coming
-T|the gash near my ankle is still bleeding
-T|how to stop the bleeding
-T|i burned my hand
-T|how do i purify water
-T|my wrist is swollen and bent
-T|fire starting
-T|what now while we wait
-T|what time is it
-T|can't get cool even here
-T|any way to brace it without gear
-T|his hips hurt
-T|can't breathe after a branch went into his chest
-T|heat exhaustion
-T|kid drank something poisonous
-T|eyelid swelling fast
-T|he's freaking out
-T|arm is bent funny
-T|fever from the injury
-T|i don't have a splint
-T|mirror to sunbeam
-T|burned by the campfire
-T|find water
-T|where should the hand go in the sling
-T|does the splint go past the knee
-T|choking on food
-T|need something to immobilize it
-T|fingers are numb after splinting
-T|taut line hitch
-T|she's dizzy after hitting her head
-T|is it going to be sunny tomorrow
-T|cover all sides
-T|he's diabetic and acting strange
-T|she touched the stove
-T|tooth fell out
-T|tie the legs together
-T|which way is north
-T|drank too much water
-T|go back to the start
-T|red streaks in eye
-T|bleeding from the arm
-T|wet wood won't light
-T|cut my leg with the axe
-T|scalded by the hot shower
-T|no more climbing till head cleared
-T|back to normal
-T|why is my tooth so sensitive
-T|tick bite
-T|where's the joint aid
-T|my ankle's bleeding through the sock
-T|bleeding stopped now what
-T|hurt my knee badly
-T|a bat bit him
-T|find natural cover
-T|heat cramps
-T|where's the dry tinder
-T|how long should the splint be
-T|broken tooth
-T|grab the splint info
-T|can't stop shivering
-T|panic attack
-T|screaming inside
-T|hives on her back
-T|the cut looks infected
-T|not okay without oxygen
-T|a snake bit my leg
-T|pelvis might be broken
-T|stop the bleeding
-T|leg went numb after fall
-T|gut injury
-T|should i pop the blister
-T|he got a cut on his cheek and it's bleeding
-T|flag us down
-T|eyes burning from the snow glare
-T|bone through the skin
-T|arm won't straighten at all
-T|he ate a poisonous plant
-T|three
-T|burnt my arm near the fire
-T|make a sling
-T|blow to the head
-T|this has been going too long
-T|belly wound
-T|pus in the cut
-T|collapsed in the heat
-T|burn blisters
-T|spider bite
-T|how do i tie a rope
-T|deep cut on my hand
-T|throwing up and diarrhea
-T|heat stroke
-T|use the foam splint
-T|feeling faint on the trail
-T|headache at high altitude
-T|can you see if its infected
-T|how do i tie the legs
-T|may have hurt his neck
-T|check the pulse in his foot
-T|tarp shelter
-T|sucking chest wound on hike
-T|poison ivy
-T|show me how to lock it
-T|support her arms
-T|something is stuck in his leg
-T|my daughter has a deep gash
-T|how do i clean a wound
-T|lost the trail
-T|the bone is sticking out
-T|just wrap and pull tight
-T|bee sting and her face is swelling
-T|eye injury
-T|stomach cramps and the runs
-T|hot and confused
-T|make a splint from branches
-T|bad sunburn
-T|impaled on a branch
-T|it's bleeding a lot
-T|need shelter for the night
-T|my boots are rubbing
-T|how many miles today
-T|call for help for the pelvis
-T|she's hot and stopped sweating
-T|he's not breathing
-T|no trail markers now
-T|dark urine
-T|there's a cut on the leg
-T|cross a river
-T|it won't stop bleeding
-T|everything's blurry in here
-T|call my mom
-T|snow blindness
-T|head injury
-T|what do i check first
-T|boiling water spilled on him
-T|snake bite
-T|carbon monoxide
-T|she twisted her ankle
-T|something stuck in her throat
-T|how far should the splint go
-T|there's blood everywhere
-T|got sand in his eye
-T|keep head dry
-T|again
-T|altitude sickness
-T|really scared and breathing fast
-T|tie it around the tree branch
-T|wet and cold
-T|can't get air into lungs
+T|skin is clammy
+T|no warmth anywhere now
+T|my ankle hurts too much to stand
+T|signal with smoke
+T|what do we do about the stick
+T|is this real life
+T|can't feel my foot now
+T|her gut is exposed now
+T|did we miss a bend
+T|this altitude is killing us
+T|she's bleeding from the forehead
+T|no clean water found yet
+T|keep dry tonight
+T|we need to descend fast
+T|focus on my voice
+T|body feels drained and heavy
+T|see if he can feel this spot
+T|tie it so it doesn't come undone
+T|sunburn on back of neck
+T|my kid has a deep scratch
+T|check his feet
+T|she took it on her tummy
+T|need more rope
+T|feeling hot but shivering
+T|should've stayed on path
+T|sick since we lit the fire
+T|do you know the taut line trick
+T|overheated after hiking
+T|my skin is peeling
+T|can't walk on this one
+T|leg is buckling under him
+T|skin red all over
+T|pad knee gap
+T|can't walk straight
+T|can you help me make a fire
+T|stay off wet ground
+T|can't wait to find water
+T|can't breathe through the mask
+T|find a better water spot
+T|shout into wind
+T|pass me that strap
+T|arm won't cooperate
+T|tent feels hot and thick
 T|home
-T|we have a splint in the kit
-T|stack branches well
-T|she collapsed and isn't breathing
-T|purify all water before drinking
-T|boiling not possible here
-T|ate wild berries and feels sick
-T|any numbness in her leg
-T|she was knocked out
-T|too hot and dizzy
-T|poked in the eye with a stick
-T|tie a knot
-T|stove too close to tent wall
-T|foot blisters
-T|way back unclear
-T|signal for help
-T|no splint
-T|how do i carry him
-T|hives all over
-T|toes are numb and white
-T|he's freezing and shivering
-T|tinder not catching
-T|now splint it after the bleeding
-T|cut across his abdomen
-T|boil water
-T|heart attack
-T|something went into his chest
-T|fumes in the tent
-T|treated wound what next for splint
-T|her hand is tingling
-T|he seems okay now
-T|panic taking over
+T|he's not making sense
+T|can't breathe right now
+T|my feet are killing me
+T|rattler got him behind the ear
+T|shoulder popped out
+T|he might have lost time during fall
+T|nausea came right after
+T|needs glucose right now
+T|got caught in fog
+T|no response when called
+T|diarrhea strike again
+T|itching around the injury
+T|trembling badly
+T|left foot's been hurting all day
+T|panic rising fast
+T|what's the next step for pelvis
+T|not breathing right
+T|where is water
+T|not sure what to do with this
+T|tingling in legs and arms
+T|his confusion is worrying me
+T|you're safe with me
+T|feels like glass in my shoe
+T|tie it in the middle please
+T|shelter from rain
+T|feels sick since lunchtime
+T|tore something inside
+T|the cut on my arm is oozing blood
+T|how do i stabilize this
+T|this is a real emergency
+T|hold him steady until help
+T|sick since we started cooking
+T|fell hard on her side
+T|it got my knee while hiking
+T|should i keep fingers free
+T|dizzy after standing up
+T|rattler hit my calf hard
+T|storm's building fast
+T|take me to joint injuries
+T|legs giving way now
+T|red and warm to touch
+T|stomach cut from the rock
+T|object embedded in the wound
+T|what to put between legs
+T|heart racing like crazy
+T|trail turned sharp
+T|the foot points in the wrong direction
+T|it's her forearm
+T|three
+T|legs won't respond anymore
+T|sucking chest injury needs care
+T|my hand's bleeding after the rock hit
+T|air is getting trapped in chest
+T|girl burned her wrist
+T|need heat tonight
+T|he's gone quiet and still
+T|foot's burning a bit
+T|slow pulse but weak
+T|this blister isn't healing fast
+T|still responsive to voice
+T|chattering teeth nonstop
+T|not peeing since morning
+T|waiting for help to come
+T|something's stuck deep
+T|head injury could cause dizziness
+T|help me get a flame going
+T|her arm won't come free
+T|he's confused like he hit hard
+T|how do we stop this pain
+T|keep his neck stable until we check
+T|he's pinned by a fallen branch
+T|keep him warm and still
+T|check if he can hear you clearly
+T|check the support card
+T|use the good leg as anchor
+T|no pulse in neck
+T|get the splint instructions
+T|tunnel vision in the tent
+T|walking like she's drunk
+T|feeling confused and weak
+T|he can't walk on that foot
+T|boiling is best in doubt
+T|something bit me in the tent
+T|support his legs
+T|feeling weak from the runs
+T|help me fix this knot now
+T|he touched the hot plate
+T|need to slow this down now
+T|tired even though i slept
+T|she touched the warm pan
+T|boil it even if clear
+T|heart feels stuck
+T|he's not drinking enough water
+T|eye movement is irregular after impact
+T|his breathing seems off after hit
+T|how's the color in his ankle
+T|stay away from stream beds
+T|can you check this injury
+T|child got a burn from iron
+T|has diabetes but forgot meds
+T|can i use a branch as support
+T|no pulse at all
+T|blurry after snow glare
+T|filter this muddy water
+T|how much water do we need
+T|my kid has a raw knee
+T|my heel's sore from walking
+T|you're still here
+T|no more talking until we check
+T|we need a better path
+T|forgot to eat today
+T|need fire for dinner
+T|how do i help him now
+T|head spinning in noon heat
+T|stopped talking mid sentence
+T|blurry vision now
+T|hot mug spilled on me
+T|feeling trapped
+T|the branch is through his arm
+T|feeling weak and shaky
+T|pus forming under bandage
+T|there's blood in her sock now
+T|go to bleed and shock
+T|thunder just rolled
+T|drank water but still dizzy
+T|again
+T|not moving fast enough
+T|keep a hand near his head just in case
+T|bitten by a venomous one
+T|waterlogged eye from rain
+T|where are we
+T|how do i start this fire
+T|eye hurts from wind
+T|he's got a bad cut on his tummy
+T|feeling dizzy in shade
+T|find a depression
+T|couldn't brace in time
+T|swathe for the wrist
+T|pain in the lower back
+T|possible swelling from that blow
+T|wheezing worse now
+T|this is not normal anymore
+T|chest wound from thorn bush
+T|feeling helpless
+T|call out loud if you can
+T|he can't talk straight
+T|snake bite on my foot
+T|no energy left
+T|right foot's acting up again
+T|how to support leg gap
+T|girl has a blister from heat
+T|not sure if i'm dehydrated
+T|it's not coming out easy
+T|rattler took a chunk out of my boot
+T|don't stop helping
+T|can't focus on the trail
+T|wheezing nonstop
+T|any tips on tinder
+T|not moving properly
+T|she's not responding to her name
+T|struggling to swallow
+T|cut right over the joint
+T|anaphylaxis coming on
+T|overwhelmed by fear
+T|he's turning blue
+T|can't clear throat
+T|cut on my elbow needs cleaning
+T|trembling all over now
+T|cold so deep it hurts
+T|that one left teeth marks
+T|show me how to wrap this right
+T|we need a carry plan
+T|bring up emergency steps
+T|she has a chest wound now
+T|that fall could've messed up his head
+T|make sure it sticks
+T|air feels heavy and thick
+T|tie it tight please
+T|is this heart attack
+T|climbing too fast again
+T|can this stick hold the joint steady
+T|make fire with this
+T|no
+T|dropped her pack suddenly
+T|is this flammable enough
+T|don't close your eyes
+T|followed the birds
+T|he touched the weird plant
+T|it struck just below the knee
+T|sunburn after picnic
+T|head hurts with no reason
+T|left heel's got a sore spot
+T|he got bitten by a bug
+T|chest trauma after fall
+T|feeling ice in my chest
+T|her hand swelled up quick
+T|feeling faint from chill
+T|fire won't catch today
+T|cramps in belly all night
+T|listen for distant rumbles
+T|does this apply to arms too
+T|check his neck for injury
+T|this isn't normal for me
+T|check breathing please
+T|what does above and below mean
+T|can't focus at all
+T|sun glare hurting eyes
+T|gas smell getting stronger
+T|its throbbing bad
+T|check if the loop is even
+T|check if he can move fingers and toes
+T|hold tight on the rope
+T|sharp object in his chest
+T|does a rolled up sleeping bag help
+T|not even a sip of calm
+T|cramps in legs from low water
+T|find a way to move
+T|cut from the branch won't heal
+T|abdominal injury from the tree
+T|snake got him while walking
+T|wound above the ankle
+T|where should the splint start
+T|his hand won't stop bleeding
+T|four
+T|not okay anymore
+T|stuff between legs
+T|he's gasping with chest injury
+T|cut right over the knee joint
+T|sick from the green mushrooms
+T|he's sweating too much
+T|can't walk another step
+T|hot soup spilled on me
+T|can't move her legs
+T|can we tie two ropes together
+T|his neck might be hurt too
+T|lean against tree trunk
+T|my leg burnt near flame
+T|check for breathing
+T|tender spot near cut
+T|forgot the route
+T|my hand swelled up fast
+T|not making a sound anymore
+T|hold still now
+T|it's crawling under my sleeve
+T|my kid just lost a tooth
+T|looks like he's drowning
+T|something went into her chest
+T|can't get it loose
+T|can't feel my legs properly
+T|help me lift him now
+T|how do i clean it properly
+T|voice lost completely
+T|can't focus on the path
+T|my ankle is hot and red
+T|water got in the bandage
+T|burnt my fingers on wire
+T|my feet are tired and sore
+T|how do we keep the tooth safe
+T|one
+T|can we start one now
+T|send help fast
+T|no open wound on leg
+T|itchy patch on eye surface
+T|his hands are trembling
+T|torn skin by the hip
+T|left too early
+T|swollen eyelid now
+T|can't shout out
+T|blisters from new boots
+T|just need relief fast
+T|overwhelmed by this
+T|find the splint guide
+T|help we need something now
+T|stomach screaming for help
+T|keep him calm while checking head
+T|fever spiked after injury
+T|bent backwards when i fell
+T|water got into the cut again
+T|can't feel his hands
+T|what do we do next
+T|too weak to speak
+T|can't sit without pain
+T|her wrist looks like it's broken
+T|did he hit the back of his head
+T|can you clean this wound now
+T|should i drain this one
+T|feels like passing out
+T|water looks clear but still risky
+T|help my tooth is loose
+T|tender spot near the cut
+T|should i cut the tape off
+T|her stomach took the hit
+T|swollen eyelid
+T|tarp over sticks
+T|everything's turning sour
+T|deep cut near ankle joint
+T|can i put it higher than elbow
+T|bandage came off in dirt
+T|get under trees
+T|two
+T|eye feels like sandpaper
+T|burnt my cheek on smoke
+T|that was a strange bite pattern
+T|no time to boil let's filter
+T|my stomach's churning
+T|help him stay still
+T|we need to stop the swelling
+T|he's freezing and shivering hard
+T|can't feel my hands
+T|rattlesnake in the grass
+T|legs are like ice sticks
+T|panicking in silence
+T|no landmarks in sight
+T|he's not eating right today
+T|if less than ten get moving
+T|chest tight as a drum
+T|she might've knocked out on impact
+T|maybe she hit her head too
+T|puncture in his chest side
+T|water tastes off what now
+T|her ear is bleeding slightly
+T|stay together in group
+T|cramps in stomach like hunger
+T|need something gentle now
+T|needs a sling fast
+T|emergency help for pelvis
+T|don't feel right after hiking
+T|just need something to hold it still
+T|heart pounding loud
+T|how do i fix a broken leg
+T|can't swallow without effort
+T|walked too far
+T|what if it's broken inside
+T|fumes in the tent everyone sick
+T|suspected hip fracture
+T|keep still until we assess head
+T|back
+T|the stick is wedged in his side
+T|what's the correct placement
+T|my back aches from cold
+T|cut on my hand won't stop throbbing
+T|dizzy and nauseous
+T|help with the knot on my pack
+T|don't move until help comes
+T|light hurting my eyes
+T|wound across his abdominal side
+T|need epipen stat
+T|the wrap is making her foot tingle
+T|where should i put the tie
+T|how do you start the bowline
+T|hot spot on right foot
+T|can't find our way
+T|yes
+T|her skin feels clammy
+T|something's wrong with my gut
+T|foot feels like it's on fire
 E|bad tooth pain
 E|tell me a joke
 E|scratched eyeball
