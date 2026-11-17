@@ -296,3 +296,5 @@ def test_negation_and_hedge_stop_at_the_clause():
     assert "breathing" not in fill("not sure he's breathing", slots)        # hedge crosses the subject
     assert "faint" not in fill("she's going to pass out", slots)
     assert fill("she's bleeding out of her ear", slots).get("bleeding") == "some"
+    bone = {"open": {"yes": ["sticking out", "pouring out"]}}
+    assert fill("there's a bone sticking out of his arm", bone) == {"open": "yes"}   # only "bleeding out of" is a source

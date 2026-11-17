@@ -189,7 +189,8 @@ def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | N
                     continue
                 if hit[-1] + 1 < len(raw) and raw[hit[-1] + 1] in NOT_A_STATE:
                     continue                       # "no breathing problems": a topic, not a state
-                if pw[-1] == "out" and hit[-1] + 1 < len(raw) and raw[hit[-1] + 1] == "of":
+                if (len(pw) > 1 and pw[-1] == "out" and pw[-2] in ("bleed", "bleeding", "bleeds", "bled")
+                        and hit[-1] + 1 < len(raw) and raw[hit[-1] + 1] == "of"):
                     continue                       # "bleeding out of his ear": where from, not how much
                 i = hit[0]
                 if any(w in NEGATION for w in _scope(raw, i, True)) and not any(w in NEGATION for w in p):
