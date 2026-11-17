@@ -22,7 +22,8 @@ from .extract import normalize
 
 DEFAULT_SELECTORS = ("article", "main", ".cms-content", "#content")
 BLOCK = {"p", "div", "li", "ul", "ol", "section", "article", "table", "tr", "td", "th", "tbody",
-         "thead", "blockquote", "dl", "dt", "dd", "header", "footer", "figure", "main", "aside"}
+         "thead", "blockquote", "dl", "dt", "dd", "header", "footer", "figure", "main", "aside",
+         "html", "body"}           # a saved page can hold a whole nested document
 HEAD = {"h1", "h2", "h3", "h4", "h5", "h6"}
 SKIP = {"script", "style", "noscript", "nav", "img", "svg", "form", "button", "iframe", "figure",
         "figcaption", "select", "input", "video", "audio", "picture"}

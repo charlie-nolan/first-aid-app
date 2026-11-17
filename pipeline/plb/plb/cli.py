@@ -102,7 +102,8 @@ def main(argv=None) -> int:
                 continue
             pdf = m.path(root)
             if m.raw.get("kind") == "web" and pdf.exists():
-                out = root / "build" / "extract" / m.id
+                # personal web sources (copyrighted guidelines) stay out of the public build/extract
+                out = root / "build" / (src.PERSONAL_EXTRACT if m.raw.get("personal") else "extract") / m.id
                 secs = extract_web(root, m.raw, out)
                 print(f"{m.id}: {len(secs)} sections from {len(m.raw['pages'])} web pages -> {out}")
                 continue
