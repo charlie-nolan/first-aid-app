@@ -93,3 +93,16 @@ def test_madlibs_snap_near_word_but_not_on_life_blanks():
     cands = [Candidate("bites", TREE, SMAP)]
     first_sentence("a dog got me", cands)
     assert answer("purple", cands)[0] == "form"                      # nothing close: ask again
+
+
+def test_skip_lists_the_cards_still_possible():
+    from vr.form import skip
+    cands = [Candidate("bites", TREE, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert skip(cands) == [("bites", "limb"), ("bites", "face")]
+
+
+def test_saying_skip_lists_cards():
+    cands = [Candidate("bites", TREE, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert answer("skip", cands) == ("skip", None, [("bites", "limb"), ("bites", "face")])

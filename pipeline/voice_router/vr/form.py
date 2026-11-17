@@ -171,9 +171,12 @@ def open_fields(cands: list[Candidate]) -> list[Field]:
 def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None):
     """One spoken (or tapped: "number 2") answer to the screen. Each open field reads the words
     with its own short answer list, in screen order; follow-up fields that appear are read from the
-    same words. Returns ("open", tree, card) or ("form", None, None) with fewer fields left."""
+    same words. Returns ("open", tree, card), ("skip", None, [(tree, card)...]) when the person says
+    "skip" / "I don't know", or ("form", None, None) with fewer fields left."""
     fields = fields if fields is not None else open_fields(cands)
     words = set(tokenize(text))
+    if words & {"skip", "skip it", "don't know", "dunno"} or text.strip().lower() in ("i don't know", "no time"):
+        return "skip", None, skip(cands)           # same as the SKIP buttons (UP+DOWN together)
     if fields and fields[0].key == "@topic":
         hit = [c for c in cands if _named(c, words)]
         if len(hit) == 1:
@@ -197,6 +200,32 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
     if len(cands) == 1 and done:
         return "open", done[0].name, done[0].card
     return "form", None, None
+
+
+def skip(cands: list[Candidate], limit: int = 12) -> list[tuple[str, str]]:
+    """Charlie 11-17: a SKIP on the form ("don't know / no time") jumps straight to the cards the
+    blanks filled so far still allow, for the person to cycle through with the buttons. Returns
+    (tree, card) in order: emergency cards first, then the order the tree's own tiles give
+    (manuals list the serious answer first). Unfilled blanks are simply spread over all answers."""
+    out, seen = [], set()
+    for c in cands:
+        todo = [(c.card, c.asking, dict(c.filled))]
+        while todo and len(out) < limit * 3:
+            card, asking, filled = todo.pop(0)
+            if not asking:
+                if (c.name, card) not in seen:
+                    seen.add((c.name, card)); out.append((c.name, card))
+                continue
+            for t in tiles(c.tree, c.smap, card):
+                if t.get("value"):
+                    f2 = {**filled, asking: t["value"]}
+                    n_card, _, n_ask = walk(c.tree, c.smap, f2, start=card)
+                    todo.append((n_card, n_ask, f2))
+                elif t.get("to") in c.tree["nodes"]:
+                    todo.append((t["to"], None, filled))
+    life = {(c.name, k) for c in cands for k in _life_cards(c)}
+    out.sort(key=lambda tc: tc not in life)
+    return out[:limit]
 
 
 SNAP_MIN, SNAP_MARGIN = 0.80, 0.10
