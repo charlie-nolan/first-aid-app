@@ -33,8 +33,9 @@ me_args()    { [ -s "$SP/me/train.jsonl" ] && printf -- '--train %s:3 ' "$SP/me/
                [ -s "$SP/me_dev/train.jsonl" ] && printf -- '--train %s:4 ' "$SP/me_dev/train.jsonl"   # device mic: most valuable
                [ -s "$SP/me_dev/labelled.jsonl" ] && printf -- '--train %s:2 ' "$SP/me_dev/labelled.jsonl"; true; }
 noise_args() { [ -d "$SP/me_dev/noise" ] && printf -- '--noise-dir %s' "$SP/me_dev/noise"; true; }
-s_whisper()  { wait_for_gpu 6500; python -m fasr whisper train --train "$SP/tts/train.jsonl" $(me_args) \
-                 --dev "$SP/tts/dev.jsonl" --hours "${WHISPER_HOURS:-2}"
+# 8 GB card: the desktop keeps ~1.6 GB, so 6.5 GB free never happens; batch 4 fits in ~5 GB
+s_whisper()  { wait_for_gpu "${WHISPER_GPU_MB:-5200}"; python -m fasr whisper train --train "$SP/tts/train.jsonl" $(me_args) \
+                 --dev "$SP/tts/dev.jsonl" --hours "${WHISPER_HOURS:-2}" --bs "${WHISPER_BS:-4}"
                if [ -d "$SP/me/free" ]; then python -m fasr whisper label --audio "$SP/me/free" --out "$SP/me/labelled.jsonl"; fi
                if [ -d "$SP/me_dev/free" ]; then python -m fasr whisper label --audio "$SP/me_dev/free" --out "$SP/me_dev/labelled.jsonl"; fi
                python -m fasr whisper score --set "$SP/tts/eval.jsonl" | tee "$SP/whisper-score.txt"; }
