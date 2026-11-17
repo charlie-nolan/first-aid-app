@@ -3,7 +3,7 @@
 The lexicon is the word list the custom recognizer may output and the router reads.
 Contract (agreed 2026-11-16 with the voice router thread, see pipeline/voice_router/vr/lexicon.py):
   ids 0..2047 (raised from 1023 on 2026-11-16, agreed with the router), append-only; 0 <unk>, 1-4 one..four, 5 yes, 6 no, 7 back, 8 again, 9 home.
-  class byte: 0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity.
+  class byte: 0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity, 6 animal (append-only).
 Each word also carries its sound spellings (ARPAbet phones, stress removed), which is what
 lets the recognizer learn sounds once and treat the vocabulary as data.
 
@@ -33,9 +33,9 @@ CORE = CONTENT / "speech_core.yaml"
 CAP = 2048
 VERSION = 1   # set to 2 by `fasr lexicon --renumber` (one-time rebuild)
 RESERVED = ["<unk>", "one", "two", "three", "four", "yes", "no", "back", "again", "home"]
-CLASSES = {"other": 0, "body_part": 1, "mechanism": 2, "symptom": 3, "negation": 4, "quantity": 5}
+CLASSES = {"other": 0, "body_part": 1, "mechanism": 2, "symptom": 3, "negation": 4, "quantity": 5, "animal": 6}
 # when a core word sits in several groups, the first group here wins
-CLASS_PRIORITY = ["negation", "body_part", "symptom", "mechanism", "quantity", "other"]
+CLASS_PRIORITY = ["negation", "body_part", "symptom", "animal", "mechanism", "quantity", "other"]
 MAX_PRONS = 3
 
 # same tokenizer as vr.lexicon.tokenize (tests check they agree)
@@ -289,7 +289,7 @@ HEADER = """\
 # never delete a row (the router's word table and the recognizer's decoder index by id).
 # To retire a word, leave it in place; to fix a class or a sound spelling, edit that row.
 # Contract: ids 0..2047; 0 <unk>, 1-4 one..four, 5 yes, 6 no, 7 back, 8 again, 9 home.
-# class: 0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity.
+# class: 0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity, 6 animal (append-only).
 # phones: ARPAbet without stress (CMUdict; `g2p: espeak` = machine guess, worth a check).
 """
 

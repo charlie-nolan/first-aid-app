@@ -3,7 +3,7 @@
 # never delete a row (the router's word table and the recognizer's decoder index by id).
 # To retire a word, leave it in place; to fix a class or a sound spelling, edit that row.
 # Contract: ids 0..2047; 0 <unk>, 1-4 one..four, 5 yes, 6 no, 7 back, 8 again, 9 home.
-# class: 0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity.
+# class: 0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity, 6 animal (append-only).
 # phones: ARPAbet without stress (CMUdict; `g2p: espeak` = machine guess, worth a check).
 version: 1
 cap: 2048
@@ -296,17 +296,17 @@ words:
 - {id: 285, word: "bitten", class: 2, phones: ["B IH T AH N"], g2p: cmudict, src: core}
 - {id: 286, word: "sting", class: 2, phones: ["S T IH NG"], g2p: cmudict, src: core}
 - {id: 287, word: "stung", class: 2, phones: ["S T AH NG"], g2p: cmudict, src: core}
-- {id: 288, word: "snake", class: 2, phones: ["S N EY K"], g2p: cmudict, src: core}
-- {id: 289, word: "rattlesnake", class: 2, phones: ["R AE T AH L S N EY K"], g2p: cmudict, src: core}
-- {id: 290, word: "spider", class: 2, phones: ["S P AY D ER"], g2p: cmudict, src: core}
-- {id: 291, word: "bee", class: 2, phones: ["B IY"], g2p: cmudict, src: core}
-- {id: 292, word: "wasp", class: 2, phones: ["W AA S P"], g2p: cmudict, src: core}
-- {id: 293, word: "hornet", class: 2, phones: ["HH AO R N IH T"], g2p: cmudict, src: core}
-- {id: 294, word: "tick", class: 2, phones: ["T IH K"], g2p: cmudict, src: core}
-- {id: 295, word: "dog", class: 2, phones: ["D AO G"], g2p: cmudict, src: core}
-- {id: 296, word: "bear", class: 2, phones: ["B EH R"], g2p: cmudict, src: core}
-- {id: 297, word: "scorpion", class: 2, phones: ["S K AO R P IY AH N"], g2p: cmudict, src: core}
-- {id: 298, word: "insect", class: 2, phones: ["IH N S EH K T"], g2p: cmudict, src: core}
+- {id: 288, word: "snake", class: 6, phones: ["S N EY K"], g2p: cmudict, src: core}
+- {id: 289, word: "rattlesnake", class: 6, phones: ["R AE T AH L S N EY K"], g2p: cmudict, src: core}
+- {id: 290, word: "spider", class: 6, phones: ["S P AY D ER"], g2p: cmudict, src: core}
+- {id: 291, word: "bee", class: 6, phones: ["B IY"], g2p: cmudict, src: core}
+- {id: 292, word: "wasp", class: 6, phones: ["W AA S P"], g2p: cmudict, src: core}
+- {id: 293, word: "hornet", class: 6, phones: ["HH AO R N IH T"], g2p: cmudict, src: core}
+- {id: 294, word: "tick", class: 6, phones: ["T IH K"], g2p: cmudict, src: core}
+- {id: 295, word: "dog", class: 6, phones: ["D AO G"], g2p: cmudict, src: core}
+- {id: 296, word: "bear", class: 6, phones: ["B EH R"], g2p: cmudict, src: core}
+- {id: 297, word: "scorpion", class: 6, phones: ["S K AO R P IY AH N"], g2p: cmudict, src: core}
+- {id: 298, word: "insect", class: 6, phones: ["IH N S EH K T"], g2p: cmudict, src: core}
 - {id: 299, word: "ate", class: 2, phones: ["EY T"], g2p: cmudict, src: core}
 - {id: 300, word: "swallowed", class: 2, phones: ["S W AA L OW D"], g2p: cmudict, src: core}
 - {id: 301, word: "choked", class: 2, phones: ["CH OW K T"], g2p: cmudict, src: core}
@@ -349,7 +349,7 @@ words:
 - {id: 338, word: "crash", class: 2, phones: ["K R AE SH"], g2p: cmudict, src: core}
 - {id: 339, word: "bike", class: 2, phones: ["B AY K"], g2p: cmudict, src: core}
 - {id: 340, word: "car", class: 2, phones: ["K AA R"], g2p: cmudict, src: core}
-- {id: 341, word: "horse", class: 2, phones: ["HH AO R S"], g2p: cmudict, src: core}
+- {id: 341, word: "horse", class: 6, phones: ["HH AO R S"], g2p: cmudict, src: core}
 - {id: 342, word: "climbing", class: 2, phones: ["K L AY M IH NG"], g2p: cmudict, src: core}
 - {id: 343, word: "skiing", class: 2, phones: ["S K IY IH NG"], g2p: cmudict, src: core}
 - {id: 344, word: "hiking", class: 2, phones: ["HH AY K IH NG"], g2p: cmudict, src: core}
@@ -488,7 +488,7 @@ words:
 - {id: 477, word: "splint", class: 0, phones: ["S P L IH N T"], g2p: cmudict, src: core}
 - {id: 478, word: "bandage", class: 0, phones: ["B AE N D IH JH"], g2p: cmudict, src: core}
 - {id: 479, word: "gauze", class: 0, phones: ["G AO Z"], g2p: cmudict, src: core}
-- {id: 480, word: "tourniquet", class: 0, phones: ["T ER N IH K IH T"], g2p: cmudict, src: core}
+- {id: 480, word: "tourniquet", class: 3, phones: ["T ER N IH K IH T"], g2p: cmudict, src: core}
 - {id: 481, word: "pressure", class: 0, phones: ["P R EH SH ER"], g2p: cmudict, src: core}
 - {id: 482, word: "dressing", class: 0, phones: ["D R EH S IH NG"], g2p: cmudict, src: core}
 - {id: 483, word: "sling", class: 0, phones: ["S L IH NG"], g2p: cmudict, src: core}
@@ -505,7 +505,7 @@ words:
 - {id: 494, word: "fluids", class: 0, phones: ["F L UW AH D Z", "F L UW IH D Z"], g2p: cmudict, src: core}
 - {id: 495, word: "food", class: 0, phones: ["F UW D"], g2p: cmudict, src: core}
 - {id: 496, word: "signal", class: 0, phones: ["S IH G N AH L"], g2p: cmudict, src: core}
-- {id: 497, word: "rescue", class: 0, phones: ["R EH S K Y UW"], g2p: cmudict, src: core}
+- {id: 497, word: "rescue", class: 3, phones: ["R EH S K Y UW"], g2p: cmudict, src: core}
 - {id: 498, word: "lost", class: 0, phones: ["L AO S T"], g2p: cmudict, src: core}
 - {id: 499, word: "filter", class: 0, phones: ["F IH L T ER"], g2p: cmudict, src: core}
 - {id: 500, word: "purify", class: 0, phones: ["P Y UH R AH F AY"], g2p: cmudict, src: core}
@@ -712,15 +712,15 @@ words:
 - {id: 701, word: "urine", class: 0, phones: ["Y ER AH N", "Y UH R AH N"], g2p: cmudict, src: voice}
 - {id: 702, word: "mountain", class: 0, phones: ["M AW N T AH N"], g2p: cmudict, src: voice}
 - {id: 703, word: "climbed", class: 0, phones: ["K L AY M D"], g2p: cmudict, src: voice}
-- {id: 704, word: "reaction", class: 0, phones: ["R IY AE K SH AH N"], g2p: cmudict, src: voice}
+- {id: 704, word: "reaction", class: 3, phones: ["R IY AE K SH AH N"], g2p: cmudict, src: voice}
 - {id: 705, word: "closing", class: 0, phones: ["K L OW Z IH NG"], g2p: cmudict, src: voice}
 - {id: 706, word: "venomous", class: 0, phones: ["V EH N AH M AH S"], g2p: cmudict, src: voice}
 - {id: 707, word: "rattler", class: 0, phones: ["R AE T AH L ER", "R AE T L ER"], g2p: cmudict, src: voice}
-- {id: 708, word: "animal", class: 0, phones: ["AE N AH M AH L"], g2p: cmudict, src: voice}
+- {id: 708, word: "animal", class: 6, phones: ["AE N AH M AH L"], g2p: cmudict, src: voice}
 - {id: 709, word: "encounter", class: 0, phones: ["IH N K AW N T ER", "IH N K AW N ER"], g2p: cmudict, src: voice}
-- {id: 710, word: "raccoon", class: 0, phones: ["R AE K UW N"], g2p: cmudict, src: voice}
-- {id: 711, word: "jellyfish", class: 0, phones: ["JH EH L IY F IH SH"], g2p: cmudict, src: voice}
-- {id: 712, word: "bat", class: 0, phones: ["B AE T"], g2p: cmudict, src: voice}
+- {id: 710, word: "raccoon", class: 6, phones: ["R AE K UW N"], g2p: cmudict, src: voice}
+- {id: 711, word: "jellyfish", class: 6, phones: ["JH EH L IY F IH SH"], g2p: cmudict, src: voice}
+- {id: 712, word: "bat", class: 6, phones: ["B AE T"], g2p: cmudict, src: voice}
 - {id: 713, word: "wild", class: 0, phones: ["W AY L D"], g2p: cmudict, src: voice}
 - {id: 714, word: "berries", class: 0, phones: ["B EH R IY Z"], g2p: cmudict, src: voice}
 - {id: 715, word: "poisoning", class: 0, phones: ["P OY Z AH N IH NG"], g2p: cmudict, src: voice}
@@ -985,7 +985,7 @@ words:
 - {id: 974, word: "abdominal", class: 0, phones: ["AE B D AA M AH N AH L", "AH B D AA M AH N AH L"], g2p: cmudict, src: core}
 - {id: 975, word: "guts", class: 0, phones: ["G AH T S"], g2p: cmudict, src: core}
 - {id: 976, word: "charred", class: 0, phones: ["CH AA R D"], g2p: cmudict, src: core}
-- {id: 977, word: "compressions", class: 0, phones: ["K AH M P R EH SH AH N Z"], g2p: espeak, src: core}
+- {id: 977, word: "compressions", class: 3, phones: ["K AH M P R EH SH AH N Z"], g2p: espeak, src: core}
 - {id: 978, word: "eyeball", class: 0, phones: ["AY B AO L"], g2p: cmudict, src: core}
 - {id: 979, word: "fang", class: 0, phones: ["F AE NG"], g2p: cmudict, src: core}
 - {id: 980, word: "fangs", class: 0, phones: ["F AE NG Z"], g2p: cmudict, src: core}
@@ -1027,7 +1027,7 @@ words:
 - {id: 1016, word: "raft", class: 0, phones: ["R AE F T"], g2p: cmudict, src: trees}
 - {id: 1017, word: "position", class: 0, phones: ["P AH Z IH SH AH N"], g2p: cmudict, src: trees}
 - {id: 1018, word: "evacuation", class: 0, phones: ["IH V AE K Y AH W EY SH AH N", "IY V AE K Y AH W EY SH AH N"], g2p: cmudict, src: trees}
-- {id: 1019, word: "airway", class: 0, phones: ["EH R W EY"], g2p: cmudict, src: trees}
+- {id: 1019, word: "airway", class: 3, phones: ["EH R W EY"], g2p: cmudict, src: trees}
 - {id: 1020, word: "monitoring", class: 0, phones: ["M AA N AH T ER IH NG"], g2p: cmudict, src: trees}
 - {id: 1021, word: "needed", class: 0, phones: ["N IY D AH D", "N IY D IH D"], g2p: cmudict, src: trees}
 - {id: 1022, word: "clear", class: 0, phones: ["K L IH R"], g2p: cmudict, src: trees}
@@ -1178,7 +1178,7 @@ words:
 - {id: 1167, word: "medication", class: 0, phones: ["M EH D AH K EY SH AH N"], g2p: cmudict, src: trees}
 - {id: 1168, word: "trouble", class: 0, phones: ["T R AH B AH L"], g2p: cmudict, src: trees}
 - {id: 1169, word: "dose", class: 0, phones: ["D OW S"], g2p: cmudict, src: trees}
-- {id: 1170, word: "breaths", class: 0, phones: ["B R EH TH S"], g2p: cmudict, src: trees}
+- {id: 1170, word: "breaths", class: 3, phones: ["B R EH TH S"], g2p: cmudict, src: trees}
 - {id: 1171, word: "dexamethasone", class: 0, phones: ["D EH K S M EH TH S OW N"], g2p: espeak, src: trees}
 - {id: 1172, word: "skip", class: 0, phones: ["S K IH P"], g2p: cmudict, src: trees}
 - {id: 1173, word: "socks", class: 0, phones: ["S AA K S"], g2p: cmudict, src: trees}
@@ -1301,7 +1301,7 @@ words:
 - {id: 1290, word: "hydration", class: 0, phones: ["HH AY D R EY SH AH N"], g2p: cmudict, src: trees}
 - {id: 1291, word: "edema", class: 0, phones: ["IH D IY M AH"], g2p: cmudict, src: trees}
 - {id: 1292, word: "descent", class: 0, phones: ["D IH S EH N T"], g2p: cmudict, src: trees}
-- {id: 1293, word: "cat", class: 0, phones: ["K AE T"], g2p: cmudict, src: trees}
+- {id: 1293, word: "cat", class: 6, phones: ["K AE T"], g2p: cmudict, src: trees}
 - {id: 1294, word: "hemostatic", class: 0, phones: ["HH IY M OW S T AE T IH K"], g2p: espeak, src: trees}
 - {id: 1295, word: "painful", class: 0, phones: ["P EY N F AH L"], g2p: cmudict, src: trees}
 - {id: 1296, word: "active", class: 0, phones: ["AE K T IH V"], g2p: cmudict, src: trees}
@@ -1713,14 +1713,14 @@ words:
 - {id: 1702, word: "safely", class: 0, phones: ["S EY F L IY"], g2p: cmudict, src: trees}
 - {id: 1703, word: "professional", class: 0, phones: ["P R AH F EH SH AH N AH L"], g2p: cmudict, src: trees}
 - {id: 1704, word: "unsafe", class: 0, phones: ["AH N S EY F"], g2p: cmudict, src: trees}
-- {id: 1705, word: "combat", class: 0, phones: ["K AA M B AE T", "K AH M B AE T"], g2p: cmudict, src: trees}
+- {id: 1705, word: "resuscitation", class: 3, phones: ["R IH S AH S IH T EY SH AH N"], g2p: cmudict, src: core}
 - {id: 1706, word: "sound", class: 0, phones: ["S AW N D"], g2p: cmudict, src: trees}
 - {id: 1707, word: "row", class: 0, phones: ["R OW"], g2p: cmudict, src: trees}
 - {id: 1708, word: "flares", class: 0, phones: ["F L EH R Z"], g2p: cmudict, src: trees}
 - {id: 1709, word: "thickening", class: 0, phones: ["TH IH K AH N IH NG", "TH IH K N IH NG"], g2p: cmudict, src: trees}
 - {id: 1710, word: "elevation", class: 0, phones: ["EH L AH V EY SH AH N"], g2p: cmudict, src: trees}
 - {id: 1711, word: "maintenance", class: 0, phones: ["M EY N T AH N AH N S", "M EY N T N AH N S"], g2p: cmudict, src: trees}
-- {id: 1712, word: "concealment", class: 0, phones: ["K AH N S IY L M AH N T"], g2p: cmudict, src: trees}
+- {id: 1712, word: "cardiac", class: 3, phones: ["K AA R D IY AE K"], g2p: cmudict, src: core}
 - {id: 1713, word: "choose", class: 0, phones: ["CH UW Z"], g2p: cmudict, src: trees}
 - {id: 1714, word: "net", class: 0, phones: ["N EH T"], g2p: cmudict, src: trees}
 - {id: 1715, word: "purification", class: 0, phones: ["P Y UH R AH F AH K EY SH AH N"], g2p: cmudict, src: trees}
@@ -1758,13 +1758,13 @@ words:
 - {id: 1747, word: "decompression", class: 0, phones: ["D IY K AH M P R EH SH AH N"], g2p: cmudict, src: trees}
 - {id: 1748, word: "bulky", class: 0, phones: ["B AH L K IY"], g2p: cmudict, src: trees}
 - {id: 1749, word: "pupils", class: 0, phones: ["P Y UW P AH L Z"], g2p: cmudict, src: trees}
-- {id: 1750, word: "duty", class: 0, phones: ["D UW T IY", "D Y UW T IY"], g2p: cmudict, src: trees}
+- {id: 1750, word: "fish", class: 6, phones: ["F IH SH"], g2p: cmudict, src: core}
 - {id: 1751, word: "voice", class: 0, phones: ["V OY S"], g2p: cmudict, src: trees}
 - {id: 1752, word: "complications", class: 0, phones: ["K AA M P L AH K EY SH AH N Z"], g2p: cmudict, src: trees}
-- {id: 1753, word: "tccc", class: 0, phones: ["T IY S IY S IY S IY"], g2p: espeak, src: trees}
+- {id: 1753, word: "limp", class: 3, phones: ["L IH M P"], g2p: cmudict, src: core}
 - {id: 1754, word: "environments", class: 0, phones: ["IH N V AY R AH N M AH N T S"], g2p: cmudict, src: trees}
 - {id: 1755, word: "nitroglycerin", class: 0, phones: ["N AY T R OW G L IH S ER AH N", "N AY T R AH G L IH S ER AH N", "N AY CH R AH G L IH S ER AH N"], g2p: cmudict, src: trees}
-- {id: 1756, word: "diuretic", class: 0, phones: ["D AY UW R EH T IH K"], g2p: cmudict, src: trees}
+- {id: 1756, word: "moose", class: 6, phones: ["M UW S"], g2p: cmudict, src: core}
 - {id: 1757, word: "midday", class: 0, phones: ["M IH D D EY"], g2p: cmudict, src: trees}
 - {id: 1758, word: "hydrated", class: 0, phones: ["HH AY D R EY T AH D"], g2p: cmudict, src: trees}
 - {id: 1759, word: "taste", class: 0, phones: ["T EY S T"], g2p: cmudict, src: trees}
@@ -1779,12 +1779,12 @@ words:
 - {id: 1768, word: "reservoir", class: 0, phones: ["R EH Z AH V W AA R", "R EH Z ER V W AA R"], g2p: cmudict, src: trees}
 - {id: 1769, word: "sanitize", class: 0, phones: ["S AE N IH T AY Z"], g2p: cmudict, src: trees}
 - {id: 1770, word: "reassemble", class: 0, phones: ["R IY AH S EH M B AH L"], g2p: cmudict, src: trees}
-- {id: 1771, word: "military", class: 0, phones: ["M IH L AH T EH R IY", "M IH L IH T EH R IY"], g2p: cmudict, src: trees}
+- {id: 1771, word: "floppy", class: 3, phones: ["F L AA P IY"], g2p: cmudict, src: core}
 - {id: 1772, word: "dressings", class: 0, phones: ["D R EH S IH NG Z"], g2p: cmudict, src: trees}
 - {id: 1773, word: "suspension", class: 0, phones: ["S AH S P EH N SH AH N"], g2p: cmudict, src: trees}
 - {id: 1774, word: "fabric", class: 0, phones: ["F AE B R IH K"], g2p: cmudict, src: trees}
 - {id: 1775, word: "sew", class: 0, phones: ["S OW"], g2p: cmudict, src: trees}
-- {id: 1776, word: "push", class: 0, phones: ["P UH SH"], g2p: cmudict, src: trees}
+- {id: 1776, word: "push", class: 3, phones: ["P UH SH"], g2p: cmudict, src: trees}
 - {id: 1777, word: "completed", class: 0, phones: ["K AH M P L IY T AH D", "K AH M P L IY T IH D"], g2p: cmudict, src: trees}
 - {id: 1778, word: "dull", class: 0, phones: ["D AH L"], g2p: cmudict, src: trees}
 - {id: 1779, word: "construction", class: 0, phones: ["K AH N S T R AH K SH AH N"], g2p: cmudict, src: trees}
@@ -1810,8 +1810,8 @@ words:
 - {id: 1799, word: "rings", class: 0, phones: ["R IH NG Z"], g2p: cmudict, src: trees}
 - {id: 1800, word: "diamondback", class: 0, phones: ["D AY AH M AH N D B AE K"], g2p: espeak, src: trees}
 - {id: 1801, word: "touches", class: 0, phones: ["T AH CH AH Z", "T AH CH IH Z"], g2p: cmudict, src: trees}
-- {id: 1802, word: "hn", class: 0, phones: ["EY CH EH N"], g2p: espeak, src: trees}
-- {id: 1803, word: "escort", class: 0, phones: ["EH S K AO R T"], g2p: cmudict, src: trees}
+- {id: 1802, word: "rhythm", class: 3, phones: ["R IH DH AH M"], g2p: cmudict, src: core}
+- {id: 1803, word: "arrest", class: 3, phones: ["ER EH S T"], g2p: cmudict, src: core}
 - {id: 1804, word: "staying", class: 0, phones: ["S T EY IH NG"], g2p: cmudict, src: trees}
 - {id: 1805, word: "ace", class: 0, phones: ["EY S"], g2p: cmudict, src: trees}
 - {id: 1806, word: "tasks", class: 0, phones: ["T AE S K S"], g2p: cmudict, src: trees}
@@ -1833,8 +1833,8 @@ words:
 - {id: 1822, word: "exit", class: 0, phones: ["EH G Z IH T", "EH K S AH T"], g2p: cmudict, src: trees}
 - {id: 1823, word: "removal", class: 0, phones: ["R IH M UW V AH L"], g2p: cmudict, src: trees}
 - {id: 1824, word: "diet", class: 0, phones: ["D AY AH T"], g2p: cmudict, src: trees}
-- {id: 1825, word: "menopause", class: 0, phones: ["M EH N AH P AW Z"], g2p: cmudict, src: trees}
-- {id: 1826, word: "counseling", class: 0, phones: ["K AW N S AH L IH NG", "K AW N S L IH NG"], g2p: cmudict, src: trees}
+- {id: 1825, word: "deer", class: 6, phones: ["D IH R"], g2p: cmudict, src: core}
+- {id: 1826, word: "skunk", class: 6, phones: ["S K AH NG K"], g2p: cmudict, src: core}
 - {id: 1827, word: "boulders", class: 0, phones: ["B OW L D ER Z"], g2p: cmudict, src: trees}
 - {id: 1828, word: "constriction", class: 0, phones: ["K AH N S T R IH K SH AH N"], g2p: cmudict, src: trees}
 - {id: 1829, word: "eyewear", class: 0, phones: ["AY W EH R"], g2p: cmudict, src: trees}
@@ -1861,7 +1861,7 @@ words:
 - {id: 1850, word: "thrust", class: 0, phones: ["TH R AH S T"], g2p: cmudict, src: trees}
 - {id: 1851, word: "crossed", class: 0, phones: ["K R AO S T"], g2p: cmudict, src: trees}
 - {id: 1852, word: "insert", class: 0, phones: ["IH N S ER T"], g2p: cmudict, src: trees}
-- {id: 1853, word: "benzodiazepine", class: 0, phones: ["B EH N Z OW D IY AE Z AH P IY N"], g2p: cmudict, src: trees}
+- {id: 1853, word: "elk", class: 6, phones: ["EH L K"], g2p: cmudict, src: core}
 - {id: 1854, word: "shadows", class: 0, phones: ["SH AE D OW Z"], g2p: cmudict, src: trees}
 - {id: 1855, word: "urinary", class: 0, phones: ["Y ER AH N EH R IY"], g2p: cmudict, src: trees}
 - {id: 1856, word: "consultation", class: 0, phones: ["K AA N S AH L T EY SH AH N"], g2p: cmudict, src: trees}
@@ -1869,13 +1869,13 @@ words:
 - {id: 1858, word: "antihistamine", class: 0, phones: ["AE N T IY HH IH S T AH M AH N"], g2p: cmudict, src: trees}
 - {id: 1859, word: "breathlessness", class: 0, phones: ["B R EH TH L AH S N AH S"], g2p: espeak, src: trees}
 - {id: 1860, word: "coordination", class: 0, phones: ["K OW AO R D AH N EY SH AH N"], g2p: cmudict, src: trees}
-- {id: 1861, word: "nifedipine", class: 0, phones: ["N AY F EH D AH P IY N", "N AH F EH D AH P IY N"], g2p: cmudict, src: trees}
+- {id: 1861, word: "wolf", class: 6, phones: ["W UH L F"], g2p: cmudict, src: core}
 - {id: 1862, word: "pump", class: 0, phones: ["P AH M P"], g2p: cmudict, src: trees}
 - {id: 1863, word: "nutrition", class: 0, phones: ["N UW T R IH SH AH N"], g2p: cmudict, src: trees}
 - {id: 1864, word: "quarts", class: 0, phones: ["K W AO R T S"], g2p: cmudict, src: trees}
 - {id: 1865, word: "descending", class: 0, phones: ["D IH S EH N D IH NG"], g2p: cmudict, src: trees}
 - {id: 1866, word: "condition", class: 0, phones: ["K AH N D IH SH AH N"], g2p: cmudict, src: trees}
-- {id: 1867, word: "anthrax", class: 0, phones: ["AE N TH R AE K S"], g2p: cmudict, src: trees}
+- {id: 1867, word: "bug", class: 6, phones: ["B AH G"], g2p: cmudict, src: core}
 - {id: 1868, word: "inhalation", class: 0, phones: ["IH N AH L EY SH AH N", "IH N HH AH L EY SH AH N"], g2p: cmudict, src: trees}
 - {id: 1869, word: "prostration", class: 0, phones: ["P R AA S T R EY SH AH N"], g2p: cmudict, src: trees}
 - {id: 1870, word: "basic", class: 0, phones: ["B EY S IH K"], g2p: cmudict, src: trees}
@@ -1900,15 +1900,15 @@ words:
 - {id: 1889, word: "assessment", class: 0, phones: ["AH S EH S M AH N T"], g2p: cmudict, src: trees}
 - {id: 1890, word: "march", class: 0, phones: ["M AA R CH"], g2p: cmudict, src: trees}
 - {id: 1891, word: "paws", class: 0, phones: ["P AO Z"], g2p: cmudict, src: trees}
-- {id: 1892, word: "dcap", class: 0, phones: ["D IY K AE P"], g2p: espeak, src: trees}
-- {id: 1893, word: "btls", class: 0, phones: ["B IY T IY EH L EH S"], g2p: espeak, src: trees}
-- {id: 1894, word: "cbrn", class: 0, phones: ["S IY B IY AA R R EH N"], g2p: espeak, src: trees}
+- {id: 1892, word: "anaphylactic", class: 3, phones: ["AE N AH F AH L AE K T IH K"], g2p: hand, src: core}
+- {id: 1893, word: "turning", class: 3, phones: ["T ER N IH NG"], g2p: cmudict, src: core}
+- {id: 1894, word: "alive", class: 3, phones: ["AH L AY V"], g2p: cmudict, src: core}
 - {id: 1895, word: "blurred", class: 0, phones: ["B L ER D"], g2p: cmudict, src: trees}
 - {id: 1896, word: "shaded", class: 0, phones: ["SH EY D IH D"], g2p: cmudict, src: trees}
 - {id: 1897, word: "sunblock", class: 0, phones: ["S AH N B L AA K"], g2p: espeak, src: trees}
 - {id: 1898, word: "sandstorm", class: 0, phones: ["S AE N D S T AO R M"], g2p: cmudict, src: trees}
-- {id: 1899, word: "biological", class: 0, phones: ["B AY AH L AA JH IH K AH L"], g2p: cmudict, src: trees}
-- {id: 1900, word: "nuclear", class: 0, phones: ["N UW K L IY ER"], g2p: cmudict, src: trees}
+- {id: 1899, word: "ant", class: 6, phones: ["AE N T"], g2p: cmudict, src: core}
+- {id: 1900, word: "yellowjacket", class: 6, phones: ["Y EH L OW JH AE K AH T"], g2p: hand, src: core}
 - {id: 1901, word: "dust", class: 0, phones: ["D AH S T"], g2p: cmudict, src: trees}
 - {id: 1902, word: "contaminated", class: 0, phones: ["K AH N T AE M AH N EY T IH D"], g2p: cmudict, src: trees}
 - {id: 1903, word: "per", class: 0, phones: ["P ER"], g2p: cmudict, src: trees}
@@ -2011,13 +2011,13 @@ words:
 - {id: 2000, word: "gradually", class: 0, phones: ["G R AE JH UW AH L IY", "G R AE JH UW L IY"], g2p: cmudict, src: trees}
 - {id: 2001, word: "chargers", class: 0, phones: ["CH AA R JH ER Z"], g2p: cmudict, src: trees}
 - {id: 2002, word: "arctic", class: 0, phones: ["AA R K T IH K", "AA R T IH K"], g2p: cmudict, src: trees}
-- {id: 2003, word: "embarkation", class: 0, phones: ["EH M B AA R K EY SH AH N"], g2p: cmudict, src: trees}
+- {id: 2003, word: "squirrel", class: 6, phones: ["S K W ER AH L"], g2p: cmudict, src: core}
 - {id: 2004, word: "retrieval", class: 0, phones: ["R IH T R IY V AH L", "R IY T R IY V AH L"], g2p: cmudict, src: trees}
 - {id: 2005, word: "retrieve", class: 0, phones: ["R IH T R IY V", "R IY T R IY V"], g2p: cmudict, src: trees}
-- {id: 2006, word: "evasion", class: 0, phones: ["IH V EY ZH AH N", "IY V EY ZH AH N"], g2p: cmudict, src: trees}
+- {id: 2006, word: "rat", class: 6, phones: ["R AE T"], g2p: cmudict, src: core}
 - {id: 2007, word: "being", class: 0, phones: ["B IY IH NG"], g2p: cmudict, src: trees}
 - {id: 2008, word: "pairs", class: 0, phones: ["P EH R Z"], g2p: cmudict, src: trees}
-- {id: 2009, word: "lcss", class: 0, phones: ["EH L S IY EH S EH S"], g2p: espeak, src: trees}
+- {id: 2009, word: "mosquito", class: 6, phones: ["M AH S K IY T OW"], g2p: cmudict, src: core}
 - {id: 2010, word: "directly", class: 0, phones: ["D ER EH K T L IY", "D IY R EH K L IY", "D AY R EH K L IY"], g2p: cmudict, src: trees}
 - {id: 2011, word: "embers", class: 0, phones: ["EH M B ER Z"], g2p: cmudict, src: trees}
 - {id: 2012, word: "tin", class: 0, phones: ["T IH N"], g2p: cmudict, src: trees}
@@ -2046,13 +2046,13 @@ words:
 - {id: 2035, word: "stir", class: 0, phones: ["S T ER"], g2p: cmudict, src: trees}
 - {id: 2036, word: "ashes", class: 0, phones: ["AE SH AH Z", "AE SH IH Z"], g2p: cmudict, src: trees}
 - {id: 2037, word: "spotted", class: 0, phones: ["S P AA T IH D"], g2p: cmudict, src: trees}
-- {id: 2038, word: "evasive", class: 0, phones: ["IH V EY Z IH V", "IY V EY Z IH V"], g2p: cmudict, src: trees}
+- {id: 2038, word: "mouse", class: 6, phones: ["M AW S"], g2p: cmudict, src: core}
 - {id: 2039, word: "artificial", class: 0, phones: ["AA R T AH F IH SH AH L"], g2p: cmudict, src: trees}
 - {id: 2040, word: "revives", class: 0, phones: ["R IY V AY V Z"], g2p: cmudict, src: trees}
 - {id: 2041, word: "reply", class: 0, phones: ["R IH P L AY", "R IY P L AY"], g2p: cmudict, src: trees}
 - {id: 2042, word: "signaling", class: 0, phones: ["S IH G N AH L IH NG"], g2p: cmudict, src: trees}
 - {id: 2043, word: "looser", class: 0, phones: ["L UW S ER"], g2p: cmudict, src: trees}
-- {id: 2044, word: "lactated", class: 0, phones: ["L AE K T EY T D"], g2p: espeak, src: trees}
-- {id: 2045, word: "ringer's", class: 0, phones: ["R IH NG ER Z"], g2p: espeak, src: trees}
+- {id: 2044, word: "fox", class: 6, phones: ["F AA K S"], g2p: cmudict, src: core}
+- {id: 2045, word: "coyote", class: 6, phones: ["K AY OW T IY", "K AY OW T"], g2p: cmudict, src: core}
 - {id: 2046, word: "mix", class: 0, phones: ["M IH K S"], g2p: cmudict, src: trees}
-- {id: 2047, word: "kcl", class: 0, phones: ["K EY S IY EH L"], g2p: espeak, src: trees}
+- {id: 2047, word: "cougar", class: 6, phones: ["K UW G ER"], g2p: cmudict, src: core}

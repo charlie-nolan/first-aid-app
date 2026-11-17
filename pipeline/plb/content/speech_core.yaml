@@ -1,5 +1,5 @@
 # Core first-aid vocabulary for the custom speech recognizer, grouped by the class byte
-# the router uses (0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity).
+# the router uses (0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity, 6 animal).
 # These words are always in the lexicon, even before a tree mentions them, so the
 # recognizer can hear them and the router can learn them. Everyday backcountry speech,
 # violent/military wording left out on purpose (Charlie 2026-11-08).
@@ -17,7 +17,7 @@ mechanism:
   - fell, fall, fallen, falling, slipped, tripped, rolled, twisted, landed, hit, struck, crushed, pinned, trapped
   - cut, sliced, stabbed, impaled, punctured, scraped, gashed, ripped, torn
   - burn, burned, burnt, scalded, fire, stove, boiling, sun, sunburn, lightning, electric
-  - bite, bit, bitten, sting, stung, snake, rattlesnake, spider, bee, wasp, hornet, tick, dog, bear, scorpion, insect
+  - bite, bit, bitten, sting, stung
   - ate, swallowed, choking, choked, drowning, drowned, water, river, lake, ice, snow, avalanche, rock, rockfall, tree, branch
   - knife, axe, hatchet, saw, chainsaw, glass, nail, fishhook, hook, crampon
   - cold, freezing, frozen, wet, hot, heat, altitude, poison, poisoned, plant, ivy, oak, mushroom, allergy, allergic, peanut
@@ -33,6 +33,7 @@ symptom:
   - vomiting, vomit, throwing, puking, nausea, nauseous, diarrhea, sweating, sweaty, clammy, fever, chills, thirsty, dehydrated
   - headache, stiff, stuck, can't, move, feel, see, talk, speak, slurred, drooping, fast, slow, racing, pounding
   - limp, floppy, resuscitation, rescue, breaths, unresponsive, unconscious, compressions, tourniquet, epipen, anaphylaxis, gushing, choke, heatstroke
+  - cardiac, arrest, rhythm, anaphylactic, airway, reaction, turning, blue, push, alive
   - shock, frostbite, frostnip, hypothermia, hypothermic, heatstroke, exhaustion, exhausted, sick, hives, swelling
   - cpr, heartbeat, stopped, collapsed, choking, drowning, stroke, attack, asthma, diabetic, sugar, epipen, anaphylaxis
 negation:
@@ -40,6 +41,9 @@ negation:
 quantity:
   - one, two, three, four, five, six, seven, eight, nine, ten, twenty, thirty, hundred, half
   - minute, minutes, hour, hours, day, days, inch, inches, little, lot, lots, much, many, more, less, very, really, badly, bad
+animal:
+  - animal, snake, rattlesnake, spider, bee, wasp, hornet, yellowjacket, tick, dog, bear, scorpion, insect, bug, ant, mosquito
+  - raccoon, bat, rat, mouse, squirrel, fox, coyote, cougar, wolf, moose, elk, deer, horse, cat, skunk, jellyfish, fish
 other:
   - yes, back, again, home, help, please, okay, ok, stop, start, over, next, previous, menu, cancel, never, mind, what, how, where, why, when
   - i, me, my, he, him, his, she, her, they, them, their, we, our, you, your, it, its, someone, somebody, friend, kid, child, baby, person
@@ -72,6 +76,8 @@ other:
 
 # Hand sound spellings (ARPAbet, no stress) for words CMUdict lacks. Used before any machine guess.
 phones:
+  anaphylactic: [AE N AH F AH L AE K T IH K]
+  yellowjacket: [Y EH L OW JH AE K AH T]
   breastbone: [B R EH S T B OW N]
   tailbone: [T EY L B OW N]
   tingly: [T IH NG G L IY, T IH NG L IY]
