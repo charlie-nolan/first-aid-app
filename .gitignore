@@ -45,3 +45,4 @@ pipeline/plb/content/cites.personal.lock.yaml
 firmware/build-*/
 pipeline/plb/content/voice/topics.personal.yaml
 pipeline/plb/content/voice/experts_personal/
+pipeline/plb/content/voice/*.personal.yaml

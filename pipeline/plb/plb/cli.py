@@ -12,6 +12,7 @@
     plb voice [--json]             score synthetic utterances against the phrase list
     plb show SECTION_ID            print an extracted section (to pick citations)
     plb grep WORDS                 search extracted sections (to find what to cite)
+    plb slots [--rules F] [--out F]  check voice slots + life_threat rules, write the slot map
 """
 from __future__ import annotations
 
@@ -72,6 +73,11 @@ def main(argv=None) -> int:
     vc.add_argument("--threshold", type=float, default=None, help="recogniser stand-in cutoff")
     vc.add_argument("--min-accuracy", type=float, default=None,
                     help="fail if fewer than this share of in-scope utterances land right")
+    sl = sub.add_parser("slots", help="check voice slots/values and life_threat rules, write the slot map")
+    sl.add_argument("--rules", default=None, help="life_threat YAML (default content/voice/"
+                                                  "life_threat[.personal].yaml)")
+    sl.add_argument("--out", default=None, help="default build/slots[_personal].md")
+    sl.add_argument("--voice-slots", default=None, help="voice router slot files DIR (<tree>.yaml) to cross-check")
     s = sub.add_parser("show"); s.add_argument("section")
     g = sub.add_parser("grep"); g.add_argument("words", nargs="+")
     a = ap.parse_args(argv)
@@ -178,6 +184,22 @@ def main(argv=None) -> int:
         if a.min_accuracy is not None and rep["in_scope_accuracy"] < a.min_accuracy:
             return 1
         return 1 if rep["unsafe"] or rep["off_step"] else 0
+    if a.cmd == "slots":
+        from .slots import collect, write_map
+        dirs = [root / "content" / "trees"]
+        if a.personal and (root / "content" / src.PERSONAL_TREES).is_dir():
+            dirs.append(root / "content" / src.PERSONAL_TREES)
+        voice = root / "content" / "voice"
+        rules = Path(a.rules) if a.rules else (
+            voice / ("life_threat.personal.yaml" if a.personal else "life_threat.yaml"))
+        rep = collect(dirs, rules)
+        if a.voice_slots:
+            from .slots import check_voice
+            print(f"cross-checked {check_voice(rep, dirs, Path(a.voice_slots))} voice slot file(s)")
+        dest = Path(a.out) if a.out else root / "build" / ("slots_personal.md" if a.personal else "slots.md")
+        print(f"{len(rep.cards)} slot cards, {len(rep.vocab)} slots, {len(rep.rules)} rules ->",
+              write_map(rep, dest))
+        return _report(rep.issues)
     if a.cmd in ("show", "grep"):
         secs = load_sections(sorted(p for p in (root / "build" / "extract").glob("*") if p.is_dir()))
         if a.cmd == "show":
