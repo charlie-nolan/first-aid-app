@@ -13,13 +13,26 @@ def main(argv=None):
     lx.add_argument("--min-count", type=int, default=1)
     lx.add_argument("--dry-run", action="store_true")
     lx.add_argument("--renumber", action="store_true", help="one-time v2 rebuild (keeps ids 0-9); see lexicon.build")
-    for name in ("train", "synth", "opendata", "evaluate", "whisper", "record", "export", "adapt", "devrec", "calibrate", "micmatch", "pagescore", "slot"):
+    for name in ("train", "synth", "opendata", "evaluate", "whisper", "record", "export", "adapt", "devrec", "calibrate", "micmatch", "pagescore", "slot", "snap"):
         sub.add_parser(name, add_help=False)
     a, rest = ap.parse_known_args(argv)
     if a.cmd != "lexicon":
         import importlib
+        import os
         mod = {"whisper": "whisper_lora"}.get(a.cmd, a.cmd)
-        return importlib.import_module(f"fasr.{mod}").main(rest)
+        from . import snap
+        if a.cmd not in snap.CAPTURED or os.environ.get("FASR_NO_SNAP"):
+            return importlib.import_module(f"fasr.{mod}").main(rest)
+        tee = snap.Tee(sys.stdout); sys.stdout = tee
+        try:
+            return importlib.import_module(f"fasr.{mod}").main(rest)
+        finally:
+            sys.stdout = tee.real
+            try:
+                print("capture:", snap.render(tee.buf.getvalue(), a.cmd, snap.run_arg(rest),
+                                              "python -m fasr " + " ".join([a.cmd] + rest)))
+            except Exception as e:   # a capture must never break a run
+                print("capture failed:", e)
     if a.cmd == "lexicon":
         from . import lexicon
         trees = a.trees or [lexicon.CONTENT / "trees"]
