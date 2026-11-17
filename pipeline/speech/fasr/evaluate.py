@@ -23,7 +23,7 @@ import yaml
 
 from . import lexicon as lx
 from .data import load_wav
-from .decode import Params, Trie, nbest
+from .decode import Params, Trie, calibrated_reject, nbest
 from .features import logmel
 from .model import AcousticModel
 from .train import edit_distance
@@ -61,6 +61,10 @@ def main(argv=None):
     # slot words the router's intake fills (body part, mechanism, animal, bleeding type)
     slot = {r["id"] for r in rows if r.get("class") in (1, 2, 6) or r["word"] in BLEED}
     model = load_model(a.run)
+    cal_f = WORK / "speech" / "runs" / a.run / "reject_calib.json"   # from `fasr calibrate`
+    calib = json.loads(cal_f.read_text()) if cal_f.exists() else None
+    if calib:
+        print(f"reject: calibrated ({cal_f.name}); raw score kept as reject_raw")
     reject_texts = {" ".join(lx.tokenize(s)) for s in
                     (yaml.safe_load((lx.CONTENT / "voice" / "topics.yaml").read_text()) or {}).get("reject", {}).get("test", [])}
     report = {}
@@ -78,6 +82,9 @@ def main(argv=None):
             with torch.no_grad():
                 lp = model(f)[0].numpy()
             hyp = nbest(lp, trie, Params(beam=a.beam))
+            if calib:
+                hyp["reject_raw"] = hyp["reject"]
+                hyp["reject"] = calibrated_reject(lp, hyp, calib)
             dt = time.time() - t0
             ref = [ids.get(w, 0) for w in lx.tokenize(r["text"])]
             cond = r.get("noise", "clean")

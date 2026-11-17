@@ -154,3 +154,30 @@ def nbest(logp: np.ndarray, trie: Trie, p: Params = Params()) -> dict:
             conf.append(int(round(100 * min(1.0, m))))
         hyps.append({"ids": list(w), "conf": conf, "p": round(float(q), 3)})
     return {"n": len(hyps), "h": hyps, "reject": int(round(100 * junk))}
+
+
+# ---------------------------------------------------------------- calibrated reject
+def reject_features(logp: np.ndarray, hyp: dict) -> list[float]:
+    """Per-clip features for the calibrated reject (fasr calibrate). All cheap on the device:
+    junk, unk share, 1 - mean conf, empty, speech-frame share, acoustic confidence, words per frame."""
+    top = hyp["h"][0] if hyp.get("n") else {"ids": [], "conf": []}
+    ids, conf = top["ids"], top["conf"]
+    nb = logp.copy(); nb[:, BLANK] = NEG
+    speech = np.exp(logp[:, BLANK]) < 0.5
+    best = nb.max(1)
+    return [hyp["reject"] / 100.0,
+            (sum(i == 0 for i in ids) / len(ids)) if ids else 1.0,
+            (1.0 - sum(conf) / (100.0 * len(conf))) if conf else 1.0,
+            0.0 if ids else 1.0,
+            float(speech.mean()) if len(speech) else 0.0,
+            float(best[speech].mean()) if speech.any() else -10.0,
+            len(ids) / (speech.sum() + 1.0)]
+
+
+def calibrated_reject(logp: np.ndarray, hyp: dict, calib: dict) -> int:
+    """0-100, where 50 is the calibrated threshold (reject at > 50)."""
+    f = np.array(reject_features(logp, hyp))
+    z = ((f - np.array(calib["mean"])) / np.array(calib["std"])) @ np.array(calib["weights"]) + calib["bias"]
+    t = calib["threshold"]; t = min(max(t, 1e-6), 1 - 1e-6)
+    z -= math.log(t / (1 - t))
+    return int(round(100 / (1 + math.exp(-max(-50.0, min(50.0, z))))))
