@@ -1,0 +1,14 @@
+$ simulate(bites fixture, 3 lines)
+3 lines  right 33%  on way 67%  stuck 0%  WRONG 0%  avg cards skipped 1.00
+right card by voice turn (tile numbers)  1: 33%  2: 100%  3: 100%  4: 100%  never: 0%
+right card by voice turn (saying the tile words)  1: 33%  2: 100%  3: 100%  4: 100%  never: 0%
+right card by voice turn (fill-in-the-blanks screen, vr.form)  1: 33%  2: 100%  3: 100%  4: 100%  never: 0%
+right card ranked after the first sentence: top1 33%  top3 100%  (n=3)
+  blanks filled 40-60%: top1 0%  top3 100%  (n=2)
+  blanks filled 80-100%: top1 100%  top3 100%  (n=1)
+
+
+$ first sentence: "a dog got me"  -> ('form', None, None)
+  form fields: [('where', None)]
+  ranked cards (SKIP): [('bites', 'limb'), ('bites', 'face')]
+$ answer: "on the thigg"  -> ('open', 'bites', 'limb')   (madlibs snap: thigg -> thigh)
