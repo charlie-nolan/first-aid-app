@@ -686,9 +686,11 @@ static void list_step(ui_t *u, int n, int dir) {
     if (s >= n) s = 0;
     u->list_sel = (uint8_t)s;
 }
-/* The CPR tree is found by its title, so the pace light needs no new cartridge field. */
+/* CPR pages: cards flagged by the packer (CPR tree, cards that say CPR or chest compressions,
+ * cards linking into the CPR tree), or for older cartridges any card of the tree titled "CPR". */
 static int in_cpr_tree(ui_t *u) {
     const cart_node_t *n = cart_node(u->c, W(u)->node);
+    if (n && (n->flags & CART_NODE_CPR)) return 1;
     if (!n || n->tree >= u->c->n_trees) return 0;
     char t[16]; T(u, cart_tree(u->c, n->tree).title, t, sizeof t);
     return (t[0] | 0x20) == 'c' && (t[1] | 0x20) == 'p' && (t[2] | 0x20) == 'r' && (t[3] == 0 || t[3] == ' ');

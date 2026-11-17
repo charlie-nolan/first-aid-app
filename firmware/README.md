@@ -125,7 +125,9 @@ on the bench) gives one short flash per compression at 110 a minute, the middle 
 the 100 to 120 a minute in ATP 4-02.11 para 6-45. The header shows PACE while it
 runs, the board does not idle into sleep, and the same menu item (or "All signals
 off") stops it. Outside the CPR tree the item sits near the bottom of the menu.
-The CPR tree is found by its title ("CPR"), so no cartridge change is needed.
+The pace light comes first on every CPR page: the CPR tree, any card whose text says CPR or chest
+compressions, and any card linking into the CPR tree (drowning, choking, lightning, heart attack...).
+The packer sets node flag 16 (`CART_NODE_CPR`) on those cards; older cartridges fall back to the tree titled "CPR".
 
 **Voice bench build (Plus).** `sdkconfig.voicebench` adds a serial test mode for
 `pipeline/gpu/bench_loop.py`: send `L <ms>` to listen, `T <tree>` to load a section's

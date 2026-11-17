@@ -21,6 +21,8 @@ NODE_FLAG_EMERGENCY = 1      # readable from the battery reserve
 NODE_FLAG_SPECIES = 2
 NODE_FLAG_NO_MATCH = 4       # plant key dead end: show the NO_MATCH string
 NODE_FLAG_UNREVIEWED = 8     # reference shelf: verbatim manual text nobody has signed off
+NODE_FLAG_CPR = 16           # CPR page: menu offers the CPR pace light first (Charlie 11-17)
+CPR_TEXT = re.compile(r'\bCPR\b|chest compressions?', re.I)
 TREE_FLAG_EMERGENCY, TREE_FLAG_UNREVIEWED = 1, 2
 
 
@@ -74,6 +76,19 @@ def pack(d, out_bin, max_syms=textcodec.MAX_SYMS - 1):
     nodes = sorted(trees['nodes'], key=lambda n: n['id'])
     assert [n['id'] for n in nodes] == list(range(len(nodes))), 'node ids must be dense 0..N-1'
 
+    # CPR pages: the CPR tree itself, any card whose text says CPR / chest compressions,
+    # and any card with a choice into the CPR tree (drowning, choking, lightning, heart...).
+    ptext = {p['id']: p['text'] for p in passages}
+    def _cpr_tree(tid):
+        t = tree_list[tree_index[tid]] if tid in tree_index else None
+        return bool(t and re.match(r'\s*CPR\b', t.get('title') or '', re.I))
+    node_tree = {n['id']: n.get('tree') for n in nodes}
+    cpr_nodes = {n['id'] for n in nodes if _cpr_tree(n.get('tree'))
+                 or CPR_TEXT.search(n.get('label') or '')
+                 or any(CPR_TEXT.search(ptext.get(pid, '')) for pid in n.get('passages', []))}
+    cpr_nodes |= {n['id'] for n in nodes
+                  if any(_cpr_tree(node_tree.get(c['to'])) for c in n.get('choices', []))}
+
     node_b, npas, choi = bytearray(), [], bytearray()
     for n in nodes:
         first_p, first_c = len(npas), len(choi) // 6
@@ -85,6 +100,7 @@ def pack(d, out_bin, max_syms=textcodec.MAX_SYMS - 1):
         flags = NODE_FLAG_EMERGENCY if (n.get('emergency') or (t and t.get('emergency'))) else 0
         flags |= (NODE_FLAG_SPECIES if n.get('species') else 0) | (NODE_FLAG_NO_MATCH if n.get('no_match') else 0)
         flags |= NODE_FLAG_UNREVIEWED if (n.get('unreviewed') or (t and t.get('unreviewed'))) else 0
+        flags |= NODE_FLAG_CPR if (n['id'] in cpr_nodes and not (flags & NODE_FLAG_UNREVIEWED)) else 0
         fig = pic_index.get(n.get('figure'), NONE)
         node_b += struct.pack('<HHHBBHHBBH', S.add(n.get('label'), raw=True), first_p, first_c,
                               len(n.get('passages', [])), len(n.get('choices', [])),
