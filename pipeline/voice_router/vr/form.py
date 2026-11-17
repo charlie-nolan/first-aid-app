@@ -24,6 +24,7 @@ from .intake import (_fill, _questions, answer_turn, fill_nbest, tiles, tokenize
 SURE = 0.80            # router probability above which the other trees are dropped
 MAX_TREES = 3
 MAX_TABS = 5           # the device's windows (Charlie 11-04 plan; window L/R switches)
+AUTO_TABS = True       # Charlie 11-17: keep it switchable (firmware: Kconfig LIB_VOICE_AUTO_TABS)
 
 
 @dataclass
@@ -66,7 +67,7 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate]):
         go = _rule_hit(c)                             # one-shot, general info first); its own blank ("very
         if go:                                        # cold or from water?") only shows on the open card
             return "open", c.name, c.card
-    if len(split_tabs(cands)) > 1:
+    if AUTO_TABS and len(split_tabs(cands)) > 1:
         return "tabs", None, None                     # two problems named: one tab each
     if cands and (cands[0].p >= SURE or len(cands) == 1):
         del cands[1:]
