@@ -11,7 +11,9 @@
  *   DOWN  short = skip this sentence;  long = next mode
  * Modes: TRAIN (sentences for training), EVAL (held-out sentences, scoring only),
  *        FREE (say anything about an injury; Whisper labels it later),
- *        NOISE (10 s of background: wind, stream, rain, fan, rustling clothes).
+ *        NOISE (10 s of background: wind, stream, rain, fan, rustling clothes),
+ *        PAIRS (sentences built around words the model confuses: bleeding/breathing, stop/drop...),
+ *        ANSWERS (a device question and a short answer to say, like the intake pages will ask).
  *
  * USB protocol (text lines, so logs can't corrupt it):
  *   PC -> device:  "HELLO", "SYNC" (send clips not sent yet), "ACK <id>", "RESEND" (after a bad transfer)
@@ -54,19 +56,29 @@ static const char *TAG = "rec";
 extern const char prompts_start[] asm("_binary_prompts_txt_start");
 extern const char prompts_end[] asm("_binary_prompts_txt_end");
 
-/* ---------- prompts: lines "T|text" (train) or "E|text" (eval) ---------- */
-enum { M_TRAIN, M_EVAL, M_FREE, M_NOISE, M_COUNT };
-static const char *MODE_NAME[M_COUNT] = { "TRAIN", "EVAL", "FREE", "NOISE" };
-static const char *MODE_KEY[M_COUNT] = { "train", "eval", "free", "noise" };
+/* ---------- prompts: lines "T|text" (train), "E|text" (eval), "P|text" (confusable pairs),
+ * "A|question|answer" (answers: the screen shows both, the label is the answer) ----------
+ * New modes go at the END of the enum so the positions saved in NVS keep their meaning. */
+enum { M_TRAIN, M_EVAL, M_FREE, M_NOISE, M_PAIRS, M_ANSWERS, M_COUNT };
+static const char *MODE_NAME[M_COUNT] = { "TRAIN", "EVAL", "FREE", "NOISE", "PAIRS", "ANSWERS" };
+static const char *MODE_KEY[M_COUNT] = { "train", "eval", "free", "noise", "pairs", "answers" };
+static int kind_of(int m) { return m == M_TRAIN ? 0 : m == M_EVAL ? 1 : m == M_PAIRS ? 2 : m == M_ANSWERS ? 3 : -1; }
+#define NKIND 4
 typedef struct { const char *s; uint16_t len; } line_t;
-static line_t *lines[2]; static int nlines[2];
+static line_t *lines[NKIND]; static int nlines[NKIND];
+
+/* the words to say: for "question|answer" lines, the part after the last '|' */
+static line_t said(line_t L) {
+    for (int i = L.len - 1; i >= 0; i--) if (L.s[i] == '|') { line_t a = { L.s + i + 1, (uint16_t)(L.len - i - 1) }; return a; }
+    return L;
+}
 
 static void load_prompts(void) {
-    for (int k = 0; k < 2; k++) lines[k] = heap_caps_calloc(4000, sizeof(line_t), MALLOC_CAP_SPIRAM);
+    for (int k = 0; k < NKIND; k++) lines[k] = heap_caps_calloc(4000, sizeof(line_t), MALLOC_CAP_SPIRAM);
     for (const char *p = prompts_start; p < prompts_end; ) {
         const char *e = memchr(p, '\n', prompts_end - p); if (!e) e = prompts_end;
         if (e - p > 2 && p[1] == '|') {
-            int k = p[0] == 'E' ? 1 : 0;
+            int k = p[0] == 'E' ? 1 : p[0] == 'P' ? 2 : p[0] == 'A' ? 3 : 0;
             if (nlines[k] < 4000) { lines[k][nlines[k]].s = p + 2; lines[k][nlines[k]].len = (uint16_t)(e - p - 2 - (e[-1] == '\r')); nlines[k]++; }
         }
         p = e + 1;
@@ -218,7 +230,7 @@ static void json_escape(char *out, size_t cap, const char *s, size_t len) {
 static void send_take(take_t *t) {
     static char hdr[512], txt[320];
     txt[0] = 0;
-    if (t->mode <= M_EVAL && t->prompt >= 0) { line_t L = lines[t->mode][t->prompt]; json_escape(txt, sizeof txt, L.s, L.len); }
+    if (kind_of(t->mode) >= 0 && t->prompt >= 0) { line_t L = said(lines[kind_of(t->mode)][t->prompt]); json_escape(txt, sizeof txt, L.s, L.len); }
     snprintf(hdr, sizeof hdr, "TAKE {\"id\": %lu, \"mode\": \"%s\", \"prompt\": %ld, \"text\": \"%s\", \"samples\": %lu, "
              "\"sr\": %d, \"peak\": %d, \"clip_per_mille\": %u, \"redo_of\": %ld, \"board\": \"%s\"}",
              (unsigned long)t->id, MODE_KEY[t->mode], (long)t->prompt, txt, (unsigned long)t->n, SR, t->peak, t->clip_pm,
@@ -306,13 +318,17 @@ static void wrap(unsigned style, int x, int y, int w, int h, const char *s, size
 static void draw(const char *status, bool rec) {
     memset(fbits, 0, sizeof fbits);
     char top[80];
-    int total = mode <= M_EVAL ? nlines[mode] : 0;
-    if (mode <= M_EVAL) snprintf(top, sizeof top, "%s %d/%d   unsent %d", MODE_NAME[mode], idx[mode] + 1, total, pending());
+    int kd = kind_of(mode), total = kd >= 0 ? nlines[kd] : 0;
+    if (kd >= 0) snprintf(top, sizeof top, "%s %d/%d   unsent %d", MODE_NAME[mode], idx[mode] + 1, total, pending());
     else snprintf(top, sizeof top, "%s #%d   unsent %d", MODE_NAME[mode], idx[mode] + 1, pending());
     cart_draw_str(&cart, 0, 1, &fb, 4, 12, top);
     if (rec) for (int y = 2; y < 14; y++) for (int x = 236; x < 248; x++) fbits[y * 32 + x / 8] |= 0x80 >> (x % 8);  /* REC dot */
-    const char *body; size_t blen; char tmp[160];
-    if (mode <= M_EVAL && total) { line_t L = lines[mode][idx[mode] % total]; body = L.s; blen = L.len; }
+    const char *body; size_t blen; char tmp[200];
+    if (kd == 3 && total && said(lines[kd][idx[mode] % total]).s != lines[kd][idx[mode] % total].s) {  /* ANSWERS: "Q?  Say: answer" */
+        line_t L = lines[kd][idx[mode] % total], A = said(L);
+        snprintf(tmp, sizeof tmp, "%.*s  Say: %.*s", (int)(A.s - L.s - 1), L.s, (int)A.len, A.s); body = tmp; blen = strlen(tmp);
+    }
+    else if (kd >= 0 && total) { line_t L = lines[kd][idx[mode] % total]; body = L.s; blen = L.len; }
     else if (mode == M_FREE) { body = "Say what happened, like you would on a trail. Any injury, any words."; blen = strlen(body); }
     else { snprintf(tmp, sizeof tmp, "Hold TALK %d s for background only: wind, stream, rain, fan, clothes. Don't talk.", NOISE_S); body = tmp; blen = strlen(tmp); }
     const char *st = status ? status : "Hold TALK to read   BACK redo   DOWN skip / hold: mode";
@@ -366,7 +382,8 @@ void app_main(void) {
             draw("Recording... let go when done", true);
             int64_t t0 = esp_timer_get_time();
             while (down(0) && rec_n < (size_t)SR * max_s) vTaskDelay(pdMS_TO_TICKS(10));
-            int32_t prompt = mode <= M_EVAL ? idx[mode] % (nlines[mode] ? nlines[mode] : 1) : idx[mode];
+            int kd = kind_of(mode);
+            int32_t prompt = kd >= 0 ? idx[mode] % (nlines[kd] ? nlines[kd] : 1) : idx[mode];
             take_t *t = rec_stop(prompt, redo_of);
             redo_of = 0;
             char s[96]; int ms = (int)((esp_timer_get_time() - t0) / 1000);

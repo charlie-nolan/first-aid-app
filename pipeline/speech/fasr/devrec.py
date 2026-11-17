@@ -1,6 +1,7 @@
 """Copy clips from the recorder firmware (firmware/recorder) and make its prompt list.
 
     python -m fasr devrec prompts               # writes firmware/recorder/main/prompts.txt
+    python -m fasr devrec extra                 # adds PAIRS + ANSWERS prompts, keeps TRAIN/EVAL lines
     python -m fasr devrec [--port /dev/ttyACM0] # leave running while you record
 
 Clips land in $WORK/speech/me_dev/<mode>/ with manifests train.jsonl, eval.jsonl (prompted,
@@ -78,7 +79,7 @@ class Store:
     def __init__(self):
         OUT.mkdir(parents=True, exist_ok=True)
         self.rows: dict[str, dict] = {}
-        for m in ("train", "eval", "free"):
+        for m in ("train", "eval", "free", "pairs", "answers"):
             f = OUT / f"{m}.jsonl"
             if f.exists():
                 for l in f.read_text().splitlines():
@@ -105,7 +106,7 @@ class Store:
                           "prompt": hdr["prompt"], "speaker": "charlie", "mic": "pdm-" + hdr.get("board", "?"),
                           "peak": hdr["peak"], "clip_per_mille": hdr["clip_per_mille"],
                           "secs": round(hdr["samples"] / hdr["sr"], 2)}
-        for m in ("train", "eval", "free"):
+        for m in ("train", "eval", "free", "pairs", "answers"):
             rows = [r for r in self.rows.values() if r["mode"] == m]
             (OUT / f"{m}.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
         return wav
@@ -181,11 +182,15 @@ def _session(s, port: str, st: "Store", seen: set[int]):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="fasr devrec")
-    ap.add_argument("what", nargs="?", default="run", choices=["run", "prompts"])
+    ap.add_argument("what", nargs="?", default="run", choices=["run", "prompts", "extra"])
     ap.add_argument("--port")
     ap.add_argument("--train", type=int, default=400)
     ap.add_argument("--eval", type=int, default=120)
     a = ap.parse_args(argv)
+    if a.what == "extra":
+        from .extra_prompts import append
+        append(PROMPTS)
+        return
     if a.what == "prompts":
         make_prompts(a.train, a.eval)
     else:
