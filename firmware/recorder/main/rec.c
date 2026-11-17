@@ -98,7 +98,22 @@ static take_t takes[MAX_TAKES]; static int ntakes;
 static SemaphoreHandle_t lock;
 
 static int pending(void) { int n = 0; for (int i = 0; i < ntakes; i++) n += !takes[i].acked; return n; }
+static volatile bool usb_sending;     /* the USB task is reading clips out of the store */
 static void compact_if_done(void) { if (ntakes && !pending()) { ntakes = 0; store_used = 0; } }
+/* Free the space of copied clips by sliding the not-yet-copied ones down. Needed because
+ * someone recording steadily almost never has zero clips in flight. Called with the lock held,
+ * never while the USB task is sending (it holds indices and offsets into the store). */
+static void compact_store(void) {
+    if (usb_sending) return;
+    size_t w = 0; int j = 0;
+    for (int i = 0; i < ntakes; i++) {
+        take_t t = takes[i];
+        if (t.acked) continue;
+        if (t.off != w) memmove(store + w, store + t.off, (size_t)t.n * 2);
+        t.off = w; w += t.n; takes[j++] = t;
+    }
+    ntakes = j; store_used = w;
+}
 
 /* ---------- microphone: always running into a pre-roll ring ---------- */
 static i2s_chan_handle_t rx;
@@ -148,6 +163,7 @@ static bool rec_start(int max_s) {
     size_t need = (size_t)SR * (max_s + 1);
     xSemaphoreTake(lock, portMAX_DELAY);
     compact_if_done();
+    if (ntakes >= MAX_TAKES || store_used + need > store_cap) compact_store();
     bool ok = ntakes < MAX_TAKES && store_used + need <= store_cap;
     if (ok) {
         rec_off = store_used;
@@ -244,12 +260,14 @@ static void usb_task(void *arg) {
         if (!strcmp(line, "HELLO")) { char s[40]; snprintf(s, sizeof s, "FASR-REC 1 %d", pending()); usb_line(s); }
         else if (!strcmp(line, "SYNC")) {
             /* snapshot under the lock, send without it so recording never waits on USB.
-             * Unacked clips are never moved (the store only resets when all are acked). */
+             * Clips are only moved (compact_store) while no send is running. */
             static int todo[MAX_TAKES]; int k = 0;
             xSemaphoreTake(lock, portMAX_DELAY);
             for (int i = 0; i < ntakes; i++) if (!takes[i].acked && !takes[i].sent) todo[k++] = i;
+            usb_sending = k > 0;
             xSemaphoreGive(lock);
             for (int i = 0; i < k; i++) send_take(&takes[todo[i]]);
+            usb_sending = false;
             usb_line("SYNCED");
         }
         else if (!strcmp(line, "RESEND")) { xSemaphoreTake(lock, portMAX_DELAY); for (int i = 0; i < ntakes; i++) takes[i].sent = 0; xSemaphoreGive(lock); }
