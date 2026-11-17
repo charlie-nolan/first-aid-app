@@ -4,6 +4,8 @@
 
 #define HASH_BIGRAM 1
 #define HASH_NEG 2
+#define HASH_SLOT 3
+#define SLOT_BASE 0xFF00u
 #define NEG_WINDOW 3
 
 static uint32_t fnv1a(uint8_t kind, uint16_t a, uint16_t b, uint32_t buckets) {
@@ -13,6 +15,13 @@ static uint32_t fnv1a(uint8_t kind, uint16_t a, uint16_t b, uint32_t buckets) {
     return h % buckets;
 }
 
+
+/* Word type if it is a slot type (body part, mechanism, animal), else 0. */
+static int slot_of(const vr_model_t *m, uint16_t id) {
+    if (!m->slots || !id || id >= m->V) return 0;
+    int c = m->cls[id];
+    return (c == VR_CLS_BODY || c == VR_CLS_MECH || c == VR_CLS_ANIMAL) ? c : 0;
+}
 
 static const uint8_t *take(const uint8_t **p, size_t n) { const uint8_t *r = *p; *p += n; return r; }
 
@@ -38,6 +47,7 @@ bool vr_open(vr_model_t *m, const void *blob, size_t len) {
     m->class_map = (const uint16_t *)take(&p, 2u * m->k);
     m->names = (const char *)p;
     p += f[8];
+    m->slots = (f[9] & 2) != 0;
     m->npins = 0; m->pins = 0;
     if (f[9] & 1) {
         p += ((uintptr_t)p - (uintptr_t)blob) & 1;             /* 2-byte aligned */
@@ -83,6 +93,12 @@ void vr_score(const vr_model_t *m, const voice_hyp_t *hyp, int ctx, float *p) {
             if (id && id < m->V && w > 0) {
                 add_tab(m, xw, m->w, id, m->ws[id] * w); sw += w;
                 if (prev) { uint32_t b = fnv1a(HASH_BIGRAM, prev, id, m->B); add_tab(m, xh, m->h, b, m->hs[b] * w); sh += w; }
+                int c = slot_of(m, id), pc = slot_of(m, prev);   /* types: "bit <body part>" */
+                if (c) {
+                    uint32_t b = fnv1a(HASH_SLOT, 0, SLOT_BASE | c, m->B); add_tab(m, xh, m->h, b, m->hs[b] * w); sh += w;
+                    if (prev) { b = fnv1a(HASH_SLOT, prev, SLOT_BASE | c, m->B); add_tab(m, xh, m->h, b, m->hs[b] * w); sh += w; }
+                }
+                if (pc && !c) { uint32_t b = fnv1a(HASH_SLOT, SLOT_BASE | pc, id, m->B); add_tab(m, xh, m->h, b, m->hs[b] * w); sh += w; }
                 if (neg_left && !neg) { uint32_t b = fnv1a(HASH_NEG, 0, id, m->B); add_tab(m, xh, m->h, b, m->hs[b] * w); sh += w; }
             }
             if (neg) neg_left = NEG_WINDOW; else if (neg_left) neg_left--;
@@ -170,4 +186,14 @@ const char *vr_name(const vr_model_t *m, int cls) {
     const char *s = m->names;
     for (int i = 0; i < cls; i++) s += strlen(s) + 1;
     return s;
+}
+
+uint16_t vr_slot_word(const vr_model_t *m, const voice_hyp_t *hyp, int cls) {
+    uint16_t best = 0; int bc = -1;
+    if (!hyp->n) return 0;
+    for (int j = 0; j < hyp->h[0].len; j++) {
+        uint16_t id = hyp->h[0].id[j];
+        if (id && id < m->V && m->cls[id] == cls && hyp->h[0].conf[j] > bc) { best = id; bc = hyp->h[0].conf[j]; }
+    }
+    return best;
 }

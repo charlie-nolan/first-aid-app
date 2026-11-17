@@ -23,7 +23,8 @@ import torch.nn as nn
 
 from .lexicon import Lexicon
 
-HASH_BIGRAM, HASH_NEG = 1, 2
+HASH_BIGRAM, HASH_NEG, HASH_SLOT = 1, 2, 3
+SLOT_BASE = 0xFF00          # 'a word of type c' = SLOT_BASE | c, never a real id
 NEG_WINDOW = 3
 
 
@@ -49,6 +50,14 @@ def features(nb, lex: Lexicon, buckets: int):
                 wi.append(i); ww.append(w)
                 if prev:
                     hi.append(fnv1a(HASH_BIGRAM, prev, i, buckets)); hw.append(w)
+                c = lex.slot(i)          # types: "bit <body part>", "<animal> bit", "a body part was said"
+                if c:
+                    hi.append(fnv1a(HASH_SLOT, 0, SLOT_BASE | c, buckets)); hw.append(w)
+                    if prev:
+                        hi.append(fnv1a(HASH_SLOT, prev, SLOT_BASE | c, buckets)); hw.append(w)
+                pc = lex.slot(prev) if prev else 0
+                if pc and not c:
+                    hi.append(fnv1a(HASH_SLOT, SLOT_BASE | pc, i, buckets)); hw.append(w)
                 if neg_left and not lex.is_neg(i):
                     hi.append(fnv1a(HASH_NEG, 0, i, buckets)); hw.append(w)
             if i and lex.is_neg(i):
@@ -203,7 +212,7 @@ class Packed:
         V, B, C = len(self.W), len(self.Hh), len(self.C)
         names = b"".join(n.encode()[:31] + b"\0" for n in self.names)
         hdr = struct.pack("<4sHHHHHHHHHH", b"VXP1", 2 if self.bits == 4 else 1, self.kind, V, B, C, self.d, self.hidden, self.k,
-                          len(names), 1 if self.pins else 0)
+                          len(names), (1 if self.pins else 0) | 2)        # bit 1: slot features
         cls = bytes(self.lex.cls)
         parts = [hdr, cls + b"\0" * (-len(cls) % 4)]
         for j, (q, s) in enumerate(((self.W, self.Ws), (self.Hh, self.Hs), (self.C, self.Cs))):

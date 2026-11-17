@@ -30,7 +30,8 @@ from .noise import Confusions, nbest
 HERE = Path(__file__).resolve().parents[1]
 CONTENT = HERE.parent / "plb" / "content"
 LEVELS = [0.0, 0.15, 0.3]
-ACCEPT_P, ACCEPT_MARGIN = 0.55, 0.2     # below this the device shows a pick-one-of-3 screen
+ACCEPT_P, ACCEPT_MARGIN = 0.97, 0.2     # below this the device shows a pick-one-of-3 screen
+# (0.55 until round 3: on independent test text nothing below ~0.97 opened safely, 11-16)
 MAX_UNK_AUTO = 0.2     # many unknown words heard: never open on its own, show the tiles
 SAY_AGAIN_P = 0.08     # below this, "say that again"; otherwise never a dead end: show the tiles
 
@@ -377,7 +378,8 @@ def golden(path, packed, data, lex, ctx=-1):
     """A few inputs + the int8 reference scores, for the C reader's host test."""
     cases = []
     texts = [e.text for e in data.test[:12]] + ["baby is limp and not breathing", "he is choking and bleeding",
-                                                 "my friend collapsed after the bee sting"]
+                                                 "my friend collapsed after the bee sting",
+                                                 "a raccoon bit my thigh", "gash on my calf"]
     for t in texts:
         nb = [[(i, 100) for i in lex.encode(t)]]
         lg = packed.logits(nb, ctx)

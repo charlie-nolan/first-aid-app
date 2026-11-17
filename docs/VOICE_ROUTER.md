@@ -101,8 +101,11 @@ both run side by side, keep experts at d=32.
      it; if unsure, show the 3 best topics as tiles (existing picker); if "reject", "say again".
    - In a tree: `vr_score(expert, hyp, current_node)` -> same accept / pick-of-3 / say-again
      rule; "none" -> run the router and switch tree.
-3. Thresholds (tunable from bench logs): accept if top probability >= 0.55 and it leads the
-   second by >= 0.2; "say again" below 0.2; otherwise pick-of-3.
+3. Thresholds (tunable from bench logs): accept only if top probability >= 0.97 and it leads the
+   second by >= 0.2 (raised from 0.55 after round 3: on independent test text nothing lower was
+   safe), so in practice the tiles show almost every time; "say again" below 0.08; otherwise pick-of-3.
+   Word types (body part, mechanism, animal) feed extra hashed features ("bit <body part>"), and
+   `vr_slot_word` hands the heard body part to the tree so a "where?" card can be skipped.
 4. Models live in a `voice` data partition written by the pipeline next to library.bin; the
    cartridge's tree table names each tree's expert offset.
 

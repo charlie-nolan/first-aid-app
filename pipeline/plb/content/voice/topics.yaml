@@ -263,7 +263,7 @@ topics:
       - feels awful at camp high up
 
   allergy:
-    pin: ['throat swelling', 'throat closing', 'tongue swelling', 'epipen', 'anaphylaxis', 'lips swelling', "can't breathe sting", "can't breathe stung"]
+    pin: ['throat swelling', 'throat closing', 'tongue swelling', 'epipen', 'anaphylaxis', 'lips swelling', "can't breathe sting", "can't breathe stung", 'anaphylactic', 'allergic reaction', 'reaction', 'swelling shut', 'airway', "can't breathe"]
     open: allergic-reactions-and-anaphylaxis
     trees: [allergic-reactions-and-anaphylaxis]
     train:
@@ -337,7 +337,7 @@ topics:
       - took too many pills
 
   cpr:
-    pin: ['not breathing', 'stopped breathing', "isn't breathing", 'no breathing', 'no pulse', 'unresponsive', 'unconscious', 'limp', 'collapsed', 'cpr', 'heart attack', 'compressions', 'resuscitation']
+    pin: ['not breathing', 'stopped breathing', "isn't breathing", 'no breathing', 'no pulse', 'unresponsive', 'unconscious', 'limp', 'collapsed', 'cpr', 'heart attack', 'compressions', 'resuscitation', 'cardiac arrest', 'push down', 'rhythm', 'keep alive', "can't breathe", 'turning blue']
     open: cpr
     trees: [cpr, heart-disease-and-cardiac-emergencies]
     train:
@@ -357,7 +357,7 @@ topics:
       - not breathing and blue
 
   choking:
-    pin: ['choking', 'choke', 'heimlich', 'stuck throat']
+    pin: ['choking', 'choke', 'heimlich', 'stuck throat', "can't breathe", 'turning blue']
     open: choking
     trees: [choking, airway-and-breathing]
     train:
