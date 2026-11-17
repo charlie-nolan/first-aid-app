@@ -8,7 +8,10 @@
          with no tree (off-topic) are skipped. Each clip is decoded three ways with the words of
          its gold tree's pages (union): full list, hard subset (+ reserved 0-9), soft context bonus.
 Reports, per mode: answer-word recall (top-1 and 5-best) for words in that tree's lists, wrong
-tree words per clip, and WER. Writes $WORK/speech/runs/<run>/pagescore.json.
+tree words per clip, and WER.
+--fields (form screen, instead of --gold): one line per clip, {"text": ..., "fields": ["tree/card", ...]}
+         = the open fields from vr.form.open_fields; the clip's list is the union of those cards' words
+         (+ reserved 0-9: numbers, yes/no, back/again/home). Writes $WORK/speech/runs/<run>/pagescore.json.
 """
 from __future__ import annotations
 
@@ -33,28 +36,44 @@ def main(argv=None):
     ap.add_argument("--run", required=True)
     ap.add_argument("--set", required=True)
     ap.add_argument("--pages", required=True)
-    ap.add_argument("--gold", required=True)
+    ap.add_argument("--gold", help="text -> tree (whole-tree union)")
+    ap.add_argument("--fields", help="text -> open form fields tree/card (union of those cards)")
     ap.add_argument("--beam", type=int, default=24)
     ap.add_argument("--bonus", type=float, default=0.5, help="soft context bonus (nats per word)")
     ap.add_argument("--garbage-enter", type=float, default=-2.0, help="hard subset: easier <unk> for out-of-list sounds")
     ap.add_argument("--garbage-phone", type=float, default=-1.0)
     a = ap.parse_args(argv)
+    if not (a.gold or a.fields):
+        ap.error("give --gold or --fields")
 
     rows = yaml.safe_load(lx.LEXICON.read_text())["words"]
     ids = {r["word"]: r["id"] for r in rows}
     pages = yaml.safe_load(Path(a.pages).expanduser().read_text()) or {}
-    tree_words = {}
+    card_words = {}
     for tree, cards in pages.items():
-        ws = set()
-        for c in (cards or {}).values():
+        for card, c in (cards or {}).items():
+            ws = set()
             for w in (c or {}).get("words", []) or []:
                 ws |= set(lx.tokenize(str(w)))
-        tree_words[tree] = ws
-    gold = {}
-    for l in Path(a.gold).expanduser().read_text().splitlines():
-        if l.strip():
-            g = json.loads(l)
-            gold[" ".join(lx.tokenize(g["text"]))] = g.get("tree")
+            card_words[f"{tree}/{card}"] = ws
+    # key -> word set; gold maps clip text -> key
+    tree_words, gold = {}, {}
+    if a.fields:
+        for l in Path(a.fields).expanduser().read_text().splitlines():
+            if l.strip():
+                g = json.loads(l)
+                fs = tuple(sorted(f for f in g.get("fields") or [] if f in card_words))
+                if fs:
+                    key = "+".join(fs)
+                    tree_words[key] = set().union(*[card_words[f] for f in fs])
+                    gold[" ".join(lx.tokenize(g["text"]))] = key
+    else:
+        for k, ws in card_words.items():
+            tree_words.setdefault(k.split("/", 1)[0], set()).update(ws)
+        for l in Path(a.gold).expanduser().read_text().splitlines():
+            if l.strip():
+                g = json.loads(l)
+                gold[" ".join(lx.tokenize(g["text"]))] = g.get("tree")
     full_trie = Trie.from_lexicon(rows)
     life = life_bias(rows)
     model = load_model(a.run)
@@ -98,7 +117,7 @@ def main(argv=None):
                "answer_recall_5best": round(g["hit5"] / max(1, g["want"]), 3),
                "wrong_answer_words_per_clip": round(g["false"] / max(1, g["clips"]), 3),
                "wer": round(g["err"] / max(1, g["words"]), 3)} for m, g in agg.items()}
-    out = WORK / "speech" / "runs" / a.run / "pagescore.json"
+    out = WORK / "speech" / "runs" / a.run / ("formscore.json" if a.fields else "pagescore.json")
     out.write_text(json.dumps(res, indent=1))
     print(json.dumps(res, indent=1))
 
