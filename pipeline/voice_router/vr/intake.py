@@ -502,6 +502,50 @@ def turns_to_card(tree: dict, smap: dict, line: str, ok: set, anc: dict, most: i
     return None
 
 
+def _path_answers(tree, smap, line, ok, anc, most=6):
+    """The right tile's words for every question between the first sentence's card and the goal,
+    in order (what a person would say to an 'answer all of these' screen). None if off the path."""
+    filled = dict(_fill(line, smap))
+    card, _, asking = walk(tree, smap, filled)
+    toward = set().union(*(anc.get(g, {g}) for g in ok))
+    said = []
+    for _ in range(most):
+        if card in ok:
+            return said
+        if card not in toward:
+            return None
+        ts = tiles(tree, smap, card)
+        k = next((i for i, c in enumerate(ts) if c["to"] in toward), None)
+        if k is None:
+            return None
+        pick = ts[k]
+        said.append(pick.get("label") or pick.get("value") or "")
+        if asking and pick.get("value"):
+            filled = {**filled, asking: pick["value"]}
+            card, _, asking = walk(tree, smap, filled, start=card)
+        else:
+            card, _, asking = walk(tree, smap, filled, start=pick["to"])
+    return None
+
+
+def turns_all_at_once(tree, smap, line, ok, anc) -> int | None:
+    """Turn 2 = one spoken answer to a screen that lists every blank still open: the first
+    sentence plus all the right tile words, filled in one go. If that lands, 2; if it leaves the
+    person on the way, the remaining tiles are counted one per turn; a wrong card is None."""
+    first = turns_to_card(tree, smap, line, ok, anc)
+    if first == 1 or first is None:
+        return first
+    words = _path_answers(tree, smap, line, ok, anc)
+    if words is None:
+        return None
+    both = line + " . " + " . ".join(words)
+    card, _, _ = walk(tree, smap, _fill(both, smap))
+    if card in ok:
+        return 2
+    rest = turns_to_card(tree, smap, both, ok, anc)
+    return None if rest is None else rest + 1
+
+
 def simulate(tree: dict, smap: dict, seeds: dict) -> str:
     """Score each seed line: 'right' = landed on its card (or a `same:` twin); 'on way' = stopped
     to ask a blank on a card that leads to it; 'stuck' = asking somewhere off its path;
@@ -512,7 +556,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             same[k] = set(grp)
     anc = _ancestors(tree, _questions(tree, smap))
     tally = {"right": 0, "on way": 0, "stuck": 0, "WRONG": 0}
-    skipped_total, n, wrong, turns, said = 0, 0, [], [], []
+    skipped_total, n, wrong, turns, said, allat = 0, 0, [], [], [], []
     lt = smap.get("life_threat") or []
     pins = {c for m in lt.values() for c in m.values()} if isinstance(lt, dict) else {r["go"] for r in lt}
     pinned = []                                   # (opened on turn 1?) for lines whose card is a life-threat pin
@@ -526,6 +570,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             ok = same.get(gold, {gold})
             turns.append(turns_to_card(tree, smap, line, ok, anc))
             said.append(turns_to_card(tree, smap, line, ok, anc, say="label"))
+            allat.append(turns_all_at_once(tree, smap, line, ok, anc))
             if ok & pins:
                 pinned.append(turns[-1] == 1)
             if card in ok:
@@ -543,7 +588,8 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             + "".join(f"right card by voice turn ({how})  " + "  ".join(
                 f"{k}: {100 * sum(1 for t in ts if t and t <= k) / max(n, 1):.0f}%" for k in (1, 2, 3, 4))
                 + f"  never: {100 * sum(1 for t in ts if t is None) / max(n, 1):.0f}%\n"
-                for how, ts in (("tile numbers", turns), ("saying the tile words", said)))
+                for how, ts in (("tile numbers", turns), ("saying the tile words", said),
+                                ("one answer to an all-blanks screen", allat)))
             + (f"life-threat cards opened on the first sentence: {sum(pinned)}/{len(pinned)}\n" if pinned else "")
             + "\n".join(wrong[:30]))
 
