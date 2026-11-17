@@ -100,15 +100,69 @@ def walk(tree: dict, smap: dict, filled: dict[str, str]):
     return node, skipped, None
 
 
+def _ancestors(tree: dict) -> dict[str, set[str]]:
+    """Card -> every card on some path from the root to it (itself included)."""
+    up: dict[str, set[str]] = {}
+    for k, n in tree["nodes"].items():
+        for c in n.get("choices", []):
+            up.setdefault(c.get("to"), set()).add(k)
+    out = {}
+    for k in tree["nodes"]:
+        seen, todo = {k}, [k]
+        while todo:
+            for p in up.get(todo.pop(), ()):
+                if p not in seen:
+                    seen.add(p); todo.append(p)
+        out[k] = seen
+    return out
+
+
+def simulate(tree: dict, smap: dict, seeds: dict) -> str:
+    """Score each seed line: 'right' = landed on its card (or a `same:` twin); 'on way' = stopped
+    to ask a blank on a card that leads to it; 'stuck' = asking somewhere off its path;
+    'WRONG' = opened a different answer card without asking (the case that must stay ~0)."""
+    same = {}
+    for grp in seeds.get("same", []):
+        for k in grp:
+            same[k] = set(grp)
+    anc = _ancestors(tree)
+    tally = {"right": 0, "on way": 0, "stuck": 0, "WRONG": 0}
+    skipped_total, n, wrong = 0, 0, []
+    for gold, d in (seeds.get("nodes") or {}).items():
+        if gold not in tree["nodes"]:
+            continue
+        for line in (d.get("train") or []) + (d.get("test") or []):
+            card, skipped, asking = walk(tree, smap, fill(line, smap["slots"]))
+            n += 1
+            skipped_total += len(skipped)
+            ok = same.get(gold, {gold})
+            if card in ok:
+                tally["right"] += 1
+            elif asking and any(card in anc.get(g, ()) for g in ok):
+                tally["on way"] += 1
+            elif asking or card == tree["root"]:
+                tally["stuck"] += 1
+            else:
+                tally["WRONG"] += 1
+                wrong.append(f"  {line!r}: wanted {gold}, opened {card}")
+    pct = {k: f"{100 * v / max(n, 1):.0f}%" for k, v in tally.items()}
+    return (f"{n} lines  " + "  ".join(f"{k} {v}" for k, v in pct.items())
+            + f"  avg cards skipped {skipped_total / max(n, 1):.2f}\n" + "\n".join(wrong[:30]))
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="vr.intake")
     ap.add_argument("tree")
-    ap.add_argument("sentences", nargs="+")
+    ap.add_argument("sentences", nargs="*")
+    ap.add_argument("--sim", type=Path, help="expert seed YAML: run every train+test line and score the walk")
     ap.add_argument("--trees", type=Path, nargs="+", required=True)
     ap.add_argument("--slots", type=Path, required=True)
     a = ap.parse_args(argv)
     tree = load_tree(a.trees, a.tree)
     smap = yaml.safe_load(a.slots.read_text())
+    if a.sim:
+        print(simulate(tree, smap, yaml.safe_load(a.sim.read_text())))
+        return
     for s in a.sentences:
         f = fill(s, smap["slots"])
         card, skipped, asking = walk(tree, smap, f)

@@ -51,3 +51,16 @@ def test_life_threat_rules_in_order():
     assert go("he passed out but he's breathing") == "recovery"
     assert go("she's unconscious") == "check_breathing"
     assert go("he's unconscious and not breathing") == "cpr"
+
+
+def test_simulate_scores_walks():
+    from vr.intake import simulate
+    tree = {"root": "start", "nodes": {
+        "start": {"slot": "animal", "choices": [{"label": "Snake", "to": "snake", "value": "snake"},
+                                                {"label": "Dog", "to": "dog", "value": "mammal"}]},
+        "snake": {}, "dog": {}}}
+    smap = {"slots": {"animal": {"snake": ["snake"], "mammal": ["dog"]}}}
+    seeds = {"nodes": {"snake": {"train": ["a snake bit me"], "test": ["it bit me"]},
+                       "dog": {"train": ["a snake got him"]}}}
+    out = simulate(tree, smap, seeds)
+    assert "3 lines" in out and "right 33%" in out and "on way 33%" in out and "WRONG 33%" in out
