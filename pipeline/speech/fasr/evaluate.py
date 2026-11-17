@@ -50,7 +50,10 @@ def main(argv=None):
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--vocab", help="text file, one word per line: decode with only these words "
                     "(plus reserved ids 0-9); ids stay the lexicon's, so results compare with the full set")
+    ap.add_argument("--noise", action="append", default=[],
+                    help="folder of no-speech wavs (e.g. $WORK/speech/me_dev/noise): every one should be rejected")
     a = ap.parse_args(argv)
+    gaps = defaultdict(list)   # on / off / noise -> fit gaps, to calibrate Params.reject_gap0
     rows = yaml.safe_load(lx.LEXICON.read_text())["words"]
     ids = {r["word"]: r["id"] for r in rows}
     if a.vocab:
@@ -85,6 +88,7 @@ def main(argv=None):
             off = " ".join(lx.tokenize(r["text"])) in reject_texts
             g = agg[cond]
             g["n"] += 1; g["secs"] += dt
+            gaps["off" if off else "on"].append(hyp["gap"])
             if off:
                 g["off_n"] += 1; g["off_reject"] += hyp["reject"]
             else:
@@ -112,4 +116,19 @@ def main(argv=None):
             }
         report[str(sp)] = res
         print(sp, json.dumps(res, indent=1), flush=True)
+    for nd in a.noise:
+        rej = []
+        for wav in sorted(Path(nd).expanduser().glob("*.wav")):
+            f = torch.from_numpy(logmel(load_wav(str(wav))))[None]
+            with torch.no_grad():
+                hyp = nbest(model(f)[0].numpy(), trie, Params(beam=a.beam))
+            gaps["noise"].append(hyp["gap"]); rej.append(hyp["reject"])
+        report[f"noise:{nd}"] = {"clips": len(rej), "reject_mean": round(sum(rej) / max(1, len(rej)), 1),
+                                 "rejected_at_50": round(sum(r >= 50 for r in rej) / max(1, len(rej)), 3)}
+        print(nd, report[f"noise:{nd}"], flush=True)
+    if gaps["on"]:
+        q = lambda v, f: sorted(v)[min(len(v) - 1, int(f * len(v)))] if v else None
+        report["fit_gap"] = {k: {"p50": q(v, .5), "p90": q(v, .9), "p95": q(v, .95)} for k, v in gaps.items()}
+        report["fit_gap"]["suggest_reject_gap0"] = q(gaps["on"], .95)   # 5% of on-topic clips would reach 50
+        print("fit gap", json.dumps(report["fit_gap"]), flush=True)
     (WORK / "speech" / "runs" / a.run / (f"eval-{Path(a.vocab).stem}.json" if a.vocab else "eval.json")).write_text(json.dumps(report, indent=1))

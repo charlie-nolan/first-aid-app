@@ -68,6 +68,11 @@ class Params:
     implicit_sep: float = -2.0    # starting a new word without the | token
     garbage_enter: float = -6.0   # starting an <unk> word
     garbage_phone: float = -1.5   # each phone inside an <unk> word
+    # "doesn't fit the word list" score: how much worse (nats per speech frame) the best
+    # word-list path is than the best free phone path. ~0 when every sound fits a word;
+    # grows for out-of-list words, mumbling and noise. reject_gap0 = gap where reject hits 50.
+    reject_gap0: float = 0.35
+    reject_gap_scale: float = 0.10
 
 
 def _finish(words: tuple, node: int, trie: Trie, p: Params):
@@ -146,6 +151,8 @@ def nbest(logp: np.ndarray, trie: Trie, p: Params = Params()) -> dict:
     post = np.array([math.exp(s - top) for _, s in res])
     post /= post.sum()
     junk = sum(q for (w, _), q in zip(res, post) if all(x == 0 for x in w))
+    gap = fit_gap(logp, top)
+    misfit = 1.0 / (1.0 + math.exp(-(gap - p.reject_gap0) / p.reject_gap_scale))
     hyps = []
     for (w, _), q in list(zip(res, post))[:MAX_HYPS]:
         conf = []
@@ -153,4 +160,13 @@ def nbest(logp: np.ndarray, trie: Trie, p: Params = Params()) -> dict:
             m = sum(q2 for (w2, _), q2 in zip(res, post) if x in w2)
             conf.append(int(round(100 * min(1.0, m))))
         hyps.append({"ids": list(w), "conf": conf, "p": round(float(q), 3)})
-    return {"n": len(hyps), "h": hyps, "reject": int(round(100 * junk))}
+    return {"n": len(hyps), "h": hyps, "reject": int(round(100 * max(junk, misfit))),
+            "gap": round(gap, 3), "junk": round(float(junk), 3)}
+
+
+def fit_gap(logp: np.ndarray, constrained: float) -> float:
+    """Nats per non-blank frame between the free best path (any phone, any order) and the best
+    word-list path. Cheap on the S3: one max per frame, no second search."""
+    best = logp.max(axis=1)
+    speech = int((logp.argmax(axis=1) != BLANK).sum())
+    return max(0.0, float(best.sum() - constrained)) / max(1, speech)
