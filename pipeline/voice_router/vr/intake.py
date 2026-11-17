@@ -38,6 +38,7 @@ from it; a card with no slot is passed only when exactly one way on reaches an a
 from __future__ import annotations
 
 import argparse
+import re
 from pathlib import Path
 
 import yaml
@@ -330,6 +331,7 @@ def answer_turn(text: str, tree: dict, smap: dict, card: str, asking: str | None
     return filled, pick, None
 
 
+_DIGIT = {"1": "one", "2": "two", "3": "three", "4": "four", "5": "five", "10": "ten"}
 _FILLER = {"a", "an", "the", "or", "and", "of", "on", "in", "is", "it", "to", "my", "your", "i", "yes", "no"}
 
 
@@ -344,8 +346,9 @@ def wordlists(tree: dict, smap: dict) -> dict:
             continue
         q = _questions(tree, smap).get(card)
         w = set(base)
-        for c in ts:
-            w |= set(tokenize(c.get("label", "")))
+        for c in ts:                               # digits in labels are said as words; drop parenthetical source names
+            lab = re.sub(r"\([^)]*\)", " ", c.get("label", ""))
+            w |= {_DIGIT.get(t, t) for t in tokenize(lab)}
         if q:                                      # only the answers THIS card's tiles take (fine values climb `implies`)
             for v, phrases in smap.get("slots", {}).get(q["slot"], {}).items():
                 if _answer(q, v, smap.get("implies", {})):

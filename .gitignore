@@ -45,3 +45,6 @@ pipeline/plb/content/cites.personal.lock.yaml
 firmware/build-*/
 pipeline/plb/content/voice/topics.personal.yaml
 pipeline/plb/content/voice/experts_personal*/
+
+# Local outputs of pipeline tools run from the repo root (may hold personal labels)
+/out/
