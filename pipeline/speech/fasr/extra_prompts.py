@@ -87,8 +87,35 @@ def build(seed: int = 7) -> tuple[list[str], list[str]]:
     return pairs, answers
 
 
-def append(path) -> None:
+def from_pages(yaml_path, per_page: int = 3, seed: int = 9) -> list[str]:
+    """ANSWERS prompts from the router's per-page lists (intake_wordlists.yaml, PC only: tile
+    labels come from the personal manuals, so prompts built this way must NOT be committed).
+    For each page: up to `per_page` of its tiles as the answer, the slot name as the question."""
+    import yaml
+    from pathlib import Path
+    rng = random.Random(seed)
+    pages = yaml.safe_load(Path(yaml_path).expanduser().read_text()) or {}
+    out = []
+    for tree, cards in pages.items():
+        for card, c in (cards or {}).items():
+            c = c or {}
+            tiles = [str(t) for t in (c.get("tiles") or [])]
+            q = str(c.get("slot") or card).replace("_", " ")
+            q = q[:1].upper() + q[1:] + "?"
+            rng.shuffle(tiles)
+            for t in tiles[:per_page]:
+                out.append(f"{q}|{t.lower()}")
+            if tiles:
+                out.append(f"{q}|number {rng.randint(1, min(4, len(tiles)))}")
+    rng.shuffle(out)
+    return out
+
+
+def append(path, pages=None) -> None:
     keep = [l for l in path.read_text().splitlines() if l[:2] in ("T|", "E|")]
     pairs, answers = build()
+    if pages:
+        answers = from_pages(pages) + [a for a in answers if a.startswith("Pick one|")]
+        print("ANSWERS from the router's pages: this prompts.txt is PC-only, do not commit it")
     path.write_text("\n".join(keep + [f"P|{s}" for s in pairs] + [f"A|{s}" for s in answers]) + "\n")
     print(f"{path}: kept {len(keep)} T/E lines, added {len(pairs)} PAIRS and {len(answers)} ANSWERS prompts")

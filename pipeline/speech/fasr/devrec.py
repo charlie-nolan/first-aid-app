@@ -191,6 +191,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="fasr devrec")
     ap.add_argument("what", nargs="?", default="run", choices=["run", "prompts", "extra"])
     ap.add_argument("--port")
+    ap.add_argument("--pages", help="extra: build ANSWERS from the router's intake_wordlists.yaml (PC only, don't commit)")
     ap.add_argument("--train", type=int, default=400)
     ap.add_argument("--eval", type=int, default=120)
     ap.add_argument("--new-only", action="store_true", help="skip sentences already recorded (next round); keep EVAL")
@@ -198,7 +199,7 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.what == "extra":
         from .extra_prompts import append
-        append(PROMPTS)
+        append(PROMPTS, a.pages)
         return
     if a.what == "prompts":
         make_prompts(a.train, a.eval, seed=a.seed, new_only=a.new_only)
