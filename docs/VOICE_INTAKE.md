@@ -5,6 +5,8 @@ around one idea: **the first sentence fills in the blanks, one screen asks for t
 cited card opens.** Nothing is generated on the device; every card shown is a signed-off,
 cited manual card.
 
+![Voice flow](voice/voice-flow.png)
+
 ## The flow
 
 1. **Hold TALK and say what happened.** ("my buddy fell off a rock and hurt his ankle, it's swelling")
@@ -30,6 +32,11 @@ cited manual card.
 names opens in its own tab (up to 5 windows, window L/R switches), each with its own form.
 Plain TALK is always one problem.
 
+![Screen mockups](voice/voice-screens-mockup.png)
+
+*Mockups at the panel's real 250x122 (drawn 2x); wording is illustrative, not manual text. The C
+port of these screens is next.*
+
 ## Where things live
 
 | Piece | File |
@@ -49,5 +56,10 @@ copies of the manuals and stay on the desktop, gitignored.
 one question per page, saying tile words, and the fill-in-the-blanks screen, plus the right
 card's top-1/top-3 rank after the first sentence alone, split by how many blanks it filled.
 Tuning uses the dev sets only; test sets are scored once per change.
+
+![Right card by voice turn](voice/2026-11-17_turn-accuracy_run-b4d9b2c_test-1.png)
+
+Run captures (terminal output of each training run / simulation) live in [docs/runs](runs/).
+Figures are made by `docs/voice/make_voice_figures.py` and `docs/voice/make_turn_chart.py`.
 
 Not yet done: the C port of the form screen in firmware, and on-board timings.
