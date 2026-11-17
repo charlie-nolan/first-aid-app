@@ -57,7 +57,14 @@ NEGATION = _LEX_NEGATION | {"hasn't", "couldn't", "wouldn't", "shouldn't", "were
 
 
 def tokenize(text: str) -> list[str]:
-    return [_CONTRACT.get(w, w) for w in _lex_tokenize(text)]
+    out = []
+    for w in _lex_tokenize(text):
+        w = _CONTRACT.get(w, w)
+        if w == "to" and out and out[-1] == "going":
+            out[-1] = "gonna"                   # "going to pass out" is a hedge, "going numb" is not
+            continue
+        out.append(w)
+    return out
 
 NEG_WINDOW = 3
 
@@ -112,13 +119,42 @@ def _find(words: list[str], phrase: list[str], gap: int = 1) -> list[int] | None
 
 
 HEDGE = {"if", "whether", "unsure", "maybe", "barely", "might", "check",
-         "will", "gonna", "could", "about"}       # "she will pass out", "about to pass out": not yet
+         "will", "gonna", "could", "about", "sure", "tell"}   # "will pass out", "not sure he's breathing"
 
 
 NOT_A_STATE = {"problem", "problems", "trouble", "troubles", "issue", "issues", "difficulty",
                "difficulties", "question", "questions", "advice", "tips", "rate"}
 
 CONTRAST = {"but", "now", "though", "although", "except"}
+
+# A negation or hedge does not reach past the end of its clause.
+CLAUSE = CONTRAST | {"and", "so", "because", "cause", "then", "while", "plus", "also", "since"}
+# A new subject starts a new clause for negation ("won't respond she's unconscious"), not for a
+# hedge ("check if she's breathing").
+SUBJECT = {"she's", "he's", "it's", "they're", "i'm", "we're", "you're", "she", "he", "they", "we"}
+# Verbs that take what follows as their object, so the negation carries on ("not seeing any bleeding").
+_SEEING = {"seeing", "finding", "having", "getting", "feeling", "noticing", "showing"}
+
+
+def _ing(w: str) -> bool:
+    return len(w) > 4 and w.endswith("ing")
+
+
+def _scope(raw: list[str], i: int, neg: bool) -> list[str]:
+    """The up-to-NEG_WINDOW words before raw[i] that a negation (neg=True) or hedge can reach from:
+    stops at a clause word, (negation only) at a new subject, and (negation only) between two -ing
+    words ("not breathing freezing outside": "not" is about breathing; "not bleeding heavily" stays negated)."""
+    out = []
+    for j in range(i - 1, max(-1, i - 1 - NEG_WINDOW), -1):
+        w = raw[j]
+        if w in CLAUSE:
+            break
+        if neg and w in SUBJECT:
+            break
+        if neg and j == i - 1 and _ing(w) and _ing(raw[i]) and w not in _SEEING:
+            break                       # two participles in a row: two states ("not breathing freezing")
+        out.append(w)
+    return out
 
 
 def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | None = None) -> dict[str, str]:
@@ -153,11 +189,12 @@ def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | N
                     continue
                 if hit[-1] + 1 < len(raw) and raw[hit[-1] + 1] in NOT_A_STATE:
                     continue                       # "no breathing problems": a topic, not a state
+                if pw[-1] == "out" and hit[-1] + 1 < len(raw) and raw[hit[-1] + 1] == "of":
+                    continue                       # "bleeding out of his ear": where from, not how much
                 i = hit[0]
-                before = words[max(0, i - NEG_WINDOW):i]
-                if any(w in NEGATION for w in before) and not any(w in NEGATION for w in p):
+                if any(w in NEGATION for w in _scope(raw, i, True)) and not any(w in NEGATION for w in p):
                     continue
-                if any(w in HEDGE for w in before) and not any(w in HEDGE for w in p):
+                if any(w in HEDGE for w in _scope(raw, i, False)) and not any(w in HEDGE for w in p):
                     continue
                 covered.update(hit)
             if covered:

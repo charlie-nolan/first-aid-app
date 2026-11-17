@@ -279,3 +279,20 @@ def test_apostrophe_less_contractions():
     slots = {"breathing": {"no": ["isn't breathing"], "yes": ["breathing"]}}
     assert fill("he isnt breathing", slots) == {"breathing": "no"}
     assert fill("she couldnt be breathing better", {"breathing": {"yes": ["breathing"]}}) == {}
+
+
+def test_negation_and_hedge_stop_at_the_clause():
+    slots = {"moving": {"no": ["not moving"]},
+             "breathing": {"yes": ["breathing ok", "breathing"], "no": ["not breathing"]},
+             "conscious": {"no": ["unconscious"]}, "cold": {"yes": ["freezing"]},
+             "bleeding": {"heavy": ["bleeding out", "heavily"], "some": ["bleeding"]},
+             "faint": {"soon": ["pass out"]}}
+    assert fill("he's not moving but breathing ok", slots)["breathing"] == "yes"
+    assert fill("not breathing freezing outside", slots) == {"breathing": "no", "cold": "yes"}
+    assert fill("won't respond she's unconscious", slots) == {"conscious": "no"}
+    assert "cold" not in fill("isn't freezing", slots)                    # plain negation still works
+    assert "bleeding" not in fill("not seeing any bleeding", slots)         # negation carries through the object
+    assert "bleeding" not in fill("he's not bleeding heavily", slots)       # -ed/-ly adverb stays negated
+    assert "breathing" not in fill("not sure he's breathing", slots)        # hedge crosses the subject
+    assert "faint" not in fill("she's going to pass out", slots)
+    assert fill("she's bleeding out of her ear", slots).get("bleeding") == "some"
