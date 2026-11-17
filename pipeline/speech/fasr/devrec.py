@@ -64,10 +64,12 @@ class Store:
             w.setnchannels(1); w.setsampwidth(2); w.setframerate(hdr["sr"]); w.writeframes(pcm)
         if mode == "noise":
             return wav
-        if hdr.get("redo_of", -1) >= 0:   # drop the clip this one replaces
-            for k, r in list(self.rows.items()):
-                if r.get("dev_id") == hdr["redo_of"] and r["mode"] == mode:
-                    Path(r["wav"]).unlink(missing_ok=True); del self.rows[k]
+        if hdr.get("redo_of", -1) >= 0:   # drop the clip this one replaces: the NEWEST with that id
+            # (ids restart if the board's saved state is erased, so older rows can share an id)
+            same = [k for k, r in self.rows.items() if r.get("dev_id") == hdr["redo_of"] and r["mode"] == mode]
+            if same:
+                k = max(same)   # keys are "<mode>-<YYYYmmdd-HHMMSS>-<id>", so max = newest
+                Path(self.rows[k]["wav"]).unlink(missing_ok=True); del self.rows[k]
         key = f"{mode}-{stamp}-{hdr['id']}"
         self.rows[key] = {"key": key, "wav": str(wav), "text": hdr.get("text", ""), "mode": mode, "dev_id": hdr["id"],
                           "prompt": hdr["prompt"], "speaker": "charlie", "mic": "pdm-" + hdr.get("board", "?"),
