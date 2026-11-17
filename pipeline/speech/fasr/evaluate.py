@@ -23,7 +23,7 @@ import yaml
 
 from . import lexicon as lx
 from .data import load_wav
-from .decode import Params, Trie, nbest
+from .decode import Params, Trie, life_bias, nbest
 from .features import logmel
 from .model import AcousticModel
 from .train import edit_distance
@@ -50,6 +50,8 @@ def main(argv=None):
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--vocab", help="text file, one word per line: decode with only these words "
                     "(plus reserved ids 0-9); ids stay the lexicon's, so results compare with the full set")
+    ap.add_argument("--life-bonus", type=float, default=1.0,
+                    help="extra score for life-threat words (breathing, stopped, bleeding...); 0 = off")
     ap.add_argument("--noise", action="append", default=[],
                     help="folder of no-speech wavs (e.g. $WORK/speech/me_dev/noise): every one should be rejected")
     a = ap.parse_args(argv)
@@ -62,6 +64,7 @@ def main(argv=None):
         print(f"decoding with {len(rows)} of {len(ids)} lexicon words ({a.vocab})")
     trie = Trie.from_lexicon(rows)
     id2w = {r["id"]: r["word"] for r in rows}
+    prm = Params(beam=a.beam, bias=life_bias(rows, a.life_bonus) if a.life_bonus else {})
     # slot words the router's intake fills (body part, mechanism, animal, bleeding type)
     slot = {r["id"] for r in rows if r.get("class") in (1, 2, 6) or r["word"] in BLEED}
     model = load_model(a.run)
@@ -81,7 +84,7 @@ def main(argv=None):
             t0 = time.time()
             with torch.no_grad():
                 lp = model(f)[0].numpy()
-            hyp = nbest(lp, trie, Params(beam=a.beam))
+            hyp = nbest(lp, trie, prm)
             dt = time.time() - t0
             ref = [ids.get(w, 0) for w in lx.tokenize(r["text"])]
             cond = r.get("noise", "clean")
@@ -121,7 +124,7 @@ def main(argv=None):
         for wav in sorted(Path(nd).expanduser().glob("*.wav")):
             f = torch.from_numpy(logmel(load_wav(str(wav))))[None]
             with torch.no_grad():
-                hyp = nbest(model(f)[0].numpy(), trie, Params(beam=a.beam))
+                hyp = nbest(model(f)[0].numpy(), trie, prm)
             gaps["noise"].append(hyp["gap"]); rej.append(hyp["reject"])
         report[f"noise:{nd}"] = {"clips": len(rej), "reject_mean": round(sum(rej) / max(1, len(rej)), 1),
                                  "rejected_at_50": round(sum(r >= 50 for r in rej) / max(1, len(rej)), 3)}

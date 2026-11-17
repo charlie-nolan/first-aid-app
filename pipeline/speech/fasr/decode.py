@@ -73,6 +73,22 @@ class Params:
     # grows for out-of-list words, mumbling and noise. reject_gap0 = gap where reject hits 50.
     reject_gap0: float = 0.35
     reject_gap_scale: float = 0.10
+    # life-threat words: extra score per finished word (nats), and they veto the reject
+    # (a missed "not breathing" costs far more than a false one, which the intake confirms).
+    bias: dict = field(default_factory=dict)        # word id -> bonus
+    life_veto_conf: int = 30                        # any life word this sure in the 5-best: reject <= 40
+
+
+LIFE_WORDS = ["breathing", "breathe", "breath", "stopped", "not", "unconscious", "unresponsive", "choking",
+              "choke", "bleeding", "blood", "spurting", "pumping", "gushing", "squirting", "pulsing",
+              "cpr", "compressions", "pulse", "heart", "cardiac", "arrest", "chest", "epipen", "epinephrine",
+              "anaphylactic", "anaphylaxis", "allergic", "swelling", "throat", "seizure", "drowning",
+              "drowned", "tourniquet", "blue", "collapsed", "passed", "alive", "dying"]
+
+
+def life_bias(rows: list[dict], bonus: float = 1.0) -> dict:
+    ids = {r["word"]: r["id"] for r in rows}
+    return {ids[w]: bonus for w in LIFE_WORDS if w in ids}
 
 
 def _finish(words: tuple, node: int, trie: Trie, p: Params):
@@ -85,7 +101,7 @@ def _finish(words: tuple, node: int, trie: Trie, p: Params):
     else:
         if len(words) < MAX_WORDS:
             for w in trie.words[node]:
-                yield words + (w,), p.word_bonus
+                yield words + (w,), p.word_bonus + p.bias.get(w, 0.0)
 
 
 def search(logp: np.ndarray, trie: Trie, p: Params = Params()) -> list[tuple[tuple, float]]:
@@ -160,7 +176,10 @@ def nbest(logp: np.ndarray, trie: Trie, p: Params = Params()) -> dict:
             m = sum(q2 for (w2, _), q2 in zip(res, post) if x in w2)
             conf.append(int(round(100 * min(1.0, m))))
         hyps.append({"ids": list(w), "conf": conf, "p": round(float(q), 3)})
-    return {"n": len(hyps), "h": hyps, "reject": int(round(100 * max(junk, misfit))),
+    reject = int(round(100 * max(junk, misfit)))
+    if p.bias and any(x in p.bias and c >= p.life_veto_conf for h in hyps for x, c in zip(h["ids"], h["conf"])):
+        reject = min(reject, 40)
+    return {"n": len(hyps), "h": hyps, "reject": reject,
             "gap": round(gap, 3), "junk": round(float(junk), 3)}
 
 
