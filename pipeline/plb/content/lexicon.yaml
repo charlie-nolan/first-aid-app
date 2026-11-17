@@ -1787,272 +1787,272 @@ words:
 - {id: 1776, word: "push", class: 3, phones: ["P UH SH"], g2p: cmudict, src: trees}
 - {id: 1777, word: "completed", class: 0, phones: ["K AH M P L IY T AH D", "K AH M P L IY T IH D"], g2p: cmudict, src: trees}
 - {id: 1778, word: "dull", class: 0, phones: ["D AH L"], g2p: cmudict, src: trees}
-- {id: 1779, word: "construction", class: 0, phones: ["K AH N S T R AH K SH AH N"], g2p: cmudict, src: trees}
+- {id: 1779, word: "sleeve", class: 0, phones: ["S L IY V"], g2p: cmudict, src: voice}
 - {id: 1780, word: "clove", class: 0, phones: ["K L OW V"], g2p: cmudict, src: trees}
 - {id: 1781, word: "ridge", class: 0, phones: ["R IH JH"], g2p: cmudict, src: trees}
-- {id: 1782, word: "ceiling", class: 0, phones: ["S IY L IH NG"], g2p: cmudict, src: trees}
-- {id: 1783, word: "floor", class: 0, phones: ["F L AO R"], g2p: cmudict, src: trees}
+- {id: 1782, word: "slug", class: 6, phones: ["S L AH G"], g2p: cmudict, src: voice}
+- {id: 1783, word: "pecked", class: 0, phones: ["P EH K T"], g2p: hand, src: voice}
 - {id: 1784, word: "pulsing", class: 3, phones: ["P AH L S IH NG"], g2p: cmudict, src: core}
-- {id: 1785, word: "sap", class: 0, phones: ["S AE P"], g2p: cmudict, src: trees}
-- {id: 1786, word: "navigation", class: 0, phones: ["N AE V AH G EY SH AH N"], g2p: cmudict, src: trees}
-- {id: 1787, word: "slopes", class: 0, phones: ["S L OW P S"], g2p: cmudict, src: trees}
-- {id: 1788, word: "scrambling", class: 0, phones: ["S K R AE M B AH L IH NG", "S K R AE M B L IH NG"], g2p: cmudict, src: trees}
-- {id: 1789, word: "scree", class: 0, phones: ["S K R IY"], g2p: espeak, src: trees}
-- {id: 1790, word: "talus", class: 0, phones: ["T AE L AH S"], g2p: espeak, src: trees}
-- {id: 1791, word: "cravat", class: 0, phones: ["K R AE V AE T"], g2p: espeak, src: trees}
-- {id: 1792, word: "carbs", class: 0, phones: ["K AA R B Z"], g2p: cmudict, src: trees}
-- {id: 1793, word: "fats", class: 0, phones: ["F AE T S"], g2p: cmudict, src: trees}
-- {id: 1794, word: "physically", class: 0, phones: ["F IH Z IH K AH L IY", "F IH Z IH K L IY"], g2p: cmudict, src: trees}
-- {id: 1795, word: "trap", class: 0, phones: ["T R AE P"], g2p: cmudict, src: trees}
-- {id: 1796, word: "recognize", class: 0, phones: ["R EH K AH G N AY Z"], g2p: cmudict, src: trees}
-- {id: 1797, word: "scratching", class: 0, phones: ["S K R AE CH IH NG"], g2p: cmudict, src: trees}
-- {id: 1798, word: "rattle", class: 0, phones: ["R AE T AH L"], g2p: cmudict, src: trees}
-- {id: 1799, word: "rings", class: 0, phones: ["R IH NG Z"], g2p: cmudict, src: trees}
-- {id: 1800, word: "diamondback", class: 0, phones: ["D AY AH M AH N D B AE K"], g2p: espeak, src: trees}
-- {id: 1801, word: "touches", class: 0, phones: ["T AH CH AH Z", "T AH CH IH Z"], g2p: cmudict, src: trees}
+- {id: 1785, word: "boulder", class: 0, phones: ["B OW L D ER"], g2p: cmudict, src: voice}
+- {id: 1786, word: "scorching", class: 3, phones: ["S K AO R CH IH NG"], g2p: cmudict, src: voice}
+- {id: 1787, word: "streaks", class: 3, phones: ["S T R IY K S"], g2p: cmudict, src: voice}
+- {id: 1788, word: "mistake", class: 0, phones: ["M IH S T EY K"], g2p: cmudict, src: voice}
+- {id: 1789, word: "draw", class: 0, phones: ["D R AO"], g2p: cmudict, src: voice}
+- {id: 1790, word: "piggyback", class: 0, phones: ["P IH G IY B AE K"], g2p: cmudict, src: voice}
+- {id: 1791, word: "cooked", class: 0, phones: ["K UH K T"], g2p: cmudict, src: voice}
+- {id: 1792, word: "stays", class: 0, phones: ["S T EY Z"], g2p: cmudict, src: voice}
+- {id: 1793, word: "buried", class: 0, phones: ["B EH R IY D"], g2p: cmudict, src: voice}
+- {id: 1794, word: "watering", class: 0, phones: ["W AO T ER IH NG"], g2p: cmudict, src: voice}
+- {id: 1795, word: "im", class: 0, phones: ["IH M"], g2p: cmudict, src: voice}
+- {id: 1796, word: "airflow", class: 0, phones: ["EH R F L OW"], g2p: cmudict, src: voice}
+- {id: 1797, word: "sticky", class: 0, phones: ["S T IH K IY"], g2p: cmudict, src: voice}
+- {id: 1798, word: "overnight", class: 0, phones: ["OW V ER N AY T"], g2p: cmudict, src: voice}
+- {id: 1799, word: "crossing", class: 0, phones: ["K R AO S IH NG"], g2p: cmudict, src: voice}
+- {id: 1800, word: "grabbing", class: 0, phones: ["G R AE B IH NG"], g2p: cmudict, src: voice}
+- {id: 1801, word: "button", class: 0, phones: ["B AH T AH N"], g2p: cmudict, src: voice}
 - {id: 1802, word: "rhythm", class: 3, phones: ["R IH DH AH M"], g2p: cmudict, src: core}
 - {id: 1803, word: "arrest", class: 3, phones: ["ER EH S T"], g2p: cmudict, src: core}
-- {id: 1804, word: "staying", class: 0, phones: ["S T EY IH NG"], g2p: cmudict, src: trees}
-- {id: 1805, word: "ace", class: 0, phones: ["EY S"], g2p: cmudict, src: trees}
-- {id: 1806, word: "tasks", class: 0, phones: ["T AE S K S"], g2p: cmudict, src: trees}
-- {id: 1807, word: "idle", class: 0, phones: ["AY D AH L"], g2p: cmudict, src: trees}
-- {id: 1808, word: "uninterrupted", class: 0, phones: ["AH N IH N T ER AH P T IH D", "AH N IH N ER AH P T IH D"], g2p: cmudict, src: trees}
-- {id: 1809, word: "judge", class: 0, phones: ["JH AH JH"], g2p: cmudict, src: trees}
-- {id: 1810, word: "offer", class: 0, phones: ["AO F ER"], g2p: cmudict, src: trees}
-- {id: 1811, word: "instructions", class: 0, phones: ["IH N S T R AH K SH AH N Z"], g2p: cmudict, src: trees}
-- {id: 1812, word: "confidence", class: 0, phones: ["K AA N F AH D AH N S"], g2p: cmudict, src: trees}
-- {id: 1813, word: "sheet", class: 0, phones: ["SH IY T"], g2p: cmudict, src: trees}
+- {id: 1804, word: "fence", class: 0, phones: ["F EH N S"], g2p: cmudict, src: voice}
+- {id: 1805, word: "hut", class: 0, phones: ["HH AH T"], g2p: cmudict, src: voice}
+- {id: 1806, word: "reflection", class: 0, phones: ["R IH F L EH K SH AH N"], g2p: cmudict, src: voice}
+- {id: 1807, word: "swamp", class: 0, phones: ["S W AA M P", "S W AO M P"], g2p: cmudict, src: voice}
+- {id: 1808, word: "inward", class: 0, phones: ["IH N W ER D"], g2p: cmudict, src: voice}
+- {id: 1809, word: "scald", class: 2, phones: ["S K AO L D"], g2p: cmudict, src: voice}
+- {id: 1810, word: "punctures", class: 2, phones: ["P AH NG K CH ER Z", "P AH NG K SH ER Z"], g2p: cmudict, src: voice}
+- {id: 1811, word: "forgot", class: 0, phones: ["F ER G AA T", "F AO R G AA T"], g2p: cmudict, src: voice}
+- {id: 1812, word: "snack", class: 0, phones: ["S N AE K"], g2p: cmudict, src: voice}
+- {id: 1813, word: "taking", class: 0, phones: ["T EY K IH NG"], g2p: cmudict, src: voice}
 - {id: 1814, word: "bend", class: 0, phones: ["B EH N D"], g2p: cmudict, src: trees}
-- {id: 1815, word: "overhand", class: 0, phones: ["OW V ER HH AE N D"], g2p: espeak, src: trees}
-- {id: 1816, word: "quick", class: 0, phones: ["K W IH K"], g2p: cmudict, src: trees}
+- {id: 1815, word: "gurgling", class: 3, phones: ["G ER G AH L IH NG", "G ER G L IH NG"], g2p: cmudict, src: voice}
+- {id: 1816, word: "seconds", class: 0, phones: ["S EH K AH N D Z"], g2p: cmudict, src: voice}
 - {id: 1817, word: "timber", class: 0, phones: ["T IH M B ER"], g2p: cmudict, src: trees}
-- {id: 1818, word: "mechanical", class: 0, phones: ["M AH K AE N IH K AH L"], g2p: cmudict, src: trees}
-- {id: 1819, word: "searching", class: 0, phones: ["S ER CH IH NG"], g2p: cmudict, src: trees}
-- {id: 1820, word: "systematic", class: 0, phones: ["S IH S T AH M AE T IH K"], g2p: cmudict, src: trees}
-- {id: 1821, word: "bottom", class: 0, phones: ["B AA T AH M"], g2p: cmudict, src: trees}
-- {id: 1822, word: "exit", class: 0, phones: ["EH G Z IH T", "EH K S AH T"], g2p: cmudict, src: trees}
-- {id: 1823, word: "removal", class: 0, phones: ["R IH M UW V AH L"], g2p: cmudict, src: trees}
-- {id: 1824, word: "diet", class: 0, phones: ["D AY AH T"], g2p: cmudict, src: trees}
+- {id: 1818, word: "hissing", class: 3, phones: ["HH IH S IH NG"], g2p: cmudict, src: voice}
+- {id: 1819, word: "sign", class: 0, phones: ["S AY N"], g2p: cmudict, src: voice}
+- {id: 1820, word: "landing", class: 0, phones: ["L AE N D IH NG"], g2p: cmudict, src: voice}
+- {id: 1821, word: "froze", class: 0, phones: ["F R OW Z"], g2p: cmudict, src: voice}
+- {id: 1822, word: "drunk", class: 3, phones: ["D R AH NG K"], g2p: cmudict, src: voice}
+- {id: 1823, word: "backcountry", class: 0, phones: ["B AE K K AH N T R IY"], g2p: hand, src: voice}
+- {id: 1824, word: "flushed", class: 3, phones: ["F L AH SH T"], g2p: cmudict, src: voice}
 - {id: 1825, word: "deer", class: 6, phones: ["D IH R"], g2p: cmudict, src: core}
 - {id: 1826, word: "skunk", class: 6, phones: ["S K AH NG K"], g2p: cmudict, src: core}
-- {id: 1827, word: "boulders", class: 0, phones: ["B OW L D ER Z"], g2p: cmudict, src: trees}
-- {id: 1828, word: "constriction", class: 0, phones: ["K AH N S T R IH K SH AH N"], g2p: cmudict, src: trees}
-- {id: 1829, word: "eyewear", class: 0, phones: ["AY W EH R"], g2p: cmudict, src: trees}
-- {id: 1830, word: "discipline", class: 0, phones: ["D IH S AH P L AH N"], g2p: cmudict, src: trees}
-- {id: 1831, word: "nap", class: 0, phones: ["N AE P"], g2p: cmudict, src: trees}
-- {id: 1832, word: "voids", class: 0, phones: ["V OY D Z"], g2p: cmudict, src: trees}
-- {id: 1833, word: "stars", class: 0, phones: ["S T AA R Z"], g2p: cmudict, src: trees}
-- {id: 1834, word: "moon", class: 0, phones: ["M UW N"], g2p: cmudict, src: trees}
-- {id: 1835, word: "melt", class: 0, phones: ["M EH L T"], g2p: cmudict, src: trees}
-- {id: 1836, word: "streams", class: 0, phones: ["S T R IY M Z"], g2p: cmudict, src: trees}
-- {id: 1837, word: "inflate", class: 0, phones: ["IH N F L EY T"], g2p: cmudict, src: trees}
-- {id: 1838, word: "doses", class: 0, phones: ["D OW S AH Z", "D OW S IH Z"], g2p: cmudict, src: trees}
-- {id: 1839, word: "sinks", class: 0, phones: ["S IH NG K S"], g2p: cmudict, src: trees}
-- {id: 1840, word: "prints", class: 0, phones: ["P R IH N T S"], g2p: cmudict, src: trees}
-- {id: 1841, word: "perpendicularly", class: 0, phones: ["P ER P AH N D IH K Y UH L ER L IY"], g2p: espeak, src: trees}
-- {id: 1842, word: "disposal", class: 0, phones: ["D IH S P OW Z AH L"], g2p: cmudict, src: trees}
+- {id: 1827, word: "top", class: 0, phones: ["T AA P", "T AO P"], g2p: cmudict, src: voice}
+- {id: 1828, word: "gaping", class: 3, phones: ["G EY P IH NG"], g2p: cmudict, src: voice}
+- {id: 1829, word: "pond", class: 0, phones: ["P AA N D"], g2p: cmudict, src: voice}
+- {id: 1830, word: "nerve", class: 1, phones: ["N ER V"], g2p: cmudict, src: voice}
+- {id: 1831, word: "nuts", class: 0, phones: ["N AH T S"], g2p: cmudict, src: voice}
+- {id: 1832, word: "gone", class: 0, phones: ["G AO N"], g2p: cmudict, src: voice}
+- {id: 1833, word: "struggling", class: 3, phones: ["S T R AH G AH L IH NG", "S T R AH G L IH NG"], g2p: cmudict, src: voice}
+- {id: 1834, word: "bloody", class: 3, phones: ["B L AH D IY"], g2p: cmudict, src: voice}
+- {id: 1835, word: "brown", class: 0, phones: ["B R AW N"], g2p: cmudict, src: voice}
+- {id: 1836, word: "bush", class: 0, phones: ["B UH SH"], g2p: cmudict, src: voice}
+- {id: 1837, word: "balloon", class: 0, phones: ["B AH L UW N"], g2p: cmudict, src: voice}
+- {id: 1838, word: "shaky", class: 3, phones: ["SH EY K IY"], g2p: cmudict, src: voice}
+- {id: 1839, word: "valley", class: 0, phones: ["V AE L IY"], g2p: cmudict, src: voice}
+- {id: 1840, word: "thinking", class: 0, phones: ["TH IH NG K IH NG"], g2p: cmudict, src: voice}
+- {id: 1841, word: "grape", class: 0, phones: ["G R EY P"], g2p: cmudict, src: voice}
+- {id: 1842, word: "cry", class: 0, phones: ["K R AY"], g2p: cmudict, src: voice}
 - {id: 1843, word: "clearing", class: 0, phones: ["K L IH R IH NG"], g2p: cmudict, src: trees}
-- {id: 1844, word: "frost", class: 0, phones: ["F R AO S T"], g2p: cmudict, src: trees}
+- {id: 1844, word: "crawling", class: 0, phones: ["K R AO L IH NG"], g2p: cmudict, src: voice}
 - {id: 1845, word: "warning", class: 0, phones: ["W AO R N IH NG"], g2p: cmudict, src: trees}
-- {id: 1846, word: "poor", class: 0, phones: ["P UW R"], g2p: cmudict, src: trees}
-- {id: 1847, word: "exchange", class: 0, phones: ["IH K S CH EY N JH"], g2p: cmudict, src: trees}
-- {id: 1848, word: "encourage", class: 0, phones: ["EH N K ER IH JH", "IH N K ER AH JH"], g2p: cmudict, src: trees}
-- {id: 1849, word: "cleared", class: 0, phones: ["K L IH R D"], g2p: cmudict, src: trees}
-- {id: 1850, word: "thrust", class: 0, phones: ["TH R AH S T"], g2p: cmudict, src: trees}
-- {id: 1851, word: "crossed", class: 0, phones: ["K R AO S T"], g2p: cmudict, src: trees}
-- {id: 1852, word: "insert", class: 0, phones: ["IH N S ER T"], g2p: cmudict, src: trees}
+- {id: 1846, word: "balance", class: 0, phones: ["B AE L AH N S"], g2p: cmudict, src: voice}
+- {id: 1847, word: "peeling", class: 0, phones: ["P IY L IH NG"], g2p: cmudict, src: voice}
+- {id: 1848, word: "peak", class: 0, phones: ["P IY K"], g2p: cmudict, src: voice}
+- {id: 1849, word: "responding", class: 0, phones: ["R IH S P AA N D IH NG", "R IY S P AA N D IH NG"], g2p: cmudict, src: voice}
+- {id: 1850, word: "chewed", class: 0, phones: ["CH UW D"], g2p: cmudict, src: voice}
+- {id: 1851, word: "blazing", class: 0, phones: ["B L EY Z IH NG"], g2p: cmudict, src: voice}
+- {id: 1852, word: "rising", class: 0, phones: ["R AY Z IH NG"], g2p: cmudict, src: voice}
 - {id: 1853, word: "elk", class: 6, phones: ["EH L K"], g2p: cmudict, src: core}
-- {id: 1854, word: "shadows", class: 0, phones: ["SH AE D OW Z"], g2p: cmudict, src: trees}
-- {id: 1855, word: "urinary", class: 0, phones: ["Y ER AH N EH R IY"], g2p: cmudict, src: trees}
-- {id: 1856, word: "consultation", class: 0, phones: ["K AA N S AH L T EY SH AH N"], g2p: cmudict, src: trees}
-- {id: 1857, word: "diphenhydramine", class: 0, phones: ["D IH F AH N HH AY D R M IY N"], g2p: espeak, src: trees}
-- {id: 1858, word: "antihistamine", class: 0, phones: ["AE N T IY HH IH S T AH M AH N"], g2p: cmudict, src: trees}
-- {id: 1859, word: "breathlessness", class: 0, phones: ["B R EH TH L AH S N AH S"], g2p: espeak, src: trees}
-- {id: 1860, word: "coordination", class: 0, phones: ["K OW AO R D AH N EY SH AH N"], g2p: cmudict, src: trees}
+- {id: 1854, word: "rainwater", class: 0, phones: ["R EY N W AO T ER"], g2p: cmudict, src: voice}
+- {id: 1855, word: "muddy", class: 0, phones: ["M AH D IY"], g2p: cmudict, src: voice}
+- {id: 1856, word: "lighting", class: 0, phones: ["L AY T IH NG"], g2p: cmudict, src: voice}
+- {id: 1857, word: "giant", class: 0, phones: ["JH AY AH N T"], g2p: cmudict, src: voice}
+- {id: 1858, word: "landmarks", class: 0, phones: ["L AE N D M AA R K S"], g2p: cmudict, src: voice}
+- {id: 1859, word: "pushing", class: 0, phones: ["P UH SH IH NG"], g2p: cmudict, src: voice}
+- {id: 1860, word: "wide", class: 0, phones: ["W AY D"], g2p: cmudict, src: voice}
 - {id: 1861, word: "wolf", class: 6, phones: ["W UH L F"], g2p: cmudict, src: core}
-- {id: 1862, word: "pump", class: 0, phones: ["P AH M P"], g2p: cmudict, src: trees}
-- {id: 1863, word: "nutrition", class: 0, phones: ["N UW T R IH SH AH N"], g2p: cmudict, src: trees}
-- {id: 1864, word: "quarts", class: 0, phones: ["K W AO R T S"], g2p: cmudict, src: trees}
-- {id: 1865, word: "descending", class: 0, phones: ["D IH S EH N D IH NG"], g2p: cmudict, src: trees}
-- {id: 1866, word: "condition", class: 0, phones: ["K AH N D IH SH AH N"], g2p: cmudict, src: trees}
+- {id: 1862, word: "chewing", class: 0, phones: ["CH UW IH NG"], g2p: cmudict, src: voice}
+- {id: 1863, word: "jacket", class: 0, phones: ["JH AE K AH T", "JH AE K IH T"], g2p: cmudict, src: voice}
+- {id: 1864, word: "leaf", class: 0, phones: ["L IY F"], g2p: cmudict, src: voice}
+- {id: 1865, word: "gravel", class: 0, phones: ["G R AE V AH L"], g2p: cmudict, src: voice}
+- {id: 1866, word: "noggin", class: 1, phones: ["N AA G IH N"], g2p: hand, src: voice}
 - {id: 1867, word: "bug", class: 6, phones: ["B AH G"], g2p: cmudict, src: core}
-- {id: 1868, word: "inhalation", class: 0, phones: ["IH N AH L EY SH AH N", "IH N HH AH L EY SH AH N"], g2p: cmudict, src: trees}
-- {id: 1869, word: "prostration", class: 0, phones: ["P R AA S T R EY SH AH N"], g2p: cmudict, src: trees}
-- {id: 1870, word: "basic", class: 0, phones: ["B EY S IH K"], g2p: cmudict, src: trees}
-- {id: 1871, word: "chemicals", class: 0, phones: ["K EH M IH K AH L Z"], g2p: cmudict, src: trees}
+- {id: 1868, word: "bumping", class: 2, phones: ["B AH M P IH NG"], g2p: cmudict, src: voice}
+- {id: 1869, word: "stray", class: 0, phones: ["S T R EY"], g2p: cmudict, src: voice}
+- {id: 1870, word: "lizard", class: 6, phones: ["L IH Z ER D"], g2p: cmudict, src: voice}
+- {id: 1871, word: "frog", class: 6, phones: ["F R AA G"], g2p: cmudict, src: voice}
 - {id: 1872, word: "tablets", class: 0, phones: ["T AE B L AH T S"], g2p: cmudict, src: trees}
 - {id: 1873, word: "boiled", class: 0, phones: ["B OY L D"], g2p: cmudict, src: trees}
 - {id: 1874, word: "twig", class: 0, phones: ["T W IH G"], g2p: cmudict, src: trees}
-- {id: 1875, word: "floss", class: 0, phones: ["F L AA S"], g2p: cmudict, src: trees}
-- {id: 1876, word: "retighten", class: 0, phones: ["R EH T AY N"], g2p: espeak, src: trees}
-- {id: 1877, word: "repack", class: 0, phones: ["R IY P AE K"], g2p: cmudict, src: trees}
-- {id: 1878, word: "swathe", class: 0, phones: ["S W AA DH", "S W EY DH"], g2p: cmudict, src: trees}
-- {id: 1879, word: "uninjured", class: 0, phones: ["AH N IH N JH ER D"], g2p: cmudict, src: trees}
-- {id: 1880, word: "sensation", class: 0, phones: ["S EH N S EY SH AH N"], g2p: cmudict, src: trees}
-- {id: 1881, word: "loosely", class: 0, phones: ["L UW S L IY"], g2p: cmudict, src: trees}
-- {id: 1882, word: "covering", class: 0, phones: ["K AH V ER IH NG", "K AH V R IH NG"], g2p: cmudict, src: trees}
-- {id: 1883, word: "leak", class: 0, phones: ["L IY K"], g2p: cmudict, src: trees}
-- {id: 1884, word: "co", class: 0, phones: ["K OW"], g2p: cmudict, src: trees}
-- {id: 1885, word: "silent", class: 0, phones: ["S AY L AH N T"], g2p: cmudict, src: trees}
-- {id: 1886, word: "anyway", class: 0, phones: ["EH N IY W EY"], g2p: cmudict, src: trees}
-- {id: 1887, word: "standard", class: 0, phones: ["S T AE N D ER D"], g2p: cmudict, src: trees}
-- {id: 1888, word: "priority", class: 0, phones: ["P R AY AO R AH T IY"], g2p: cmudict, src: trees}
-- {id: 1889, word: "assessment", class: 0, phones: ["AH S EH S M AH N T"], g2p: cmudict, src: trees}
-- {id: 1890, word: "march", class: 0, phones: ["M AA R CH"], g2p: cmudict, src: trees}
-- {id: 1891, word: "paws", class: 0, phones: ["P AO Z"], g2p: cmudict, src: trees}
+- {id: 1875, word: "cricket", class: 6, phones: ["K R IH K AH T", "K R IH K IH T"], g2p: cmudict, src: voice}
+- {id: 1876, word: "crab", class: 6, phones: ["K R AE B"], g2p: cmudict, src: voice}
+- {id: 1877, word: "beetle", class: 6, phones: ["B IY T AH L"], g2p: cmudict, src: voice}
+- {id: 1878, word: "constant", class: 0, phones: ["K AA N S T AH N T"], g2p: cmudict, src: voice}
+- {id: 1879, word: "bottles", class: 0, phones: ["B AA T AH L Z"], g2p: cmudict, src: voice}
+- {id: 1880, word: "bare", class: 0, phones: ["B EH R"], g2p: cmudict, src: voice}
+- {id: 1881, word: "slipping", class: 2, phones: ["S L IH P IH NG"], g2p: cmudict, src: voice}
+- {id: 1882, word: "reef", class: 0, phones: ["R IY F"], g2p: cmudict, src: voice}
+- {id: 1883, word: "pipe", class: 0, phones: ["P AY P"], g2p: cmudict, src: voice}
+- {id: 1884, word: "cheeks", class: 1, phones: ["CH IY K S"], g2p: cmudict, src: voice}
+- {id: 1885, word: "ahead", class: 0, phones: ["AH HH EH D"], g2p: cmudict, src: voice}
+- {id: 1886, word: "staring", class: 3, phones: ["S T EH R IH NG"], g2p: cmudict, src: voice}
+- {id: 1887, word: "unwell", class: 3, phones: ["AH N W EH L"], g2p: cmudict, src: voice}
+- {id: 1888, word: "zipped", class: 0, phones: ["Z IH P T"], g2p: cmudict, src: voice}
+- {id: 1889, word: "pouring", class: 0, phones: ["P AO R IH NG"], g2p: cmudict, src: voice}
+- {id: 1890, word: "copperhead", class: 6, phones: ["K AA P ER HH EH D"], g2p: cmudict, src: voice}
+- {id: 1891, word: "stumbling", class: 2, phones: ["S T AH M B AH L IH NG", "S T AH M B L IH NG"], g2p: cmudict, src: voice}
 - {id: 1892, word: "anaphylactic", class: 3, phones: ["AE N AH F AH L AE K T IH K"], g2p: hand, src: core}
 - {id: 1893, word: "turning", class: 3, phones: ["T ER N IH NG"], g2p: cmudict, src: core}
 - {id: 1894, word: "alive", class: 3, phones: ["AH L AY V"], g2p: cmudict, src: core}
-- {id: 1895, word: "blurred", class: 0, phones: ["B L ER D"], g2p: cmudict, src: trees}
-- {id: 1896, word: "shaded", class: 0, phones: ["SH EY D IH D"], g2p: cmudict, src: trees}
-- {id: 1897, word: "sunblock", class: 0, phones: ["S AH N B L AA K"], g2p: espeak, src: trees}
-- {id: 1898, word: "sandstorm", class: 0, phones: ["S AE N D S T AO R M"], g2p: cmudict, src: trees}
+- {id: 1895, word: "bird", class: 6, phones: ["B ER D"], g2p: cmudict, src: voice}
+- {id: 1896, word: "something's", class: 0, phones: ["S AH M TH IH NG Z"], g2p: cmudict, src: voice}
+- {id: 1897, word: "ball", class: 0, phones: ["B AO L"], g2p: cmudict, src: voice}
+- {id: 1898, word: "redness", class: 3, phones: ["R EH D N AH S"], g2p: cmudict, src: voice}
 - {id: 1899, word: "ant", class: 6, phones: ["AE N T"], g2p: cmudict, src: core}
 - {id: 1900, word: "yellowjacket", class: 6, phones: ["Y EH L OW JH AE K AH T"], g2p: hand, src: core}
 - {id: 1901, word: "dust", class: 0, phones: ["D AH S T"], g2p: cmudict, src: trees}
-- {id: 1902, word: "contaminated", class: 0, phones: ["K AH N T AE M AH N EY T IH D"], g2p: cmudict, src: trees}
-- {id: 1903, word: "per", class: 0, phones: ["P ER"], g2p: cmudict, src: trees}
-- {id: 1904, word: "grounding", class: 0, phones: ["G R AW N D IH NG"], g2p: cmudict, src: trees}
-- {id: 1905, word: "solvents", class: 0, phones: ["S AO L V AH N T S"], g2p: cmudict, src: trees}
-- {id: 1906, word: "cycles", class: 0, phones: ["S AY K AH L Z"], g2p: cmudict, src: trees}
-- {id: 1907, word: "ventilation", class: 0, phones: ["V EH N T AH L EY SH AH N", "V EH N AH L EY SH AH N"], g2p: cmudict, src: trees}
-- {id: 1908, word: "pregnant", class: 0, phones: ["P R EH G N AH N T"], g2p: cmudict, src: trees}
-- {id: 1909, word: "upright", class: 0, phones: ["AH P R AY T"], g2p: cmudict, src: trees}
+- {id: 1902, word: "kids", class: 0, phones: ["K IH D Z"], g2p: cmudict, src: voice}
+- {id: 1903, word: "candy", class: 0, phones: ["K AE N D IY"], g2p: cmudict, src: voice}
+- {id: 1904, word: "splashed", class: 2, phones: ["S P L AE SH T"], g2p: cmudict, src: voice}
+- {id: 1905, word: "fruity", class: 0, phones: ["F R UW T IY"], g2p: cmudict, src: voice}
+- {id: 1906, word: "vs", class: 0, phones: ["V IY EH S"], g2p: cmudict, src: voice}
+- {id: 1907, word: "blistered", class: 3, phones: ["B L IH S T ER D"], g2p: cmudict, src: voice}
+- {id: 1908, word: "meadow", class: 0, phones: ["M EH D OW"], g2p: cmudict, src: voice}
+- {id: 1909, word: "sunburned", class: 3, phones: ["S AH N B ER N D"], g2p: cmudict, src: voice}
 - {id: 1910, word: "seat", class: 0, phones: ["S IY T"], g2p: cmudict, src: trees}
-- {id: 1911, word: "kick", class: 0, phones: ["K IH K"], g2p: cmudict, src: trees}
+- {id: 1911, word: "focus", class: 0, phones: ["F OW K AH S", "F OW K IH S"], g2p: cmudict, src: voice}
 - {id: 1912, word: "whistle", class: 0, phones: ["W IH S AH L", "HH W IH S AH L"], g2p: cmudict, src: trees}
-- {id: 1913, word: "ascending", class: 0, phones: ["AH S EH N D IH NG"], g2p: cmudict, src: trees}
-- {id: 1914, word: "rejoin", class: 0, phones: ["R IY JH OY N"], g2p: cmudict, src: trees}
-- {id: 1915, word: "spacing", class: 0, phones: ["S P EY S IH NG"], g2p: cmudict, src: trees}
-- {id: 1916, word: "spare", class: 0, phones: ["S P EH R"], g2p: cmudict, src: trees}
-- {id: 1917, word: "cautiously", class: 0, phones: ["K AO SH AH S L IY"], g2p: cmudict, src: trees}
-- {id: 1918, word: "bivouac", class: 0, phones: ["B IH V W AE K"], g2p: cmudict, src: trees}
-- {id: 1919, word: "layered", class: 0, phones: ["L EY ER D"], g2p: cmudict, src: trees}
-- {id: 1920, word: "missing", class: 0, phones: ["M IH S IH NG"], g2p: cmudict, src: trees}
-- {id: 1921, word: "bed", class: 0, phones: ["B EH D"], g2p: cmudict, src: trees}
-- {id: 1922, word: "windbreak", class: 0, phones: ["W IH N D B R EY K"], g2p: espeak, src: trees}
-- {id: 1923, word: "rewarming", class: 0, phones: ["R W AO R M IH NG"], g2p: espeak, src: trees}
-- {id: 1924, word: "massage", class: 0, phones: ["M AH S AA ZH"], g2p: cmudict, src: trees}
-- {id: 1925, word: "extremity", class: 0, phones: ["EH K S T R EH M AH T IY"], g2p: cmudict, src: trees}
-- {id: 1926, word: "thawed", class: 0, phones: ["TH AO D"], g2p: cmudict, src: trees}
-- {id: 1927, word: "part", class: 0, phones: ["P AA R T"], g2p: cmudict, src: trees}
-- {id: 1928, word: "risky", class: 0, phones: ["R IH S K IY"], g2p: cmudict, src: trees}
-- {id: 1929, word: "shellfish", class: 0, phones: ["SH EH L F IH SH"], g2p: cmudict, src: trees}
-- {id: 1930, word: "prep", class: 0, phones: ["P R EH P"], g2p: cmudict, src: trees}
-- {id: 1931, word: "ticks", class: 0, phones: ["T IH K S"], g2p: cmudict, src: trees}
-- {id: 1932, word: "coughs", class: 0, phones: ["K AO F S"], g2p: cmudict, src: trees}
-- {id: 1933, word: "strength", class: 0, phones: ["S T R EH NG K TH", "S T R EH NG TH"], g2p: cmudict, src: trees}
-- {id: 1934, word: "suitable", class: 0, phones: ["S UW T AH B AH L"], g2p: cmudict, src: trees}
-- {id: 1935, word: "spin", class: 0, phones: ["S P IH N"], g2p: cmudict, src: trees}
-- {id: 1936, word: "sheath", class: 0, phones: ["SH IY TH"], g2p: cmudict, src: trees}
-- {id: 1937, word: "fray", class: 0, phones: ["F R EY"], g2p: cmudict, src: trees}
-- {id: 1938, word: "section", class: 0, phones: ["S EH K SH AH N"], g2p: cmudict, src: trees}
-- {id: 1939, word: "tease", class: 0, phones: ["T IY Z"], g2p: cmudict, src: trees}
-- {id: 1940, word: "technique", class: 0, phones: ["T EH K N IY K"], g2p: cmudict, src: trees}
-- {id: 1941, word: "clockwise", class: 0, phones: ["K L AA K W AY Z"], g2p: cmudict, src: trees}
-- {id: 1942, word: "equal", class: 0, phones: ["IY K W AH L"], g2p: cmudict, src: trees}
-- {id: 1943, word: "whippings", class: 0, phones: ["W IH P IH NG Z"], g2p: espeak, src: trees}
-- {id: 1944, word: "slip", class: 0, phones: ["S L IH P"], g2p: cmudict, src: trees}
-- {id: 1945, word: "ways", class: 0, phones: ["W EY Z"], g2p: cmudict, src: trees}
-- {id: 1946, word: "untie", class: 0, phones: ["AH N T AY"], g2p: cmudict, src: trees}
-- {id: 1947, word: "devices", class: 0, phones: ["D IH V AY S AH Z", "D IH V AY S IH Z"], g2p: cmudict, src: trees}
-- {id: 1948, word: "interference", class: 0, phones: ["IH N T ER F IH R AH N S", "IH N ER F IH R AH N S"], g2p: cmudict, src: trees}
-- {id: 1949, word: "reimplant", class: 0, phones: ["R IY IH M P L AE N T"], g2p: espeak, src: trees}
-- {id: 1950, word: "tetanus", class: 0, phones: ["T EH T AH N AH S"], g2p: cmudict, src: trees}
-- {id: 1951, word: "shot", class: 0, phones: ["SH AA T"], g2p: cmudict, src: trees}
+- {id: 1913, word: "chipped", class: 2, phones: ["CH IH P T"], g2p: cmudict, src: voice}
+- {id: 1914, word: "grill", class: 0, phones: ["G R IH L"], g2p: cmudict, src: voice}
+- {id: 1915, word: "soup", class: 0, phones: ["S UW P"], g2p: cmudict, src: voice}
+- {id: 1916, word: "gums", class: 1, phones: ["G AH M Z"], g2p: cmudict, src: voice}
+- {id: 1917, word: "nasty", class: 0, phones: ["N AE S T IY"], g2p: cmudict, src: voice}
+- {id: 1918, word: "stake", class: 0, phones: ["S T EY K"], g2p: cmudict, src: voice}
+- {id: 1919, word: "flow", class: 0, phones: ["F L OW"], g2p: cmudict, src: voice}
+- {id: 1920, word: "smells", class: 0, phones: ["S M EH L Z"], g2p: cmudict, src: voice}
+- {id: 1921, word: "jagged", class: 2, phones: ["JH AE G AH D"], g2p: cmudict, src: voice}
+- {id: 1922, word: "words", class: 0, phones: ["W ER D Z"], g2p: cmudict, src: voice}
+- {id: 1923, word: "boughs", class: 0, phones: ["B AW Z"], g2p: cmudict, src: voice}
+- {id: 1924, word: "started", class: 0, phones: ["S T AA R T IH D"], g2p: cmudict, src: voice}
+- {id: 1925, word: "having", class: 0, phones: ["HH AE V IH NG"], g2p: cmudict, src: voice}
+- {id: 1926, word: "mosquitoes", class: 6, phones: ["M AH S K IY T OW Z"], g2p: cmudict, src: voice}
+- {id: 1927, word: "jammed", class: 2, phones: ["JH AE M D"], g2p: cmudict, src: voice}
+- {id: 1928, word: "create", class: 0, phones: ["K R IY EY T"], g2p: cmudict, src: voice}
+- {id: 1929, word: "ribcage", class: 1, phones: ["R IH B K EY JH"], g2p: hand, src: voice}
+- {id: 1930, word: "dropping", class: 0, phones: ["D R AA P IH NG"], g2p: cmudict, src: voice}
+- {id: 1931, word: "height", class: 0, phones: ["HH AY T"], g2p: cmudict, src: voice}
+- {id: 1932, word: "everyone's", class: 0, phones: ["EH V R IY W AH N Z"], g2p: cmudict, src: voice}
+- {id: 1933, word: "steam", class: 0, phones: ["S T IY M"], g2p: cmudict, src: voice}
+- {id: 1934, word: "radiator", class: 0, phones: ["R EY D IY EY T ER"], g2p: cmudict, src: voice}
+- {id: 1935, word: "spike", class: 2, phones: ["S P AY K"], g2p: cmudict, src: voice}
+- {id: 1936, word: "blew", class: 0, phones: ["B L UW"], g2p: cmudict, src: voice}
+- {id: 1937, word: "root", class: 0, phones: ["R UW T"], g2p: cmudict, src: voice}
+- {id: 1938, word: "nonstop", class: 3, phones: ["N AA N S T AA P"], g2p: cmudict, src: voice}
+- {id: 1939, word: "tasting", class: 0, phones: ["T EY S T IH NG"], g2p: cmudict, src: voice}
+- {id: 1940, word: "spark", class: 0, phones: ["S P AA R K"], g2p: cmudict, src: voice}
+- {id: 1941, word: "sunken", class: 3, phones: ["S AH NG K AH N"], g2p: cmudict, src: voice}
+- {id: 1942, word: "rod", class: 0, phones: ["R AA D"], g2p: cmudict, src: voice}
+- {id: 1943, word: "afternoon", class: 0, phones: ["AE F T ER N UW N"], g2p: cmudict, src: voice}
+- {id: 1944, word: "berry", class: 0, phones: ["B EH R IY"], g2p: cmudict, src: voice}
+- {id: 1945, word: "pollen", class: 0, phones: ["P AA L AH N"], g2p: cmudict, src: voice}
+- {id: 1946, word: "slurring", class: 3, phones: ["S L ER IH NG"], g2p: cmudict, src: voice}
+- {id: 1947, word: "till", class: 0, phones: ["T IH L"], g2p: cmudict, src: voice}
+- {id: 1948, word: "loud", class: 0, phones: ["L AW D"], g2p: cmudict, src: voice}
+- {id: 1949, word: "fruit", class: 0, phones: ["F R UW T"], g2p: cmudict, src: voice}
+- {id: 1950, word: "overwhelmed", class: 0, phones: ["OW V ER W EH L M D", "OW V ER HH W EH L M D"], g2p: cmudict, src: voice}
+- {id: 1951, word: "toxic", class: 0, phones: ["T AA K S IH K"], g2p: cmudict, src: voice}
 - {id: 1952, word: "centipede", class: 0, phones: ["S EH N T IH P IY D"], g2p: cmudict, src: trees}
-- {id: 1953, word: "appearance", class: 0, phones: ["AH P IH R AH N S"], g2p: cmudict, src: trees}
-- {id: 1954, word: "rodent", class: 0, phones: ["R OW D AH N T"], g2p: cmudict, src: trees}
+- {id: 1953, word: "hiker", class: 0, phones: ["HH AY K ER"], g2p: cmudict, src: voice}
+- {id: 1954, word: "biting", class: 0, phones: ["B AY T IH NG"], g2p: cmudict, src: voice}
 - {id: 1955, word: "glucose", class: 0, phones: ["G L UW K OW S"], g2p: cmudict, src: trees}
-- {id: 1956, word: "issues", class: 0, phones: ["IH SH UW Z"], g2p: cmudict, src: trees}
-- {id: 1957, word: "scene", class: 0, phones: ["S IY N"], g2p: cmudict, src: trees}
-- {id: 1958, word: "command", class: 0, phones: ["K AH M AE N D"], g2p: cmudict, src: trees}
+- {id: 1956, word: "trembling", class: 3, phones: ["T R EH M B AH L IH NG", "T R EH M B L IH NG"], g2p: cmudict, src: voice}
+- {id: 1957, word: "wedged", class: 2, phones: ["W EH JH D"], g2p: cmudict, src: voice}
+- {id: 1958, word: "frothy", class: 3, phones: ["F R AO TH IY"], g2p: cmudict, src: voice}
 - {id: 1959, word: "flowing", class: 3, phones: ["F L OW IH NG"], g2p: cmudict, src: core}
-- {id: 1960, word: "cp", class: 0, phones: ["S IY P IY"], g2p: espeak, src: trees}
-- {id: 1961, word: "volunteers", class: 0, phones: ["V AA L AH N T IH R Z"], g2p: cmudict, src: trees}
-- {id: 1962, word: "track", class: 0, phones: ["T R AE K"], g2p: cmudict, src: trees}
-- {id: 1963, word: "inventory", class: 0, phones: ["IH N V AH N T AO R IY"], g2p: cmudict, src: trees}
-- {id: 1964, word: "radios", class: 0, phones: ["R EY D IY OW Z"], g2p: cmudict, src: trees}
-- {id: 1965, word: "facts", class: 0, phones: ["F AE K T S", "F AE K S"], g2p: cmudict, src: trees}
-- {id: 1966, word: "symptom", class: 0, phones: ["S IH M P T AH M"], g2p: cmudict, src: trees}
-- {id: 1967, word: "convulsions", class: 0, phones: ["K AH N V AH L SH AH N Z"], g2p: cmudict, src: trees}
-- {id: 1968, word: "anxious", class: 0, phones: ["AE NG K SH AH S", "AE NG SH AH S"], g2p: cmudict, src: trees}
-- {id: 1969, word: "hallucinating", class: 0, phones: ["HH AH L UW S AH N EY T IH NG", "HH AH L UW S IH N EY T IH NG"], g2p: cmudict, src: trees}
-- {id: 1970, word: "syrup", class: 0, phones: ["S ER AH P", "S IH R AH P"], g2p: cmudict, src: trees}
-- {id: 1971, word: "diazepam", class: 0, phones: ["D AY AH Z EH P AE M"], g2p: espeak, src: trees}
-- {id: 1972, word: "injection", class: 0, phones: ["IH N JH EH K SH AH N"], g2p: cmudict, src: trees}
-- {id: 1973, word: "larger", class: 0, phones: ["L AA R JH ER"], g2p: cmudict, src: trees}
-- {id: 1974, word: "disconnect", class: 0, phones: ["D IH S K AH N EH K T"], g2p: cmudict, src: trees}
-- {id: 1975, word: "utility", class: 0, phones: ["Y UW T IH L AH T IY"], g2p: cmudict, src: trees}
-- {id: 1976, word: "removed", class: 0, phones: ["R IY M UW V D"], g2p: cmudict, src: trees}
-- {id: 1977, word: "write", class: 0, phones: ["R AY T"], g2p: cmudict, src: trees}
-- {id: 1978, word: "firm", class: 0, phones: ["F ER M"], g2p: cmudict, src: trees}
-- {id: 1979, word: "occlusive", class: 0, phones: ["AH K L UW S IH V"], g2p: espeak, src: trees}
-- {id: 1980, word: "overboard", class: 0, phones: ["OW V ER B AO R D"], g2p: cmudict, src: trees}
+- {id: 1960, word: "pink", class: 0, phones: ["P IH NG K"], g2p: cmudict, src: voice}
+- {id: 1961, word: "shallow", class: 0, phones: ["SH AE L OW"], g2p: cmudict, src: voice}
+- {id: 1962, word: "shine", class: 0, phones: ["SH AY N"], g2p: cmudict, src: voice}
+- {id: 1963, word: "plane", class: 0, phones: ["P L EY N"], g2p: cmudict, src: voice}
+- {id: 1964, word: "eyelid", class: 1, phones: ["AY L IH D"], g2p: cmudict, src: voice}
+- {id: 1965, word: "solid", class: 0, phones: ["S AA L AH D"], g2p: cmudict, src: voice}
+- {id: 1966, word: "singed", class: 2, phones: ["S IH N JH D"], g2p: cmudict, src: voice}
+- {id: 1967, word: "navel", class: 1, phones: ["N EY V AH L"], g2p: cmudict, src: voice}
+- {id: 1968, word: "scratch", class: 2, phones: ["S K R AE CH"], g2p: cmudict, src: voice}
+- {id: 1969, word: "cant", class: 0, phones: ["K AE N T"], g2p: cmudict, src: voice}
+- {id: 1970, word: "pierced", class: 2, phones: ["P IH R S T"], g2p: cmudict, src: voice}
+- {id: 1971, word: "bowels", class: 1, phones: ["B AW AH L Z", "B AW L Z"], g2p: cmudict, src: voice}
+- {id: 1972, word: "socket", class: 1, phones: ["S AA K AH T"], g2p: cmudict, src: voice}
+- {id: 1973, word: "diabetes", class: 0, phones: ["D AY AH B IY T IY Z"], g2p: cmudict, src: voice}
+- {id: 1974, word: "canyon", class: 0, phones: ["K AE N Y AH N"], g2p: cmudict, src: voice}
+- {id: 1975, word: "icy", class: 0, phones: ["AY S IY"], g2p: cmudict, src: voice}
+- {id: 1976, word: "stayed", class: 0, phones: ["S T EY D"], g2p: cmudict, src: voice}
+- {id: 1977, word: "stool", class: 0, phones: ["S T UW L"], g2p: cmudict, src: voice}
+- {id: 1978, word: "barely", class: 0, phones: ["B EH R L IY"], g2p: cmudict, src: voice}
+- {id: 1979, word: "pee", class: 0, phones: ["P IY"], g2p: cmudict, src: voice}
+- {id: 1980, word: "scratched", class: 2, phones: ["S K R AE CH T"], g2p: cmudict, src: voice}
 - {id: 1981, word: "dripping", class: 3, phones: ["D R IH P IH NG"], g2p: cmudict, src: core}
-- {id: 1982, word: "bill", class: 0, phones: ["B IH L"], g2p: cmudict, src: trees}
-- {id: 1983, word: "lifejacket", class: 0, phones: ["L AY F JH AE K IH T"], g2p: espeak, src: trees}
-- {id: 1984, word: "lifeboat", class: 0, phones: ["L AY F B OW T"], g2p: cmudict, src: trees}
-- {id: 1985, word: "launch", class: 0, phones: ["L AO N CH"], g2p: cmudict, src: trees}
-- {id: 1986, word: "ordered", class: 0, phones: ["AO R D ER D"], g2p: cmudict, src: trees}
-- {id: 1987, word: "balsa", class: 0, phones: ["B AO L S AH"], g2p: cmudict, src: trees}
+- {id: 1982, word: "sideways", class: 3, phones: ["S AY D W EY Z"], g2p: cmudict, src: voice}
+- {id: 1983, word: "bubble", class: 0, phones: ["B AH B AH L"], g2p: cmudict, src: voice}
+- {id: 1984, word: "hyperventilating", class: 3, phones: ["HH AY P ER V EH N T AH L EY T IH NG"], g2p: hand, src: voice}
+- {id: 1985, word: "catch", class: 0, phones: ["K AE CH"], g2p: cmudict, src: voice}
+- {id: 1986, word: "wooden", class: 0, phones: ["W UH D AH N"], g2p: cmudict, src: voice}
+- {id: 1987, word: "tear", class: 0, phones: ["T EH R", "T IH R"], g2p: cmudict, src: voice}
 - {id: 1988, word: "trickling", class: 3, phones: ["T R IH K L IH NG"], g2p: cmudict, src: core}
-- {id: 1989, word: "notches", class: 0, phones: ["N AA CH AH Z", "N AA CH IH Z"], g2p: cmudict, src: trees}
-- {id: 1990, word: "spikes", class: 0, phones: ["S P AY K S"], g2p: cmudict, src: trees}
-- {id: 1991, word: "storms", class: 0, phones: ["S T AO R M Z"], g2p: cmudict, src: trees}
-- {id: 1992, word: "increasing", class: 0, phones: ["IH N K R IY S IH NG"], g2p: cmudict, src: trees}
+- {id: 1989, word: "collect", class: 0, phones: ["K AH L EH K T"], g2p: cmudict, src: voice}
+- {id: 1990, word: "pan", class: 0, phones: ["P AE N"], g2p: cmudict, src: voice}
+- {id: 1991, word: "wall", class: 0, phones: ["W AO L"], g2p: cmudict, src: voice}
+- {id: 1992, word: "onto", class: 0, phones: ["AA N T UW", "AO N T UW"], g2p: cmudict, src: voice}
 - {id: 1993, word: "pile", class: 0, phones: ["P AY L"], g2p: cmudict, src: trees}
-- {id: 1994, word: "rubber", class: 0, phones: ["R AH B ER"], g2p: cmudict, src: trees}
-- {id: 1995, word: "lubricants", class: 0, phones: ["L UW B R AH K AH N T S", "L UW B R IH K AH N T S", "L UW B R AH K AH N S"], g2p: cmudict, src: trees}
+- {id: 1994, word: "figure", class: 0, phones: ["F IH G Y ER"], g2p: cmudict, src: voice}
+- {id: 1995, word: "child's", class: 0, phones: ["CH AY L D Z"], g2p: cmudict, src: voice}
 - {id: 1996, word: "thick", class: 0, phones: ["TH IH K"], g2p: cmudict, src: trees}
 - {id: 1997, word: "seeping", class: 3, phones: ["S IY P IH NG"], g2p: cmudict, src: core}
-- {id: 1998, word: "metals", class: 0, phones: ["M EH T AH L Z"], g2p: cmudict, src: trees}
-- {id: 1999, word: "cracks", class: 0, phones: ["K R AE K S"], g2p: cmudict, src: trees}
-- {id: 2000, word: "gradually", class: 0, phones: ["G R AE JH UW AH L IY", "G R AE JH UW L IY"], g2p: cmudict, src: trees}
-- {id: 2001, word: "chargers", class: 0, phones: ["CH AA R JH ER Z"], g2p: cmudict, src: trees}
-- {id: 2002, word: "arctic", class: 0, phones: ["AA R K T IH K", "AA R T IH K"], g2p: cmudict, src: trees}
+- {id: 1998, word: "zero", class: 0, phones: ["Z IH R OW", "Z IY R OW"], g2p: cmudict, src: voice}
+- {id: 1999, word: "boot", class: 0, phones: ["B UW T"], g2p: cmudict, src: voice}
+- {id: 2000, word: "tied", class: 0, phones: ["T AY D"], g2p: cmudict, src: voice}
+- {id: 2001, word: "wasps", class: 6, phones: ["W AA S P S"], g2p: cmudict, src: voice}
+- {id: 2002, word: "anymore", class: 0, phones: ["EH N IY M AO R"], g2p: cmudict, src: voice}
 - {id: 2003, word: "squirrel", class: 6, phones: ["S K W ER AH L"], g2p: cmudict, src: core}
-- {id: 2004, word: "retrieval", class: 0, phones: ["R IH T R IY V AH L", "R IY T R IY V AH L"], g2p: cmudict, src: trees}
-- {id: 2005, word: "retrieve", class: 0, phones: ["R IH T R IY V", "R IY T R IY V"], g2p: cmudict, src: trees}
+- {id: 2004, word: "shard", class: 2, phones: ["SH AA R D"], g2p: cmudict, src: voice}
+- {id: 2005, word: "watery", class: 3, phones: ["W AO T ER IY"], g2p: cmudict, src: voice}
 - {id: 2006, word: "rat", class: 6, phones: ["R AE T"], g2p: cmudict, src: core}
-- {id: 2007, word: "being", class: 0, phones: ["B IY IH NG"], g2p: cmudict, src: trees}
-- {id: 2008, word: "pairs", class: 0, phones: ["P EH R Z"], g2p: cmudict, src: trees}
+- {id: 2007, word: "pinch", class: 2, phones: ["P IH N CH"], g2p: cmudict, src: voice}
+- {id: 2008, word: "embedded", class: 2, phones: ["EH M B EH D IH D"], g2p: cmudict, src: voice}
 - {id: 2009, word: "mosquito", class: 6, phones: ["M AH S K IY T OW"], g2p: cmudict, src: core}
-- {id: 2010, word: "directly", class: 0, phones: ["D ER EH K T L IY", "D IY R EH K L IY", "D AY R EH K L IY"], g2p: cmudict, src: trees}
-- {id: 2011, word: "embers", class: 0, phones: ["EH M B ER Z"], g2p: cmudict, src: trees}
-- {id: 2012, word: "tin", class: 0, phones: ["T IH N"], g2p: cmudict, src: trees}
-- {id: 2013, word: "horn", class: 0, phones: ["HH AO R N"], g2p: cmudict, src: trees}
-- {id: 2014, word: "box", class: 0, phones: ["B AA K S"], g2p: cmudict, src: trees}
-- {id: 2015, word: "types", class: 0, phones: ["T AY P S"], g2p: cmudict, src: trees}
-- {id: 2016, word: "preparation", class: 0, phones: ["P R EH P ER EY SH AH N"], g2p: cmudict, src: trees}
-- {id: 2017, word: "petrolatum", class: 0, phones: ["P EH T R AH L AA T AH M"], g2p: espeak, src: trees}
-- {id: 2018, word: "peat", class: 0, phones: ["P IY T"], g2p: cmudict, src: trees}
-- {id: 2019, word: "humus", class: 0, phones: ["HH Y UW M AH S"], g2p: cmudict, src: trees}
-- {id: 2020, word: "p", class: 0, phones: ["P IY"], g2p: cmudict, src: trees}
-- {id: 2021, word: "unsure", class: 0, phones: ["AH N SH UH R"], g2p: cmudict, src: trees}
-- {id: 2022, word: "pros", class: 0, phones: ["P R OW Z"], g2p: cmudict, src: trees}
-- {id: 2023, word: "lens", class: 0, phones: ["L EH N Z"], g2p: cmudict, src: trees}
-- {id: 2024, word: "flint", class: 0, phones: ["F L IH N T"], g2p: cmudict, src: trees}
-- {id: 2025, word: "steel", class: 0, phones: ["S T IY L"], g2p: cmudict, src: trees}
-- {id: 2026, word: "bow", class: 0, phones: ["B AW", "B OW"], g2p: cmudict, src: trees}
-- {id: 2027, word: "drill", class: 0, phones: ["D R IH L"], g2p: cmudict, src: trees}
-- {id: 2028, word: "overview", class: 0, phones: ["OW V ER V Y UW"], g2p: cmudict, src: trees}
-- {id: 2029, word: "star", class: 0, phones: ["S T AA R"], g2p: cmudict, src: trees}
-- {id: 2030, word: "pyramid", class: 0, phones: ["P IH R AH M IH D"], g2p: cmudict, src: trees}
+- {id: 2010, word: "crying", class: 3, phones: ["K R AY IH NG"], g2p: cmudict, src: voice}
+- {id: 2011, word: "tore", class: 0, phones: ["T AO R"], g2p: cmudict, src: voice}
+- {id: 2012, word: "midsection", class: 1, phones: ["M IH D S EH K SH AH N"], g2p: cmudict, src: voice}
+- {id: 2013, word: "straight", class: 0, phones: ["S T R EY T"], g2p: cmudict, src: voice}
+- {id: 2014, word: "overheated", class: 3, phones: ["OW V ER HH IY T IH D"], g2p: cmudict, src: voice}
+- {id: 2015, word: "roof", class: 0, phones: ["R UW F", "R UH F"], g2p: cmudict, src: voice}
+- {id: 2016, word: "pine", class: 0, phones: ["P AY N"], g2p: cmudict, src: voice}
+- {id: 2017, word: "bubbles", class: 0, phones: ["B AH B AH L Z"], g2p: cmudict, src: voice}
+- {id: 2018, word: "summit", class: 0, phones: ["S AH M AH T", "S AH M IH T"], g2p: cmudict, src: voice}
+- {id: 2019, word: "lodged", class: 2, phones: ["L AA JH D"], g2p: cmudict, src: voice}
+- {id: 2020, word: "windpipe", class: 1, phones: ["W IH N D P AY P"], g2p: hand, src: voice}
+- {id: 2021, word: "laceration", class: 2, phones: ["L AE S ER EY SH AH N"], g2p: cmudict, src: voice}
+- {id: 2022, word: "sudden", class: 0, phones: ["S AH D AH N"], g2p: cmudict, src: voice}
+- {id: 2023, word: "toward", class: 0, phones: ["T AH W AO R D", "T AO R D"], g2p: cmudict, src: voice}
+- {id: 2024, word: "impact", class: 2, phones: ["IH M P AE K T"], g2p: cmudict, src: voice}
+- {id: 2025, word: "torso", class: 1, phones: ["T AO R S OW"], g2p: cmudict, src: voice}
+- {id: 2026, word: "rubbed", class: 0, phones: ["R AH B D"], g2p: cmudict, src: voice}
+- {id: 2027, word: "making", class: 0, phones: ["M EY K IH NG"], g2p: cmudict, src: voice}
+- {id: 2028, word: "sweat", class: 3, phones: ["S W EH T"], g2p: cmudict, src: voice}
+- {id: 2029, word: "heater", class: 0, phones: ["HH IY T ER"], g2p: cmudict, src: voice}
+- {id: 2030, word: "us", class: 0, phones: ["AH S", "Y UW EH S"], g2p: cmudict, src: voice}
 - {id: 2031, word: "holes", class: 0, phones: ["HH OW L Z"], g2p: cmudict, src: trees}
-- {id: 2032, word: "sod", class: 0, phones: ["S AA D"], g2p: cmudict, src: trees}
-- {id: 2033, word: "rekindle", class: 0, phones: ["R IY K IH N D AH L"], g2p: cmudict, src: trees}
-- {id: 2034, word: "douse", class: 0, phones: ["D AW S"], g2p: cmudict, src: trees}
-- {id: 2035, word: "stir", class: 0, phones: ["S T ER"], g2p: cmudict, src: trees}
-- {id: 2036, word: "ashes", class: 0, phones: ["AE SH AH Z", "AE SH IH Z"], g2p: cmudict, src: trees}
-- {id: 2037, word: "spotted", class: 0, phones: ["S P AA T IH D"], g2p: cmudict, src: trees}
+- {id: 2032, word: "bright", class: 0, phones: ["B R AY T"], g2p: cmudict, src: voice}
+- {id: 2033, word: "flame", class: 0, phones: ["F L EY M"], g2p: cmudict, src: voice}
+- {id: 2034, word: "wave", class: 0, phones: ["W EY V"], g2p: cmudict, src: voice}
+- {id: 2035, word: "molar", class: 1, phones: ["M OW L AH R"], g2p: cmudict, src: voice}
+- {id: 2036, word: "melted", class: 0, phones: ["M EH L T AH D", "M EH L T IH D"], g2p: cmudict, src: voice}
+- {id: 2037, word: "tummy", class: 1, phones: ["T AH M IY"], g2p: cmudict, src: voice}
 - {id: 2038, word: "mouse", class: 6, phones: ["M AW S"], g2p: cmudict, src: core}
-- {id: 2039, word: "artificial", class: 0, phones: ["AA R T AH F IH SH AH L"], g2p: cmudict, src: trees}
-- {id: 2040, word: "revives", class: 0, phones: ["R IY V AY V Z"], g2p: cmudict, src: trees}
-- {id: 2041, word: "reply", class: 0, phones: ["R IH P L AY", "R IY P L AY"], g2p: cmudict, src: trees}
-- {id: 2042, word: "signaling", class: 0, phones: ["S IH G N AH L IH NG"], g2p: cmudict, src: trees}
-- {id: 2043, word: "looser", class: 0, phones: ["L UW S ER"], g2p: cmudict, src: trees}
+- {id: 2039, word: "piece", class: 0, phones: ["P IY S"], g2p: cmudict, src: voice}
+- {id: 2040, word: "spreading", class: 0, phones: ["S P R EH D IH NG"], g2p: cmudict, src: voice}
+- {id: 2041, word: "strike", class: 2, phones: ["S T R AY K"], g2p: cmudict, src: voice}
+- {id: 2042, word: "flash", class: 0, phones: ["F L AE SH"], g2p: cmudict, src: voice}
+- {id: 2043, word: "super", class: 0, phones: ["S UW P ER"], g2p: cmudict, src: voice}
 - {id: 2044, word: "fox", class: 6, phones: ["F AA K S"], g2p: cmudict, src: core}
 - {id: 2045, word: "coyote", class: 6, phones: ["K AY OW T IY", "K AY OW T"], g2p: cmudict, src: core}
-- {id: 2046, word: "mix", class: 0, phones: ["M IH K S"], g2p: cmudict, src: trees}
+- {id: 2046, word: "fear", class: 0, phones: ["F IH R"], g2p: cmudict, src: voice}
 - {id: 2047, word: "cougar", class: 6, phones: ["K UW G ER"], g2p: cmudict, src: core}
