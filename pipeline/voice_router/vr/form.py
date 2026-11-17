@@ -59,9 +59,9 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate]):
         c.advance()
         if c.card not in c.tree["nodes"]:             # a life rule jumped to another tree's card
             return "open", c.name, c.card
-    for c in cands:                                   # life rule inside the tree: same, open it
-        if c.card in _life_cards(c) and not c.asking:
-            return "open", c.name, c.card
+    for c in cands:                                   # life rule inside the tree: open it now, even if
+        if c.card in _life_cards(c):                  # it has a blank of its own (CPR: "very cold or from
+            return "open", c.name, c.card             # water?"): that field shows on the open card
     if cands and (cands[0].p >= SURE or len(cands) == 1):
         del cands[1:]
     if len(cands) == 1 and not cands[0].asking and cands[0].card != cands[0].tree["root"]:

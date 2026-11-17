@@ -43,3 +43,14 @@ def test_form_turns_scores_one_screen():
     anc = _ancestors(TREE, _questions(TREE, SMAP))
     assert form_turns("bites", TREE, SMAP, "a raccoon bit my thigh", {"limb"}, anc) == 1
     assert form_turns("bites", TREE, SMAP, "something bit me", {"face"}, anc) == 2
+
+
+def test_life_card_with_its_own_blank_opens_first():
+    tree = {"root": "start", "title": "CPR", "nodes": {"start": {"label": "Breathing?"},
+            "cpr": {"label": "Start CPR"}, "cold": {"label": "CPR when very cold"}}}
+    smap = {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}],
+            "slots": {"breathing": {"no": ["not breathing"]}, "cold": {"yes": ["freezing", "from the water"]}},
+            "questions": {"cpr": {"slot": "cold", "choices": {"yes": "cold"}}}}
+    cands = [Candidate("cpr", tree, smap)]
+    assert first_sentence("she's not breathing", cands) == ("open", "cpr", "cpr")
+    assert [f.key for f in open_fields(cands)] == ["cold"]
