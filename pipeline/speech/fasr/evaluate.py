@@ -23,7 +23,7 @@ import yaml
 
 from . import lexicon as lx
 from .data import load_wav
-from .decode import Params, Trie, calibrated_reject, life_bias, nbest
+from .decode import Params, Trie, calibrated_reject, context_bias, life_bias, nbest
 from .features import logmel
 from .model import AcousticModel
 from .train import edit_distance
