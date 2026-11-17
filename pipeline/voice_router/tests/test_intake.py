@@ -115,3 +115,9 @@ def test_passes_menu_only_toward_one_answered_blank():
     smap = {"slots": {"missing_kit": {"tourniquet": ["no tourniquet"], "splint": ["no splint"]}}}
     assert walk(tree, smap, fill("we have no tourniquet", smap["slots"])) == ("tq", ["menu", "b"], None)
     assert walk(tree, smap, fill("help", smap["slots"])) == ("menu", [], None)
+
+
+def test_plurals_and_ly_match():
+    slots = {"kit": {"blister": ["blister bandage"]}, "depth": {"deep": ["deep"]}}
+    assert fill("we ran out of blister bandages", slots) == {"kit": "blister"}
+    assert fill("she got cut deeply", slots) == {"depth": "deep"}

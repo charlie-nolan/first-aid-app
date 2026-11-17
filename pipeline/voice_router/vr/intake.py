@@ -48,6 +48,15 @@ from .lexicon import NEGATION, tokenize
 NEG_WINDOW = 3
 
 
+def _stem(w: str) -> str:
+    """Light stemming so "bandages" matches "bandage" and "deeply" matches "deep"."""
+    if len(w) > 5 and w.endswith("ly"):
+        w = w[:-2]
+    if len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
+        w = w[:-1]
+    return w
+
+
 def _find(words: list[str], phrase: list[str]) -> int:
     n = len(phrase)
     for i in range(len(words) - n + 1):
@@ -65,7 +74,7 @@ def fill(text: str, slots: dict, priority: dict | None = None) -> dict[str, str]
     - the value whose phrases cover the most heard words wins ("red hot oozing pus" beats "cut");
     - a tie goes to the value listed first in priority[slot] (most severe / most specific first),
       else the one listed first in the slot map."""
-    words = tokenize(text)
+    words = [_stem(w) for w in tokenize(text)]
     priority = priority or {}
     best: dict[str, tuple] = {}
     for slot, values in slots.items():
@@ -73,7 +82,7 @@ def fill(text: str, slots: dict, priority: dict | None = None) -> dict[str, str]
         for value, phrases in values.items():
             covered = set()
             for ph in phrases:
-                p = tokenize(ph)
+                p = [_stem(w) for w in tokenize(ph)]
                 i = _find(words, p)
                 if i < 0:
                     continue
