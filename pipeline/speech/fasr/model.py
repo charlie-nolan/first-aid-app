@@ -20,6 +20,7 @@ SIZES = {  # name: (channels, blocks, kernel)
     "xs": (128, 8, 15),
     "s": (192, 12, 15),
     "m": (256, 14, 15),
+    "l": (320, 16, 15),   # ~1.8 M weights: try only if the S3 bench shows headroom
 }
 
 
