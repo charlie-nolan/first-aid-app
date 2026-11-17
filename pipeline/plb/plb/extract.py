@@ -308,6 +308,9 @@ def read_lines(pdf_path: Path, margin_top: float = 0.07, margin_bottom: float = 
                 for k, w in enumerate(words[:-1]):
                     if w["text"] == "Figure" and re.fullmatch(r"\d+[A-Z]?", words[k + 1]["text"]):
                         drop.update((k, k + 1))
+                    # skill-sheet photo labels "STEP 1A", "STEP 5B" (a plain "STEP 1" is a heading)
+                    if w["text"] == "STEP" and re.fullmatch(r"\d+[A-Z]", words[k + 1]["text"]):
+                        drop.update((k, k + 1))
                 words = [w for k, w in enumerate(words) if k not in drop]
             mark_superscript_degrees(words)
             if margins == "auto":

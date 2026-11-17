@@ -67,6 +67,9 @@ def main(argv=None) -> int:
     vb.add_argument("--all", action="store_true", help="also the unreviewed reference shelf")
     vb.add_argument("--only", nargs="*", help="passage id prefixes, e.g. ATP4-02.11/4-4")
     vb.add_argument("--out", default="build/verbatim.md")
+    vb.add_argument("--cards", action="store_true",
+                    help="tree cards only (not the reference shelf); reading-order-only differences "
+                         "are listed as ORDER and do not fail")
     vc = sub.add_parser("voice", help="stress-test the voice phrase list with synthetic utterances")
     vc.add_argument("--utterances", default="content/phrases/synthetic")
     vc.add_argument("--out", default="build/voice-report.md")
@@ -166,7 +169,8 @@ def main(argv=None) -> int:
         out, issues = build(root, personal=a.personal)
         manuals = {m.id: m.raw for m in src.load_manifest(manifest, a.personal)}
         secs, _ = _sections(root, a.personal)
-        found = vb.check_passages(root, out, manuals, secs, only_reviewed=not a.all, ids=a.only)
+        found = vb.check_passages(root, out, manuals, secs, only_reviewed=not a.all, ids=a.only,
+                                 cards_only=a.cards)
         dest = root / a.out
         print(vb.write_report(found, dest), "->", dest)
         for f in found:

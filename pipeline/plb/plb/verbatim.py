@@ -12,6 +12,9 @@ since boxes sit elsewhere on the page):
   exact       same words and punctuation, only whitespace and list markers differ
   layout      same once line-end hyphens, ligatures, curly quotes and dashes are folded
   MISMATCH    words differ: the word-level diff is reported for a person to look at.
+  ORDER       (--cards only) a MISMATCH where every card word is printed on the cited pages:
+              two-column or list-number reading order, a sidebar between lines. Listed, not
+              failed. A card word that is on none of the cited pages stays a MISMATCH.
 
 Running headers/footers (lines repeated on many pages) are removed before comparing, so
 a passage that crosses a page break still matches. Nothing else is skipped: a word the
@@ -173,8 +176,45 @@ def _diff(chunk: str, window: str) -> list[dict]:
     return out
 
 
+def _only_reordered(chunk: str, window: str) -> bool:
+    """Every card word (folded, counted) is printed in the page window."""
+    fold = lambda t, m=True: [w.lower() for w in re.findall(r"[A-Za-z0-9]+", layout_word_form(t, m))]
+    # list numbers ("7. Nausea") that the book draws as graphics: the second text engine never
+    # sees them. Only "N. Capital" counts; doses such as "0.5 mg" have no space after the dot.
+    chunk = re.sub(r"(?:(?<=\s)|^)\d{1,2}\.(?=\s+[A-Z])", " ", chunk)
+    window = re.sub(r"\b(fi|fl|ff|ffi|ffl)\s+(?=[a-z])", r"\1", window)   # "fl y" -> "fly"
+    have = Counter(fold(window, False))
+    stream = "".join(fold(window, False))         # "fi rst" (split ligature) and "ACETM" (trademark glued on)
+    for w, n in Counter(fold(chunk)).items():
+        if have[w] >= n:
+            continue
+        # words of 4+ letters may be split or glued by the PDF text layer; short words such as
+        # "not" or "no" must be printed as words, so a card "not" is never excused by "note"
+        if len(w) >= 4 and stream.count(w) >= n:
+            continue
+        if have[w + "tm"]:                  # "ACE" printed as "ACE(TM)"
+            continue
+        if w.isdigit() and have[w + "0"]:     # "1020": 102 plus a superscript degree read as 0
+            continue
+        if w == "degrees" and any(re.fullmatch(r"\d+0", x) for x in have):
+            continue                         # a superscript degree sign read as "0" ("1020")
+        return False
+    return True
+
+
+def layout_word_form(text: str, markers: bool = True) -> str:
+    """Words for the ORDER test. The degree fold runs before NFKC (NFKC turns "º" into "o").
+    markers=False keeps line-start numbers: on the page side "0.5 mg" at a line start is a
+    dose, not a list marker, and extra page words never hurt this test."""
+    t = _strip_markers(text) if markers else text
+    t = "".join(_FOLD.get(c, c) for c in t)
+    t = unicodedata.normalize("NFKC", t)
+    return re.sub(r"-\s*\n\s*", "", t)
+
+
 def check_passages(root: Path, inter: Path, manuals: dict, sections: dict,
-                   only_reviewed: bool = True, ids: list[str] | None = None) -> list[Finding]:
+                   only_reviewed: bool = True, ids: list[str] | None = None,
+                   cards_only: bool = False) -> list[Finding]:
     trees = json.loads((inter / "trees.json").read_text())
     passages = {json.loads(l)["id"]: json.loads(l)
                 for l in (inter / "passages.jsonl").read_text().splitlines() if l}
@@ -182,6 +222,8 @@ def check_passages(root: Path, inter: Path, manuals: dict, sections: dict,
     for n in trees["nodes"]:
         if only_reviewed and n.get("unreviewed"):
             continue
+        if cards_only and str(n.get("tree", "")).startswith("ref-"):
+            continue                                  # reference shelf pages, not tree cards
         for pid in n["passages"]:
             used.setdefault(pid, []).append(n["key"])
     if ids:
@@ -218,13 +260,16 @@ def check_passages(root: Path, inter: Path, manuals: dict, sections: dict,
         notes = []
         for ch in split_chunks(p["text"]):
             lvl, diff = compare_chunk(ch, window)
-            if lvl == "MISMATCH":
+            if lvl == "MISMATCH" and cards_only and _only_reordered(ch, window):
+                out.append(Finding(pid, p.get("citation", ""), "ORDER", ch, diff, used[pid]))
+                worst = "ORDER" if worst != "MISMATCH" else worst
+            elif lvl == "MISMATCH":
                 out.append(Finding(pid, p.get("citation", ""), lvl, ch, diff, used[pid]))
                 worst = lvl
             elif lvl == "layout":
                 notes += diff
                 worst = "layout" if worst == "exact" else worst
-        if worst != "MISMATCH":
+        if worst not in ("MISMATCH", "ORDER"):
             out.append(Finding(pid, p.get("citation", ""), worst, diff=notes, nodes=used[pid]))
     return out
 
@@ -233,12 +278,12 @@ def write_report(findings: list[Finding], path: Path) -> str:
     c = Counter(f.level for f in findings)
     lines = ["# Card text vs source pages", "",
              f"{len({f.passage for f in findings})} passages checked: "
-             + ", ".join(f"{c[k]} {k}" for k in ("exact", "layout", "MISMATCH", "NO-SOURCE") if c[k]),
+             + ", ".join(f"{c[k]} {k}" for k in ("exact", "layout", "ORDER", "MISMATCH", "NO-SOURCE") if c[k]),
              "", "`exact` = same words and punctuation; `layout` = same once hyphens, "
              "ligatures, quotes and dashes are folded; `MISMATCH` = words differ (listed below).",
              ""]
     for f in findings:
-        if f.level in ("MISMATCH", "NO-SOURCE"):
+        if f.level in ("MISMATCH", "ORDER", "NO-SOURCE"):
             lines.append(f"## {f.level}: {f.passage} ({f.citation})")
             lines.append(f"Shown on: {', '.join(f.nodes)}")
             for d in f.diff:

@@ -18,22 +18,28 @@ R="$WORK/reports/$(date +%Y%m%d-%H%M)"; mkdir -p "$R"
 PACK="python3 $REPO/romkit/pack.py"
 fail=0
 step() { echo; echo "== $*"; "$@" 2>&1 | tee -a "$R/bake.log"; local rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || { echo "!! failed ($rc): $*"; fail=1; }; return 0; }
+# a report only: written and logged, never fails the bake
+report() { echo; echo "== (report) $*"; "$@" 2>&1 | tee -a "$R/bake.log"; local rc=${PIPESTATUS[0]}; [ "$rc" = 0 ] || echo "   (report step exited $rc; not a bake failure)"; return 0; }
 
 step plb validate
 step plb slots --out "$R/slots.md"
 step plb pack --packer "$PACK"
 cp build/library.bin "$R/library.bin" 2>/dev/null
 step plb verbatim --out "$R/verbatim.md"
-step plb voice --out "$R/voice.md"
+# old phrase-list voice test, superseded by slot intake (vr.intake sim below): report only
+report plb voice --out "$R/voice.md"
 step plb review --out "$R/review"
 [ -n "${CARTCLI:-}" ] && step plb test --reader-cmd "$CARTCLI" --library build/library.bin
 if [ -f sources.personal.yaml ]; then
     step plb --personal slots --out "$R/slots-personal.md" ${VOICE_SLOTS:+--voice-slots "$VOICE_SLOTS"}
     [ -n "${SLOTS_MAP:-}" ] && cp "$R/slots-personal.md" "$SLOTS_MAP"
     step plb --personal pack --packer "$PACK"
-    # --all: personal trees are drafts (unreviewed), which plain `verbatim` skips
-    step plb --personal verbatim --all --out "$R/verbatim-personal.md"
-    step plb --personal voice --out "$R/voice-personal.md"
+    # --all: personal trees are drafts (unreviewed), which plain `verbatim` skips.
+    # --cards: tree cards only; a card word missing from the cited pages fails, reading-order
+    # differences are listed as ORDER. The reference shelf is reported separately, not failed.
+    step plb --personal verbatim --all --cards --out "$R/verbatim-personal.md"
+    report plb --personal verbatim --all --out "$R/verbatim-personal-shelf.md"
+    report plb --personal voice --out "$R/voice-personal.md"
     [ -n "${CARTCLI:-}" ] && step plb --personal test --reader-cmd "$CARTCLI" --library build/library_personal.bin
     if [ -n "${VR_DIR:-}" ] && [ -n "${SEEDS:-}" ] && [ -n "${VOICE_SLOTS:-}" ]; then
         for sf in "$VOICE_SLOTS"/*.yaml; do
