@@ -227,5 +227,14 @@ def test_soundalike_life_threat_shows_both_tiles():
 def test_negated_phrase_does_not_fold_verbs():
     slots = {"breathing": {"no": ["no breath", "not breathing"]}}
     assert fill("he has no breathing problems", slots) == {}
+    assert fill("he is freezing cold with no breathing", slots) == {"breathing": "no"}
     assert fill("he has no breath", slots) == {"breathing": "no"}
     assert fill("she is not breathing", slots) == {"breathing": "no"}
+
+
+def test_second_life_tile_only_for_a_life_card():
+    from vr.intake import life_options
+    smap = {"slots": {"breathing": {"no": ["not breathing"]}, "bleeding": {"severe": ["bleeding a lot"]}},
+            "life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}, {"if": {"bleeding": "severe"}, "go": "sev"}]}
+    t = {"root": "start", "nodes": {"start": {}}}
+    assert life_options(["not breathing and belay", "not bleeding and blue"], t, smap) == ["cpr"]

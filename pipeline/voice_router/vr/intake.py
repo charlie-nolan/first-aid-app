@@ -102,6 +102,9 @@ HEDGE = {"if", "whether", "unsure", "maybe", "barely", "might", "check",
          "will", "gonna", "could", "about"}       # "she will pass out", "about to pass out": not yet
 
 
+NOT_A_STATE = {"problem", "problems", "trouble", "troubles", "issue", "issues", "difficulty",
+               "difficulties", "question", "questions", "advice", "tips", "rate"}
+
 CONTRAST = {"but", "now", "though", "although", "except"}
 
 
@@ -127,14 +130,16 @@ def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | N
             covered = set()
             for ph in phrases:
                 pw = tokenize(ph)
-                if len(pw) == 1 or any(w in NEGATION for w in pw):   # one word or negated: no verb folding
-                    p = [_stem(w, verbs=False) for w in pw]          # ("no breath" != "no breathing problems")
+                if len(pw) == 1:                   # one word: no verb folding ("squirting" != "squirt bottle")
+                    p = [_stem(w, verbs=False) for w in pw]
                     hit = _find(plain, p)
                 else:
                     p = [_stem(w) for w in pw]
                     hit = _find(words, p)
                 if hit is None:
                     continue
+                if hit[-1] + 1 < len(raw) and raw[hit[-1] + 1] in NOT_A_STATE:
+                    continue                       # "no breathing problems": a topic, not a state
                 i = hit[0]
                 before = words[max(0, i - NEG_WINDOW):i]
                 if any(w in NEGATION for w in before) and not any(w in NEGATION for w in p):
@@ -203,6 +208,8 @@ def life_options(hyps: list[str], tree: dict, smap: dict) -> list[str]:
         return []
     filled = fill_nbest(hyps, smap)
     first, _, _ = walk(tree, smap, filled)
+    lt = smap.get("life_threat") or []
+    pins = {c for m in lt.values() for c in m.values()} if isinstance(lt, dict) else {r["go"] for r in lt}
     out = [first]
     top = tokenize(hyps[0])
     below = {w for h in hyps[1:] for w in tokenize(h)}
@@ -211,7 +218,7 @@ def life_options(hyps: list[str], tree: dict, smap: dict) -> list[str]:
             if any(b == alt or _stem(b) == _stem(alt) for b in below):
                 swapped = " ".join(top[:i] + [alt] + top[i + 1:])
                 card, _, _ = walk(tree, smap, _fill(swapped, smap))
-                if card not in out:
+                if card not in out and card in pins:   # only a rival LIFE card earns a second tile
                     out.append(card)
     return out
 
