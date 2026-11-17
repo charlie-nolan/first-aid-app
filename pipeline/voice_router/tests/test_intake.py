@@ -165,3 +165,15 @@ def test_stemmed_verbs_and_nbest_life_threat_vote():
     assert fill("she's stop breathing", smap["slots"]) == {"breathing": "no"}       # -ed folded
     assert fill_nbest(["she's top breeding", "she's stopped breathing"], smap) == {"breathing": "no"}
     assert fill_nbest(["hurt my arm", "hurt my leg"], smap) == {"body_part": "arm"}  # no non-safety adds
+
+
+def test_turns_to_card_counts_answers():
+    from vr.intake import turns_to_card, _ancestors, _questions, simulate
+    anc = _ancestors(TREE, _questions(TREE, SMAP))
+    assert turns_to_card(TREE, SMAP, "a raccoon bit my thigh", {"limb"}, anc) == 1
+    assert turns_to_card(TREE, SMAP, "the dog got me", {"face"}, anc) == 2      # asks where, then face
+    assert turns_to_card(TREE, SMAP, "something bit me", {"face"}, anc) == 3    # asks animal, then where
+    assert turns_to_card(TREE, SMAP, "a snake bit me", {"face"}, anc) is None   # wrong card opened
+    seeds = {"nodes": {"face": {"train": ["the dog got me", "something bit me"]}}}
+    out = simulate(TREE, SMAP, seeds)
+    assert "1: 0%  2: 50%  3: 100%" in out

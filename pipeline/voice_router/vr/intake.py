@@ -210,12 +210,12 @@ def _leads(tree, qs, start, filled, implies, limit=12) -> bool:
     return False
 
 
-def walk(tree: dict, smap: dict, filled: dict[str, str]):
-    """Follow the tree from its root, taking every answer the blanks already give.
-    Returns (card to show, cards skipped, blank it is asking or None)."""
+def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = None):
+    """Follow the tree from its root (or from `start`, after an answer), taking every answer the
+    blanks already give. Returns (card to show, cards skipped, blank it is asking or None)."""
     nodes, qs, implies = tree["nodes"], _questions(tree, smap), smap.get("implies", {})
-    node, skipped, seen = tree["root"], [], set()
-    lt = smap.get("life_threat") or []
+    node, skipped, seen = start or tree["root"], [], set()
+    lt = [] if start else (smap.get("life_threat") or [])
     if isinstance(lt, dict):                      # short form {slot: {value: card}}
         lt = [{"if": {s: v}, "go": card} for s, m in lt.items() for v, card in m.items()]
     for rule in lt:                               # life threats jump the queue; first matching rule wins
@@ -252,12 +252,15 @@ def walk(tree: dict, smap: dict, filled: dict[str, str]):
     return node, skipped, None
 
 
-def _ancestors(tree: dict) -> dict[str, set[str]]:
+def _ancestors(tree: dict, qs: dict | None = None) -> dict[str, set[str]]:
     """Card -> every card on some path from the root to it (itself included)."""
     up: dict[str, set[str]] = {}
     for k, n in tree["nodes"].items():
         for c in n.get("choices", []):
             up.setdefault(c.get("to"), set()).add(k)
+    for k, q in (qs or {}).items():
+        for t in q.get("choices", {}).values():
+            up.setdefault(t, set()).add(k)
     out = {}
     for k in tree["nodes"]:
         seen, todo = {k}, [k]
@@ -269,6 +272,32 @@ def _ancestors(tree: dict) -> dict[str, set[str]]:
     return out
 
 
+def turns_to_card(tree: dict, smap: dict, line: str, ok: set, anc: dict, most: int = 6) -> int | None:
+    """Voice turns until the right card shows: turn 1 is the spoken sentence; every later turn is
+    one answer on the page the device stopped on (the tile toward the right card, said as its number
+    or word, or pressed). None = it opened a wrong card or asked off the path (the person must back out)."""
+    filled = dict(_fill(line, smap))
+    card, _, asking = walk(tree, smap, filled)
+    toward = set().union(*(anc.get(g, {g}) for g in ok))
+    qs = _questions(tree, smap)
+    for turn in range(1, most + 1):
+        if card in ok:
+            return turn
+        if card not in toward:
+            return None
+        tiles = [{"to": t, "value": v} for v, t in (qs.get(card) or {}).get("choices", {}).items()] \
+            + tree["nodes"][card].get("choices", [])
+        step = next((c for c in tiles if c.get("to") in toward), None)
+        if not step:
+            return None
+        if asking and step.get("value"):
+            filled[asking] = step["value"]
+            card, _, asking = walk(tree, smap, filled, start=card)
+        else:
+            card, _, asking = walk(tree, smap, filled, start=step["to"])
+    return None
+
+
 def simulate(tree: dict, smap: dict, seeds: dict) -> str:
     """Score each seed line: 'right' = landed on its card (or a `same:` twin); 'on way' = stopped
     to ask a blank on a card that leads to it; 'stuck' = asking somewhere off its path;
@@ -277,9 +306,12 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
     for grp in seeds.get("same", []):
         for k in grp:
             same[k] = set(grp)
-    anc = _ancestors(tree)
+    anc = _ancestors(tree, _questions(tree, smap))
     tally = {"right": 0, "on way": 0, "stuck": 0, "WRONG": 0}
-    skipped_total, n, wrong = 0, 0, []
+    skipped_total, n, wrong, turns = 0, 0, [], []
+    lt = smap.get("life_threat") or []
+    pins = {c for m in lt.values() for c in m.values()} if isinstance(lt, dict) else {r["go"] for r in lt}
+    pinned = []                                   # (opened on turn 1?) for lines whose card is a life-threat pin
     for gold, d in (seeds.get("nodes") or {}).items():
         if gold not in tree["nodes"]:
             continue
@@ -288,6 +320,9 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             n += 1
             skipped_total += len(skipped)
             ok = same.get(gold, {gold})
+            turns.append(turns_to_card(tree, smap, line, ok, anc))
+            if ok & pins:
+                pinned.append(turns[-1] == 1)
             if card in ok:
                 tally["right"] += 1
             elif any(card in anc.get(g, ()) for g in ok):   # stopped (asking or on a plain card) on its way
@@ -299,7 +334,12 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
                 wrong.append(f"  {line!r}: wanted {gold}, opened {card}")
     pct = {k: f"{100 * v / max(n, 1):.0f}%" for k, v in tally.items()}
     return (f"{n} lines  " + "  ".join(f"{k} {v}" for k, v in pct.items())
-            + f"  avg cards skipped {skipped_total / max(n, 1):.2f}\n" + "\n".join(wrong[:30]))
+            + f"  avg cards skipped {skipped_total / max(n, 1):.2f}\n"
+            + "right card by voice turn  " + "  ".join(
+                f"{k}: {100 * sum(1 for t in turns if t and t <= k) / max(n, 1):.0f}%" for k in (1, 2, 3, 4))
+            + f"  never (wrong card / off path): {100 * sum(1 for t in turns if t is None) / max(n, 1):.0f}%\n"
+            + (f"life-threat cards opened on the first sentence: {sum(pinned)}/{len(pinned)}\n" if pinned else "")
+            + "\n".join(wrong[:30]))
 
 
 def main(argv=None):
