@@ -13,7 +13,7 @@ def main(argv=None):
     lx.add_argument("--min-count", type=int, default=1)
     lx.add_argument("--dry-run", action="store_true")
     lx.add_argument("--renumber", action="store_true", help="one-time v2 rebuild (keeps ids 0-9); see lexicon.build")
-    for name in ("train", "synth", "opendata", "evaluate", "whisper", "record", "export", "adapt", "devrec", "calibrate", "micmatch", "pagescore", "slot", "snap"):
+    for name in ("train", "synth", "opendata", "evaluate", "whisper", "record", "export", "adapt", "devrec", "calibrate", "micmatch", "pagescore", "slot", "snap", "report"):
         sub.add_parser(name, add_help=False)
     a, rest = ap.parse_known_args(argv)
     if a.cmd != "lexicon":

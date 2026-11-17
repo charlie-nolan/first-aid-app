@@ -7,3 +7,9 @@ shows the run working. Names: `<date>_<what>_<run>_test<NN>.png`.
 - Anything else (router sims, bench logs): `python -m fasr snap --kind <what> --run <run> --log <file>`
   or `python -m fasr snap --kind <what> --run <run> -- <command>`.
 - Metrics and progress only: no manual text, prompt lists or transcripts of recordings.
+
+## README-style visuals
+
+`python -m fasr report --runs firstaid firstaid2 m --set me_dev/eval` draws what well-documented ML
+repos show: training curves (loss and dev phone error per run), a run-vs-run accuracy chart, and a
+results table (PNG plus rows appended to `RESULTS.md`). Pillow only.
