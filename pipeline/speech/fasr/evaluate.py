@@ -48,9 +48,15 @@ def main(argv=None):
     ap.add_argument("--set", action="append", required=True)
     ap.add_argument("--beam", type=int, default=24)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--vocab", help="text file, one word per line: decode with only these words "
+                    "(plus reserved ids 0-9); ids stay the lexicon's, so results compare with the full set")
     a = ap.parse_args(argv)
     rows = yaml.safe_load(lx.LEXICON.read_text())["words"]
     ids = {r["word"]: r["id"] for r in rows}
+    if a.vocab:
+        keep = {w.strip().lower() for w in Path(a.vocab).read_text().split() if w.strip()}
+        rows = [r for r in rows if r["id"] < 10 or r["word"] in keep]
+        print(f"decoding with {len(rows)} of {len(ids)} lexicon words ({a.vocab})")
     trie = Trie.from_lexicon(rows)
     # slot words the router's intake fills (body part, mechanism, animal, bleeding type)
     slot = {r["id"] for r in rows if r.get("class") in (1, 2, 6) or r["word"] in BLEED}
@@ -63,7 +69,7 @@ def main(argv=None):
         recs = [json.loads(l) for l in sp.read_text().splitlines() if l.strip()]
         if a.limit:
             recs = recs[: a.limit]
-        out = (WORK / "speech" / "runs" / a.run / f"nbest-{sp.parent.name}-{sp.stem}.jsonl").open("w")
+        out = (WORK / "speech" / "runs" / a.run / f"nbest-{sp.parent.name}-{sp.stem}{'-' + Path(a.vocab).stem if a.vocab else ''}.jsonl").open("w")
         agg = defaultdict(lambda: defaultdict(float))
         for r in recs:
             wav = Path(r["wav"]) if Path(r["wav"]).is_absolute() else sp.parent / r["wav"]
@@ -103,4 +109,4 @@ def main(argv=None):
             }
         report[str(sp)] = res
         print(sp, json.dumps(res, indent=1), flush=True)
-    (WORK / "speech" / "runs" / a.run / "eval.json").write_text(json.dumps(report, indent=1))
+    (WORK / "speech" / "runs" / a.run / (f"eval-{Path(a.vocab).stem}.json" if a.vocab else "eval.json")).write_text(json.dumps(report, indent=1))
