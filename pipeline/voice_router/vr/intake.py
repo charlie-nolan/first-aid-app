@@ -336,7 +336,7 @@ _FILLER = {"a", "an", "the", "or", "and", "of", "on", "in", "is", "it", "to", "m
 def wordlists(tree: dict, smap: dict) -> dict:
     """Per question card: the words its answer may use (for the speech thread's per-question
     decoder subset): the asked slot's phrase words, its tile labels' words, numbers and commands."""
-    base = ["one", "two", "three", "four", "yes", "no", "back", "again", "home", "number"]
+    base = ["one", "two", "three", "four", "yes", "no", "back", "again", "home"]
     out = {}
     for card in tree["nodes"]:
         ts = tiles(tree, smap, card)
@@ -346,10 +346,11 @@ def wordlists(tree: dict, smap: dict) -> dict:
         w = set(base)
         for c in ts:
             w |= set(tokenize(c.get("label", "")))
-        if q:
-            for phrases in smap.get("slots", {}).get(q["slot"], {}).values():
-                for ph in phrases:
-                    w |= set(tokenize(ph))
+        if q:                                      # only the answers THIS card's tiles take (fine values climb `implies`)
+            for v, phrases in smap.get("slots", {}).get(q["slot"], {}).items():
+                if _answer(q, v, smap.get("implies", {})):
+                    for ph in phrases:
+                        w |= set(tokenize(ph))
         out[card] = {"slot": q["slot"] if q else None, "tiles": [c.get("label") or c.get("value") for c in ts],
                      "words": sorted(w)}
     return out
