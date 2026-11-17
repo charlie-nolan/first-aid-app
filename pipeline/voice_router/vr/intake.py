@@ -86,17 +86,25 @@ def _find(words: list[str], phrase: list[str], gap: int = 1) -> list[int] | None
 HEDGE = {"if", "whether", "unsure", "maybe", "barely", "might", "check"}
 
 
-def fill(text: str, slots: dict, priority: dict | None = None) -> dict[str, str]:
+CONTRAST = {"but", "now", "though", "although", "except"}
+
+
+def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | None = None) -> dict[str, str]:
     """Blank -> value, from the words actually heard. Never guesses:
     - a hit right after a negation ("not spurting") or a hedge ("can't tell if she's breathing") fills nothing;
+    - "X but Y" / "X, now Y": when values of one blank sit on both sides of the contrast word,
+      the later clause wins ("passed out but woke up");
     - the value whose phrases cover the most heard words wins ("red hot oozing pus" beats "cut");
-    - a tie goes to the value listed first in priority[slot] (most severe / most specific first),
-      else the one listed first in the slot map."""
+    - a tie on coverage: if `decisive` is given, slots in it (the life-threat blanks) take the value
+      listed first in priority[slot] (most severe first) and every other blank stays EMPTY, so the
+      card asks; with decisive=None every tie takes the priority value (old behaviour)."""
     words = [_stem(w) for w in tokenize(text)]
     priority = priority or {}
-    best: dict[str, tuple] = {}
+    cuts = [i for i, w in enumerate(words) if w in CONTRAST]
+    out: dict[str, str] = {}
     for slot, values in slots.items():
         order = list(priority.get(slot, [])) + [v for v in values if v not in priority.get(slot, [])]
+        cand = []                                  # (value, covered positions)
         for value, phrases in values.items():
             covered = set()
             for ph in phrases:
@@ -112,10 +120,32 @@ def fill(text: str, slots: dict, priority: dict | None = None) -> dict[str, str]
                     continue
                 covered.update(hit)
             if covered:
-                key = (len(covered), -order.index(value))
-                if slot not in best or key > best[slot][0]:
-                    best[slot] = (key, value)
-    return {s: v for s, (_, v) in best.items()}
+                cand.append((value, covered))
+        if not cand:
+            continue
+        for c in reversed(cuts):                   # later clause wins over an earlier one
+            late = [x for x in cand if min(x[1]) > c]
+            if late and len(late) < len(cand) and all(max(x[1]) < c for x in cand if x not in late):
+                cand = late
+                break
+        top = max(len(cv) for _, cv in cand)
+        tied = sorted((v for v, cv in cand if len(cv) == top), key=order.index)
+        if len(tied) > 1 and decisive is not None and slot not in decisive:
+            continue                               # two equally strong answers: ask, don't pick
+        out[slot] = tied[0]
+    return out
+
+
+def decisive_slots(smap: dict) -> set:
+    """Blanks used by life-threat rules: ties there go to the more severe value instead of asking."""
+    lt = smap.get("life_threat") or []
+    if isinstance(lt, dict):
+        return set(lt)
+    return {s for r in lt for s in list(r.get("if", {})) + list(r.get("unless") or {})}
+
+
+def _fill(text: str, smap: dict) -> dict[str, str]:
+    return fill(text, smap["slots"], smap.get("priority"), decisive_slots(smap))
 
 
 def _questions(tree: dict, smap: dict) -> dict:
@@ -226,7 +256,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
         if gold not in tree["nodes"]:
             continue
         for line in (d.get("train") or []) + (d.get("test") or []):
-            card, skipped, asking = walk(tree, smap, fill(line, smap["slots"], smap.get("priority")))
+            card, skipped, asking = walk(tree, smap, _fill(line, smap))
             n += 1
             skipped_total += len(skipped)
             ok = same.get(gold, {gold})
@@ -258,7 +288,7 @@ def main(argv=None):
         print(simulate(tree, smap, yaml.safe_load(a.sim.read_text())))
         return
     for s in a.sentences:
-        f = fill(s, smap["slots"], smap.get("priority"))
+        f = _fill(s, smap)
         card, skipped, asking = walk(tree, smap, f)
         label = tree["nodes"].get(card, {}).get("label", card)
         print(f"{s!r}\n  filled: {f}\n  skipped {len(skipped)} card(s) {skipped} -> {card} ({label})"

@@ -144,3 +144,14 @@ def test_value_found_through_plain_link_on_a_question_card():
     smap = {"slots": {"animal": {"snake": ["snake"], "spider": ["spider"], "tick": ["tick"], "mammal": ["dog"]}}}
     assert walk(tree, smap, fill("a spider bit me", smap["slots"])) == ("spider", ["start", "other"], None)
     assert walk(tree, smap, fill("something bit me", smap["slots"])) == ("start", [], "animal")
+
+
+def test_tie_asks_except_on_life_threat_blanks_and_later_clause_wins():
+    slots = {"cold": {"mild": ["shaking"], "cold_stress": ["still walking"], "moderate": ["confused"]},
+             "conscious": {"no": ["passed out"], "yes": ["woke up"]}}
+    pr = {"cold": ["moderate", "mild", "cold_stress"], "conscious": ["no", "yes"]}
+    f = fill("shaking a lot and confused", slots, pr, decisive={"conscious"})
+    assert "cold" not in f                                   # mild vs moderate tie: ask
+    assert fill("shaking a lot and confused", slots, pr)["cold"] == "moderate"   # old behaviour
+    assert fill("he passed out but woke up", slots, pr, decisive={"conscious"})["conscious"] == "yes"
+    assert fill("he woke up then passed out", slots, pr, decisive={"conscious"})["conscious"] == "no"
