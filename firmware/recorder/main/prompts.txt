@@ -1,520 +1,520 @@
-T|protect crew with prophylaxis
-T|widen trail
-T|dry clothes available
-T|pain response
-T|not sure
-T|descend immediately
-T|cover with sterile dressing
-T|use natural fibers
-T|homemade tourniquet
-T|check pulse again
-T|yes report and triage
-T|loss of consciousness
-T|cool 10 20 min
-T|she scraped her finger
-T|take dexamethasone
-T|inflate before water
-T|prepare for transport
-T|check bundle occasionally
-T|have iced sheets
-T|start over
-T|no rubbing
-T|badly injured trauma
-T|don lifejacket
-T|build dressings around object
-T|treat burns
+T|peanut allergy
+T|his fingers are blue
+T|he's overheating
+T|cramps are getting strong
+T|hot spot on my foot
+T|i think i broke my leg
 T|no
-T|cut rawhide strips
-T|pit viper north america
-T|other kit item
-T|two
-T|stay still
-T|fever prostration breathing
-T|use poncho
-T|how to extinguish fire
-T|ice coating surfaces
-T|soap and water
-T|go home
-T|breathing no pulse
-T|prioritize sleep
-T|rest 48 hours
-T|go back
-T|no insect protection
-T|apply second tq higher
-T|monitor output
-T|i burned my wrist
-T|my head hurts
-T|haul needed
-T|yes tie anchor knot
-T|use compact formation
-T|leave in place
-T|use a stick as a splint
-T|remove fuel
-T|drink water
-T|elevate legs 6 8 inches
-T|ingest un melted snow
-T|not sure
-T|avoid glaciers
-T|chew but don't swallow for 15 minutes
-T|need artificial height
-T|i don't have a tourniquet
-T|use frame for platform
-T|limit eye movement
-T|pack needs washing
-T|apply pressure
-T|his leg is swollen
-T|acute mountain sickness
-T|eye protection needed
-T|cut at risers
-T|assess casualty
-T|check individual voids
-T|go home
-T|avoid plant
-T|extend care beyond initial tccc
-T|check circulation
-T|chemical agent suspected
-T|hollow stump for well
-T|my right knee is swollen
-T|warm hands slowly
-T|pain in my knee
-T|if breaths possible
-T|no immediate change
-T|armpit bleeding
-T|use dead branch bark
-T|use improvised
-T|dry area
-T|cut my leg on the trail
-T|touch to skin
-T|begin rescue breathing
-T|seek aid
-T|isolate sick crew
-T|communicating with the injured
-T|rest and avoid activity
-T|swallowed something bad
-T|open wound
-T|no further doses
-T|use ash sand soil
-T|cover mouth nose with cloth avoid wind
-T|drink water
-T|repeat request
-T|cover eye after flush
-T|avoid midday heat
-T|signal using mirror smoke
-T|use dd form 2
-T|improvise splint
-T|monitor breathing
-T|bleeding from ear canal
-T|sleep well
-T|inject adrenalin
-T|his knee is numb
-T|worsening or no change
-T|use natural signs
-T|signs of withdrawal
-T|keep head level
-T|add second rope
-T|continue cooling
-T|use parachute cord sheath
-T|skin rash after plant contact
-T|follow authorized pattern
-T|his shoulder is burned
-T|he's freaking out
-T|multiple partners no condom
-T|arm is bent funny
-T|knee is pale
-T|give water
-T|airway and breathing
-T|she was stung by a rattlesnake
-T|he got stung by a rattlesnake
-T|protect civilians and infrastructure
-T|put on a tourniquet
-T|switch to tepid
-T|document incident
-T|use lashing
-T|have climbing gear
-T|pencil thin sticks
-T|make a splint from branches
-T|climbing helmet use
-T|she scraped her ankle
-T|monitor casualty
-T|leave building now
-T|keep skin cool and dry
-T|position side down
-T|alert captain or bridge
-T|follow station bill
-T|litter evacuation
-T|dry fuel examples
-T|use improvised latrine
-T|heat stroke
-T|one
-T|avoid if possible
-T|use tent or tarp
-T|mission continues
-T|have hemostatic dressing
-T|victim revives
-T|not completed
-T|keep warm
-T|wait for vehicle
-T|tie chest harness
-T|diuretic use
-T|re seal if breathing worsens
-T|immobilize with splint or sling
-T|use other friction method
-T|outdoors no shelter
-T|place in recovery
-T|how do i start a fire
-T|too hot and dizzy
-T|check radial
-T|avoid tracks
-T|hear life mark and report
-T|three fires 100 ft apart
-T|monitor breathing
-T|blood is spurting
-T|use pad layers
-T|abandon trap effort
-T|too tight
-T|impalement injuries
-T|add baking soda sit overnight
-T|lower clouds
-T|move and set up cp
-T|get them back to duty
-T|suction only
-T|continue monitoring
-T|immobilize joints above below
-T|pressure dressing
-T|no gear no mask
-T|bring immersion suit
-T|open chest wound
-T|use cloth for mouth
-T|rest and monitor symptoms
-T|find natural cover
-T|bleeding from the neck
-T|use plastic canvas
-T|clean wound
-T|replace rope
-T|continue until help arrives
-T|sweep side to side
-T|tick bite
-T|no gear shout
-T|cover loosely
-T|elevate feet
-T|seek medical assistance
-T|tourniquet needed
-T|use parachute line
-T|feeling cold or numb
-T|groin bleeding
-T|no obvious injuries
-T|use snowshoes for speed
-T|keep them moving
-T|use cave crevice tree
-T|no water no food
-T|insert npa and reassess
-T|no flames remove clothing
-T|she broke her knee
-T|pulse present
-T|warm gradually
-T|descend immediately
-T|bring eyeglasses
-T|he's freezing and shivering
-T|pain relief
-T|move to lower elevation
-T|stay put
-T|4 6 hours sleep
-T|bleeding badly
-T|wear gloves
-T|need height
-T|seek help
-T|how to tension rope
-T|suspect inhalation anthrax
-T|do nothing
-T|it's bleeding and burned
-T|cook food thoroughly
-T|use flares
-T|protect eyes
-T|suspected concussion
-T|replace if damaged
-T|7 8 hours sleep
-T|i burned my foot
-T|coast or beach
-T|how to wash hands
-T|build h fire
-T|notify medics immediately
-T|improvise insulation
-T|bandage loosened
-T|dig behind first dune
-T|no symptoms normal use
-T|nose bleeding
-T|my right arm hurts
-T|nuclear blast detected
-T|do nothing
-T|quick temporary hold
-T|control bleeding
-T|four
-T|no materials need to gather
-T|no soap
-T|individual void examples
-T|keep warm
-T|worsening symptoms
-T|protect from insects
-T|shorten task
-T|wash body
-T|reapply looser bandage
-T|in a blizzard
-T|no change
-T|cover eyes
+T|something stabbed into her chest
+T|can't breathe or talk
+T|we're lost
+T|he's too cold and confused
+T|mountain sickness
+T|did he lose consciousness after hit
+T|dislocated shoulder
+T|sling for the arm
+T|everyone in the tent feels sick
 T|back
-T|have diuretic
-T|do nothing
-T|no seal improvised material
-T|prioritize life safety
-T|backstitch for strength
-T|no cns symptoms
-T|build australian poncho raft
-T|don't delay
-T|avoid skin contact wash immediately
-T|rewarm safe way
-T|seek shelter
-T|protect part
-T|no buddy
-T|monitor temperature
-T|pregnant large or belly wound
-T|make slitted glasses
-T|flush with water
-T|improvised equipment and tools
-T|try to climb out
-T|turn on the flashlight
-T|desert or dunes
-T|use existing knot
-T|have prusik
-T|yes site ready
-T|do not refreeze
-T|no technical gear
-T|wet clothing
-T|control bleeding
-T|rigid eye shield
-T|use insect repellent
-T|yes
-T|do nothing
-T|need basic skills
-T|non wood
-T|again
-T|use sound
-T|bleeding stopped now what
-T|do not use
-T|use kit insulation
-T|seek shelter from wind
-T|repeat if needed
-T|set snare with vine
-T|in vehicle
-T|keep calm
-T|shoulder is tingling
-T|no frost expected
-T|back to energy hazards
-T|wash area
-T|snowstorm or blizzard
-T|massive bleeding pulsing or steady
-T|slice sod build small
-T|apply pressure to neck wound
-T|prepare for transfer
-T|use friction sparks
-T|eat larger portion monitor
-T|signal for rescue
-T|slowly move
-T|don lifejacket
-T|ambulatory casualty
-T|none use improvised
-T|wear dark glasses or goggles
-T|my hip is bruised
-T|stay hidden and quiet
-T|no immediate danger
-T|monitor closely
-T|hip is cold
-T|move to shelter
-T|ensure air passage
-T|no tourniquet
-T|bring eyeglasses
-T|aim mirror correctly
-T|slip knot method
-T|use fixed ropes
-T|immobilize object and seek help
-T|on water
-T|gear harness carabiners
-T|wait for professionals
-T|monitor and seek aid
-T|do nothing
+T|he's acting strange suddenly
+T|he can't walk out
+T|it's caught in her calf
+T|do i need to treat river water
+T|rattler got him
+T|he's pale and sweaty
+T|water filter broke
+T|start over
+T|cold clammy skin
+T|coughing at altitude
+T|object stuck in the wound
+T|upset stomach
+T|she looks like she's going into shock
+T|torn area on lower leg
+T|haven't peed all day
+T|should i pull it out
+T|baby is choking
+T|where do the ties go
+T|check the fingers after splinting
+T|not enough water
+T|feeling light headed
+T|she collapsed with chest pain
+T|how do we get rescued
+T|we should go down
+T|no bone showing
+T|we climbed too fast and feel sick
+T|swallowed something bad
+T|frozen feet
+T|how do i handle a pelvis injury
+T|she fell in the cold river
+T|hurts to move the arm
+T|stick is stuck in her arm
+T|urine looks like apple juice
+T|need a secure knot fast
+T|sprained ankle
+T|blood is spurting out
+T|gut wound from the branch
+T|how far is the trailhead
+T|hear thunder
+T|he's still breathing
+T|wound is red and hot
+T|listen for thunder intervals
+T|who do i tell about the pelvis
+T|i'm lost
+T|skin is broken over it
+T|skin is fine but it's swollen
+T|hold on a little longer
+T|eyes open wide now
+T|first aid kit splint
+T|just need to rest now
+T|head injury check now please
+T|waiting for rescue
+T|use a stick as a splint
+T|keep calm and don't pull
+T|how do i put on a tourniquet
+T|there's a lot of blood around the break
+T|his arm is broken
+T|chest wound
+T|intestines are showing
+T|need the splint card
+T|the leg is deformed
+T|she can't put weight on her ankle
+T|can't even wiggle toes
+T|something in my eye
+T|neck pain after falling
+T|broken skin at the elbow
+T|we have nothing to splint it with
+T|the wood is through her leg
+T|he's confused after hitting his head
+T|material between knees
+T|hole in her chest
+T|explain how to bind it properly
+T|emergency shelter
+T|scrape on my knee
+T|need to drink more now
+T|bitten by a rattlesnake
+T|four
+T|how do i make a splint
+T|two
+T|signal a helicopter
+T|it's her wrist
+T|it's stuck deep in his thigh
+T|which joints do i lock
+T|broken arm and no splint
+T|head spinning like a wheel
+T|burnt my arm
+T|can he feel his toes
+T|make a fire
 T|toes are cold and pale
-T|other emergency
-T|push down draw back
-T|wear full clothes
-T|two person carry
-T|found unresponsive
-T|use suction if available
-T|move only if ready
-T|monotonous task risk
-T|irritation no discharge
-T|use shade
-T|can walk
-T|check pulse at carotid or radial
-T|check avpu
-T|the tourniquet isn't working
+T|what's for dinner
+T|very thirsty and dizzy
+T|signal mirror
+T|blister on my heel
+T|fell on her hip and can't stand
+T|can't breathe up high
+T|bear encounter
+T|body refusing to warm up
+T|find the section on tying
+T|stung by a jellyfish
+T|did the child swallow a tooth
+T|i can see bone
+T|fell and hit my head
+T|pale and sweaty and weak
+T|this blister is new
+T|the splint is too tight
+T|i like this view
+T|build a shelter
+T|why isn't he responding
+T|sunburn on her shoulders
+T|splint with a sleeping pad
+T|the skin isn't broken
+T|deep cut on her stomach
+T|no cut just swelling
+T|he's unresponsive
+T|she's losing a lot of blood
+T|allergic reaction
+T|turn on the flashlight
+T|broken leg and no splint
+T|i'm not sure if it's broken
+T|water from stream touched it
+T|move an injured person
+T|sunburned after hiking all day
+T|need help now please
+T|how high should the hand be
+T|nothing to make a splint
+T|how do i do cpr
+T|trench foot
+T|where to camp
+T|never mind
+T|snake bit her hand
+T|can't put weight on foot
+T|scalded with hot water
+T|one
+T|fell on a sharp stick
+T|what's the best knot for this rope
+T|stomach wound
+T|how do i start a fire
+T|feels like something's wrong
+T|not sure if it's cold or fumes
+T|i have a sam splint
+T|show where we are
+T|fell and can't put weight on my foot
+T|what goes between the legs
+T|there's a wound over the break
+T|testing testing
+T|use the good leg as a splint
+T|can't stop vomiting
+T|deep wound with air leakage
+T|it's his leg
+T|bit while setting up tent
+T|how do i check circulation
+T|he's bleeding really bad
+T|his leg looks wrong
+T|she's panicking
+T|dog bite
+T|open wound near wrist
+T|lost between trees
+T|passed out after the fall and hit her head
+T|raccoon bit me
+T|water filter broke again
+T|broken collarbone
+T|arm hurts to lift
+T|where do we go in a lightning storm
+T|he's impaled on a fallen limb
+T|frostbite on my fingers
+T|it's his arm
+T|head is pounding hard
+T|the knife slipped and it's bleeding
+T|no pulse
+T|going into shock
+T|make a stretcher
+T|fast weak pulse
+T|bitten by an animal
+T|collapsed near the trailhead
+T|chest pain
+T|chemical burn
+T|snake bit me near rocks
+T|venomous snake
+T|yes
+T|is the stream safe to drink
+T|don't let him stand yet
+T|what knot works for climbing
+T|can i use my trekking pole
+T|keep it tight but not too much
+T|not even a bathroom break
+T|nosebleed won't stop
+T|can't calm down
+T|hit his head on a rock
+T|pain in the pelvis
+T|knocked out a tooth
+T|throat is closing up
+T|padding between the knees
+T|sucking chest wound
+T|low blood sugar
+T|stung by a wasp and can't breathe
+T|his leg looks crooked
+T|she's screaming when she moves her leg
+T|fell into the fire
+T|stove in the tent and headache
+T|struck by lightning
+T|he's choking
+T|play some music
+T|air bubbling from a chest wound
+T|thunderstorm coming
+T|the gash near my ankle is still bleeding
+T|how to stop the bleeding
+T|i burned my hand
+T|how do i purify water
+T|my wrist is swollen and bent
+T|fire starting
+T|what now while we wait
+T|what time is it
+T|can't get cool even here
+T|any way to brace it without gear
+T|his hips hurt
+T|can't breathe after a branch went into his chest
+T|heat exhaustion
+T|kid drank something poisonous
+T|eyelid swelling fast
+T|he's freaking out
+T|arm is bent funny
+T|fever from the injury
+T|i don't have a splint
+T|mirror to sunbeam
+T|burned by the campfire
+T|find water
+T|where should the hand go in the sling
+T|does the splint go past the knee
+T|choking on food
+T|need something to immobilize it
+T|fingers are numb after splinting
+T|taut line hitch
+T|she's dizzy after hitting her head
+T|is it going to be sunny tomorrow
+T|cover all sides
+T|he's diabetic and acting strange
+T|she touched the stove
+T|tooth fell out
+T|tie the legs together
+T|which way is north
+T|drank too much water
+T|go back to the start
+T|red streaks in eye
+T|bleeding from the arm
+T|wet wood won't light
+T|cut my leg with the axe
+T|scalded by the hot shower
+T|no more climbing till head cleared
+T|back to normal
+T|why is my tooth so sensitive
+T|tick bite
+T|where's the joint aid
+T|my ankle's bleeding through the sock
+T|bleeding stopped now what
+T|hurt my knee badly
+T|a bat bit him
+T|find natural cover
+T|heat cramps
+T|where's the dry tinder
+T|how long should the splint be
+T|broken tooth
+T|grab the splint info
+T|can't stop shivering
+T|panic attack
+T|screaming inside
+T|hives on her back
+T|the cut looks infected
+T|not okay without oxygen
+T|a snake bit my leg
+T|pelvis might be broken
+T|stop the bleeding
+T|leg went numb after fall
+T|gut injury
+T|should i pop the blister
+T|he got a cut on his cheek and it's bleeding
+T|flag us down
+T|eyes burning from the snow glare
+T|bone through the skin
+T|arm won't straighten at all
+T|he ate a poisonous plant
 T|three
-T|use ship radio
-T|not breathing
-T|continue compressions
-T|is the scene safe
-T|survival mission and priorities
-T|do nothing
-T|use improvised aids
-T|use dry grass
-T|know location reorient
-T|my neck is swollen
-T|use plastic bag
-T|rinse with cool water
-T|evacuate to medical facility
-T|dangerous animal encounters
-T|new or changing breast lump
-T|exposed to cold or wet
-T|avoid direct wind
-T|proceed cautiously
-T|arm bleeding
-T|avoid alkaline flats
-T|monitor symptoms
-T|obstruction cleared
-T|deep cut on my hand
-T|check inventory
-T|continue monitoring
-T|sanitize with bleach
-T|repeat instructions
+T|burnt my arm near the fire
+T|make a sling
+T|blow to the head
+T|this has been going too long
+T|belly wound
+T|pus in the cut
 T|collapsed in the heat
-T|use waterproof gear
-T|can use belay
-T|give medication
-T|apply antiseptic
-T|heavy bleeding
-T|touch to lip
-T|junctional bleeding
-T|rope not entrenched
-T|help them stay active
+T|burn blisters
+T|spider bite
+T|how do i tie a rope
+T|deep cut on my hand
+T|throwing up and diarrhea
+T|heat stroke
+T|use the foam splint
+T|feeling faint on the trail
+T|headache at high altitude
+T|can you see if its infected
+T|how do i tie the legs
+T|may have hurt his neck
+T|check the pulse in his foot
+T|tarp shelter
+T|sucking chest wound on hike
+T|poison ivy
+T|show me how to lock it
+T|support her arms
+T|something is stuck in his leg
+T|my daughter has a deep gash
+T|how do i clean a wound
+T|lost the trail
+T|the bone is sticking out
+T|just wrap and pull tight
+T|bee sting and her face is swelling
+T|eye injury
+T|stomach cramps and the runs
+T|hot and confused
+T|make a splint from branches
+T|bad sunburn
+T|impaled on a branch
+T|it's bleeding a lot
+T|need shelter for the night
+T|my boots are rubbing
+T|how many miles today
+T|call for help for the pelvis
+T|she's hot and stopped sweating
+T|he's not breathing
+T|no trail markers now
+T|dark urine
+T|there's a cut on the leg
+T|cross a river
+T|it won't stop bleeding
+T|everything's blurry in here
+T|call my mom
+T|snow blindness
+T|head injury
+T|what do i check first
+T|boiling water spilled on him
+T|snake bite
+T|carbon monoxide
+T|she twisted her ankle
+T|something stuck in her throat
+T|how far should the splint go
+T|there's blood everywhere
+T|got sand in his eye
+T|keep head dry
+T|again
+T|altitude sickness
+T|really scared and breathing fast
+T|tie it around the tree branch
+T|wet and cold
+T|can't get air into lungs
 T|home
-T|find occlusive material
-T|report removed or trapped
-T|do not remove unless directed
-E|how do i make a sling
-E|dizzy and throwing up after a head knock
-E|there's a bear near camp
-E|got bit by a squirrel
-E|fell and split my head open
-E|i'm alone and need a tourniquet
-E|having a panic attack
-E|where do i inject the epipen
-E|elastic bandage
-E|i don't have one
-E|splint above and below the break
-E|make my own tourniquet
-E|should i use a tourniquet
-E|press on it
-E|his neck is cut
-E|knot for a tarp
-E|where did i park
-E|he fell off his bike and is bleeding
-E|when do i use a tourniquet
-E|i cut myself
-E|use a bandana as a tourniquet
-E|need a second one
-E|it's the forearm
-E|soaked in the rain and freezing
-E|tick on my leg
-E|her fingers are waxy and white
-E|pressure wrap
-E|hand cut
-E|it's the lower leg
-E|cut my foot on a rock
-E|fell on a sharp rock
-E|bleeding from the top of the leg
-E|diabetic and shaky
-E|soaked in blood
-E|everything looks fine now
-E|he stopped shivering and is slurring
-E|blood keeps coming out
-E|the bleeding is really heavy
-E|small cut on my finger
-E|he bumped his head and is acting weird
-E|turniket
-E|apply direct pressure
-E|eyes hurt from the glare
-E|tourniquet instructions
-E|make a shelter
-E|don't have anything for a splint
-E|add another tourniquet
-E|there's a tourniquet in the kit
-E|deep cut on his calf
-E|how high do i put the tourniquet
-E|someone's bleeding
-E|sliced his stomach open
-E|check feeling in her fingers
-E|the dog bit her hand
-E|bleeding from the leg
-E|fire with a ferro rod
-E|stuck out overnight
-E|splint feels way too tight
-E|drag him to safety
-E|the scratch is getting red
-E|overheated on the climb
-E|i can see the bone
-E|hurts around the hip bones
-E|his armpit won't stop bleeding
-E|stepped on broken glass
-E|cut on her neck
-E|his foot went white and cold
-E|windlass
-E|bleeding under the arm
-E|snake bit his ankle
-E|her skin is hot and dry
-E|tourniquet out of a belt
-E|the hatchet slipped and cut his shin
-E|there's a splint in my pack
-E|second tourniquet
-E|got the runs
-E|my shin is bleeding
-E|makeshift tourniquet
-E|he cut himself badly
-E|is the bandage too tight
-E|bleeding through the tourniquet
-E|got bit by a snake on the trail
-E|tourniquet one hand
-E|not sure it's broken
-E|how do i pack it
-E|snow cave
-E|she stopped breathing
-E|i only have sticks
-E|blood soaked through
-E|dog bit him and it's bleeding
-E|bleeding won't quit
-E|food stuck in his throat
-E|hand position in the sling
-E|clean drinking water
-E|do i remove the stick
-E|allergic to bees
-E|the bleeding stopped
-E|how tight should a tourniquet be
-E|dirt in my eye
-E|cut my arm
-E|she's choking on a candy
-E|we don't have a tourniquet
-E|grabbing his throat and can't speak
-E|hold it tight
-E|hold pressure on it
-E|bleeding badly from the leg
-E|co poisoning
+T|we have a splint in the kit
+T|stack branches well
+T|she collapsed and isn't breathing
+T|purify all water before drinking
+T|boiling not possible here
+T|ate wild berries and feels sick
+T|any numbness in her leg
+T|she was knocked out
+T|too hot and dizzy
+T|poked in the eye with a stick
+T|tie a knot
+T|stove too close to tent wall
+T|foot blisters
+T|way back unclear
+T|signal for help
+T|no splint
+T|how do i carry him
+T|hives all over
+T|toes are numb and white
+T|he's freezing and shivering
+T|tinder not catching
+T|now splint it after the bleeding
+T|cut across his abdomen
+T|boil water
+T|heart attack
+T|something went into his chest
+T|fumes in the tent
+T|treated wound what next for splint
+T|her hand is tingling
+T|he seems okay now
+T|panic taking over
 E|bad tooth pain
-E|strap her leg to the other one
-E|big gash
-E|my leg won't stop bleeding
+E|tell me a joke
+E|scratched eyeball
+E|improvised stretcher
+E|sharp pain in my chest and left arm
+E|soaked in the rain and freezing
+E|rolled my ankle on a rock
+E|her wrist looks proper bent out of shape
+E|lightning is striking right near our ridge
+E|from the beginning
+E|cpr steps for a child right now
+E|how do i find water in the woods
+E|huge blister on her toe
+E|feel nauseous after cooking inside the vestibule
+E|how to make a debris hut fast
+E|pelvic pain after the fall
+E|he's not breathing how do i do cpr
+E|impaled object
+E|his skin is charred
+E|i'm dizzy after banging my head hard
+E|dizzy and throwing up after a head knock
+E|call for rescue
+E|how tight should a tourniquet be
+E|punctured chest
+E|stick hit her eye
+E|bleeding a lot from the head
+E|stick went through his ribs
+E|she stopped breathing
+E|how do i splint a broken leg
+E|drag him to safety
+E|my kid's tummy is rock hard and hurting
+E|think my wrist is fractured
+E|bad burn from the campfire starting to blister
+E|cramping in the heat
+E|having a panic attack
+E|drank fuel by accident
+E|she's staring blankly and breathing really fast
+E|there's blood everywhere how do i stop it
+E|how to flush dirt out of an eye
+E|knocked a tooth clean out what now
+E|crushing chest pain
+E|eyes hurt from the glare
+E|two fang marks on my calf hurting bad
+E|we can't find the trail
+E|bad stomach bug
+E|she can't cough or make any sound
+E|it's the forearm
 E|abdominal injury
-E|keep pressure on it
-E|tie above and below the break
-E|feet are rubbed raw
+E|should i pop a blood blister hiking
+E|weak and pale after the accident
+E|is it gonna rain tomorrow morning
+E|two fang marks
+E|can't move my arm after the fall
+E|how to clean dirt out of a gash
+E|she knocked herself out for a minute
+E|who won the football match last night
+E|terrible cramps in the lower right side
+E|rash from a plant
+E|she's really thirsty
+E|dirt in my eye
+E|where do i inject the epipen
+E|her arm is crooked
+E|my chest feels super tight and hurts
+E|symptoms of carbon monoxide poisoning in a tent
+E|um my mate's leg won't stop bleeding
+E|he got hit by lightning
+E|pins and needles in her fingers
+E|got bit by a squirrel
+E|nice day for a hike
+E|how to signal a helicopter from the ground
+E|we lost the trail and it's getting dark
+E|using a mirror to flash for rescue
+E|fell off the ledge onto his head
+E|tell me a joke to cheer us up
+E|how long do i boil stream water
+E|everything looks fine now
+E|diabetic and shaky
+E|should we stay put or keep walking
+E|i can see the bone
+E|splitting headache since we climbed up here
+E|is there still a pulse below the splint
+E|how do i use an epipen on someone
+E|the scratch is getting red
+E|can't stop going to the bathroom
+E|signs of heatstroke vs heat exhaustion please
+E|we ran out of water
+E|is it safe to drink rainwater here
+E|his guts are coming out
+E|sick on the summit
+E|his lips are swelling
+E|what position to crouch in a thunderstorm
+E|branch whipped back and scratched her eyeball
+E|possible spine injury
+E|how do i tie a bowline knot
+E|how to make a smoky signal fire
+E|chipped his tooth
+E|his skin is cold and he feels faint
+E|how to start a fire with wet wood
+E|how to check if someone has a concussion
+E|snow cave
+E|my friend won't stop shivering and talking gibberish
+E|kid's mouth is dry and he's lethargic
+E|don't have anything for a splint
+E|spilled boiling water all over my foot
+E|my pee is super dark and i'm dizzy
+E|broke out in hives all over my body
 E|she's in shock
-E|it's gushing blood
-E|cut on my leg
-E|bleeding arm or leg
-E|how do you use a tourniquet
+E|small cut on my finger
+E|don't know where we are
+E|we're freezing wet and losing feeling in fingers
+E|had the runs all night at camp
+E|um okay
+E|stuck out overnight
+E|took too many pills
+E|tongue swelling
+E|fire with a ferro rod
+E|i sliced my finger open
+E|burn from the camp stove
+E|scraped my knee up bad on the rocks
+E|ate a mushroom and is vomiting

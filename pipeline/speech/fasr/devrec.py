@@ -26,22 +26,52 @@ OUT = WORK / "speech" / "me_dev"
 PROMPTS = Path(__file__).resolve().parents[3] / "firmware" / "recorder" / "main" / "prompts.txt"
 
 
+GEN = Path(os.environ.get("GEN", Path.home() / "first-aid-voice/pipeline/voice_router/out/generated"))
+AGY_EVAL = Path(__file__).resolve().parents[1] / "out" / "agy_eval.txt"
+
+
+def _public_voice(which: str) -> list[str]:
+    """`train` or `test` phrases from voice/topics.yaml and voice/experts/ only: never experts_personal/
+    (Aerie-based, PC only), because prompts.txt is committed."""
+    import yaml
+    out = []
+    vdir = lx.CONTENT / "voice"
+    for f in [vdir / "topics.yaml", *sorted((vdir / "experts").glob("*.yaml"))]:
+        if not f.exists():
+            continue
+        d = yaml.safe_load(f.read_text()) or {}
+        groups = [d.get("reject", {})] + list((d.get("topics") or {}).values()) + list((d.get("nodes") or {}).values())
+        for g in groups:
+            out += [str(t) for t in (g or {}).get(which, [])]
+    return out
+
+
 def make_prompts(n_train: int, n_eval: int, seed: int = 5):
-    from .synth import sentences
+    """Prompts in the words a person says TO the device ("my buddy cut his hand"), not card titles:
+    TRAIN = router/expert `train` phrases + the router thread's Qwen sentences + short commands;
+    EVAL  = held-out user-style sentences (voice `test` phrases, agy's independent set), never trained on."""
     rng = random.Random(seed)
-    trees = [lx.CONTENT / "trees"]
-    for d in (Path.home() / "first-aid-build/pipeline/plb/content/trees",):
-        if d.exists():
-            trees.append(d)
-    tr, held = sentences(trees, [], 400, rng)
-    tr = [s for s in tr if 2 <= len(s.split()) <= 14 and s.isascii()]
+    def ok(s): return 2 <= len(s.split()) <= 14 and s.isascii()
+    seeds = [s.lower().strip() for s in _public_voice("train")]
+    gen = [s.lower().strip() for s in lx.extra_texts([GEN])] if GEN.exists() else []
+    held = [s.lower().strip() for s in _public_voice("test")]
+    if AGY_EVAL.exists():
+        held += [l.strip().lower() for l in AGY_EVAL.read_text().splitlines() if l.strip()]
+    held_set = set(held)
+    pool = list(dict.fromkeys(s for s in seeds + gen if ok(s) and s not in held_set))
+    rng.shuffle(pool)
     singles = ["one", "two", "three", "four", "yes", "no", "back", "again", "home"]
-    rng.shuffle(tr); rng.shuffle(held)
-    train = singles + tr[: n_train - len(singles)]
+    # every router seed first (hand-written), then Qwen sentences to fill
+    seed_set = set(seeds)
+    pool.sort(key=lambda s: s not in seed_set)
+    train = singles + pool[: n_train - len(singles)]
     rng.shuffle(train)
-    held = [s for s in held if s.isascii()][:n_eval]
+    held = list(dict.fromkeys(s for s in held if ok(s)))
+    rng.shuffle(held)
+    held = held[:n_eval]
     PROMPTS.write_text("".join(f"T|{s}\n" for s in train) + "".join(f"E|{s}\n" for s in held))
-    print(f"{PROMPTS}: {len(train)} training + {len(held)} held-out prompts")
+    print(f"{PROMPTS}: {len(train)} training + {len(held)} held-out prompts "
+          f"({sum(s in seed_set for s in train)} router seeds, {len(gen)} Qwen sentences available)")
 
 
 class Store:
