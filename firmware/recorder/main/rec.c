@@ -206,6 +206,11 @@ static void send_take(take_t *t) {
     t->sent = 1;
 }
 
+/* The current screen as one text line, sent to the PC by the USB task (the only USB writer),
+ * so `fasr devrec` can show the prompt even when no e-ink panel is wired. */
+static char screen_txt[400];
+static volatile uint32_t screen_ver;
+
 static volatile int64_t last_host_us;
 static void usb_task(void *arg) {
     char line[48]; int n = 0; uint8_t ch; uint32_t sent_ver = 0;
@@ -263,11 +268,6 @@ static void wrap(unsigned style, int x, int y, int w, int h, const char *s, size
         cy += lh; i += n; while (i < len && s[i] == ' ') i++;
     }
 }
-
-/* The current screen as one text line, sent to the PC by the USB task (the only USB writer),
- * so `fasr devrec` can show the prompt even when no e-ink panel is wired. */
-static char screen_txt[400];
-static volatile uint32_t screen_ver;
 
 static void draw(const char *status, bool rec) {
     memset(fbits, 0, sizeof fbits);
