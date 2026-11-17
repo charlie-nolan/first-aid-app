@@ -86,7 +86,7 @@ class Store:
     def __init__(self):
         OUT.mkdir(parents=True, exist_ok=True)
         self.rows: dict[str, dict] = {}
-        for m in ("train", "eval", "free", "pairs", "answers"):
+        for m in [x + sfx for x in ("train", "eval", "free", "pairs", "answers") for sfx in ("", "_guest")]:
             f = OUT / f"{m}.jsonl"
             if f.exists():
                 for l in f.read_text().splitlines():
@@ -110,12 +110,15 @@ class Store:
                 Path(self.rows[k]["wav"]).unlink(missing_ok=True); del self.rows[k]
         key = f"{mode}-{stamp}-{hdr['id']}"
         self.rows[key] = {"key": key, "wav": str(wav), "text": hdr.get("text", ""), "mode": mode, "dev_id": hdr["id"],
-                          "prompt": hdr["prompt"], "speaker": "charlie", "mic": "pdm-" + hdr.get("board", "?"),
+                          "prompt": hdr["prompt"], "speaker": "charlie" if hdr.get("speaker", "me") == "me" else "guest", "mic": "pdm-" + hdr.get("board", "?"),
                           "peak": hdr["peak"], "clip_per_mille": hdr["clip_per_mille"],
                           "secs": round(hdr["samples"] / hdr["sr"], 2)}
+        # guest clips go to <mode>_guest.jsonl only: a held-out-speaker TEST set, never trained on by default
         for m in ("train", "eval", "free", "pairs", "answers"):
-            rows = [r for r in self.rows.values() if r["mode"] == m]
-            (OUT / f"{m}.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
+            for spk, name in (("charlie", f"{m}.jsonl"), ("guest", f"{m}_guest.jsonl")):
+                rows = [r for r in self.rows.values() if r["mode"] == m and r.get("speaker", "charlie") == spk]
+                if rows or spk == "charlie":
+                    (OUT / name).write_text("".join(json.dumps(r) + "\n" for r in rows))
         return wav
 
 

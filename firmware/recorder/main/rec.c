@@ -7,7 +7,9 @@
  *
  * Buttons (all three bench buttons; on the Plus the same three are used):
  *   TALK  hold = record, release = save and go to the next sentence
- *   BACK  short = redo the previous sentence (the old clip is replaced)
+ *   BACK  short = redo the previous sentence (the old clip is replaced);  long = switch speaker ME / GUEST
+ *         (each speaker keeps their own place in every mode; clips carry "speaker" so a guest's EVAL
+ *          clips become a held-out-speaker test set)
  *   DOWN  short = skip this sentence;  long = next mode
  * Modes: TRAIN (sentences for training), EVAL (held-out sentences, scoring only),
  *        FREE (say anything about an injury; Whisper labels it later),
@@ -86,25 +88,32 @@ static void load_prompts(void) {
 }
 
 /* ---------- state kept in NVS so a restart carries on ---------- */
-static int mode, idx[M_COUNT];
+static const char *SPK_NAME[2] = { "ME", "GUEST" }, *SPK_KEY[2] = { "me", "guest" };
+static int mode, spk, idxs[2][M_COUNT];
+#define idx (idxs[spk])
 static uint32_t next_id;
 static void nvs_save(void) {
     nvs_handle_t h; if (nvs_open("fasrrec", NVS_READWRITE, &h)) return;
-    nvs_set_u8(h, "mode", (uint8_t)mode);
-    for (int m = 0; m < M_COUNT; m++) { char k[8]; snprintf(k, sizeof k, "i%d", m); nvs_set_i32(h, k, idx[m]); }
+    nvs_set_u8(h, "mode", (uint8_t)mode); nvs_set_u8(h, "spk", (uint8_t)spk);
+    for (int m = 0; m < M_COUNT; m++) { char k[8];
+        snprintf(k, sizeof k, "i%d", m); nvs_set_i32(h, k, idxs[0][m]);      /* ME keeps the old keys */
+        snprintf(k, sizeof k, "g%d", m); nvs_set_i32(h, k, idxs[1][m]); }
     nvs_set_u32(h, "id", next_id);
     nvs_commit(h); nvs_close(h);
 }
 static void nvs_load(void) {
     nvs_handle_t h; if (nvs_open("fasrrec", NVS_READONLY, &h)) return;
     uint8_t m = 0; nvs_get_u8(h, "mode", &m); mode = m % M_COUNT;
-    for (int i = 0; i < M_COUNT; i++) { char k[8]; snprintf(k, sizeof k, "i%d", i); int32_t v = 0; nvs_get_i32(h, k, &v); idx[i] = v; }
+    uint8_t sp = 0; nvs_get_u8(h, "spk", &sp); spk = sp & 1;
+    for (int i = 0; i < M_COUNT; i++) { char k[8]; int32_t v;
+        snprintf(k, sizeof k, "i%d", i); v = 0; nvs_get_i32(h, k, &v); idxs[0][i] = v;
+        snprintf(k, sizeof k, "g%d", i); v = 0; nvs_get_i32(h, k, &v); idxs[1][i] = v; }
     nvs_get_u32(h, "id", &next_id);
     nvs_close(h);
 }
 
 /* ---------- take store in PSRAM (append; reset when everything is copied) ---------- */
-typedef struct { uint32_t id, redo_of; uint8_t mode, sent, acked; int32_t prompt; uint32_t off, n; int16_t peak; uint16_t clip_pm; uint16_t range; } take_t;
+typedef struct { uint32_t id, redo_of; uint8_t mode, spk, sent, acked; int32_t prompt; uint32_t off, n; int16_t peak; uint16_t clip_pm; uint16_t range; } take_t;
 static int16_t *store; static size_t store_cap, store_used;     /* in samples */
 static take_t takes[MAX_TAKES]; static int ntakes;
 static SemaphoreHandle_t lock;
@@ -194,7 +203,7 @@ static take_t *rec_stop(int32_t prompt, uint32_t redo_of) {
     xSemaphoreTake(lock, portMAX_DELAY);
     take_t *t = &takes[ntakes++];
     memset(t, 0, sizeof *t);
-    t->id = next_id++; t->redo_of = redo_of; t->mode = (uint8_t)mode; t->prompt = prompt; t->off = rec_off; t->n = rec_n;
+    t->id = next_id++; t->redo_of = redo_of; t->mode = (uint8_t)mode; t->spk = (uint8_t)spk; t->prompt = prompt; t->off = rec_off; t->n = rec_n;
     int peak = 0, clip = 0, lo = 32767, hi = -32768;
     for (uint32_t i = 0; i < t->n; i++) {
         int s0 = store[t->off + i], v = abs(s0);
@@ -232,9 +241,9 @@ static void send_take(take_t *t) {
     txt[0] = 0;
     if (kind_of(t->mode) >= 0 && t->prompt >= 0) { line_t L = said(lines[kind_of(t->mode)][t->prompt]); json_escape(txt, sizeof txt, L.s, L.len); }
     snprintf(hdr, sizeof hdr, "TAKE {\"id\": %lu, \"mode\": \"%s\", \"prompt\": %ld, \"text\": \"%s\", \"samples\": %lu, "
-             "\"sr\": %d, \"peak\": %d, \"clip_per_mille\": %u, \"redo_of\": %ld, \"board\": \"%s\"}",
+             "\"sr\": %d, \"peak\": %d, \"clip_per_mille\": %u, \"redo_of\": %ld, \"board\": \"%s\", \"speaker\": \"%s\"}",
              (unsigned long)t->id, MODE_KEY[t->mode], (long)t->prompt, txt, (unsigned long)t->n, SR, t->peak, t->clip_pm,
-             t->redo_of ? (long)t->redo_of : -1L, BOARD_NAME);
+             t->redo_of ? (long)t->redo_of : -1L, BOARD_NAME, SPK_KEY[t->spk & 1]);
     usb_line(hdr);
     const uint8_t *p = (const uint8_t *)(store + t->off);
     size_t left = t->n * 2; uint32_t c = 0;
@@ -319,8 +328,8 @@ static void draw(const char *status, bool rec) {
     memset(fbits, 0, sizeof fbits);
     char top[80];
     int kd = kind_of(mode), total = kd >= 0 ? nlines[kd] : 0;
-    if (kd >= 0) snprintf(top, sizeof top, "%s %d/%d   unsent %d", MODE_NAME[mode], idx[mode] + 1, total, pending());
-    else snprintf(top, sizeof top, "%s #%d   unsent %d", MODE_NAME[mode], idx[mode] + 1, pending());
+    if (kd >= 0) snprintf(top, sizeof top, "%s %s %d/%d   unsent %d", SPK_NAME[spk], MODE_NAME[mode], idx[mode] + 1, total, pending());
+    else snprintf(top, sizeof top, "%s %s #%d   unsent %d", SPK_NAME[spk], MODE_NAME[mode], idx[mode] + 1, pending());
     cart_draw_str(&cart, 0, 1, &fb, 4, 12, top);
     if (rec) for (int y = 2; y < 14; y++) for (int x = 236; x < 248; x++) fbits[y * 32 + x / 8] |= 0x80 >> (x % 8);  /* REC dot */
     const char *body; size_t blen; char tmp[200];
@@ -331,7 +340,7 @@ static void draw(const char *status, bool rec) {
     else if (kd >= 0 && total) { line_t L = lines[kd][idx[mode] % total]; body = L.s; blen = L.len; }
     else if (mode == M_FREE) { body = "Say what happened, like you would on a trail. Any injury, any words."; blen = strlen(body); }
     else { snprintf(tmp, sizeof tmp, "Hold TALK %d s for background only: wind, stream, rain, fan, clothes. Don't talk.", NOISE_S); body = tmp; blen = strlen(tmp); }
-    const char *st = status ? status : "Hold TALK to read   BACK redo   DOWN skip / hold: mode";
+    const char *st = status ? status : "Hold TALK to read  BACK redo/hold: who  DOWN skip/hold: mode";
     xSemaphoreTake(lock, portMAX_DELAY);
     snprintf(screen_txt, sizeof screen_txt, "SCREEN %s%s | %.*s | %s", rec ? "[REC] " : "", top, (int)blen, body, st);
     for (char *c = screen_txt; *c; c++) if (*c == '\n' || *c == '\r') *c = ' ';
@@ -395,8 +404,10 @@ void app_main(void) {
             else if (t->peak < 1000) snprintf(s, sizeof s, "Saved #%lu  very quiet: speak up or closer", (unsigned long)t->id);
             else snprintf(s, sizeof s, "Saved #%lu (%.1f s). Next:", (unsigned long)t->id, t->n / (float)SR);
             draw(s, false);
-        } else if (down(1)) {                                      /* BACK: redo previous */
-            while (down(1)) vTaskDelay(pdMS_TO_TICKS(10));
+        } else if (down(1)) {                                      /* BACK: redo previous / hold = speaker */
+            int held = 0; while (down(1)) { vTaskDelay(pdMS_TO_TICKS(10)); held += 10;
+                if (held == 700) { spk ^= 1; last_prompt = -1; nvs_save(); draw(spk ? "GUEST now: clips tagged as guest" : "ME now: clips tagged as you", false); } }
+            if (held >= 700) continue;
             if (last_mode == mode && last_prompt >= 0) { idx[mode] = last_prompt; redo_of = last_id; nvs_save(); draw("Redo: read it again (old clip will be replaced)", false); }
         } else if (down(2)) {                                      /* DOWN: skip / hold = mode */
             int held = 0; while (down(2)) { vTaskDelay(pdMS_TO_TICKS(10)); held += 10; if (held == 700) { mode = (mode + 1) % M_COUNT; nvs_save(); draw(0, false); } }
