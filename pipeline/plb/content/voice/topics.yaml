@@ -30,6 +30,23 @@ reject:            # things that must open nothing ("say that again" screen)
     - i like this view
     - how many miles today
     - call my mom
+    # near misses (11-17): first-aid words used without an emergency
+    - i watched a show about snake bites
+    - we read a book about hypothermia last winter
+    - remind me to buy more bandages
+    - my first aid class is next week
+    - how many band aids are left in the kit
+    - i love the song heartbeat
+    - the movie had a lot of blood in it
+    - we talked about bears at camp last night
+    - that sunset is burning orange
+    - my legs are tired from the climb but i'm fine
+    - remember when you broke your arm as a kid
+    - pack the sunscreen and bug spray
+    - how cold will it get tonight
+    - let's boil water for coffee
+    - i'm dying to get to the summit
+    - this hike is killing me haha
   test:
     - what's the weather on saturday
     - tell me a joke
