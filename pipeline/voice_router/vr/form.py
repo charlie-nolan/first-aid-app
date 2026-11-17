@@ -175,7 +175,7 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
     "skip" / "I don't know", or ("form", None, None) with fewer fields left."""
     fields = fields if fields is not None else open_fields(cands)
     words = set(tokenize(text))
-    if words & {"skip", "skip it", "don't know", "dunno"} or text.strip().lower() in ("i don't know", "no time"):
+    if words & {"skip", "dunno"} or {"don't", "know"} <= words or {"no", "time"} <= words:
         return "skip", None, skip(cands)           # same as the SKIP buttons (UP+DOWN together)
     if fields and fields[0].key == "@topic":
         hit = [c for c in cands if _named(c, words)]
