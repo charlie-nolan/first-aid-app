@@ -31,6 +31,10 @@ from .train import edit_distance
 WORK = Path(os.environ.get("WORK", "/mnt/data/first-aid-gpu"))
 
 
+BLEED = {"bleeding", "spurting", "pumping", "pulsing", "gushing", "squirting", "oozing", "dripping",
+         "trickling", "seeping", "flowing", "steady", "soaked", "soaking"}
+
+
 def load_model(run: str, which: str = "best.pt") -> AcousticModel:
     d = torch.load(WORK / "speech" / "runs" / run / which, map_location="cpu")
     m = AcousticModel(d.get("size", "s"))
@@ -48,6 +52,8 @@ def main(argv=None):
     rows = yaml.safe_load(lx.LEXICON.read_text())["words"]
     ids = {r["word"]: r["id"] for r in rows}
     trie = Trie.from_lexicon(rows)
+    # slot words the router's intake fills (body part, mechanism, animal, bleeding type)
+    slot = {r["id"] for r in rows if r.get("class") in (1, 2, 6) or r["word"] in BLEED}
     model = load_model(a.run)
     reject_texts = {" ".join(lx.tokenize(s)) for s in
                     (yaml.safe_load((lx.CONTENT / "voice" / "topics.yaml").read_text()) or {}).get("reject", {}).get("test", [])}
@@ -77,6 +83,9 @@ def main(argv=None):
             else:
                 top = hyp["h"][0]["ids"] if hyp["n"] else []
                 g["err"] += edit_distance(top, ref); g["words"] += len(ref)
+                rs, hs = [w for w in ref if w in slot], {w for w in top if w in slot}
+                g["slot_ref"] += len(rs); g["slot_hit"] += sum(w in hs for w in rs)
+                g["slot_false"] += len(hs - set(rs))
                 g["in5"] += any(h["ids"] == ref for h in hyp["h"])
                 g["on_n"] += 1; g["on_reject"] += hyp["reject"]
             out.write(json.dumps({"wav": str(wav), "text": r["text"], "noise": cond, "ref": ref, **hyp}) + "\n")
@@ -85,6 +94,8 @@ def main(argv=None):
             res[cond] = {
                 "clips": int(g["n"]),
                 "wer": round(g["err"] / max(1, g["words"]), 3),
+                "slot_recall": round(g["slot_hit"] / max(1, g["slot_ref"]), 3),
+                "slot_false_per_clip": round(g["slot_false"] / max(1, g["on_n"]), 3),
                 "exact_in_5best": round(g["in5"] / max(1, g["on_n"]), 3),
                 "reject_on_topic": round(g["on_reject"] / max(1, g["on_n"]), 1),
                 "reject_off_topic": round(g["off_reject"] / max(1, g["off_n"]), 1) if g["off_n"] else None,
