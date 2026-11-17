@@ -1318,7 +1318,7 @@ words:
 - {id: 1307, word: "temp", class: 0, phones: ["T EH M P"], g2p: cmudict, src: trees}
 - {id: 1308, word: "container", class: 0, phones: ["K AH N T EY N ER"], g2p: cmudict, src: trees}
 - {id: 1309, word: "features", class: 0, phones: ["F IY CH ER Z"], g2p: cmudict, src: trees}
-- {id: 1310, word: "store", class: 0, phones: ["S T AO R"], g2p: cmudict, src: trees}
+- {id: 1310, word: "option", class: 0, phones: ["AA P SH AH N", "AO P SH AH N"], g2p: cmudict, src: prompts}
 - {id: 1311, word: "drain", class: 0, phones: ["D R EY N"], g2p: cmudict, src: trees}
 - {id: 1312, word: "thickness", class: 0, phones: ["TH IH K N AH S"], g2p: cmudict, src: intake}
 - {id: 1313, word: "stopping", class: 0, phones: ["S T AA P IH NG"], g2p: cmudict, src: intake}
@@ -1329,7 +1329,7 @@ words:
 - {id: 1318, word: "alarm", class: 0, phones: ["AH L AA R M"], g2p: cmudict, src: trees}
 - {id: 1319, word: "simple", class: 0, phones: ["S IH M P AH L"], g2p: cmudict, src: intake}
 - {id: 1320, word: "boat", class: 0, phones: ["B OW T"], g2p: cmudict, src: trees}
-- {id: 1321, word: "vegetation", class: 0, phones: ["V EH JH AH T EY SH AH N"], g2p: cmudict, src: trees}
+- {id: 1321, word: "number", class: 0, phones: ["N AH M B ER"], g2p: cmudict, src: prompts}
 - {id: 1322, word: "movement", class: 0, phones: ["M UW V M AH N T"], g2p: cmudict, src: trees}
 - {id: 1323, word: "shield", class: 0, phones: ["SH IY L D"], g2p: cmudict, src: trees}
 - {id: 1324, word: "coals", class: 0, phones: ["K OW L Z"], g2p: cmudict, src: trees}
@@ -1343,14 +1343,14 @@ words:
 - {id: 1332, word: "sea", class: 0, phones: ["S IY"], g2p: cmudict, src: trees}
 - {id: 1333, word: "live", class: 0, phones: ["L AY V", "L IH V"], g2p: cmudict, src: intake}
 - {id: 1334, word: "irrigate", class: 0, phones: ["IH R AH G EY T"], g2p: cmudict, src: intake}
-- {id: 1335, word: "adjust", class: 0, phones: ["AH JH AH S T"], g2p: cmudict, src: trees}
+- {id: 1335, word: "joking", class: 0, phones: ["JH OW K IH NG"], g2p: cmudict, src: prompts}
 - {id: 1336, word: "intact", class: 0, phones: ["IH N T AE K T"], g2p: cmudict, src: intake}
 - {id: 1337, word: "immersion", class: 0, phones: ["IH M ER ZH AH N"], g2p: cmudict, src: intake}
 - {id: 1338, word: "during", class: 0, phones: ["D UH R IH NG", "D Y UH R IH NG", "D ER IH NG"], g2p: cmudict, src: trees}
-- {id: 1339, word: "activity", class: 0, phones: ["AE K T IH V AH T IY", "AE K T IH V IH T IY"], g2p: cmudict, src: trees}
+- {id: 1339, word: "field", class: 0, phones: ["F IY L D"], g2p: cmudict, src: prompts}
 - {id: 1340, word: "extreme", class: 0, phones: ["EH K S T R IY M"], g2p: cmudict, src: trees}
 - {id: 1341, word: "noise", class: 0, phones: ["N OY Z"], g2p: cmudict, src: trees}
-- {id: 1342, word: "load", class: 0, phones: ["L OW D"], g2p: cmudict, src: trees}
+- {id: 1342, word: "exploded", class: 0, phones: ["IH K S P L OW D AH D", "IH K S P L OW D IH D"], g2p: cmudict, src: prompts}
 - {id: 1343, word: "tube", class: 0, phones: ["T UW B", "T Y UW B"], g2p: cmudict, src: trees}
 - {id: 1344, word: "support", class: 0, phones: ["S AH P AO R T"], g2p: cmudict, src: trees}
 - {id: 1345, word: "spread", class: 0, phones: ["S P R EH D"], g2p: cmudict, src: trees}

@@ -94,6 +94,18 @@ def life_bias(rows: list[dict], bonus: float = 1.0) -> dict:
     return {ids[w]: bonus for w in LIFE_WORDS if w in ids}
 
 
+def context_bias(rows: list[dict], words, bonus: float = 0.5, life: float = 1.0) -> dict:
+    """Context-aware listening: a small extra score for the words the current tree or question
+    expects (e.g. fang, swelling, rattlesnake on the bite pages), on top of the life-word bias.
+    Unlike a word-list subset nothing is forbidden, so an unexpected answer still comes through.
+    On the S3 this is one byte per lexicon id, swapped when the page changes."""
+    ids = {r["word"]: r["id"] for r in rows}
+    out = {ids[w]: bonus for w in words if w in ids}
+    for k, v in life_bias(rows, life).items():
+        out[k] = max(out.get(k, 0.0), v)
+    return out
+
+
 def _finish(words: tuple, node: int, trie: Trie, p: Params):
     """Ways to close the word in progress: yields (new_words, score_delta)."""
     if node == 0:

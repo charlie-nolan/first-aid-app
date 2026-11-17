@@ -52,6 +52,8 @@ def main(argv=None):
                     "(plus reserved ids 0-9); ids stay the lexicon's, so results compare with the full set")
     ap.add_argument("--life-bonus", type=float, default=1.0,
                     help="extra score for life-threat words (breathing, stopped, bleeding...); 0 = off")
+    ap.add_argument("--context", help="word list file: words the current tree/page expects get --context-bonus")
+    ap.add_argument("--context-bonus", type=float, default=0.5)
     ap.add_argument("--noise", action="append", default=[],
                     help="folder of no-speech wavs (e.g. $WORK/speech/me_dev/noise): every one should be rejected")
     a = ap.parse_args(argv)
@@ -64,7 +66,10 @@ def main(argv=None):
         print(f"decoding with {len(rows)} of {len(ids)} lexicon words ({a.vocab})")
     trie = Trie.from_lexicon(rows)
     id2w = {r["id"]: r["word"] for r in rows}
-    prm = Params(beam=a.beam, bias=life_bias(rows, a.life_bonus) if a.life_bonus else {})
+    bias = life_bias(rows, a.life_bonus) if a.life_bonus else {}
+    if a.context:   # one word list for the whole run (per-page lists: score page by page)
+        bias = context_bias(rows, Path(a.context).read_text().split(), a.context_bonus, a.life_bonus)
+    prm = Params(beam=a.beam, bias=bias)
     # slot words the router's intake fills (body part, mechanism, animal, bleeding type)
     slot = {r["id"] for r in rows if r.get("class") in (1, 2, 6) or r["word"] in BLEED}
     model = load_model(a.run)

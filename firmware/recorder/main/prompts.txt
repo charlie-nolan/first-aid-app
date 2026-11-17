@@ -518,3 +518,158 @@ E|i sliced my finger open
 E|burn from the camp stove
 E|scraped my knee up bad on the rocks
 E|ate a mushroom and is vomiting
+P|impaled object in the chest
+P|her lips are blue
+P|he's bleeding a lot
+P|legs won't move
+P|it won't stop
+P|squirting blood
+P|out in the field
+P|can't breathe choking
+P|he stopped breathing
+P|chest feels tight
+P|my feet are numb
+P|bleeding from the head
+P|he's choking on food
+P|it's spurting with every heartbeat
+P|bit on the hip by a dog
+P|he's breathing a lot
+P|crushing chest pain
+P|every drop of blood
+P|breathing but not awake
+P|pain in my chest
+P|drop the pack
+P|he took a drop
+P|it stopped and started again
+P|he dropped and stopped moving
+P|an impaled stick
+P|a big drop off the cliff
+P|he's not breathing
+P|she's not awake
+P|my hand is numb
+P|my lips are swelling
+P|i can't stop the bleeding
+P|i'm not joking he's choking
+P|burned by the camp stove
+P|pressure to stop it
+P|she stopped bleeding
+P|he can't sit still
+P|hit by a falling tree
+P|hit in the chest
+P|she just stopped
+P|lips and fingers turning blue
+P|a bite on my hip
+P|he got hit by lightning
+P|she's choking
+P|hit by a rock
+P|both legs are numb
+P|he's breathing fine but bleeding bad
+P|breathing really fast
+P|not numb just sore
+P|spurting from his arm
+P|the camp stove exploded
+P|numb and not moving
+P|can't keep still
+P|he's bleeding fine but not breathing
+P|is he still breathing
+P|he dropped to the ground
+P|she dropped the stove
+P|is he still bleeding
+P|my leg won't stop bleeding
+P|bleeding and not breathing
+P|not moving at all
+P|blood spurting out
+P|she won't stop breathing hard
+P|he is not breathing and blue
+P|my hip hurts
+P|not breathing and bleeding
+P|she stopped breathing
+P|bleeding through the bandage
+P|something impaled in his leg
+P|stop the bleeding now
+P|his legs hurt
+A|What happened?|twisted it
+A|What bit them?|a bee
+A|Pick one|four
+A|Where is it?|my right foot
+A|Can they move it?|can't move it
+A|Where is it?|my left arm
+A|Are they awake?|passed out
+A|What happened?|stabbed by a branch
+A|What happened?|rolled my ankle
+A|What happened?|i fell
+A|Are they breathing normally?|yes
+A|Is it bleeding a lot?|yes
+A|Where is it?|left eye
+A|Pick one|two
+A|Where is it?|my stomach
+A|What happened?|slipped on ice
+A|Where is it?|lower back
+A|Are they breathing normally?|i don't know
+A|What happened?|hit by a rock
+A|Where is it?|the thigh
+A|Are they awake?|no
+A|Where is it?|my ankle
+A|What bit them?|a raccoon
+A|Are they breathing normally?|breathing fast
+A|Where is it?|his face
+A|What happened?|scalded with water
+A|What happened?|a snake bit me
+A|Are they breathing normally?|barely
+A|Pick one|back
+A|Is it bleeding a lot?|it's spurting
+A|Where is it?|my knee
+A|Are they breathing normally?|not breathing
+A|Are they awake?|he's awake
+A|Where is it?|her neck
+A|Pick one|again
+A|Can they move it?|yes
+A|Are they awake?|not responding
+A|Where is it?|right leg
+A|Can they move it?|no
+A|What happened?|bee sting
+A|Where is it?|his hip
+A|What happened?|fell off a cliff
+A|Pick one|one
+A|Is it bleeding a lot?|not really
+A|What bit them?|a spider
+A|Are they breathing normally?|gasping
+A|Are they breathing normally?|no
+A|Where is it?|the back of my head
+A|Are they awake?|kind of
+A|Is it bleeding a lot?|it won't stop
+A|What bit them?|a dog
+A|What happened?|crushed by a boulder
+A|Where is it?|my finger
+A|What bit them?|a snake
+A|Pick one|number two
+A|Where is it?|his chest
+A|What happened?|a dog bit him
+A|Are they breathing normally?|yes normally
+A|Is it bleeding a lot?|yes a lot
+A|Pick one|home
+A|Pick one|option three
+A|What happened?|burned it
+A|Is it bleeding a lot?|it stopped
+A|What bit them?|a tick
+A|Is it bleeding a lot?|it's oozing
+A|What bit them?|a scorpion
+A|Where is it?|left hand
+A|What bit them?|a wasp
+A|Can they move it?|a little
+A|Where is it?|the forearm
+A|Pick one|three
+A|What happened?|cut it on a knife
+A|Are they awake?|yes
+A|Can they move it?|not at all
+A|Where is it?|my shoulder
+A|Where is it?|my wrist
+A|Is it bleeding a lot?|no
+A|Are they awake?|confused
+A|Is it bleeding a lot?|soaked through
+A|Can they move it?|it hurts too much
+A|What bit them?|a rattlesnake
+A|Is it bleeding a lot?|just a little
+A|What bit them?|a bat
+A|Where is it?|the shin
+A|What happened?|struck by lightning
