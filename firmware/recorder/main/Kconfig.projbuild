@@ -33,6 +33,12 @@ config REC_MIC_PWR
 config REC_EPD
     bool "E-ink panel wired (off: prompts only on the PC running fasr devrec)"
     default y
+config REC_MIC_RIGHT
+    bool "Read the PDM mic on the other clock edge (right slot)"
+    default n
+    help
+        A PDM mic drives DATA on one clock edge chosen by its SEL pin and floats on the other.
+        If every clip is a flat line, either move SEL (GND <-> 3V3) or flip this.
 config REC_BUFFER_KB
     int "PSRAM kept for clips not yet copied to the PC (KB)"
     default 6144

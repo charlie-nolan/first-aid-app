@@ -129,6 +129,9 @@ static void mic_init(void) {
         .slot_cfg = I2S_PDM_RX_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_MONO),
         .gpio_cfg = { .clk = CONFIG_REC_MIC_CLK, .din = CONFIG_REC_MIC_DATA },
     };
+#if CONFIG_REC_MIC_RIGHT
+    pc.slot_cfg.slot_mask = I2S_PDM_SLOT_RIGHT;   /* SEL picks the edge the mic talks on */
+#endif
     ESP_ERROR_CHECK(i2s_channel_init_pdm_rx_mode(rx, &pc));
     ESP_ERROR_CHECK(i2s_channel_enable(rx));
     xTaskCreatePinnedToCore(mic_task, "mic", 4096, 0, 7, 0, 1);
