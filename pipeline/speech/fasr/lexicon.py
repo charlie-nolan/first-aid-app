@@ -30,7 +30,8 @@ CONTENT = ROOT / "pipeline" / "plb" / "content"
 LEXICON = CONTENT / "lexicon.yaml"
 CORE = CONTENT / "speech_core.yaml"
 
-CAP = 2048
+CAP = 4096        # hard id cap (uint16 ids; raised from 2048 with the router 2026-11-17 for per-sector vocab)
+AUTO_CAP = 2048   # words picked automatically from tree/voice/extra text stop here; core and sector words may go to CAP
 VERSION = 1   # set to 2 by `fasr lexicon --renumber` (one-time rebuild)
 RESERVED = ["<unk>", "one", "two", "three", "four", "yes", "no", "back", "again", "home"]
 CLASSES = {"other": 0, "body_part": 1, "mechanism": 2, "symptom": 3, "negation": 4, "quantity": 5, "animal": 6}
@@ -243,7 +244,7 @@ def build(tree_dirs: list[Path], extra: list[Path], existing: list[dict] | None 
     have = {r["word"] for r in rows}
 
     def add(w: str, src: str):
-        if w in have or len(rows) >= CAP:
+        if w in have or len(rows) >= (CAP if src in ("reserved", "core", "sector") else AUTO_CAP):
             return
         rows.append({"id": len(rows), "word": w, "class": core.get(w, 0), "src": src})
         have.add(w)
@@ -278,7 +279,7 @@ def build(tree_dirs: list[Path], extra: list[Path], existing: list[dict] | None 
         "held_out_oov_top": oov.most_common(30),
         "no_phones": [r["word"] for r in rows if not r["phones"] and r["id"] != 0],
         "from_espeak": [r["word"] for r in rows if r["g2p"] == "espeak"],
-        "dropped_at_cap": len(rows) >= CAP,
+        "dropped_at_cap": len(rows) >= AUTO_CAP,
     }
     return rows, stats
 
