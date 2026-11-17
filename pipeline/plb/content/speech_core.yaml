@@ -23,7 +23,7 @@ mechanism:
   - cold, freezing, frozen, wet, hot, heat, altitude, poison, poisoned, plant, ivy, oak, mushroom, allergy, allergic, peanut
   - crash, bike, car, horse, climbing, skiing, hiking, cliff, ledge, trail, tent, carbon, monoxide, smoke
 symptom:
-  - bleeding, bleed, bleeds, blood, spurting, pumping, oozing, gushing
+  - bleeding, bleed, bleeds, blood, spurting, pumping, oozing, gushing, pulsing, squirting, dripping, trickling, seeping, flowing
   - pain, hurts, hurt, sore, ache, aching, tender, sharp, throbbing, cramp, cramps, cramping
   - broken, break, fracture, fractured, dislocated, dislocation, sprain, sprained, strain, deformed, crooked, bent, snapped, popped
   - swollen, swelling, bruise, bruised, blister, blisters, rash, hives, itchy, itching, red, blue, purple, white, black, grey, gray, pale, waxy
