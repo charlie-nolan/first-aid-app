@@ -502,41 +502,6 @@ def turns_to_card(tree: dict, smap: dict, line: str, ok: set, anc: dict, most: i
     return None
 
 
-def turns_all_at_once(tree, smap, line, ok, anc, most: int = 8) -> int | None:
-    """Turn 2 = one 'fill in what's still open' screen: every blank on the way gets its own field,
-    answered with that field's own tile words (run through answer_turn for that page, so the slot
-    is known and the answer overrides the first sentence). Pages with no blank (group or
-    navigation tiles) are not on the form: each costs one more turn. None = wrong card or stuck."""
-    filled = dict(_fill(line, smap))
-    card, _, asking = walk(tree, smap, filled)
-    if card in ok:
-        return 1
-    toward = set().union(*(anc.get(g, {g}) for g in ok))
-    turn, form_used = 1, False
-    for _ in range(most):
-        if card in ok:
-            return turn
-        if card not in toward:
-            return None
-        ts = tiles(tree, smap, card)
-        k = next((i for i, c in enumerate(ts) if c["to"] in toward), None)
-        if k is None:
-            return None
-        if asking and ts[k].get("value"):
-            if not form_used:
-                form_used, turn = True, turn + 1
-            text = ts[k].get("label") or ts[k]["value"]
-            filled, pick, _ = answer_turn(text, tree, smap, card, asking, filled)
-            if not pick or pick["to"] != ts[k]["to"]:
-                return None
-            card, _, asking = walk(tree, smap, filled, start=card)
-        else:
-            turn += 1                              # a tap on a plain tile, not a form field
-            form_used = False                      # blanks behind it need a new form screen
-            card, _, asking = walk(tree, smap, filled, start=ts[k]["to"])
-    return None
-
-
 def simulate(tree: dict, smap: dict, seeds: dict) -> str:
     """Score each seed line: 'right' = landed on its card (or a `same:` twin); 'on way' = stopped
     to ask a blank on a card that leads to it; 'stuck' = asking somewhere off its path;
@@ -547,6 +512,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             same[k] = set(grp)
     anc = _ancestors(tree, _questions(tree, smap))
     tally = {"right": 0, "on way": 0, "stuck": 0, "WRONG": 0}
+    from .form import form_turns               # the fill-in-the-blanks screen (vr/form.py)
     skipped_total, n, wrong, turns, said, allat = 0, 0, [], [], [], []
     lt = smap.get("life_threat") or []
     pins = {c for m in lt.values() for c in m.values()} if isinstance(lt, dict) else {r["go"] for r in lt}
@@ -561,7 +527,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             ok = same.get(gold, {gold})
             turns.append(turns_to_card(tree, smap, line, ok, anc))
             said.append(turns_to_card(tree, smap, line, ok, anc, say="label"))
-            allat.append(turns_all_at_once(tree, smap, line, ok, anc))
+            allat.append(form_turns(tree.get("id", "tree"), tree, smap, line, ok, anc))
             if ok & pins:
                 pinned.append(turns[-1] == 1)
             if card in ok:
@@ -580,7 +546,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
                 f"{k}: {100 * sum(1 for t in ts if t and t <= k) / max(n, 1):.0f}%" for k in (1, 2, 3, 4))
                 + f"  never: {100 * sum(1 for t in ts if t is None) / max(n, 1):.0f}%\n"
                 for how, ts in (("tile numbers", turns), ("saying the tile words", said),
-                                ("one fill-in-the-blanks screen", allat)))
+                                ("fill-in-the-blanks screen, vr.form", allat)))
             + (f"life-threat cards opened on the first sentence: {sum(pinned)}/{len(pinned)}\n" if pinned else "")
             + "\n".join(wrong[:30]))
 
