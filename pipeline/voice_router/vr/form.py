@@ -403,3 +403,25 @@ def first_rank(name: str, tree: dict, smap: dict, line: str, ok: set, anc: dict)
         return (0 if card in ok else None), share
     ranks = [i for i, (_, k) in enumerate(ranked_cards([c], 40)) if k in ok]
     return (ranks[0] if ranks else None), max(0.0, share)
+
+
+def second_rank(name: str, tree: dict, smap: dict, hyps, ok: set, anc: dict):
+    """After the first sentence (hyps: text or n-best) plus ONE answer: the right tile for the
+    form's top blank (most_telling) on the way to the gold card. Returns the right card's rank in
+    ranked_cards (0 = it opened / is first) or None."""
+    c = Candidate(name, tree, smap)
+    kind, _, card = first_sentence(hyps, [c])
+    if kind == "open":
+        return 0 if card in ok else None
+    top = most_telling([c])
+    toward = set().union(*(anc.get(g, {g}) for g in ok))
+    if top and c.asking == top:
+        ts = tiles(tree, smap, c.card)
+        t = next((t for t in ts if t["to"] in toward and t.get("value")), None)
+        if t:
+            c.filled = {**c.filled, top: t["value"]}
+            c.advance(start=c.card)
+    if c.card in ok and not c.asking:
+        return 0
+    ranks = [i for i, (_, k) in enumerate(ranked_cards([c], 40)) if k in ok]
+    return ranks[0] if ranks else None
