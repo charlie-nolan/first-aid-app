@@ -220,6 +220,7 @@ def life_options(hyps: list[str], tree: dict, smap: dict) -> list[str]:
                     continue                       # "not breathing" vs "not bleeding": no rival reading
                 swapped = " ".join(top[:i] + [alt] + top[i + 1:])
                 card, _, _ = walk(tree, smap, _fill(swapped, smap))
+                card = (smap.get("life_words") or {}).get(_stem(alt), card)  # e.g. bleed -> wfa-bleeding/severe
                 # a second tile whenever a life card is at stake on either side: the top reading
                 # must not auto-open a life card that a heard sound-alike could contradict
                 if card not in out and (first in pins or card in pins):
