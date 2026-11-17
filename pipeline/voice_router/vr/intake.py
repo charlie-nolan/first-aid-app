@@ -6,8 +6,11 @@ walk ends on a signed-off, cited card. A slot map (one YAML per tree, kept besid
 seeds, personal ones gitignored) says which question card asks which blank:
 
     tree: bites
-    life_threat:                      # checked before anything else: value -> card to open now
-      bleeding: {severe: wfa-bleeding/severe}
+    life_threat:                      # checked in order before anything else; first match opens
+      - {if: {breathing: "no"}, go: wfa-cpr/cpr}
+      - {if: {conscious: "no", breathing: "yes"}, go: wfa-cpr/breathing}   # recovery position, not CPR
+      - {if: {conscious: "no"}, go: wfa-cpr/start}                         # asks about breathing first
+      - {if: {bleeding_type: arterial}, go: wfa-bleeding/severe}
     slots:
       bleeding:
         severe: [gushing, spurting, pulsing, "won't stop", pouring]
@@ -77,10 +80,12 @@ def walk(tree: dict, smap: dict, filled: dict[str, str]):
             qs[key] = {"slot": n["slot"], "choices": {c["value"]: c["to"] for c in n.get("choices", [])
                                                       if c.get("value") and c.get("to")}}
     node, skipped, seen = tree["root"], [], set()
-    for slot, jumps in (smap.get("life_threat") or {}).items():   # life threats jump the queue
-        v = filled.get(slot)
-        if v in jumps:
-            return jumps[v], [], None
+    lt = smap.get("life_threat") or []
+    if isinstance(lt, dict):                      # short form {slot: {value: card}}
+        lt = [{"if": {s: v}, "go": card} for s, m in lt.items() for v, card in m.items()]
+    for rule in lt:                               # life threats jump the queue; first matching rule wins
+        if all(filled.get(s) == v for s, v in rule["if"].items()):
+            return rule["go"], [], None
     while node not in seen:
         seen.add(node)
         q = qs.get(node)

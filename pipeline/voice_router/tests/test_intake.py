@@ -38,3 +38,16 @@ def test_inline_slot_tags():
         "snake": {}, "mammal": {}}}
     smap = {"slots": SMAP["slots"]}
     assert walk(tree, smap, fill("rattler got him", smap["slots"])) == ("snake", ["start"], None)
+
+
+def test_life_threat_rules_in_order():
+    slots = {"conscious": {"no": ["unconscious", "passed out"]}, "breathing": {"yes": ["breathing"], "no": ["not breathing"]}}
+    smap = {"slots": slots, "life_threat": [
+        {"if": {"breathing": "no"}, "go": "cpr"},
+        {"if": {"conscious": "no", "breathing": "yes"}, "go": "recovery"},
+        {"if": {"conscious": "no"}, "go": "check_breathing"}]}
+    t = {"root": "start", "nodes": {"start": {}}}
+    go = lambda s: walk(t, smap, fill(s, slots))[0]
+    assert go("he passed out but he's breathing") == "recovery"
+    assert go("she's unconscious") == "check_breathing"
+    assert go("he's unconscious and not breathing") == "cpr"
