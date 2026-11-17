@@ -138,7 +138,7 @@ def _session(s, port: str, st: "Store", seen: set[int]):
                 n += 1
                 import numpy as np   # judge the audio itself: a stuck DATA line reads as a loud constant "peak"
                 x = np.frombuffer(pcm, np.int16).astype(np.float32)
-                flag = ("  NO SIGNAL: the mic sends a flat line (check CLK/DATA/3V3/SEL wiring)" if x.size and x.std() < 20
+                flag = ("  NO SIGNAL: the mic sends a flat line (check CLK/DATA/3V3/SEL wiring)" if x.size and (x.std() < 20 or np.unique(x, return_counts=True)[1].max() > x.size // 2)
                         else "  TOO LOUD" if hdr["clip_per_mille"] > 5 else "  quiet" if x.std() < 150 else "")
                 print(f"#{hdr['id']} {hdr['mode']:5s} {hdr['samples']/hdr['sr']:4.1f}s  {hdr.get('text','')[:60]}{flag}")
             else:
