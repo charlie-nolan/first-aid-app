@@ -212,19 +212,21 @@ def life_options(hyps: list[str], tree: dict, smap: dict) -> list[str]:
     pins = {c for m in lt.values() for c in m.values()} if isinstance(lt, dict) else {r["go"] for r in lt}
     out = [first]
     top = tokenize(hyps[0])
-    below = {w for h in hyps[1:] for w in tokenize(h)}
+    near = {w for h in hyps[1:3] for w in tokenize(h)}     # rescue only from the next two guesses
+    below = {w for h in hyps[1:] for w in tokenize(h)}     # protection from any guess
     for i, w in enumerate(top):
         for alt in SOUNDALIKE.get(w, ()):
-            if any(b == alt or _stem(b) == _stem(alt) for b in below):
-                if any(x in NEGATION for x in top[max(0, i - NEG_WINDOW):i]):
-                    continue                       # "not breathing" vs "not bleeding": no rival reading
-                swapped = " ".join(top[:i] + [alt] + top[i + 1:])
-                card, _, _ = walk(tree, smap, _fill(swapped, smap))
-                card = (smap.get("life_words") or {}).get(_stem(alt), card)  # e.g. bleed -> wfa-bleeding/severe
-                # a second tile whenever a life card is at stake on either side: the top reading
-                # must not auto-open a life card that a heard sound-alike could contradict
-                if card not in out and (first in pins or card in pins):
-                    out.append(card)
+            heard = lambda pool: any(b == alt or _stem(b) == _stem(alt) for b in pool)
+            if not heard(below) or any(x in NEGATION for x in top[max(0, i - NEG_WINDOW):i]):
+                continue                           # "not breathing" vs "not bleeding": no rival reading
+            swapped = " ".join(top[:i] + [alt] + top[i + 1:])
+            card, _, _ = walk(tree, smap, _fill(swapped, smap))
+            if first in pins:                      # protect: never auto-open a life card a sound-alike contradicts;
+                card = (smap.get("life_words") or {}).get(_stem(alt), card)   # name the rival (bleed -> severe)
+            elif not (card in pins and heard(near)):
+                continue                           # rescue only when the swapped reading is itself a life threat
+            if card not in out:
+                out.append(card)
     return out
 
 

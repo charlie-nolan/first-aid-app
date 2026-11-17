@@ -254,3 +254,13 @@ def test_life_words_name_the_rival_tile():
             "life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}], "life_words": {"bleed": "sev"}}
     t = {"root": "start", "nodes": {"start": {}}}
     assert life_options(["my leg wind stop breathing", "my leg won't stop bleeding"], t, smap) == ["cpr", "sev"]
+
+
+def test_plain_bleeding_gets_no_cpr_tile_from_a_far_guess():
+    from vr.intake import life_options
+    smap = {"slots": {"breathing": {"no": ["stop breathing"]}, "bleeding": {"severe": ["bleeding out"]}},
+            "life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}, {"if": {"bleeding": "severe"}, "go": "sev"}],
+            "life_words": {"bleed": "sev", "breath": "cpr"}}
+    t = {"root": "start", "nodes": {"start": {}}}
+    assert life_options(["foot is bleeding", "foot is building", "foot his bleeding", "foot is breathing"], t, smap) == ["start"]
+    assert life_options(["breathing out", "bleeding out"], t, smap) == ["start", "sev"]       # rescue
