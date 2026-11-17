@@ -76,6 +76,7 @@ static void show(int how) {
      * ask for a full redraw get the same gentle clean. */
     int mode = EPD_PARTIAL;
     if (how == RD_FULL || ++partials >= clean_every()) mode = EPD_CLEAN;
+    if (how == RD_DEEP) mode = EPD_FULL;              /* CPR pages: crisp, bold, no ghosts */
     if (mode != EPD_PARTIAL) partials = 0;
     epd_show(fb_bits, mode);
 }
@@ -197,6 +198,13 @@ void app_main(void) {
         }
         int64_t now = esp_timer_get_time();
         if (now - last_bat > 10 * 1000000LL) { last_bat = now; update_battery(); }
+#ifndef CONFIG_LIB_PACE_RETURN_SECONDS
+#define CONFIG_LIB_PACE_RETURN_SECONDS 20
+#endif
+        if (now - last > (int64_t)CONFIG_LIB_PACE_RETURN_SECONDS * 1000000LL && ui_pace_return(&ui)) {
+            show(RD_DEEP);                           /* pace light on: back to the CPR instructions */
+            last = now;
+        }
         bool busy = lights_signal_active() || ui.listening;
 #if CONFIG_LIB_VOICE_BENCH || CONFIG_LIB_PSRAM_TEST
         busy = true;                                 /* bench modes: stay awake for the clip loop / soak test */

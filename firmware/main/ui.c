@@ -31,6 +31,7 @@ static void fb_xor_rect(cart_fb_t *fb, int x0, int y0, int w, int h) {
 static unsigned ST(const ui_t *u, unsigned size) { return u->s->family * cart_font_sizes(u->c) + size; }
 
 typedef struct { int lh0, hdr_h, ftr_y, body_y, body_h; } lay_t;
+#define FONT(u) ((u)->font_fit != 0xFF ? (u)->font_fit : (u)->s->font)   /* reading size, or the pace page's fitted size */
 static lay_t layout(const ui_t *u) {
     lay_t l; l.lh0 = cart_font_line_height(u->c, ST(u, 0));
     l.hdr_h = l.lh0 + 1;
@@ -134,7 +135,7 @@ static void node_pages(ui_t *u, uint16_t id, pages_t *P) {
     P->fig = P->n->figure != CART_NONE;
     P->about = about_text(u, id);
     if (P->about != CART_NONE) {
-        int k = cart_page(u->c, P->about, ST(u, u->s->font), 0, 0, 4, l.body_y, UI_W - 8, l.body_h, u->scratch, sizeof u->scratch);
+        int k = cart_page(u->c, P->about, ST(u, FONT(u)), 0, 0, 4, l.body_y, UI_W - 8, l.body_h, u->scratch, sizeof u->scratch);
         P->ap = k < 1 ? 1 : k;
         P->total += P->ap;
     }
@@ -142,11 +143,11 @@ static void node_pages(ui_t *u, uint16_t id, pages_t *P) {
     P->npas = P->n->n_passages + P->n->n_lookalikes; if (P->npas > MAXP) P->npas = MAXP;
     for (int i = 0; i < P->npas; i++) {
         cart_passage_t ps = cart_node_passage(u->c, P->n, i);
-        int k = cart_page(u->c, ps.text, ST(u, u->s->font), 0, 0, 4, l.body_y, UI_W - 8, l.body_h, u->scratch, sizeof u->scratch);
+        int k = cart_page(u->c, ps.text, ST(u, FONT(u)), 0, 0, 4, l.body_y, UI_W - 8, l.body_h, u->scratch, sizeof u->scratch);
         P->pp[i] = (uint8_t)(k < 1 ? 1 : k > 255 ? 255 : k);
         P->total += P->pp[i];
     }
-    P->per = l.body_h / cart_font_line_height(u->c, ST(u, u->s->font)); if (P->per < 1) P->per = 1;
+    P->per = l.body_h / cart_font_line_height(u->c, ST(u, FONT(u))); if (P->per < 1) P->per = 1;
     P->nch = vis_choices(u, P->n, P->ch);
     P->grid = u->has_window_keys && P->nch && P->nch <= 4;   /* one answer per corner button */
     P->choice_pages = !P->nch ? 0 : P->grid ? 1 : (P->nch + P->per - 1) / P->per;
@@ -228,6 +229,7 @@ static int lib_entries(ui_t *u, uint16_t *out) {
 
 void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s) {
     u->c = c; u->s = s;
+    u->font_fit = 0xFF; u->pace_node = CART_NONE;
     int fresh = 0;
     if (s->magic != UI_SAVED_MAGIC || s->build_id != c->build_id || s->cur >= UI_WINDOWS) {
         fresh = 1;
@@ -423,7 +425,7 @@ static void footer(ui_t *u, cart_fb_t *fb, const char *s) {
 static void draw_list(ui_t *u, cart_fb_t *fb, const char *title, const char *right, int n, int sel,
                       void (*label)(ui_t *, int, char *, size_t), const char *foot) {
     lay_t l = layout(u);
-    unsigned size = u->s->font;
+    unsigned size = FONT(u);
     int lh = cart_font_line_height(u->c, ST(u, size)), per = l.body_h / lh; if (per < 1) per = 1;
     int top = (sel / per) * per;
     char b[96];
@@ -521,7 +523,7 @@ static void fb_corner_num(ui_t *u, cart_fb_t *fb, int corner, int y_top, int y_b
 static void draw_answers(ui_t *u, cart_fb_t *fb, int n, char lab[][64]) {
     lay_t l = layout(u);
     int top = l.body_y - 2, bot = l.ftr_y - 1, mid = (top + bot) / 2, cx = UI_W / 2;
-    unsigned size = u->s->font;
+    unsigned size = FONT(u);
     int rows = n > 2 ? 2 : 1, bw = num_box_w(u);
     if (rows == 2) fb_hline(fb, 0, UI_W - 1, mid);
     for (int y = top; y <= bot; y++) fb_px(fb, cx, y);           /* full height, also for 2 tiles */
@@ -559,7 +561,7 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
     }
     int idx, sub, seg = locate(&P, w->page, &idx, &sub);
     if (seg == SEG_ABOUT) {
-        cart_page(u->c, P.about, ST(u, u->s->font), sub, fb, 4, l.body_y, UI_W - 8, l.body_h, u->scratch, sizeof u->scratch);
+        cart_page(u->c, P.about, ST(u, FONT(u)), sub, fb, 4, l.body_y, UI_W - 8, l.body_h, u->scratch, sizeof u->scratch);
         footer(u, fb, REF_MARK " reference shelf: not signed off");
     } else if (seg == SEG_FIG) {
         cart_pic_t p = {0};
@@ -574,7 +576,7 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
         if (idx >= P.n->n_passages && sub == 0) {                            /* look-alike passages are marked */
             cart_draw_str(u->c, ST(u, 0), 1, fb, 4, base_of(u, 0, y), "LOOK-ALIKE:");
         }
-        cart_page(u->c, ps.text, ST(u, u->s->font), sub, fb, 4, y, UI_W - 8, h, u->scratch, sizeof u->scratch);
+        cart_page(u->c, ps.text, ST(u, FONT(u)), sub, fb, 4, y, UI_W - 8, h, u->scratch, sizeof u->scratch);
         if (ref) { char c2[80]; T(u, ps.citation, c2, sizeof c2); snprintf(cite, sizeof cite, REF_MARK " - %s", c2); footer(u, fb, cite); }
         else footer(u, fb, T(u, ps.citation, cite, sizeof cite));
     } else if (seg == SEG_NOMATCH) {
@@ -586,7 +588,7 @@ static void render_read(ui_t *u, cart_fb_t *fb) {
         draw_answers(u, fb, P.nch, ab);
         footer(u, fb, u->voice_numbers ? "Press or say a number. Tap TALK: read again" : "Press the button by your answer. TALK: read again");
     } else {
-        unsigned size = u->s->font; int lh = cart_font_line_height(u->c, ST(u, size));
+        unsigned size = FONT(u); int lh = cart_font_line_height(u->c, ST(u, size));
         int top = sub * P.per;
         char b[64];
         for (int i = top; i < P.nch && i < top + P.per; i++) {
@@ -688,13 +690,14 @@ static void list_step(ui_t *u, int n, int dir) {
 }
 /* CPR pages: cards flagged by the packer (CPR tree, cards that say CPR or chest compressions,
  * cards linking into the CPR tree), or for older cartridges any card of the tree titled "CPR". */
-static int in_cpr_tree(ui_t *u) {
-    const cart_node_t *n = cart_node(u->c, W(u)->node);
+static int cpr_page(ui_t *u, uint16_t id) {
+    const cart_node_t *n = cart_node(u->c, id);
     if (n && (n->flags & CART_NODE_CPR)) return 1;
     if (!n || n->tree >= u->c->n_trees) return 0;
     char t[16]; T(u, cart_tree(u->c, n->tree).title, t, sizeof t);
     return (t[0] | 0x20) == 'c' && (t[1] | 0x20) == 'p' && (t[2] | 0x20) == 'r' && (t[3] == 0 || t[3] == ' ');
 }
+static int in_cpr_tree(ui_t *u) { return cpr_page(u, W(u)->node); }
 static void open_menu(ui_t *u) {
     u->menu_cpr = (u->mode == M_READ || u->mode == M_WAKE) && in_cpr_tree(u);
     u->back_mode = u->mode == M_WAKE ? M_READ : u->mode; u->mode = M_MENU; u->list_sel = 0;
@@ -798,7 +801,7 @@ static void render_home(ui_t *u, cart_fb_t *fb) {
     else tree_group(u, u->home_grp, title, sizeof title);
     if (!u->has_window_keys) {                               /* no corner buttons: a plain list */
         header(u, fb, title, 0);
-        lay_t l = layout(u); unsigned size = u->s->font;
+        lay_t l = layout(u); unsigned size = FONT(u);
         int lh = cart_font_line_height(u->c, ST(u, size)), per = l.body_h / lh; if (per < 1) per = 1;
         int top = (u->list_sel / per) * per; char b[96];
         for (int i = top; i < n && i < top + per; i++) {
@@ -877,7 +880,7 @@ static ui_act_t menu_select(ui_t *u, ui_act_t a) {
     return a;
 }
 
-ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
+static ui_act_t event_(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
     ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0 };
 
     if (b == B_BACK && k == E_LONG) { a.light_step = 1; a.redraw = RD_NONE; return a; }   /* front light, any screen */
@@ -1054,7 +1057,7 @@ static ui_act_t voice_key(ui_t *u, const int *cmd, const float *prob, int n, ui_
     }
 }
 
-ui_act_t ui_voice(ui_t *u, const int *cmd, const float *prob, int n) {
+static ui_act_t voice_(ui_t *u, const int *cmd, const float *prob, int n) {
     ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0 };
     u->listening = 0;
     if (n > 0 && u->voice_numbers && UI_VOICE_IS_KEY(cmd[0])) return voice_key(u, cmd, prob, n, a);
@@ -1071,4 +1074,48 @@ ui_act_t ui_voice(ui_t *u, const int *cmd, const float *prob, int n) {
     else if (u->npicks == 1 || prob[0] >= 0.5f) go_node(u, u->picks[0]);
     else { u->mode = M_PICK; u->list_sel = 0; }               /* low confidence: let the reader pick */
     return a;
+}
+
+/* ---------------------------------------------------- CPR pages (Charlie 11-17)
+ * Opening a CPR page always draws with a deep refresh, so it is crisp and black.
+ * While the pace light runs, its page is fitted to the largest text size that
+ * shows the whole card on one screen (else the smallest), and the reader is
+ * brought back to it after a pause (ui_pace_return, called by main). */
+static void fit_font(ui_t *u) {
+    uint8_t was = u->font_fit;
+    u->font_fit = 0xFF;
+    if (u->signal != SIG_CPR || u->mode != M_READ || W(u)->node != u->pace_node) return;
+    unsigned nf = cart_font_sizes(u->c); if (!nf) return;
+    pages_t P;
+    for (int f = (int)nf - 1; f >= 0; f--) {
+        u->font_fit = (uint8_t)f;
+        node_pages(u, W(u)->node, &P);
+        int text = P.ap; for (int i = 0; i < P.npas; i++) text += P.pp[i];
+        if (text <= 1) break;
+    }
+    if (u->font_fit != was) W(u)->page = 0;
+}
+static ui_act_t after_(ui_t *u, ui_act_t a, uint16_t node0, uint8_t mode0) {
+    if (u->signal == SIG_CPR) { if (u->pace_node == CART_NONE) u->pace_node = W(u)->node; }
+    else u->pace_node = CART_NONE;
+    fit_font(u);
+    int opened = u->mode == M_READ && (W(u)->node != node0 || mode0 != M_READ);
+    if (a.redraw != RD_NONE && opened && cpr_page(u, W(u)->node)) a.redraw = RD_DEEP;
+    return a;
+}
+ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
+    uint16_t node0 = W(u)->node; uint8_t mode0 = (uint8_t)u->mode;
+    return after_(u, event_(u, b, k, held_ms), node0, mode0);
+}
+ui_act_t ui_voice(ui_t *u, const int *cmd, const float *prob, int n) {
+    uint16_t node0 = W(u)->node; uint8_t mode0 = (uint8_t)u->mode;
+    return after_(u, voice_(u, cmd, prob, n), node0, mode0);
+}
+int ui_pace_return(ui_t *u) {
+    if (u->signal != SIG_CPR || u->pace_node == CART_NONE) return 0;
+    if (u->mode == M_READ && W(u)->node == u->pace_node) return 0;
+    if (W(u)->node != u->pace_node) go_node(u, u->pace_node);
+    u->mode = M_READ; W(u)->page = 0;
+    fit_font(u);
+    return 1;
 }

@@ -22,7 +22,7 @@ typedef enum { B_TALK, B_BACK, B_WIN_L, B_WIN_R, B_UP, B_DOWN, B_COUNT } ui_btn_
 typedef enum { E_PRESS, E_SHORT, E_LONG, E_RELEASE } ui_evkind_t;
 typedef enum { SIG_OFF, SIG_FLASHLIGHT, SIG_SOS_WHITE, SIG_IR, SIG_CPR } ui_signal_t;   /* SIG_CPR: compression pace on the front light */
 typedef enum { M_WAKE, M_READ, M_LIBRARY, M_MENU, M_PICK, M_MSG, M_CTX_DIMS, M_CTX_VALUES, M_HOME } ui_mode_t;
-enum { RD_NONE, RD_PARTIAL, RD_FULL };
+enum { RD_NONE, RD_PARTIAL, RD_FULL, RD_DEEP };   /* RD_DEEP: full black-white flash, e.g. opening a CPR page */
 enum { VO_NONE, VO_START, VO_STOP, VO_CANCEL };
 
 /* One reading window. Lives in RTC memory so it survives deep sleep. */
@@ -71,6 +71,8 @@ typedef struct {
     uint8_t voice_numbers;          /* tiles show 1-4 and voice keys are handled (set by main) */
     uint8_t key_min_pct;            /* voice keys below this confidence (%) are asked again */
     uint8_t menu_cpr;               /* menu opened from the CPR tree: pace light listed first */
+    uint8_t font_fit;               /* 0xFF = reader's size; else the size the pace page is fitted to */
+    uint16_t pace_node;             /* CPR page the pace light was started on (CART_NONE when off) */
     uint8_t lib_folder;             /* Library: 0xFF = top level, else the first tree of the open folder */
     uint8_t home_lvl, home_cat, home_grp, home_page;   /* Home tiles: 0 Injury/Survival, 1 folders, 2 topics */
     uint16_t picks[3]; uint8_t npicks;
@@ -80,6 +82,7 @@ typedef struct {
 
 void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s);   /* resets s if magic/build_id don't match */
 void ui_render(ui_t *u, cart_fb_t *fb);                   /* clears and draws the current screen */
+int ui_pace_return(ui_t *u);   /* pace light on and the reader wandered off: back to the CPR page (1 = moved) */
 void ui_render_sleep(ui_t *u, cart_fb_t *fb);             /* the picture left on the panel while asleep */
 ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms);
 /* Voice keys: the small word list used inside a topic. Answer tiles are numbered
