@@ -173,6 +173,13 @@ def walk(tree: dict, smap: dict, filled: dict[str, str]):
         if q:
             v = filled.get(q["slot"])
             target = _answer(q, v, implies)
+            if (not target or target not in nodes) and v:
+                # value not on this card ("spider" on a snake / sting / "spider, tick or animal" card):
+                # follow the one plain answer that leads to a card which takes it
+                plain = [c.get("to") for c in nodes[node].get("choices", [])
+                         if not c.get("value") and c.get("kind", "next") == "next" and c.get("to") in nodes]
+                hits = {t for t in plain if _leads(tree, qs, t, filled, implies)}
+                target = hits.pop() if len(hits) == 1 else None
             if not target or target not in nodes:
                 return node, skipped, q["slot"]    # blank still empty: ask it here
         else:                                      # plain card or menu: pass through only if exactly one

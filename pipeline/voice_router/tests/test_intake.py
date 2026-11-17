@@ -133,3 +133,14 @@ def test_no_gap_inside_negated_phrase():
     slots = {"breathing": {"no": ["no breathing", "not breathing"]}}
     assert fill("itchy face with no trouble breathing", slots) == {}
     assert fill("he is not breathing", slots) == {"breathing": "no"}
+
+
+def test_value_found_through_plain_link_on_a_question_card():
+    tree = {"root": "start", "nodes": {
+        "start": {"slot": "animal", "choices": [{"label": "Snake", "to": "snake", "value": "snake"},
+                                                {"label": "Spider, tick or animal", "to": "other"}]},
+        "other": _q("animal", spider="spider", tick="tick", mammal="mammal"),
+        "snake": {}, "spider": {}, "tick": {}, "mammal": {}}}
+    smap = {"slots": {"animal": {"snake": ["snake"], "spider": ["spider"], "tick": ["tick"], "mammal": ["dog"]}}}
+    assert walk(tree, smap, fill("a spider bit me", smap["slots"])) == ("spider", ["start", "other"], None)
+    assert walk(tree, smap, fill("something bit me", smap["slots"])) == ("start", [], "animal")
