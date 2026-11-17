@@ -502,48 +502,39 @@ def turns_to_card(tree: dict, smap: dict, line: str, ok: set, anc: dict, most: i
     return None
 
 
-def _path_answers(tree, smap, line, ok, anc, most=6):
-    """The right tile's words for every question between the first sentence's card and the goal,
-    in order (what a person would say to an 'answer all of these' screen). None if off the path."""
+def turns_all_at_once(tree, smap, line, ok, anc, most: int = 8) -> int | None:
+    """Turn 2 = one 'fill in what's still open' screen: every blank on the way gets its own field,
+    answered with that field's own tile words (run through answer_turn for that page, so the slot
+    is known and the answer overrides the first sentence). Pages with no blank (group or
+    navigation tiles) are not on the form: each costs one more turn. None = wrong card or stuck."""
     filled = dict(_fill(line, smap))
     card, _, asking = walk(tree, smap, filled)
+    if card in ok:
+        return 1
     toward = set().union(*(anc.get(g, {g}) for g in ok))
-    said = []
+    turn, form_used = 1, False
     for _ in range(most):
         if card in ok:
-            return said
+            return turn
         if card not in toward:
             return None
         ts = tiles(tree, smap, card)
         k = next((i for i, c in enumerate(ts) if c["to"] in toward), None)
         if k is None:
             return None
-        pick = ts[k]
-        said.append(pick.get("label") or pick.get("value") or "")
-        if asking and pick.get("value"):
-            filled = {**filled, asking: pick["value"]}
+        if asking and ts[k].get("value"):
+            if not form_used:
+                form_used, turn = True, turn + 1
+            text = ts[k].get("label") or ts[k]["value"]
+            filled, pick, _ = answer_turn(text, tree, smap, card, asking, filled)
+            if not pick or pick["to"] != ts[k]["to"]:
+                return None
             card, _, asking = walk(tree, smap, filled, start=card)
         else:
-            card, _, asking = walk(tree, smap, filled, start=pick["to"])
+            turn += 1                              # a tap on a plain tile, not a form field
+            form_used = False                      # blanks behind it need a new form screen
+            card, _, asking = walk(tree, smap, filled, start=ts[k]["to"])
     return None
-
-
-def turns_all_at_once(tree, smap, line, ok, anc) -> int | None:
-    """Turn 2 = one spoken answer to a screen that lists every blank still open: the first
-    sentence plus all the right tile words, filled in one go. If that lands, 2; if it leaves the
-    person on the way, the remaining tiles are counted one per turn; a wrong card is None."""
-    first = turns_to_card(tree, smap, line, ok, anc)
-    if first == 1 or first is None:
-        return first
-    words = _path_answers(tree, smap, line, ok, anc)
-    if words is None:
-        return None
-    both = line + " . " + " . ".join(words)
-    card, _, _ = walk(tree, smap, _fill(both, smap))
-    if card in ok:
-        return 2
-    rest = turns_to_card(tree, smap, both, ok, anc)
-    return None if rest is None else rest + 1
 
 
 def simulate(tree: dict, smap: dict, seeds: dict) -> str:
@@ -589,7 +580,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
                 f"{k}: {100 * sum(1 for t in ts if t and t <= k) / max(n, 1):.0f}%" for k in (1, 2, 3, 4))
                 + f"  never: {100 * sum(1 for t in ts if t is None) / max(n, 1):.0f}%\n"
                 for how, ts in (("tile numbers", turns), ("saying the tile words", said),
-                                ("one answer to an all-blanks screen", allat)))
+                                ("one fill-in-the-blanks screen", allat)))
             + (f"life-threat cards opened on the first sentence: {sum(pinned)}/{len(pinned)}\n" if pinned else "")
             + "\n".join(wrong[:30]))
 
