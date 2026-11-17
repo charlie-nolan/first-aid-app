@@ -32,6 +32,18 @@ def test_good_tree_passes():
     assert validate_tree(TREE, "demo.yaml") == []
 
 
+def test_slots_are_optional_and_validate():
+    """Voice intake: `slot:` on a question card, `value:` on its answers; navigation
+    answers may leave `value:` out."""
+    t = copy.deepcopy(TREE)
+    t["nodes"]["start"]["slot"] = "has_kit"
+    t["nodes"]["start"]["choices"][0]["value"] = "kit"
+    t["nodes"]["start"]["choices"][1]["value"] = "no_kit"
+    assert validate_tree(t, "demo.yaml") == []
+    t["nodes"]["start"]["choices"][1].pop("value")
+    assert validate_tree(t, "demo.yaml") == []
+
+
 @pytest.mark.parametrize("mutate,expect", [
     (lambda t: t["nodes"]["kit"].update({"cites": t["nodes"]["kit"].pop("cite")}), "cites: unknown key"),
     (lambda t: t["nodes"]["start"].update({"choises": t["nodes"]["start"].pop("choices")}), "choises: unknown key"),
@@ -52,6 +64,11 @@ def test_good_tree_passes():
     (lambda t: t["nodes"]["none"].update({"species": True}), "needs `lookalikes:`"),
     (lambda t: t.update({"id": "Demo Tree"}), "must be lowercase"),
     (lambda t: t.update({"nodes": {}}), "nodes: Dictionary should have at least 1 item"),
+    (lambda t: t["nodes"]["start"]["choices"][0].update({"value": "has_kit"}), "has no `slot:`"),
+    (lambda t: t["nodes"]["start"].update({"slot": "Has Kit"}), "lower snake_case"),
+    (lambda t: (t["nodes"]["start"].update({"slot": "has_kit"}),
+                t["nodes"]["start"]["choices"][0].update({"value": "Kit!"})), "lower snake_case"),
+    (lambda t: t["nodes"]["kit"].update({"slot": "has_kit"}), "only for question cards"),
 ])
 def test_bad_tree_fails(mutate, expect):
     t = copy.deepcopy(TREE)

@@ -93,10 +93,25 @@ def _tags(v: Any):
     return v
 
 
+SLOT = re.compile(r"^[a-z][a-z0-9_]*$")   # voice intake slot names and values: lower snake_case
+
+
+def _slot_name(v: str | None) -> str | None:
+    if v is not None and not SLOT.match(v):
+        raise ValueError(f"{v!r} must be lower snake_case, e.g. body_part or no_tourniquet")
+    return v
+
+
 class Choice(_Strict):
     label: str = Field(min_length=1)
     to: NodeKey
     kind: Kind = "next"
+    value: str | None = None      # voice intake: the slot value this answer fills (not packed)
+
+    @field_validator("value")
+    @classmethod
+    def _value(cls, v):
+        return _slot_name(v)
 
 
 class Node(_Strict):
@@ -110,6 +125,12 @@ class Node(_Strict):
     lookalikes: list[Cite] = []
     species: bool = False
     no_match: bool = False
+    slot: str | None = None       # voice intake: the one blank this question card asks (not packed)
+
+    @field_validator("slot")
+    @classmethod
+    def _slot(cls, v):
+        return _slot_name(v)
 
     @field_validator("tags", mode="before")
     @classmethod
@@ -131,6 +152,10 @@ class Node(_Strict):
             raise ValueError("`species: true` needs `lookalikes:` citations")
         if self.species and self.no_match:
             raise ValueError("a leaf is either `species` or `no_match`, not both")
+        if any(c.value for c in self.choices) and not self.slot:
+            raise ValueError("answers have `value:` but the node has no `slot:`")
+        if self.slot and not self.choices:
+            raise ValueError("`slot:` is only for question cards (nodes with choices)")
         return self
 
 
