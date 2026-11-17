@@ -111,11 +111,66 @@ def from_pages(yaml_path, per_page: int = 3, seed: int = 9) -> list[str]:
     return out
 
 
-def append(path, pages=None) -> None:
+def _join(parts: list[str], rng) -> str:
+    if len(parts) == 1:
+        return parts[0]
+    if len(parts) == 2:
+        return rng.choice(["{} and {}", "{}, {}", "{} {}"]).format(*parts)
+    return rng.choice(["{}, {} and {}", "{}, {}, {}"]).format(*parts)
+
+
+def from_form(yaml_path, combos_per_tree: int = 12, seed: int = 11, cap: int = 3900) -> list[str]:
+    """FORM prompts for the one-screen fill-in-the-blanks (PC only, never commit the output).
+    1) every tile of every blank, once, as its own answer ("Where?|left leg");
+    2) a number answer per blank ("Where?|number 2");
+    3) combinations: 2-3 blanks of the same tree answered in one breath, as on the form screen
+       ("Fill in|left leg and spider"), up to combos_per_tree per tree, no repeats.
+    Life-threat answers are not special-cased; they come in like any other tile."""
+    import yaml
+    from pathlib import Path
+    rng = random.Random(seed)
+    pages = yaml.safe_load(Path(yaml_path).expanduser().read_text()) or {}
+    singles, numbers, combos = [], [], []
+    for tree, cards in pages.items():
+        blanks = []
+        for card, c in (cards or {}).items():
+            c = c or {}
+            tiles = list(dict.fromkeys(str(t).lower() for t in (c.get("tiles") or []) if str(t).strip()))
+            if not tiles:
+                continue
+            q = str(c.get("slot") or card).replace("_", " ")
+            q = q[:1].upper() + q[1:] + "?"
+            blanks.append((q, tiles))
+            singles += [f"{q}|{t}" for t in tiles]
+            numbers.append(f"{q}|number {rng.randint(1, min(4, len(tiles)))}")
+        if len(blanks) < 2:
+            continue
+        seen = set()
+        for _ in range(combos_per_tree * 4):
+            if len(seen) >= combos_per_tree:
+                break
+            k = rng.choice([2, 2, 3]) if len(blanks) >= 3 else 2
+            pick = rng.sample(blanks, k)
+            said = _join([rng.choice(t) for _, t in pick], rng)
+            if said not in seen:
+                seen.add(said)
+                combos.append(f"Fill in: {', '.join(q[:-1].lower() for q, _ in pick)}|{said}")
+    for xs in (singles, numbers, combos):
+        rng.shuffle(xs)
+    # interleave so any stopping point has all three kinds
+    out, i = [], 0
+    while (singles or combos or numbers) and len(out) < cap:
+        for xs in (singles, combos, singles, combos, numbers):
+            if xs and len(out) < cap:
+                out.append(xs.pop())
+    return out
+
+
+def append(path, pages=None, form=False) -> None:
     keep = [l for l in path.read_text().splitlines() if l[:2] in ("T|", "E|")]
     pairs, answers = build()
     if pages:
-        answers = from_pages(pages) + [a for a in answers if a.startswith("Pick one|")]
+        answers = (from_form(pages) if form else from_pages(pages)) + [a for a in answers if a.startswith("Pick one|")]
         print("ANSWERS from the router's pages: this prompts.txt is PC-only, do not commit it")
     path.write_text("\n".join(keep + [f"P|{s}" for s in pairs] + [f"A|{s}" for s in answers]) + "\n")
     print(f"{path}: kept {len(keep)} T/E lines, added {len(pairs)} PAIRS and {len(answers)} ANSWERS prompts")
