@@ -83,7 +83,10 @@ LIFE_WORDS = ["breathing", "breathe", "breath", "stopped", "not", "unconscious",
               "choke", "bleeding", "blood", "spurting", "pumping", "gushing", "squirting", "pulsing",
               "cpr", "compressions", "pulse", "heart", "cardiac", "arrest", "chest", "epipen", "epinephrine",
               "anaphylactic", "anaphylaxis", "allergic", "swelling", "throat", "seizure", "drowning",
-              "drowned", "tourniquet", "blue", "collapsed", "passed", "alive", "dying"]
+              "drowned", "tourniquet", "blue", "collapsed", "passed", "alive", "dying",
+              # how bad the bleeding is: "bleeding" survives, the strength word gets garbled
+              "lot", "won't", "stop", "soaked", "soaking", "through", "squirting", "everywhere",
+              "pool", "puddle", "heavy", "badly", "faster"]
 
 
 def life_bias(rows: list[dict], bonus: float = 1.0) -> dict:
@@ -162,7 +165,7 @@ def nbest(logp: np.ndarray, trie: Trie, p: Params = Params()) -> dict:
     """voice_hyp_t-shaped result."""
     res = search(logp, trie, p)
     if not res:
-        return {"n": 0, "h": [], "reject": 100}
+        return {"n": 0, "h": [], "reject": 100, "gap": 0.0, "junk": 1.0}
     top = max(s for _, s in res)
     post = np.array([math.exp(s - top) for _, s in res])
     post /= post.sum()
