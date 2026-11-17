@@ -92,7 +92,7 @@ static void nvs_load(void) {
 }
 
 /* ---------- take store in PSRAM (append; reset when everything is copied) ---------- */
-typedef struct { uint32_t id, redo_of; uint8_t mode, sent, acked; int32_t prompt; uint32_t off, n; int16_t peak; uint16_t clip_pm; } take_t;
+typedef struct { uint32_t id, redo_of; uint8_t mode, sent, acked; int32_t prompt; uint32_t off, n; int16_t peak; uint16_t clip_pm; uint16_t range; } take_t;
 static int16_t *store; static size_t store_cap, store_used;     /* in samples */
 static take_t takes[MAX_TAKES]; static int ntakes;
 static SemaphoreHandle_t lock;
@@ -158,8 +158,12 @@ static take_t *rec_stop(int32_t prompt, uint32_t redo_of) {
     take_t *t = &takes[ntakes++];
     memset(t, 0, sizeof *t);
     t->id = next_id++; t->redo_of = redo_of; t->mode = (uint8_t)mode; t->prompt = prompt; t->off = rec_off; t->n = rec_n;
-    int peak = 0, clip = 0;
-    for (uint32_t i = 0; i < t->n; i++) { int v = abs(store[t->off + i]); if (v > peak) peak = v; clip += v > 32000; }
+    int peak = 0, clip = 0, lo = 32767, hi = -32768;
+    for (uint32_t i = 0; i < t->n; i++) {
+        int s0 = store[t->off + i], v = abs(s0);
+        if (v > peak) peak = v; clip += v > 32000; if (s0 < lo) lo = s0; if (s0 > hi) hi = s0;
+    }
+    t->range = (uint16_t)(t->n ? (hi - lo > 65535 ? 65535 : hi - lo) : 0);   /* ~0 = stuck data line, no sound */
     t->peak = (int16_t)(peak > 32767 ? 32767 : peak); t->clip_pm = (uint16_t)(1000LL * clip / (t->n ? t->n : 1));
     store_used += t->n;
     xSemaphoreGive(lock);
@@ -339,7 +343,8 @@ void app_main(void) {
             if (ms < 400) { t->acked = 1; snprintf(s, sizeof s, "Too short, hold TALK while you speak"); draw(s, false); continue; }
             last_id = t->id; last_prompt = prompt; last_mode = mode;
             idx[mode]++; nvs_save();
-            if (t->clip_pm > 5) snprintf(s, sizeof s, "Saved #%lu  TOO LOUD: hold it further away", (unsigned long)t->id);
+            if (t->range < 64) snprintf(s, sizeof s, "Saved #%lu  NO SOUND: check mic wires (CLK D4, DAT D5)", (unsigned long)t->id);
+            else if (t->clip_pm > 5) snprintf(s, sizeof s, "Saved #%lu  TOO LOUD: hold it further away", (unsigned long)t->id);
             else if (t->peak < 1000) snprintf(s, sizeof s, "Saved #%lu  very quiet: speak up or closer", (unsigned long)t->id);
             else snprintf(s, sizeof s, "Saved #%lu (%.1f s). Next:", (unsigned long)t->id, t->n / (float)SR);
             draw(s, false);
