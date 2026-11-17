@@ -177,3 +177,23 @@ def test_turns_to_card_counts_answers():
     seeds = {"nodes": {"face": {"train": ["the dog got me", "something bit me"]}}}
     out = simulate(TREE, SMAP, seeds)
     assert "1: 0%  2: 50%  3: 100%" in out
+
+
+def test_answer_turn_numbers_yes_no_words_and_extra_blanks():
+    from vr.intake import answer_turn, turns_to_card, _ancestors, _questions, wordlists
+    f, pick, cmd = answer_turn("number two", TREE, SMAP, "mammal", "where", {"animal": "mammal"})
+    assert pick["to"] == "face" and f["where"] == "face" and cmd is None
+    f, pick, _ = answer_turn("on his cheek and it's gushing", TREE, SMAP, "mammal", "where", {})
+    assert pick["to"] == "face" and f["bleeding"] == "severe"          # second blank heard in the same breath
+    assert answer_turn("go back", TREE, SMAP, "mammal", "where", {})[2] == "back"
+    assert answer_turn("um maybe", TREE, SMAP, "mammal", "where", {})[1] is None
+    yn = {"root": "q", "nodes": {"q": {"slot": "breathing", "choices": [
+        {"label": "Yes", "to": "ok", "value": "yes"}, {"label": "No", "to": "cpr", "value": "no"}]},
+        "ok": {}, "cpr": {}}}
+    sm = {"slots": {"breathing": {"no": ["not breathing"]}}}
+    assert answer_turn("nope", yn, sm, "q", "breathing", {})[1]["to"] == "cpr"
+    assert answer_turn("yes no", yn, sm, "q", "breathing", {})[1] is None
+    anc = _ancestors(TREE, _questions(TREE, SMAP))
+    assert turns_to_card(TREE, SMAP, "something bit me", {"limb"}, anc, say="label") == 3
+    wl = wordlists(TREE, SMAP)
+    assert wl["mammal"]["slot"] == "where" and {"cheek", "thigh", "two", "back"} <= set(wl["mammal"]["words"])

@@ -252,6 +252,83 @@ def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = Non
     return node, skipped, None
 
 
+NUMBERS = {"one": 0, "1": 0, "first": 0, "two": 1, "2": 1, "second": 1, "to": None, "too": None,
+           "three": 2, "3": 2, "third": 2, "four": 3, "4": 3, "fourth": 3, "for": None}
+COMMANDS = ("back", "again", "home")
+
+
+def tiles(tree: dict, smap: dict, card: str) -> list[dict]:
+    """The answers a question page shows, in screen order: {label, to, value}."""
+    out = [dict(c) for c in tree["nodes"].get(card, {}).get("choices", []) if c.get("to")]
+    q = _questions(tree, smap).get(card)
+    if q:
+        have = {c["to"] for c in out}
+        out += [{"label": v, "to": t, "value": v} for v, t in q.get("choices", {}).items() if t not in have]
+        for c in out:                              # inline cards carry `value:`; slot-map cards get it here
+            c.setdefault("value", next((v for v, t in q.get("choices", {}).items() if t == c["to"]), None))
+    return out
+
+
+def answer_turn(text: str, tree: dict, smap: dict, card: str, asking: str | None, filled: dict):
+    """One spoken answer on a page (Charlie 11-17: each question is a small expert with a short
+    answer list). Returns (new filled, tile it picked or None, command or None).
+    Order: a command word; a tile number ("two", "number 3"); yes/no on a two-way yes/no page;
+    else the answer's own words through the slot mapper. Any other blank heard in the same breath
+    is filled too (never overwriting one already filled), so free speech can answer several."""
+    words = tokenize(text)
+    filled = dict(filled)
+    if len(words) <= 2 and words and words[-1] in COMMANDS:
+        return filled, None, words[-1]
+    ts = tiles(tree, smap, card)
+    nums = [NUMBERS[w] for w in words if NUMBERS.get(w) is not None]
+    if len(set(nums)) == 1 and len(words) <= 3 and nums[0] < len(ts):
+        pick = ts[nums[0]]
+    else:
+        pick = None
+        heard = _fill(text, smap)
+        for k, v in heard.items():
+            filled.setdefault(k, v)
+        if asking and asking in heard:
+            target = _answer(_questions(tree, smap).get(card, {}), heard[asking], smap.get("implies", {}))
+            pick = next((c for c in ts if c["to"] == target), None)
+        elif len(words) <= 3 and not set(words) - {"yes", "yeah", "yep", "no", "nope", "nah"}:
+            yn = "yes" if set(words) & {"yes", "yeah", "yep"} else "no"
+            if not (set(words) & {"yes", "yeah", "yep"} and set(words) & {"no", "nope", "nah"}):
+                pick = next((c for c in ts if (c.get("value") or c.get("label", "")).strip().lower() == yn), None)
+        if pick is None:                           # the tile's own words: "the leg one", "arm or leg"
+            lab = [(c, set(tokenize(c.get("label", ""))) - _FILLER) for c in ts]
+            hits = [c for c, lw in lab if lw and lw <= set(words)]
+            pick = hits[0] if len(hits) == 1 else None
+    if pick and asking and pick.get("value"):
+        filled[asking] = pick["value"]
+    return filled, pick, None
+
+
+_FILLER = {"a", "an", "the", "or", "and", "of", "on", "in", "is", "it", "to", "my", "your", "i", "yes", "no"}
+
+
+def wordlists(tree: dict, smap: dict) -> dict:
+    """Per question card: the words its answer may use (for the speech thread's per-question
+    decoder subset): the asked slot's phrase words, its tile labels' words, numbers and commands."""
+    base = ["one", "two", "three", "four", "yes", "no", "back", "again", "home", "number"]
+    out = {}
+    for card in tree["nodes"]:
+        ts = tiles(tree, smap, card)
+        if not ts:
+            continue
+        q = _questions(tree, smap).get(card)
+        w = set(base)
+        for c in ts:
+            w |= set(tokenize(c.get("label", "")))
+        if q:
+            for phrases in smap.get("slots", {}).get(q["slot"], {}).values():
+                for ph in phrases:
+                    w |= set(tokenize(ph))
+        out[card] = {"slot": q["slot"] if q else None, "tiles": [c.get("label") or c.get("value") for c in ts],
+                     "words": sorted(w)}
+    return out
+
+
 def _ancestors(tree: dict, qs: dict | None = None) -> dict[str, set[str]]:
     """Card -> every card on some path from the root to it (itself included)."""
     up: dict[str, set[str]] = {}
@@ -272,29 +349,38 @@ def _ancestors(tree: dict, qs: dict | None = None) -> dict[str, set[str]]:
     return out
 
 
-def turns_to_card(tree: dict, smap: dict, line: str, ok: set, anc: dict, most: int = 6) -> int | None:
+def turns_to_card(tree: dict, smap: dict, line: str, ok: set, anc: dict, most: int = 6,
+                  say: str = "number") -> int | None:
     """Voice turns until the right card shows: turn 1 is the spoken sentence; every later turn is
-    one answer on the page the device stopped on (the tile toward the right card, said as its number
-    or word, or pressed). None = it opened a wrong card or asked off the path (the person must back out)."""
+    one answer on the page the device stopped on, run through answer_turn. say="number" answers
+    with the right tile's number (or a button press: always understood); say="label" says the
+    right tile's own words, which tests the per-question answer mapping. None = it opened a wrong
+    card, asked off the path, or took the wrong tile (the person must back out)."""
     filled = dict(_fill(line, smap))
     card, _, asking = walk(tree, smap, filled)
     toward = set().union(*(anc.get(g, {g}) for g in ok))
-    qs = _questions(tree, smap)
     for turn in range(1, most + 1):
         if card in ok:
             return turn
         if card not in toward:
             return None
-        tiles = [{"to": t, "value": v} for v, t in (qs.get(card) or {}).get("choices", {}).items()] \
-            + tree["nodes"][card].get("choices", [])
-        step = next((c for c in tiles if c.get("to") in toward), None)
-        if not step:
+        ts = tiles(tree, smap, card)
+        k = next((i for i, c in enumerate(ts) if c["to"] in toward), None)
+        if k is None:
             return None
-        if asking and step.get("value"):
-            filled[asking] = step["value"]
+        text = f"number {k + 1}" if say == "number" or k > 3 else (ts[k].get("label") or ts[k].get("value") or "")
+        if k > 3:                                  # past the 4 numbered tiles: a button press
+            filled, pick = dict(filled), ts[k]
+            if asking and pick.get("value"):
+                filled[asking] = pick["value"]
+        else:
+            filled, pick, _ = answer_turn(text, tree, smap, card, asking, filled)
+        if not pick or pick["to"] != ts[k]["to"]:
+            return None
+        if asking and pick.get("value"):
             card, _, asking = walk(tree, smap, filled, start=card)
         else:
-            card, _, asking = walk(tree, smap, filled, start=step["to"])
+            card, _, asking = walk(tree, smap, filled, start=pick["to"])
     return None
 
 
@@ -308,7 +394,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             same[k] = set(grp)
     anc = _ancestors(tree, _questions(tree, smap))
     tally = {"right": 0, "on way": 0, "stuck": 0, "WRONG": 0}
-    skipped_total, n, wrong, turns = 0, 0, [], []
+    skipped_total, n, wrong, turns, said = 0, 0, [], [], []
     lt = smap.get("life_threat") or []
     pins = {c for m in lt.values() for c in m.values()} if isinstance(lt, dict) else {r["go"] for r in lt}
     pinned = []                                   # (opened on turn 1?) for lines whose card is a life-threat pin
@@ -321,6 +407,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             skipped_total += len(skipped)
             ok = same.get(gold, {gold})
             turns.append(turns_to_card(tree, smap, line, ok, anc))
+            said.append(turns_to_card(tree, smap, line, ok, anc, say="label"))
             if ok & pins:
                 pinned.append(turns[-1] == 1)
             if card in ok:
@@ -335,9 +422,10 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
     pct = {k: f"{100 * v / max(n, 1):.0f}%" for k, v in tally.items()}
     return (f"{n} lines  " + "  ".join(f"{k} {v}" for k, v in pct.items())
             + f"  avg cards skipped {skipped_total / max(n, 1):.2f}\n"
-            + "right card by voice turn  " + "  ".join(
-                f"{k}: {100 * sum(1 for t in turns if t and t <= k) / max(n, 1):.0f}%" for k in (1, 2, 3, 4))
-            + f"  never (wrong card / off path): {100 * sum(1 for t in turns if t is None) / max(n, 1):.0f}%\n"
+            + "".join(f"right card by voice turn ({how})  " + "  ".join(
+                f"{k}: {100 * sum(1 for t in ts if t and t <= k) / max(n, 1):.0f}%" for k in (1, 2, 3, 4))
+                + f"  never: {100 * sum(1 for t in ts if t is None) / max(n, 1):.0f}%\n"
+                for how, ts in (("tile numbers", turns), ("saying the tile words", said)))
             + (f"life-threat cards opened on the first sentence: {sum(pinned)}/{len(pinned)}\n" if pinned else "")
             + "\n".join(wrong[:30]))
 
@@ -349,9 +437,13 @@ def main(argv=None):
     ap.add_argument("--sim", type=Path, help="expert seed YAML: run every train+test line and score the walk")
     ap.add_argument("--trees", type=Path, nargs="+", required=True)
     ap.add_argument("--slots", type=Path, required=True)
+    ap.add_argument("--wordlists", action="store_true", help="print each question page's allowed answer words (YAML)")
     a = ap.parse_args(argv)
     tree = load_tree(a.trees, a.tree)
     smap = yaml.safe_load(a.slots.read_text())
+    if a.wordlists:
+        print(yaml.safe_dump({a.tree: wordlists(tree, smap)}, sort_keys=False, width=200))
+        return
     if a.sim:
         print(simulate(tree, smap, yaml.safe_load(a.sim.read_text())))
         return
