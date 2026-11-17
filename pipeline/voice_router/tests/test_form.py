@@ -79,3 +79,8 @@ def test_two_problems_open_two_tabs():
     tabs = split_tabs(cands)
     assert [[c.name for c in t] for t in tabs] == [["bites"], ["burns"]]
     assert answer("on the leg", tabs[0]) == ("open", "bites", "limb")
+
+
+def test_sector_redecode_per_candidate():
+    c = Candidate("bites", TREE, SMAP, hyps=["a raccoon bit my thigh"])
+    assert first_sentence("a rack coon bit my thy", [c]) == ("open", "bites", "limb")

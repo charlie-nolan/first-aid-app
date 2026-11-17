@@ -35,6 +35,8 @@ class Candidate:
     smap: dict
     p: float = 1.0
     filled: dict = field(default_factory=dict)
+    hyps: list | None = None         # this tree's own n-best: the same utterance re-decoded with its
+                                     # sector's words (speech side, 11-17); None = the shared n-best
     card: str | None = None          # where this tree's walk stands now
     asking: str | None = None        # the blank that card asks (None = a plain card: open it)
 
@@ -61,7 +63,7 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
     hyps = [hyps] if isinstance(hyps, str) else hyps
     cands.sort(key=lambda c: -c.p)
     for c in cands:
-        c.filled = fill_nbest(hyps, c.smap)
+        c.filled = fill_nbest(c.hyps or hyps, c.smap)
         c.advance()
         if c.card not in c.tree["nodes"]:             # a life rule jumped to another tree's card
             return "open", c.name, c.card
