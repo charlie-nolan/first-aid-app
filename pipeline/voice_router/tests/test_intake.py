@@ -29,3 +29,12 @@ def test_asks_only_the_missing_blank():
 def test_life_threat_first_and_negation():
     assert run("dog bit my leg and it's gushing") == ("wfa-bleeding/severe", [], None)
     assert fill("it's not gushing", SMAP["slots"]) == {}
+
+
+def test_inline_slot_tags():
+    tree = {"root": "start", "nodes": {
+        "start": {"slot": "animal", "choices": [{"label": "Snake", "to": "snake", "value": "snake"},
+                                                {"label": "Mammal", "to": "mammal", "value": "mammal"}]},
+        "snake": {}, "mammal": {}}}
+    smap = {"slots": SMAP["slots"]}
+    assert walk(tree, smap, fill("rattler got him", smap["slots"])) == ("snake", ["start"], None)

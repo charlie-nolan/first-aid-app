@@ -18,6 +18,10 @@ seeds, personal ones gitignored) says which question card asks which blank:
     questions:                        # card -> the blank it asks, and which answer each value takes
       start: {slot: animal, choices: {snake: snake, mammal: mammal}}
 
+Trees may instead carry this inline (plb schema, 11-16): `slot:` on a question card and `value:`
+on each of its choices; the slot map then only needs `slots` (the words) and `life_threat`.
+Shared slot names: injury, body_part, animal, bleeding_type, severity, conscious, breathing, has_kit.
+
 Rules: a blank is filled only by a word the person actually said (never guessed), a negated
 word fills nothing ("not spurting" leaves bleeding empty unless a 'not' phrase is listed), and
 a `life_threat` value opens its card before any other question is asked.
@@ -67,7 +71,11 @@ def fill(text: str, slots: dict) -> dict[str, str]:
 def walk(tree: dict, smap: dict, filled: dict[str, str]):
     """Follow the tree from its root, taking every answer the blanks already give.
     Returns (card to show, cards skipped, blank it is asking or None)."""
-    nodes, qs = tree["nodes"], smap.get("questions", {})
+    nodes, qs = tree["nodes"], dict(smap.get("questions", {}))
+    for key, n in nodes.items():                 # inline form: `slot:` on the card, `value:` on choices
+        if n.get("slot") and key not in qs:
+            qs[key] = {"slot": n["slot"], "choices": {c["value"]: c["to"] for c in n.get("choices", [])
+                                                      if c.get("value") and c.get("to")}}
     node, skipped, seen = tree["root"], [], set()
     for slot, jumps in (smap.get("life_threat") or {}).items():   # life threats jump the queue
         v = filled.get(slot)
