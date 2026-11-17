@@ -197,3 +197,16 @@ def test_answer_turn_numbers_yes_no_words_and_extra_blanks():
     assert turns_to_card(TREE, SMAP, "something bit me", {"limb"}, anc, say="label") == 3
     wl = wordlists(TREE, SMAP)
     assert wl["mammal"]["slot"] == "where" and {"cheek", "thigh", "two", "back"} <= set(wl["mammal"]["words"])
+
+
+def test_one_word_no_verb_fold_future_hedge_and_soundalike_guard():
+    from vr.intake import fill_nbest
+    slots = {"bleeding": {"severe": ["squirting", "won't stop bleeding"]},
+             "conscious": {"no": ["passed out"]}, "breathing": {"no": ["stopped breathing"]}}
+    assert fill("rinse it with a squirt bottle", slots) == {}
+    assert fill("it's squirting", slots) == {"bleeding": "severe"}
+    assert fill("i think she will pass out", slots) == {}
+    assert fill("she passed out", slots) == {"conscious": "no"}
+    smap = {"slots": slots, "life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}]}
+    assert fill_nbest(["how do i stop bleeding", "how do i stop breathing"], smap) == {}
+    assert fill_nbest(["she's stop breath in", "she stopped breathing"], smap) == {"breathing": "no"}

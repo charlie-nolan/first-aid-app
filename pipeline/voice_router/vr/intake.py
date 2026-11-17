@@ -48,13 +48,18 @@ from .lexicon import NEGATION, tokenize
 NEG_WINDOW = 3
 
 
-def _stem(w: str) -> str:
+def _stem(w: str, verbs: bool = True) -> str:
     """Light stemming so "bandages"/"bandage", "deeply"/"deep", "stopped"/"stop"/"stopping" match.
-    Negation and hedge words are left alone ("nothing" stays "nothing")."""
+    Negation and hedge words are left alone ("nothing" stays "nothing"). verbs=False keeps -ing/-ed
+    (used for one-word phrases: "squirting" must not hear "squirt bottle")."""
     if w in NEGATION or w in HEDGE or "'" in w:
         return w
     if len(w) > 5 and w.endswith("ly"):
         w = w[:-2]
+    if not verbs:
+        if len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
+            w = w[:-1]
+        return w
     if len(w) > 5 and w.endswith("ing"):
         w = w[:-3]
     elif len(w) > 4 and w.endswith("ed") and not w.endswith("eed"):
@@ -92,7 +97,8 @@ def _find(words: list[str], phrase: list[str], gap: int = 1) -> list[int] | None
     return None
 
 
-HEDGE = {"if", "whether", "unsure", "maybe", "barely", "might", "check"}
+HEDGE = {"if", "whether", "unsure", "maybe", "barely", "might", "check",
+         "will", "gonna", "could", "about"}       # "she will pass out", "about to pass out": not yet
 
 
 CONTRAST = {"but", "now", "though", "although", "except"}
@@ -107,7 +113,9 @@ def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | N
     - a tie on coverage: if `decisive` is given, slots in it (the life-threat blanks) take the value
       listed first in priority[slot] (most severe first) and every other blank stays EMPTY, so the
       card asks; with decisive=None every tie takes the priority value (old behaviour)."""
-    words = [_stem(w) for w in tokenize(text)]
+    raw = tokenize(text)
+    words = [_stem(w) for w in raw]
+    plain = [_stem(w, verbs=False) for w in raw]
     priority = priority or {}
     cuts = [i for i, w in enumerate(words) if w in CONTRAST]
     out: dict[str, str] = {}
@@ -117,8 +125,13 @@ def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | N
         for value, phrases in values.items():
             covered = set()
             for ph in phrases:
-                p = [_stem(w) for w in tokenize(ph)]
-                hit = _find(words, p)
+                pw = tokenize(ph)
+                if len(pw) == 1:                   # one word: no verb folding
+                    p = [_stem(pw[0], verbs=False)]
+                    hit = _find(plain, p)
+                else:
+                    p = [_stem(w) for w in pw]
+                    hit = _find(words, p)
                 if hit is None:
                     continue
                 i = hit[0]
@@ -169,11 +182,24 @@ def fill_nbest(hyps: list[str], smap: dict) -> dict[str, str]:
     if isinstance(lt, dict):
         lt = [{"if": {s: v}} for s, m in lt.items() for v in m]
     danger = {(s, v) for r in lt for s, v in r.get("if", {}).items()}
+    top = set(tokenize(hyps[0]))
     for h in hyps[1:]:
+        new = set(tokenize(h)) - top
+        if any(w2 in top for w in new for w2 in SOUNDALIKE.get(w, ())):
+            continue                               # "stop breathing" below "stop bleeding": a misheard twin, not news
         for s, v in _fill(h, smap).items():
             if s not in out and (s, v) in danger:
                 out[s] = v
     return out
+
+
+# Words the recognizer swaps for each other; a lower guess that only differs by one of these
+# must not add a life threat the top guess explains another way.
+_PAIRS = [("breathing", "bleeding"), ("breathe", "bleed"), ("breath", "blood")]   # both real first-aid words
+SOUNDALIKE: dict[str, set] = {}
+for _a, _b in _PAIRS:
+    SOUNDALIKE.setdefault(_a, set()).add(_b)
+    SOUNDALIKE.setdefault(_b, set()).add(_a)
 
 
 def _questions(tree: dict, smap: dict) -> dict:
