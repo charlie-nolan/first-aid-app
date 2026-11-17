@@ -105,12 +105,21 @@ static i2s_chan_handle_t rx;
 static int16_t pre[SR * PRE_MS / 1000]; static size_t pre_pos;
 static volatile bool recording; static volatile size_t rec_n; static size_t rec_off, rec_max;
 
+/* The mic talks on one clock edge (set by SEL); which edge the S3 calls "left" has varied between
+ * chips and IDF versions. So read both slots and keep whichever one is moving: the idle slot reads
+ * a stuck constant. act[] is a slow average of sample-to-sample change per slot. */
+static uint32_t act[2]; static volatile int mic_slot;
 static void mic_task(void *arg) {
-    int16_t buf[256];
+    int16_t raw[512], buf[256];
     for (;;) {
         size_t got = 0;
-        if (i2s_channel_read(rx, buf, sizeof buf, &got, pdMS_TO_TICKS(100)) != ESP_OK) continue;
-        size_t n = got / 2;
+        if (i2s_channel_read(rx, raw, sizeof raw, &got, pdMS_TO_TICKS(100)) != ESP_OK) continue;
+        size_t n = got / 4;
+        uint32_t d[2] = {0, 0};
+        for (size_t i = 1; i < n; i++) for (int c = 0; c < 2; c++) d[c] += abs(raw[2 * i + c] - raw[2 * i - 2 + c]);
+        for (int c = 0; c < 2; c++) act[c] = act[c] - (act[c] >> 4) + (d[c] >> 4);
+        if (act[mic_slot ^ 1] > 4 * act[mic_slot] + 64) mic_slot ^= 1;
+        for (size_t i = 0; i < n; i++) buf[i] = raw[2 * i + mic_slot];
         if (recording) {
             size_t room = rec_max - rec_n, k = n < room ? n : room;
             memcpy(store + rec_off + rec_n, buf, k * 2); rec_n += k;
@@ -126,7 +135,7 @@ static void mic_init(void) {
     ESP_ERROR_CHECK(i2s_new_channel(&cc, NULL, &rx));
     i2s_pdm_rx_config_t pc = {
         .clk_cfg = I2S_PDM_RX_CLK_DEFAULT_CONFIG(SR),
-        .slot_cfg = I2S_PDM_RX_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_MONO),
+        .slot_cfg = I2S_PDM_RX_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_STEREO),
         .gpio_cfg = { .clk = CONFIG_REC_MIC_CLK, .din = CONFIG_REC_MIC_DATA },
     };
     ESP_ERROR_CHECK(i2s_channel_init_pdm_rx_mode(rx, &pc));
