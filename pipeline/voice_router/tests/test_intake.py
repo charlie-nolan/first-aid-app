@@ -273,3 +273,9 @@ def test_own_root_is_not_a_life_card_for_tiles():
             "life_words": {"bleed": "sev", "breath": "cpr"}}
     t = {"root": "start", "nodes": {"start": {}, "cpr": {}}}
     assert life_options(["foot is bleeding", "foot is breathing"], t, smap) == ["start"]
+
+
+def test_apostrophe_less_contractions():
+    slots = {"breathing": {"no": ["isn't breathing"], "yes": ["breathing"]}}
+    assert fill("he isnt breathing", slots) == {"breathing": "no"}
+    assert fill("she couldnt be breathing better", {"breathing": {"yes": ["breathing"]}}) == {}

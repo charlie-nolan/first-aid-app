@@ -44,7 +44,20 @@ from pathlib import Path
 import yaml
 
 from .data import load_tree
-from .lexicon import NEGATION, tokenize
+from .lexicon import NEGATION as _LEX_NEGATION, tokenize as _lex_tokenize
+
+# Typed or recognized without the apostrophe ("isnt breathing"): same word, and the negation
+# guard must still see it. ("ill", "its", "were" are real words and stay as they are.)
+_CONTRACT = {"isnt": "isn't", "cant": "can't", "dont": "don't", "didnt": "didn't", "doesnt": "doesn't",
+             "wont": "won't", "wasnt": "wasn't", "arent": "aren't", "havent": "haven't", "hasnt": "hasn't",
+             "couldnt": "couldn't", "wouldnt": "wouldn't", "shouldnt": "shouldn't", "werent": "weren't",
+             "aint": "ain't", "im": "i'm", "ive": "i've", "hes": "he's", "shes": "she's", "thats": "that's",
+             "theyre": "they're", "youre": "you're", "theres": "there's"}
+NEGATION = _LEX_NEGATION | {"hasn't", "couldn't", "wouldn't", "shouldn't", "weren't", "ain't", "nobody"}
+
+
+def tokenize(text: str) -> list[str]:
+    return [_CONTRACT.get(w, w) for w in _lex_tokenize(text)]
 
 NEG_WINDOW = 3
 
