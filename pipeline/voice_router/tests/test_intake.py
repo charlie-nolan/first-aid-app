@@ -121,3 +121,9 @@ def test_plurals_and_ly_match():
     slots = {"kit": {"blister": ["blister bandage"]}, "depth": {"deep": ["deep"]}}
     assert fill("we ran out of blister bandages", slots) == {"kit": "blister"}
     assert fill("she got cut deeply", slots) == {"depth": "deep"}
+
+
+def test_one_filler_word_but_not_a_negation():
+    slots = {"allergy": {"severe": ["throat tight"], "mild": ["rash"]}}
+    assert fill("a rash and now her throat is tight", slots)["allergy"] == "severe"
+    assert fill("a rash but her throat not tight", slots)["allergy"] == "mild"

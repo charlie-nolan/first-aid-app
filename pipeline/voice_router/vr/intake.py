@@ -57,12 +57,30 @@ def _stem(w: str) -> str:
     return w
 
 
-def _find(words: list[str], phrase: list[str]) -> int:
+def _find(words: list[str], phrase: list[str], gap: int = 1) -> list[int] | None:
+    """Positions of the phrase's words in `words`. Exact run first; else allow up to `gap` filler
+    word between consecutive phrase words ("throat is tight" for "throat tight"), never a
+    negation or hedge word ("throat not tight" does not match)."""
     n = len(phrase)
     for i in range(len(words) - n + 1):
         if words[i:i + n] == phrase:
-            return i
-    return -1
+            return list(range(i, i + n))
+    if n < 2:
+        return None
+    for i, w in enumerate(words):
+        if w != phrase[0]:
+            continue
+        pos, j = [i], i
+        for p in phrase[1:]:
+            for k in range(j + 1, min(j + 2 + gap, len(words))):
+                if words[k] == p and all(x not in NEGATION and x not in HEDGE for x in words[j + 1:k]):
+                    pos.append(k); j = k
+                    break
+            else:
+                break
+        if len(pos) == n:
+            return pos
+    return None
 
 
 HEDGE = {"if", "whether", "unsure", "maybe", "barely", "might", "check"}
@@ -83,15 +101,16 @@ def fill(text: str, slots: dict, priority: dict | None = None) -> dict[str, str]
             covered = set()
             for ph in phrases:
                 p = [_stem(w) for w in tokenize(ph)]
-                i = _find(words, p)
-                if i < 0:
+                hit = _find(words, p)
+                if hit is None:
                     continue
+                i = hit[0]
                 before = words[max(0, i - NEG_WINDOW):i]
                 if any(w in NEGATION for w in before) and not any(w in NEGATION for w in p):
                     continue
                 if any(w in HEDGE for w in before) and not any(w in HEDGE for w in p):
                     continue
-                covered.update(range(i, i + len(p)))
+                covered.update(hit)
             if covered:
                 key = (len(covered), -order.index(value))
                 if slot not in best or key > best[slot][0]:
@@ -206,7 +225,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             ok = same.get(gold, {gold})
             if card in ok:
                 tally["right"] += 1
-            elif asking and any(card in anc.get(g, ()) for g in ok):
+            elif any(card in anc.get(g, ()) for g in ok):   # stopped (asking or on a plain card) on its way
                 tally["on way"] += 1
             elif asking or card == tree["root"]:
                 tally["stuck"] += 1
