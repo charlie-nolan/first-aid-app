@@ -264,3 +264,12 @@ def test_plain_bleeding_gets_no_cpr_tile_from_a_far_guess():
     t = {"root": "start", "nodes": {"start": {}}}
     assert life_options(["foot is bleeding", "foot is building", "foot his bleeding", "foot is breathing"], t, smap) == ["start"]
     assert life_options(["breathing out", "bleeding out"], t, smap) == ["start", "sev"]       # rescue
+
+
+def test_own_root_is_not_a_life_card_for_tiles():
+    from vr.intake import life_options
+    smap = {"slots": {"breathing": {"no": ["stop breathing"]}, "conscious": {"no": ["unconscious"]}},
+            "life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}, {"if": {"conscious": "no"}, "go": "start"}],
+            "life_words": {"bleed": "sev", "breath": "cpr"}}
+    t = {"root": "start", "nodes": {"start": {}, "cpr": {}}}
+    assert life_options(["foot is bleeding", "foot is breathing"], t, smap) == ["start"]

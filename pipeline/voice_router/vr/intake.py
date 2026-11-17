@@ -210,6 +210,7 @@ def life_options(hyps: list[str], tree: dict, smap: dict) -> list[str]:
     first, _, _ = walk(tree, smap, filled)
     lt = smap.get("life_threat") or []
     pins = {c for m in lt.values() for c in m.values()} if isinstance(lt, dict) else {r["go"] for r in lt}
+    pins.discard(tree["root"])                    # a tree's own start card is where you are, not a jump
     out = [first]
     top = tokenize(hyps[0])
     near = {w for h in hyps[1:3] for w in tokenize(h)}     # rescue only from the next two guesses
