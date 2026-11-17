@@ -161,7 +161,10 @@ static take_t *rec_stop(int32_t prompt, uint32_t redo_of) {
     int peak = 0, clip = 0, lo = 32767, hi = -32768;
     for (uint32_t i = 0; i < t->n; i++) {
         int s0 = store[t->off + i], v = abs(s0);
-        if (v > peak) peak = v; clip += v > 32000; if (s0 < lo) lo = s0; if (s0 > hi) hi = s0;
+        if (v > peak) { peak = v; }
+        clip += v > 32000;
+        if (s0 < lo) { lo = s0; }
+        if (s0 > hi) { hi = s0; }
     }
     t->range = (uint16_t)(t->n ? (hi - lo > 65535 ? 65535 : hi - lo) : 0);   /* ~0 = stuck data line, no sound */
     t->peak = (int16_t)(peak > 32767 ? 32767 : peak); t->clip_pm = (uint16_t)(1000LL * clip / (t->n ? t->n : 1));
