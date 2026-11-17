@@ -127,8 +127,8 @@ def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | N
             covered = set()
             for ph in phrases:
                 pw = tokenize(ph)
-                if len(pw) == 1:                   # one word: no verb folding
-                    p = [_stem(pw[0], verbs=False)]
+                if len(pw) == 1 or any(w in NEGATION for w in pw):   # one word or negated: no verb folding
+                    p = [_stem(w, verbs=False) for w in pw]          # ("no breath" != "no breathing problems")
                     hit = _find(plain, p)
                 else:
                     p = [_stem(w) for w in pw]

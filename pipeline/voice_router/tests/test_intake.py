@@ -222,3 +222,10 @@ def test_soundalike_life_threat_shows_both_tiles():
     assert life_options(["my leg wind stop breathing", "my leg won't stop bleeding"], t, smap) == \
         ["wfa-cpr/cpr", "wfa-bleeding/severe"]
     assert life_options(["she stopped breathing", "she stopped breathing now"], t, smap) == ["wfa-cpr/cpr"]
+
+
+def test_negated_phrase_does_not_fold_verbs():
+    slots = {"breathing": {"no": ["no breath", "not breathing"]}}
+    assert fill("he has no breathing problems", slots) == {}
+    assert fill("he has no breath", slots) == {"breathing": "no"}
+    assert fill("she is not breathing", slots) == {"breathing": "no"}
