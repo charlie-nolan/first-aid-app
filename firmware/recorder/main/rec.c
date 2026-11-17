@@ -1,6 +1,6 @@
 /* rec.c - FASR recorder: collect labelled speech through the device's own PDM mic.
  *
- * The screen shows a sentence. Hold TALK, read it, let go. The clip (16 kHz mono 16-bit,
+ * The screen (or, with no e-ink wired, the PC running `fasr devrec`) shows a sentence. Hold TALK, read it, let go. The clip (16 kHz mono 16-bit,
  * with 300 ms of audio from before the press) is kept in PSRAM until the PC copies it:
  *     python -m fasr devrec            (pipeline/speech; writes WAVs + manifests)
  * Clips not yet copied are lost if power is cut; the screen shows how many are waiting.
@@ -15,7 +15,7 @@
  *
  * USB protocol (text lines, so logs can't corrupt it):
  *   PC -> device:  "HELLO", "SYNC" (send clips not sent yet), "ACK <id>", "RESEND" (after a bad transfer)
- *   device -> PC:  "FASR-REC 1 <pending>"
+ *   device -> PC:  "FASR-REC 1 <pending>", "SCREEN <top> | <prompt> | <status>" (what the e-ink shows)
  *                  "TAKE {json}"  then "D <base64>" lines  then "END <crc32 hex>"
  */
 #include <stdio.h>
@@ -37,6 +37,12 @@
 #include "mbedtls/base64.h"
 #include "nvs.h"
 #include "nvs_flash.h"
+
+#ifdef CONFIG_REC_EPD
+#define REC_EPD 1
+#else
+#define REC_EPD 0   /* no panel: the PC shows the prompts */
+#endif
 
 #define SR 16000
 #define PRE_MS 300
@@ -202,8 +208,13 @@ static void send_take(take_t *t) {
 
 static volatile int64_t last_host_us;
 static void usb_task(void *arg) {
-    char line[48]; int n = 0; uint8_t ch;
+    char line[48]; int n = 0; uint8_t ch; uint32_t sent_ver = 0;
+    static char scr[400];
     for (;;) {
+        if (sent_ver != screen_ver) {
+            xSemaphoreTake(lock, portMAX_DELAY); sent_ver = screen_ver; strcpy(scr, screen_txt); xSemaphoreGive(lock);
+            usb_line(scr);
+        }
         if (usb_serial_jtag_read_bytes(&ch, 1, pdMS_TO_TICKS(50)) != 1) continue;
         if (ch != '\n' && ch != '\r') { if (n < (int)sizeof line - 1) line[n++] = (char)ch; continue; }
         line[n] = 0; n = 0;
@@ -253,9 +264,13 @@ static void wrap(unsigned style, int x, int y, int w, int h, const char *s, size
     }
 }
 
+/* The current screen as one text line, sent to the PC by the USB task (the only USB writer),
+ * so `fasr devrec` can show the prompt even when no e-ink panel is wired. */
+static char screen_txt[400];
+static volatile uint32_t screen_ver;
+
 static void draw(const char *status, bool rec) {
     memset(fbits, 0, sizeof fbits);
-    if (!have_cart) { epd_show(fbits, true); return; }
     char top[80];
     int total = mode <= M_EVAL ? nlines[mode] : 0;
     if (mode <= M_EVAL) snprintf(top, sizeof top, "%s %d/%d   unsent %d", MODE_NAME[mode], idx[mode] + 1, total, pending());
@@ -266,9 +281,17 @@ static void draw(const char *status, bool rec) {
     if (mode <= M_EVAL && total) { line_t L = lines[mode][idx[mode] % total]; body = L.s; blen = L.len; }
     else if (mode == M_FREE) { body = "Say what happened, like you would on a trail. Any injury, any words."; blen = strlen(body); }
     else { snprintf(tmp, sizeof tmp, "Hold TALK %d s for background only: wind, stream, rain, fan, clothes. Don't talk.", NOISE_S); body = tmp; blen = strlen(tmp); }
+    const char *st = status ? status : "Hold TALK to read   BACK redo   DOWN skip / hold: mode";
+    xSemaphoreTake(lock, portMAX_DELAY);
+    snprintf(screen_txt, sizeof screen_txt, "SCREEN %s%s | %.*s | %s", rec ? "[REC] " : "", top, (int)blen, body, st);
+    for (char *c = screen_txt; *c; c++) if (*c == '\n' || *c == '\r') *c = ' ';
+    screen_ver++;
+    xSemaphoreGive(lock);
+    if (!REC_EPD) return;
+    if (!have_cart) { epd_show(fbits, true); return; }
     unsigned big = cart_font_sizes(&cart) - 1;
     wrap(big, 4, 18, 242, 82, body, blen);
-    cart_draw_str(&cart, 0, 0, &fb, 4, 118, status ? status : "Hold TALK to read   BACK redo   DOWN skip / hold: mode");
+    cart_draw_str(&cart, 0, 0, &fb, 4, 118, st);
     epd_show(fbits, ++screens % 8 == 0);
 }
 
@@ -294,7 +317,7 @@ void app_main(void) {
     gpio_config_t g = { .pin_bit_mask = (1ULL << PIN_BTN_TALK) | (1ULL << PIN_BTN_BACK) | (1ULL << PIN_BTN_DOWN),
                         .mode = GPIO_MODE_INPUT, .pull_up_en = 1 };
     gpio_config(&g);
-    epd_init();
+    if (REC_EPD) epd_init();
     mic_init();
     xTaskCreatePinnedToCore(usb_task, "usb", 6144, 0, 5, 0, 0);
     draw(0, false);

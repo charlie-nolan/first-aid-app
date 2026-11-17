@@ -102,6 +102,10 @@ def run(port: str | None):
         line = raw.decode("ascii", "replace").strip()
         if line.startswith("FASR-REC"):
             print("device:", line)
+        elif line.startswith("SCREEN "):   # what the e-ink shows (lets you record with no panel wired)
+            top, _, rest = line[7:].partition(" | ")
+            prompt, _, status = rest.rpartition(" | ")
+            print(f"\n[{top}]  {status}\n  >> {prompt}")
         elif line.startswith("TAKE "):
             hdr, chunks = json.loads(line[5:]), []
         elif line.startswith("D ") and hdr is not None:

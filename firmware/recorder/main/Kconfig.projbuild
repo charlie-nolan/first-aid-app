@@ -30,6 +30,9 @@ config REC_MIC_PWR
     int "PDM mic power GPIO (-1 = mic wired to 3V3)"
     default 39 if LIB_BOARD_PLUS
     default -1
+config REC_EPD
+    bool "E-ink panel wired (off: prompts only on the PC running fasr devrec)"
+    default y
 config REC_BUFFER_KB
     int "PSRAM kept for clips not yet copied to the PC (KB)"
     default 6144

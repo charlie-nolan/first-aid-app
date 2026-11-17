@@ -1,0 +1,2 @@
+# Plain bench board with no e-ink wired: prompts appear on the PC (fasr devrec)
+# CONFIG_REC_EPD is not set
