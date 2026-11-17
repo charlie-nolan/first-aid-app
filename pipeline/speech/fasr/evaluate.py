@@ -58,6 +58,7 @@ def main(argv=None):
         rows = [r for r in rows if r["id"] < 10 or r["word"] in keep]
         print(f"decoding with {len(rows)} of {len(ids)} lexicon words ({a.vocab})")
     trie = Trie.from_lexicon(rows)
+    id2w = {r["id"]: r["word"] for r in rows}
     # slot words the router's intake fills (body part, mechanism, animal, bleeding type)
     slot = {r["id"] for r in rows if r.get("class") in (1, 2, 6) or r["word"] in BLEED}
     model = load_model(a.run)
@@ -94,7 +95,9 @@ def main(argv=None):
                 g["slot_false"] += len(hs - set(rs))
                 g["in5"] += any(h["ids"] == ref for h in hyp["h"])
                 g["on_n"] += 1; g["on_reject"] += hyp["reject"]
-            out.write(json.dumps({"wav": str(wav), "text": r["text"], "noise": cond, "ref": ref, **hyp}) + "\n")
+            words = [" ".join(id2w.get(i, "<unk>") for i in h["ids"]) for h in hyp["h"]]
+            out.write(json.dumps({"wav": str(wav), "text": r["text"], "noise": cond, "ref": ref, **hyp,
+                                  "top1": words[0] if words else "", "nbest_text": words}) + "\n")
         res = {}
         for cond, g in sorted(agg.items()):
             res[cond] = {
