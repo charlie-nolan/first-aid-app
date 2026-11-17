@@ -26,10 +26,20 @@ import yaml
 from . import lexicon as lx
 from .decode import Params, Trie, nbest
 
+# Common little words that sound like menu words ("I" ~ eye, "or" ~ ear, "to" ~ toe, "are" ~ arm).
+# They join every slot's decoding as distractors: hearing them votes for "none", so a free sentence
+# doesn't fill a blank from a pronoun.
+DISTRACTORS = """i i'm i've me my mine you your he his him she her hers it its we our us they their them a an the
+and or but so if of to too two in on at by for from with into onto off up down out over under about after before
+is are was were be been am do does did done have has had can can't could would should will won't not no yes
+what where when who why how which this that there here these those all some any just very really now then
+get got go going went come came see saw know think tell say said look looks like want need help
+one three four five back again home okay ok oh um uh yeah well""".split()
+
 SLOT_PARAMS = Params(beam=24, garbage_enter=-2.0, garbage_phone=-1.0)   # small menus: let other speech fall to <unk>
 
 
-def build(spec: dict, rows: list[dict]):
+def build(spec: dict, rows: list[dict], distractors: bool = False):
     """spec {value: [phrases]} -> (trie, {value: [id tuples]}, unknown words)."""
     ids = {r["word"]: r["id"] for r in rows}
     phrases, missing, need = {}, set(), set()
@@ -43,6 +53,8 @@ def build(spec: dict, rows: list[dict]):
                 continue
             phrases.setdefault(val, []).append(tuple(ids[t] for t in toks))
             need.update(toks)
+    if distractors:
+        need |= set(DISTRACTORS) - {t for ps in spec.values() for p in (ps or []) for t in lx.tokenize(str(p))}
     sub = [r for r in rows if r["word"] in need or r["id"] == 0]
     return Trie.from_lexicon(sub), phrases, missing
 
@@ -53,7 +65,9 @@ def _has(seq: list[int], ph: tuple) -> bool:
 
 
 def decide(logp, trie: Trie, phrases: dict, p: Params = SLOT_PARAMS,
-           fill_at: float = 0.6, margin: float = 0.2, choose_at: float = 0.6) -> dict:
+           fill_at: float = 0.6, margin: float = 0.2, choose_at: float = 0.6, max_none: float = 1.0) -> dict:
+    """max_none: a fill needs the "said none of these" mass below this (use ~0.3 when the blank is read
+    off a free sentence: an unmentioned body part must not be guessed)."""
     hyp = nbest(logp, trie, p)
     mass = defaultdict(float)
     none = 0.0
@@ -65,7 +79,7 @@ def decide(logp, trie: Trie, phrases: dict, p: Params = SLOT_PARAMS,
             mass[v] += h["p"]
     ranked = sorted(mass.items(), key=lambda kv: -kv[1]) + [(None, 0.0), (None, 0.0)]
     (v1, c1), (v2, c2) = ranked[0], ranked[1]
-    if v1 is not None and c1 >= fill_at and c1 - c2 >= margin:
+    if v1 is not None and c1 >= fill_at and c1 - c2 >= margin and none < max_none:
         action = "fill"
     elif v1 is not None and v2 is not None and c1 + c2 >= choose_at:
         action = "choose"
@@ -97,6 +111,10 @@ def main(argv=None):
     ap.add_argument("--spec", required=True)
     ap.add_argument("--set", required=True, action="append")
     ap.add_argument("--slot", action="append", help="only these slots (default all in the spec)")
+    ap.add_argument("--max-none", type=float, default=1.0, help="0.3 for blanks read off a free sentence")
+    ap.add_argument("--sentence", action="store_true",
+                    help="blank read off a free first sentence: common little words compete (\"I\" is not \"eye\"); "
+                         "default is answer mode (page 2: the person answers the blank itself)")
     a = ap.parse_args(argv)
     rows = yaml.safe_load(lx.LEXICON.read_text())["words"]
     spec = yaml.safe_load(Path(a.spec).read_text())
@@ -117,11 +135,11 @@ def main(argv=None):
     for name, menu in spec.items():
         if a.slot and name not in a.slot:
             continue
-        trie, phrases, missing = build(menu, rows)
+        trie, phrases, missing = build(menu, rows, distractors=a.sentence)
         g = defaultdict(int)
         for lp, (_, text) in zip(lps, clips):
             gold = gold_value(text, menu)
-            d = decide(lp, trie, phrases)
+            d = decide(lp, trie, phrases, max_none=a.max_none)
             if gold:
                 g["gold"] += 1
                 g["filled_right"] += d["action"] == "fill" and d["value"] == gold
