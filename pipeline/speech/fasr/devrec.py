@@ -47,7 +47,7 @@ def _public_voice(which: str) -> list[str]:
     return out
 
 
-def make_prompts(n_train: int, n_eval: int, seed: int = 5):
+def make_prompts(n_train: int, n_eval: int, seed: int = 5, new_only: bool = False):
     """Prompts in the words a person says TO the device ("my buddy cut his hand"), not card titles:
     TRAIN = router/expert `train` phrases + the router thread's Qwen sentences + short commands;
     EVAL  = held-out user-style sentences (voice `test` phrases, agy's independent set), never trained on."""
@@ -59,7 +59,12 @@ def make_prompts(n_train: int, n_eval: int, seed: int = 5):
     if AGY_EVAL.exists():
         held += [l.strip().lower() for l in AGY_EVAL.read_text().splitlines() if l.strip()]
     held_set = set(held)
-    pool = list(dict.fromkeys(s for s in seeds + gen if ok(s) and s not in held_set))
+    done = set()
+    if new_only:   # a further recording round: skip sentences already recorded, keep the same EVAL list
+        for m in (OUT / "train.jsonl",):
+            if m.exists():
+                done |= {json.loads(l)["text"].lower().strip() for l in m.read_text().splitlines() if l.strip()}
+    pool = list(dict.fromkeys(s for s in seeds + gen if ok(s) and s not in held_set and s not in done))
     rng.shuffle(pool)
     singles = ["one", "two", "three", "four", "yes", "no", "back", "again", "home"]
     # every router seed first (hand-written), then Qwen sentences to fill
@@ -70,6 +75,8 @@ def make_prompts(n_train: int, n_eval: int, seed: int = 5):
     held = list(dict.fromkeys(s for s in held if ok(s)))
     rng.shuffle(held)
     held = held[:n_eval]
+    if new_only and PROMPTS.exists():
+        held = [l[2:] for l in PROMPTS.read_text().splitlines() if l.startswith("E|")] or held
     PROMPTS.write_text("".join(f"T|{s}\n" for s in train) + "".join(f"E|{s}\n" for s in held))
     print(f"{PROMPTS}: {len(train)} training + {len(held)} held-out prompts "
           f"({sum(s in seed_set for s in train)} router seeds, {len(gen)} Qwen sentences available)")
@@ -186,13 +193,15 @@ def main(argv=None):
     ap.add_argument("--port")
     ap.add_argument("--train", type=int, default=400)
     ap.add_argument("--eval", type=int, default=120)
+    ap.add_argument("--new-only", action="store_true", help="skip sentences already recorded (next round); keep EVAL")
+    ap.add_argument("--seed", type=int, default=5)
     a = ap.parse_args(argv)
     if a.what == "extra":
         from .extra_prompts import append
         append(PROMPTS)
         return
     if a.what == "prompts":
-        make_prompts(a.train, a.eval)
+        make_prompts(a.train, a.eval, seed=a.seed, new_only=a.new_only)
     else:
         try:
             run(a.port)
