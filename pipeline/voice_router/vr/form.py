@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from .intake import (_fill, _questions, answer_turn, fill_nbest, tiles, tokenize, walk, _FILLER)
+from .intake import (_stem, _fill, _questions, answer_turn, fill_nbest, tiles, tokenize, walk, _FILLER)
 
 SURE = 0.80            # router probability above which the other trees are dropped
 MAX_TREES = 3
@@ -35,6 +35,7 @@ class Candidate:
     smap: dict
     p: float = 1.0
     filled: dict = field(default_factory=dict)
+    heard: str = ""                  # the first sentence as heard (for ranking partial evidence)
     hyps: list | None = None         # this tree's own n-best: the same utterance re-decoded with its
                                      # sector's words (speech side, 11-17); None = the shared n-best
     card: str | None = None          # where this tree's walk stands now
@@ -64,6 +65,7 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
     cands.sort(key=lambda c: -c.p)
     for c in cands:
         c.filled = fill_nbest(c.hyps or hyps, c.smap)
+        c.heard = (c.hyps or hyps)[0]
         c.advance()
         if c.card not in c.tree["nodes"]:             # a life rule jumped to another tree's card
             return "open", c.name, c.card
@@ -164,7 +166,8 @@ def open_fields(cands: list[Candidate]) -> list[Field]:
             f = Field(slot, c.tree["nodes"][card].get("label", slot), tiles(c.tree, c.smap, card), [c.name], when)
             seen[slot] = f
             rows.append(f)
-    rows.sort(key=lambda f: f.key not in life)        # stable: life blanks first, tree order kept
+    top = most_telling(cands)                         # stable: life blanks, then the most telling
+    rows.sort(key=lambda f: (f.key not in life, f.key != top))   # blank, then tree order
     return fields + rows
 
 
@@ -202,30 +205,71 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
     return "form", None, None
 
 
-def skip(cands: list[Candidate], limit: int = 12) -> list[tuple[str, str]]:
-    """Charlie 11-17: a SKIP on the form ("don't know / no time") jumps straight to the cards the
-    blanks filled so far still allow, for the person to cycle through with the buttons. Returns
-    (tree, card) in order: emergency cards first, then the order the tree's own tiles give
-    (manuals list the serious answer first). Unfilled blanks are simply spread over all answers."""
-    out, seen = [], set()
+def _soft(c: Candidate, slot: str, value: str, label: str) -> float:
+    """Partial evidence for an answer the person did not quite say: the share of a phrase's words
+    (or the tile label's) that were heard. Below fill strength by design: it only ranks."""
+    heard = {_stem(w) for w in tokenize(c.heard or "")} - _FILLER
+    best = 0.0
+    for ph in list(c.smap.get("slots", {}).get(slot, {}).get(value, [])) + [label]:
+        pw = {_stem(w) for w in tokenize(ph)} - _FILLER
+        if pw:
+            best = max(best, len(pw & heard) / len(pw))
+    return best
+
+
+def ranked_cards(cands: list[Candidate], limit: int = 12) -> list[tuple[str, str]]:
+    """Every card the filled blanks still allow, best first (Charlie 11-17: "even if 60% were
+    filled it'd show up in top 3"). Emergency cards first; then by the partial evidence for the
+    answers each card assumes (words of that answer heard but not enough to fill it), minus a
+    little per assumed blank; then router belief; then the tree's own tile order."""
+    scored, seen, order = {}, set(), 0
     for c in cands:
-        todo = [(c.card, c.asking, dict(c.filled))]
-        while todo and len(out) < limit * 3:
-            card, asking, filled = todo.pop(0)
+        todo = [(c.card, c.asking, dict(c.filled), 0.0, 0)]
+        while todo and len(seen) < limit * 4:
+            card, asking, filled, ev, n = todo.pop(0)
             if not asking:
-                if (c.name, card) not in seen:
-                    seen.add((c.name, card)); out.append((c.name, card))
+                key = (c.name, card)
+                if key not in seen:
+                    seen.add(key)
+                    scored[key] = (ev - 0.1 * n + 0.5 * c.p, order); order += 1
                 continue
             for t in tiles(c.tree, c.smap, card):
                 if t.get("value"):
                     f2 = {**filled, asking: t["value"]}
                     n_card, _, n_ask = walk(c.tree, c.smap, f2, start=card)
-                    todo.append((n_card, n_ask, f2))
+                    todo.append((n_card, n_ask, f2, ev + _soft(c, asking, t["value"], t.get("label", "")), n + 1))
                 elif t.get("to") in c.tree["nodes"]:
-                    todo.append((t["to"], None, filled))
+                    todo.append((t["to"], None, filled, ev, n))
     life = {(c.name, k) for c in cands for k in _life_cards(c)}
-    out.sort(key=lambda tc: tc not in life)
+    out = sorted(scored, key=lambda k: (k not in life, -scored[k][0], scored[k][1]))
     return out[:limit]
+
+
+def skip(cands: list[Candidate], limit: int = 12) -> list[tuple[str, str]]:
+    """Charlie 11-17: a SKIP on the form ("don't know / no time") jumps straight to the cards the
+    blanks filled so far still allow, best first (ranked_cards), to cycle through with the buttons."""
+    return ranked_cards(cands, limit)
+
+
+def most_telling(cands: list[Candidate]) -> str | None:
+    """The open blank whose answer splits the still-possible cards most evenly: the one to put at
+    the top of the form (the others follow)."""
+    import math
+    best, best_h = None, -1.0
+    for c in cands:
+        if not c.asking:
+            continue
+        counts = []
+        for t in tiles(c.tree, c.smap, c.card):
+            if t.get("value"):
+                sub = Candidate(c.name, c.tree, c.smap, c.p, {**c.filled, c.asking: t["value"]}, heard=c.heard)
+                sub.advance(start=c.card)
+                counts.append(max(1, len(ranked_cards([sub], 40))))
+        tot = sum(counts)
+        h = -sum(n / tot * math.log(n / tot) for n in counts) if tot else 0.0
+        if h > best_h:
+            best, best_h = c.asking, h
+    return best
 
 
 SNAP_MIN, SNAP_MARGIN = 0.80, 0.10
@@ -344,3 +388,18 @@ def form_turns(name: str, tree: dict, smap: dict, line: str, ok: set, anc: dict)
                 return None
             c.advance(start=nxt)
     return None
+
+
+def first_rank(name: str, tree: dict, smap: dict, line: str, ok: set, anc: dict):
+    """After the first sentence only: (rank of the right card in ranked_cards or None,
+    share of the blanks on its path that the sentence filled)."""
+    c = Candidate(name, tree, smap)
+    kind, _, card = first_sentence(line, [c])
+    full = _path_labels(Candidate(name, tree, smap).advance(), ok, anc)
+    left = _path_labels(c, ok, anc) if c.card in tree["nodes"] else None
+    need = len(full[0]) if full else 0
+    share = 1.0 if not need else 1 - (len(left[0]) if left else need) / need
+    if kind == "open":
+        return (0 if card in ok else None), share
+    ranks = [i for i, (_, k) in enumerate(ranked_cards([c], 40)) if k in ok]
+    return (ranks[0] if ranks else None), max(0.0, share)

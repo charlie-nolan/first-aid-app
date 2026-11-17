@@ -515,7 +515,8 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             same[k] = set(grp)
     anc = _ancestors(tree, _questions(tree, smap))
     tally = {"right": 0, "on way": 0, "stuck": 0, "WRONG": 0}
-    from .form import form_turns               # the fill-in-the-blanks screen (vr/form.py)
+    from .form import first_rank, form_turns   # the fill-in-the-blanks screen (vr/form.py)
+    ranks = []
     skipped_total, n, wrong, turns, said, allat = 0, 0, [], [], [], []
     lt = smap.get("life_threat") or []
     pins = {c for m in lt.values() for c in m.values()} if isinstance(lt, dict) else {r["go"] for r in lt}
@@ -531,6 +532,7 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
             turns.append(turns_to_card(tree, smap, line, ok, anc))
             said.append(turns_to_card(tree, smap, line, ok, anc, say="label"))
             allat.append(form_turns(tree.get("id", "tree"), tree, smap, line, ok, anc))
+            ranks.append(first_rank(tree.get("id", "tree"), tree, smap, line, ok, anc))
             if ok & pins:
                 pinned.append(turns[-1] == 1)
             if card in ok:
@@ -550,8 +552,26 @@ def simulate(tree: dict, smap: dict, seeds: dict) -> str:
                 + f"  never: {100 * sum(1 for t in ts if t is None) / max(n, 1):.0f}%\n"
                 for how, ts in (("tile numbers", turns), ("saying the tile words", said),
                                 ("fill-in-the-blanks screen, vr.form", allat)))
+            + _rank_lines(ranks)
             + (f"life-threat cards opened on the first sentence: {sum(pinned)}/{len(pinned)}\n" if pinned else "")
             + "\n".join(wrong[:30]))
+
+
+def _rank_lines(ranks) -> str:
+    """Right card in the ranked list after the first sentence alone (top 1 / top 3), overall and
+    by how much of its path the sentence filled."""
+    if not ranks:
+        return ""
+    def row(rs):
+        n = max(len(rs), 1)
+        return (f"top1 {100 * sum(1 for r, _ in rs if r == 0) / n:.0f}%  "
+                f"top3 {100 * sum(1 for r, _ in rs if r is not None and r < 3) / n:.0f}%  (n={len(rs)})")
+    out = "right card ranked after the first sentence: " + row(ranks) + "\n"
+    for lo, hi in ((0, .4), (.4, .6), (.6, .8), (.8, 1.01)):
+        rs = [x for x in ranks if lo <= x[1] < hi]
+        if rs:
+            out += f"  blanks filled {int(lo * 100)}-{min(100, int(hi * 100))}%: " + row(rs) + "\n"
+    return out
 
 
 def main(argv=None):

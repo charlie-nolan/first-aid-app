@@ -106,3 +106,13 @@ def test_saying_skip_lists_cards():
     cands = [Candidate("bites", TREE, SMAP)]
     first_sentence("a dog got me", cands)
     assert answer("skip", cands) == ("skip", None, [("bites", "limb"), ("bites", "face")])
+
+
+def test_partial_words_rank_the_likely_card_first():
+    from vr.form import ranked_cards
+    slots = {**SMAP["slots"], "where": {"limb": ["lower leg", "upper arm"], "face": ["face", "cheek"]}}
+    smap = {**SMAP, "slots": slots}
+    c = Candidate("bites", TREE, smap)
+    first_sentence("a dog got my lower part", [c])          # "lower" alone: not enough to fill
+    assert c.asking == "where"
+    assert ranked_cards([c])[0] == ("bites", "limb")
