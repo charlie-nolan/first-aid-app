@@ -25,7 +25,7 @@ import yaml
 
 from . import lexicon as lx
 from .data import load_wav
-from .decode import Params, Trie, context_bias, life_bias, nbest
+from .decode import ALWAYS_WORDS, Params, Trie, context_bias, life_bias, nbest
 from .evaluate import WORK, load_model
 from .features import logmel
 from .train import edit_distance
@@ -89,7 +89,7 @@ def main(argv=None):
         tw = tree_words[tree]
         tw_ids = {ids[w] for w in tw if w in ids}
         if tree not in tries:
-            sub = [x for x in rows if x["id"] < 10 or x["word"] in tw]
+            sub = [x for x in rows if x["id"] < 10 or x["word"] in tw or x["word"] in ALWAYS_WORDS]
             tries[tree] = Trie.from_lexicon(sub)
         wav = Path(r["wav"]) if Path(r["wav"]).is_absolute() else Path(a.set).parent / r["wav"]
         with torch.no_grad():

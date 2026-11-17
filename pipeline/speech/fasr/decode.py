@@ -106,11 +106,15 @@ def context_bias(rows: list[dict], words, bonus: float = 0.5, life: float = 1.0)
     return out
 
 
+# live in every sector / form-field list, like the reserved commands (SKIP: router 0950954)
+ALWAYS_WORDS = ["skip", "don't", "know", "dunno", "unsure", "not", "sure", "no", "time", "pass"]
+
+
 def sector_trie(rows: list[dict], words, life: bool = True) -> "Trie":
     """Trie for a sector (or the union of the 2-3 sectors the router picked): its words + the
     reserved 0-9 + life words (life rules run on every sector). Used to re-decode the SAME turn-1
     logprobs (no second acoustic pass) and for the form page's per-sector lists."""
-    keep = set(words) | (set(LIFE_WORDS) if life else set())
+    keep = set(words) | set(ALWAYS_WORDS) | (set(LIFE_WORDS) if life else set())
     return Trie.from_lexicon([r for r in rows if r["id"] < 10 or r["word"] in keep])
 
 
