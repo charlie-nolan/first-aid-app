@@ -2,6 +2,8 @@
 # thing someone says at Home. Each topic opens one tree (`open`) and lists every draft
 # tree it covers (`trees`, used to harvest training words from labels).
 #
+# Reviewed by Charlie 2026-11-16 on the review page: every first-aid topic line marked OK;
+# his own additions are included (marked in commit history).
 # `train`: seed utterances the router learns from (the desktop generator adds many more).
 # `test`:  HELD-OUT utterances, never trained on. Don't copy them into `train`, or the
 #          score stops meaning anything; write new ones for gaps the report shows.
@@ -177,6 +179,7 @@ topics:
       - fell into the fire
       - chemical burn
     test:
+      - steam from boiling water burned my hand
       - spilled boiling pasta water on my leg
       - grabbed a hot pot handle
       - his skin is charred
