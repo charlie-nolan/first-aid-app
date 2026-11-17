@@ -86,7 +86,9 @@ class RouterData:
         self.test += [Example(s, r) for s in self.reject["test"]]
 
     def all_text(self) -> list[str]:
-        return [e.text for e in self.train + self.test + self.labels]
+        """Text the harvested lexicon may see: train, tree labels, pin words. Never test lines:
+        a word heard only in a test sentence must stay unknown, as on the device."""
+        return [e.text for e in self.train + self.labels] + [g for _, g in self.pins]
 
 
 class ExpertData:
@@ -146,4 +148,5 @@ class ExpertData:
         return rng.randrange(len(self.nodes))
 
     def all_text(self) -> list[str]:
-        return [e.text for e in self.train + self.test + self.labels]
+        """Train + tree labels only (see RouterData.all_text)."""
+        return [e.text for e in self.train + self.labels]
