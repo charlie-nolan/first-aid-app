@@ -346,9 +346,11 @@ def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = Non
         if q:
             v = filled.get(q["slot"])
             target = _answer(q, v, implies)
-            if (not target or target not in nodes) and v:
-                # value not on this card ("spider" on a snake / sting / "spider, tick or animal" card):
-                # follow the one plain answer that leads to a card which takes it
+            if not target or target not in nodes:
+                # value not on this card ("spider" on a snake / sting / "spider, tick or animal" card),
+                # or blank still empty but another blank answered below ("bone through the skin" tile
+                # on the where card, open_fracture already said): follow the one plain answer that
+                # leads to a card which takes it
                 plain = [c.get("to") for c in nodes[node].get("choices", [])
                          if not c.get("value") and c.get("kind", "next") == "next" and c.get("to") in nodes]
                 hits = {t for t in plain if _leads(tree, qs, t, filled, implies)}
@@ -409,7 +411,8 @@ def answer_turn(text: str, tree: dict, smap: dict, card: str, asking: str | None
         elif len(words) <= 3 and not set(words) - {"yes", "yeah", "yep", "no", "nope", "nah"}:
             yn = "yes" if set(words) & {"yes", "yeah", "yep"} else "no"
             if not (set(words) & {"yes", "yeah", "yep"} and set(words) & {"no", "nope", "nah"}):
-                pick = next((c for c in ts if (c.get("value") or c.get("label", "")).strip().lower() == yn), None)
+                pick = next((c for c in ts if (c.get("value") or "").strip().lower() == yn), None) or \
+                    next((c for c in ts if tokenize(c.get("label", ""))[:1] == [yn]), None)   # "No" tile, value not_impaled
         if pick is None:                           # the tile's own words: "the leg one", "arm or leg"
             lab = [(c, set(tokenize(c.get("label", ""))) - _FILLER) for c in ts]
             hits = [c for c, lw in lab if lw and lw <= set(words)]

@@ -298,3 +298,14 @@ def test_negation_and_hedge_stop_at_the_clause():
     assert fill("she's bleeding out of her ear", slots).get("bleeding") == "some"
     bone = {"open": {"yes": ["sticking out", "pouring out"]}}
     assert fill("there's a bone sticking out of his arm", bone) == {"open": "yes"}   # only "bleeding out of" is a source
+
+
+def test_empty_blank_follows_plain_tile_to_an_answered_blank():
+    tree = {"root": "where", "nodes": {
+        "where": {"label": "Where?", "choices": [{"label": "Bone through the skin", "to": "open_q"}]},
+        "arm": {"label": "Arm"}, "open_q": {"label": "Bleeding?"}, "open": {"label": "Open fracture"}}}
+    smap = {"slots": {"body_part": {"arm": ["arm"]}, "open_fracture": {"yes": ["bone sticking out"]}},
+            "questions": {"where": {"slot": "body_part", "choices": {"arm": "arm"}},
+                          "open_q": {"slot": "open_fracture", "choices": {"yes": "open"}}}}
+    assert walk(tree, smap, fill("there's a bone sticking out", smap["slots"]))[0] == "open"
+    assert walk(tree, smap, fill("it hurts", smap["slots"]))[2] == "body_part"

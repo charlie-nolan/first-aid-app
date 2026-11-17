@@ -73,7 +73,8 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
         return "tabs", None, None                     # two problems named: one tab each
     if cands and (cands[0].p >= SURE or len(cands) == 1):
         del cands[1:]
-    if len(cands) == 1 and not cands[0].asking and cands[0].card != cands[0].tree["root"]:
+    if len(cands) == 1 and not cands[0].asking and cands[0].card != cands[0].tree["root"] \
+            and cands[0].card not in _life_cards(cands[0]):    # "breathing fine" must not open a CPR-tree card
         return "open", cands[0].name, cands[0].card
     return "form", None, None
 
@@ -216,8 +217,9 @@ def _path_labels(c: Candidate, ok: set, anc: dict, most: int = 8):
             return None
         if asking and ts[k].get("value"):
             lab = ts[k].get("label") or ""
-            group = " or " in lab or "," in lab or not lab    # "Sunburn or snow blindness": a person
-            said.append(ts[k]["value"].replace("_", " ") if group else lab)   # says the one that fits
+            group = (" or " in lab or "," in lab or not lab) and ts[k]["value"] not in ("yes", "no")
+            said.append(ts[k]["value"].replace("_", " ") if group else lab)   # "Sunburn or snow blindness": say
+                                                                            # the one that fits; yes/no: the label
             filled = {**filled, asking: ts[k]["value"]}
             card, _, asking = walk(c.tree, c.smap, filled, start=card)
         else:
