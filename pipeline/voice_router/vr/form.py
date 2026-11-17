@@ -23,6 +23,7 @@ from .intake import (_fill, _questions, answer_turn, fill_nbest, tiles, tokenize
 
 SURE = 0.80            # router probability above which the other trees are dropped
 MAX_TREES = 3
+MAX_TABS = 5           # the device's windows (Charlie 11-04 plan; window L/R switches)
 
 
 @dataclass
@@ -52,7 +53,8 @@ class Field:
 
 def first_sentence(hyps: list[str] | str, cands: list[Candidate]):
     """Turn 1. Returns ("open", tree name, card) when a life rule or a full set of blanks lands on
-    a card, else ("form", None, None) and the candidates hold their progress."""
+    a card; ("tabs", None, None) when separate problems were named (split_tabs(cands) gives one
+    candidate group per tab, each with its own form); else ("form", None, None)."""
     hyps = [hyps] if isinstance(hyps, str) else hyps
     cands.sort(key=lambda c: -c.p)
     for c in cands:
@@ -64,11 +66,33 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate]):
         go = _rule_hit(c)                             # one-shot, general info first); its own blank ("very
         if go:                                        # cold or from water?") only shows on the open card
             return "open", c.name, c.card
+    if len(split_tabs(cands)) > 1:
+        return "tabs", None, None                     # two problems named: one tab each
     if cands and (cands[0].p >= SURE or len(cands) == 1):
         del cands[1:]
     if len(cands) == 1 and not cands[0].asking and cands[0].card != cands[0].tree["root"]:
         return "open", cands[0].name, cands[0].card
     return "form", None, None
+
+
+def _own_evidence(c: Candidate, others: list[Candidate]) -> set:
+    """Blanks this tree filled that no other candidate tree even has: words only it explains."""
+    theirs = set().union(*(set(o.smap.get("slots", {})) for o in others)) if others else set()
+    return {s for s in c.filled if s not in theirs}
+
+
+def split_tabs(cands: list[Candidate]) -> list[list[Candidate]]:
+    """Charlie 11-17: when the first sentence names separate problems ("his arm is bleeding and
+    I think his leg is broken"), each opens in its own tab (window) with its own form. A tree
+    gets its own tab when it filled a blank no other candidate tree has; candidates without
+    such evidence stay in the first tab (where a which-is-it field sorts them)."""
+    own = [c for c in cands if _own_evidence(c, [o for o in cands if o is not c])]
+    if len(own) < 2:
+        return [cands]
+    rest = [c for c in cands if c not in own]
+    tabs = [[c] for c in own[:MAX_TABS]]
+    tabs[0] += rest
+    return tabs
 
 
 def _rule_hit(c: Candidate) -> str | None:

@@ -68,3 +68,12 @@ def test_reaching_a_life_card_by_answering_the_root_does_not_open_it():
     cands = [Candidate("cpr", tree, smap, p=0.5), Candidate("cpr2", tree, smap, p=0.4)]
     assert first_sentence("he fell but he's breathing fine", cands)[0] == "form"
     assert first_sentence("he's unconscious but breathing fine", [Candidate("cpr", tree, smap)]) == ("open", "cpr", "recovery")
+
+
+def test_two_problems_open_two_tabs():
+    from vr.form import split_tabs
+    cands = [Candidate("bites", TREE, SMAP, p=0.5), Candidate("burns", BURNS, BSMAP, p=0.4)]
+    assert first_sentence("a dog bit me and I have a big burn on my arm", cands)[0] == "tabs"
+    tabs = split_tabs(cands)
+    assert [[c.name for c in t] for t in tabs] == [["bites"], ["burns"]]
+    assert answer("on the leg", tabs[0]) == ("open", "bites", "limb")
