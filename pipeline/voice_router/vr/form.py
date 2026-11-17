@@ -225,8 +225,13 @@ def ranked_cards(cands: list[Candidate], limit: int = 12) -> list[tuple[str, str
     scored, seen, order = {}, set(), 0
     for c in cands:
         todo = [(c.card, c.asking, dict(c.filled), 0.0, 0)]
-        while todo and len(seen) < limit * 4:
+        visited, steps = set(), 0           # tile graphs can loop back (menus, "start over")
+        while todo and len(seen) < limit * 4 and steps < 2000:
             card, asking, filled, ev, n = todo.pop(0)
+            state = (card, asking, tuple(sorted(filled.items())))
+            if state in visited:
+                continue
+            visited.add(state); steps += 1
             if not asking:
                 key = (c.name, card)
                 if key not in seen:
@@ -401,6 +406,8 @@ def first_rank(name: str, tree: dict, smap: dict, line: str, ok: set, anc: dict)
     share = 1.0 if not need else 1 - (len(left[0]) if left else need) / need
     if kind == "open":
         return (0 if card in ok else None), share
+    if c.card in ok:                        # stands on the gold card (a question card with text)
+        return 0, max(0.0, share)
     ranks = [i for i, (_, k) in enumerate(ranked_cards([c], 40)) if k in ok]
     return (ranks[0] if ranks else None), max(0.0, share)
 
@@ -421,7 +428,7 @@ def second_rank(name: str, tree: dict, smap: dict, hyps, ok: set, anc: dict):
         if t:
             c.filled = {**c.filled, top: t["value"]}
             c.advance(start=c.card)
-    if c.card in ok and not c.asking:
+    if c.card in ok:                        # same as first_rank: standing on the gold card
         return 0
     ranks = [i for i, (_, k) in enumerate(ranked_cards([c], 40)) if k in ok]
     return ranks[0] if ranks else None
