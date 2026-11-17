@@ -79,31 +79,35 @@ class Store:
         return wav
 
 
-def run(port: str | None):
-    import serial
+def _find_port() -> str | None:
     from serial.tools import list_ports
-    if not port:
-        ps = [p.device for p in list_ports.comports() if "ACM" in p.device or "usbmodem" in p.device]
-        if not ps:
-            raise SystemExit("no USB serial port found: plug the board in")
-        port = ps[0]
+    ps = [p.device for p in list_ports.comports() if "ACM" in p.device or "usbmodem" in p.device]
+    return ps[0] if ps else None
+
+
+def run(port: str | None):
+    """Keeps going across unplug/replug and board resets: waits for the port, reconnects, resyncs."""
+    import serial
     st = Store()
-    print(f"listening on {port}; clips -> {OUT}  (Ctrl-C to stop)")
-    while True:   # the board drops off USB when it resets or the cable is moved: wait and reconnect
+    seen: set[int] = set()
+    waiting = False
+    while True:
+        p = port or _find_port()
+        if not p:
+            if not waiting:
+                print("waiting for the board (plug in USB)...", flush=True); waiting = True
+            time.sleep(1); continue
+        waiting = False
         try:
-            with serial.Serial(port, 115200, timeout=0.5) as s:
-                session(s, st)
+            _session(serial.Serial(p, 115200, timeout=0.5), p, st, seen)
         except (serial.SerialException, OSError) as e:
-            print(f"\n(lost {port}: {e.__class__.__name__}; waiting for the board, clips stay on it until copied)",
-                  flush=True)
-            while not os.path.exists(port):
-                time.sleep(1)
-            time.sleep(1.5)
+            print(f"lost the board ({e.__class__.__name__}); reconnecting...", flush=True)
+            time.sleep(1)
 
 
-def session(s, st):
+def _session(s, port: str, st: "Store", seen: set[int]):
+    print(f"listening on {port}; clips -> {OUT}  (Ctrl-C to stop)", flush=True)
     s.write(b"HELLO\nRESEND\n")   # anything sent to an earlier, interrupted session comes again
-    seen: set[int] = set()        # per connection: a rebooted board numbers its clips again
     hdr, chunks, last_sync, n = None, [], 0.0, 0
     while True:
         if time.time() - last_sync > 1.5 and hdr is None:
@@ -132,7 +136,7 @@ def session(s, st):
                 wav = st.add(hdr, pcm)
                 s.write(f"ACK {hdr['id']}\n".encode())
                 n += 1
-                import numpy as np
+                import numpy as np   # judge the audio itself: a stuck DATA line reads as a loud constant "peak"
                 x = np.frombuffer(pcm, np.int16).astype(np.float32)
                 flag = ("  NO SIGNAL: the mic sends a flat line (check CLK/DATA/3V3/SEL wiring)" if x.size and x.std() < 20
                         else "  TOO LOUD" if hdr["clip_per_mille"] > 5 else "  quiet" if x.std() < 150 else "")
