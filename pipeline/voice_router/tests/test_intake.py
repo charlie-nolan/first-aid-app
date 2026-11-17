@@ -64,3 +64,54 @@ def test_simulate_scores_walks():
                        "dog": {"train": ["a snake got him"]}}}
     out = simulate(tree, smap, seeds)
     assert "3 lines" in out and "right 33%" in out and "on way 33%" in out and "WRONG 33%" in out
+
+
+def _q(slot, **choices):
+    return {"slot": slot, "choices": [{"label": v, "to": t, "value": v} for v, t in choices.items()]}
+
+
+def test_value_implies_parent_answer():
+    tree = {"root": "where", "nodes": {"where": _q("body_part", arm="arm", leg="leg"),
+                                       "arm": _q("body_part", forearm="fa", upper_arm="ua"),
+                                       "leg": {}, "fa": {}, "ua": {}}}
+    smap = {"slots": {"body_part": {"forearm": ["wrist", "forearm"], "upper_arm": ["upper arm"]}},
+            "implies": {"body_part": {"forearm": "arm", "upper_arm": "arm"}}}
+    assert walk(tree, smap, fill("broke my wrist", smap["slots"])) == ("fa", ["where", "arm"], None)
+
+
+def test_coverage_then_priority_breaks_ties():
+    slots = {"wound": {"clean": ["cut", "gash"], "infect": ["pus", "red streak", "hot"]},
+             "allergy": {"mild": ["hives"], "severe": ["hives everywhere", "puffy face"]}}
+    assert fill("the cut is hot and oozing pus", slots)["wound"] == "infect"
+    assert fill("a cut with pus", slots, {"wound": ["infect"]})["wound"] == "infect"
+    assert fill("hives everywhere", slots)["allergy"] == "severe"
+
+
+def test_hedge_fills_nothing():
+    slots = {"breathing": {"yes": ["is breathing"], "no": ["not breathing"]}}
+    assert fill("i can barely tell if she is breathing", slots) == {}
+
+
+def test_unless_and_same_tree_jump_keeps_walking():
+    tree = {"root": "start", "nodes": {"start": _q("bleeding_type", arterial="severe", minor="minor"),
+                                       "severe": _q("body_part", limb="tq", junction="pack"),
+                                       "minor": {}, "tq": {}, "pack": {}}}
+    smap = {"slots": {"bleeding_type": {"arterial": ["spurting"], "minor": ["oozing"]},
+                      "body_part": {"limb": ["leg", "arm"], "junction": ["groin"]},
+                      "seizing": {"yes": ["jerking"]}, "conscious": {"no": ["unresponsive"]}},
+            "life_threat": [{"if": {"conscious": "no"}, "unless": {"seizing": "yes"}, "go": "wfa-cpr/start"},
+                            {"if": {"bleeding_type": "arterial"}, "go": "severe"}]}
+    f = lambda t: walk(tree, smap, fill(t, smap["slots"]))
+    assert f("blood spurting from his groin") == ("pack", ["severe"], None)
+    assert f("he's unresponsive") == ("wfa-cpr/start", [], None)
+    assert f("jerking and unresponsive")[0] == "start"
+
+
+def test_passes_menu_only_toward_one_answered_blank():
+    tree = {"root": "menu", "nodes": {
+        "menu": {"choices": [{"label": "Bleeding", "to": "b"}, {"label": "Bones", "to": "s"}]},
+        "b": _q("missing_kit", tourniquet="tq", dressing="dr"), "s": _q("missing_kit", splint="sp"),
+        "tq": {}, "dr": {}, "sp": {}}}
+    smap = {"slots": {"missing_kit": {"tourniquet": ["no tourniquet"], "splint": ["no splint"]}}}
+    assert walk(tree, smap, fill("we have no tourniquet", smap["slots"])) == ("tq", ["menu", "b"], None)
+    assert walk(tree, smap, fill("help", smap["slots"])) == ("menu", [], None)
