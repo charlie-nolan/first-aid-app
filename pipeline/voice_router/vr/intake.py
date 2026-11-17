@@ -194,6 +194,28 @@ def fill_nbest(hyps: list[str], smap: dict) -> dict[str, str]:
     return out
 
 
+def life_options(hyps: list[str], tree: dict, smap: dict) -> list[str]:
+    """Cards to open from a recognizer n-best. Usually one. When the top guess triggers a
+    life-threat jump through a word whose sound-alike is in a lower guess ("wind stop breathing"
+    on top, "won't stop bleeding" below), BOTH outcomes come back so the screen shows the two
+    life tiles (CPR | bleeding) instead of auto-opening either: one tap, never wrong unasked."""
+    if not hyps:
+        return []
+    filled = fill_nbest(hyps, smap)
+    first, _, _ = walk(tree, smap, filled)
+    out = [first]
+    top = tokenize(hyps[0])
+    below = {w for h in hyps[1:] for w in tokenize(h)}
+    for i, w in enumerate(top):
+        for alt in SOUNDALIKE.get(w, ()):
+            if any(b == alt or _stem(b) == _stem(alt) for b in below):
+                swapped = " ".join(top[:i] + [alt] + top[i + 1:])
+                card, _, _ = walk(tree, smap, _fill(swapped, smap))
+                if card not in out:
+                    out.append(card)
+    return out
+
+
 # Words the recognizer swaps for each other; a lower guess that only differs by one of these
 # must not add a life threat the top guess explains another way.
 _PAIRS = [("breathing", "bleeding"), ("breathe", "bleed"), ("breath", "blood")]   # both real first-aid words

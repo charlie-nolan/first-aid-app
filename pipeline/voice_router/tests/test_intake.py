@@ -210,3 +210,15 @@ def test_one_word_no_verb_fold_future_hedge_and_soundalike_guard():
     smap = {"slots": slots, "life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}]}
     assert fill_nbest(["how do i stop bleeding", "how do i stop breathing"], smap) == {}
     assert fill_nbest(["she's stop breath in", "she stopped breathing"], smap) == {"breathing": "no"}
+
+
+def test_soundalike_life_threat_shows_both_tiles():
+    from vr.intake import life_options
+    smap = {"slots": {"breathing": {"no": ["stop breathing", "stopped breathing"]},
+                      "bleeding": {"severe": ["won't stop bleeding", "stop bleeding"]}},
+            "life_threat": [{"if": {"breathing": "no"}, "go": "wfa-cpr/cpr"},
+                            {"if": {"bleeding": "severe"}, "go": "wfa-bleeding/severe"}]}
+    t = {"root": "start", "nodes": {"start": {}}}
+    assert life_options(["my leg wind stop breathing", "my leg won't stop bleeding"], t, smap) == \
+        ["wfa-cpr/cpr", "wfa-bleeding/severe"]
+    assert life_options(["she stopped breathing", "she stopped breathing now"], t, smap) == ["wfa-cpr/cpr"]
