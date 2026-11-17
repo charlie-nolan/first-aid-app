@@ -238,3 +238,11 @@ def test_second_life_tile_only_for_a_life_card():
             "life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}, {"if": {"bleeding": "severe"}, "go": "sev"}]}
     t = {"root": "start", "nodes": {"start": {}}}
     assert life_options(["not breathing and belay", "not bleeding and blue"], t, smap) == ["cpr"]
+
+
+def test_life_rival_even_when_swapped_reading_is_not_a_life_card():
+    from vr.intake import life_options
+    smap = {"slots": {"breathing": {"no": ["stop breathing"]}, "bleeding": {"severe": ["won't stop bleeding"]}},
+            "life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}, {"if": {"bleeding": "severe"}, "go": "sev"}]}
+    t = {"root": "start", "nodes": {"start": {}}}
+    assert life_options(["my leg wind stop breathing", "my leg won't stop bleeding"], t, smap) == ["cpr", "start"]

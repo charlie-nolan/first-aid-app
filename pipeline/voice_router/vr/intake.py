@@ -216,9 +216,13 @@ def life_options(hyps: list[str], tree: dict, smap: dict) -> list[str]:
     for i, w in enumerate(top):
         for alt in SOUNDALIKE.get(w, ()):
             if any(b == alt or _stem(b) == _stem(alt) for b in below):
+                if any(x in NEGATION for x in top[max(0, i - NEG_WINDOW):i]):
+                    continue                       # "not breathing" vs "not bleeding": no rival reading
                 swapped = " ".join(top[:i] + [alt] + top[i + 1:])
                 card, _, _ = walk(tree, smap, _fill(swapped, smap))
-                if card not in out and card in pins:   # only a rival LIFE card earns a second tile
+                # a second tile whenever a life card is at stake on either side: the top reading
+                # must not auto-open a life card that a heard sound-alike could contradict
+                if card not in out and (first in pins or card in pins):
                     out.append(card)
     return out
 
