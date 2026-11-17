@@ -68,6 +68,27 @@ class Params:
     implicit_sep: float = -2.0    # starting a new word without the | token
     garbage_enter: float = -6.0   # starting an <unk> word
     garbage_phone: float = -1.5   # each phone inside an <unk> word
+    # "doesn't fit the word list" score: how much worse (nats per speech frame) the best
+    # word-list path is than the best free phone path. ~0 when every sound fits a word;
+    # grows for out-of-list words, mumbling and noise. reject_gap0 = gap where reject hits 50.
+    reject_gap0: float = 0.35
+    reject_gap_scale: float = 0.10
+    # life-threat words: extra score per finished word (nats), and they veto the reject
+    # (a missed "not breathing" costs far more than a false one, which the intake confirms).
+    bias: dict = field(default_factory=dict)        # word id -> bonus
+    life_veto_conf: int = 30                        # any life word this sure in the 5-best: reject <= 40
+
+
+LIFE_WORDS = ["breathing", "breathe", "breath", "stopped", "not", "unconscious", "unresponsive", "choking",
+              "choke", "bleeding", "blood", "spurting", "pumping", "gushing", "squirting", "pulsing",
+              "cpr", "compressions", "pulse", "heart", "cardiac", "arrest", "chest", "epipen", "epinephrine",
+              "anaphylactic", "anaphylaxis", "allergic", "swelling", "throat", "seizure", "drowning",
+              "drowned", "tourniquet", "blue", "collapsed", "passed", "alive", "dying"]
+
+
+def life_bias(rows: list[dict], bonus: float = 1.0) -> dict:
+    ids = {r["word"]: r["id"] for r in rows}
+    return {ids[w]: bonus for w in LIFE_WORDS if w in ids}
 
 
 def _finish(words: tuple, node: int, trie: Trie, p: Params):
@@ -80,7 +101,7 @@ def _finish(words: tuple, node: int, trie: Trie, p: Params):
     else:
         if len(words) < MAX_WORDS:
             for w in trie.words[node]:
-                yield words + (w,), p.word_bonus
+                yield words + (w,), p.word_bonus + p.bias.get(w, 0.0)
 
 
 def search(logp: np.ndarray, trie: Trie, p: Params = Params()) -> list[tuple[tuple, float]]:
@@ -146,6 +167,8 @@ def nbest(logp: np.ndarray, trie: Trie, p: Params = Params()) -> dict:
     post = np.array([math.exp(s - top) for _, s in res])
     post /= post.sum()
     junk = sum(q for (w, _), q in zip(res, post) if all(x == 0 for x in w))
+    gap = fit_gap(logp, top)
+    misfit = 1.0 / (1.0 + math.exp(-(gap - p.reject_gap0) / p.reject_gap_scale))
     hyps = []
     for (w, _), q in list(zip(res, post))[:MAX_HYPS]:
         conf = []
@@ -153,31 +176,48 @@ def nbest(logp: np.ndarray, trie: Trie, p: Params = Params()) -> dict:
             m = sum(q2 for (w2, _), q2 in zip(res, post) if x in w2)
             conf.append(int(round(100 * min(1.0, m))))
         hyps.append({"ids": list(w), "conf": conf, "p": round(float(q), 3)})
-    return {"n": len(hyps), "h": hyps, "reject": int(round(100 * junk))}
+    reject = int(round(100 * max(junk, misfit)))
+    veto = False
+    if p.bias and any(x in p.bias and c >= p.life_veto_conf for h in hyps for x, c in zip(h["ids"], h["conf"])):
+        reject = min(reject, 40); veto = True
+    return {"n": len(hyps), "h": hyps, "reject": reject, "veto": veto,
+            "gap": round(gap, 3), "junk": round(float(junk), 3)}
+
+
+def fit_gap(logp: np.ndarray, constrained: float) -> float:
+    """Nats per non-blank frame between the free best path (any phone, any order) and the best
+    word-list path. Cheap on the S3: one max per frame, no second search."""
+    best = logp.max(axis=1)
+    speech = int((logp.argmax(axis=1) != BLANK).sum())
+    return max(0.0, float(best.sum() - constrained)) / max(1, speech)
 
 
 # ---------------------------------------------------------------- calibrated reject
 def reject_features(logp: np.ndarray, hyp: dict) -> list[float]:
     """Per-clip features for the calibrated reject (fasr calibrate). All cheap on the device:
-    junk, unk share, 1 - mean conf, empty, speech-frame share, acoustic confidence, words per frame."""
+    junk, unk share, 1 - mean conf, empty, speech-frame share, acoustic confidence, words per frame,
+    and the word-list fit gap (nats per speech frame, from nbest)."""
     top = hyp["h"][0] if hyp.get("n") else {"ids": [], "conf": []}
     ids, conf = top["ids"], top["conf"]
     nb = logp.copy(); nb[:, BLANK] = NEG
     speech = np.exp(logp[:, BLANK]) < 0.5
     best = nb.max(1)
-    return [hyp["reject"] / 100.0,
+    return [float(hyp.get("junk", 1.0)),
             (sum(i == 0 for i in ids) / len(ids)) if ids else 1.0,
             (1.0 - sum(conf) / (100.0 * len(conf))) if conf else 1.0,
             0.0 if ids else 1.0,
             float(speech.mean()) if len(speech) else 0.0,
             float(best[speech].mean()) if speech.any() else -10.0,
-            len(ids) / (speech.sum() + 1.0)]
+            len(ids) / (speech.sum() + 1.0),
+            float(hyp.get("gap", 0.0))]
 
 
 def calibrated_reject(logp: np.ndarray, hyp: dict, calib: dict) -> int:
-    """0-100, where 50 is the calibrated threshold (reject at > 50)."""
+    """0-100, where 50 is the calibrated threshold (reject at > 50). A life-threat word in the
+    5-best (hyp["veto"], set by nbest) still caps it at 40."""
     f = np.array(reject_features(logp, hyp))
     z = ((f - np.array(calib["mean"])) / np.array(calib["std"])) @ np.array(calib["weights"]) + calib["bias"]
     t = calib["threshold"]; t = min(max(t, 1e-6), 1 - 1e-6)
     z -= math.log(t / (1 - t))
-    return int(round(100 / (1 + math.exp(-max(-50.0, min(50.0, z))))))
+    r = int(round(100 / (1 + math.exp(-max(-50.0, min(50.0, z))))))
+    return min(r, 40) if hyp.get("veto") else r

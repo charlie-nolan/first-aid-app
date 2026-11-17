@@ -23,7 +23,7 @@ import yaml
 
 from . import lexicon as lx
 from .data import load_wav
-from .decode import Params, Trie, calibrated_reject, nbest
+from .decode import Params, Trie, calibrated_reject, life_bias, nbest
 from .features import logmel
 from .model import AcousticModel
 from .train import edit_distance
@@ -50,7 +50,12 @@ def main(argv=None):
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--vocab", help="text file, one word per line: decode with only these words "
                     "(plus reserved ids 0-9); ids stay the lexicon's, so results compare with the full set")
+    ap.add_argument("--life-bonus", type=float, default=1.0,
+                    help="extra score for life-threat words (breathing, stopped, bleeding...); 0 = off")
+    ap.add_argument("--noise", action="append", default=[],
+                    help="folder of no-speech wavs (e.g. $WORK/speech/me_dev/noise): every one should be rejected")
     a = ap.parse_args(argv)
+    gaps = defaultdict(list)   # on / off / noise -> fit gaps, to calibrate Params.reject_gap0
     rows = yaml.safe_load(lx.LEXICON.read_text())["words"]
     ids = {r["word"]: r["id"] for r in rows}
     if a.vocab:
@@ -58,6 +63,8 @@ def main(argv=None):
         rows = [r for r in rows if r["id"] < 10 or r["word"] in keep]
         print(f"decoding with {len(rows)} of {len(ids)} lexicon words ({a.vocab})")
     trie = Trie.from_lexicon(rows)
+    id2w = {r["id"]: r["word"] for r in rows}
+    prm = Params(beam=a.beam, bias=life_bias(rows, a.life_bonus) if a.life_bonus else {})
     # slot words the router's intake fills (body part, mechanism, animal, bleeding type)
     slot = {r["id"] for r in rows if r.get("class") in (1, 2, 6) or r["word"] in BLEED}
     model = load_model(a.run)
@@ -81,7 +88,7 @@ def main(argv=None):
             t0 = time.time()
             with torch.no_grad():
                 lp = model(f)[0].numpy()
-            hyp = nbest(lp, trie, Params(beam=a.beam))
+            hyp = nbest(lp, trie, prm)
             if calib:
                 hyp["reject_raw"] = hyp["reject"]
                 hyp["reject"] = calibrated_reject(lp, hyp, calib)
@@ -91,6 +98,7 @@ def main(argv=None):
             off = " ".join(lx.tokenize(r["text"])) in reject_texts
             g = agg[cond]
             g["n"] += 1; g["secs"] += dt
+            gaps["off" if off else "on"].append(hyp["gap"])
             if off:
                 g["off_n"] += 1; g["off_reject"] += hyp["reject"]
             else:
@@ -101,7 +109,9 @@ def main(argv=None):
                 g["slot_false"] += len(hs - set(rs))
                 g["in5"] += any(h["ids"] == ref for h in hyp["h"])
                 g["on_n"] += 1; g["on_reject"] += hyp["reject"]
-            out.write(json.dumps({"wav": str(wav), "text": r["text"], "noise": cond, "ref": ref, **hyp}) + "\n")
+            words = [" ".join(id2w.get(i, "<unk>") for i in h["ids"]) for h in hyp["h"]]
+            out.write(json.dumps({"wav": str(wav), "text": r["text"], "noise": cond, "ref": ref, **hyp,
+                                  "top1": words[0] if words else "", "nbest_text": words}) + "\n")
         res = {}
         for cond, g in sorted(agg.items()):
             res[cond] = {
@@ -116,4 +126,19 @@ def main(argv=None):
             }
         report[str(sp)] = res
         print(sp, json.dumps(res, indent=1), flush=True)
+    for nd in a.noise:
+        rej = []
+        for wav in sorted(Path(nd).expanduser().glob("*.wav")):
+            f = torch.from_numpy(logmel(load_wav(str(wav))))[None]
+            with torch.no_grad():
+                hyp = nbest(model(f)[0].numpy(), trie, prm)
+            gaps["noise"].append(hyp["gap"]); rej.append(hyp["reject"])
+        report[f"noise:{nd}"] = {"clips": len(rej), "reject_mean": round(sum(rej) / max(1, len(rej)), 1),
+                                 "rejected_at_50": round(sum(r >= 50 for r in rej) / max(1, len(rej)), 3)}
+        print(nd, report[f"noise:{nd}"], flush=True)
+    if gaps["on"]:
+        q = lambda v, f: sorted(v)[min(len(v) - 1, int(f * len(v)))] if v else None
+        report["fit_gap"] = {k: {"p50": q(v, .5), "p90": q(v, .9), "p95": q(v, .95)} for k, v in gaps.items()}
+        report["fit_gap"]["suggest_reject_gap0"] = q(gaps["on"], .95)   # 5% of on-topic clips would reach 50
+        print("fit gap", json.dumps(report["fit_gap"]), flush=True)
     (WORK / "speech" / "runs" / a.run / (f"eval-{Path(a.vocab).stem}.json" if a.vocab else "eval.json")).write_text(json.dumps(report, indent=1))

@@ -10,7 +10,7 @@ the same posteriors and n-best) are combined by a logistic fit:
     junk     raw all-<unk> mass                  unk      share of <unk> in the top hypothesis
     lowconf  1 - mean word confidence (top hyp)  empty    top hypothesis has no words
     speech   share of frames that are not blank  acoustic mean best non-blank log-prob on speech frames
-    perword  words per second of speech
+    perword  words per speech frame              gap      word-list fit gap (nats/frame)
 
 Sets: ON = first-aid speech (TTS dev voices, held-out TTS sentences, half of Charlie's EVAL clips);
 REJECT = noise with no speech (Charlie's NOISE takes + synthetic wind/water/breath), out-of-domain
@@ -36,7 +36,7 @@ import yaml
 
 from . import lexicon as lx
 from .data import load_wav
-from .decode import Params, Trie, nbest, reject_features
+from .decode import Params, Trie, life_bias, nbest, reject_features
 from .evaluate import load_model
 from .features import logmel
 
@@ -60,11 +60,13 @@ def main(argv=None):
     ap.add_argument("--run", default="firstaid")
     ap.add_argument("--max-false-reject", type=float, default=0.05)
     ap.add_argument("--beam", type=int, default=24)
+    ap.add_argument("--life-bonus", type=float, default=1.0, help="same as evaluate (0 = off)")
     a = ap.parse_args(argv)
     sp = WORK / "speech"
     rows = yaml.safe_load(lx.LEXICON.read_text())["words"]
     trie = Trie.from_lexicon(rows)
     model = load_model(a.run)
+    prm = Params(beam=a.beam, bias=life_bias(rows, a.life_bonus) if a.life_bonus else {})
 
     topics = yaml.safe_load((lx.CONTENT / "voice" / "topics.yaml").read_text())
     off_text = {" ".join(lx.tokenize(s)) for s in topics.get("reject", {}).get("test", [])}
@@ -90,7 +92,7 @@ def main(argv=None):
         f = torch.from_numpy(logmel(x))[None]
         with torch.no_grad():
             lp = model(f)[0].numpy()
-        hyp = nbest(lp, trie, Params(beam=a.beam))
+        hyp = nbest(lp, trie, prm)
         feats.append(reject_features(lp, hyp)); kinds.append(kind)
 
     for i, (kind, wav, _) in enumerate(items):
@@ -135,7 +137,7 @@ def main(argv=None):
                 "rejected_calibrated": round(float((score[m] > thr).mean()), 3),
                 "rejected_raw_same_false_reject": round(float((raw[m] > raw_thr).mean()), 3),
             }
-    names = ["junk", "unk", "lowconf", "empty", "speech", "acoustic", "perword"]
+    names = ["junk", "unk", "lowconf", "empty", "speech", "acoustic", "perword", "gap"]
     calib = {"features": names, "mean": mu.round(6).tolist(), "std": sd.round(6).tolist(),
              "weights": w.round(6).tolist(), "bias": round(float(b), 6), "threshold": round(thr, 6),
              "lexicon_words": len(rows), "note": "reject = 100 * sigmoid(((f-mean)/std) . weights + bias); "
