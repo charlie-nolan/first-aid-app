@@ -47,14 +47,18 @@ def test_pack_and_c_reader(tmp_path):
     net = Net(l, 3, d=16, hidden=32, buckets=256, ctx=4)
     net.eval()
     p = Packed(net, [0, 1, 2], ["a", "b", "c"], kind=1)
+    assert p.set_pins([(2, "skin broken")]) == []
     blob = p.to_bytes()
     assert blob[:4] == b"VXP1" and len(blob) % 4 == 0
     (tmp_path / "m.vxp").write_bytes(blob)
     with open(tmp_path / "g.txt", "w") as f:
         for text, ctx in [("bone sticking out", 2), ("the skin isn't broken", -1)]:
             ids = l.encode(text)
-            lg = p.logits([[(i, 100) for i in ids]], ctx)
-            f.write(f"{ctx} {len(ids)} {' '.join(map(str, ids))} 3 {' '.join(f'{v:.6f}' for v in lg)}\n")
+            nb = [[(i, 100) for i in ids]]
+            lg = p.logits(nb, ctx)
+            e = np.exp(lg - lg.max()); t, auto = p.tiles(e / e.sum(), nb)
+            f.write(f"{ctx} {len(ids)} {' '.join(map(str, ids))} 3 {' '.join(f'{v:.6f}' for v in lg)} "
+                    f"{' '.join(map(str, t))} {int(auto)}\n")
     comp = ROOT / "firmware" / "components" / "vrouter"
     exe = tmp_path / "vr_test"
     subprocess.run(["cc", "-O2", "-o", str(exe), str(comp / "host_test.c"), str(comp / "vrouter.c"), "-lm"], check=True)

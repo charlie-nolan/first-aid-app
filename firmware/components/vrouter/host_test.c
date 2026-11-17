@@ -24,9 +24,15 @@ int main(int argc, char **argv) {
         for (int i = 0; i < k; i++) { if (fscanf(g, "%f", &want[i]) != 1) return 2; if (want[i] > mx) mx = want[i]; }
         for (int i = 0; i < k; i++) { want[i] = expf(want[i] - mx); s += want[i]; }
         vr_score(&m, &h, ctx, p);
-        int t[3]; vr_top3(&m, p, t);
+        int t[3], wt[3], wa;
+        bool auto_ok = vr_tiles(&m, &h, p, t);
+        if (fscanf(g, "%d %d %d %d", &wt[0], &wt[1], &wt[2], &wa) != 4) return 2;
+        if (t[0] != wt[0] || t[1] != wt[1] || t[2] != wt[2] || auto_ok != (wa != 0)) {
+            printf("  case %d tiles %d %d %d auto %d, want %d %d %d auto %d\n", cases, t[0], t[1], t[2], auto_ok, wt[0], wt[1], wt[2], wa);
+            bad++;
+        }
         for (int i = 0; i < k; i++) { float e = fabsf(p[i] - want[i] / s); if (e > worst) worst = e; if (e > 1e-3f) bad++; }
-        printf("  case %d -> %s (%.2f)\n", cases, vr_name(&m, t[0]), p[t[0]]);
+        printf("  case %d -> %s (%.2f) | %s | %s%s\n", cases, vr_name(&m, t[0]), p[t[0]], vr_name(&m, t[1]), vr_name(&m, t[2]), auto_ok ? "" : "  [no auto]");
         cases++;
     }
     printf("%d cases, worst prob difference %.2e, %s\n", cases, worst, bad ? "MISMATCH" : "OK");

@@ -15,9 +15,30 @@ class Example:
     ctx: int = -1          # expert: node the user is on when they speak (-1 = none)
 
 
-def load_tree(trees_dir: Path, tid: str) -> dict | None:
-    p = Path(trees_dir) / f"{tid}.yaml"
-    return yaml.safe_load(p.read_text()) if p.exists() else None
+def load_tree(trees_dir, tid: str) -> dict | None:
+    """trees_dir: one directory or a list (public trees, then trees_personal); first hit wins."""
+    for d in trees_dir if isinstance(trees_dir, (list, tuple)) else [trees_dir]:
+        p = Path(d) / f"{tid}.yaml"
+        if p.exists():
+            return yaml.safe_load(p.read_text())
+    return None
+
+
+def load_topics(topics_yaml: Path) -> dict:
+    """topics.yaml plus an optional gitignored topics.personal.yaml next to it.
+    Personal entries replace a topic's open/trees/pin (pointing it at personal trees, e.g.
+    Aerie or Red Cross) and add train/test lines (replace: true swaps them); a new topic name adds a topic."""
+    d = yaml.safe_load(Path(topics_yaml).read_text())
+    pp = Path(topics_yaml).with_name("topics.personal.yaml")
+    if pp.exists():
+        for name, t in (yaml.safe_load(pp.read_text()) or {}).get("topics", {}).items():
+            base = d["topics"].setdefault(name, {"train": [], "test": []})
+            for k in ("open", "trees", "pin"):
+                if k in t:
+                    base[k] = t[k]
+            for k in ("train", "test"):      # replace: true = this topic's lines are only the personal ones
+                base[k] = (t.get(k, []) if t.get("replace") else base.get(k, []) + t.get(k, []))
+    return d
 
 
 def tree_texts(t: dict, top_only: bool = False) -> list[str]:
@@ -38,12 +59,20 @@ def tree_texts(t: dict, top_only: bool = False) -> list[str]:
 class RouterData:
     REJECT = "reject"
 
-    def __init__(self, topics_yaml: Path, trees_dir: Path | None):
-        d = yaml.safe_load(Path(topics_yaml).read_text())
+    def __init__(self, topics_yaml: Path, trees_dir, scope: str | None = None):
+        d = load_topics(topics_yaml)
+        out, self.out_names = [], set()
+        if scope:      # e.g. "first_aid": other topics' lines teach "reject" (not covered: say again / buttons)
+            self.out_names = {n for n, t in d["topics"].items() if t.get("scope", "first_aid") != scope}
+            out = [d["topics"][n] for n in self.out_names]
+            d["topics"] = {n: t for n, t in d["topics"].items() if t.get("scope", "first_aid") == scope}
+            for k in ("train", "test"):
+                d["reject"][k] = d["reject"][k] + [u for t in out for u in t.get(k, [])]
         self.names = list(d["topics"]) + [self.REJECT]
         self.topics = d["topics"]
         self.reject = d["reject"]
         self.train, self.test, self.labels = [], [], []
+        self.pins = [(k, g) for k, t in enumerate(self.topics.values()) for g in t.get("pin", [])]
         for k, (name, t) in enumerate(self.topics.items()):
             self.train += [Example(s, k) for s in t["train"]]
             self.test += [Example(s, k) for s in t["test"]]
@@ -57,13 +86,15 @@ class RouterData:
         self.test += [Example(s, r) for s in self.reject["test"]]
 
     def all_text(self) -> list[str]:
-        return [e.text for e in self.train + self.test + self.labels]
+        """Text the harvested lexicon may see: train, tree labels, pin words. Never test lines:
+        a word heard only in a test sentence must stay unknown, as on the device."""
+        return [e.text for e in self.train + self.labels] + [g for _, g in self.pins]
 
 
 class ExpertData:
     """Classes: every node of the tree, then NONE (= hand back to the router)."""
 
-    def __init__(self, expert_yaml: Path, trees_dir: Path, router: RouterData | None):
+    def __init__(self, expert_yaml: Path, trees_dir, router: RouterData | None):
         d = yaml.safe_load(Path(expert_yaml).read_text())
         self.tree_id = d["tree"]
         tr = load_tree(trees_dir, self.tree_id)
@@ -117,4 +148,5 @@ class ExpertData:
         return rng.randrange(len(self.nodes))
 
     def all_text(self) -> list[str]:
-        return [e.text for e in self.train + self.test + self.labels]
+        """Train + tree labels only (see RouterData.all_text)."""
+        return [e.text for e in self.train + self.labels]

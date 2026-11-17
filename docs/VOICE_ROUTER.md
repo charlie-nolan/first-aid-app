@@ -37,7 +37,7 @@ typedef struct {
 } voice_hyp_t;
 ```
 
-Lexicon ids 0-1023, append-only (0 UNK, 1-4 one..four, 5 yes, 6 no, 7 back, 8 again, 9 home),
+Lexicon ids 0-2047 (cap raised from 1024, 11-16), append-only (0 UNK, 1-4 one..four, 5 yes, 6 no, 7 back, 8 again, 9 home),
 plus a 1-byte class per word (0 other, 1 body part, 2 mechanism, 3 symptom, 4 negation,
 5 quantity). The recognizer thread owns `pipeline/plb/content/lexicon.yaml`.
 
@@ -65,7 +65,9 @@ Training-only tricks that cost the device nothing:
 
 ### On the device
 
-- Format `VXP1`: int8 rows with one float scale per row, float biases, class map, names.
+- Format `VXP1`: word and hash rows in 4 bits (format v2, default since 11-16; v1 = int8), one
+  float scale per row; dense layers int8; float biases, class map, names, then life-threat pins.
+  4-bit measured no worse than int8 (router d=32: 112 KB -> 65 KB, same top-1/top-3).
   Reader: `firmware/components/vrouter` (plain C, ~150 lines, no allocation).
 - A sentence touches only its own rows (a dozen to a few dozen), so models stay in
   memory-mapped flash (`esp_partition_mmap`) and are read in place. "Loading" an expert is
@@ -74,6 +76,8 @@ Training-only tricks that cost the device nothing:
 - Compute per utterance: ~30 rows x 64 + 64x128 + 128x35, about 15k multiply-adds: well under
   a millisecond on the S3.
 - The C reader matches the Python int8 reference to 1e-7 (host test, 12 cases each).
+- "Say that again": `vr_merge` averages the new attempt with earlier ones (geometric mean of
+  probabilities) instead of starting over. Simulated: top-3 at noise 0.3 73% -> 75%, at 0.5 68% -> 73%.
 
 ### Flash budget (16 MB Plus)
 
@@ -97,13 +101,27 @@ both run side by side, keep experts at d=32.
      it; if unsure, show the 3 best topics as tiles (existing picker); if "reject", "say again".
    - In a tree: `vr_score(expert, hyp, current_node)` -> same accept / pick-of-3 / say-again
      rule; "none" -> run the router and switch tree.
-3. Thresholds (tunable from bench logs): accept if top probability >= 0.55 and it leads the
-   second by >= 0.2; "say again" below 0.2; otherwise pick-of-3.
+3. Thresholds (tunable from bench logs): accept only if top probability >= 0.97 and it leads the
+   second by >= 0.2 (raised from 0.55 after round 3: on independent test text nothing lower was
+   safe), so in practice the tiles show almost every time; "say again" below 0.08; otherwise pick-of-3.
+   Word types (body part, mechanism, animal) feed extra hashed features ("bit <body part>"), and
+   `vr_slot_word` hands the heard body part to the tree so a "where?" card can be skipped.
 4. Models live in a `voice` data partition written by the pipeline next to library.bin; the
    cartridge's tree table names each tree's expert offset.
 
 Not wired into the build yet: the component compiles on its own and on the PC. Wiring it waits
 for the Plus bring-up branch (claude/project-thread-5qvx6w) and for a partition decision.
+
+## Slot-filling intake (Charlie 11-16, prototype: `vr/intake.py`)
+
+The first sentence fills in blanks ("bite", "leg", "raccoon", "gushing"); the tree then skips
+every question card those blanks already answer and asks only the rest (tiles + voice + buttons),
+landing on the same signed-off cited card in fewer steps. Per tree, a slot map names which card
+asks which blank and which answer each value takes. Rules: a blank is filled only by a word that
+was said (never guessed), negated words fill nothing, and `life_threat` values (severe bleeding,
+not breathing) open their card before any question. On device this is word-type lookup plus a
+small table per tree (a few KB); learned per-blank scorers can replace keyword lists later.
+Slot maps for the personal trees are written on the PC against the real card text.
 
 ## Results (prototype, CPU, 2026-11-16)
 

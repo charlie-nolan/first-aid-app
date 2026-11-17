@@ -46,3 +46,13 @@ cc -O2 -o /tmp/vr_test ../../firmware/components/vrouter/host_test.c ../../firmw
 
 Keep `test` sentences out of `train` (and out of anything generated): they are the only
 honest measure.
+
+## Personal sources (Aerie, Red Cross: never committed)
+
+Personal trees live in gitignored `pipeline/plb/content/trees_personal/`. To point voice at them:
+
+- `pipeline/plb/content/voice/topics.personal.yaml` (gitignored): per topic, `open:` / `trees:` / `pin:`
+  replace the public values; `train:` / `test:` lines are added (`replace: true` swaps them). A new topic name adds a topic.
+- `pipeline/plb/content/voice/experts_personal/<tree>.yaml` (gitignored): per-card seed phrases,
+  same format as `experts/`.
+- Pass both tree folders: `--trees content/trees content/trees_personal` (first hit wins).

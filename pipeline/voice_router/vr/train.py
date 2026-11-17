@@ -22,7 +22,7 @@ import torch
 
 import yaml
 
-from .data import Example, ExpertData, RouterData
+from .data import Example, ExpertData, RouterData, load_topics
 from .lexicon import Lexicon
 from .model import Net, Packed, features, softmax
 from .noise import Confusions, nbest
@@ -30,13 +30,43 @@ from .noise import Confusions, nbest
 HERE = Path(__file__).resolve().parents[1]
 CONTENT = HERE.parent / "plb" / "content"
 LEVELS = [0.0, 0.15, 0.3]
-ACCEPT_P, ACCEPT_MARGIN = 0.55, 0.2     # below this the device shows a pick-one-of-3 screen
+ACCEPT_P, ACCEPT_MARGIN = 0.97, 0.2     # below this the device shows a pick-one-of-3 screen
+# (0.55 until round 3: on independent test text nothing below ~0.97 opened safely, 11-16)
+MAX_UNK_AUTO = 0.2     # many unknown words heard: never open on its own, show the tiles
 SAY_AGAIN_P = 0.08     # below this, "say that again"; otherwise never a dead end: show the tiles
 
 
 def build_lexicon(texts):
     p = CONTENT / "lexicon.yaml"
     return Lexicon.load_yaml(p) if p.exists() else Lexicon.harvest(texts)
+
+
+def teacher_soft(name, exs, k, folds=5, seed=0):
+    """Distillation targets: a softmax classifier on sentence-embedding vectors (MiniLM) gives
+    each training sentence a soft label. Out-of-fold, so the teacher never grades a sentence it
+    trained on. The tiny model then learns the big model's sense of what is near what."""
+    from sentence_transformers import SentenceTransformer
+    texts = sorted({e.text for e in exs})
+    lab = {}
+    for e in exs:
+        lab.setdefault(e.text, e.label)
+    X = torch.tensor(SentenceTransformer(name).encode(texts, normalize_embeddings=True, batch_size=256))
+    y = torch.tensor([lab[t] for t in texts])
+    idx = list(range(len(texts)))
+    random.Random(seed).shuffle(idx)
+    soft = torch.zeros(len(texts), k)
+    for f in range(folds):
+        test = idx[f::folds]
+        tr = [i for i in idx if i not in set(test)]
+        W = torch.zeros(X.shape[1], k, requires_grad=True)
+        b = torch.zeros(k, requires_grad=True)
+        opt = torch.optim.Adam([W, b], lr=0.05)
+        for _ in range(300):
+            loss = torch.nn.functional.cross_entropy(X[tr] @ W * 10 + b, y[tr]) + 1e-3 * (W ** 2).sum()
+            opt.zero_grad(); loss.backward(); opt.step()
+        with torch.no_grad():
+            soft[test] = torch.softmax((X[test] @ W * 10 + b) / 2.0, -1)   # temperature 2
+    return {t: soft[i] for i, t in enumerate(texts)}
 
 
 def make_batch(exs, lex, conf, rng, buckets, noisy=3, ctx_fn=None):
@@ -50,11 +80,11 @@ def make_batch(exs, lex, conf, rng, buckets, noisy=3, ctx_fn=None):
             if rng.random() < 0.15 and len(wi) > 2:          # word dropout
                 k = rng.randrange(len(wi)); wi = wi[:k] + wi[k + 1:]; ww = ww[:k] + ww[k + 1:]
             c = ctx_fn(e.label, rng) if ctx_fn else -1
-            out.append(((wi, ww, hi, hw, c), e.label, e.weight))
+            out.append(((wi, ww, hi, hw, c), e.label, e.weight, e.text))
     return out
 
 
-def train(net, data, lex, conf, epochs, seed, ctx_fn=None, log=None):
+def train(net, data, lex, conf, epochs, seed, ctx_fn=None, log=None, soft=None, alpha=0.5):
     torch.manual_seed(seed)
     rng = random.Random(seed)
     opt = torch.optim.AdamW(net.parameters(), lr=3e-3, weight_decay=1e-4)
@@ -66,10 +96,17 @@ def train(net, data, lex, conf, epochs, seed, ctx_fn=None, log=None):
         tot = 0.0
         for i in range(0, len(b), 64):
             chunk = b[i:i + 64]
-            logits = net([x for x, _, _ in chunk])
-            y = torch.tensor([l for _, l, _ in chunk])
-            w = torch.tensor([wt for _, _, wt in chunk])
+            logits = net([c[0] for c in chunk])
+            y = torch.tensor([c[1] for c in chunk])
+            w = torch.tensor([c[2] for c in chunk])
             loss = (torch.nn.functional.cross_entropy(logits, y, reduction="none", label_smoothing=0.05) * w).mean()
+            if soft:
+                tgt = [soft.get(c[3]) for c in chunk]
+                m = [i for i, t in enumerate(tgt) if t is not None]
+                if m:
+                    lp = torch.log_softmax(logits[m] / 2.0, -1)
+                    kl = torch.nn.functional.kl_div(lp, torch.stack([tgt[i] for i in m]), reduction="batchmean")
+                    loss = (1 - alpha) * loss + alpha * 4.0 * kl          # T^2 scaling
             opt.zero_grad(); loss.backward(); opt.step()
             tot += loss.item() * len(chunk)
         if log and (ep % 10 == 0 or ep == epochs - 1):
@@ -106,14 +143,18 @@ def evaluate(packed, data, lex, conf, ctx_mode=None, same=None, seed=7, reps=3, 
                 ctx = ctx_mode(e.label, rng) if ctx_mode else -1
                 p = softmax(packed.logits(nb, ctx))
                 order = list(np.argsort(-p))
-                top1, top3 = order[0], order[:3]
+                top1 = order[0]
+                top3, may_auto = packed.tiles(p, nb)
                 c["top1"] += top1 in ok
                 c["top3"] += bool(ok & set(top3))
-                c["top6"] += bool(ok & set(order[:6]))           # "None of these" -> next 3
+                page2 = [o for o in order if o not in top3][:3]
+                c["top6"] += bool(ok & (set(top3) | set(page2)))   # "None of these" -> next 3
                 c["rank_sum"] += next(i for i, o in enumerate(order) if o in ok)
-                rows_seen.append((float(p[top1]), float(margin_of(p, order)), top1 in ok))
+                rows_seen.append((float(p[top1]) if may_auto else 0.0, float(margin_of(p, order)), top1 in ok))
                 margin = p[order[0]] - p[order[1]]
-                if p[top1] >= ACCEPT_P and margin >= ACCEPT_MARGIN:
+                words = [i for i, _ in nb[0]]
+                unk = sum(1 for i in words if i == 0) / max(1, len(words))
+                if p[top1] >= ACCEPT_P and margin >= ACCEPT_MARGIN and unk <= MAX_UNK_AUTO and may_auto:
                     c["auto_right" if top1 in ok else "auto_wrong"] += 1
                 elif p[top1] < SAY_AGAIN_P:
                     c["say_again"] += 1
@@ -165,6 +206,8 @@ def add_test(a, data, kind, tree=None):
         for k, n in enumerate(data.names[:-1]):
             data.test += [Example(u, k) for u in (g.get("topics") or {}).get(n, [])]
         data.test += [Example(u, len(data.names) - 1) for u in g.get("reject", [])]
+        data.test += [Example(u, len(data.names) - 1) for n in getattr(data, "out_names", ())
+                      for u in (g.get("topics") or {}).get(n, [])]
     else:
         idx = {k: i for i, k in enumerate(data.nodes)}
         nodes = ((g.get("experts") or {}).get(tree) or {})
@@ -176,18 +219,29 @@ def add_test(a, data, kind, tree=None):
 
 def add_extra(a, data, kind, tree=None):
     """Generated sentences (vr.generate) join training at weight 0.7: helpful, less trusted."""
-    ex = getattr(a, "extra", None)
-    if not ex:
-        return
+    exs = getattr(a, "extra", None) or []
+    for ex in (exs if isinstance(exs, list) else [exs]):
+        _add_extra_dir(ex, data, kind, tree)
+
+
+def _add_extra_dir(ex, data, kind, tree):
     if kind == "router" and (ex / "router.yaml").exists():
         g = yaml.safe_load((ex / "router.yaml").read_text())["topics"]
-        for k, n in enumerate(data.names[:-1]):
+        for k, n in enumerate(data.names):              # last name is "reject"
             data.train += [Example(u, k, 0.7) for u in g.get(n, [])]
+        r = len(data.names) - 1                         # out-of-scope topics' lines teach "reject"
+        data.train += [Example(u, r, 0.7) for n in getattr(data, "out_names", ()) for u in g.get(n, [])]
     if kind == "expert" and (ex / f"expert-{tree}.yaml").exists():
         g = yaml.safe_load((ex / f"expert-{tree}.yaml").read_text())["nodes"]
         idx = {k: i for i, k in enumerate(data.nodes)}
         for k, us in g.items():
             data.train += [Example(u, idx[k], 0.7) for u in us]
+        if (ex / "router.yaml").exists():               # other topics' lines teach "none" (hand back)
+            topics = load_topics(CONTENT / "voice" / "topics.yaml")["topics"]
+            gr = yaml.safe_load((ex / "router.yaml").read_text())["topics"]
+            for n, us in gr.items():
+                if n == "reject" or topics.get(n, {}).get("open") != tree:
+                    data.train += [Example(u, data.none, 0.5) for u in us]
 
 
 def teacher_vectors(a, lex, d):
@@ -206,7 +260,7 @@ def teacher_vectors(a, lex, d):
 
 
 def run_router(a, log=print):
-    data = RouterData(CONTENT / "voice" / "topics.yaml", a.trees)
+    data = RouterData(CONTENT / "voice" / "topics.yaml", a.trees, getattr(a, "scope", None))
     add_extra(a, data, "router")
     add_test(a, data, "router")
     frac = getattr(a, "frac", 1.0)
@@ -222,15 +276,19 @@ def run_router(a, log=print):
     conf = Confusions(lex)
     net = Net(lex, len(data.names), d=a.d, hidden=a.hidden, buckets=a.buckets, teacher=teacher_vectors(a, lex, a.d))
     t0 = time.time()
-    train(net, data, lex, conf, a.epochs, a.seed, log=log)
+    soft = teacher_soft(a.teacher, data.train + data.labels, len(data.names)) if getattr(a, "distill", False) and a.teacher else None
+    train(net, data, lex, conf, a.epochs, a.seed, log=log, soft=soft)
     packed = Packed(net, list(range(len(data.names))), data.names, kind=0)
+    skipped = packed.set_pins(data.pins)
+    if skipped and log:
+        log(f"  pins skipped (word not in lexicon): {skipped}")
     res = evaluate(packed, data, lex, conf)
     return data, lex, packed, res, time.time() - t0
 
 
 def run_expert(a, tree, log=print):
-    rdata = RouterData(CONTENT / "voice" / "topics.yaml", a.trees)
-    data = ExpertData(CONTENT / "voice" / "experts" / f"{tree}.yaml", a.trees, rdata)
+    rdata = RouterData(CONTENT / "voice" / "topics.yaml", a.trees, getattr(a, "scope", None))
+    data = ExpertData(expert_yaml(tree), a.trees, rdata)
     add_extra(a, data, "expert", tree)
     add_test(a, data, "expert", tree)
     lex = build_lexicon(rdata.all_text() + data.all_text())
@@ -238,7 +296,8 @@ def run_expert(a, tree, log=print):
     net = Net(lex, len(data.names), d=a.d, hidden=a.hidden, buckets=a.buckets, ctx=len(data.nodes),
               teacher=teacher_vectors(a, lex, a.d))
     t0 = time.time()
-    train(net, data, lex, conf, a.epochs, a.seed, ctx_fn=data.ctx_for, log=log)
+    soft = teacher_soft(a.teacher, data.train + data.labels, len(data.names)) if getattr(a, "distill", False) and a.teacher else None
+    train(net, data, lex, conf, a.epochs, a.seed, ctx_fn=data.ctx_for, log=log, soft=soft)
     packed = Packed(net, list(range(len(data.names))), data.names, kind=1)
     inside = [e for e in data.test if e.label != data.none]
     other = [e for e in data.test if e.label == data.none]
@@ -249,18 +308,31 @@ def run_expert(a, tree, log=print):
     return data, lex, packed, (res_parent, res_root, res_none), time.time() - t0
 
 
+def expert_yaml(tree: str) -> Path:
+    """Seed phrases for a tree: experts/ (public trees) or gitignored experts_personal/."""
+    for sub in ("experts", "experts_personal"):
+        p = CONTENT / "voice" / sub / f"{tree}.yaml"
+        if p.exists():
+            return p
+    raise FileNotFoundError(f"no seed file for {tree} in voice/experts or voice/experts_personal")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="vr")
     ap.add_argument("cmd", choices=["router", "expert", "sweep", "curve"])
     ap.add_argument("tree", nargs="?")
-    ap.add_argument("--trees", type=Path, required=True, help="directory of tree YAML (draft or signed off)")
+    ap.add_argument("--trees", type=Path, nargs="+", required=True,
+                    help="tree YAML directories (draft or signed off), e.g. content/trees content/trees_personal")
     ap.add_argument("--out", type=Path, default=HERE / "out")
     ap.add_argument("--d", type=int, default=64)
     ap.add_argument("--hidden", type=int, default=128)
     ap.add_argument("--buckets", type=int, default=4096)
+    ap.add_argument("--scope", help="only topics with this scope (topics.yaml `scope:`, default first_aid), "
+                    "e.g. first_aid; the others' lines become reject")
     ap.add_argument("--epochs", type=int, default=40)
     ap.add_argument("--seed", type=int, default=1)
-    ap.add_argument("--extra", type=Path, help="generated sentences from vr.generate (desktop)")
+    ap.add_argument("--extra", type=Path, nargs="+", help="generated sentences from vr.generate (desktop)")
+    ap.add_argument("--distill", action="store_true", help="also learn the --teacher model's soft labels")
     ap.add_argument("--test-extra", type=Path, help="independent test set (e.g. out/agy_test.yaml) replacing the seed test")
     ap.add_argument("--teacher", help="sentence-transformers model for starting word vectors (desktop), "
                     "e.g. sentence-transformers/all-MiniLM-L6-v2")
@@ -305,15 +377,21 @@ def main(argv=None):
 def golden(path, packed, data, lex, ctx=-1):
     """A few inputs + the int8 reference scores, for the C reader's host test."""
     cases = []
-    for e in data.test[:12]:
-        nb = [[(i, 100) for i in lex.encode(e.text)]]
-        cases.append({"text": e.text, "ctx": ctx, "nbest": nb, "logits": [float(v) for v in packed.logits(nb, ctx)]})
+    texts = [e.text for e in data.test[:12]] + ["baby is limp and not breathing", "he is choking and bleeding",
+                                                 "my friend collapsed after the bee sting",
+                                                 "a raccoon bit my thigh", "gash on my calf"]
+    for t in texts:
+        nb = [[(i, 100) for i in lex.encode(t)]]
+        lg = packed.logits(nb, ctx)
+        tiles, auto = packed.tiles(softmax(lg), nb)
+        cases.append({"text": t, "ctx": ctx, "nbest": nb, "logits": [float(v) for v in lg],
+                      "tiles": [int(x) for x in tiles], "auto": bool(auto)})
     path.write_text(json.dumps({"cases": cases, "neg_ids": [i for i in range(len(lex)) if lex.is_neg(i)]}))
     with open(path.with_suffix(".txt"), "w") as f:          # same cases for the C host test
         for c in cases:
             ids = [i for i, _ in c["nbest"][0]]
             f.write(f"{c['ctx']} {len(ids)} {' '.join(map(str, ids))} {len(c['logits'])} "
-                    f"{' '.join(f'{v:.6f}' for v in c['logits'])}\n")
+                    f"{' '.join(f'{v:.6f}' for v in c['logits'])} {' '.join(map(str, c['tiles']))} {int(c['auto'])}\n")
 
 
 if __name__ == "__main__":

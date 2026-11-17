@@ -14,6 +14,7 @@ enum { CK_NEXT, CK_KIT, CK_IMPROVISED, CK_NOTHING, CK_YES, CK_NO };   /* choice 
 #define CART_NODE_SPECIES   2u
 #define CART_NODE_NO_MATCH  4u   /* show cart_string("NO_MATCH") */
 #define CART_NODE_UNREVIEWED 8u  /* reference shelf: show an "Unreviewed" header */
+#define CART_NODE_CPR       16u  /* CPR page: menu lists the CPR pace light first */
 #define CART_TXT_HEADING 0x01   /* at line start */
 #define CART_TXT_BULLET  0x02   /* at line start */
 

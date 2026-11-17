@@ -27,10 +27,11 @@ typedef struct {
     uint8_t reject;
 } voice_hyp_t;
 
-enum { VR_CLS_OTHER, VR_CLS_BODY, VR_CLS_MECH, VR_CLS_SYMPTOM, VR_CLS_NEG, VR_CLS_QTY };
+enum { VR_CLS_OTHER, VR_CLS_BODY, VR_CLS_MECH, VR_CLS_SYMPTOM, VR_CLS_NEG, VR_CLS_QTY, VR_CLS_ANIMAL };
 
 typedef struct {
     uint16_t kind, V, B, C, d, hidden, k;
+    uint8_t bits;                        /* word + hash rows: 8 (VXP v1) or 4 (v2, two per byte) */
     const uint8_t *cls;                  /* [V] word class */
     const float *ws; const int8_t *w;    /* word rows */
     const float *hs; const int8_t *h;    /* hashed bigram / negation rows */
@@ -39,6 +40,9 @@ typedef struct {
     const float *s2, *b2; const int8_t *w2;
     const uint16_t *class_map;
     const char *names;                   /* k NUL-terminated names, for logs */
+    bool slots;                          /* header flag 2: word-type (slot) features */
+    uint16_t npins;                      /* life-threat word groups (router) */
+    const uint8_t *pins;                 /* npins x { u16 class, u8 n, u16 id[n] } */
 } vr_model_t;
 
 /* Points m into blob (no copy). Returns false if the blob is not a valid VXP1. */
@@ -51,3 +55,18 @@ void vr_score(const vr_model_t *m, const voice_hyp_t *hyp, int ctx, float *p);
 void vr_top3(const vr_model_t *m, const float *p, int out[3]);
 
 const char *vr_name(const vr_model_t *m, int cls);
+
+/* "Say that again": fold a new attempt into the earlier one (geometric mean of the two
+ * probability lists, renormalised), so the second try adds evidence instead of starting over.
+ * acc holds the running result; pass n_before = how many attempts are already in it. */
+void vr_merge(int k, float *acc, const float *p, int n_before);
+
+/* The 3 tiles to show, best first, with every pinned (life-threat) class that fired forced
+ * onto them. Returns true if tiles[0] may open on its own (still subject to the caller's
+ * probability / margin / unknown-word checks): false whenever a pin fired for another class. */
+bool vr_tiles(const vr_model_t *m, const voice_hyp_t *hyp, const float *p, int tiles[3]);
+/* The most confident word of one type (VR_CLS_BODY, VR_CLS_MECH, VR_CLS_ANIMAL) in the best
+ * guess, or 0. The UI keeps it when the router opens a tree ("bit my thigh" -> thigh), so a
+ * card that asks "where?" can be skipped or pre-selected. */
+uint16_t vr_slot_word(const vr_model_t *m, const voice_hyp_t *hyp, int cls);
+

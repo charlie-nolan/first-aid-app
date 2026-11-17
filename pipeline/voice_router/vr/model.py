@@ -23,7 +23,8 @@ import torch.nn as nn
 
 from .lexicon import Lexicon
 
-HASH_BIGRAM, HASH_NEG = 1, 2
+HASH_BIGRAM, HASH_NEG, HASH_SLOT = 1, 2, 3
+SLOT_BASE = 0xFF00          # 'a word of type c' = SLOT_BASE | c, never a real id
 NEG_WINDOW = 3
 
 
@@ -49,6 +50,14 @@ def features(nb, lex: Lexicon, buckets: int):
                 wi.append(i); ww.append(w)
                 if prev:
                     hi.append(fnv1a(HASH_BIGRAM, prev, i, buckets)); hw.append(w)
+                c = lex.slot(i)          # types: "bit <body part>", "<animal> bit", "a body part was said"
+                if c:
+                    hi.append(fnv1a(HASH_SLOT, 0, SLOT_BASE | c, buckets)); hw.append(w)
+                    if prev:
+                        hi.append(fnv1a(HASH_SLOT, prev, SLOT_BASE | c, buckets)); hw.append(w)
+                pc = lex.slot(prev) if prev else 0
+                if pc and not c:
+                    hi.append(fnv1a(HASH_SLOT, SLOT_BASE | pc, i, buckets)); hw.append(w)
                 if neg_left and not lex.is_neg(i):
                     hi.append(fnv1a(HASH_NEG, 0, i, buckets)); hw.append(w)
             if i and lex.is_neg(i):
@@ -128,19 +137,62 @@ def q_rows(m: np.ndarray):
     return np.clip(np.round(m / s[:, None]), -127, 127).astype(np.int8), s.astype(np.float32)
 
 
+def q4_rows(m: np.ndarray):
+    """4-bit rows: values -7..7, one float scale per row (half the flash of int8, no measurable loss)."""
+    s = np.abs(m).max(1) / 7.0
+    s[s == 0] = 1.0
+    return np.clip(np.round(m / s[:, None]), -7, 7).astype(np.int8), s.astype(np.float32)
+
+
+def pack4(q: np.ndarray) -> bytes:
+    """Two values per byte, low nibble first (d is even)."""
+    u = (q.astype(np.int16) & 0xF).astype(np.uint8).reshape(len(q), -1, 2)
+    return (u[:, :, 0] | (u[:, :, 1] << 4)).tobytes()
+
+
 class Packed:
     """The exact numbers the device uses (int8 rows + float scales)."""
 
-    def __init__(self, net: Net, class_map: list[int], names: list[str], kind: int):
+    def __init__(self, net: Net, class_map: list[int], names: list[str], kind: int, bits: int = 4):
+        self.bits = bits
+        rows = q4_rows if bits == 4 else q_rows
         with torch.no_grad():
-            self.W, self.Ws = q_rows(net.word_table().numpy())
-            self.Hh, self.Hs = q_rows(net.hash.weight.numpy())
+            self.W, self.Ws = rows(net.word_table().numpy())
+            self.Hh, self.Hs = rows(net.hash.weight.numpy())
             self.C, self.Cs = q_rows(net.ctx.weight.numpy()) if net.nctx else (np.zeros((0, net.d), np.int8), np.zeros(0, np.float32))
             self.W1, self.s1 = q_rows(net.fc1.weight.numpy()); self.b1 = net.fc1.bias.numpy().astype(np.float32)
             self.W2, self.s2 = q_rows(net.fc2.weight.numpy()); self.b2 = net.fc2.bias.numpy().astype(np.float32)
         self.lex, self.buckets, self.kind = net.lex, net.buckets, kind
         self.d, self.hidden, self.k = net.d, net.hidden, net.k
         self.class_map, self.names = class_map, names
+        self.pins: list[tuple[int, list[int]]] = []
+
+    def set_pins(self, pins):
+        """pins: (class, "word word") -> (class, [ids]). Groups with unknown words are skipped."""
+        self.pins, skipped = [], []
+        for k, g in pins:
+            ids = self.lex.encode(g)
+            (skipped if not ids or 0 in ids else self.pins).append((k, ids) if ids and 0 not in ids else g)
+        return skipped
+
+    def fired(self, nb) -> set[int]:
+        heard = [{i for i, _ in h} for h in nb[:5]]
+        return {k for k, ids in self.pins if any(all(i in h for i in ids) for h in heard)}
+
+    def tiles(self, p, nb):
+        """The 3 tiles + whether the top answer may open on its own. Pinned topics always get a
+        tile (taking the lowest slots), and nothing opens on its own past a pinned topic."""
+        order = [int(i) for i in np.argsort(-p)]
+        f = sorted(self.fired(nb), key=lambda k: -p[k])[:3]
+        t = order[:3]
+        for k in f:
+            if k not in t:
+                for j in range(2, -1, -1):
+                    if t[j] not in f:
+                        t[j] = k
+                        break
+        t.sort(key=lambda k: -p[k])
+        return t, (not f or t[0] in f and order[0] == t[0])
 
     def logits(self, nb, ctx=-1):
         wi, ww, hi, hw = features(nb, self.lex, self.buckets)
@@ -159,15 +211,18 @@ class Packed:
     def to_bytes(self) -> bytes:
         V, B, C = len(self.W), len(self.Hh), len(self.C)
         names = b"".join(n.encode()[:31] + b"\0" for n in self.names)
-        hdr = struct.pack("<4sHHHHHHHHHH", b"VXP1", 1, self.kind, V, B, C, self.d, self.hidden, self.k,
-                          len(names), 0)
+        hdr = struct.pack("<4sHHHHHHHHHH", b"VXP1", 2 if self.bits == 4 else 1, self.kind, V, B, C, self.d, self.hidden, self.k,
+                          len(names), (1 if self.pins else 0) | 2)        # bit 1: slot features
         cls = bytes(self.lex.cls)
         parts = [hdr, cls + b"\0" * (-len(cls) % 4)]
-        for q, s in ((self.W, self.Ws), (self.Hh, self.Hs), (self.C, self.Cs)):
-            parts += [s.tobytes(), q.tobytes()]
+        for j, (q, s) in enumerate(((self.W, self.Ws), (self.Hh, self.Hs), (self.C, self.Cs))):
+            parts += [s.tobytes(), pack4(q) if self.bits == 4 and j < 2 else q.tobytes()]
         parts += [self.s1.tobytes(), self.b1.tobytes(), self.W1.tobytes(),
                   self.s2.tobytes(), self.b2.tobytes(), self.W2.tobytes(),
                   np.array(self.class_map, np.uint16).tobytes(), names]
+        pins = struct.pack("<H", len(self.pins)) + b"".join(
+            struct.pack("<HB", k, len(ids)) + struct.pack(f"<{len(ids)}H", *ids) for k, ids in self.pins)
+        parts.append(b"\0" * (-sum(map(len, parts)) % 2) + pins)
         blob = b"".join(parts)
         return blob + b"\0" * (-len(blob) % 4)
 

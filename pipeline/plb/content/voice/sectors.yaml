@@ -1,0 +1,20 @@
+# Voice sectors (Charlie 11-17): each genre of injury/situation has its own vocabulary and
+# fill-in-the-blank templates (its trees' slot files). Turn 1 decodes with the core list
+# (router words + life words + numbers/commands); once the router picks sector(s), the same
+# utterance is re-decoded with those sectors' word lists (speech side) and each candidate tree
+# fills its blanks from that (vr.form Candidate.hyps). Form fields decode with their sector's list.
+# Ids: one global lexicon (cap 4096, append-only, 0-9 reserved); a sector is a subset.
+# Trees not listed fall into "other" until placed. Public tree ids map like their wfa-* twin.
+sectors:
+  breathing_cpr: [wfa-cpr, wfa-choking, wfa-drowning, wfa-co, wfa-lightning, wfa-shock]
+  bleeding_wounds: [wfa-bleeding, wfa-nosebleed, wounds, burns, wfa-eye, wfa-tooth]
+  bones_joints: [fractures, wfa-sprains, wfa-head-spine]
+  cold: [hypothermia, wfa-frostbite]
+  heat: [heat, wfa-dehydration]
+  bites_stings: [bites, wfa-poison-ivy, wfa-allergy]
+  illness: [wfa-diabetic, wfa-asthma, wfa-chest-pain, wfa-stroke, wfa-fainting, wfa-seizures,
+            wfa-belly, wfa-altitude, wfa-stress]
+  gear: [improvised_gear]
+# Every sector also carries the life words (breathing, conscious, bleeding) so a life threat is
+# caught whichever sector is live.
+always_with: [life_words]
