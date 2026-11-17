@@ -27,7 +27,8 @@ def test_life_threat_opens_on_first_sentence():
 def test_one_screen_answers_every_blank():
     cands = [Candidate("bites", TREE, SMAP)]
     assert first_sentence("something bit me", cands)[0] == "form"
-    assert [f.key for f in open_fields(cands)] == ["animal"]      # where only matters for a mammal
+    fs = open_fields(cands)
+    assert [(f.key, f.when) for f in fs] == [("animal", None), ("where", ("animal", "mammal"))]
     assert answer("a dog, on my leg", cands) == ("open", "bites", "limb")
 
 
@@ -54,3 +55,16 @@ def test_life_card_with_its_own_blank_opens_first():
     cands = [Candidate("cpr", tree, smap)]
     assert first_sentence("she's not breathing", cands) == ("open", "cpr", "cpr")
     assert [f.key for f in open_fields(cands)] == ["cold"]
+
+
+def test_reaching_a_life_card_by_answering_the_root_does_not_open_it():
+    tree = {"root": "start", "title": "CPR", "nodes": {"start": {"label": "Breathing?"},
+            "cpr": {"label": "Start CPR"}, "recovery": {"label": "Recovery position"}}}
+    smap = {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"},
+                            {"if": {"conscious": "no", "breathing": "yes"}, "go": "recovery"}],
+            "slots": {"breathing": {"no": ["not breathing"], "yes": ["breathing fine"]},
+                      "conscious": {"no": ["unconscious"]}},
+            "questions": {"start": {"slot": "breathing", "choices": {"no": "cpr", "yes": "recovery"}}}}
+    cands = [Candidate("cpr", tree, smap, p=0.5), Candidate("cpr2", tree, smap, p=0.4)]
+    assert first_sentence("he fell but he's breathing fine", cands)[0] == "form"
+    assert first_sentence("he's unconscious but breathing fine", [Candidate("cpr", tree, smap)]) == ("open", "cpr", "recovery")

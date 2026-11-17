@@ -47,6 +47,7 @@ class Field:
     question: str                     # the question card's own label
     choices: list                     # [{label, to, value}] as tiles() gives them, or trees for @topic
     trees: list                       # candidate names this field belongs to
+    when: tuple | None = None         # (slot, value) this field depends on; None = asked now
 
 
 def first_sentence(hyps: list[str] | str, cands: list[Candidate]):
@@ -59,14 +60,28 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate]):
         c.advance()
         if c.card not in c.tree["nodes"]:             # a life rule jumped to another tree's card
             return "open", c.name, c.card
-    for c in cands:                                   # life rule inside the tree: open it now, even if
-        if c.card in _life_cards(c):                  # it has a blank of its own (CPR: "very cold or from
-            return "open", c.name, c.card             # water?"): that field shows on the open card
+    for c in cands:                                   # emergency card inside the tree: open it now (Charlie:
+        go = _rule_hit(c)                             # one-shot, general info first); its own blank ("very
+        if go:                                        # cold or from water?") only shows on the open card
+            return "open", c.name, c.card
     if cands and (cands[0].p >= SURE or len(cands) == 1):
         del cands[1:]
     if len(cands) == 1 and not cands[0].asking and cands[0].card != cands[0].tree["root"]:
         return "open", cands[0].name, cands[0].card
     return "form", None, None
+
+
+def _rule_hit(c: Candidate) -> str | None:
+    """The card of the first life rule the filled blanks trigger (reaching a life card by simply
+    answering the root, e.g. "breathing fine" in the CPR tree, does not count)."""
+    lt = c.smap.get("life_threat") or []
+    if isinstance(lt, dict):
+        lt = [{"if": {s: v}, "go": card} for s, m in lt.items() for v, card in m.items()]
+    for r in lt:
+        if all(c.filled.get(s) == v for s, v in r["if"].items()) and \
+                not any(c.filled.get(s) == v for s, v in (r.get("unless") or {}).items()):
+            return r["go"]
+    return None
 
 
 def _life_cards(c: Candidate) -> set:
@@ -76,22 +91,25 @@ def _life_cards(c: Candidate) -> set:
     return {r["go"] for r in lt}
 
 
-def _lookahead(c: Candidate, limit: int = 4) -> list[tuple[str, str]]:
-    """(card, slot) blanks this tree will ask whatever the current one is answered with:
-    the current blank, then any blank every answer leads to next."""
-    out, card, asking, filled = [], c.card, c.asking, dict(c.filled)
-    while asking and len(out) < limit:
-        out.append((card, asking))
-        nxt = set()
+def _lookahead(c: Candidate, limit: int = 6) -> list[tuple[str, str, tuple | None]]:
+    """(card, slot, when) for every blank still ahead, breadth first: the current blank (when
+    None), then the blank each of its answers leads to (when = (slot, value)), and so on. The
+    screen shows the conditional ones under their parent and greys out the branches not taken."""
+    out, seen = [], set()
+    todo = [(c.card, c.asking, dict(c.filled), None)]
+    while todo and len(out) < limit:
+        card, asking, filled, when = todo.pop(0)
+        if not asking or asking in seen:
+            continue
+        seen.add(asking)
+        out.append((card, asking, when))
         for t in tiles(c.tree, c.smap, card):
             if not t.get("value"):
-                nxt.add((None, None))
                 continue
-            n_card, _, n_ask = walk(c.tree, c.smap, {**filled, asking: t["value"]}, start=card)
-            nxt.add((n_card, n_ask) if n_ask else (None, None))
-        if len(nxt) != 1 or (None, None) in nxt:
-            break
-        card, asking = nxt.pop()
+            f2 = {**filled, asking: t["value"]}
+            n_card, _, n_ask = walk(c.tree, c.smap, f2, start=card)
+            if n_ask:
+                todo.append((n_card, n_ask, f2, (asking, t["value"])))
     return out
 
 
@@ -109,11 +127,11 @@ def open_fields(cands: list[Candidate]) -> list[Field]:
         life |= set(lt) if isinstance(lt, dict) else {s for r in lt for s in r.get("if", {})}
     rows = []
     for c in cands:
-        for card, slot in _lookahead(c):
+        for card, slot, when in _lookahead(c):
             if slot in seen:
                 seen[slot].trees.append(c.name)
                 continue
-            f = Field(slot, c.tree["nodes"][card].get("label", slot), tiles(c.tree, c.smap, card), [c.name])
+            f = Field(slot, c.tree["nodes"][card].get("label", slot), tiles(c.tree, c.smap, card), [c.name], when)
             seen[slot] = f
             rows.append(f)
     rows.sort(key=lambda f: f.key not in life)        # stable: life blanks first, tree order kept
@@ -170,7 +188,9 @@ def _path_labels(c: Candidate, ok: set, anc: dict, most: int = 8):
         if k is None:
             return None
         if asking and ts[k].get("value"):
-            said.append(ts[k].get("label") or ts[k]["value"])
+            lab = ts[k].get("label") or ""
+            group = " or " in lab or "," in lab or not lab    # "Sunburn or snow blindness": a person
+            said.append(ts[k]["value"].replace("_", " ") if group else lab)   # says the one that fits
             filled = {**filled, asking: ts[k]["value"]}
             card, _, asking = walk(c.tree, c.smap, filled, start=card)
         else:
