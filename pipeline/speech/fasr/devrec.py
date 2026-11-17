@@ -88,10 +88,22 @@ def run(port: str | None):
             raise SystemExit("no USB serial port found: plug the board in")
         port = ps[0]
     st = Store()
-    s = serial.Serial(port, 115200, timeout=0.5)
     print(f"listening on {port}; clips -> {OUT}  (Ctrl-C to stop)")
+    while True:   # the board drops off USB when it resets or the cable is moved: wait and reconnect
+        try:
+            with serial.Serial(port, 115200, timeout=0.5) as s:
+                session(s, st)
+        except (serial.SerialException, OSError) as e:
+            print(f"\n(lost {port}: {e.__class__.__name__}; waiting for the board, clips stay on it until copied)",
+                  flush=True)
+            while not os.path.exists(port):
+                time.sleep(1)
+            time.sleep(1.5)
+
+
+def session(s, st):
     s.write(b"HELLO\nRESEND\n")   # anything sent to an earlier, interrupted session comes again
-    seen: set[int] = set()
+    seen: set[int] = set()        # per connection: a rebooted board numbers its clips again
     hdr, chunks, last_sync, n = None, [], 0.0, 0
     while True:
         if time.time() - last_sync > 1.5 and hdr is None:
@@ -120,7 +132,10 @@ def run(port: str | None):
                 wav = st.add(hdr, pcm)
                 s.write(f"ACK {hdr['id']}\n".encode())
                 n += 1
-                flag = "  TOO LOUD" if hdr["clip_per_mille"] > 5 else "  quiet" if hdr["peak"] < 1000 else ""
+                import numpy as np
+                x = np.frombuffer(pcm, np.int16).astype(np.float32)
+                flag = ("  NO SIGNAL: the mic sends a flat line (check CLK/DATA/3V3/SEL wiring)" if x.size and x.std() < 20
+                        else "  TOO LOUD" if hdr["clip_per_mille"] > 5 else "  quiet" if x.std() < 150 else "")
                 print(f"#{hdr['id']} {hdr['mode']:5s} {hdr['samples']/hdr['sr']:4.1f}s  {hdr.get('text','')[:60]}{flag}")
             else:
                 print(f"#{hdr['id']}: bad transfer, asking again")
