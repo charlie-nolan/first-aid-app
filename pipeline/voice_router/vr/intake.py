@@ -49,11 +49,20 @@ NEG_WINDOW = 3
 
 
 def _stem(w: str) -> str:
-    """Light stemming so "bandages" matches "bandage" and "deeply" matches "deep"."""
+    """Light stemming so "bandages"/"bandage", "deeply"/"deep", "stopped"/"stop"/"stopping" match.
+    Negation and hedge words are left alone ("nothing" stays "nothing")."""
+    if w in NEGATION or w in HEDGE or "'" in w:
+        return w
     if len(w) > 5 and w.endswith("ly"):
         w = w[:-2]
-    if len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
+    if len(w) > 5 and w.endswith("ing"):
+        w = w[:-3]
+    elif len(w) > 4 and w.endswith("ed") and not w.endswith("eed"):
+        w = w[:-2]
+    elif len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
         w = w[:-1]
+    if len(w) > 3 and w[-1] == w[-2] and w[-1] not in "aeiouls":
+        w = w[:-1]                          # stopp -> stop, cutt -> cut (keep "swell", "fall")
     return w
 
 
@@ -146,6 +155,25 @@ def decisive_slots(smap: dict) -> set:
 
 def _fill(text: str, smap: dict) -> dict[str, str]:
     return fill(text, smap["slots"], smap.get("priority"), decisive_slots(smap))
+
+
+def fill_nbest(hyps: list[str], smap: dict) -> dict[str, str]:
+    """Blanks from the recognizer's n-best (best first). The top hypothesis fills the blanks; a
+    lower hypothesis may only ADD a life-threat answer the top one missed ("she's stop breathing"
+    on top, "she stopped breathing" 3rd -> breathing=no). Lower guesses never replace or add
+    anything else, so a misheard word can only make the device go to a safety card or ask."""
+    if not hyps:
+        return {}
+    out = _fill(hyps[0], smap)
+    lt = smap.get("life_threat") or []
+    if isinstance(lt, dict):
+        lt = [{"if": {s: v}} for s, m in lt.items() for v in m]
+    danger = {(s, v) for r in lt for s, v in r.get("if", {}).items()}
+    for h in hyps[1:]:
+        for s, v in _fill(h, smap).items():
+            if s not in out and (s, v) in danger:
+                out[s] = v
+    return out
 
 
 def _questions(tree: dict, smap: dict) -> dict:

@@ -155,3 +155,13 @@ def test_tie_asks_except_on_life_threat_blanks_and_later_clause_wins():
     assert fill("shaking a lot and confused", slots, pr)["cold"] == "moderate"   # old behaviour
     assert fill("he passed out but woke up", slots, pr, decisive={"conscious"})["conscious"] == "yes"
     assert fill("he woke up then passed out", slots, pr, decisive={"conscious"})["conscious"] == "no"
+
+
+def test_stemmed_verbs_and_nbest_life_threat_vote():
+    from vr.intake import fill_nbest
+    smap = {"slots": {"breathing": {"no": ["stopped breathing", "not breathing"]},
+                      "body_part": {"leg": ["leg"], "arm": ["arm"]}},
+            "life_threat": [{"if": {"breathing": "no"}, "go": "wfa-cpr/cpr"}]}
+    assert fill("she's stop breathing", smap["slots"]) == {"breathing": "no"}       # -ed folded
+    assert fill_nbest(["she's top breeding", "she's stopped breathing"], smap) == {"breathing": "no"}
+    assert fill_nbest(["hurt my arm", "hurt my leg"], smap) == {"body_part": "arm"}  # no non-safety adds
