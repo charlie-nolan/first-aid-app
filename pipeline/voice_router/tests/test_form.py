@@ -84,3 +84,12 @@ def test_two_problems_open_two_tabs():
 def test_sector_redecode_per_candidate():
     c = Candidate("bites", TREE, SMAP, hyps=["a raccoon bit my thigh"])
     assert first_sentence("a rack coon bit my thy", [c]) == ("open", "bites", "limb")
+
+
+def test_madlibs_snap_near_word_but_not_on_life_blanks():
+    cands = [Candidate("bites", TREE, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert answer("on the thigg", cands) == ("open", "bites", "limb")   # "thigg" -> thigh -> limb
+    cands = [Candidate("bites", TREE, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert answer("purple", cands)[0] == "form"                      # nothing close: ask again

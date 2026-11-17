@@ -185,6 +185,10 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
             if not c.asking:
                 continue
             filled, pick, _ = answer_turn(text, c.tree, c.smap, c.card, c.asking, c.filled)
+            if not (pick and pick.get("value")):
+                v = snap(text, c)                      # madlibs: a near word snaps to its answer
+                if v:
+                    filled, pick = {**c.filled, c.asking: v}, {"value": v}
             if pick and pick.get("value"):
                 c.filled = filled
                 c.advance(start=c.card)
@@ -193,6 +197,46 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
     if len(cands) == 1 and done:
         return "open", done[0].name, done[0].card
     return "form", None, None
+
+
+SNAP_MIN, SNAP_MARGIN = 0.80, 0.10
+
+
+def snap(text: str, c: Candidate) -> str | None:
+    """Charlie 11-17 ("like madlibs"): each blank takes only its own few answers, so a word that is
+    close to one of them (misheard "ankel", "swolen") snaps to that answer. Only when one answer is
+    clearly closest, only words of 4+ letters, and never on a life-threat blank (there a near miss
+    must ask, not guess)."""
+    from difflib import SequenceMatcher
+    if not c.asking or c.asking in _life_slots(c):
+        return None
+    card_q = _questions(c.tree, c.smap).get(c.card, {})
+    best: dict[str, float] = {}
+    heard = [w for w in tokenize(text) if len(w) >= 4 and w not in _FILLER]
+    for t in tiles(c.tree, c.smap, c.card):
+        v = t.get("value")
+        if not v:
+            continue
+        cands = set(tokenize(t.get("label", ""))) | {
+            w for ph in c.smap.get("slots", {}).get(c.asking, {}).get(v, []) for w in tokenize(ph)}
+        cands = {w for w in cands if len(w) >= 4 and w not in _FILLER}
+        for h in heard:
+            for w in cands:
+                r = SequenceMatcher(None, h, w).ratio()
+                if r > best.get(v, 0):
+                    best[v] = r
+    if not best:
+        return None
+    ranked = sorted(best.items(), key=lambda kv: -kv[1])
+    top, score = ranked[0]
+    if score < SNAP_MIN or (len(ranked) > 1 and score - ranked[1][1] < SNAP_MARGIN):
+        return None
+    return top if card_q.get("choices", {}).get(top) or any(t.get("value") == top for t in tiles(c.tree, c.smap, c.card)) else None
+
+
+def _life_slots(c: Candidate) -> set:
+    lt = c.smap.get("life_threat") or []
+    return set(lt) if isinstance(lt, dict) else {s for r in lt for s in r.get("if", {})}
 
 
 def _named(c: Candidate, words: set) -> bool:
