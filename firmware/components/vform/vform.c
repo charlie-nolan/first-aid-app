@@ -109,6 +109,8 @@ static const char *const COMMANDS[] = {"back", "again", "home", 0};
 static const char *const YESNO[] = {"yes", "yeah", "yep", "no", "nope", "nah", 0};
 static const char *const YES[] = {"yes", "yeah", "yep", 0};
 static const char *const NO[] = {"no", "nope", "nah", 0};
+static const char *const KEEP_S[] = {"she's", "he's", "it's", "that's", "there's", "what's", "who's",
+    "let's", "here's", "where's", 0};
 static const char *const CONTRACT[][2] = {{"isnt", "isn't"}, {"cant", "can't"}, {"dont", "don't"},
     {"didnt", "didn't"}, {"doesnt", "doesn't"}, {"wont", "won't"}, {"wasnt", "wasn't"}, {"arent", "aren't"},
     {"havent", "haven't"}, {"hasnt", "hasn't"}, {"couldnt", "couldn't"}, {"wouldnt", "wouldn't"},
@@ -159,7 +161,10 @@ void fp_tokenize(const char *text, fp_toks_t *t) {
         const char *w = r.w[i];
         for (int k = 0; CONTRACT[k][0]; k++) if (!strcmp(w, CONTRACT[k][0])) { w = CONTRACT[k][1]; break; }
         if (!strcmp(w, "to") && t->n && !strcmp(t->w[t->n - 1], "going")) { strcpy(t->w[t->n - 1], "gonna"); continue; }
-        strcpy(t->w[t->n++], w);
+        strcpy(t->w[t->n], w);
+        size_t L = strlen(w);                       /* "the bone's sticking out" -> bone; pronouns stay whole */
+        if (L >= 2 && !strcmp(w + L - 2, "'s") && !in(w, KEEP_S)) t->w[t->n][L - 2] = 0;
+        t->n++;
     }
 }
 
