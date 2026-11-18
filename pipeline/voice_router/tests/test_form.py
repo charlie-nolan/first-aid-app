@@ -585,3 +585,19 @@ def test_shared_blanks_are_not_a_trees_own_problem():
         cands = keep_trees([line], pool)
         assert cands[0].name == "wfa-cpr", (line, [c.name for c in cands])
     assert keep_trees(["stove fumes and she's not breathing"], pool)[0].name == "wfa-co"
+
+
+def test_life_phrase_listed_in_a_trees_own_slot_is_not_its_own_problem():
+    """b843474 PC check s021: diabetic alert=no lists "won't respond"; "ice cold, won't respond"
+    gave the diabetic card instead of CPR."""
+    from vr.live import keep_trees
+    cpr = ({"root": "s", "title": "CPR", "nodes": {"s": {}, "start": {}}},
+           {"life_threat": [{"if": {"conscious": "no"}, "go": "start"}],
+            "slots": {"conscious": {"no": ["won't respond"]}, "cause": {"cold": ["ice cold"]}}})
+    diab = ({"root": "s", "title": "Diabetic", "nodes": {"s": {}, "drowsy": {}}},
+            {"life_threat": [{"if": {"conscious": "no"}, "go": "drowsy"}],
+             "slots": {"conscious": {"no": ["won't respond"]}, "alert": {"no": ["won't respond", "drowsy"]},
+                       "cause": {"cold": ["ice cold"]}}})
+    pool = {"wfa-cpr": cpr, "wfa-diabetic": diab}
+    assert keep_trees(["he is ice cold and won't respond"], pool)[0].name == "wfa-cpr"
+    assert keep_trees(["she's diabetic and drowsy and won't respond"], pool)[0].name == "wfa-diabetic"

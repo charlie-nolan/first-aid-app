@@ -31,7 +31,7 @@ import yaml
 from .data import load_tree
 from .form import (_rule_hit, MAX_TREES, named_trees, names_tree, topic_words, _key, Candidate, answer, first_sentence, open_fields, ranked_cards,
                    split_tabs, _life_slots, _rule_hit)
-from .intake import UNIVERSAL, _stem, fill, fill_nbest, slots_of, tokenize
+from .intake import UNIVERSAL, _find, _stem, fill, fill_nbest, slots_of, tokenize
 
 GENERIC_HOME = {"wfa-cpr"}   # the tree that owns the shared life blanks (smap generic_home: true adds one)
 
@@ -92,6 +92,21 @@ def _handles_life(c: Candidate, vals: dict) -> bool:
     return any(r["go"] == go and any(s in UNIVERSAL for s in r["if"]) for r in rules)
 
 
+_LIFE_PHRASES = {tuple(_stem(w) for w in tokenize(p)) for vs in UNIVERSAL.values() for ps in vs.values() for p in ps}
+
+
+def _own_words(words: list[str], smap: dict, slot: str, value: str) -> bool:
+    """Was this blank filled by a phrase of its own, not by one of the shared life phrases the tree
+    happens to list too? (b843474 PC check: diabetic alert=no lists "won't respond", so an
+    unresponsive cold person got the diabetic card, s021.)"""
+    stems = [_stem(w) for w in words]
+    for p in ((smap.get("slots") or {}).get(slot) or {}).get(value) or []:
+        t = tuple(_stem(w) for w in tokenize(p))
+        if t and t not in _LIFE_PHRASES and _find(stems, list(t)) is not None:
+            return True
+    return False
+
+
 def _shared_slots(trees: dict) -> set:
     """Blanks that say nothing about WHICH tree: the CPR tree's own (cause, breathing...) and any
     blank three or more trees carry (bleeding_type). Hearing one is not a tree's own problem
@@ -127,7 +142,8 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
         score = sum(_weight(s, v, life, home) for s, v in vals.items())   # alone (hypothermia, drowning)
         loc = smap.get("location_slots") or LOCATION_SLOTS
         real = named or (score > 0 and (hurt or any(s not in loc for s in vals)))
-        own = named or any(s not in loc and s not in UNIVERSAL and s not in shared for s in vals)
+        own = named or any(s not in loc and s not in UNIVERSAL and s not in shared
+                           and _own_words(words, smap, s, vals[s]) for s in vals)
         handles = not home and own and _handles_life(c, vals)
         scored.append((named or handles, score + 3 * named + 3 * handles, -i, name, real))
     if not any(x[4] for x in scored):              # only a place was heard ("toe", "my toe"): no problem
