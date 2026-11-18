@@ -591,6 +591,8 @@ static int answer_turn(const fp_sess_t *s, int t, const char *text, int card, fp
                     if (in(lab.w[k], FILLER)) continue;
                     nonfill++;
                     if (!tok_has(&words, lab.w[k])) sub = false;
+                    for (int q = 0; q < words.n; q++)  /* negated or hedged words name no tile ("not on the face") */
+                        if (!strcmp(words.w[q], lab.w[k]) && (scoped(&words, q, true) || scoped(&words, q, false))) sub = false;
                 }
                 if (nonfill && sub) { hits++; if (h < 0) h = i; }
             }
@@ -642,8 +644,9 @@ static fp_str snap(const fp_sess_t *s, const char *text, const fp_cand_t *c) {
     fp_toks_t heard, words, w;
     fp_tokenize(text, &words);
     heard.n = 0;
-    for (int i = 0; i < words.n; i++)
-        if (strlen(words.w[i]) >= 4 && !in(words.w[i], FILLER)) strcpy(heard.w[heard.n++], words.w[i]);
+    for (int i = 0; i < words.n; i++)                 /* a negated or hedged word never snaps */
+        if (strlen(words.w[i]) >= 4 && !in(words.w[i], FILLER) && !scoped(&words, i, true) && !scoped(&words, i, false))
+            strcpy(heard.w[heard.n++], words.w[i]);
     fp_tile_t ts[MAXT];
     int nt = fp_tiles(s, c->tree, c->card, ts, MAXT);
     fp_str bv[MAXT]; double bs[MAXT]; int nb = 0;
