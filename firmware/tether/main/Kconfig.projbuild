@@ -44,8 +44,8 @@ config TETHER_BOARD_BRAIN
         screen itself, echoing each as "SHOWN <json>". Needs pc_bridge.py --board-brain.
         Build with -D TETHER_FPK=<form pack> (the real trees are personal; default: the fixture).
 config TETHER_REJECT
-    int "Speech reject score at or above which the board asks to say it again"
+    int "Calibrated speech reject at or above which the board asks again (as pc_bridge --reject)"
     depends on TETHER_BOARD_BRAIN
     range 0 101
-    default 70
+    default 51
 endmenu

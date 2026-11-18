@@ -122,13 +122,14 @@ typedef struct { char label[48], value[48], node[80]; } choice_t;  /* value "" =
 typedef struct { char key[40], q[96]; int nch; choice_t ch[12]; } field_t;
 typedef struct { char title[120], node[80]; } cardref_t;
 typedef struct {
-    int seq, kind;
+    int seq, kind, test;              /* test: the bench scenario number (0 = none) */
     char heard[128], msg[128];
     int nf; field_t f[6];
     int ntop; cardref_t top[3];
     cardref_t card; char cites[200];
     int ncards; cardref_t cards[6];
 } screen_t;
+static int cur_test;                    /* board brain: the bench test number from a "TEST n" line */
 static screen_t scr_in;                 /* written by the USB task under the lock */
 static volatile uint32_t scr_ver;
 
@@ -150,6 +151,7 @@ static bool parse_show(const char *js) {
     char kind[16]; cpy(kind, sizeof kind, r, "kind");
     s.kind = !strcmp(kind, "form") ? K_FORM : !strcmp(kind, "card") ? K_CARD : !strcmp(kind, "skip") ? K_SKIP
            : !strcmp(kind, "again") ? K_AGAIN : K_START;
+    v = cJSON_GetObjectItem(r, "test"); s.test = cJSON_IsNumber(v) ? v->valueint : cur_test;   /* board brain: TEST line */
     cpy(s.heard, sizeof s.heard, r, "heard"); cpy(s.msg, sizeof s.msg, r, "msg");
     const cJSON *f;
     cJSON_ArrayForEach(f, cJSON_GetObjectItem(r, "fields")) {
@@ -299,6 +301,7 @@ static void handle(char *line) {
 #if CONFIG_TETHER_BOARD_BRAIN
     else if (!strncmp(line, "WORDS ", 6)) brain_words(line + 6);
     else if (!strcmp(line, "BRAIN-RESET")) brain_post(BR_RESET, NULL, "", NULL);
+    else if (!strncmp(line, "TEST ", 5)) cur_test = atoi(line + 5);
 #endif
 }
 static void usb_task(void *arg) {
@@ -376,8 +379,9 @@ static void draw(void) {
     int lm = have_cart ? cart_font_line_height(&cart, S_MED) : 16;
     char top[160];
     const char *kn[] = { "START", "FORM", "CARD", "SKIP", "AGAIN" };
-    if (S.heard[0]) snprintf(top, sizeof top, "%s  heard: %s", kn[S.kind], S.heard);
-    else snprintf(top, sizeof top, "%s%s", kn[S.kind], host_seen ? "" : "  (PC not connected)");
+    char tn[16] = ""; if (S.test) snprintf(tn, sizeof tn, "TEST %d  ", S.test);
+    if (S.heard[0]) snprintf(top, sizeof top, "%s%s  heard: %s", tn, kn[S.kind], S.heard);
+    else snprintf(top, sizeof top, "%s%s%s", tn, kn[S.kind], host_seen ? "" : "  (PC not connected)");
     line_fit(S_SMALL, 1, 3, ls - 2, rec_dot ? 228 : 244, top);
     if (rec_dot) for (int y = 2; y < 13; y++) for (int x = 237; x < 248; x++) fbits[y * 32 + x / 8] |= 0x80 >> (x % 8);
     hline(ls + 1);

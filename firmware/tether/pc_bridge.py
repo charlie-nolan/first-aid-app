@@ -6,7 +6,7 @@ come back as PICK lines. Every screen the board draws also comes back as a frame
 PNG, so each bench run leaves real screenshots.
 
     WORK=/mnt/data/first-aid-gpu python firmware/tether/pc_bridge.py \\
-        --vr  <voice_router root at 727406e or later; use the tip of claude/project-thread-ypggtj> \\
+        --vr  <voice_router root at 04d654f or later; use the tip of claude/project-thread-ypggtj> \\
         --trees ~/first-aid-trees/pipeline/plb/content/trees_personal ~/first-aid-build/pipeline/plb/content/trees \\
         --slots ~/first-aid-voice/slots --fasr ~/first-aid-speech/pipeline/speech \\
         [--port /dev/ttyACM0] [--out $WORK/speech/tether] [--typed]
@@ -154,15 +154,40 @@ class Brain:
         try:
             from vr import form, live, parity
         except ImportError:
-            sys.exit("--vr is older than 727406e (no vr.parity): update it")
+            sys.exit("--vr is older than 04d654f (no vr.parity): update it")
         if not hasattr(form, "node_id"):
-            sys.exit("--vr is older than 727406e (no vr.form.node_id): update it")
+            sys.exit("--vr is older than 04d654f (no vr.form.node_id): update it")
         self.form, self.live = form, live
         self.trees = live.load_all(a.trees, a.slots)
         print(f"{len(self.trees)} trees with blanks loaded", flush=True)
         self.scr = parity.Screen(self.trees)
-        self.speech = None if a.typed else live.Speech(a.fasr, a.run)
+        self.speech = None if a.typed else self._speech(live.Speech(a.fasr, a.run), a.run)
         self.reject = a.reject
+
+    @staticmethod
+    def _speech(sp, run):
+        """vr.live.Speech, but with fasr's calibrated reject (reject_calib.json) when the run has one.
+        The raw nbest reject is the fit-gap sigmoid alone and throws away long, clear sentences
+        (tether take 6: raw 100, calibrated 20)."""
+        if hasattr(sp, "calib"):            # vr 04d654f+: Speech already uses fasr decode() (calibrated)
+            return sp
+        from fasr import decode as D
+        from fasr.evaluate import WORK
+        cf = WORK / "speech" / "runs" / run / "reject_calib.json"
+        if not cf.exists() or not hasattr(D, "calibrated_reject"):
+            print("(no calibrated reject: using the raw nbest reject)", flush=True)
+            return sp
+        calib = json.loads(cf.read_text())
+        print(f"calibrated reject from {cf}", flush=True)
+
+        def call(wav):
+            with sp.torch.no_grad():
+                lp = sp.model(sp.torch.from_numpy(sp.logmel(sp.load_wav(str(wav))))[None])[0].numpy()
+            res = sp.nbest(lp, sp.trie, sp.Params(bias=sp.bias))
+            hyps = [" ".join(sp.words.get(i, "?") for i in h["ids"] if i) for h in res["h"]]
+            rej = D.calibrated_reject(lp, res, calib) if res.get("n") else 100
+            return hyps or [""], rej
+        return call
 
     @property
     def cands(self):
@@ -205,13 +230,13 @@ class Brain:
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="pc_bridge")
-    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 727406e or later; use the tip of claude/project-thread-ypggtj")
+    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 04d654f or later; use the tip of claude/project-thread-ypggtj")
     ap.add_argument("--trees", type=Path, nargs="+", required=True,
                     help="tree folders, first hit wins: trees_personal FIRST (as the parity set)")
     ap.add_argument("--slots", type=Path, required=True)
     ap.add_argument("--fasr", type=Path, help="speech package root (holds fasr/)")
     ap.add_argument("--run", default="firstaid")
-    ap.add_argument("--reject", type=int, default=70)
+    ap.add_argument("--reject", type=int, default=51, help="ask again at this calibrated reject (50 = fitted threshold)")
     ap.add_argument("--port", default="/dev/ttyACM0")
     ap.add_argument("--out", type=Path, default=Path(os.environ.get("WORK", "/mnt/data/first-aid-gpu")) / "speech" / "tether")
     ap.add_argument("--typed", action="store_true", help="type sentences instead of speaking")
@@ -268,7 +293,7 @@ def main(argv=None):
         if not screen:
             return
         if send:
-            board.send("SHOW " + json.dumps(screen, separators=(",", ":")))
+            board.send("SHOW " + json.dumps({**screen, "test": scen.i + 1}, separators=(",", ":")))   # test no. on every screen
         rec = rec or {}
         rec.update(t=time.time(), screen=screen)
         log.write(json.dumps(rec) + "\n"); log.flush()
@@ -329,6 +354,7 @@ def main(argv=None):
                 brain.scr.cands, brain.scr.heard = None, ""
                 if a.board_brain:                  # the board owns its screens: a "new" keeps both in step
                     board.send("BRAIN-RESET")          # both screen counters start again from 1
+                    board.send(f"TEST {scen.i + 1}")
                     brain.scr.seq = 0
                     pending.clear(); early.clear()
                     say(["new"], 0, {"source": "connect"})
@@ -363,6 +389,7 @@ def main(argv=None):
             if p.get("action") == "new":         # next test: the board's start screen names it
                 scen.move(+1)
                 if a.board_brain:                    # the board drew its own start screen
+                    board.send(f"TEST {scen.i + 1}")
                     shadow(brain.picked(p), rec)
                 else:
                     brain.picked(p)
