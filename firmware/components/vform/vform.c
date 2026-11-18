@@ -2,6 +2,7 @@
  * vr/live.py at 3d07632). Where the Python relies on dict / set order, the C keeps the same order:
  * slot-map order for slots and values, screen order for tiles, insertion order for filled blanks. */
 #include "vform.h"
+#include <limits.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -1077,6 +1078,49 @@ static fp_card rule_card(const fp_sess_t *s, int t, int i) {
     return R_GONODE(r) >= 0 ? R_GONODE(r) : FP_EXT(R_GO(r));
 }
 
+/* vr.form._landing: "tree/card" where this tree's walk stopped with nothing left to ask, else false */
+static bool landing(const fp_sess_t *s, const fp_cand_t *c, char *out, size_t cap) {
+    if (c->asking != FP_NONE || c->card == s->trees[c->tree].root) return false;
+    if (c->card < 0) snprintf(out, cap, "%s", S(FP_EXT_SID(c->card)));
+    else snprintf(out, cap, "%s/%s", S(s->trees[c->tree].name), S(N_KEY(node(s, c->tree, c->card))));
+    return true;
+}
+/* vr.form._agreed_landing: below SURE a card opens when a top-ranked tree (ties included) lands on it
+ * and no kept tree lands anywhere else; a tree's own life card still opens only through its rule. */
+static bool agreed_landing(fp_sess_t *s, fp_result_t *out) {
+    if (s->ncands < 2) return false;
+    long long top = LLONG_MIN;
+    for (int i = 0; i < s->ncands; i++) { long long r = llround(s->cands[i].p * 1e6); if (r > top) top = r; }
+    char land[192] = "", l[192];
+    bool have = false, attop = false;
+    for (int i = 0; i < s->ncands; i++) {
+        if (!landing(s, &s->cands[i], l, sizeof l)) continue;
+        if (have && strcmp(l, land)) return false;      /* two different landings */
+        if (!have) { snprintf(land, sizeof land, "%s", l); have = true; }
+        if (llround(s->cands[i].p * 1e6) == top) attop = true;
+    }
+    if (!have || !attop) return false;
+    const char *sl = strchr(land, '/');
+    char tname[96];
+    size_t L = (size_t)(sl - land) < sizeof tname - 1 ? (size_t)(sl - land) : sizeof tname - 1;
+    memcpy(tname, land, L); tname[L] = 0;
+    const char *ckey = sl + 1;
+    for (int i = 0; i < s->ncands; i++) {             /* a life card only by its rule ("breathing fine") */
+        const fp_cand_t *c = &s->cands[i];
+        if (strcmp(S(s->trees[c->tree].name), tname)) continue;
+        for (int k = 0; k < s->trees[c->tree].nrules; k++)
+            if (!strcmp(S(R_GO(rule(s, c->tree, k))), ckey)) return false;
+    }
+    int t = fp_tree_by_name(s, tname);
+    int nd = t >= 0 ? fp_node_by_key(s, t, ckey) : -1;
+    if (t >= 0 && nd >= 0) { *out = res(FP_OPEN, t, nd); return true; }
+    for (int i = 0; i < s->ncands; i++) {             /* not loaded here: open it as another tree's card */
+        int sid = fp_find_str(&s->pk, land);
+        if (sid >= 0) { *out = res(FP_OPEN, s->cands[0].tree, FP_EXT((fp_str)sid)); return true; }
+    }
+    return false;
+}
+
 /* vr.form.first_sentence */
 fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nh, bool multi) {
     for (int i = 1; i < s->ncands; i++)              /* sort by -p, stable */
@@ -1115,6 +1159,10 @@ fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nh, boo
             c->asking = qs;
         }
         return res(FP_OPEN, c->tree, c->card);
+    }
+    {                                                 /* vr.form._agreed_landing: top trees all land on one */
+        fp_result_t land;                             /* card ("anaphylaxis" -> allergy/severe below SURE) */
+        if (agreed_landing(s, &land)) return land;
     }
     fp_tab_t tabs[8];
     if (multi && fp_split_tabs(s, tabs, 8) > 1) return res(FP_TABS, 0, 0);
