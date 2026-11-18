@@ -251,7 +251,9 @@ def decisive_slots(smap: dict) -> set:
 # conscious person it is choking/asthma/allergy, not breathing=no.
 UNIVERSAL = {"conscious": {"no": ["won't wake", "won't wake up", "will not wake", "can't wake",
                                   "can't wake him", "can't wake her", "not waking up", "unresponsive",
-                                  "unconscious", "passed out", "knocked out", "won't respond"]},
+                                  "unconscious", "passed out", "knocked out", "won't respond",
+                                  "won't open his eyes", "won't open her eyes", "won't open their eyes",
+                                  "won't answer", "not answering", "not responding", "out cold"]},
              "breathing": {"no": ["not breathing", "stopped breathing", "isn't breathing",
                                   "no breathing"]}}
 

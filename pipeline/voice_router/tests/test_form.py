@@ -500,3 +500,23 @@ def test_place_only_goes_to_start_but_an_injury_word_keeps_the_tree():
     assert keep_trees(["i think i broke my leg"], pool)[0].name == "fractures"
     assert keep_trees(["she rolled her leg on a rock"], pool)[0].name == "fractures"
     assert keep_trees(["it stopped, he's breathing fine"], pool) == []
+
+
+def test_lower_tree_plain_jump_to_other_tree_does_not_open():
+    """4108045: "i think it's heat stroke" kept [heat, fainting]; fainting's cause=heat walked to
+    heat/syncope and opened it over heat's own form. Only a life rule may open from a lower tree."""
+    heat = Candidate("heat", {"root": "t", "title": "Heat illness", "nodes": {
+        "t": {"label": "Which?"}, "ehs": {"label": "Heat stroke"}, "fluid_q": {"label": "Fluids?"},
+        "cramps": {"label": "Cramps"}, "a": {"label": "A"}, "b": {"label": "B"}}},
+        {"slots": {"heat_type": {"confused": ["heat stroke"], "cramps": ["cramps"]},
+                   "fluid": {"yes": ["drank"], "no": ["no water"]}},
+         "questions": {"t": {"slot": "heat_type", "choices": {"confused": "fluid_q", "cramps": "cramps"}},
+                       "fluid_q": {"slot": "fluid", "choices": {"yes": "a", "no": "b"}}}}, p=0.67)
+    faint = Candidate("wfa-fainting", {"root": "f", "title": "Fainting", "nodes": {
+        "f": {"label": "Cause?"}, "o": {"label": "Other"}}},
+        {"slots": {"cause": {"heat": ["heat"], "other": ["stood up"]}},
+         "questions": {"f": {"slot": "cause", "choices": {"heat": "heat/syncope", "other": "o"}}}}, p=0.33)
+    kind, name, card = first_sentence("i think it's heat stroke", [heat, faint])
+    assert (kind, name) != ("open", "wfa-fainting")
+    fields = open_fields([heat, faint])
+    assert fields and fields[0].key == "@topic"

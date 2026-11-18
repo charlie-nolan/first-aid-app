@@ -381,3 +381,11 @@ def test_walk_stops_on_an_in_tree_life_card():
 def test_noun_contraction_matches_the_noun():
     from vr.intake import tokenize
     assert tokenize("the bone's sticking out and she's pale") == ["the", "bone", "sticking", "out", "and", "she's", "pale"]
+
+
+def test_wont_open_eyes_or_answer_is_unresponsive():
+    """4108045 scene s016: "won't open his eyes or answer you" filled nothing anywhere."""
+    from vr.intake import fill, slots_of
+    smap = {"slots": {"conscious": {"no": ["unresponsive"]}}}
+    assert fill("he won't open his eyes or answer me but his chest is going up and down",
+                slots_of(smap))["conscious"] == "no"

@@ -69,8 +69,12 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
         c.advance()
     order = sorted(cands, key=lambda c: (-round(c.p, 6), not _rule_hit(c)))   # a tie: own rule first
     for c in order:                                   # in rank order, each tree's own emergency first
-        if c.card not in c.tree["nodes"]:             # (trees 11-18: asthma's jump to allergy/severe beat
-            return "open", c.name, c.card             # the top-ranked choking tree's own rule): a life
+        if c.card not in c.tree["nodes"] and (c is order[0] or _rule_hit(c) == c.card):
+            return "open", c.name, c.card             # (trees 11-18: asthma's jump to allergy/severe beat
+                                                      # the top-ranked choking tree's own rule). A lower
+                                                      # tree's plain walk to another tree's card does not
+                                                      # open ("heat stroke": fainting's cause=heat ->
+                                                      # heat/syncope beat heat's own form, 4108045). A life
         go = _rule_hit(c)                             # rule that jumped to another tree's card, or an
         if go:                                        # emergency card inside the tree (Charlie: one-shot,
             if go in c.tree["nodes"]:                 # general info first); its own blank shows on the card
