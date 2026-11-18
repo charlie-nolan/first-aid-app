@@ -2058,3 +2058,12 @@ words:
 - {id: 2047, word: "cougar", class: 6, phones: ["K UW G ER"], g2p: cmudict, src: core}
 - {id: 2048, word: "unsure", class: 0, phones: ["AH N SH UH R", "AH N SH ER"], g2p: cmudict, src: core}
 - {id: 2049, word: "dunno", class: 0, phones: ["D AH N OW", "D IH N OW"], g2p: hand, src: core}
+- {id: 2050, word: "urinary", class: 3, phones: ["Y UH R AH N EH R IY"], g2p: hand, src: core}
+- {id: 2051, word: "appendicitis", class: 3, phones: ["AH P EH N D AH S AY T AH S", "AH P EH N D IH S AY T IH S"], g2p: hand, src: core}
+- {id: 2052, word: "appendix", class: 1, phones: ["AH P EH N D IH K S"], g2p: hand, src: core}
+- {id: 2053, word: "pregnant", class: 0, phones: ["P R EH G N AH N T"], g2p: hand, src: core}
+- {id: 2054, word: "sucks", class: 2, phones: ["S AH K S"], g2p: hand, src: core}
+- {id: 2055, word: "crease", class: 1, phones: ["K R IY S"], g2p: hand, src: core}
+- {id: 2056, word: "chunk", class: 0, phones: ["CH AH NG K"], g2p: hand, src: core}
+- {id: 2057, word: "row", class: 0, phones: ["R OW"], g2p: hand, src: core}
+- {id: 2058, word: "poop", class: 3, phones: ["P UW P"], g2p: hand, src: core}
