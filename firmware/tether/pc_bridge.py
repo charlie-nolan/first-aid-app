@@ -6,7 +6,7 @@ come back as PICK lines. Every screen the board draws also comes back as a frame
 PNG, so each bench run leaves real screenshots.
 
     WORK=/mnt/data/first-aid-gpu python firmware/tether/pc_bridge.py \\
-        --vr  <voice_router root at 75c690f or later; use the tip of claude/project-thread-ypggtj> \\
+        --vr  <voice_router root at 8cafb05 or later; use the tip of claude/project-thread-ypggtj> \\
         --trees ~/first-aid-trees/pipeline/plb/content/trees_personal ~/first-aid-build/pipeline/plb/content/trees \\
         --slots ~/first-aid-voice/slots --fasr ~/first-aid-speech/pipeline/speech \\
         [--port /dev/ttyACM0] [--out $WORK/speech/tether] [--typed]
@@ -148,9 +148,9 @@ class Brain:
         try:
             from vr import form, live, parity
         except ImportError:
-            sys.exit("--vr is older than 75c690f (no vr.parity): update it")
+            sys.exit("--vr is older than 8cafb05 (no vr.parity): update it")
         if not hasattr(form, "node_id"):
-            sys.exit("--vr is older than 75c690f (no vr.form.node_id): update it")
+            sys.exit("--vr is older than 8cafb05 (no vr.form.node_id): update it")
         self.form, self.live = form, live
         self.trees = live.load_all(a.trees, a.slots)
         print(f"{len(self.trees)} trees with blanks loaded", flush=True)
@@ -163,7 +163,7 @@ class Brain:
         """vr.live.Speech, but with fasr's calibrated reject (reject_calib.json) when the run has one.
         The raw nbest reject is the fit-gap sigmoid alone and throws away long, clear sentences
         (tether take 6: raw 100, calibrated 20)."""
-        if hasattr(sp, "calib"):            # vr 75c690f+: Speech already uses fasr decode() (calibrated)
+        if hasattr(sp, "calib"):            # vr 8cafb05+: Speech already uses fasr decode() (calibrated)
             return sp
         from fasr import decode as D
         from fasr.evaluate import WORK
@@ -224,7 +224,7 @@ class Brain:
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="pc_bridge")
-    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 75c690f or later; use the tip of claude/project-thread-ypggtj")
+    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 8cafb05 or later; use the tip of claude/project-thread-ypggtj")
     ap.add_argument("--trees", type=Path, nargs="+", required=True,
                     help="tree folders, first hit wins: trees_personal FIRST (as the parity set)")
     ap.add_argument("--slots", type=Path, required=True)
