@@ -179,3 +179,10 @@ def test_lookahead_fields_show_answers_only():
     first_sentence("something got me", cands)
     later = [f for f in open_fields(cands) if f.when]
     assert later and all(c.get("value") for f in later for c in f.choices)
+
+
+def test_life_words_in_a_later_answer_open_the_life_card():
+    cands = [Candidate("bites", TREE, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert cands[0].asking == "where"
+    assert answer("it won't stop, blood gushing everywhere", cands) == ("open", "bites", "wfa-bleeding/severe")

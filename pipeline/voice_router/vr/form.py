@@ -195,12 +195,21 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
                 continue
             states.add((c.name, c.card, c.asking))
             filled, pick, _ = answer_turn(text, c.tree, c.smap, c.card, c.asking, c.filled)
+            extra = {k: v for k, v in filled.items() if k not in c.filled and k != c.asking}
+            if extra:                                  # other blanks heard in the same breath stay
+                c.filled = {**c.filled, **extra}       # ("he's unresponsive now" on any field)
+                go = _rule_hit(c)                      # life first, as on the first sentence
+                if go:
+                    return "open", c.name, go
             if not (pick and pick.get("value")):
                 v = snap(text, c)                      # madlibs: a near word snaps to its answer
                 if v:
                     filled, pick = {**c.filled, c.asking: v}, {"value": v}
             if pick and pick.get("value"):
-                c.filled = filled
+                c.filled = {**filled, **c.filled, c.asking: filled.get(c.asking, pick["value"])}
+                go = _rule_hit(c)
+                if go:
+                    return "open", c.name, go
                 _step(c, pick if pick.get("to") else None)
                 progressed = True
     done = [c for c in cands if not c.asking]
