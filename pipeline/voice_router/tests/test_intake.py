@@ -319,24 +319,22 @@ def test_empty_answer_picks_nothing():
     assert answer_turn("", tree, {"slots": {}}, "q", "bleed", {}) == ({}, None, None)
 
 
-def test_kit_branch_and_menu_card_are_not_blanks():
+def test_kit_branch_is_not_a_blank_but_a_real_question_is():
     tree = {"root": "where", "nodes": {
         "where": {"label": "Where?", "choices": [{"label": "Forearm", "to": "forearm", "value": "forearm"},
                                                  {"label": "Leg", "to": "leg", "value": "leg"}]},
         "forearm": {"label": "Forearm, elbow or wrist", "cite": ["p1"], "choices": [
-            {"label": "Splinting rules", "to": "rules"}, {"label": "No sling", "to": "nosling", "value": "yes"},
-            {"label": "When to evacuate", "to": "evac"}]},
-        "leg": {"label": "Leg", "cite": ["p2"], "choices": [{"label": "No splint", "to": "nosplint"}]},
-        "rules": {"label": "Rules"}, "evac": {"label": "Evac"}, "nosling": {"label": "Improvised sling"},
-        "nosplint": {"label": "Improvised splint"}}}
+            {"label": "Splinting rules", "to": "rules"}, {"label": "When to evacuate", "to": "evac"}]},
+        "leg": {"label": "Leg", "cite": ["p2"], "choices": [{"label": "Splinting rules", "to": "rules"}]},
+        "rules": {"label": "Rules"}, "evac": {"label": "Evac"}, "local": {"label": "Local sling"}}}
     smap = {"slots": {"body_part": {"forearm": ["forearm"], "leg": ["leg"]},
-                      "sling": {"yes": ["no sling"]}, "missing_kit": {"splint": ["no splint"]}},
+                      "missing_kit": {"sling": ["no sling"], "splint": ["no splint"]}},
             "questions": {"where": {"slot": "body_part", "choices": {"forearm": "forearm", "leg": "leg"}},
-                          "forearm": {"slot": "sling", "choices": {"yes": "nosling"}},
-                          "leg": {"slot": "missing_kit", "choices": {"splint": "nosplint"}}}}
+                          "forearm": {"slot": "missing_kit", "choices": {"sling": "improvised_gear/sling"}},
+                          "leg": {"slot": "missing_kit", "choices": {"splint": "local"}}}}
     assert walk(tree, smap, fill("I broke my forearm", smap["slots"])) == ("forearm", ["where"], None)
-    assert walk(tree, smap, fill("I hurt my leg", smap["slots"])) == ("leg", ["where"], None)
-    assert walk(tree, smap, fill("forearm, we have no sling", smap["slots"]))[0] == "nosling"
+    assert walk(tree, smap, fill("forearm, we have no sling", smap["slots"]))[0] == "improvised_gear/sling"
+    assert walk(tree, smap, fill("I hurt my leg", smap["slots"]))[2] == "missing_kit"   # local answer: asked
 
 
 def test_named_finding_beats_a_location_that_leads_nowhere():
@@ -351,3 +349,11 @@ def test_named_finding_beats_a_location_that_leads_nowhere():
                           "open_q": {"slot": "open_fracture", "choices": {"yes": "open"}}}}
     assert walk(tree, smap, fill("broke his forearm, bone sticking out", smap["slots"]))[0] == "open"
     assert walk(tree, smap, fill("broke his forearm", smap["slots"]))[0] == "arm"
+
+
+def test_tie_between_a_value_and_what_it_implies_takes_the_finer():
+    from vr.intake import _fill
+    smap = {"slots": {"body_part": {"leg": ["leg"], "lower_leg": ["shin"], "arm": ["arm"]}},
+            "implies": {"body_part": {"lower_leg": "leg"}}}
+    assert _fill("broke his leg, the shin", smap) == {"body_part": "lower_leg"}
+    assert _fill("hurt his leg and arm", smap) == {}          # unrelated tie still asks

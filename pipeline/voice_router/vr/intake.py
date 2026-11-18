@@ -157,7 +157,8 @@ def _scope(raw: list[str], i: int, neg: bool) -> list[str]:
     return out
 
 
-def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | None = None) -> dict[str, str]:
+def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | None = None,
+         implies: dict | None = None) -> dict[str, str]:
     """Blank -> value, from the words actually heard. Never guesses:
     - a hit right after a negation ("not spurting") or a hedge ("can't tell if she's breathing") fills nothing;
     - "X but Y" / "X, now Y": when values of one blank sit on both sides of the contrast word,
@@ -209,6 +210,16 @@ def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | N
                 break
         top = max(len(cv) for _, cv in cand)
         tied = sorted((v for v, cv in cand if len(cv) == top), key=order.index)
+        up = (implies or {}).get(slot, {})
+        if len(tied) > 1:                          # "leg ... shin": lower_leg implies leg, so the
+            coarse = set()                         # finer answer says both (board run s001)
+            for v in tied:
+                u, seen = up.get(v), {v}
+                while u and u not in seen:
+                    coarse.add(u)
+                    seen.add(u)
+                    u = up.get(u)
+            tied = [v for v in tied if v not in coarse] or tied
         if len(tied) > 1 and decisive is not None and slot not in decisive:
             continue                               # two equally strong answers: ask, don't pick
         out[slot] = tied[0]
@@ -224,7 +235,7 @@ def decisive_slots(smap: dict) -> set:
 
 
 def _fill(text: str, smap: dict) -> dict[str, str]:
-    return fill(text, smap["slots"], smap.get("priority"), decisive_slots(smap))
+    return fill(text, smap["slots"], smap.get("priority"), decisive_slots(smap), smap.get("implies"))
 
 
 def fill_nbest(hyps: list[str], smap: dict) -> dict[str, str]:
@@ -329,21 +340,15 @@ MENU_SLOTS = ("missing_kit",)
 
 
 def _menu_blank(tree, smap, qs, node, slot) -> bool:
-    """A blank the form never asks (board run 11-17: "Apply a tourniquet" showed as a field with
-    [No tourniquet], "Forearm, elbow or wrist" with [Splinting rules, No sling, When to evacuate]):
-    - an "I don't have this" kit branch (smap menu_slots, default missing_kit): it stays a tile on
-      the card, picked by tap or by saying it;
-    - a content card (it has text or cites) with only one answer for the blank beside plain menu
-      tiles. A plain tile that leads to more answers of the same blank ("Spider, tick or animal")
-      still counts as an answer; a bare question page ("Where?") always asks."""
-    if slot in (smap.get("menu_slots") or MENU_SLOTS):
-        return True
-    ts = tiles(tree, smap, node)
-    plain = [t for t in ts if not t.get("value")]
-    answers = sum(1 for t in ts if t.get("value")) + \
-        sum(1 for t in plain if qs.get(t["to"], {}).get("slot") == slot)
-    card = tree["nodes"].get(node, {})
-    return answers < 2 and len(plain) > 0 and bool(card.get("cite") or card.get("text"))
+    """A kit branch the form never asks (board run 11-17: "Apply a tourniquet" showed as a field
+    with [No tourniquet], "Forearm, elbow or wrist" with [Splinting rules, No sling, When to
+    evacuate]): a menu_slots blank (default missing_kit) whose answers all lead to another tree's
+    card (improvised_gear/...). The tile stays on the card, picked by tap or by saying it. In the
+    improvised_gear tree itself the same blank is the real question and is asked."""
+    if slot not in (smap.get("menu_slots") or MENU_SLOTS):
+        return False
+    to = [t["to"] for t in tiles(tree, smap, node) if t.get("value")]
+    return bool(to) and all(t not in tree["nodes"] and "/" in t for t in to)
 
 
 def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = None):
