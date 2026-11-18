@@ -187,6 +187,8 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
         hit = [c for c in cands if _named(c, words)]
         if len(hit) == 1:
             cands[:] = hit
+    bare_yn = len(words) <= 3 and words and not words - {"yes", "yeah", "yep", "no", "nope", "nah"}
+    fired = {c.name: _rule_hit(c) for c in cands}   # rules already met before this answer
     progressed, states, passes = True, set(), 0     # tiles can loop back to a page already
     while progressed and passes < 20:               # answered in this call: never re-ask it
         progressed, passes = False, passes + 1
@@ -199,7 +201,7 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
             if extra:                                  # other blanks heard in the same breath stay
                 c.filled = {**c.filled, **extra}       # ("he's unresponsive now" on any field)
                 go = _rule_hit(c)                      # life first, as on the first sentence
-                if go:
+                if go and go != fired[c.name]:
                     return "open", c.name, go
             if not (pick and pick.get("value")):
                 v = snap(text, c)                      # madlibs: a near word snaps to its answer
@@ -208,10 +210,13 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
             if pick and pick.get("value"):
                 c.filled = {**filled, **c.filled, c.asking: filled.get(c.asking, pick["value"])}
                 go = _rule_hit(c)
-                if go:
+                if go and go != fired[c.name]:
                     return "open", c.name, go
                 _step(c, pick if pick.get("to") else None)
                 progressed = True
+                if bare_yn:                            # a bare "no" answers one field, not the next
+                    progressed = False                 # one too ("out of place? no" is not "no splint")
+                    break
     done = [c for c in cands if not c.asking]
     if len(cands) == 1 and done:
         return "open", done[0].name, done[0].card
@@ -422,7 +427,11 @@ def _path_labels(c: Candidate, ok: set, anc: dict, most: int = 8):
         if card not in toward:
             return None
         ts = tiles(c.tree, c.smap, card)
-        k = next((i for i, t in enumerate(ts) if t["to"] in toward), None)
+        life = _life_cards(c) - ok
+        order = [i for i, t in enumerate(ts) if t["to"] in ok] + \
+                [i for i, t in enumerate(ts) if t["to"] in toward and t["to"] not in life] + \
+                [i for i, t in enumerate(ts) if t["to"] in toward]
+        k = order[0] if order else None
         if k is None:
             return None
         if asking and ts[k].get("value"):

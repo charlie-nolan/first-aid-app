@@ -186,3 +186,17 @@ def test_life_words_in_a_later_answer_open_the_life_card():
     first_sentence("a dog got me", cands)
     assert cands[0].asking == "where"
     assert answer("it won't stop, blood gushing everywhere", cands) == ("open", "bites", "wfa-bleeding/severe")
+
+
+def test_bare_no_answers_one_field_only():
+    yn = lambda slot, y, n: {"slot": slot, "choices": [{"label": "Yes", "to": y, "value": "yes"},
+                                                       {"label": "No", "to": n, "value": "no"}]}
+    tree = {"root": "q1", "title": "Knee", "nodes": {
+        "q1": {"label": "Out of place?", **yn("dislocated", "d", "q2")},
+        "q2": {"label": "Have a splint?", **yn("splint", "s", "nos")},
+        "d": {"label": "D"}, "s": {"label": "S"}, "nos": {"label": "No splint"}}}
+    smap = {"slots": {"knee": {"yes": ["knee"]}}}
+    cands = [Candidate("knee", tree, smap)]
+    first_sentence("my knee", cands)
+    assert answer("no", cands) == ("form", None, None)
+    assert cands[0].card == "q2" and "splint" not in cands[0].filled
