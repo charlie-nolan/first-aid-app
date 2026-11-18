@@ -458,3 +458,22 @@ def test_cpr_cause_alone_and_place_alone_rank_nothing():
                          {"slots": {"body_part": {"toes": ["toe"]}, "broken": {"yes": ["broken"]}}})
     assert keep_trees(["toe in"], pool) == []
     assert keep_trees(["my toe is broken"], pool)[0].name == "fractures"
+
+
+def test_named_tree_own_life_rule_beats_generic_cpr():
+    """Trees thread 11-18: "stove fumes, she's passed out and not breathing" opened wfa-cpr/cpr and
+    skipped CO's protect-yourself step. A tree that heard its own problem and has its own rule for
+    the life value opens that rule; a tree whose rules are only on its own blanks does not."""
+    from vr.live import keep_trees
+    pool = _s007_pool()
+    pool["wfa-cpr"] = ({"root": "s", "title": "CPR", "nodes": {"s": {"label": "Breathing?"}, "cpr": {"label": "Start CPR"}}},
+                       {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}],
+                        "slots": {"breathing": {"no": ["not breathing"]}, "conscious": {"no": ["passed out"]}}})
+    pool["wfa-co"] = ({"root": "s", "title": "Carbon monoxide", "nodes": {"s": {"label": "Source?"}, "treat_now": {"label": "Get out"}}},
+                      {"life_threat": [{"if": {"conscious": "no"}, "go": "treat_now"}],
+                       "slots": {"source": {"stove": ["stove fumes"]}, "conscious": {"no": ["passed out"]}}})
+    line = "stove fumes, she's passed out and not breathing"
+    cands = keep_trees([line], pool)
+    assert cands[0].name == "wfa-co"
+    assert first_sentence(line, cands) == ("open", "wfa-co", "treat_now")
+    assert keep_trees(["she's passed out and not breathing"], pool)[0].name == "wfa-cpr"
