@@ -6,7 +6,7 @@ come back as PICK lines. Every screen the board draws also comes back as a frame
 PNG, so each bench run leaves real screenshots.
 
     WORK=/mnt/data/first-aid-gpu python firmware/tether/pc_bridge.py \\
-        --vr  <voice_router root at 5fa165f or later> \\
+        --vr  <voice_router root at 98d75eb or later> \\
         --trees ~/first-aid-build/pipeline/plb/content/trees ~/first-aid-trees/pipeline/plb/content/trees_personal \\
         --slots ~/first-aid-voice/slots --fasr ~/first-aid-speech/pipeline/speech \\
         [--port /dev/ttyACM0] [--out $WORK/speech/tether] [--typed]
@@ -128,9 +128,9 @@ class Brain:
         try:
             from vr import form, live, parity
         except ImportError:
-            sys.exit("--vr is older than 5fa165f (no vr.parity): update it")
+            sys.exit("--vr is older than 98d75eb (no vr.parity): update it")
         if not hasattr(form, "node_id"):
-            sys.exit("--vr is older than 5fa165f (no vr.form.node_id): update it")
+            sys.exit("--vr is older than 98d75eb (no vr.form.node_id): update it")
         self.form, self.live = form, live
         self.trees = live.load_all(a.trees, a.slots)
         print(f"{len(self.trees)} trees with blanks loaded", flush=True)
@@ -171,7 +171,7 @@ class Brain:
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="pc_bridge")
-    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 5fa165f or later")
+    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 98d75eb or later")
     ap.add_argument("--trees", type=Path, nargs="+", required=True)
     ap.add_argument("--slots", type=Path, required=True)
     ap.add_argument("--fasr", type=Path, help="speech package root (holds fasr/)")
