@@ -422,11 +422,12 @@ def _named(c: Candidate, words: set) -> bool:
 def _say(c: Candidate, slot: str, value: str) -> str:
     """What a person would say for a grouped tile: the first of the value's own phrases that
     fills it on its own (11-18: the raw value name "neck back" filled nothing and looped)."""
-    vals = c.smap.get("slots", {}).get(slot, {})
-    for ph in vals.get(value, []):
-        if fill(ph, {slot: vals}, c.smap.get("priority")).get(slot) == value:
-            return ph
-    return value.replace("_", " ")
+    slots = c.smap.get("slots", {})
+    vals = slots.get(slot, {})
+    ok = [ph for ph in vals.get(value, [])
+          if fill(ph, {slot: vals}, c.smap.get("priority")).get(slot) == value]
+    clean = [ph for ph in ok if not set(fill(ph, slots, c.smap.get("priority"))) - {slot}]
+    return (clean or ok or [value.replace("_", " ")])[0]   # prefer one no other blank also hears
 
 
 def _path_labels(c: Candidate, ok: set, anc: dict, most: int = 8):
