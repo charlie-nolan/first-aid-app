@@ -59,6 +59,8 @@ Tuning uses the dev sets only; test sets are scored once per change.
 
 ![Right card by voice turn](voice/2026-11-17_turn-accuracy_run-b4d9b2c_test-1.png)
 
+*Measured 2026-11-17, engine b4d9b2c, slots v15. Input is typed test sentences (no speech), the right tree is given (no router), and the simulated person says the correct answer for every open blank, so this is a best case for the slot engine alone. The full voice flow (audio, recognizer, router top 2-3, form, card) has not been tested end to end yet.*
+
 Run captures (terminal output of each training run / simulation) live in [docs/runs](runs/).
 Figures are made by `docs/voice/make_voice_figures.py` and `docs/voice/make_turn_chart.py`.
 

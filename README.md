@@ -14,7 +14,9 @@ the device.** Voice only ever picks which cited card to open.
 > content trees are still unreviewed. In an emergency, call 911 or send an SOS first. Get real
 > first-aid training; don't rely on a gadget.
 
-![Voice intake flow](docs/voice/voice-flow.png)
+![Voice intake flow (planned design, 2026-11-17)](docs/voice/voice-flow.png)
+
+*The planned voice flow. It is designed and simulated on the desktop, but not yet built or tested on the device. See [Status and metrics](#status-and-metrics).*
 
 ## Contents
 
@@ -71,6 +73,11 @@ the device.** Voice only ever picks which cited card to open.
    and reader are all our own code.
 
 ## How a spoken sentence becomes a cited card
+
+> **Status:** this section describes the planned design. The router and the recognizer exist and
+> have been scored on their own. The slot-filling form exists only as a Python engine on the
+> desktop. The whole chain has not been tested end to end or run on the device yet
+> ([details](#what-has-and-hasnt-been-tested-as-of-2026-11-18)).
 
 ```
  hold TALK ──► 1. recognizer ──► 2. router (MoE gate) ──► life rules ──► 3. slot filling ──► form ──► cited card
@@ -182,8 +189,8 @@ bleeding type, can walk, still bleeding, getting worse, and so on. Blanks shared
 
 ![Voice screens mockup](docs/voice/voice-screens-mockup.png)
 
-*Mockups at the panel's real 250x122 (drawn 2x). Wording is illustrative, not manual text. The C
-port of these screens is next.*
+*Mockups (drawn 2026-11-17), not screenshots: these screens don't exist in firmware yet. Drawn
+at the panel's real 250x122 (shown 2x). Wording is illustrative, not manual text.*
 
 ### 4. How filled slots point to cards
 
@@ -246,54 +253,88 @@ don't apply; emergency pages are never hidden. Waking from sleep returns to the 
 
 ![Button-mode answer screens (PC simulator, public library)](firmware/docs/sim-answer-screens.png)
 
+*Button mode as rendered by the PC screen simulator from the public library (older ATP-based
+bleeding tree). Not the voice form.*
+
 ## Status and metrics
 
-Prototype on the breadboard (plain XIAO S3), with the Plus build next. Everything below is
-measured on the desktop; on-board timings are not done yet.
+**Read this first:** the new voice flow (sector re-decode, router keeping 2-3 trees, slot filling,
+one form screen, tabs, SKIP) has **not been tested end to end, and none of it runs on the device
+yet**. What exists is a Python engine with unit tests and one desktop simulation on typed
+sentences. Every number below says which setup and which date it measured. None of them are
+real voices going through the whole new flow.
 
-| Piece | State |
+### What has and hasn't been tested (as of 2026-11-18)
+
+| Piece of the new flow | Tested? | How |
+|---|---|---|
+| Recognizer, single pass, no sectors | Partly | Desktop, Charlie's held-out recordings (2026-11-17). Not on the board |
+| Recognizer two-pass sector re-decode | **No** | Code exists; per-question word lists tried, full sector re-decode not scored |
+| Router picking a topic | Partly | Desktop, typed test sentences (2026-11-16), **old flow**: one topic, then the tree page by page |
+| Router keeping top 2-3 trees for the form | **No** | Not scored; the form sim below assumes the right tree |
+| Slot filling + one-form screen | Simulated only | Python sim on typed sentences, right tree given, perfect answers (2026-11-17) |
+| Fuzzy snap, SKIP, ranked top-3, tabs | Unit tests only | `pipeline/voice_router/tests` (47 pass, 2026-11-17) and a 3-line fixture sim |
+| Form screen, tabs, SKIP in firmware | **No** | C port not started |
+| Whole chain: audio to recognizer to router to form to card | **No** | Needs the C port and the recognizer bench |
+| On-board speed and memory | **No** | Not measured |
+
+| Piece (not voice) | State |
 |---|---|
 | Cartridge format, C reader, public library | Working on the bench |
 | Personal trees (Aerie + Red Cross), 24+ topics | Built and baked on the desktop, verbatim, **unreviewed** |
-| Router + experts | Trained; C inference with host parity tests; PR #16 merged |
-| Slot filling + one-form screen | Python engine and simulator (PR #19); **firmware C port not started** |
-| Keyword-spotting recognizer | Training on the desktop (PR #17, on hold until the larger model and the bench comparison with MultiNet) |
+| Buttons-only mode | Working on the bench with the public library |
 
-**Right card by voice turn** (simulation, slot engine b4d9b2c, tree known, 2026-11-17):
+### Slot-filling simulation (new flow, engine only, 2026-11-17)
 
-| Set | Turn 1 (first sentence) | Turn 2, one question per page | Turn 2, fill-in-the-blanks form |
+Setup: `vr.intake --sim` at engine commit b4d9b2c, slot files v15, run on the desktop on
+2026-11-17. Input is **typed** test sentences written by language models (not speech, not
+Charlie's own words). The **right tree is given** (no router), and on turn 2 the simulated person
+says the **correct answer for every open blank**. So this measures how well the slot engine and
+the trees work together, as a best case. It does not measure the full voice flow.
+
+| Set | Turn 1 (first sentence) | Turn 2, one question per page (old flow, same sim) | Turn 2, fill-in-the-blanks form (new flow) |
 |---|---|---|---|
-| dev (666 lines) | 70% | 84% | **90%** |
+| dev (666 lines) | 70% | 84% | 90% |
 | dev2 (120) | 57% | 64% | 64% |
 | dev3 (240) | 89% | 89% | 89% |
-| **test2, held out (612)** | 43% | 63% | **76%** |
-| **test3, held out (678)** | 40% | 67% | **77%** |
+| test2, held out (612) | 43% | 63% | 76% |
+| test3, held out (678) | 40% | 67% | 77% |
 
-![Right card by voice turn](docs/voice/2026-11-17_turn-accuracy_run-b4d9b2c_test-1.png)
+![Right card by voice turn: slot engine simulation, typed sentences, right tree given, 2026-11-17](docs/voice/2026-11-17_turn-accuracy_run-b4d9b2c_test-1.png)
 
-How to read these honestly:
+*Chart: same simulation as the table (engine b4d9b2c, 2026-11-17). It is not a measurement of
+the device or of speech.*
 
-- The **held-out test sets land at 76-77% right card by turn 2**, inside the 70-80% target. The dev
-  sets run higher because tuning uses them; test sets are scored once per change.
-- The target is 70-80% by the second voice turn and 100% by the third, not one-shot accuracy. CPR
-  and severe bleeding must open on the first sentence. Many test lines don't state the deciding
-  facts, so turn-1 accuracy is low by design; the form then asks for exactly those facts.
-- These numbers assume the router already picked the right tree, and use typed sentences, not
-  audio. End-to-end numbers with real voices come after the recognizer bench.
-- **Router** (held-out test written by a different model family than the training data): top-1
-  59%, top-6 87%; on Claude-written tests, 79-86% top-1. Data variety is the limit, not model size.
-- **Recognizer** (latest reported, Charlie's held-out recordings): keyword recall about 70%, about
-  0.3 wrong keywords per clip, 98-100% of pure noise rejected. Per-question word lists lift top-1
-  keyword accuracy by 6-11 points.
+- In this best case, the held-out sets reach 76-77% by turn 2. The dev sets score higher because
+  the engine was tuned on them. The goal is 70-80% by turn 2 and 100% by turn 3 in real use.
+  This simulation can't show whether that goal is met yet.
+- Turn 1 is low partly by design, because many test lines don't state the deciding facts.
+
+### Earlier measurements (not the new flow)
+
+- **Router, 2026-11-16, round 3, old flow** (router picks one topic, then page by page). Typed
+  held-out sentences from a different model family than the training data: top-1 59%, top-6 87%.
+  On Claude-written tests: 79-86% top-1. The router's top 2-3 output feeding the form has not been
+  scored.
+- **Recognizer, 2026-11-17, model `firstaid` (round 1), single pass, no sector re-decode.**
+  Charlie's held-out recordings on the desktop: keyword recall about 70%, about 0.3 wrong keywords
+  per clip, 98-100% of pure noise rejected. Giving each question its own word list raised top-1
+  keyword accuracy by 6-11 points on the same clips. Round 2 (`firstaid2`) cut wrong keywords but
+  did worse end to end through the router, so round 1 stays the baseline.
+
+### Run captures
 
 Every training run, simulation and test saves a terminal-style capture to [`docs/runs/`](docs/runs/)
-(named `<date>_<what>_run-<run>_test-<n>.png`), with metrics only, never manual text:
+(named `<date>_<what>_run-<run>_test-<n>.png`), with metrics only, never manual text. The one
+below is a **3-sentence fixture** for the bites tree run through the new form engine
+(2026-11-17). It shows the engine working, including a fuzzy snap. It is not an accuracy result.
 
-![Form simulation capture](docs/runs/2026-11-17_form-sim-fixture-bites_run-1396446_test-2.png)
+![Run capture: form engine on a 3-line bites fixture, 2026-11-17](docs/runs/2026-11-17_form-sim-fixture-bites_run-1396446_test-2.png)
 
-**Next:** the C port of the form screen, on-board timings for the recognizer and router, real-voice
-end-to-end scoring, more trees and synonyms to grow the number of fillable blanks, and Charlie's
-review of the personal trees.
+**Next:** the C port of the form screen, then the first end-to-end test (recorded audio, then the
+recognizer, then the router's top 2-3, then the form, then the card), scored on held-out speakers.
+After that come on-board timings, more trees and synonyms, and Charlie's review of the personal
+trees.
 
 ## Hardware
 
