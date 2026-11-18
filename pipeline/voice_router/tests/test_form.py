@@ -123,3 +123,12 @@ def test_tapped_pick_fills_one_field():
     cands = [Candidate("bites", TREE, SMAP)]
     first_sentence("a dog got me", cands)
     assert pick("where", "face", cands) == ("open", "bites", "face")
+
+
+def test_tapped_plain_tile_moves_to_its_card():
+    from vr.form import pick
+    nodes = {**TREE["nodes"], "mammal": {**TREE["nodes"]["mammal"], "choices": [
+        {"label": "Not sure", "to": "other"}]}, "other": {"label": "Other bites"}}
+    cands = [Candidate("bites", {**TREE, "nodes": nodes}, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert pick("where", None, cands, to="other") == ("open", "bites", "other")

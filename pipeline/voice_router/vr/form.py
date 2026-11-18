@@ -206,10 +206,15 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
     return "form", None, None
 
 
-def pick(key: str, value: str, cands: list[Candidate]):
+def pick(key: str, value: str | None, cands: list[Candidate], to: str | None = None):
     """A tapped answer (buttons on the form): fills that one field exactly, no word matching.
-    key "@topic" keeps only the tree named by value. Same returns as answer()."""
-    if key == "@topic":
+    key "@topic" keeps only the tree named by value. A plain tile (no value: a menu choice) gives
+    `to`, its target card: the tree asking that field goes there. Same returns as answer()."""
+    if value is None and to:
+        for c in cands:
+            if c.asking == key and to in c.tree["nodes"]:
+                c.advance(start=to)
+    elif key == "@topic":
         cands[:] = [c for c in cands if c.name == value] or cands
     else:
         for c in cands:
