@@ -429,3 +429,32 @@ def test_calm_breathing_awake_is_not_cpr_evidence():
     names = [c.name for c in keep_trees(["a bee stung her hand, she's breathing fine and awake"], pool)]
     assert "wfa-cpr" not in names
     assert keep_trees(["she passed out and is not breathing"], pool)[0].name == "wfa-cpr"
+
+
+def test_stopped_then_she_is_breathing_is_not_stopped_breathing():
+    """81fe3ed PC check: "the seizure just stopped. she's breathing" filled breathing=no (the "."
+    is dropped, so "stopped [she's] breathing" matched) and opened CPR on a breathing person."""
+    from vr.intake import fill
+    slots = {"breathing": {"no": ["stopped breathing", "not breathing"], "yes": ["breathing"]}}
+    for line in ["the seizure just stopped. she's breathing", "it stopped, he's breathing fine",
+                 "the seizure stopped and she's breathing", "it stopped and now breathing"]:
+        assert fill(line, slots).get("breathing") != "no", line
+    assert fill("she stopped breathing", slots)["breathing"] == "no"
+
+
+def test_cpr_cause_alone_and_place_alone_rank_nothing():
+    """81fe3ed: CPR's own "cause" (hypothermia) ranked CPR first on a plain hypothermia scene, and
+    a lone body word ("toe") opened a fracture card with no injury heard."""
+    from vr.live import keep_trees
+    pool = _s007_pool()
+    pool["wfa-cpr"] = ({"root": "s", "title": "CPR", "nodes": {"s": {"label": "Breathing?"}, "cpr": {"label": "Start CPR"}}},
+                       {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}],
+                        "slots": {"breathing": {"no": ["not breathing"]}, "cause": {"cold": ["freezing"]}}})
+    pool["hypothermia"] = ({"root": "s", "title": "Hypothermia", "nodes": {"s": {"label": "Shivering?"}, "y": {"label": "Warm"}}},
+                           {"slots": {"shivering": {"yes": ["shivering"]}}})
+    names = [c.name for c in keep_trees(["he's freezing and shivering"], pool)]
+    assert names[0] == "hypothermia" and "wfa-cpr" not in names
+    pool["fractures"] = ({"root": "w", "title": "Fractures", "nodes": {"w": {"label": "Where?"}, "toes": {"label": "Toes"}}},
+                         {"slots": {"body_part": {"toes": ["toe"]}, "broken": {"yes": ["broken"]}}})
+    assert keep_trees(["toe in"], pool) == []
+    assert keep_trees(["my toe is broken"], pool)[0].name == "fractures"

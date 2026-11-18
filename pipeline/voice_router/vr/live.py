@@ -50,6 +50,9 @@ def _heard_topic(hyps: list[str], name: str, tree: dict, smap: dict) -> bool:
     return bool(hyps) and names_tree(tokenize(hyps[0]), name, tree, smap)
 
 
+LOCATION_SLOTS = {"body_part", "side", "location"}
+
+
 def _weight(slot, value, life, home) -> int:
     """How much one filled blank says about a tree. The shared blanks (awake, breathing) count only
     for their home tree (CPR), and only with their life value: "breathing fine", "awake, alert" is
@@ -72,8 +75,14 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
         c = Candidate(name, tree, smap)
         life = _life_slots(c)
         home = name in GENERIC_HOME or smap.get("generic_home")
-        score = sum(_weight(s, v, life, home) for s, v in vals.items())
-        scored.append((named, score + 3 * named, -i, name))
+        if home and not any(s in UNIVERSAL and v in UNIVERSAL[s] for s, v in vals.items()):
+            vals = {}                              # CPR ranks only on a life value; its own "cause"
+        score = sum(_weight(s, v, life, home) for s, v in vals.items())   # alone (hypothermia, drowning)
+        real = named or any(s not in (smap.get("location_slots") or LOCATION_SLOTS) for s in vals)
+        scored.append((named, score + 3 * named, -i, name, real))   # says nothing (81fe3ed s060, s144)
+    if not any(x[4] for x in scored):              # only a place was heard ("toe", "my toe"): no problem
+        return []                                  # yet, so no card; start screen (81fe3ed "toe in")
+    scored = [x[:4] for x in scored]
     if any(sc for _, sc, _, _ in scored):          # "he's not breathing": the shared life blanks
         scored = [x for x in scored if x[1]]       # (awake, breathing) rank only their home tree,
     scored.sort(reverse=True)                      # CPR, not every tree that has them (1623cdb check).

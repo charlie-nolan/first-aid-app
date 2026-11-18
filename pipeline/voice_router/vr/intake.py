@@ -113,7 +113,8 @@ def _find(words: list[str], phrase: list[str], gap: int = 1) -> list[int] | None
         pos, j = [i], i
         for p in phrase[1:]:
             for k in range(j + 1, min(j + 2 + gap, len(words))):
-                if words[k] == p and all(x not in NEGATION and x not in HEDGE for x in words[j + 1:k]):
+                if words[k] == p and all(x not in NEGATION and x not in HEDGE and x not in CLAUSE_START
+                                         for x in words[j + 1:k]):
                     pos.append(k); j = k
                     break
             else:
@@ -122,6 +123,11 @@ def _find(words: list[str], phrase: list[str], gap: int = 1) -> list[int] | None
             return pos
     return None
 
+
+CLAUSE_START = {"she's", "he's", "it's", "they're", "i'm", "we're", "you're", "she", "he", "it",
+                "they", "i", "we", "you", "and", "but", "then", "now"}
+# A filler word may not start a new clause: "the seizure stopped. she's breathing" must not match
+# "stopped breathing" (81fe3ed PC check: a breathing person got the CPR card; the tokenizer drops ".").
 
 HEDGE = {"if", "whether", "unsure", "maybe", "barely", "might", "check",
          "will", "gonna", "could", "about", "sure", "tell"}   # "will pass out", "not sure he's breathing"
