@@ -904,7 +904,8 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
         for (int i = 0; i < f.n; i++) {               /* only in their home tree, CPR ("he's not breathing") */
             const char *sn = S(f.slot[i]);
             bool uni = !strcmp(sn, "conscious") || !strcmp(sn, "breathing");
-            v += uni && !home ? 0 : life_slot(s, t, f.slot[i], false) ? 2 : 1;
+            if (uni) v += home && !strcmp(S(f.val[i]), "no") ? 2 : 0;   /* only the life value, only CPR: */
+            else v += life_slot(s, t, f.slot[i], false) ? 2 : 1;        /* "breathing fine" is no evidence */
         }
         sc[n] = v; idx[n] = t; nm[n] = named; n++;
     }

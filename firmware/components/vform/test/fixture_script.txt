@@ -16,6 +16,12 @@ CASE f005-pick
 SAY she's not breathing she fell in icy water
 CASE f006-pick
 SAY he is breathing fine
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f006-say
+SAY he is breathing fine
+SAY Bites
+SAY snake
 CASE f007-pick
 SAY not spurting just oozing
 CASE f008-pick
