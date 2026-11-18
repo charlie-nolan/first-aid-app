@@ -68,6 +68,7 @@ static const uint8_t *slotrec(const fp_sess_t *s, int t, int i) { return s->tree
 #define SL_NAME(r) rd16(r)
 #define SL_NVAL(r) rd16((r) + 2)
 #define SL_NPRIO(r) rd16((r) + 4)
+#define SL_PRIO_N(r) rd16((r) + 4)
 #define SL_VAL(s, r, i) AT(rd32((r) + 8) + 8 * (i))
 #define SL_PRIO(s, r, i) rd16(AT(rd32((r) + 12) + 2 * (i)))
 #define V_NAME(v) rd16(v)
@@ -289,6 +290,29 @@ static int slot_index(const fp_sess_t *s, int t, fp_str slot) {
     return -1;
 }
 
+/* position of value vi in order = priority + the other values in file order */
+static int value_rank(const fp_sess_t *s, const uint8_t *sl, int vi) {
+    int nprio = SL_PRIO_N(sl);
+    fp_str vn = V_NAME(SL_VAL(s, sl, vi));
+    for (int k = 0; k < nprio; k++) if (SL_PRIO(s, sl, k) == vn) return k;
+    int rank = nprio;
+    for (int k = 0; k < vi; k++) {
+        fp_str o = V_NAME(SL_VAL(s, sl, k));
+        bool inp = false;
+        for (int q = 0; q < nprio; q++) if (SL_PRIO(s, sl, q) == o) inp = true;
+        if (!inp) rank++;
+    }
+    return rank;
+}
+/* implies[slot][v], or FP_NONE */
+static fp_str implied(const fp_sess_t *s, int t, fp_str slot, fp_str v) {
+    for (int i = 0; i < s->trees[t].nimplies; i++) {
+        const uint8_t *im = s->trees[t].implies + 8 * i;
+        if (rd16(im) == slot && rd16(im + 2) == v) return rd16(im + 4);
+    }
+    return FP_NONE;
+}
+
 /* vr.intake.fill with decisive = decisive_slots(smap) (that is vr.intake._fill). */
 static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out, bool tie_any);
 static void fill_toks(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out) { fill_toks_d(s, t, raw, out, false); }
@@ -345,23 +369,41 @@ static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_fill
         int top = 0;
         for (int i = 0; i < nc; i++) if (popc(cm[i]) > top) top = popc(cm[i]);
         /* order = priority + the other values in file order; tied sorted by order.index */
-        int nprio = SL_NPRIO(sl), best = -1, best_rank = 1 << 30, ntied = 0;
+        int best = -1, best_rank = 1 << 30, ntied = 0;
         for (int i = 0; i < nc; i++) {
             if (popc(cm[i]) != top) continue;
             ntied++;
-            fp_str vn = V_NAME(SL_VAL(s, sl, cv[i]));
-            int rank = -1;
-            for (int k = 0; k < nprio; k++) if (SL_PRIO(s, sl, k) == vn) { rank = k; break; }
-            if (rank < 0) {
-                rank = nprio;
-                for (int k = 0; k < cv[i]; k++) {
-                    fp_str o = V_NAME(SL_VAL(s, sl, k));
-                    bool inp = false;
-                    for (int q = 0; q < nprio; q++) if (SL_PRIO(s, sl, q) == o) inp = true;
-                    if (!inp) rank++;
+            int rank = value_rank(s, sl, cv[i]);
+            if (rank < best_rank) { best_rank = rank; best = cv[i]; }
+        }
+        if (ntied > 1 && !tie_any) {                 /* "leg ... shin": lower_leg implies leg, so the finer */
+            fp_str tv[64]; int nt = 0;                 /* answer says both: drop the coarser tied values */
+            for (int i = 0; i < nc; i++) if (popc(cm[i]) == top) tv[nt++] = V_NAME(SL_VAL(s, sl, cv[i]));
+            bool coarse[64] = {0};
+            for (int i = 0; i < nt; i++) {
+                fp_str seen[16]; int ns = 0; seen[ns++] = tv[i];
+                for (fp_str u = implied(s, t, SL_NAME(sl), tv[i]); u != FP_NONE && truthy(s, u); u = implied(s, t, SL_NAME(sl), u)) {
+                    bool rep = false;
+                    for (int k = 0; k < ns; k++) if (seen[k] == u) rep = true;
+                    if (rep || ns >= 16) break;
+                    seen[ns++] = u;
+                    for (int k = 0; k < nt; k++) if (tv[k] == u) coarse[k] = true;
                 }
             }
-            if (rank < best_rank) { best_rank = rank; best = cv[i]; }
+            int keep = 0;
+            for (int i = 0; i < nt; i++) if (!coarse[i]) keep++;
+            if (keep && keep < nt) {                   /* tied[0] among the finer values, by order */
+                ntied = keep; best = -1; best_rank = 1 << 30;
+                for (int i = 0; i < nc; i++) {
+                    if (popc(cm[i]) != top) continue;
+                    fp_str vn = V_NAME(SL_VAL(s, sl, cv[i]));
+                    bool co = false;
+                    for (int k = 0; k < nt; k++) if (tv[k] == vn && coarse[k]) co = true;
+                    if (co) continue;
+                    int r = value_rank(s, sl, cv[i]);
+                    if (r < best_rank) { best_rank = r; best = cv[i]; }
+                }
+            }
         }
         if (ntied > 1 && !tie_any && !life_slot(s, t, SL_NAME(sl), true)) continue;   /* two equally strong answers: ask */
         fset(out, SL_NAME(sl), V_NAME(SL_VAL(s, sl, best)));
@@ -453,20 +495,22 @@ static bool leads(const fp_sess_t *s, int t, int start, const fp_filled_t *f) {
     return false;
 }
 
-/* vr.intake._menu_blank: a kit branch (menu_slots) or a content card with fewer than 2 answers for
- * the blank beside plain menu tiles is shown as a card, never asked as a form field. */
+/* vr.intake._menu_blank: a kit branch (smap menu_slots, default missing_kit) whose answers all lead
+ * to another tree's card (improvised_gear/...) is shown as a card, never asked as a form field. */
 static bool menu_blank(const fp_sess_t *s, int t, int nd, fp_str slot) {
     const uint8_t *m = s->trees[t].menu;
-    for (int i = 0; i < rd16(m); i++) if (rd16(m + 2 + 2 * i) == slot) return true;
+    bool menu = false;
+    for (int i = 0; i < rd16(m); i++) if (rd16(m + 2 + 2 * i) == slot) menu = true;
+    if (!menu) return false;
     const uint8_t *n = node(s, t, nd);
-    int answers = 0, plain = 0;
+    int nto = 0;
     for (int i = 0; i < N_NTILES(n); i++) {
         const uint8_t *r = N_TILE(s, n, i);
-        if (truthy(s, T_VALUE(r))) { answers++; continue; }
-        plain++;
-        if (T_NODE(r) >= 0 && N_QSLOT(node(s, t, T_NODE(r))) == slot) answers++;
+        if (!truthy(s, T_VALUE(r))) continue;
+        nto++;
+        if (T_NODE(r) >= 0 || !strchr(S(T_TO(r)), '/')) return false;
     }
-    return answers < 2 && plain > 0 && N_CONTENT(n);
+    return nto > 0;
 }
 
 /* vr.intake.walk: follow the tree from its root (start < 0) or from `start`, taking every answer the

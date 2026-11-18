@@ -66,7 +66,7 @@ static void title(fp_screen_t *sc, int t, fp_card card, jb_t *b, fp_str *cites, 
             size_t L = (size_t)(sl - key) < sizeof buf - 1 ? (size_t)(sl - key) : sizeof buf - 1;
             memcpy(buf, key, L); buf[L] = 0;
             tt = fp_tree_by_name(s, buf);
-            if (tt < 0) { jstr(b, key, -1); return; }     /* tree not loaded: the bare card name */
+            if (tt < 0) { jstr(b, sl + 1, -1); return; }  /* tree not loaded: the bare card name */
             key = sl + 1;
             nn = fp_node_by_key(s, tt, key);
         } else nn = -1;

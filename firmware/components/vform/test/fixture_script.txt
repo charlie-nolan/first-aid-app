@@ -1,5 +1,9 @@
 CASE f000-pick
 SAY a raccoon bit my thigh
+PICK @topic	bites	\N
+CASE f000-say
+SAY a raccoon bit my thigh
+SAY Bites
 CASE f001-pick
 SAY something bit me
 CASE f002-pick
@@ -130,10 +134,6 @@ CASE f033-pick
 SAY broken bone
 CASE f034-pick
 SAY broke my wrist and no sling
-PICK @topic	fractures	\N
-CASE f034-say
-SAY broke my wrist and no sling
-SAY Broken bones
 CASE f035-pick
 SAY his leg or his arm is broken
 PICK @topic	bites	\N
@@ -142,6 +142,28 @@ CASE f035-say
 SAY his leg or his arm is broken
 SAY Bites
 SAY snake
+CASE f036-pick
+SAY hurt his leg, the shin
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f036-say
+SAY hurt his leg, the shin
+SAY Bites
+SAY snake
+CASE f037-pick
+SAY broke his leg
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f037-say
+SAY broke his leg
+SAY Bites
+SAY snake
+CASE f038-pick
+SAY broke his leg and no splint
+PICK @topic	fractures	\N
+CASE f038-say
+SAY broke his leg and no splint
+SAY Broken bones
 CASE s000
 SAY a bee stung me
 SAY no
