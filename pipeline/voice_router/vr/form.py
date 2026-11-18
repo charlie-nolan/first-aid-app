@@ -105,18 +105,16 @@ def _landing(c: Candidate):
 
 
 def _agreed_landing(cands: list[Candidate]):
-    """Open a card below SURE only when the trees agree: a top-ranked tree (ties included) lands on
-    it, and no tree lands anywhere else. "Heat stroke" stays a form (heat is still asking; only
-    fainting landed); "anaphylaxis" opens allergy/severe (allergy and asthma both land there)."""
+    """Open a card below SURE only when EVERY kept tree lands on that same card with nothing left
+    to ask ("anaphylaxis": allergy and asthma both land on allergy/severe). A tree still asking
+    blocks it (04df032 PC check: "any tree lands, the rest still asking" opened HACE, rash and
+    finger-fracture cards on 30 wrong scenes)."""
     if len(cands) < 2:
         return None
-    top = max(round(c.p, 6) for c in cands)
-    lands = {_landing(c) for c in cands} - {None}
-    if len(lands) != 1:
+    lands = [_landing(c) for c in cands]
+    if None in lands or len(set(lands)) != 1:
         return None
-    (land,) = lands
-    if not any(round(c.p, 6) == top and _landing(c) == land for c in cands):
-        return None
+    land = lands[0]
     if any(c.name == land[0] and land[1] in _life_cards(c) for c in cands):
         return None                                   # a life card only by its rule ("breathing fine")
     return land

@@ -534,3 +534,17 @@ def test_trees_agreeing_on_a_card_open_it_below_sure():
         {"slots": {"severity": {"severe": ["anaphylaxis"], "mild": ["wheezy"]}},
          "questions": {"s": {"slot": "severity", "choices": {"severe": "wfa-allergy/severe", "mild": "m"}}}}, p=0.33)
     assert first_sentence("anaphylaxis", [allergy, asthma]) == ("open", "wfa-allergy", "severe")
+
+
+def test_one_landing_tree_with_others_asking_does_not_open():
+    """04df032 PC check: a low-ranked tree landing on a content card while the others were still
+    asking opened it ("too cold and confused" -> HACE). Every kept tree must land there."""
+    alt = Candidate("wfa-altitude", {"root": "a", "title": "Altitude", "nodes": {
+        "a": {"label": "Which?"}, "hace": {"label": "HACE"}, "ams": {"label": "AMS"}}},
+        {"slots": {"alt_type": {"hace": ["confused"], "ams": ["headache"]}},
+         "questions": {"a": {"slot": "alt_type", "choices": {"hace": "hace", "ams": "ams"}}}}, p=0.33)
+    hypo = Candidate("hypothermia", {"root": "h", "title": "Hypothermia", "nodes": {
+        "h": {"label": "Shivering?"}, "mild": {"label": "Mild"}, "severe": {"label": "Severe"}}},
+        {"slots": {"shiver": {"yes": ["shivering"], "no": ["stopped shivering"]}},
+         "questions": {"h": {"slot": "shiver", "choices": {"yes": "mild", "no": "severe"}}}}, p=0.67)
+    assert first_sentence("he's too cold and confused", [hypo, alt])[0] == "form"
