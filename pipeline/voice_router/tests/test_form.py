@@ -520,3 +520,17 @@ def test_lower_tree_plain_jump_to_other_tree_does_not_open():
     assert (kind, name) != ("open", "wfa-fainting")
     fields = open_fields([heat, faint])
     assert fields and fields[0].key == "@topic"
+
+
+def test_trees_agreeing_on_a_card_open_it_below_sure():
+    """47c1afd: "anaphylaxis" kept [allergy 0.67, asthma ...]; allergy's walk landed on severe and
+    asthma's jumped there too, but it showed a which-is-it form."""
+    allergy = Candidate("wfa-allergy", {"root": "a", "title": "Allergy", "nodes": {
+        "a": {"label": "How bad?"}, "severe": {"label": "Severe"}, "mild": {"label": "Mild"}}},
+        {"slots": {"severity": {"severe": ["anaphylaxis"], "mild": ["itchy"]}},
+         "questions": {"a": {"slot": "severity", "choices": {"severe": "severe", "mild": "mild"}}}}, p=0.67)
+    asthma = Candidate("wfa-asthma", {"root": "s", "title": "Asthma", "nodes": {
+        "s": {"label": "How bad?"}, "m": {"label": "Mild"}}},
+        {"slots": {"severity": {"severe": ["anaphylaxis"], "mild": ["wheezy"]}},
+         "questions": {"s": {"slot": "severity", "choices": {"severe": "wfa-allergy/severe", "mild": "m"}}}}, p=0.33)
+    assert first_sentence("anaphylaxis", [allergy, asthma]) == ("open", "wfa-allergy", "severe")

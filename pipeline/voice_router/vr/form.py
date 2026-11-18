@@ -81,6 +81,9 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
                 q = _questions(c.tree, c.smap).get(go)
                 c.card, c.asking = go, (q["slot"] if q else None)
             return "open", c.name, c.card
+    land = _agreed_landing(cands)                     # top trees all land on one card (47c1afd PC check:
+    if land:                                          # "anaphylaxis", "throat is closing up" lost
+        return ("open",) + land                       # wfa-allergy/severe at p 0.67 / 3-way tie)
     if (multi or AUTO_TABS) and len(split_tabs(cands)) > 1:
         return "tabs", None, None                     # two problems named: one tab each
     if cands and (cands[0].p >= SURE or len(cands) == 1):
@@ -89,6 +92,34 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
             and cands[0].card not in _life_cards(cands[0]):    # "breathing fine" must not open a CPR-tree card
         return "open", cands[0].name, cands[0].card
     return "form", None, None
+
+
+def _landing(c: Candidate):
+    """(tree, card) where this tree's walk stopped on a card with nothing left to ask, else None."""
+    if c.asking or c.card == c.tree["root"]:
+        return None
+    if c.card not in c.tree["nodes"]:
+        t, _, card = c.card.partition("/")
+        return (t, card)
+    return (c.name, c.card)
+
+
+def _agreed_landing(cands: list[Candidate]):
+    """Open a card below SURE only when the trees agree: a top-ranked tree (ties included) lands on
+    it, and no tree lands anywhere else. "Heat stroke" stays a form (heat is still asking; only
+    fainting landed); "anaphylaxis" opens allergy/severe (allergy and asthma both land there)."""
+    if len(cands) < 2:
+        return None
+    top = max(round(c.p, 6) for c in cands)
+    lands = {_landing(c) for c in cands} - {None}
+    if len(lands) != 1:
+        return None
+    (land,) = lands
+    if not any(round(c.p, 6) == top and _landing(c) == land for c in cands):
+        return None
+    if any(c.name == land[0] and land[1] in _life_cards(c) for c in cands):
+        return None                                   # a life card only by its rule ("breathing fine")
+    return land
 
 
 def _own_evidence(c: Candidate, others: list[Candidate]) -> set:
