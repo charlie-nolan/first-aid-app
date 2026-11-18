@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from .intake import (_stem, _fill, fill, _questions, answer_turn, fill_nbest, tiles, tokenize, walk, _FILLER)
+from .intake import (_find, _stem, _fill, fill, _questions, answer_turn, fill_nbest, tiles, tokenize, walk, _FILLER)
 
 SURE = 0.80            # router probability above which the other trees are dropped
 MAX_TREES = 3
@@ -67,7 +67,8 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
         c.filled = fill_nbest(c.hyps or hyps, c.smap)
         c.heard = (c.hyps or hyps)[0]
         c.advance()
-    for c in cands:                                   # in rank order, each tree's own emergency first
+    order = sorted(cands, key=lambda c: (-round(c.p, 6), not _rule_hit(c)))   # a tie: own rule first
+    for c in order:                                   # in rank order, each tree's own emergency first
         if c.card not in c.tree["nodes"]:             # (trees 11-18: asthma's jump to allergy/severe beat
             return "open", c.name, c.card             # the top-ranked choking tree's own rule): a life
         go = _rule_hit(c)                             # rule that jumped to another tree's card, or an
@@ -187,7 +188,7 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
     if words & {"skip", "dunno"} or {"don't", "know"} <= words or {"no", "time"} <= words:
         return "skip", None, skip(cands)           # same as the SKIP buttons (UP+DOWN together)
     if fields and fields[0].key == "@topic":
-        hit = [c for c in cands if _named(c, words)]
+        hit = [c for c in cands if _named(c, tokenize(text))]
         if len(hit) == 1:
             cands[:] = hit
     bare_yn = len(words) <= 3 and words and not words - {"yes", "yeah", "yep", "no", "nope", "nah"}
@@ -415,29 +416,49 @@ def _life_slots(c: Candidate) -> set:
     return set(lt) if isinstance(lt, dict) else {s for r in lt for s in r.get("if", {})}
 
 
-_TOPIC_STOP = {"wfa", "and", "or", "the", "of", "a", "an", "care", "first", "aid", "injury", "injuries",
-               "problem", "problems", "other", "pain", "illness", "emergency", "emergencies", "gear",
-               "improvised", "sick", "bad", "personal", "poison"}   # "carbon monoxide poisoning"
-                                                                       # is not poison ivy (s010)
+# Tier-1 topic words name a CONDITION, never a body area, object or common adjective (PC check
+# 11-18 of 40f375f: titles gave "back", "chest", "cold", "tent", "broken", "wound", "bit"... and
+# flipped 52 scenes to the wrong tree). Source: smap topic_words (phrases, curated with the
+# trees), else the tree's file name when it is itself a condition name, plus these defaults.
+_NAME_IS_TOPIC = {"choking", "hypothermia", "frostbite", "drowning", "lightning", "nosebleed",
+                  "seizures", "stroke", "asthma", "allergy", "dehydration", "diabetic", "fainting",
+                  "altitude", "fractures", "sprains", "cpr"}
+_DEFAULT_TOPICS = {"wfa-co": ["carbon monoxide"], "wfa-allergy": ["anaphylaxis", "anaphylactic",
+                   "allergic reaction"], "wfa-poison-ivy": ["poison ivy", "poison oak", "sumac"],
+                   "heat": ["heat stroke", "heatstroke", "heat exhaustion"],
+                   "wfa-choking": ["choking", "choke", "choked"], "wfa-seizures": ["seizure", "seizing"],
+                   "wfa-cpr": ["cpr"], "fractures": ["fracture", "fractured"],
+                   "wfa-diabetic": ["diabetic", "diabetes"], "wfa-altitude": ["altitude sickness"]}
 
 
 def _key(w: str) -> str:
-    return _stem(w).rstrip("e")                    # choke / choking / choked -> chok
+    k = _stem(w)
+    return k[:-1] if len(k) >= 5 and k.endswith("e") else k   # choke/choking/choked -> chok; be != bee
+
+
+def topic_phrases(name: str, tree: dict, smap: dict) -> list[tuple]:
+    """Condition names for the tree, each a tuple of keyed words ("carbon", "monoxid")."""
+    base = name.split("wfa-")[-1]
+    raw = list(smap.get("topic_words") or []) + _DEFAULT_TOPICS.get(name, []) + \
+        ([base] if base in _NAME_IS_TOPIC else [])
+    return [t for t in {tuple(_key(w) for w in tokenize(ph)) for ph in raw} if t]
 
 
 def topic_words(name: str, tree: dict, smap: dict) -> set:
-    """Words that name the tree itself ("choking", "burns", "nosebleed"): its name, its title and
-    smap topic_words. Board run s007: "my dad is choking" filled no blank in wfa-choking, so the
-    choking tree was never kept."""
-    raw = name.replace("_", "-").split("-") + tokenize(str(tree.get("title", ""))) + \
-        [w for ph in smap.get("topic_words") or [] for w in tokenize(ph)]
-    return {_key(w) for w in raw if w and w.lower() not in _TOPIC_STOP and len(w) > 2}
+    return {w for t in topic_phrases(name, tree, smap) for w in t}
 
 
-def _named(c: Candidate, words: set) -> bool:
-    """The answer names this tree (s010: "carbon monoxide poisoning" on the which-is-it field):
-    any of its topic words, not every title word."""
-    return bool({_key(w) for w in words} & topic_words(c.name, c.tree, c.smap))
+def names_tree(words: list[str], name: str, tree: dict, smap: dict) -> bool:
+    """Do these words name the tree's condition (every word of one of its topic phrases, in order)?"""
+    keys = [_key(w) for w in words]
+    return any(_find(keys, list(t), gap=0) is not None for t in topic_phrases(name, tree, smap))
+
+
+def _named(c: Candidate, words: list[str]) -> bool:
+    """The answer names this tree on the which-is-it field: its tile label (every title word) or
+    one of its condition names (s010: "carbon monoxide poisoning" for "Carbon monoxide")."""
+    title = set(tokenize(c.tree.get("title", c.name))) - _FILLER
+    return (bool(title) and title <= set(words)) or names_tree(words, c.name, c.tree, c.smap)
 
 
 # ---- scoring: how many spoken turns to the right card with this screen --------------------------

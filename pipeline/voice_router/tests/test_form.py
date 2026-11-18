@@ -369,3 +369,33 @@ def test_s010_naming_one_kept_tree_picks_it():
     answer("carbon monoxide poisoning", cands)
     assert [c.name for c in cands] == ["wfa-co"]
     assert answer("she won't wake up", cands) == ("open", "wfa-co", "treat_now")
+
+
+def test_tie_prefers_a_trees_own_rule_over_another_trees_jump():
+    pool = _s007_pool()
+    choking = pool["wfa-choking"][1]
+    choking["slots"]["airway"] = {"blocked": ["can't breathe"]}
+    choking["life_threat"] = [{"if": {"airway": "blocked"}, "go": "thrust"}]
+    asthma = ({"root": "s", "title": "Asthma", "nodes": {"s": {"label": "How bad?"}, "m": {}}},
+              {"slots": {"severity": {"severe": ["can't breathe"], "mild": ["wheezy"]}},
+               "questions": {"s": {"slot": "severity", "choices": {"severe": "wfa-allergy/severe", "mild": "m"}}}})
+    cands = [Candidate("wfa-asthma", *asthma, p=0.5), Candidate("wfa-choking", *pool["wfa-choking"], p=0.5)]
+    assert first_sentence("can't breathe", cands) == ("open", "wfa-choking", "thrust")
+
+
+def test_s009_named_tree_beats_a_kept_trees_generic_rule():
+    from vr.live import rescue
+    pool = _s007_pool()
+    pool["wfa-head-spine"] = ({"root": "s", "title": "Head and spine", "nodes": {"s": {"label": "?"}, "a": {}}},
+                              {"life_threat": [{"if": {"conscious": "no"}, "go": "wfa-cpr/start"}],
+                               "slots": {"conscious": {"no": ["knocked out"]}, "where": {"neck": ["neck"]}},
+                               "questions": {"s": {"slot": "where", "choices": {"neck": "a"}}}})
+    cands = [Candidate("wfa-head-spine", *pool["wfa-head-spine"])]
+    first_sentence("hurt his neck", cands)
+    assert rescue(["choking unresponsive"], pool, cands) == ("open", "wfa-choking", "out")
+
+
+def test_body_words_are_not_topic_words():
+    from vr.form import topic_words
+    assert topic_words("wfa-head-spine", {"title": "Head, neck and back"}, {}) == set()
+    assert topic_words("bites", {"title": "Bites and stings"}, {}) == set()

@@ -29,7 +29,7 @@ from pathlib import Path
 import yaml
 
 from .data import load_tree
-from .form import (MAX_TREES, topic_words, _key, Candidate, answer, first_sentence, open_fields, ranked_cards,
+from .form import (MAX_TREES, names_tree, topic_words, _key, Candidate, answer, first_sentence, open_fields, ranked_cards,
                    split_tabs, _life_slots, _rule_hit)
 from .intake import _stem, fill, fill_nbest, slots_of, tokenize
 
@@ -45,8 +45,7 @@ def load_all(tree_dirs: list[Path], slots_dir: Path) -> dict[str, tuple[dict, di
 
 
 def _heard_topic(hyps: list[str], name: str, tree: dict, smap: dict) -> bool:
-    heard = {_key(w) for w in tokenize(hyps[0])} if hyps else set()
-    return bool(heard & topic_words(name, tree, smap))
+    return bool(hyps) and names_tree(tokenize(hyps[0]), name, tree, smap)
 
 
 def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candidate]:
@@ -74,22 +73,22 @@ def rescue(hyps: list[str], trees: dict, cands: list[Candidate]):
     and wounds, "choking", "can't breathe" were read as burns answers and never reached choking.)
     The kept trees read the words first (s007 replay: "can't breathe" must not jump from the kept
     choking tree to allergy). In order:
-      1. a kept tree meets a life rule with these words, or is named in them: an answer (None);
-      2. a tree not kept is named outright ("choking"): restart the form from these words;
+      1. a tree not kept is named outright ("choking"): restart the form from these words;
+      2. a kept tree meets a life rule with these words, or is named in them: an answer (None);
       3. a kept tree fills any blank from them: an answer (None);
       4. a tree not kept meets a life rule with these words alone: open that card.
     Returns first_sentence's result (and replaces cands), or None to read the words as an answer."""
     kept = {c.name for c in cands}
+    if any(_heard_topic(hyps, n, t, m) for n, (t, m) in trees.items() if n not in kept):
+        new = keep_trees(hyps, trees)              # a condition named outright wins over a kept tree's
+        if new:                                    # generic rule (s009: "choking unresponsive" must open
+            cands[:] = new                         # choking/unconscious, not head-spine's cpr/start)
+            return first_sentence(hyps, cands)
     for c in cands:
         probe = Candidate(c.name, c.tree, c.smap)
         probe.filled = {**c.filled, **fill_nbest(hyps, c.smap)}
         if _rule_hit(probe) or _heard_topic(hyps, c.name, c.tree, c.smap):
             return None
-    if any(_heard_topic(hyps, n, t, m) for n, (t, m) in trees.items() if n not in kept):
-        new = keep_trees(hyps, trees)
-        if new:
-            cands[:] = new
-            return first_sentence(hyps, cands)
     if any(fill_nbest(hyps, c.smap) for c in cands):
         return None
     for name, (tree, smap) in trees.items():
