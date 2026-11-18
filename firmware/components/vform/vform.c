@@ -15,7 +15,7 @@ static inline uint32_t rd32(const uint8_t *p) { return p[0] | p[1] << 8 | p[2] <
 
 bool fp_open(fp_pack_t *pk, const void *blob, size_t len) {
     const uint8_t *b = blob;
-    if (len < 24 || memcmp(b, "FPK1", 4) || rd16(b + 4) != 5 || rd32(b + 20) != len) return false;
+    if (len < 24 || memcmp(b, "FPK1", 4) || rd16(b + 4) != 6 || rd32(b + 20) != len) return false;
     pk->b = b; pk->len = len; pk->ntrees = rd16(b + 6); pk->nstr = rd32(b + 8);
     if (rd32(b + 12) + 4 * pk->nstr > len || rd32(b + 16) + 4u * pk->ntrees > len) return false;
     return true;
@@ -103,6 +103,8 @@ static const char *const CLAUSE[] = {"but", "now", "though", "although", "except
 static const char *const SUBJECT[] = {"she's", "he's", "it's", "they're", "i'm", "we're", "you're",
     "she", "he", "they", "we", 0};
 static const char *const SEEING[] = {"seeing", "finding", "having", "getting", "feeling", "noticing", "showing", 0};
+static const char *const CLAUSE_START[] = {"she's", "he's", "it's", "they're", "i'm", "we're", "you're", "she", "he",
+    "it", "they", "i", "we", "you", "and", "but", "then", "now", 0};   /* "stopped. she's breathing" != "stopped breathing" */
 static const char *const FILLER[] = {"a", "an", "the", "or", "and", "of", "on", "in", "is", "it", "to", "my",
     "your", "i", "yes", "no", 0};
 static const char *const COMMANDS[] = {"back", "again", "home", 0};
@@ -216,7 +218,7 @@ static uint64_t find(const fp_toks_t *w, const fp_toks_t *p) {
             for (int k = j + 1; k < lim; k++) {
                 if (strcmp(w->w[k], p->w[q])) continue;
                 bool clean = true;
-                for (int x = j + 1; x < k; x++) if (neg_or_hedge(w->w[x])) { clean = false; break; }
+                for (int x = j + 1; x < k; x++) if (neg_or_hedge(w->w[x]) || in(w->w[x], CLAUSE_START)) { clean = false; break; }
                 if (clean) { hit = k; break; }
             }
             if (hit < 0) break;
@@ -885,6 +887,7 @@ static bool heard_topic(const fp_sess_t *s, int t, const fp_toks_t *heard) {
 /* vr.live.keep_trees */
 int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
     int sc[FP_MAX_TREES], idx[FP_MAX_TREES], nm[FP_MAX_TREES], n = 0;
+    bool rl[FP_MAX_TREES];
     for (int t = 0; t < s->ntrees; t++) {
         fp_filled_t f, tie;                          /* fill_nbest's blanks + every slot whose words were */
         fill_nbest(s, t, hyps, nh, &f);              /* heard, ties too ("leg" vs "shin"): tree evidence */
@@ -899,8 +902,23 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
         bool named = nh > 0 && heard_topic(s, t, &h0);
         if (!f.n && !named) continue;
         int v = named ? 3 : 0;                       /* +3 when the tree is named outright ("choking") */
-        const uint8_t *m = s->trees[t].menu, *tp = m + 2 + 2 * rd16(m);
-        bool home = rd16(tp + 2 + 2 * rd16(tp)) & 1; /* the shared life blanks (awake, breathing) score */
+        const uint8_t *m = s->trees[t].menu, *tp = m + 2 + 2 * rd16(m), *fl = tp + 2 + 2 * rd16(tp), *lc = fl + 2;
+        bool home = rd16(fl) & 1;                    /* the shared life blanks (awake, breathing) score */
+        if (home) {                                  /* CPR ranks only on a life value; its own cause alone */
+            bool lifev = false;                      /* (hypothermia, drowning) says nothing */
+            for (int i = 0; i < f.n; i++) {
+                const char *sn = S(f.slot[i]);
+                if ((!strcmp(sn, "conscious") || !strcmp(sn, "breathing")) && !strcmp(S(f.val[i]), "no")) lifev = true;
+            }
+            if (!lifev) f.n = 0;
+        }
+        bool real = named;                           /* heard more than a place ("toe", "my toe") */
+        for (int i = 0; i < f.n && !real; i++) {
+            bool place = false;
+            for (int q = 0; q < rd16(lc); q++) if (rd16(lc + 2 + 2 * q) == f.slot[i]) place = true;
+            if (!place) real = true;
+        }
+        rl[n] = real;
         for (int i = 0; i < f.n; i++) {               /* only in their home tree, CPR ("he's not breathing") */
             const char *sn = S(f.slot[i]);
             bool uni = !strcmp(sn, "conscious") || !strcmp(sn, "breathing");
@@ -909,6 +927,9 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
         }
         sc[n] = v; idx[n] = t; nm[n] = named; n++;
     }
+    bool anyreal = false;                            /* only a place was heard: no problem yet, no card */
+    for (int i = 0; i < n; i++) if (rl[i]) anyreal = true;
+    if (!anyreal) n = 0;
     bool any = false;                                /* when any tree scores, drop the ones that scored 0 */
     for (int i = 0; i < n; i++) if (sc[i]) any = true;
     if (any) {

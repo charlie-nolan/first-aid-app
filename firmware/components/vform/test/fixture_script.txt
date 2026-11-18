@@ -181,11 +181,23 @@ CASE f041-say
 SAY his leg is broken and the bone's sticking out
 SAY Broken bones
 CASE f042-pick
-SAY she's not breathing
+SAY the seizure stopped she's breathing
 CASE f043-pick
+SAY toe
+CASE f044-pick
+SAY my thigh
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f044-say
+SAY my thigh
+SAY Bites
+SAY snake
+CASE f045-pick
+SAY she's not breathing
+CASE f046-pick
 SAY the dog's bite is on my arm
 PICK @topic	bites	\N
-CASE f043-say
+CASE f046-say
 SAY the dog's bite is on my arm
 SAY Bites
 CASE s000
