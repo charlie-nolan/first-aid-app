@@ -51,6 +51,14 @@ def _heard_topic(hyps: list[str], name: str, tree: dict, smap: dict) -> bool:
 
 
 LOCATION_SLOTS = {"body_part", "side", "location"}
+INJURY_WORDS = {"broke", "broken", "break", "snap", "snapped", "crack", "cracked", "crooked", "bent",
+                "deformed", "twisted", "twist", "rolled", "sprained", "dislocated", "whacked", "hit",
+                "blow", "bump", "bumped", "smashed", "crushed", "fell", "fall", "landed", "stubbed",
+                "jammed", "hurt", "hurts", "pain", "painful", "sore", "swollen", "swelling", "bruised",
+                "cut", "stake", "poked", "stabbed", "impaled", "stuck"}
+# df95add PC check: a place-only rule without these sent 51 real injuries ("i think i broke my
+# leg", "rolled my ankle", "blow to the head") to the start screen; only a bare place ("toe",
+# "my toe", "his leg") should.
 
 
 def _weight(slot, value, life, home) -> int:
@@ -82,7 +90,9 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
     monoxide", smap topic_words) first, then by blanks the sentence fills (life-threat blanks count
     double; naming adds 3 to the share shown)."""
     scored = []
-    heard = named_trees(tokenize(hyps[0]), trees) if hyps else set()
+    words = tokenize(hyps[0]) if hyps else []
+    heard = named_trees(words, trees)
+    hurt = bool(set(words) & INJURY_WORDS)
     for i, (name, (tree, smap)) in enumerate(trees.items()):
         vals = {**fill(hyps[0], slots_of(smap), smap.get("priority")), **fill_nbest(hyps, smap)}
         named = name in heard
@@ -95,7 +105,7 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
             vals = {}                              # CPR ranks only on a life value; its own "cause"
         score = sum(_weight(s, v, life, home) for s, v in vals.items())   # alone (hypothermia, drowning)
         loc = smap.get("location_slots") or LOCATION_SLOTS
-        real = named or any(s not in loc for s in vals)
+        real = named or (score > 0 and (hurt or any(s not in loc for s in vals)))
         own = named or any(s not in loc and s not in UNIVERSAL for s in vals)
         handles = not home and own and _handles_life(c, vals)
         scored.append((named or handles, score + 3 * named + 3 * handles, -i, name, real))

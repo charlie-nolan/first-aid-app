@@ -486,3 +486,17 @@ def test_heat_stroke_names_heat_not_stroke():
              "wfa-stroke": ({"root": "s", "title": "Stroke", "nodes": {"s": {}}}, {"topic_words": ["stroke"]})}
     assert named_trees(tokenize("i think it's heat stroke"), trees) == {"heat"}
     assert named_trees(tokenize("i think she's having a stroke"), trees) == {"wfa-stroke"}
+
+
+def test_place_only_goes_to_start_but_an_injury_word_keeps_the_tree():
+    """df95add PC check: the place-only rule sent "i think i broke my leg" to start; and "it
+    stopped, he's breathing fine" kept three trees that each scored 0."""
+    from vr.live import keep_trees
+    pool = _s007_pool()
+    pool["fractures"] = ({"root": "w", "title": "Fractures", "nodes": {"w": {"label": "Where?"}, "leg": {"label": "Leg"}}},
+                         {"slots": {"body_part": {"leg": ["leg"], "toes": ["toe"]}, "breathing": {"yes": ["breathing fine"]}}})
+    assert keep_trees(["my toe"], pool) == []
+    assert keep_trees(["his leg"], pool) == []
+    assert keep_trees(["i think i broke my leg"], pool)[0].name == "fractures"
+    assert keep_trees(["she rolled her leg on a rock"], pool)[0].name == "fractures"
+    assert keep_trees(["it stopped, he's breathing fine"], pool) == []
