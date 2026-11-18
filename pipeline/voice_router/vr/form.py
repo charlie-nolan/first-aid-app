@@ -184,12 +184,13 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
         hit = [c for c in cands if _named(c, words)]
         if len(hit) == 1:
             cands[:] = hit
-    progressed = True
-    while progressed:
-        progressed = False
+    progressed, states, passes = True, set(), 0     # tiles can loop back to a page already
+    while progressed and passes < 20:               # answered in this call: never re-ask it
+        progressed, passes = False, passes + 1
         for c in cands:
-            if not c.asking:
+            if not c.asking or (c.name, c.card, c.asking) in states:
                 continue
+            states.add((c.name, c.card, c.asking))
             filled, pick, _ = answer_turn(text, c.tree, c.smap, c.card, c.asking, c.filled)
             if not (pick and pick.get("value")):
                 v = snap(text, c)                      # madlibs: a near word snaps to its answer
