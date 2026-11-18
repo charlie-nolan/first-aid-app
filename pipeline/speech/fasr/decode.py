@@ -221,7 +221,8 @@ def search(logp: np.ndarray, trie: Trie, p: Params = Params()) -> list[tuple[tup
 
 
 def nbest(logp: np.ndarray, trie: Trie, p: Params = Params()) -> dict:
-    """voice_hyp_t-shaped result."""
+    """voice_hyp_t-shaped result. Its "reject" is the RAW fit-gap score: live code should call
+    decode() (calibrated reject), which is canonical for the router and the C port."""
     res = search(logp, trie, p)
     if not res:
         return {"n": 0, "h": [], "reject": 100, "gap": 0.0, "junk": 1.0}
@@ -288,3 +289,15 @@ def calibrated_reject(logp: np.ndarray, hyp: dict, calib: dict) -> int:
     z -= math.log(t / (1 - t))
     r = int(round(100 / (1 + math.exp(-max(-50.0, min(50.0, z))))))
     return min(r, 40) if hyp.get("veto") else r
+
+
+def decode(logp: np.ndarray, trie: Trie, p: Params = Params(), calib: dict | None = None) -> dict:
+    """THE entry point for anything live (tether bridge, device reference, C port golden files).
+    Canonical reject = calibrated_reject (runs/<run>/reject_calib.json, from `fasr calibrate`);
+    the fit-gap sigmoid from nbest() is only one of its input features and is kept as reject_raw.
+    Without a calibration file the raw score is the fallback (logged by the caller)."""
+    hyp = nbest(logp, trie, p)
+    hyp["reject_raw"] = hyp["reject"]
+    if calib:
+        hyp["reject"] = calibrated_reject(logp, hyp, calib)
+    return hyp
