@@ -422,7 +422,10 @@ def answer_turn(text: str, tree: dict, smap: dict, card: str, asking: str | None
                     next((c for c in ts if tokenize(c.get("label", ""))[:1] == [yn]), None)   # "No" tile, value not_impaled
         if pick is None:                           # the tile's own words: "the leg one", "arm or leg"
             lab = [(c, set(tokenize(c.get("label", ""))) - _FILLER) for c in ts]
-            hits = [c for c, lw in lab if lw and lw <= set(words)]
+            off = {w for i, w in enumerate(words)        # negated or hedged words name no tile
+                   if any(x in NEGATION for x in _scope(words, i, True))   # ("not on the face")
+                   or any(x in HEDGE for x in _scope(words, i, False))}
+            hits = [c for c, lw in lab if lw and lw <= set(words) and not lw & off]
             pick = hits[0] if len(hits) == 1 else None
     if pick and asking and pick.get("value"):
         filled[asking] = pick["value"]

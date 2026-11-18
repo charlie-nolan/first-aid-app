@@ -381,7 +381,11 @@ def snap(text: str, c: Candidate) -> str | None:
         return None
     card_q = _questions(c.tree, c.smap).get(c.card, {})
     best: dict[str, float] = {}
-    heard = [w for w in tokenize(text) if len(w) >= 4 and w not in _FILLER]
+    from .intake import HEDGE, NEGATION, _scope
+    raw = tokenize(text)                               # same guard as fill(): a negated or hedged word
+    heard = [w for i, w in enumerate(raw) if len(w) >= 4 and w not in _FILLER   # never snaps
+             and not any(x in NEGATION for x in _scope(raw, i, True))           # ("not on the face")
+             and not any(x in HEDGE for x in _scope(raw, i, False))]
     for t in tiles(c.tree, c.smap, c.card):
         v = t.get("value")
         if not v:

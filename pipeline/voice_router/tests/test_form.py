@@ -200,3 +200,10 @@ def test_bare_no_answers_one_field_only():
     first_sentence("my knee", cands)
     assert answer("no", cands) == ("form", None, None)
     assert cands[0].card == "q2" and "splint" not in cands[0].filled
+
+
+def test_negated_word_never_snaps():
+    cands = [Candidate("bites", TREE, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert answer("not on the face", cands) == ("form", None, None)
+    assert answer("maybe the face", cands) == ("form", None, None)
