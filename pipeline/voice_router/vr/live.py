@@ -50,26 +50,38 @@ def _heard_topic(hyps: list[str], name: str, tree: dict, smap: dict) -> bool:
     return bool(hyps) and names_tree(tokenize(hyps[0]), name, tree, smap)
 
 
+def _weight(slot, value, life, home) -> int:
+    """How much one filled blank says about a tree. The shared blanks (awake, breathing) count only
+    for their home tree (CPR), and only with their life value: "breathing fine", "awake, alert" is
+    no evidence for CPR (38b1139 scene check: 18 calm scenes jumped to wfa-cpr)."""
+    if slot in UNIVERSAL:
+        return 2 if home and value in UNIVERSAL[slot] else 0
+    return 2 if slot in life else 1
+
+
 def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candidate]:
     """Keyword stand-in for the router, in two tiers: trees named outright ("choking", "carbon
     monoxide", smap topic_words) first, then by blanks the sentence fills (life-threat blanks count
     double; naming adds 3 to the share shown)."""
     scored = []
     for i, (name, (tree, smap)) in enumerate(trees.items()):
-        filled = set(fill_nbest(hyps, smap)) | set(fill(hyps[0], slots_of(smap), smap.get("priority")))
+        vals = {**fill(hyps[0], slots_of(smap), smap.get("priority")), **fill_nbest(hyps, smap)}
         named = _heard_topic(hyps, name, tree, smap)
-        if not filled and not named:               # a tie ("leg" vs "shin") fills no blank but is
+        if not vals and not named:                 # a tie ("leg" vs "shin") fills no blank but is
             continue                               # still evidence for the tree (board run s001)
         c = Candidate(name, tree, smap)
         life = _life_slots(c)
         home = name in GENERIC_HOME or smap.get("generic_home")
-        score = sum(0 if s in UNIVERSAL and not home else 2 if s in life else 1 for s in filled)
+        score = sum(_weight(s, v, life, home) for s, v in vals.items())
         scored.append((named, score + 3 * named, -i, name))
     if any(sc for _, sc, _, _ in scored):          # "he's not breathing": the shared life blanks
         scored = [x for x in scored if x[1]]       # (awake, breathing) rank only their home tree,
-    scored.sort(reverse=True)                      # CPR, not every tree that has them (1623cdb check)                      # tiered (Charlie 11-18): a tree named outright
-    top = scored[:k]                               # ("carbon monoxide", "choking") always ranks above
-    tot = sum(s for _, s, _, _ in top) or 1        # trees that only share a word ("stove", "dirty")
+    scored.sort(reverse=True)                      # CPR, not every tree that has them (1623cdb check).
+                                                   # Tiered (Charlie 11-18): a tree named outright
+                                                   # ("carbon monoxide", "choking") ranks above trees
+                                                   # that only share a word ("stove", "dirty").
+    top = scored[:k]
+    tot = sum(s for _, s, _, _ in top) or 1
     return [Candidate(n, *trees[n], p=s / tot) for _, s, _, n in top]
 
 

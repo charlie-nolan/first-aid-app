@@ -413,3 +413,19 @@ def test_plain_not_breathing_opens_cpr_not_a_condition_tree():
     assert first_sentence("he's not breathing", cands) == ("open", "wfa-cpr", "cpr")
     cands = keep_trees(["he was choking and now he's not breathing"], pool)
     assert cands[0].name == "wfa-choking"                    # named condition still wins
+
+
+def test_calm_breathing_awake_is_not_cpr_evidence():
+    """38b1139 scene check: "breathing fine and talking normally" put wfa-cpr first in 18 calm scenes.
+    Only the life values (not breathing, won't wake) rank the CPR tree."""
+    from vr.live import keep_trees
+    pool = _s007_pool()
+    pool["wfa-cpr"] = ({"root": "s", "title": "CPR", "nodes": {"s": {"label": "Breathing?"}, "cpr": {"label": "Start CPR"}}},
+                       {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}],
+                        "slots": {"breathing": {"no": ["not breathing"], "yes": ["breathing fine"]},
+                                  "conscious": {"no": ["passed out"], "yes": ["awake"]}}})
+    pool["stings"] = ({"root": "s", "title": "Stings", "nodes": {"s": {"label": "Where?"}, "hand": {"label": "Hand"}}},
+                      {"slots": {"body_part": {"hand": ["hand"]}}})
+    names = [c.name for c in keep_trees(["a bee stung her hand, she's breathing fine and awake"], pool)]
+    assert "wfa-cpr" not in names
+    assert keep_trees(["she passed out and is not breathing"], pool)[0].name == "wfa-cpr"
