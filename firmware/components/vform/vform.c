@@ -526,8 +526,13 @@ static fp_card walk(const fp_sess_t *s, int t, const fp_filled_t *f, int start, 
             const uint8_t *r = rule(s, t, i);
             if (!rule_fires(s, r, f)) continue;
             if (R_GONODE(r) < 0) return FP_EXT(R_GO(r));   /* another tree's card: open it */
-            nd = R_GONODE(r);
-            break;
+            nd = R_GONODE(r);                               /* same tree: stop on the card the rule names */
+            const uint8_t *n = node(s, t, nd);              /* ("bleeding a lot from my leg" shows direct */
+            if (N_QSLOT(n) != FP_NONE) {                    /* pressure first, not the tourniquet) */
+                const uint8_t *q = q_answer(s, t, n, fget(f, N_QSLOT(n)));
+                if (!(q && truthy(s, Q_TO(q)))) *asking = N_QSLOT(n);
+            }
+            return nd;
         }
     }
     uint8_t seen[FP_MAX_NODES / 8] = {0};
