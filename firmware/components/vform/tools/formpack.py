@@ -19,8 +19,9 @@ Layout (little endian; every offset is from the start of the blob; NONE = 0xFFFF
   stroff  nstrings x u32 -> NUL-terminated UTF-8 strings (string ids are indices, all interned)
   trees   ntrees x u32 -> TREE
   TREE    u16 name title root nnodes nslots nrules nimplies nlifewords
-          u32 off_nodes off_slots off_rules off_implies off_lifewords reserved        (40 bytes)
-  NODE    u16 key label qslot nchoices ntiles nqch ncites pad
+          u32 off_nodes off_slots off_rules off_implies off_lifewords off_menu        (40 bytes)
+  MENU    u16 n, n x u16 slot ids (smap menu_slots, default [missing_kit]: kit branches, never asked)
+  NODE    u16 key label qslot nchoices ntiles nqch ncites flags (bit 0: content card, has cite or text)
           u32 off_choices off_tiles off_qch off_cites                                 (32 bytes)
   CHOICE  u16 to label; i16 to_node; u8 has_value kind_next                          (8 bytes)
   TILE    u16 label value to; i16 to_node                                             (8 bytes)
@@ -42,7 +43,7 @@ from pathlib import Path
 import yaml
 
 NONE = 0xFFFF
-VERSION = 1
+VERSION = 2
 
 
 def _s(v) -> str:
@@ -102,10 +103,11 @@ def pack_tree(P: Pack, name: str, tree: dict, smap: dict, vr) -> bytes:
                            for v, t in q.get("choices", {}).items())
         cites = [str(c.get("ref", c)) if isinstance(c, dict) else str(c) for c in (n.get("cite") or [])]
         ct = b"".join(struct.pack("<H", P.sid(c)) for c in cites)
+        content = 1 if (n.get("cite") or n.get("text")) else 0
         recs.append((P.sid(k), P.sid(n["label"]) if "label" in n else NONE, P.sid(q["slot"]) if q else NONE,
-                     len(n.get("choices") or []), len(ts), len(q.get("choices", {})) if q else 0, len(cites),
+                     len(n.get("choices") or []), len(ts), len(q.get("choices", {})) if q else 0, len(cites), content,
                      P.put(ch), P.put(tl), P.put(qch), P.put(ct)))
-    off_nodes = P.put(b"".join(struct.pack("<8H4I", *r[:7], 0, *r[7:]) for r in recs))
+    off_nodes = P.put(b"".join(struct.pack("<8H4I", *r) for r in recs))
 
     slots = smap.get("slots") or {}
     prio = smap.get("priority") or {}
@@ -134,9 +136,12 @@ def pack_tree(P: Pack, name: str, tree: dict, smap: dict, vr) -> bytes:
     lw = list((smap.get("life_words") or {}).items())
     off_lw = P.put(b"".join(struct.pack("<HH", P.sid(w), P.sid(g)) for w, g in lw))
 
+    from vr import intake
+    menu = list(smap.get("menu_slots") or getattr(intake, "MENU_SLOTS", ("missing_kit",)))
+    off_menu = P.put(struct.pack("<H", len(menu)) + b"".join(struct.pack("<H", P.sid(m)) for m in menu), align=2)
     root = idx.get(tree.get("root"), 0)
     return struct.pack("<8H6I", P.sid(name), P.sid(tree.get("title", name)), root, len(keys), len(slots),
-                       len(lt), len(imp), len(lw), off_nodes, off_slots, off_rules, off_imp, off_lw, 0)
+                       len(lt), len(imp), len(lw), off_nodes, off_slots, off_rules, off_imp, off_lw, off_menu)
 
 
 def build(trees: dict[str, tuple[dict, dict]], vr=None) -> bytes:

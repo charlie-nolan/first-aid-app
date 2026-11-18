@@ -69,8 +69,25 @@ BLEEDING = {"root": "start", "title": "Bleeding", "nodes": {
 BLEEDING_SMAP = {"life_threat": {"bleeding": {"severe": "severe"}},
                  "slots": {"bleeding": {"severe": ["gushing", "spurting", "won't stop"], "minor": ["oozing", "scrape"]}}}
 
+FRACTURES = {"root": "start", "title": "Broken bones", "nodes": {
+    "start": {"label": "Where is the break?", "choices": [
+        {"label": "Bone through the skin", "to": "open_q"}]},
+    "arm": {"label": "Arm: sling it", "cite": ["FIX/7.1"], "choices": [
+        {"label": "When to evacuate", "to": "evac"}]},
+    "leg": {"label": "Leg: splint it", "cite": ["FIX/7.2"]},
+    "open_q": {"label": "Is bone showing?"},
+    "open": {"label": "Open fracture", "cite": ["FIX/7.3"]}, "closed": {"label": "Closed fracture"},
+    "nosling": {"label": "No sling: improvise"}, "evac": {"label": "When to evacuate"}}}
+FRACTURES_SMAP = {
+    "slots": {"body_part": {"arm": ["arm", "wrist"], "leg": ["leg", "shin"]},
+              "open_fracture": {"yes": ["bone sticking out", "bone through the skin"], "no": ["no bone showing"]},
+              "missing_kit": {"sling": ["no sling"]}},
+    "questions": {"start": {"slot": "body_part", "choices": {"arm": "arm", "leg": "leg"}},
+                  "open_q": {"slot": "open_fracture", "choices": {"yes": "open", "no": "closed"}},
+                  "arm": {"slot": "missing_kit", "choices": {"sling": "nosling"}}}}
+
 TREES = {"bites": (BITES, BITES_SMAP), "burns": (BURNS, BURNS_SMAP), "cpr": (CPR, CPR_SMAP),
-         "bleeding": (BLEEDING, BLEEDING_SMAP)}
+         "bleeding": (BLEEDING, BLEEDING_SMAP), "fractures": (FRACTURES, FRACTURES_SMAP)}
 
 SENTENCES = [
     "a raccoon bit my thigh", "something bit me", "a dog bit his cheek", "the dog bite is gushing",
@@ -81,6 +98,8 @@ SENTENCES = [
     "it won't stop bleeding", "cat bit my wrist", "burns, a big one", "huge burn", "bleeding but now oozing",
     "isnt breathing", "dog bite no time", "something bit me skip", "number two", "multi", "new",
     "a bat bit her face and she's not breathing", "wasp", "nothing bit me",
+    "broke my arm", "i think he broke his shin, there's bone sticking out", "broken bone", "broke my wrist and no sling",
+    "his leg or his arm is broken",
 ]
 
 # Scripted answers (spoken text, or a tap as (field, value, node)) for paths the automatic

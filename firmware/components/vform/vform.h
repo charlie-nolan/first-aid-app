@@ -46,7 +46,7 @@ typedef struct {
 } fp_pack_t;
 
 typedef struct {
-    const uint8_t *rec, *nodes, *slots, *rules, *implies, *lifew;
+    const uint8_t *rec, *nodes, *slots, *rules, *implies, *lifew, *menu;
     fp_str name, title;
     uint16_t root, nnodes, nslots, nrules, nimplies, nlifew;
 } fp_tree_t;

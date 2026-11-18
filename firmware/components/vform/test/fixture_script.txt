@@ -66,6 +66,10 @@ CASE f017-pick
 SAY it won't stop bleeding
 CASE f018-pick
 SAY cat bit my wrist
+PICK @topic	bites	\N
+CASE f018-say
+SAY cat bit my wrist
+SAY Bites
 CASE f019-pick
 SAY burns, a big one
 PICK where	face	\N
@@ -112,6 +116,32 @@ SAY wasp
 SAY Yes, I can see it
 CASE f030-pick
 SAY nothing bit me
+CASE f031-pick
+SAY broke my arm
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f031-say
+SAY broke my arm
+SAY Bites
+SAY snake
+CASE f032-pick
+SAY i think he broke his shin, there's bone sticking out
+CASE f033-pick
+SAY broken bone
+CASE f034-pick
+SAY broke my wrist and no sling
+PICK @topic	fractures	\N
+CASE f034-say
+SAY broke my wrist and no sling
+SAY Broken bones
+CASE f035-pick
+SAY his leg or his arm is broken
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f035-say
+SAY his leg or his arm is broken
+SAY Bites
+SAY snake
 CASE s000
 SAY a bee stung me
 SAY no

@@ -15,7 +15,7 @@ static inline uint32_t rd32(const uint8_t *p) { return p[0] | p[1] << 8 | p[2] <
 
 bool fp_open(fp_pack_t *pk, const void *blob, size_t len) {
     const uint8_t *b = blob;
-    if (len < 24 || memcmp(b, "FPK1", 4) || rd16(b + 4) != 1 || rd32(b + 20) != len) return false;
+    if (len < 24 || memcmp(b, "FPK1", 4) || rd16(b + 4) != 2 || rd32(b + 20) != len) return false;
     pk->b = b; pk->len = len; pk->ntrees = rd16(b + 6); pk->nstr = rd32(b + 8);
     if (rd32(b + 12) + 4 * pk->nstr > len || rd32(b + 16) + 4u * pk->ntrees > len) return false;
     return true;
@@ -44,6 +44,7 @@ static const uint8_t *node(const fp_sess_t *s, int t, int i) { return s->trees[t
 #define N_NTILES(n) rd16((n) + 8)
 #define N_NQCH(n) rd16((n) + 10)
 #define N_NCITES(n) rd16((n) + 12)
+#define N_CONTENT(n) (rd16((n) + 14) & 1)
 #define N_CH(s, n, i) AT(rd32((n) + 16) + 8 * (i))
 #define N_TILE(s, n, i) AT(rd32((n) + 20) + 8 * (i))
 #define N_QCH(s, n, i) AT(rd32((n) + 24) + 8 * (i))
@@ -289,7 +290,10 @@ static int slot_index(const fp_sess_t *s, int t, fp_str slot) {
 }
 
 /* vr.intake.fill with decisive = decisive_slots(smap) (that is vr.intake._fill). */
-static void fill_toks(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out) {
+static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out, bool tie_any);
+static void fill_toks(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out) { fill_toks_d(s, t, raw, out, false); }
+/* tie_any: vr.intake.fill(decisive=None): every tie takes the priority value */
+static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out, bool tie_any) {
     fp_toks_t words, plain, pw, p;
     stems(raw, true, &words);
     stems(raw, false, &plain);
@@ -359,7 +363,7 @@ static void fill_toks(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled
             }
             if (rank < best_rank) { best_rank = rank; best = cv[i]; }
         }
-        if (ntied > 1 && !life_slot(s, t, SL_NAME(sl), true)) continue;   /* two equally strong answers: ask */
+        if (ntied > 1 && !tie_any && !life_slot(s, t, SL_NAME(sl), true)) continue;   /* two equally strong answers: ask */
         fset(out, SL_NAME(sl), V_NAME(SL_VAL(s, sl, best)));
     }
 }
@@ -449,6 +453,22 @@ static bool leads(const fp_sess_t *s, int t, int start, const fp_filled_t *f) {
     return false;
 }
 
+/* vr.intake._menu_blank: a kit branch (menu_slots) or a content card with fewer than 2 answers for
+ * the blank beside plain menu tiles is shown as a card, never asked as a form field. */
+static bool menu_blank(const fp_sess_t *s, int t, int nd, fp_str slot) {
+    const uint8_t *m = s->trees[t].menu;
+    for (int i = 0; i < rd16(m); i++) if (rd16(m + 2 + 2 * i) == slot) return true;
+    const uint8_t *n = node(s, t, nd);
+    int answers = 0, plain = 0;
+    for (int i = 0; i < N_NTILES(n); i++) {
+        const uint8_t *r = N_TILE(s, n, i);
+        if (truthy(s, T_VALUE(r))) { answers++; continue; }
+        plain++;
+        if (T_NODE(r) >= 0 && N_QSLOT(node(s, t, T_NODE(r))) == slot) answers++;
+    }
+    return answers < 2 && plain > 0 && N_CONTENT(n);
+}
+
 /* vr.intake.walk: follow the tree from its root (start < 0) or from `start`, taking every answer the
  * blanks give. Returns the card to show; *asking = the blank it asks or FP_NONE. */
 static fp_card walk(const fp_sess_t *s, int t, const fp_filled_t *f, int start, fp_str *asking) {
@@ -471,6 +491,20 @@ static fp_card walk(const fp_sess_t *s, int t, const fp_filled_t *f, int start, 
         int target = -1;
         if (N_QSLOT(n) != FP_NONE) {
             const uint8_t *q = q_answer(s, t, n, fget(f, N_QSLOT(n)));
+            if (q && Q_NODE(q) >= 0 && !leads(s, t, Q_NODE(q), f)) {
+                /* "Bone through the skin" beside the body parts, and the first sentence said so:
+                 * the named finding beats a location that leads nowhere further */
+                int side = -1, nside = 0;
+                for (int i = 0; i < N_NCH(n); i++) {
+                    const uint8_t *c = N_CH(s, n, i);
+                    if (C_HASVAL(c) || C_NODE(c) < 0) continue;
+                    const uint8_t *tn = node(s, t, C_NODE(c));
+                    if (N_QSLOT(tn) == FP_NONE || N_QSLOT(tn) == N_QSLOT(n)) continue;
+                    const uint8_t *tq = q_answer(s, t, tn, fget(f, N_QSLOT(tn)));
+                    if (tq && truthy(s, Q_TO(tq))) { side = C_NODE(c); nside++; }
+                }
+                if (nside == 1) { target = side; goto have_target; }
+            }
             if (q && truthy(s, Q_TO(q)) && Q_NODE(q) < 0 && strchr(S(Q_TO(q)), '/'))
                 return FP_EXT(Q_TO(q));                     /* the answer leads to another tree's card */
             if (q && truthy(s, Q_TO(q))) target = Q_NODE(q);
@@ -487,7 +521,11 @@ static fp_card walk(const fp_sess_t *s, int t, const fp_filled_t *f, int start, 
                 }
                 target = nh == 1 ? hit : -1;
             }
-            if (target < 0) { *asking = N_QSLOT(n); return nd; }
+            if (target < 0) {
+                if (menu_blank(s, t, nd, N_QSLOT(n))) return nd;   /* a kit branch or a menu: show the card */
+                *asking = N_QSLOT(n); return nd;
+            }
+        have_target:;
         } else {
             int hit = -1, nh = 0;
             for (int i = 0; i < N_NCH(n); i++) {
@@ -707,7 +745,7 @@ bool fp_sess_init(fp_sess_t *s, const void *blob, size_t len) {
         t->rec = r; t->name = rd16(r); t->title = rd16(r + 2); t->root = rd16(r + 4); t->nnodes = rd16(r + 6);
         t->nslots = rd16(r + 8); t->nrules = rd16(r + 10); t->nimplies = rd16(r + 12); t->nlifew = rd16(r + 14);
         t->nodes = AT(rd32(r + 16)); t->slots = AT(rd32(r + 20)); t->rules = AT(rd32(r + 24));
-        t->implies = AT(rd32(r + 28)); t->lifew = AT(rd32(r + 32));
+        t->implies = AT(rd32(r + 28)); t->lifew = AT(rd32(r + 32)); t->menu = AT(rd32(r + 36));
         if (t->nnodes > FP_MAX_NODES || !t->nnodes) return false;
     }
     s->ws = malloc(sizeof *s->ws);
@@ -745,8 +783,14 @@ bool fp_resolve(const fp_sess_t *s, int t, fp_card card, int *ot, int *on) {
 int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
     int sc[FP_MAX_TREES], idx[FP_MAX_TREES], n = 0;
     for (int t = 0; t < s->ntrees; t++) {
-        fp_filled_t f;
-        fill_nbest(s, t, hyps, nh, &f);
+        fp_filled_t f, tie;                          /* fill_nbest's blanks + every slot whose words were */
+        fill_nbest(s, t, hyps, nh, &f);              /* heard, ties too ("leg" vs "shin"): tree evidence */
+        if (nh > 0) {
+            fp_toks_t raw;
+            fp_tokenize(hyps[0], &raw);
+            fill_toks_d(s, t, &raw, &tie, true);
+            for (int i = 0; i < tie.n; i++) if (!fhas(&f, tie.slot[i])) fset(&f, tie.slot[i], tie.val[i]);
+        }
         if (!f.n) continue;
         int v = 0;
         for (int i = 0; i < f.n; i++) v += life_slot(s, t, f.slot[i], false) ? 2 : 1;
