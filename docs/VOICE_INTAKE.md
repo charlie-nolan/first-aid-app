@@ -117,7 +117,7 @@ running and this chart will be replaced. Real-voice and router-in-the-loop numbe
 | Router picks the top 2-3 trees, then form | **Not yet** | Waiting on the topic-to-tree map |
 | Recognizer audio into the form, sector re-decode | **Not yet** | Recognizer is scored separately (PR #17) |
 | Charlie's real voice through the whole flow | **Not yet** | |
-| New blanks (slots v16/v16b) | **Not yet** | Scoring is queued on the desktop |
+| New blanks (slots v16b2) | Simulated | Same typed-text setup at 7005be8: turn 2 with the form 81% (test2) / 78.5% (test3); [capture](runs/2026-11-17_form-sim-dev-test2-test3_run-7005be8-v16b2_test-2.png) |
 | Firmware form screen, on-board timings | **Not started** | Mockups below are drawings, not the device |
 
 Run captures (terminal output of each training run / simulation) live in [docs/runs](runs/).
