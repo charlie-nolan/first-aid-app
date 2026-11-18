@@ -167,10 +167,15 @@ class Brain:
         text = hyps[0] if hyps else ""
         if self.speech and reject >= self.reject:
             self.scr.heard = text
+            if self.scr.cands:                 # a form is open: keep it on screen, just say so
+                return self.scr.form_screen(f"Didn't catch that. Hold TALK, say it again, or pick.")
             return self.scr.show("again", msg=f"Didn't catch that (reject {reject}). Hold TALK and say it again.")
         if self.scr.cands is None and text.strip().lower() not in ("", "new", "home", "back", "multi"):
             rec["kept"] = [[c.name, round(c.p, 2)] for c in self.live.keep_trees([text], self.trees)]   # for the log
-        return self.scr.said(text)
+        fr = self.scr.said(text)
+        if fr["kind"] == "form" and not fr.get("msg"):   # tell him the blanks can be filled by voice
+            fr["msg"] = "Hold TALK and say the answers, or pick with buttons."
+        return fr
 
     def picked(self, p: dict):
         act = p.get("action")
@@ -185,7 +190,10 @@ class Brain:
                 return self.scr.show("start", msg="Hold TALK and say what happened.")
             return self.scr.result("skip", None, self.form.skip(self.scr.cands))
         if p.get("field"):
-            return self.scr.picked(p)
+            fr = self.scr.picked(p)
+            if fr and fr["kind"] == "form" and not fr.get("msg"):
+                fr["msg"] = "Hold TALK and say the answers, or pick with buttons."
+            return fr
         return None
 
 

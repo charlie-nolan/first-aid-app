@@ -343,7 +343,8 @@ static void draw(void) {
     }
     hline(122 - ls - 1);
     const char *hint = status[0] ? status
-        : S.kind == K_FORM ? "TALK tap pick/hold talk  DOWN next/hold skip  BACK hold new"
+        : S.kind == K_FORM && S.msg[0] ? S.msg                     /* the PC's line: "say the answer..." */
+        : S.kind == K_FORM ? "Hold TALK: say answers. Tap TALK: pick. DOWN: next"
         : S.kind == K_SKIP ? "TALK tap open  DOWN/BACK move  BACK hold new"
         : S.kind == K_CARD ? "Hold TALK: new problem   BACK hold: start"
         : "Hold TALK to talk   BACK hold: start over";
