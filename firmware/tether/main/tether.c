@@ -38,6 +38,9 @@
 #include "freertos/task.h"
 #include "mbedtls/base64.h"
 #include "nvs_flash.h"
+#if CONFIG_TETHER_BOARD_BRAIN
+#include "vform_show.h"
+#endif
 
 #ifdef CONFIG_REC_EPD
 #define HAVE_EPD 1
@@ -192,6 +195,64 @@ static void usb_write(const char *s, size_t n) {
 static void usb_line(const char *s) { usb_write(s, strlen(s)); usb_write("\n", 1); }
 static void send_line(const char *s) { char b[256]; strncpy(b, s, sizeof b - 1); b[sizeof b - 1] = 0; xQueueSend(outq, b, pdMS_TO_TICKS(100)); }
 
+/* ---------- board brain (Kconfig TETHER_BOARD_BRAIN): the form runs here, in C (components/vform) ----------
+ * The PC only turns speech into words ("WORDS {json}"); every screen is built on the board with the
+ * same bytes the PC's vr.form would send, drawn through parse_show(), and echoed as "SHOWN <json>"
+ * so the bridge can log it (and diff it against the Python). Taps never leave the board. */
+#if CONFIG_TETHER_BOARD_BRAIN
+extern const uint8_t fpk_start[] asm("_binary_form_fpk_start");
+extern const uint8_t fpk_end[] asm("_binary_form_fpk_end");
+enum { BR_SAID, BR_PICK, BR_SKIP, BR_OPEN, BR_NEW, BR_AGAIN };
+typedef struct { int op; char a[400], b[96], c[96]; bool b_null; } brain_req_t;
+static QueueHandle_t brainq;
+static char *shown; static volatile bool shown_pending;   /* sent by the USB task (the only writer) */
+static bool brain_ok;
+static void brain_post(int op, const char *a, const char *b, const char *c) {
+    static brain_req_t r;                                  /* posters: main loop and USB task, never both at once */
+    memset(&r, 0, sizeof r); r.op = op;
+    if (a) strncpy(r.a, a, sizeof r.a - 1);
+    if (b) strncpy(r.b, b, sizeof r.b - 1); else r.b_null = true;
+    if (c) strncpy(r.c, c, sizeof r.c - 1);
+    xQueueSend(brainq, &r, pdMS_TO_TICKS(200));
+}
+static bool parse_show(const char *js);
+static void brain_task(void *arg) {
+    static fp_sess_t s; static fp_screen_t sc;
+    char *out = heap_caps_malloc(16384, MALLOC_CAP_SPIRAM);
+    brain_ok = out && fp_sess_init(&s, fpk_start, fpk_end - fpk_start);
+    fp_screen_init(&sc, &s);
+    static brain_req_t r;
+    for (;;) {
+        if (xQueueReceive(brainq, &r, portMAX_DELAY) != pdTRUE || !brain_ok) continue;
+        int64_t t = esp_timer_get_time();
+        switch (r.op) {
+        case BR_SAID: fp_screen_said(&sc, r.a, out, 16384); break;
+        case BR_PICK: fp_screen_picked(&sc, r.a, r.b_null ? NULL : r.b, r.c[0] ? r.c : NULL, out, 16384); break;
+        case BR_SKIP: fp_screen_skip(&sc, out, 16384); break;
+        case BR_OPEN: fp_screen_open(&sc, r.a, out, 16384); break;
+        case BR_NEW: fp_screen_new(&sc, out, 16384); break;
+        default: fp_screen_again(&sc, r.a, atoi(r.b), out, 16384);   /* speech reject */
+        }
+        t = esp_timer_get_time() - t;
+        parse_show(out);
+        while (shown_pending) vTaskDelay(pdMS_TO_TICKS(5));
+        snprintf(shown, 16400, "SHOWN %s", out);
+        char ms[48]; snprintf(ms, sizeof ms, "LOG brain %lld ms", t / 1000);
+        send_line(ms);
+        shown_pending = true;
+    }
+}
+static void brain_words(const char *js) {                  /* WORDS {"hyps": [...], "reject": N} */
+    cJSON *r = cJSON_Parse(js);
+    if (!r) return;
+    const cJSON *h = cJSON_GetArrayItem(cJSON_GetObjectItem(r, "hyps"), 0), *rj = cJSON_GetObjectItem(r, "reject");
+    int reject = cJSON_IsNumber(rj) ? rj->valueint : 0;
+    if (reject >= CONFIG_TETHER_REJECT) { char n[12]; snprintf(n, sizeof n, "%d", reject); brain_post(BR_AGAIN, cJSON_IsString(h) ? h->valuestring : "", n, NULL); }
+    else brain_post(BR_SAID, cJSON_IsString(h) ? h->valuestring : "", "", NULL);
+    cJSON_Delete(r);
+}
+#endif
+
 static void send_take(void) {
     char hdr[256];
     snprintf(hdr, sizeof hdr, "TAKE {\"id\": %lu, \"mode\": \"free\", \"prompt\": -1, \"text\": \"\", \"samples\": %u, "
@@ -229,6 +290,9 @@ static void handle(char *line) {
     else if (!strncmp(line, "ACK ", 4)) { if (strtoul(line + 4, 0, 10) == take_id && take_state == 2) take_state = 0; }
     else if (!strcmp(line, "RESEND")) { if (take_state == 2) take_state = 1; }
     else if (!strncmp(line, "SHOW ", 5)) { if (!parse_show(line + 5)) usb_line("LOG bad SHOW json"); }
+#if CONFIG_TETHER_BOARD_BRAIN
+    else if (!strncmp(line, "WORDS ", 6)) brain_words(line + 6);
+#endif
 }
 static void usb_task(void *arg) {
     static char line[8192]; int n = 0; uint8_t in[256]; char out[256];
@@ -236,6 +300,9 @@ static void usb_task(void *arg) {
         while (xQueueReceive(outq, out, 0) == pdTRUE) usb_line(out);
         if (take_state == 1 && !recording) send_take();
         if (fb_dirty && host_seen) send_fb();
+#if CONFIG_TETHER_BOARD_BRAIN
+        if (shown_pending) { usb_line(shown); shown_pending = false; }
+#endif
         int got = usb_serial_jtag_read_bytes(in, sizeof in, pdMS_TO_TICKS(20));
         for (int i = 0; i < got; i++) {
             char ch = (char)in[i];
@@ -376,13 +443,20 @@ static void pick_choice(void) {
         snprintf(b, sizeof b, "PICK {\"seq\":%d,\"field\":\"%s\",\"value\":null,\"node\":\"%s\",\"label\":\"%s\"}", S.seq, k, n, l);
     } else
         snprintf(b, sizeof b, "PICK {\"seq\":%d,\"field\":\"%s\",\"value\":\"%s\",\"label\":\"%s\"}", S.seq, k, v, l);
-    send_line(b);
+    send_line(b);                                          /* board brain: still logged on the PC */
+#if CONFIG_TETHER_BOARD_BRAIN
+    bool plain = !f->ch[cur_c].value[0] && f->ch[cur_c].node[0];
+    brain_post(BR_PICK, f->key, plain ? NULL : f->ch[cur_c].value, plain ? f->ch[cur_c].node : NULL);
+#endif
 }
 static void pick_action(const char *a, const char *node) {
     char n[96] = "", b[256];
     if (node) json_str(n, sizeof n, node);
     snprintf(b, sizeof b, "PICK {\"seq\":%d,\"action\":\"%s\"%s%s%s}", S.seq, a, node ? ",\"node\":\"" : "", n, node ? "\"" : "");
     send_line(b);
+#if CONFIG_TETHER_BOARD_BRAIN
+    brain_post(!strcmp(a, "skip") ? BR_SKIP : !strcmp(a, "open") ? BR_OPEN : BR_NEW, node, "", NULL);
+#endif
 }
 static void move(int d) {
     if (S.kind == K_FORM && S.nf) {
@@ -419,6 +493,11 @@ void app_main(void) {
     if (HAVE_EPD) { epd_init(); }
     mic_init();
     xTaskCreatePinnedToCore(usb_task, "usb", 8192, 0, 5, 0, 0);
+#if CONFIG_TETHER_BOARD_BRAIN
+    brainq = xQueueCreate(4, sizeof(brain_req_t));
+    shown = heap_caps_malloc(16400, MALLOC_CAP_SPIRAM);
+    xTaskCreatePinnedToCore(brain_task, "brain", 32768, 0, 4, 0, 1);
+#endif
     S.kind = K_START;
     if (HAVE_EPD) { memset(fbits, 0, sizeof fbits); epd_show(fbits, EPD_FULL); }
     draw();

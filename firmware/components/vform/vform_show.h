@@ -18,4 +18,6 @@ int fp_screen_said(fp_screen_t *sc, const char *text, char *out, size_t cap);
 int fp_screen_picked(fp_screen_t *sc, const char *field, const char *value, const char *node, char *out, size_t cap);
 int fp_screen_skip(fp_screen_t *sc, char *out, size_t cap);
 int fp_screen_open(fp_screen_t *sc, const char *node, char *out, size_t cap);
+/* Speech reject: the bridge's "again" frame. */
+int fp_screen_again(fp_screen_t *sc, const char *text, int reject, char *out, size_t cap);
 int fp_screen_new(fp_screen_t *sc, char *out, size_t cap);

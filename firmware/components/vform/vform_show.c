@@ -262,7 +262,7 @@ int fp_screen_open(fp_screen_t *sc, const char *node, char *out, size_t cap) {
 
 int fp_screen_new(fp_screen_t *sc, char *out, size_t cap) {
     jb_t b = {out, cap, 0};
-    sc->open = false; sc->heard[0] = 0; fp_reset(sc->s);
+    sc->open = false; sc->multi = false; sc->heard[0] = 0; fp_reset(sc->s);
     return start(sc, &b, NULL);
 }
 
@@ -270,4 +270,15 @@ int fp_screen_skip(fp_screen_t *sc, char *out, size_t cap) {
     jb_t b = {out, cap, 0};
     if (!sc->open) return start(sc, &b, "Hold TALK and say what happened.");
     return result(sc, &b, (fp_result_t){FP_SKIP, 0, 0});
+}
+
+int fp_screen_again(fp_screen_t *sc, const char *text, int reject, char *out, size_t cap) {
+    jb_t b = {out, cap, 0};
+    char m[96];
+    snprintf(sc->heard, sizeof sc->heard, "%s", text);
+    snprintf(m, sizeof m, "Didn't catch that (reject %d). Hold TALK and say it again.", reject);
+    head(sc, &b, "again");
+    raw(&b, ",\"msg\":"); jstr(&b, m, -1);
+    raw(&b, "}");
+    return (int)b.n;
 }
