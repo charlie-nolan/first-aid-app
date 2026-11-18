@@ -143,3 +143,15 @@ def test_an_answer_always_moves_the_form_on():
     first_sentence("a dog got me", cands)
     assert [f.choices[1]["label"] for f in open_fields(cands)] == ["face"]     # no None labels
     assert pick("where", "leg", cands) == ("open", "bites", "limb")            # "leg" not in the map
+
+
+def test_answer_to_another_trees_card_opens_it():
+    from vr.form import fuzz, pick
+    nodes = {**TREE["nodes"], "mammal": {**TREE["nodes"]["mammal"], "slot": "kit", "choices": [
+        {"label": "No splint", "to": "gear/splint", "value": "splint"}]}}
+    qs = {"start": SMAP["questions"]["start"], "mammal": {"slot": "kit", "choices": {"splint": "gear/splint"}}}
+    tree, smap = {**TREE, "nodes": nodes}, {**SMAP, "questions": qs, "slots": {**SMAP["slots"], "kit": {"splint": ["splint"]}}}
+    cands = [Candidate("bites", tree, smap)]
+    first_sentence("a dog got me", cands)
+    assert pick("kit", "splint", cands) == ("open", "bites", "gear/splint")
+    assert fuzz({"bites": (tree, smap), "x": (TREE, SMAP)}, ["a dog got me", "snake"]) == []

@@ -346,6 +346,8 @@ def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = Non
         if q:
             v = filled.get(q["slot"])
             target = _answer(q, v, implies)
+            if target and target not in nodes and "/" in target:
+                return target, skipped, None       # the answer leads to another tree's card: open it
             if not target or target not in nodes:
                 # value not on this card ("spider" on a snake / sting / "spider, tick or animal" card),
                 # or blank still empty but another blank answered below ("bone through the skin" tile

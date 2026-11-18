@@ -212,8 +212,37 @@ def _step(c: Candidate, tile: dict | None):
     matched tile's own target instead: an answer always moves the form on."""
     was = (c.card, c.asking)
     c.advance(start=c.card)
-    if (c.card, c.asking) == was and tile and tile.get("to") in c.tree["nodes"]:
-        c.advance(start=tile["to"])
+    if (c.card, c.asking) == was and tile and tile.get("to"):
+        if tile["to"] in c.tree["nodes"]:
+            c.advance(start=tile["to"])
+        else:                                       # another tree's card ("improvised_gear/splint")
+            c.card, c.asking = tile["to"], None
+
+
+def fuzz(trees: dict, sentences: list[str], depth: int = 10) -> list[str]:
+    """Tap the first, then the last choice of the top field, up to `depth` taps, for each sentence
+    and every tree that keeps it. Returns the loops found ("tree: sentence -> card asking slot"):
+    a tap that leaves the form exactly as it was. Run on the real trees after any slot change."""
+    bad = []
+    for text in sentences:
+        for end in (0, -1):
+            for name, (tree, smap) in trees.items():
+                cands = [Candidate(name, tree, smap)]
+                kind, _, _ = first_sentence(text, cands)
+                for _ in range(depth):
+                    if kind != "form":
+                        break
+                    fs = open_fields(cands)
+                    if not fs or not fs[0].choices:
+                        break
+                    ch = fs[0].choices[end]
+                    before = (cands[0].card, cands[0].asking, dict(cands[0].filled))
+                    kind, _, _ = pick(fs[0].key, ch.get("value"), cands, to=ch.get("to"))
+                    if kind == "form" and (cands[0].card, cands[0].asking, cands[0].filled) == before:
+                        bad.append(f"{name}: {text!r} -> {cands[0].card} asking {cands[0].asking} "
+                                   f"(tap {ch.get('label')!r})")
+                        break
+    return bad
 
 
 def pick(key: str, value: str | None, cands: list[Candidate], to: str | None = None):
