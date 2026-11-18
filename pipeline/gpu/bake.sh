@@ -41,9 +41,9 @@ if [ -f sources.personal.yaml ]; then
     report plb --personal verbatim --all --out "$R/verbatim-personal-shelf.md"
     report plb --personal voice --out "$R/voice-personal.md"
     [ -n "${CARTCLI:-}" ] && step plb --personal test --reader-cmd "$CARTCLI" --library build/library_personal.bin
-    # Voice router pinned to claude/project-thread-ypggtj 8cafb05 (PR #21: walk stops on in-tree
-    # life cards; 7005be8 answer() hang fix) until PR #21 merges. VR_PIN= (empty) skips the check.
-    VR_PIN="${VR_PIN-8cafb05}"
+    # Voice router pinned to claude/project-thread-ypggtj fe886c4 (PR #21: walk stops on in-tree
+    # life cards; 7005be8 answer() hang fix; fe886c4 life card keeps its blank asked) until PR #21 merges. VR_PIN= (empty) skips the check.
+    VR_PIN="${VR_PIN-fe886c4}"
     if [ -n "${VR_DIR:-}" ] && [ -n "$VR_PIN" ] && \
        [ "$(git -C "$VR_DIR" rev-parse --short=7 HEAD 2>/dev/null)" != "$VR_PIN" ]; then
         echo "!! failed: VR_DIR $VR_DIR is at $(git -C "$VR_DIR" rev-parse --short=7 HEAD 2>/dev/null), bake pins $VR_PIN" | tee -a "$R/bake.log"
