@@ -264,6 +264,31 @@ yet**. What exists is a Python engine with unit tests and one desktop simulation
 sentences. Every number below says which setup and which date it measured. None of them are
 real voices going through the whole new flow.
 
+### Why the intake changed, and what the older results measured
+
+The voice intake has been redesigned twice in two days, each time to improve on the previous
+results. The numbers in this README come from different stages, so they can't be compared
+directly.
+
+1. **Router + page-per-prompt tree walk (up to 2026-11-16).** The first sentence went to the
+   router, which picked **one topic**. The device then opened that topic's tree at its first page
+   and walked it **one page per prompt**: each page asked one question, and the person answered
+   with a tile number, the tile's words, or a button. The tests from this stage measured only the
+   router: did it pick the right topic from one typed sentence (top-1 and top-6). They never
+   measured reaching a card. In this design, "right card by turn 2" wouldn't have been possible.
+   Even with a perfect router, a card three pages deep took the sentence plus three more answers,
+   one prompt per page.
+2. **Slot filling on top of the page walk (2026-11-16 to 11-17).** The first sentence also filled
+   blanks, so the walk skipped every page it had already answered, but it still asked whatever
+   was left **one page per prompt**. This is the "one question per page" column below. "Turn 2"
+   there means the right card was at most one remaining question away after the first sentence.
+3. **One fill-in-the-blanks form (2026-11-17, current design).** To improve on stage 2, Charlie
+   redesigned intake so that every blank still open shows on **one screen** and can be answered in
+   a single reply. The router keeps the top 2-3 trees instead of one. Now "turn 2" means one reply
+   to the form, however many blanks it holds. In the same simulation this raised held-out turn-2
+   accuracy from 63-67% (stage 2) to 76-77%. That is the result the redesign was aiming for, but it
+   is still only a simulation (see below).
+
 ### What has and hasn't been tested (as of 2026-11-18)
 
 | Piece of the new flow | Tested? | How |
@@ -287,12 +312,12 @@ real voices going through the whole new flow.
 ### Slot-filling simulation (new flow, engine only, 2026-11-17)
 
 Setup: `vr.intake --sim` at engine commit b4d9b2c, slot files v15, run on the desktop on
-2026-11-17. Input is **typed** test sentences written by language models (not speech, not
-Charlie's own words). The **right tree is given** (no router), and on turn 2 the simulated person
+2026-11-17. Input is **typed** test sentences written by language models (dev sets by local models, test2 and
+test3 held out; not speech, not Charlie's own words). The **right tree is given** (no router), and on turn 2 the simulated person
 says the **correct answer for every open blank**. So this measures how well the slot engine and
 the trees work together, as a best case. It does not measure the full voice flow.
 
-| Set | Turn 1 (first sentence) | Turn 2, one question per page (old flow, same sim) | Turn 2, fill-in-the-blanks form (new flow) |
+| Set | Turn 1 (first sentence) | Turn 2, one question per page (stage 2) | Turn 2, one form (stage 3, current) |
 |---|---|---|---|
 | dev (666 lines) | 70% | 84% | 90% |
 | dev2 (120) | 57% | 64% | 64% |
@@ -305,6 +330,8 @@ the trees work together, as a best case. It does not measure the full voice flow
 *Chart: same simulation as the table (engine b4d9b2c, 2026-11-17). It is not a measurement of
 the device or of speech.*
 
+- The engine has changed since b4d9b2c (about 10 commits, new trees, slots v16/v16b). A rescore is
+  queued on the desktop, and this table and chart will be replaced when it finishes.
 - In this best case, the held-out sets reach 76-77% by turn 2. The dev sets score higher because
   the engine was tuned on them. The goal is 70-80% by turn 2 and 100% by turn 3 in real use.
   This simulation can't show whether that goal is met yet.
