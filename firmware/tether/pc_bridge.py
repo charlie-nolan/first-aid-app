@@ -232,7 +232,7 @@ def main(argv=None):
     def emit(screen, rec=None):
         if not screen:
             return
-        board.send("SHOW " + json.dumps(screen, separators=(",", ":")))
+        board.send("SHOW " + json.dumps({**screen, "test": scen.i + 1}, separators=(",", ":")))   # test no. on every screen
         rec = rec or {}
         rec.update(t=time.time(), screen=screen)
         log.write(json.dumps(rec) + "\n"); log.flush()
