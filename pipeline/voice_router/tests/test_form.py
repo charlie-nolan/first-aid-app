@@ -399,3 +399,17 @@ def test_body_words_are_not_topic_words():
     from vr.form import topic_words
     assert topic_words("wfa-head-spine", {"title": "Head, neck and back"}, {}) == set()
     assert topic_words("bites", {"title": "Bites and stings"}, {}) == set()
+
+
+def test_plain_not_breathing_opens_cpr_not_a_condition_tree():
+    from vr.live import keep_trees
+    pool = _s007_pool()
+    pool["wfa-choking"][1]["slots"]["breathing"] = {"no": ["not breathing"]}
+    pool["wfa-cpr"] = ({"root": "s", "title": "CPR", "nodes": {"s": {"label": "Breathing?"}, "cpr": {"label": "Start CPR"}}},
+                       {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}],
+                        "slots": {"breathing": {"no": ["not breathing"]}}})
+    cands = keep_trees(["he's not breathing"], pool)
+    assert cands[0].name == "wfa-cpr"
+    assert first_sentence("he's not breathing", cands) == ("open", "wfa-cpr", "cpr")
+    cands = keep_trees(["he was choking and now he's not breathing"], pool)
+    assert cands[0].name == "wfa-choking"                    # named condition still wins

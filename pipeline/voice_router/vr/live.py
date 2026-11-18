@@ -31,7 +31,9 @@ import yaml
 from .data import load_tree
 from .form import (MAX_TREES, names_tree, topic_words, _key, Candidate, answer, first_sentence, open_fields, ranked_cards,
                    split_tabs, _life_slots, _rule_hit)
-from .intake import _stem, fill, fill_nbest, slots_of, tokenize
+from .intake import UNIVERSAL, _stem, fill, fill_nbest, slots_of, tokenize
+
+GENERIC_HOME = {"wfa-cpr"}   # the tree that owns the shared life blanks (smap generic_home: true adds one)
 
 
 def load_all(tree_dirs: list[Path], slots_dir: Path) -> dict[str, tuple[dict, dict]]:
@@ -60,8 +62,12 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
             continue                               # still evidence for the tree (board run s001)
         c = Candidate(name, tree, smap)
         life = _life_slots(c)
-        scored.append((named, sum(2 if s in life else 1 for s in filled) + 3 * named, -i, name))
-    scored.sort(reverse=True)                      # tiered (Charlie 11-18): a tree named outright
+        home = name in GENERIC_HOME or smap.get("generic_home")
+        score = sum(0 if s in UNIVERSAL and not home else 2 if s in life else 1 for s in filled)
+        scored.append((named, score + 3 * named, -i, name))
+    if any(sc for _, sc, _, _ in scored):          # "he's not breathing": the shared life blanks
+        scored = [x for x in scored if x[1]]       # (awake, breathing) rank only their home tree,
+    scored.sort(reverse=True)                      # CPR, not every tree that has them (1623cdb check)                      # tiered (Charlie 11-18): a tree named outright
     top = scored[:k]                               # ("carbon monoxide", "choking") always ranks above
     tot = sum(s for _, s, _, _ in top) or 1        # trees that only share a word ("stove", "dirty")
     return [Candidate(n, *trees[n], p=s / tot) for _, s, _, n in top]
