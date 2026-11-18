@@ -23,7 +23,7 @@ for k in range(3):
 ax.set_xticks(list(x), names)
 ax.set_ylim(0, 100)
 ax.set_ylabel("right card (%)")
-ax.set_title("Right card by voice turn (sim, tree known, engine b4d9b2c, slots v15, 2026-11-17)", fontsize=10)
+ax.set_title("Right card by turn: TYPED-TEXT SIMULATION, right tree given (no router, no speech)\nengine b4d9b2c, slots v15, 2026-11-17. Not yet measured with real voice or on the device.", fontsize=9)
 ax.legend(fontsize=8, loc="upper center", bbox_to_anchor=(0.5, -0.1), ncol=2, frameon=False)
 ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()

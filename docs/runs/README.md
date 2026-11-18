@@ -4,3 +4,10 @@ Charlie (2026-11-17): every training run or simulation gets a terminal-style pic
 working, named `<date>_<what>_run-<run>_test-<n>.png`, with the raw text beside it (`.txt`).
 Made with `python -m vr.capture` (pipeline/voice_router/vr/capture.py). Captures hold scores and
 the engine's own words only, never manual text (personal content stays off GitHub).
+
+## What each capture shows
+
+| Capture | Setup | Measures |
+|---|---|---|
+| `2026-11-17_voice-router-tests_run-1396446_test-1` | Unit tests at 1396446 | Code paths pass on small made-up trees, not accuracy |
+| `2026-11-17_form-sim-fixture-bites_run-1396446_test-2` | Form sim on a small **made-up** bites tree, typed text | Shows the form working; not a score on the real trees |
