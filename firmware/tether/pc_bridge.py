@@ -72,7 +72,7 @@ class Scenarios:
     """The scenario list Charlie acts out (hidden gold stays hidden: only the prompt text is shown).
     Reloaded when the file changes, since it may still be being written. BACK hold on the board
     (new problem) moves to the next one; in the terminal: Enter/n = next, p = previous, a number = jump."""
-    TEXT_KEYS = ("say", "scenario", "text", "situation", "prompt", "story", "description")
+    TEXT_KEYS = ("scene", "say", "scenario", "text", "situation", "prompt", "story", "description")
 
     def __init__(self, path: Path | None):
         self.path, self.items, self.i, self.mtime = path, [], 0, None
