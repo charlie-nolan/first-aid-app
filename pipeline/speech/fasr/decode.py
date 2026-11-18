@@ -17,7 +17,8 @@ import numpy as np
 from .phones import BLANK, SEP, TOK
 
 NEG = -1e30
-MAX_HYPS, MAX_WORDS = 5, 16
+MAX_HYPS, MAX_WORDS = 5, 16   # MAX_WORDS = voice_hyp_t slots per hypothesis (output only)
+SEARCH_WORDS = 64             # words a hypothesis may hold during the search (a 10 s ramble is ~25-30)
 
 
 def lse(a: float, b: float) -> float:
@@ -31,6 +32,8 @@ class Trie:
     child: list[dict] = field(default_factory=lambda: [{}])
     words: list[list[int]] = field(default_factory=lambda: [[]])
     tok: list[int] = field(default_factory=lambda: [SEP])   # token that leads into each node
+    cls: dict = field(default_factory=dict)                  # word id -> class byte (0 = other)
+    name: dict = field(default_factory=dict)                 # word id -> spelling (for FILLER)
 
     def add(self, phones: list[int], wid: int):
         n = 0
@@ -52,6 +55,7 @@ class Trie:
         for r in rows:
             if r["id"] == 0:
                 continue
+            t.cls[r["id"]] = int(r.get("class", 0) or 0); t.name[r["id"]] = r["word"]
             for pr in r.get("phones") or []:
                 t.add([TOK[p] for p in pr.split()], r["id"])
         return t
@@ -123,12 +127,38 @@ def _finish(words: tuple, node: int, trie: Trie, p: Params):
     if node == 0:
         yield words, 0.0
     elif node == GARB:
-        if len(words) < MAX_WORDS:
+        if words and words[-1] == 0:
+            yield words, 0.0                  # <unk> <unk> = one <unk>: garbage runs don't eat slots
+        elif len(words) < SEARCH_WORDS:
             yield words + (0,), 0.0
     else:
-        if len(words) < MAX_WORDS:
+        if len(words) < SEARCH_WORDS:
             for w in trie.words[node]:
                 yield words + (w,), p.word_bonus + p.bias.get(w, 0.0)
+
+
+FILLER = {"the", "a", "an", "and", "is", "it", "it's", "its", "on", "in", "at", "of", "to", "his", "her", "my",
+          "he", "she", "i", "i'm", "we", "they", "them", "him", "was", "were", "are", "be", "all", "so", "like",
+          "um", "uh", "that", "this", "with", "just", "really", "very", "got", "get", "then", "there", "some", "kind"}
+
+
+def fit_words(w: tuple, trie: "Trie", p: "Params") -> list[int]:
+    """Squeeze a hypothesis into voice_hyp_t's MAX_WORDS slots, keeping what decides cards.
+    Drop order (newest first within each step, so the opening of the sentence survives):
+    <unk>; filler words (FILLER); other class-0 words that aren't life/biased words; then the
+    latest words. Long sentences used to yield NO hypothesis at all (reject 100)."""
+    w = list(w)
+    if len(w) <= MAX_WORDS:
+        return w
+    keep = [x for x in w if x != 0] or [0]
+    for droppable in (lambda x: trie.name.get(x) in FILLER,
+                      lambda x: trie.cls.get(x, 0) == 0 and x >= 10 and x not in p.bias):
+        i = len(keep) - 1
+        while len(keep) > MAX_WORDS and i >= 0:
+            if droppable(keep[i]) and keep[i] not in p.bias:
+                del keep[i]
+            i -= 1
+    return keep[:MAX_WORDS]
 
 
 def search(logp: np.ndarray, trie: Trie, p: Params = Params()) -> list[tuple[tuple, float]]:
@@ -181,6 +211,7 @@ def search(logp: np.ndarray, trie: Trie, p: Params = Params()) -> list[tuple[tup
     final: dict[tuple, float] = {}
     for (words, node, last), (pb, pnb) in beams.items():
         for w2, d in _finish(words, node, trie, p):
+            w2 = tuple(fit_words(w2, trie, p))
             final[w2] = lse(final.get(w2, NEG), lse(pb, pnb) + d)
     return sorted(final.items(), key=lambda kv: -kv[1])
 

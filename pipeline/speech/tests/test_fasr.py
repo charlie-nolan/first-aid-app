@@ -65,3 +65,19 @@ def test_features_match():
     a = logmel(x)
     b = logmel_torch(torch.from_numpy(x)[None])[0].numpy()
     assert a.shape == b.shape and np.allclose(a, b, atol=1e-3)
+
+
+def test_long_sentence_still_decodes():
+    """Regression (tether test 2026-11-17): >16 words gave n=0 / reject 100. Now fillers are
+    dropped to fit voice_hyp_t and the keywords survive."""
+    trie = Trie.from_lexicon(ROWS)
+    ids = {r["word"]: r["id"] for r in ROWS}
+    s = [w for w in ("my buddy slipped on the rocks and his ankle is all swollen and he can not put "
+                     "weight on it and it is bleeding a lot").split() if w in ids]
+    assert len(s) > 16
+    r = nbest(_fake(s), trie)
+    assert r["n"] > 0 and r["reject"] < 50
+    top = r["h"][0]["ids"]
+    assert len(top) <= 16
+    for w in ("ankle", "swollen", "bleeding", "not"):
+        assert ids[w] in top
