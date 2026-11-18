@@ -209,10 +209,14 @@ def search(logp: np.ndarray, trie: Trie, p: Params = Params()) -> list[tuple[tup
                             add((w2, ch0, c), NEG, s + d + p.implicit_sep)
         beams = dict(sorted(nxt.items(), key=lambda kv: -lse(*kv[1]))[: p.beam])
     final: dict[tuple, float] = {}
+    full: dict[tuple, tuple] = {}                    # fitted -> best untrimmed hypothesis
     for (words, node, last), (pb, pnb) in beams.items():
         for w2, d in _finish(words, node, trie, p):
-            w2 = tuple(fit_words(w2, trie, p))
-            final[w2] = lse(final.get(w2, NEG), lse(pb, pnb) + d)
+            f2, sc = tuple(fit_words(w2, trie, p)), lse(pb, pnb) + d
+            if f2 not in final or sc > final[f2]:
+                full[f2] = w2
+            final[f2] = lse(final.get(f2, NEG), sc)
+    search.full = full                               # read by nbest (reject features need the untrimmed length)
     return sorted(final.items(), key=lambda kv: -kv[1])
 
 
@@ -235,11 +239,15 @@ def nbest(logp: np.ndarray, trie: Trie, p: Params = Params()) -> dict:
             conf.append(int(round(100 * min(1.0, m))))
         hyps.append({"ids": list(w), "conf": conf, "p": round(float(q), 3)})
     reject = int(round(100 * max(junk, misfit)))
+    full = list(getattr(search, "full", {}).get(res[0][0], res[0][0]))
     veto = False
     if p.bias and any(x in p.bias and c >= p.life_veto_conf for h in hyps for x, c in zip(h["ids"], h["conf"])):
         reject = min(reject, 40); veto = True
     return {"n": len(hyps), "h": hyps, "reject": reject, "veto": veto,
-            "gap": round(gap, 3), "junk": round(float(junk), 3)}
+            "gap": round(gap, 3), "junk": round(float(junk), 3),
+            # top hypothesis before it was trimmed to MAX_WORDS: the calibrated reject was fitted on
+            # untrimmed lengths (words per frame, unk share), so a long clip must not look sparse
+            "full_len": len(full), "full_unk": sum(x == 0 for x in full)}
 
 
 def fit_gap(logp: np.ndarray, constrained: float) -> float:
@@ -257,16 +265,17 @@ def reject_features(logp: np.ndarray, hyp: dict) -> list[float]:
     and the word-list fit gap (nats per speech frame, from nbest)."""
     top = hyp["h"][0] if hyp.get("n") else {"ids": [], "conf": []}
     ids, conf = top["ids"], top["conf"]
+    n_full = hyp.get("full_len", len(ids)); unk_full = hyp.get("full_unk", sum(i == 0 for i in ids))
     nb = logp.copy(); nb[:, BLANK] = NEG
     speech = np.exp(logp[:, BLANK]) < 0.5
     best = nb.max(1)
     return [float(hyp.get("junk", 1.0)),
-            (sum(i == 0 for i in ids) / len(ids)) if ids else 1.0,
+            (unk_full / n_full) if n_full else 1.0,
             (1.0 - sum(conf) / (100.0 * len(conf))) if conf else 1.0,
             0.0 if ids else 1.0,
             float(speech.mean()) if len(speech) else 0.0,
             float(best[speech].mean()) if speech.any() else -10.0,
-            len(ids) / (speech.sum() + 1.0),
+            n_full / (speech.sum() + 1.0),
             float(hyp.get("gap", 0.0))]
 
 
