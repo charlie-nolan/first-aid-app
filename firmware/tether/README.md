@@ -5,7 +5,7 @@ form logic moves to C. The board is the mic, the screen and the buttons; the PC 
 
 1. Hold **TALK** and speak. The clip (16 kHz mono, 500 ms pre-roll) goes over USB.
 2. `pc_bridge.py` decodes it with the speech model (fasr), runs the fill-in-the-blanks form
-   (`pipeline/voice_router/vr/form.py`, b2f8eb3 or later) and sends back one screen as JSON.
+   (`pipeline/voice_router/vr/form.py`, 3d07632 or later) and sends back one screen as JSON.
 3. The board draws the form (each open field with its choices), the SKIP list, or the card
    that opens (title, cites, node id; no card text). Every screen can be answered with buttons.
 
@@ -28,7 +28,7 @@ Mic wiring is the recorder's: PDM CLK on D4, DAT on D5 (take the battery divider
 ## Run the PC side
 
     WORK=/mnt/data/first-aid-gpu ~/miniconda3/envs/firstaid/bin/python firmware/tether/pc_bridge.py \
-        --vr <voice_router folder at b2f8eb3 or later> \
+        --vr <voice_router folder at 3d07632 or later> \
         --trees ~/first-aid-build/pipeline/plb/content/trees ~/first-aid-trees/pipeline/plb/content/trees_personal \
         --slots ~/first-aid-voice/slots --fasr ~/first-aid-speech/pipeline/speech
 
