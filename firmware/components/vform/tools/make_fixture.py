@@ -103,6 +103,7 @@ SENTENCES = [
     "a bat bit her face and she's not breathing", "wasp", "nothing bit me",
     "broke my arm", "i think he broke his shin, there's bone sticking out", "broken bone", "broke my wrist and no sling",
     "his leg or his arm is broken", "hurt his leg, the shin", "broke his leg", "broke his leg and no splint",
+    "his leg, either the shin or the thigh", "it won't stop bleeding from his leg",
 ]
 
 # Scripted answers (spoken text, or a tap as (field, value, node)) for paths the automatic

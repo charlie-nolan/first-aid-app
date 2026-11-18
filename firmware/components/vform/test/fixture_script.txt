@@ -164,6 +164,16 @@ PICK @topic	fractures	\N
 CASE f038-say
 SAY broke his leg and no splint
 SAY Broken bones
+CASE f039-pick
+SAY his leg, either the shin or the thigh
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f039-say
+SAY his leg, either the shin or the thigh
+SAY Bites
+SAY snake
+CASE f040-pick
+SAY it won't stop bleeding from his leg
 CASE s000
 SAY a bee stung me
 SAY no

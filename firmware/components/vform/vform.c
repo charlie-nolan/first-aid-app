@@ -317,6 +317,7 @@ static fp_str implied(const fp_sess_t *s, int t, fp_str slot, fp_str v) {
 static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out, bool tie_any);
 static void fill_toks(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out) { fill_toks_d(s, t, raw, out, false); }
 /* tie_any: vr.intake.fill(decisive=None): every tie takes the priority value */
+static bool tok_has(const fp_toks_t *t, const char *w);
 static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out, bool tie_any) {
     fp_toks_t words, plain, pw, p;
     stems(raw, true, &words);
@@ -376,7 +377,8 @@ static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_fill
             int rank = value_rank(s, sl, cv[i]);
             if (rank < best_rank) { best_rank = rank; best = cv[i]; }
         }
-        if (ntied > 1 && !tie_any) {                 /* "leg ... shin": lower_leg implies leg, so the finer */
+        bool unsure = tok_has(raw, "or") || tok_has(raw, "between") || tok_has(raw, "either");
+        if (ntied > 1 && !tie_any && !unsure) {      /* "leg ... shin": lower_leg implies leg, so the finer */
             fp_str tv[64]; int nt = 0;                 /* answer says both: drop the coarser tied values */
             for (int i = 0; i < nc; i++) if (popc(cm[i]) == top) tv[nt++] = V_NAME(SL_VAL(s, sl, cv[i]));
             bool coarse[64] = {0};
@@ -921,8 +923,18 @@ fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nh, boo
         advance(s, c, -1);
         if (c->card < 0) return res(FP_OPEN, c->tree, c->card);
     }
-    for (int i = 0; i < s->ncands; i++)
-        if (rule_hit(s, &s->cands[i]) >= 0) return res(FP_OPEN, s->cands[i].tree, s->cands[i].card);
+    for (int i = 0; i < s->ncands; i++) {             /* emergency card inside the tree: open the card the */
+        fp_cand_t *c = &s->cands[i];                  /* rule names, not one past it ("won't stop" + leg) */
+        int go = rule_hit(s, c);
+        if (go < 0) continue;
+        int gn = R_GONODE(rule(s, c->tree, go));
+        if (gn >= 0) {
+            fp_str qs = N_QSLOT(node(s, c->tree, gn));
+            c->card = gn;
+            c->asking = qs != FP_NONE && !fhas(&c->filled, qs) ? qs : FP_NONE;
+        }
+        return res(FP_OPEN, c->tree, c->card);
+    }
     fp_tab_t tabs[8];
     if (multi && fp_split_tabs(s, tabs, 8) > 1) return res(FP_TABS, 0, 0);
     if (s->ncands && (s->cands[0].p >= 0.80 || s->ncands == 1)) s->ncands = 1;
