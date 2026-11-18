@@ -29,8 +29,10 @@ Mic wiring is the recorder's: PDM CLK on D4, DAT on D5 (take the battery divider
 
     WORK=/mnt/data/first-aid-gpu ~/miniconda3/envs/firstaid/bin/python firmware/tether/pc_bridge.py \
         --vr <voice_router folder at 98d75eb or later> \
-        --trees ~/first-aid-build/pipeline/plb/content/trees ~/first-aid-trees/pipeline/plb/content/trees_personal \
+        --trees ~/first-aid-trees/pipeline/plb/content/trees_personal ~/first-aid-build/pipeline/plb/content/trees \
         --slots ~/first-aid-voice/slots --fasr ~/first-aid-speech/pipeline/speech
+
+Tree order matters (first hit wins): trees_personal first, as the parity set was built.
 
 Add `--typed` to type sentences instead of speaking. Each run writes to
 `$WORK/speech/tether/<date_time>/`: `clips/` (every take, as training data), `screens/` (a PNG of

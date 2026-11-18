@@ -7,7 +7,7 @@ PNG, so each bench run leaves real screenshots.
 
     WORK=/mnt/data/first-aid-gpu python firmware/tether/pc_bridge.py \\
         --vr  <voice_router root at 98d75eb or later> \\
-        --trees ~/first-aid-build/pipeline/plb/content/trees ~/first-aid-trees/pipeline/plb/content/trees_personal \\
+        --trees ~/first-aid-trees/pipeline/plb/content/trees_personal ~/first-aid-build/pipeline/plb/content/trees \\
         --slots ~/first-aid-voice/slots --fasr ~/first-aid-speech/pipeline/speech \\
         [--port /dev/ttyACM0] [--out $WORK/speech/tether] [--typed]
 
@@ -172,7 +172,8 @@ class Brain:
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="pc_bridge")
     ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 98d75eb or later")
-    ap.add_argument("--trees", type=Path, nargs="+", required=True)
+    ap.add_argument("--trees", type=Path, nargs="+", required=True,
+                    help="tree folders, first hit wins: trees_personal FIRST (as the parity set)")
     ap.add_argument("--slots", type=Path, required=True)
     ap.add_argument("--fasr", type=Path, help="speech package root (holds fasr/)")
     ap.add_argument("--run", default="firstaid")
