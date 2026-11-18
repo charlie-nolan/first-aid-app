@@ -29,7 +29,7 @@ from pathlib import Path
 import yaml
 
 from .data import load_tree
-from .form import (MAX_TREES, Candidate, answer, first_sentence, open_fields, ranked_cards,
+from .form import (MAX_TREES, topic_words, _key, Candidate, answer, first_sentence, open_fields, ranked_cards,
                    split_tabs, _life_slots, _rule_hit)
 from .intake import _stem, fill, fill_nbest, slots_of, tokenize
 
@@ -42,25 +42,6 @@ def load_all(tree_dirs: list[Path], slots_dir: Path) -> dict[str, tuple[dict, di
         if tree and smap.get("slots"):
             out[f.stem] = (tree, smap)
     return out
-
-
-_TOPIC_STOP = {"wfa", "and", "or", "the", "of", "a", "an", "care", "first", "aid", "injury", "injuries",
-               "problem", "problems", "other", "pain", "illness", "emergency", "emergencies", "gear",
-               "improvised", "sick", "bad", "personal", "poison"}   # "carbon monoxide poisoning"
-                                                                       # is not poison ivy (s010)
-
-
-def _key(w: str) -> str:
-    return _stem(w).rstrip("e")                    # choke / choking / choked -> chok
-
-
-def topic_words(name: str, tree: dict, smap: dict) -> set:
-    """Words that name the tree itself ("choking", "burns", "nosebleed"): its name, its title and
-    smap topic_words. Board run s007: "my dad is choking" filled no blank in wfa-choking, so the
-    choking tree was never kept."""
-    raw = name.replace("_", "-").split("-") + tokenize(str(tree.get("title", ""))) + \
-        [w for ph in smap.get("topic_words") or [] for w in tokenize(ph)]
-    return {_key(w) for w in raw if w and w.lower() not in _TOPIC_STOP and len(w) > 2}
 
 
 def _heard_topic(hyps: list[str], name: str, tree: dict, smap: dict) -> bool:

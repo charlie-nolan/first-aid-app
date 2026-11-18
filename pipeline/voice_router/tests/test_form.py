@@ -359,3 +359,13 @@ def test_top_ranked_tree_emergency_beats_a_lower_trees_jump():
     assert first_sentence(line, cands) == ("open", "wfa-choking", "thrust")
     cands = keep_trees(["he was choking and now he's passed out"], pool)
     assert first_sentence("he was choking and now he's passed out", cands) == ("open", "wfa-choking", "out")
+
+
+def test_s010_naming_one_kept_tree_picks_it():
+    pool = _s010_pool()
+    cands = [Candidate("wfa-co", *pool["wfa-co"], p=0.5), Candidate("burns", *pool["burns"], p=0.5)]
+    first_sentence("the tent stove is dirty", cands)
+    assert open_fields(cands)[0].key == "@topic"
+    answer("carbon monoxide poisoning", cands)
+    assert [c.name for c in cands] == ["wfa-co"]
+    assert answer("she won't wake up", cands) == ("open", "wfa-co", "treat_now")

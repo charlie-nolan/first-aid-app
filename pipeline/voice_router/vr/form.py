@@ -415,9 +415,29 @@ def _life_slots(c: Candidate) -> set:
     return set(lt) if isinstance(lt, dict) else {s for r in lt for s in r.get("if", {})}
 
 
+_TOPIC_STOP = {"wfa", "and", "or", "the", "of", "a", "an", "care", "first", "aid", "injury", "injuries",
+               "problem", "problems", "other", "pain", "illness", "emergency", "emergencies", "gear",
+               "improvised", "sick", "bad", "personal", "poison"}   # "carbon monoxide poisoning"
+                                                                       # is not poison ivy (s010)
+
+
+def _key(w: str) -> str:
+    return _stem(w).rstrip("e")                    # choke / choking / choked -> chok
+
+
+def topic_words(name: str, tree: dict, smap: dict) -> set:
+    """Words that name the tree itself ("choking", "burns", "nosebleed"): its name, its title and
+    smap topic_words. Board run s007: "my dad is choking" filled no blank in wfa-choking, so the
+    choking tree was never kept."""
+    raw = name.replace("_", "-").split("-") + tokenize(str(tree.get("title", ""))) + \
+        [w for ph in smap.get("topic_words") or [] for w in tokenize(ph)]
+    return {_key(w) for w in raw if w and w.lower() not in _TOPIC_STOP and len(w) > 2}
+
+
 def _named(c: Candidate, words: set) -> bool:
-    title = set(tokenize(c.tree.get("title", c.name))) - _FILLER
-    return bool(title) and title <= words
+    """The answer names this tree (s010: "carbon monoxide poisoning" on the which-is-it field):
+    any of its topic words, not every title word."""
+    return bool({_key(w) for w in words} & topic_words(c.name, c.tree, c.smap))
 
 
 # ---- scoring: how many spoken turns to the right card with this screen --------------------------
