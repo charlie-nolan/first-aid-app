@@ -163,7 +163,10 @@ def open_fields(cands: list[Candidate]) -> list[Field]:
             if slot in seen:
                 seen[slot].trees.append(c.name)
                 continue
-            f = Field(slot, c.tree["nodes"][card].get("label", slot), tiles(c.tree, c.smap, card), [c.name], when)
+            ts = tiles(c.tree, c.smap, card)
+            if when:                                  # not asked yet: answers only, no menu tiles
+                ts = [t for t in ts if t.get("value")]
+            f = Field(slot, c.tree["nodes"][card].get("label", slot), ts, [c.name], when)
             seen[slot] = f
             rows.append(f)
     top = most_telling(cands)                         # stable: life blanks, then the most telling
@@ -219,6 +222,11 @@ def _step(c: Candidate, tile: dict | None):
             c.card, c.asking = tile["to"], None
 
 
+def node_id(name: str, card: str, tree: dict) -> str:
+    """The board's id for a card: "tree/card"; a card in another tree keeps its own id."""
+    return card if card not in tree["nodes"] and "/" in card else f"{name}/{card}"
+
+
 def fuzz(trees: dict, sentences: list[str], depth: int = 10) -> list[str]:
     """Tap the first, then the last choice of the top field, up to `depth` taps, for each sentence
     and every tree that keeps it. Returns the loops found ("tree: sentence -> card asking slot"):
@@ -251,8 +259,14 @@ def pick(key: str, value: str | None, cands: list[Candidate], to: str | None = N
     `to`, its target card: the tree asking that field goes there. Same returns as answer()."""
     if value is None and to:
         for c in cands:
-            if c.asking == key and to in c.tree["nodes"]:
+            if c.asking != key:
+                continue
+            if to.startswith(c.name + "/"):         # a full node id "tree/card" from the board
+                to = to[len(c.name) + 1:]
+            if to in c.tree["nodes"]:
                 c.advance(start=to)
+            elif "/" in to:                         # a plain tile into another tree ("Start CPR")
+                return "open", c.name, to
     elif key == "@topic":
         cands[:] = [c for c in cands if c.name == value] or cands
     else:

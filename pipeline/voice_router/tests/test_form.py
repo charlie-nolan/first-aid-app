@@ -155,3 +155,27 @@ def test_answer_to_another_trees_card_opens_it():
     first_sentence("a dog got me", cands)
     assert pick("kit", "splint", cands) == ("open", "bites", "gear/splint")
     assert fuzz({"bites": (tree, smap), "x": (TREE, SMAP)}, ["a dog got me", "snake"]) == []
+
+
+def test_plain_tile_into_another_tree_opens_it_and_node_ids():
+    from vr.form import node_id, pick
+    nodes = {**TREE["nodes"], "mammal": {**TREE["nodes"]["mammal"], "choices": [
+        {"label": "Start CPR", "to": "wfa-cpr/cpr"}]}}
+    tree = {**TREE, "nodes": nodes}
+    cands = [Candidate("bites", tree, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert pick("where", None, cands, to="wfa-cpr/cpr") == ("open", "bites", "wfa-cpr/cpr")
+    assert node_id("bites", "wfa-cpr/cpr", tree) == "wfa-cpr/cpr"
+    assert node_id("bites", "face", tree) == "bites/face"
+    cands = [Candidate("bites", tree, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert pick("where", "face", cands) == ("open", "bites", "face")
+
+
+def test_lookahead_fields_show_answers_only():
+    nodes = {**TREE["nodes"], "mammal": {**TREE["nodes"]["mammal"], "choices": [
+        {"label": "When to evacuate", "to": "face"}]}}
+    cands = [Candidate("bites", {**TREE, "nodes": nodes}, SMAP)]
+    first_sentence("something got me", cands)
+    later = [f for f in open_fields(cands) if f.when]
+    assert later and all(c.get("value") for f in later for c in f.choices)
