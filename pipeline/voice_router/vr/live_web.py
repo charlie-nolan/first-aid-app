@@ -34,7 +34,7 @@ from pathlib import Path
 
 from .form import answer, first_sentence, open_fields, ranked_cards, split_tabs
 from .form import _life_cards, Candidate
-from .live import Speech, _title, keep_trees, load_all
+from .live import Speech, _title, keep_trees, load_all, rescue
 
 EXTRACTS = [Path.home() / "first-aid-trees/pipeline/plb/build/extract_personal",
             Path.home() / "first-aid-trees/pipeline/plb/build/extract"]
@@ -197,7 +197,8 @@ class Session:
                     kind, name, card = first_sentence(hyps, self.cands, multi=self.multi)
                     self.multi = False
                 else:
-                    kind, name, card = answer(hyps[0], self.cands)
+                    r = rescue(hyps, self.trees, self.cands)   # life threat / new problem mid-form
+                    kind, name, card = r if r else answer(hyps[0], self.cands)
                 res["screen"] = kind
                 if kind == "open":
                     res["card"] = self._card(name, card); self.cands = None

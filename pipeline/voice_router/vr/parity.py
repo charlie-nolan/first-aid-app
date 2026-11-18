@@ -50,7 +50,7 @@ from pathlib import Path
 import yaml
 
 from . import form as F
-from .live import _title, keep_trees, load_all
+from .live import _title, keep_trees, load_all, rescue
 
 
 class Screen:
@@ -121,7 +121,7 @@ class Screen:
             r = F.first_sentence([text], self.cands, multi=self.multi)
             self.multi = False
         else:
-            r = F.answer(text, self.cands)
+            r = rescue([text], self.trees, self.cands) or F.answer(text, self.cands)
         return self.result(*r)
 
     def picked(self, p: dict):

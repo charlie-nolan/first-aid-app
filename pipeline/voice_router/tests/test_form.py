@@ -241,3 +241,41 @@ def test_repeating_a_heard_answer_on_the_life_card_moves_on():
     cands = [Candidate("bleed", tree, smap)]
     assert first_sentence("bleeding a lot from his leg", cands) == ("open", "bleed", "severe")
     assert answer("it's his leg", cands) == ("open", "bleed", "tq")
+
+
+def _s007_pool():
+    burns = ({"root": "s", "title": "Burns", "nodes": {"s": {"label": "How bad?"}, "a": {}, "b": {}}},
+             {"slots": {"dirty": {"yes": ["dirty"], "no": ["clean"]}},
+              "questions": {"s": {"slot": "dirty", "choices": {"yes": "a", "no": "b"}}}})
+    wounds = ({"root": "s", "title": "Wounds", "nodes": {"s": {"label": "Dirty?"}, "a": {}, "b": {}}},
+              {"slots": {"wound_risk": {"high": ["dirty"], "low": ["clean"]}},
+               "questions": {"s": {"slot": "wound_risk", "choices": {"high": "a", "low": "b"}}}})
+    choking = ({"root": "s", "title": "Choking", "nodes": {"s": {"label": "Can they cough?"},
+                "cough": {"label": "Let them cough"}, "thrust": {"label": "Abdominal thrusts"},
+                "out": {"label": "Unresponsive: start CPR"}}},
+               {"life_threat": [{"if": {"conscious": "no"}, "go": "out"}],
+                "slots": {"can_cough": {"yes": ["coughing"], "no": ["can't breathe", "can't cough"]},
+                          "conscious": {"no": ["unresponsive", "passed out"]}},
+                "questions": {"s": {"slot": "can_cough", "choices": {"yes": "cough", "no": "thrust"}}}})
+    return {"burns": burns, "wounds": wounds, "wfa-choking": choking}
+
+
+def test_s007_named_tree_is_kept_on_a_misheard_sentence():
+    from vr.live import keep_trees
+    kept = keep_trees(["eye think my dad is choking on dirty"], _s007_pool())
+    assert kept[0].name == "wfa-choking"
+
+
+def test_s007_choking_mid_form_switches_trees():
+    from vr.live import keep_trees, rescue
+    pool = _s007_pool()
+    cands = [c for c in keep_trees(["my dad's arm is dirty"], pool) if c.name != "wfa-choking"]
+    first_sentence("my dad's arm is dirty", cands)
+    r = rescue(["choking in can't breathe"], pool, cands)
+    assert r == ("open", "wfa-choking", "thrust")
+    cands = [c for c in keep_trees(["my dad's arm is dirty"], pool) if c.name != "wfa-choking"]
+    first_sentence("my dad's arm is dirty", cands)
+    assert rescue(["he's unresponsive now"], pool, cands) == ("open", "wfa-choking", "out")
+    cands = [c for c in keep_trees(["my dad's arm is dirty"], pool) if c.name != "wfa-choking"]
+    first_sentence("my dad's arm is dirty", cands)
+    assert rescue(["clean"], pool, cands) is None                     # a plain answer stays an answer

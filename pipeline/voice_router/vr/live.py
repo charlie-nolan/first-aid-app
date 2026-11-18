@@ -30,8 +30,8 @@ import yaml
 
 from .data import load_tree
 from .form import (MAX_TREES, Candidate, answer, first_sentence, open_fields, ranked_cards,
-                   split_tabs, _life_slots)
-from .intake import fill, fill_nbest
+                   split_tabs, _life_slots, _rule_hit)
+from .intake import _stem, fill, fill_nbest, tokenize
 
 
 def load_all(tree_dirs: list[Path], slots_dir: Path) -> dict[str, tuple[dict, dict]]:
@@ -44,21 +44,69 @@ def load_all(tree_dirs: list[Path], slots_dir: Path) -> dict[str, tuple[dict, di
     return out
 
 
+_TOPIC_STOP = {"wfa", "and", "or", "the", "of", "a", "an", "care", "first", "aid", "injury", "injuries",
+               "problem", "problems", "other", "pain", "illness", "emergency", "emergencies", "gear",
+               "improvised", "sick", "bad", "personal"}
+
+
+def _key(w: str) -> str:
+    return _stem(w).rstrip("e")                    # choke / choking / choked -> chok
+
+
+def topic_words(name: str, tree: dict, smap: dict) -> set:
+    """Words that name the tree itself ("choking", "burns", "nosebleed"): its name, its title and
+    smap topic_words. Board run s007: "my dad is choking" filled no blank in wfa-choking, so the
+    choking tree was never kept."""
+    raw = name.replace("_", "-").split("-") + tokenize(str(tree.get("title", ""))) + \
+        [w for ph in smap.get("topic_words") or [] for w in tokenize(ph)]
+    return {_key(w) for w in raw if w and w.lower() not in _TOPIC_STOP and len(w) > 2}
+
+
+def _heard_topic(hyps: list[str], name: str, tree: dict, smap: dict) -> bool:
+    heard = {_key(w) for w in tokenize(hyps[0])} if hyps else set()
+    return bool(heard & topic_words(name, tree, smap))
+
+
 def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candidate]:
-    """Keyword stand-in for the router: trees ranked by blanks the sentence fills."""
+    """Keyword stand-in for the router: trees ranked by blanks the sentence fills (life-threat
+    blanks count double) plus 3 when the tree is named outright ("choking")."""
     scored = []
     for i, (name, (tree, smap)) in enumerate(trees.items()):
         filled = set(fill_nbest(hyps, smap)) | set(fill(hyps[0], smap["slots"], smap.get("priority")))
-        if not filled:                             # a tie ("leg" vs "shin") fills no blank but is
-                                                   # still evidence for the tree (board run s001)
-            continue
+        named = _heard_topic(hyps, name, tree, smap)
+        if not filled and not named:               # a tie ("leg" vs "shin") fills no blank but is
+            continue                               # still evidence for the tree (board run s001)
         c = Candidate(name, tree, smap)
         life = _life_slots(c)
-        scored.append((sum(2 if s in life else 1 for s in filled), -i, name))
+        scored.append((sum(2 if s in life else 1 for s in filled) + 3 * named, -i, name))
     scored.sort(reverse=True)
     top = scored[:k]
     tot = sum(s for s, _, _ in top) or 1
     return [Candidate(n, *trees[n], p=s / tot) for s, _, n in top]
+
+
+def rescue(hyps: list[str], trees: dict, cands: list[Candidate]):
+    """Before a later answer is read against the open form: does it bring a life threat or name a
+    problem the kept trees do not cover? (Board run s007: after a misheard first sentence kept burns
+    and wounds, "choking", "can't breathe" were read as burns answers and never reached choking.)
+    A life rule met by these words alone in a tree not kept opens that tree's card; a tree named
+    outright and not kept restarts the form from these words. Returns first_sentence's result
+    (and replaces cands), or None to read the words as an answer."""
+    kept = {c.name for c in cands}
+    for name, (tree, smap) in trees.items():
+        if name in kept:
+            continue
+        c = Candidate(name, tree, smap)
+        c.filled = fill_nbest(hyps, smap)
+        if _rule_hit(c):
+            cands[:] = [Candidate(name, tree, smap)]
+            return first_sentence(hyps, cands)
+    if any(_heard_topic(hyps, n, t, m) for n, (t, m) in trees.items() if n not in kept):
+        new = keep_trees(hyps, trees)
+        if new:
+            cands[:] = new
+            return first_sentence(hyps, cands)
+    return None
 
 
 def _title(trees, name, card):
@@ -187,7 +235,8 @@ def main(argv=None):
             kind, name, card = first_sentence(hyps, cands, multi=multi)
             multi = False
         else:
-            kind, name, card = answer(hyps[0], cands)
+            r = rescue(hyps, trees, cands)          # a life threat / new problem named mid-form
+            kind, name, card = r if r else answer(hyps[0], cands)
         rec["screen"] = kind
         if kind == "open":
             out = show_open(trees, name, card)
