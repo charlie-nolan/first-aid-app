@@ -367,6 +367,13 @@ def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = Non
         if q:
             v = filled.get(q["slot"])
             target = _answer(q, v, implies)
+            if target in nodes and not _leads(tree, qs, target, filled, implies):
+                side = [c.get("to") for c in nodes[node].get("choices", [])   # "Bone through the skin"
+                        if not c.get("value") and c.get("to") in qs        # beside the body parts, and
+                        and qs[c["to"]]["slot"] != q["slot"]               # the first sentence said so:
+                        and _answer(qs[c["to"]], filled.get(qs[c["to"]]["slot"]), implies)]
+                if len(side) == 1:                 # the named finding beats a location that leads
+                    target = side[0]               # nowhere further (board run s002)
             if target and target not in nodes and "/" in target:
                 return target, skipped, None       # the answer leads to another tree's card: open it
             if not target or target not in nodes:

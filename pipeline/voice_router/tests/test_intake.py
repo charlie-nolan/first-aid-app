@@ -337,3 +337,17 @@ def test_kit_branch_and_menu_card_are_not_blanks():
     assert walk(tree, smap, fill("I broke my forearm", smap["slots"])) == ("forearm", ["where"], None)
     assert walk(tree, smap, fill("I hurt my leg", smap["slots"])) == ("leg", ["where"], None)
     assert walk(tree, smap, fill("forearm, we have no sling", smap["slots"]))[0] == "nosling"
+
+
+def test_named_finding_beats_a_location_that_leads_nowhere():
+    tree = {"root": "where", "nodes": {
+        "where": {"label": "Where?", "choices": [{"label": "Bone through the skin", "to": "open_q"}]},
+        "arm": {"label": "Arm", "choices": [{"label": "When to evacuate", "to": "evac"}]},
+        "leg": {"label": "Leg"}, "evac": {"label": "Evac"},
+        "open_q": {"label": "Bleeding?"}, "open": {"label": "Open fracture"}}}
+    smap = {"slots": {"body_part": {"arm": ["arm", "forearm"], "leg": ["leg"]},
+                      "open_fracture": {"yes": ["bone sticking out", "through the skin"]}},
+            "questions": {"where": {"slot": "body_part", "choices": {"arm": "arm", "leg": "leg"}},
+                          "open_q": {"slot": "open_fracture", "choices": {"yes": "open"}}}}
+    assert walk(tree, smap, fill("broke his forearm, bone sticking out", smap["slots"]))[0] == "open"
+    assert walk(tree, smap, fill("broke his forearm", smap["slots"]))[0] == "arm"

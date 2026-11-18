@@ -207,3 +207,16 @@ def test_negated_word_never_snaps():
     first_sentence("a dog got me", cands)
     assert answer("not on the face", cands) == ("form", None, None)
     assert answer("maybe the face", cands) == ("form", None, None)
+
+
+def test_tied_words_still_keep_their_tree():
+    from vr.live import keep_trees
+    frac = ({"root": "where", "nodes": {"where": {"label": "Where?"}, "leg": {}, "shin": {}}},
+            {"slots": {"body_part": {"leg": ["leg"], "lower_leg": ["shin"]}},
+             "questions": {"where": {"slot": "body_part", "choices": {"leg": "leg", "lower_leg": "shin"}}}})
+    bleed = ({"root": "s", "nodes": {"s": {"label": "Bleeding?"}, "a": {}}},
+             {"slots": {"bleeding": {"some": ["sticking"]}},
+              "questions": {"s": {"slot": "bleeding", "choices": {"some": "a"}}}})
+    kept = keep_trees(["my friend fell and broke is leg is bone a sticking at two the shin"],
+                      {"fractures": frac, "wfa-bleeding": bleed})
+    assert "fractures" in [c.name for c in kept]

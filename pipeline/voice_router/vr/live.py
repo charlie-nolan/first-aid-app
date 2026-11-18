@@ -31,7 +31,7 @@ import yaml
 from .data import load_tree
 from .form import (MAX_TREES, Candidate, answer, first_sentence, open_fields, ranked_cards,
                    split_tabs, _life_slots)
-from .intake import fill_nbest
+from .intake import fill, fill_nbest
 
 
 def load_all(tree_dirs: list[Path], slots_dir: Path) -> dict[str, tuple[dict, dict]]:
@@ -48,8 +48,9 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
     """Keyword stand-in for the router: trees ranked by blanks the sentence fills."""
     scored = []
     for i, (name, (tree, smap)) in enumerate(trees.items()):
-        filled = fill_nbest(hyps, smap)
-        if not filled:
+        filled = set(fill_nbest(hyps, smap)) | set(fill(hyps[0], smap["slots"], smap.get("priority")))
+        if not filled:                             # a tie ("leg" vs "shin") fills no blank but is
+                                                   # still evidence for the tree (board run s001)
             continue
         c = Candidate(name, tree, smap)
         life = _life_slots(c)
