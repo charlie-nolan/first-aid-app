@@ -348,8 +348,8 @@ static void draw(void) {
         : S.kind == K_FORM && S.msg[0] ? S.msg                     /* the PC's line: "say the answer..." */
         : S.kind == K_FORM ? "Hold TALK: say answers. Tap TALK: pick. DOWN: next"
         : S.kind == K_SKIP ? "TALK tap open  DOWN/BACK move  BACK hold new"
-        : S.kind == K_CARD ? "Hold TALK: new problem   BACK hold: start"
-        : "Hold TALK to talk   BACK hold: start over";
+        : S.kind == K_CARD ? "Done. Hold BACK 1 sec for the next test"
+        : "Hold TALK to talk   Hold BACK 1 sec: next test";
     line_fit(S_SMALL, 0, 3, 121 - ls / 4, 244, hint);
     push_screen_txt();
     xSemaphoreTake(lock, portMAX_DELAY); memcpy(fb_out, fbits, sizeof fb_out); fb_dirty = true; xSemaphoreGive(lock);
