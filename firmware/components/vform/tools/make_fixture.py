@@ -50,7 +50,7 @@ BURNS = {"root": "start", "title": "Burns", "nodes": {
     "small": {"label": "Small burn"}, "big": {"label": "Big burn: where?", "slot": "where", "choices": [
         {"label": "Face or hands", "to": "face", "value": "face"}, {"label": "Arm or leg", "to": "limb", "value": "limb"}]},
     "face": {"label": "Burn on face or hands"}, "limb": {"label": "Burn on a limb"}, "evac": {"label": "When to evacuate"}}}
-BURNS_SMAP = {"slots": {"size": {"small": ["small", "tiny"], "big": ["big", "large", "huge"]},
+BURNS_SMAP = {"topic_words": ["scald", "scalded"], "slots": {"size": {"small": ["small", "tiny"], "big": ["big", "large", "huge"]},
                         "where": {"limb": ["leg", "arm"], "face": ["face", "hand", "hands"]}}}
 CPR = {"root": "start", "title": "CPR", "nodes": {
     "start": {"label": "Is she breathing?", "slot": "breathing", "choices": [
@@ -58,8 +58,9 @@ CPR = {"root": "start", "title": "CPR", "nodes": {
     "cpr": {"label": "Start CPR", "cite": ["FIX/9.1"], "slot": "cold", "choices": [
         {"label": "Very cold or from water", "to": "cold", "value": "yes"}]},
     "cold": {"label": "CPR when very cold"}, "breathing": {"label": "Recovery position"}}}
-CPR_SMAP = {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}],
+CPR_SMAP = {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}, {"if": {"conscious": "no"}, "go": "start"}],
             "slots": {"breathing": {"no": ["not breathing", "no pulse"], "yes": ["breathing fine", "is breathing"]},
+                      "conscious": {"no": ["out cold"], "yes": ["awake"]},
                       "cold": {"yes": ["freezing", "from the water", "icy"]}}}
 BLEEDING = {"root": "start", "title": "Bleeding", "nodes": {
     "start": {"label": "How bad is the bleeding?", "slot": "bleeding", "choices": [
@@ -126,6 +127,12 @@ SCRIPTS = [
     ("small burn", ["new", "a raccoon bit me", "faec"]),
     ("dog bite", ["not on the face", "leg"]),
     ("something bit me", ["it was a rattler"]),
+    ("small burn on my arm", ["now he's not breathing"]),        # rescue: a life rule in a tree not kept
+    ("a bee stung me", ["actually it's a burn, a big one"]),      # rescue: a tree named outright
+    ("huge burn", ["bleeding"]),
+    ("small burn on my arm", ["and he won't wake up"]),           # universal won't-wake words
+    ("a dog bit him", ["he's unresponsive"]),
+    ("i think it was a bee", ["cpr"]),                            # a non-kept tree named mid-form
 ]
 
 

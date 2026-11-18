@@ -79,6 +79,12 @@ int main(int argc, char **argv) {
         char *p = strchr(line, ' ');
         if (!p) continue;
         *p++ = 0;
+        if (!strcmp(line, "FILL")) {                  /* FILL <tree>\t<text>: debug, the blanks _fill gives */
+            char *tn = field(&p); int t = fp_tree_by_name(&s, tn);
+            fp_filled_t f; if (t >= 0) fp_fill(&s, t, p, &f); else f.n = 0;
+            printf("FILL %s:", tn); for (int i = 0; i < f.n; i++) printf(" %s=%s", fp_s(&s.pk, f.slot[i]), fp_s(&s.pk, f.val[i]));
+            printf("\n"); fflush(stdout); continue;
+        }
         if (!strcmp(line, "HINT")) { static char hint[160]; snprintf(hint, sizeof hint, "%s", p); sc.form_hint = hint; continue; }
         if (!strcmp(line, "CASE")) { fp_reset(&s); fp_screen_init(&sc, &s); printf("CASE %s\n", p); fflush(stdout); continue; }
         struct timespec t0, t1;

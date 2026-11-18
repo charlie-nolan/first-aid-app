@@ -105,6 +105,8 @@ int fp_node_by_key(const fp_sess_t *s, int tree, const char *key);
 int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nhyps, int k);
 /* vr.form.first_sentence. multi = TALK + WIN_R ("several problems"). */
 fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nhyps, bool multi);
+/* vr.live.rescue: call before fp_answer on every later turn; true = it handled the words (*r). */
+bool fp_rescue(fp_sess_t *s, const char *const *hyps, int nhyps, fp_result_t *r);
 /* vr.form.answer: one spoken answer to the screen. FP_SKIP: call fp_ranked_cards(s, 12, ..). */
 fp_result_t fp_answer(fp_sess_t *s, const char *text);
 /* vr.form.pick: a tapped choice. value NULL + to = a plain tile (menu choice) going to card `to`. */

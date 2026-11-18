@@ -230,7 +230,8 @@ int fp_screen_said(fp_screen_t *sc, const char *text, char *out, size_t cap) {
         r = fp_first_sentence(sc->s, h, 1, sc->multi);
         sc->multi = false;
     } else {
-        r = fp_answer(sc->s, text);
+        const char *h[1] = {text};                   /* a life threat / new problem named mid-form */
+        if (!fp_rescue(sc->s, h, 1, &r)) r = fp_answer(sc->s, text);
     }
     return result(sc, &b, r);
 }

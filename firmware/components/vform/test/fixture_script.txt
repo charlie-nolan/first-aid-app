@@ -1,11 +1,11 @@
 CASE f000-pick
 SAY a raccoon bit my thigh
-PICK @topic	bites	\N
-CASE f000-say
-SAY a raccoon bit my thigh
-SAY Bites
 CASE f001-pick
 SAY something bit me
+PICK animal	snake	\N
+CASE f001-say
+SAY something bit me
+SAY snake
 CASE f002-pick
 SAY a dog bit his cheek
 CASE f003-pick
@@ -70,10 +70,6 @@ CASE f017-pick
 SAY it won't stop bleeding
 CASE f018-pick
 SAY cat bit my wrist
-PICK @topic	bites	\N
-CASE f018-say
-SAY cat bit my wrist
-SAY Bites
 CASE f019-pick
 SAY burns, a big one
 PICK where	face	\N
@@ -88,12 +84,10 @@ SAY huge burn
 SAY Face or hands
 CASE f021-pick
 SAY bleeding but now oozing
-PICK @topic	bites	\N
-PICK animal	snake	\N
+PICK @topic	bleeding	\N
 CASE f021-say
 SAY bleeding but now oozing
-SAY Bites
-SAY snake
+SAY Bleeding
 CASE f022-pick
 SAY isnt breathing
 CASE f023-pick
@@ -104,6 +98,10 @@ SAY dog bite no time
 SAY limb
 CASE f024-pick
 SAY something bit me skip
+PICK animal	snake	\N
+CASE f024-say
+SAY something bit me skip
+SAY snake
 CASE f025-pick
 SAY number two
 CASE f026-pick
@@ -120,6 +118,10 @@ SAY wasp
 SAY Yes, I can see it
 CASE f030-pick
 SAY nothing bit me
+PICK animal	snake	\N
+CASE f030-say
+SAY nothing bit me
+SAY snake
 CASE f031-pick
 SAY broke my arm
 PICK @topic	bites	\N
@@ -132,16 +134,22 @@ CASE f032-pick
 SAY i think he broke his shin, there's bone sticking out
 CASE f033-pick
 SAY broken bone
+PICK body_part	\N	fractures/open_q
+PICK open_fracture	yes	\N
+CASE f033-say
+SAY broken bone
+SAY arm
 CASE f034-pick
 SAY broke my wrist and no sling
 CASE f035-pick
 SAY his leg or his arm is broken
-PICK @topic	bites	\N
-PICK animal	snake	\N
+PICK @topic	fractures	\N
+PICK body_part	\N	fractures/open_q
+PICK open_fracture	yes	\N
 CASE f035-say
 SAY his leg or his arm is broken
-SAY Bites
-SAY snake
+SAY Broken bones
+SAY arm
 CASE f036-pick
 SAY hurt his leg, the shin
 PICK @topic	bites	\N
@@ -245,3 +253,21 @@ SAY leg
 CASE s015
 SAY something bit me
 SAY it was a rattler
+CASE s016
+SAY small burn on my arm
+SAY now he's not breathing
+CASE s017
+SAY a bee stung me
+SAY actually it's a burn, a big one
+CASE s018
+SAY huge burn
+SAY bleeding
+CASE s019
+SAY small burn on my arm
+SAY and he won't wake up
+CASE s020
+SAY a dog bit him
+SAY he's unresponsive
+CASE s021
+SAY i think it was a bee
+SAY cpr
