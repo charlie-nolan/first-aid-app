@@ -41,9 +41,9 @@ if [ -f sources.personal.yaml ]; then
     report plb --personal verbatim --all --out "$R/verbatim-personal-shelf.md"
     report plb --personal voice --out "$R/voice-personal.md"
     [ -n "${CARTCLI:-}" ] && step plb --personal test --reader-cmd "$CARTCLI" --library build/library_personal.bin
-    # Voice router pinned to claude/project-thread-ypggtj 31298ea (PR #21: walk stops on in-tree
-    # life cards; f844f7a kept trees read mid-form words first; 5764998 named trees rank first; e310149 emergencies checked per tree in rank order; 1623cdb condition-name topics; 38b1139 plain "not breathing" ranks CPR; fd599af named CO keeps its own rule, heat stroke is not stroke; 47c1afd lower-ranked plain walks open no card; 04df032 trees agreeing on one card open it; bf8354f every kept tree must agree; 31298ea shared CPR rule is not own handling) until PR #21 merges. VR_PIN= (empty) skips the check.
-    VR_PIN="${VR_PIN-31298ea}"
+    # Voice router pinned to claude/project-thread-ypggtj dce3a3a (PR #21: walk stops on in-tree
+    # life cards; f844f7a kept trees read mid-form words first; 5764998 named trees rank first; e310149 emergencies checked per tree in rank order; 1623cdb condition-name topics; 38b1139 plain "not breathing" ranks CPR; fd599af named CO keeps its own rule, heat stroke is not stroke; 47c1afd lower-ranked plain walks open no card; 04df032 trees agreeing on one card open it; bf8354f every kept tree must agree; 31298ea shared CPR rule is not own handling; dce3a3a shared life phrases are not own problem) until PR #21 merges. VR_PIN= (empty) skips the check.
+    VR_PIN="${VR_PIN-dce3a3a}"
     if [ -n "${VR_DIR:-}" ] && [ -n "$VR_PIN" ] && \
        [ "$(git -C "$VR_DIR" rev-parse --short=7 HEAD 2>/dev/null)" != "$VR_PIN" ]; then
         echo "!! failed: VR_DIR $VR_DIR is at $(git -C "$VR_DIR" rev-parse --short=7 HEAD 2>/dev/null), bake pins $VR_PIN" | tee -a "$R/bake.log"
