@@ -56,10 +56,15 @@ _CONTRACT = {"isnt": "isn't", "cant": "can't", "dont": "don't", "didnt": "didn't
 NEGATION = _LEX_NEGATION | {"hasn't", "couldn't", "wouldn't", "shouldn't", "weren't", "ain't", "nobody"}
 
 
+_KEEP_S = {"she's", "he's", "it's", "that's", "there's", "what's", "who's", "let's", "here's", "where's"}
+
+
 def tokenize(text: str) -> list[str]:
     out = []
     for w in _lex_tokenize(text):
         w = _CONTRACT.get(w, w)
+        if w.endswith("'s") and w not in _KEEP_S:   # "the bone's sticking out" -> bone (lexicon has no
+            w = w[:-2]                              # "bone's"); pronoun contractions stay whole
         if w == "to" and out and out[-1] == "going":
             out[-1] = "gonna"                   # "going to pass out" is a hedge, "going numb" is not
             continue

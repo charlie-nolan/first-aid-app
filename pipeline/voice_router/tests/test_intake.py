@@ -376,3 +376,8 @@ def test_walk_stops_on_an_in_tree_life_card():
             "questions": {"severe": {"slot": "body_part", "choices": {"limb": "tq"}}}}
     assert walk(tree, smap, fill("I'm bleeding a lot from my leg", smap["slots"]))[0] == "severe"
     assert walk(tree, smap, {"bleeding_type": "heavy", "body_part": "limb"}, start="severe")[0] == "tq"
+
+
+def test_noun_contraction_matches_the_noun():
+    from vr.intake import tokenize
+    assert tokenize("the bone's sticking out and she's pale") == ["the", "bone", "sticking", "out", "and", "she's", "pale"]
