@@ -1085,21 +1085,16 @@ static bool landing(const fp_sess_t *s, const fp_cand_t *c, char *out, size_t ca
     else snprintf(out, cap, "%s/%s", S(s->trees[c->tree].name), S(N_KEY(node(s, c->tree, c->card))));
     return true;
 }
-/* vr.form._agreed_landing: below SURE a card opens when a top-ranked tree (ties included) lands on it
- * and no kept tree lands anywhere else; a tree's own life card still opens only through its rule. */
+/* vr.form._agreed_landing: below SURE a card opens only when every kept tree lands on that same card
+ * with nothing left to ask; a tree's own life card still opens only through its rule. */
 static bool agreed_landing(fp_sess_t *s, fp_result_t *out) {
     if (s->ncands < 2) return false;
-    long long top = LLONG_MIN;
-    for (int i = 0; i < s->ncands; i++) { long long r = llround(s->cands[i].p * 1e6); if (r > top) top = r; }
-    char land[192] = "", l[192];
-    bool have = false, attop = false;
-    for (int i = 0; i < s->ncands; i++) {
-        if (!landing(s, &s->cands[i], l, sizeof l)) continue;
-        if (have && strcmp(l, land)) return false;      /* two different landings */
-        if (!have) { snprintf(land, sizeof land, "%s", l); have = true; }
-        if (llround(s->cands[i].p * 1e6) == top) attop = true;
+    char land[192] = "", l[192];                     /* EVERY kept tree lands on the same card; a tree */
+    for (int i = 0; i < s->ncands; i++) {            /* still asking blocks it (04df032 opened HACE from */
+        if (!landing(s, &s->cands[i], l, sizeof l)) return false;   /* one low tree) */
+        if (i && strcmp(l, land)) return false;
+        if (!i) snprintf(land, sizeof land, "%s", l);
     }
-    if (!have || !attop) return false;
     const char *sl = strchr(land, '/');
     char tname[96];
     size_t L = (size_t)(sl - land) < sizeof tname - 1 ? (size_t)(sl - land) : sizeof tname - 1;
