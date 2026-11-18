@@ -16,12 +16,6 @@ CASE f005-pick
 SAY she's not breathing she fell in icy water
 CASE f006-pick
 SAY he is breathing fine
-PICK @topic	bites	\N
-PICK animal	snake	\N
-CASE f006-say
-SAY he is breathing fine
-SAY Bites
-SAY snake
 CASE f007-pick
 SAY not spurting just oozing
 CASE f008-pick
@@ -193,11 +187,21 @@ SAY my thigh
 SAY Bites
 SAY snake
 CASE f045-pick
-SAY she's not breathing
+SAY i broke my thigh
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f045-say
+SAY i broke my thigh
+SAY Bites
+SAY snake
 CASE f046-pick
+SAY heat stroke
+CASE f047-pick
+SAY she's not breathing
+CASE f048-pick
 SAY the dog's bite is on my arm
 PICK @topic	bites	\N
-CASE f046-say
+CASE f048-say
 SAY the dog's bite is on my arm
 SAY Bites
 CASE s000
