@@ -105,7 +105,7 @@ SENTENCES = [
     "broke my arm", "i think he broke his shin, there's bone sticking out", "broken bone", "broke my wrist and no sling",
     "his leg or his arm is broken", "hurt his leg, the shin", "broke his leg", "broke his leg and no splint",
     "his leg, either the shin or the thigh", "it won't stop bleeding from his leg",
-    "his leg is broken and the bone's sticking out", "the seizure stopped she's breathing", "toe", "my thigh", "i broke my thigh", "heat stroke", "she's not breathing", "the dog's bite is on my arm",
+    "his leg is broken and the bone's sticking out", "the seizure stopped she's breathing", "toe", "my thigh", "i broke my thigh", "heat stroke", "he won't open his eyes", "she's not breathing", "the dog's bite is on my arm",
 ]
 
 # Scripted answers (spoken text, or a tap as (field, value, node)) for paths the automatic

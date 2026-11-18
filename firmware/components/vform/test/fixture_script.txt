@@ -197,11 +197,13 @@ SAY snake
 CASE f046-pick
 SAY heat stroke
 CASE f047-pick
-SAY she's not breathing
+SAY he won't open his eyes
 CASE f048-pick
+SAY she's not breathing
+CASE f049-pick
 SAY the dog's bite is on my arm
 PICK @topic	bites	\N
-CASE f048-say
+CASE f049-say
 SAY the dog's bite is on my arm
 SAY Bites
 CASE s000

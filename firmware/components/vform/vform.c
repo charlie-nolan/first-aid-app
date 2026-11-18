@@ -301,7 +301,8 @@ static int slot_index(const fp_sess_t *s, int t, fp_str slot) {
  * tree already has ("can't breathe" is not here: in a conscious person it is choking/asthma/allergy) */
 static const char *const UNI_CONSCIOUS_NO[] = {"won't wake", "won't wake up", "will not wake", "can't wake",
     "can't wake him", "can't wake her", "not waking up", "unresponsive", "unconscious", "passed out",
-    "knocked out", "won't respond", 0};
+    "knocked out", "won't respond", "won't open his eyes", "won't open her eyes", "won't open their eyes",
+    "won't answer", "not answering", "not responding", "out cold", 0};
 static const char *const UNI_BREATHING_NO[] = {"not breathing", "stopped breathing", "isn't breathing", "no breathing", 0};
 static const char *const *universal(const char *slot, const char *value) {
     if (!strcmp(value, "no") && !strcmp(slot, "conscious")) return UNI_CONSCIOUS_NO;
@@ -1100,7 +1101,11 @@ fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nh, boo
         }
     for (int oi = 0; oi < s->ncands; oi++) {          /* in rank order, each tree's own emergency first: */
         fp_cand_t *c = &s->cands[ord[oi]];            /* a jump to another tree's card, or the in-tree card */
-        if (c->card < 0) return res(FP_OPEN, c->tree, c->card);   /* the rule names (not one past it) */
+        if (c->card < 0) {                            /* the rule names (not one past it). A lower tree's */
+            int g = rule_hit(s, c);                   /* plain walk to another tree's card does not open */
+            if (oi == 0 || (g >= 0 && R_GO(rule(s, c->tree, g)) == FP_EXT_SID(c->card)))   /* ("heat stroke") */
+                return res(FP_OPEN, c->tree, c->card);
+        }
         int go = rule_hit(s, c);
         if (go < 0) continue;
         int gn = R_GONODE(rule(s, c->tree, go));
