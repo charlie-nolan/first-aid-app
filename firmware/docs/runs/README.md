@@ -12,3 +12,4 @@ only, never card text (the real trees are personal).
 | `2026-11-17_vform-c-parity-fixture_run-727406e_test-5` | Fixture with scripted cases (bare yes/no, life threat said mid-form, "not on the face"): 58/58 identical |
 | `2026-11-17_tether-board-brain-fake-board_run-727406e_test-6` | Bridge `--board-brain` end to end against a fake board running the C engine: 192/198 frames match the Python shadow (the 6 are a test-harness race); C time per frame on the PC |
 | `2026-11-17_vform-c-parity-real-trees_run-04d654f_test-7` | After porting 04d654f (kit branches, implied ties, named finding): real trees 766/766, fixture 73/73, 0 tap loops |
+| `2026-11-17_vform-c-parity-real-trees_run-8cafb05_test-8` | Safety port 8cafb05 (walk stops on an in-tree life card): real trees 766/766, 0 tap loops |
