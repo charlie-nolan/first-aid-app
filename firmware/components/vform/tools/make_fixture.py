@@ -21,7 +21,7 @@ BITES = {"root": "start", "title": "Bites", "nodes": {
     "start": {"label": "What bit you?"},
     "snake": {"label": "Snake bite", "cite": ["FIX/1.1"]},
     "mammal": {"label": "Where is the bite?", "choices": [
-        {"label": "When to evacuate", "to": "evac"}, {"label": "Start CPR", "to": "cpr/cpr"}]},
+        {"label": "When to evacuate", "to": "evac"}, {"label": "Start CPR", "to": "wfa-cpr/cpr"}]},
     "limb": {"label": "Bite on an arm or leg", "cite": ["FIX/1.2", {"ref": "FIX/1.3"}]},
     "face": {"label": "Bite on the face"},
     "evac": {"label": "When to evacuate"},
@@ -30,7 +30,7 @@ BITES = {"root": "start", "title": "Bites", "nodes": {
         {"label": "No", "to": "wash", "value": "no"}]},
     "scrape": {"label": "Scrape the stinger out"}, "wash": {"label": "Wash and cool it"}}}
 BITES_SMAP = {
-    "life_threat": [{"if": {"breathing": "no"}, "go": "cpr/cpr"},
+    "life_threat": [{"if": {"breathing": "no"}, "go": "wfa-cpr/cpr"},
                     {"if": {"bleeding": "severe"}, "go": "bleeding/severe"}],
     "priority": {"animal": ["snake", "sting", "mammal"], "bleeding": ["severe", "minor"]},
     "implies": {"where": {"forearm": "limb", "thigh": "limb"}},
@@ -90,7 +90,7 @@ FRACTURES_SMAP = {
                   "open_q": {"slot": "open_fracture", "choices": {"yes": "open", "no": "closed"}},
                   "arm": {"slot": "missing_kit", "choices": {"sling": "gear/sling"}}}}
 
-TREES = {"bites": (BITES, BITES_SMAP), "burns": (BURNS, BURNS_SMAP), "cpr": (CPR, CPR_SMAP),
+TREES = {"bites": (BITES, BITES_SMAP), "burns": (BURNS, BURNS_SMAP), "wfa-cpr": (CPR, CPR_SMAP),
          "bleeding": (BLEEDING, BLEEDING_SMAP), "fractures": (FRACTURES, FRACTURES_SMAP)}
 
 SENTENCES = [

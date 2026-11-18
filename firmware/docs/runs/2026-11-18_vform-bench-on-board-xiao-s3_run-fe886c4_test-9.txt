@@ -1,0 +1,6 @@
+# vform_bench on the plain XIAO S3 (240 MHz, ESP-IDF 5.3.2), form engine at fe886c4, real trees (labels not shown)
+VFORM-BENCH 1 32 trees 141537 bytes, init 293 us, free internal 342939 psram 8106312
+TIMING 1493 frames, avg 584889 us, max 1244180 us (SAY make a splint out of sticks), rank overflow 0, stack left 14132 bytes
+$ python tools/parity_check.py --frames <board serial log> --parity parity_fe886c4 (local copy of the official set)
+766 cases, 1493 frames: 766 cases identical, 0 differ (0 frames)
+wall time between frames on the serial log: median 1.0 s, p90 1.5 s (includes USB printing)

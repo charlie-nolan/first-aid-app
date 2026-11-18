@@ -21,7 +21,9 @@ Layout (little endian; every offset is from the start of the blob; NONE = 0xFFFF
   TREE    u16 name title root nnodes nslots nrules nimplies nlifewords
           u32 off_nodes off_slots off_rules off_implies off_lifewords off_menu        (40 bytes)
   MENU    u16 n, n x u16 slot ids (smap menu_slots, default [missing_kit]: kit branches, never asked),
-          then u16 m, m x u16 phrase ids (smap topic_words: words that name the tree, vr.live.topic_words)
+          then u16 m, m x u16 phrase ids (condition names for the tree, vr.form.topic_phrases' raw
+          phrases: smap topic_words + vr.form._DEFAULT_TOPICS[name] + the name when it is a condition),
+          then u16 flags (bit 0: generic home of the shared life blanks, vr.live.GENERIC_HOME / smap generic_home)
   NODE    u16 key label qslot nchoices ntiles nqch ncites flags (bit 0: content card, has cite or text)
           u32 off_choices off_tiles off_qch off_cites                                 (32 bytes)
   CHOICE  u16 to label; i16 to_node; u8 has_value kind_next                          (8 bytes)
@@ -44,7 +46,7 @@ from pathlib import Path
 import yaml
 
 NONE = 0xFFFF
-VERSION = 3
+VERSION = 5
 
 
 def _s(v) -> str:
@@ -139,9 +141,14 @@ def pack_tree(P: Pack, name: str, tree: dict, smap: dict, vr) -> bytes:
 
     from vr import intake
     menu = list(smap.get("menu_slots") or getattr(intake, "MENU_SLOTS", ("missing_kit",)))
-    topic = [str(ph) for ph in (smap.get("topic_words") or [])]
+    from vr import form as F, live as vr_live
+    base = name.split("wfa-")[-1]
+    topic = [str(ph) for ph in (smap.get("topic_words") or [])] + list(getattr(F, "_DEFAULT_TOPICS", {}).get(name, [])) + \
+        ([base] if base in getattr(F, "_NAME_IS_TOPIC", set()) else [])
     off_menu = P.put(struct.pack("<H", len(menu)) + b"".join(struct.pack("<H", P.sid(m)) for m in menu)
-                     + struct.pack("<H", len(topic)) + b"".join(struct.pack("<H", P.sid(t)) for t in topic), align=2)
+                     + struct.pack("<H", len(topic)) + b"".join(struct.pack("<H", P.sid(t)) for t in topic)
+                     + struct.pack("<H", 1 if (name in getattr(vr_live, "GENERIC_HOME", set()) or smap.get("generic_home")) else 0),
+                     align=2)
     root = idx.get(tree.get("root"), 0)
     return struct.pack("<8H6I", P.sid(name), P.sid(tree.get("title", name)), root, len(keys), len(slots),
                        len(lt), len(imp), len(lw), off_nodes, off_slots, off_rules, off_imp, off_lw, off_menu)

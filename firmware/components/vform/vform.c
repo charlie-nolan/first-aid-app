@@ -15,7 +15,7 @@ static inline uint32_t rd32(const uint8_t *p) { return p[0] | p[1] << 8 | p[2] <
 
 bool fp_open(fp_pack_t *pk, const void *blob, size_t len) {
     const uint8_t *b = blob;
-    if (len < 24 || memcmp(b, "FPK1", 4) || rd16(b + 4) != 3 || rd32(b + 20) != len) return false;
+    if (len < 24 || memcmp(b, "FPK1", 4) || rd16(b + 4) != 5 || rd32(b + 20) != len) return false;
     pk->b = b; pk->len = len; pk->ntrees = rd16(b + 6); pk->nstr = rd32(b + 8);
     if (rd32(b + 12) + 4 * pk->nstr > len || rd32(b + 16) + 4u * pk->ntrees > len) return false;
     return true;
@@ -856,43 +856,29 @@ bool fp_resolve(const fp_sess_t *s, int t, fp_card card, int *ot, int *on) {
     return true;
 }
 
-/* vr.live._key / topic_words / _heard_topic: words that name a tree outright ("choking") */
-static const char *const TOPIC_STOP[] = {"wfa", "and", "or", "the", "of", "a", "an", "care", "first", "aid", "injury",
-    "injuries", "problem", "problems", "other", "pain", "illness", "emergency", "emergencies", "gear", "improvised",
-    "sick", "bad", "personal", "poison", 0};   /* "carbon monoxide poisoning" is not poison ivy (s010) */
-static void topic_key(const char *w, char *out) {         /* _stem(w).rstrip("e"): choke/choking/choked -> chok */
+/* vr.form._key / topic_phrases / names_tree: condition names that name a tree outright ("choking",
+ * "carbon monoxide"); phrases from the pack (smap topic_words + the Python's defaults + the name). */
+static void topic_key(const char *w, char *out) {         /* choke/choking/choked -> chok; be != bee */
     fp_stem(w, true, out);
     size_t L = strlen(out);
-    while (L && out[L - 1] == 'e') out[--L] = 0;
-}
-static bool topic_ok(const char *w) {                      /* w.lower() not in stop and len(w) > 2 */
-    char lw[FP_WLEN]; size_t L = strlen(w);
-    if (L <= 2) return false;
-    for (size_t i = 0; i <= L && i < FP_WLEN; i++) lw[i] = (char)(w[i] >= 'A' && w[i] <= 'Z' ? w[i] + 32 : w[i]);
-    lw[FP_WLEN - 1] = 0;
-    return !in(lw, TOPIC_STOP);
+    if (L >= 5 && out[L - 1] == 'e') out[L - 1] = 0;
 }
 static bool heard_topic(const fp_sess_t *s, int t, const fp_toks_t *heard) {
-    char hk[FP_MAX_TOK][FP_WLEN], k[FP_WLEN];
+    char hk[FP_MAX_TOK][FP_WLEN], pk[FP_MAX_TOK][FP_WLEN];
     for (int i = 0; i < heard->n; i++) topic_key(heard->w[i], hk[i]);
-#define HIT(w) do { if (topic_ok(w)) { topic_key(w, k); for (int q = 0; q < heard->n; q++) if (!strcmp(hk[q], k)) return true; } } while (0)
-    char part[FP_WLEN]; const char *nm = S(s->trees[t].name);  /* name split on - and _ (not tokenized) */
-    for (const char *p = nm;;) {
-        size_t L = strcspn(p, "-_");
-        if (L && L < FP_WLEN) { memcpy(part, p, L); part[L] = 0; HIT(part); }
-        if (!p[L]) break;
-        p += L + 1;
-    }
-    fp_toks_t w;
-    fp_tokenize(S(s->trees[t].title), &w);
-    for (int i = 0; i < w.n; i++) HIT(w.w[i]);
     const uint8_t *m = s->trees[t].menu;
     const uint8_t *tp = m + 2 + 2 * rd16(m);
-    for (int i = 0; i < rd16(tp); i++) {
+    fp_toks_t w;
+    for (int i = 0; i < rd16(tp); i++) {             /* every word of one phrase, in order, no gap */
         fp_tokenize(S(rd16(tp + 2 + 2 * i)), &w);
-        for (int j = 0; j < w.n; j++) HIT(w.w[j]);
+        if (!w.n) continue;
+        for (int j = 0; j < w.n; j++) topic_key(w.w[j], pk[j]);
+        for (int st = 0; st + w.n <= heard->n; st++) {
+            int k = 0;
+            while (k < w.n && !strcmp(hk[st + k], pk[k])) k++;
+            if (k == w.n) return true;
+        }
     }
-#undef HIT
     return false;
 }
 
@@ -913,8 +899,21 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
         bool named = nh > 0 && heard_topic(s, t, &h0);
         if (!f.n && !named) continue;
         int v = named ? 3 : 0;                       /* +3 when the tree is named outright ("choking") */
-        for (int i = 0; i < f.n; i++) v += life_slot(s, t, f.slot[i], false) ? 2 : 1;
+        const uint8_t *m = s->trees[t].menu, *tp = m + 2 + 2 * rd16(m);
+        bool home = rd16(tp + 2 + 2 * rd16(tp)) & 1; /* the shared life blanks (awake, breathing) score */
+        for (int i = 0; i < f.n; i++) {               /* only in their home tree, CPR ("he's not breathing") */
+            const char *sn = S(f.slot[i]);
+            bool uni = !strcmp(sn, "conscious") || !strcmp(sn, "breathing");
+            v += uni && !home ? 0 : life_slot(s, t, f.slot[i], false) ? 2 : 1;
+        }
         sc[n] = v; idx[n] = t; nm[n] = named; n++;
+    }
+    bool any = false;                                /* when any tree scores, drop the ones that scored 0 */
+    for (int i = 0; i < n; i++) if (sc[i]) any = true;
+    if (any) {
+        int k2 = 0;
+        for (int i = 0; i < n; i++) if (sc[i]) { sc[k2] = sc[i]; idx[k2] = idx[i]; nm[k2] = nm[i]; k2++; }
+        n = k2;
     }
     for (int i = 1; i < n; i++)                      /* two tiers: named trees first, then score desc, */
         for (int j = i; j > 0 && (nm[j] > nm[j - 1] || (nm[j] == nm[j - 1] && sc[j] > sc[j - 1])); j--) {
@@ -997,8 +996,18 @@ fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nh, boo
         strncpy(c->heard, nh ? hyps[0] : "", FP_HEARD - 1); c->heard[FP_HEARD - 1] = 0;
         advance(s, c, -1);
     }
-    for (int i = 0; i < s->ncands; i++) {             /* in rank order, each tree's own emergency first: */
-        fp_cand_t *c = &s->cands[i];                  /* a jump to another tree's card, or the in-tree card */
+    int ord[FP_MAX_CANDS];                            /* rank order; a tie on p: a tree's own rule first */
+    long long pr[FP_MAX_CANDS]; bool own[FP_MAX_CANDS];
+    for (int i = 0; i < s->ncands; i++) { ord[i] = i; pr[i] = llround(s->cands[i].p * 1e6); own[i] = rule_hit(s, &s->cands[i]) >= 0; }
+    for (int i = 1; i < s->ncands; i++)
+        for (int j = i; j > 0; j--) {
+            int a = ord[j - 1], b = ord[j];
+            bool swap = pr[b] > pr[a] || (pr[b] == pr[a] && own[b] && !own[a]);
+            if (!swap) break;
+            ord[j - 1] = b; ord[j] = a;
+        }
+    for (int oi = 0; oi < s->ncands; oi++) {          /* in rank order, each tree's own emergency first: */
+        fp_cand_t *c = &s->cands[ord[oi]];            /* a jump to another tree's card, or the in-tree card */
         if (c->card < 0) return res(FP_OPEN, c->tree, c->card);   /* the rule names (not one past it) */
         int go = rule_hit(s, c);
         if (go < 0) continue;
@@ -1241,11 +1250,19 @@ int fp_open_fields(fp_sess_t *s, fp_field_t *out, int max) {
     return n;
 }
 
-/* vr.form._named: the answer names this tree (any of its topic words, as keep_trees; s010:
- * "carbon monoxide poisoning" on the which-is-it field) */
+/* vr.form._named: the answer names this tree on the which-is-it field: its tile label (every title
+ * word) or one of its condition names (s010: "carbon monoxide poisoning" for "Carbon monoxide") */
 static bool heard_topic(const fp_sess_t *s, int t, const fp_toks_t *heard);
 static bool named(const fp_sess_t *s, const fp_cand_t *c, const fp_toks_t *words) {
-    return heard_topic(s, c->tree, words);
+    fp_toks_t t;
+    fp_tokenize(S(s->trees[c->tree].title), &t);
+    int k = 0; bool all = true;
+    for (int i = 0; i < t.n; i++) {
+        if (in(t.w[i], FILLER)) continue;
+        k++;
+        if (!tok_has(words, t.w[i])) all = false;
+    }
+    return (k > 0 && all) || heard_topic(s, c->tree, words);
 }
 
 /* vr.form._step: an answer always moves the form on */
@@ -1375,21 +1392,21 @@ bool fp_rescue(fp_sess_t *s, const char *const *hyps, int nh, fp_result_t *r) {
     bool kept[FP_MAX_TREES] = {0};
     fp_toks_t h0;
     fp_tokenize(nh > 0 ? hyps[0] : "", &h0);
-    for (int i = 0; i < s->ncands; i++) {            /* 1. a kept tree meets a life rule or is named: answer */
-        fp_cand_t probe = s->cands[i];
-        fp_filled_t f;
-        kept[probe.tree] = true;
-        fill_nbest(s, probe.tree, hyps, nh, &f);
-        for (int k = 0; k < f.n; k++) fset(&probe.filled, f.slot[k], f.val[k]);
-        if (rule_hit(s, &probe) >= 0 || (nh > 0 && heard_topic(s, probe.tree, &h0))) return false;
-    }
-    bool named = false;                              /* 2. a tree not kept is named: restart from these words */
-    for (int t = 0; t < s->ntrees && !named && nh > 0; t++) if (!kept[t] && heard_topic(s, t, &h0)) named = true;
-    if (named) {
-        fp_cand_t save[FP_MAX_CANDS]; int ns = s->ncands;
+    for (int i = 0; i < s->ncands; i++) kept[s->cands[i].tree] = true;
+    bool named_out = false;                          /* 1. a tree not kept is named: restart from these words */
+    for (int t = 0; t < s->ntrees && !named_out && nh > 0; t++) if (!kept[t] && heard_topic(s, t, &h0)) named_out = true;
+    if (named_out) {                                 /* (s009: "choking unresponsive" opens choking, not the */
+        fp_cand_t save[FP_MAX_CANDS]; int ns = s->ncands;   /* kept head-spine tree's generic cpr/start) */
         memcpy(save, s->cands, sizeof save);
         if (fp_keep_trees(s, hyps, nh, 3)) { *r = fp_first_sentence(s, hyps, nh, false); return true; }
         memcpy(s->cands, save, sizeof save); s->ncands = ns;
+    }
+    for (int i = 0; i < s->ncands; i++) {            /* 2. a kept tree meets a life rule or is named: answer */
+        fp_cand_t probe = s->cands[i];
+        fp_filled_t f;
+        fill_nbest(s, probe.tree, hyps, nh, &f);
+        for (int k = 0; k < f.n; k++) fset(&probe.filled, f.slot[k], f.val[k]);
+        if (rule_hit(s, &probe) >= 0 || (nh > 0 && heard_topic(s, probe.tree, &h0))) return false;
     }
     for (int i = 0; i < s->ncands; i++) {            /* 3. a kept tree fills any blank: answer */
         fp_filled_t f;
