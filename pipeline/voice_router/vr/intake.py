@@ -257,7 +257,8 @@ UNIVERSAL = {"conscious": {"no": ["won't wake", "won't wake up", "will not wake"
                                   "doesn't open his eyes", "doesn't open her eyes", "doesn't open their eyes",
                                   "doesn't respond", "isn't responding", "doesn't answer"]},
              "breathing": {"no": ["not breathing", "stopped breathing", "isn't breathing",
-                                  "no breathing"]}}
+                                  "no breathing", "chest isn't rising", "chest not rising",
+                                  "chest is not rising"]}}
 
 
 def slots_of(smap: dict) -> dict:

@@ -389,3 +389,9 @@ def test_wont_open_eyes_or_answer_is_unresponsive():
     smap = {"slots": {"conscious": {"no": ["unresponsive"]}}}
     assert fill("he won't open his eyes or answer me but his chest is going up and down",
                 slots_of(smap))["conscious"] == "no"
+
+
+def test_chest_not_rising_is_not_breathing():
+    from vr.intake import fill, slots_of
+    smap = {"slots": {"breathing": {"no": ["x"], "yes": ["breathing"]}}}
+    assert fill("the jogger's chest isn't rising", slots_of(smap))["breathing"] == "no"
