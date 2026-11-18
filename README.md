@@ -258,6 +258,9 @@ bleeding tree). Not the voice form.*
 
 ## Status and metrics
 
+*Hardware: all bench work so far is on a plain XIAO ESP32-S3 because the Plus delivery is delayed
+([details](#hardware)).*
+
 **Read this first:** the new voice flow (sector re-decode, router keeping 2-3 trees, slot filling,
 one form screen, tabs, SKIP) has **not been tested end to end, and none of it runs on the device
 yet**. What exists is a Python engine with unit tests and one desktop simulation on typed
@@ -365,9 +368,14 @@ trees.
 
 ## Hardware
 
+> **Why the bench uses a plain XIAO ESP32-S3:** the target board is the XIAO ESP32-S3 Plus, but
+> its delivery has been held up. Until it arrives, everything is prototyped on a plain XIAO S3,
+> which has the same chip and 8 MB PSRAM but less flash. Bench results and wiring notes refer to
+> that stand-in board, and the Plus build and timings follow once it lands.
+
 | Part | Choice |
 |---|---|
-| Brain | Seeed XIAO ESP32-S3 Plus (16 MB flash, 8 MB PSRAM); plain XIAO S3 on the bench |
+| Brain | Seeed XIAO ESP32-S3 Plus (16 MB flash, 8 MB PSRAM); a plain XIAO S3 stands in on the bench until the delayed Plus arrives |
 | Screen | Waveshare 2.13" B/W e-ink, 250×122, edge-lit by warm-white LEDs |
 | Mic | Adafruit PDM microphone, powered from a GPIO |
 | Buttons | 6 sealed buttons, each on its own RTC GPIO (window left/right, up/down, TALK, BACK) |
