@@ -1105,6 +1105,10 @@ fp_result_t fp_answer(fp_sess_t *s, const char *text) {
         for (int i = 0; i < s->ncands; i++) if (named(s, &s->cands[i], &words)) { hit = i; nh++; }
         if (nh == 1) keep_only(s, hit);
     }
+    bool bare_yn = words.n > 0 && words.n <= 3;     /* a bare yes/no answers one field only */
+    for (int i = 0; i < words.n && bare_yn; i++) if (!in(words.w[i], YESNO)) bare_yn = false;
+    fp_str fired[FP_MAX_CANDS];                       /* rules already met before this answer */
+    for (int i = 0; i < s->ncands; i++) { int r = rule_hit(s, &s->cands[i]); fired[i] = r >= 0 ? R_GO(rule(s, s->cands[i].tree, r)) : FP_NONE; }
     struct { uint8_t tree; fp_card card; fp_str asking; } states[256];
     int nst = 0, passes = 0;
     bool progressed = true;
@@ -1125,7 +1129,7 @@ fp_result_t fp_answer(fp_sess_t *s, const char *text) {
                 if (!fhas(&c->filled, f.slot[k]) && f.slot[k] != c->asking) { fset(&c->filled, f.slot[k], f.val[k]); extra = true; }
             if (extra) {                             /* ("he's unresponsive now" on any field): life first */
                 int go = rule_hit(s, c);
-                if (go >= 0) return res(FP_OPEN, c->tree, rule_card(s, c->tree, go));
+                if (go >= 0 && R_GO(rule(s, c->tree, go)) != fired[i]) return res(FP_OPEN, c->tree, rule_card(s, c->tree, go));
             }
             fp_tile_t ts[MAXT];
             if (c->card >= 0) fp_tiles(s, c->tree, c->card, ts, MAXT);
@@ -1143,9 +1147,10 @@ fp_result_t fp_answer(fp_sess_t *s, const char *text) {
                 fset(&f, c->asking, av);
                 c->filled = f;
                 int go = rule_hit(s, c);
-                if (go >= 0) return res(FP_OPEN, c->tree, rule_card(s, c->tree, go));
+                if (go >= 0 && R_GO(rule(s, c->tree, go)) != fired[i]) return res(FP_OPEN, c->tree, rule_card(s, c->tree, go));
                 step(s, c, has_tile && truthy(s, ts[pick].to) ? &ts[pick] : NULL);
                 progressed = true;
+                if (bare_yn) { progressed = false; break; }   /* "out of place? no" is not "no splint" */
             }
         }
     }

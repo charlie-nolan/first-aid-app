@@ -112,3 +112,60 @@ SAY wasp
 SAY Yes, I can see it
 CASE f030-pick
 SAY nothing bit me
+CASE s000
+SAY a bee stung me
+SAY no
+CASE s001
+SAY a bee stung me
+SAY yes
+CASE s002
+SAY something bit me
+SAY he's not breathing now
+CASE s003
+SAY something bit me
+SAY a dog
+SAY on his leg
+CASE s004
+SAY something bit me
+SAY dog bite and it's gushing
+CASE s005
+SAY my arm hurts
+SAY burns
+SAY big
+SAY face
+CASE s006
+SAY my arm hurts
+SAY number two
+CASE s007
+SAY my arm hurts
+SAY skip
+CASE s008
+SAY my arm hurts
+PICK @topic	bites	\N
+PICK animal	mammal	\N
+PICK where	\N	bites/evac
+CASE s009
+SAY something bit me
+PICK animal	mammal	\N
+PICK where	\N	bites/cpr/cpr
+CASE s010
+SAY multi
+SAY a dog bit his arm and he has a big burn on his leg
+CASE s011
+SAY huge burn
+SAY arm
+CASE s012
+SAY huge burn
+SAY armm
+CASE s013
+SAY small burn
+SAY new
+SAY a raccoon bit me
+SAY faec
+CASE s014
+SAY dog bite
+SAY not on the face
+SAY leg
+CASE s015
+SAY something bit me
+SAY it was a rattler

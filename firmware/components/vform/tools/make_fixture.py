@@ -83,6 +83,46 @@ SENTENCES = [
     "a bat bit her face and she's not breathing", "wasp", "nothing bit me",
 ]
 
+# Scripted answers (spoken text, or a tap as (field, value, node)) for paths the automatic
+# first-choice answers never take: bare yes/no, a life threat said mid-form, topic by name, skip words.
+SCRIPTS = [
+    ("a bee stung me", ["no"]),
+    ("a bee stung me", ["yes"]),
+    ("something bit me", ["he's not breathing now"]),
+    ("something bit me", ["a dog", "on his leg"]),
+    ("something bit me", ["dog bite and it's gushing"]),
+    ("my arm hurts", ["burns", "big", "face"]),
+    ("my arm hurts", ["number two"]),
+    ("my arm hurts", ["skip"]),
+    ("my arm hurts", [("@topic", "bites", None), ("animal", "mammal", None), ("where", None, "bites/evac")]),
+    ("something bit me", [("animal", "mammal", None), ("where", None, "bites/cpr/cpr")]),
+    ("multi", ["a dog bit his arm and he has a big burn on his leg"]),
+    ("huge burn", ["arm"]),
+    ("huge burn", ["armm"]),
+    ("small burn", ["new", "a raccoon bit me", "faec"]),
+    ("dog bite", ["not on the face", "leg"]),
+    ("something bit me", ["it was a rattler"]),
+]
+
+
+def run_script(trees, text, answers):
+    from vr.parity import Screen
+    s = Screen(trees)
+    s.said(text)
+    out = []
+    for a in answers:
+        if isinstance(a, tuple):
+            k, v, n = a
+            p = {"seq": s.seq, "field": k, "value": v, "label": ""}
+            if n:
+                p["node"] = n
+            out.append({"pick": p})
+            s.picked(p)
+        else:
+            out.append({"text": a})
+            s.said(a)
+    return out, s.frames
+
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
@@ -104,6 +144,10 @@ def main(argv=None):
                     continue
                 f.write(json.dumps({"id": f"f{i:03d}-{mode}", "text": t, "answers": answers, "frames": frames}) + "\n")
                 n += 1
+        for i, (t, ans) in enumerate(SCRIPTS):
+            answers, frames = run_script(TREES, t, ans)
+            f.write(json.dumps({"id": f"s{i:03d}", "text": t, "answers": answers, "frames": frames}) + "\n")
+            n += 1
     print(f"{a.out}/fixture.fpk, {n} cases")
 
 
