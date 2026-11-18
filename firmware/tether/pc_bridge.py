@@ -32,7 +32,7 @@ from pathlib import Path
 import serial
 
 W, H = 250, 122
-START_MSG = "Keep TALK held down while you say what happened. Let go when you finish."
+START_MSG = "Hold TALK down the whole time you describe it. Let go when done."
 
 
 class Board:
@@ -135,7 +135,7 @@ class Scenarios:
         sid, txt = self.current()
         if sid or txt:
             n = len(self.items)
-            print(f"\n==================== SCENARIO {sid} ({self.i % max(1, n) + 1}/{n}) ====================\n"
+            print(f"\n==================== TEST {self.i % max(1, n) + 1} ({sid}, of {n}) ====================\n"
                   f"  {txt}\n  (act it out on the board; BACK hold = next scenario)\n", flush=True)
 
 
@@ -283,7 +283,7 @@ def main(argv=None):
             if last_banner is None:        # (re)connected: put the board on a fresh start screen
                 print("board:", ln, flush=True)
                 brain.scr.cands, brain.scr.heard = None, ""
-                emit(brain.scr.show("start", msg=START_MSG), {"source": "connect"})
+                emit(brain.scr.show("start", msg=f"Test {scen.i + 1}. " + START_MSG), {"source": "connect"})
             last_banner = ln
         elif ln.startswith("TAKE "):
             take, data = json.loads(ln[5:]), []
@@ -310,9 +310,12 @@ def main(argv=None):
             p = json.loads(ln[5:])
             print(f"  PICK {p}", flush=True)
             rec = {"source": "pick", "pick": p}
-            emit(brain.picked(p), rec)
-            if p.get("action") == "new":
+            if p.get("action") == "new":         # next test: the board's start screen names it
                 scen.move(+1)
+                brain.picked(p)
+                emit(brain.scr.show("start", msg=f"Test {scen.i + 1}. " + START_MSG), rec)
+            else:
+                emit(brain.picked(p), rec)
         elif ln.startswith("FB "):
             try:
                 bits = base64.b64decode(ln[3:])
