@@ -1241,17 +1241,11 @@ int fp_open_fields(fp_sess_t *s, fp_field_t *out, int max) {
     return n;
 }
 
-/* vr.form._named: the tree's title words (minus filler) were all said */
+/* vr.form._named: the answer names this tree (any of its topic words, as keep_trees; s010:
+ * "carbon monoxide poisoning" on the which-is-it field) */
+static bool heard_topic(const fp_sess_t *s, int t, const fp_toks_t *heard);
 static bool named(const fp_sess_t *s, const fp_cand_t *c, const fp_toks_t *words) {
-    fp_toks_t t;
-    fp_tokenize(S(s->trees[c->tree].title), &t);
-    int k = 0;
-    for (int i = 0; i < t.n; i++) {
-        if (in(t.w[i], FILLER)) continue;
-        k++;
-        if (!tok_has(words, t.w[i])) return false;
-    }
-    return k > 0;
+    return heard_topic(s, c->tree, words);
 }
 
 /* vr.form._step: an answer always moves the form on */
