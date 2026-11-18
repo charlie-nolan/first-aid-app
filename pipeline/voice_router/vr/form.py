@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from .intake import (_stem, _fill, _questions, answer_turn, fill_nbest, tiles, tokenize, walk, _FILLER)
+from .intake import (_stem, _fill, fill, _questions, answer_turn, fill_nbest, tiles, tokenize, walk, _FILLER)
 
 SURE = 0.80            # router probability above which the other trees are dropped
 MAX_TREES = 3
@@ -419,6 +419,16 @@ def _named(c: Candidate, words: set) -> bool:
 
 # ---- scoring: how many spoken turns to the right card with this screen --------------------------
 
+def _say(c: Candidate, slot: str, value: str) -> str:
+    """What a person would say for a grouped tile: the first of the value's own phrases that
+    fills it on its own (11-18: the raw value name "neck back" filled nothing and looped)."""
+    vals = c.smap.get("slots", {}).get(slot, {})
+    for ph in vals.get(value, []):
+        if fill(ph, {slot: vals}, c.smap.get("priority")).get(slot) == value:
+            return ph
+    return value.replace("_", " ")
+
+
 def _path_labels(c: Candidate, ok: set, anc: dict, most: int = 8):
     """The right tile's words for each open blank on the way to the goal, in order, plus how
     many plain (no-blank) cards must be tapped through. None if the walk is off the path."""
@@ -441,8 +451,8 @@ def _path_labels(c: Candidate, ok: set, anc: dict, most: int = 8):
         if asking and ts[k].get("value"):
             lab = ts[k].get("label") or ""
             group = (" or " in lab or "," in lab or not lab) and ts[k]["value"] not in ("yes", "no")
-            said.append(ts[k]["value"].replace("_", " ") if group else lab)   # "Sunburn or snow blindness": say
-                                                                            # the one that fits; yes/no: the label
+            said.append(_say(c, asking, ts[k]["value"]) if group else lab)   # "Sunburn or snow blindness": say
+                                                                               # the one that fits; yes/no: the label
             filled = {**filled, asking: ts[k]["value"]}
             card, _, asking = walk(c.tree, c.smap, filled, start=card)
         else:
