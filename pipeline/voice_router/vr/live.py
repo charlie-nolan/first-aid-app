@@ -82,6 +82,11 @@ def _handles_life(c: Candidate, vals: dict) -> bool:
         return False
     lt = c.smap.get("life_threat") or []
     rules = [{"if": {s: v}, "go": g} for s, m in lt.items() for v, g in m.items()] if isinstance(lt, dict) else lt
+    if "/" in go and go.split("/")[0] in GENERIC_HOME:
+        return False                               # the shared "not breathing -> wfa-cpr/cpr" rule many
+                                                   # trees carry is CPR's, not the tree's own handling
+                                                   # (trees 11-18: bites/burns/improvised_gear outranked
+                                                   # wfa-bleeding on "bleeding a lot and not breathing")
     return any(r["go"] == go and any(s in UNIVERSAL for s in r["if"]) for r in rules)
 
 

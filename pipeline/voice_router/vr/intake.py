@@ -253,7 +253,9 @@ UNIVERSAL = {"conscious": {"no": ["won't wake", "won't wake up", "will not wake"
                                   "can't wake him", "can't wake her", "not waking up", "unresponsive",
                                   "unconscious", "passed out", "knocked out", "won't respond",
                                   "won't open his eyes", "won't open her eyes", "won't open their eyes",
-                                  "won't answer", "not answering", "not responding", "out cold"]},
+                                  "won't answer", "not answering", "not responding", "out cold",
+                                  "doesn't open his eyes", "doesn't open her eyes", "doesn't open their eyes",
+                                  "doesn't respond", "isn't responding", "doesn't answer"]},
              "breathing": {"no": ["not breathing", "stopped breathing", "isn't breathing",
                                   "no breathing"]}}
 

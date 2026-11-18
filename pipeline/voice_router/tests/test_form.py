@@ -548,3 +548,20 @@ def test_one_landing_tree_with_others_asking_does_not_open():
         {"slots": {"shiver": {"yes": ["shivering"], "no": ["stopped shivering"]}},
          "questions": {"h": {"slot": "shiver", "choices": {"yes": "mild", "no": "severe"}}}}, p=0.67)
     assert first_sentence("he's too cold and confused", [hypo, alt])[0] == "form"
+
+
+def test_shared_cpr_rule_is_not_a_trees_own_handling():
+    """Trees 11-18: bites/burns carry the shared {breathing: no} -> wfa-cpr/cpr rule; with a bleeding
+    word they outranked wfa-bleeding and CPR on "he's bleeding a lot and not breathing"."""
+    from vr.live import keep_trees
+    cpr = ({"root": "s", "title": "CPR", "nodes": {"s": {}, "cpr": {}}},
+           {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}], "slots": {"breathing": {"no": ["not breathing"]}}})
+    bites = ({"root": "s", "title": "Bites", "nodes": {"s": {}}},
+             {"life_threat": [{"if": {"breathing": "no"}, "go": "wfa-cpr/cpr"}],
+              "slots": {"bleeding": {"yes": ["bleeding"]}, "breathing": {"no": ["not breathing"]}}})
+    bleed = ({"root": "s", "title": "Bleeding", "nodes": {"s": {}, "heavy": {}}},
+             {"life_threat": [{"if": {"bleeding_type": "heavy"}, "go": "heavy"}],
+              "slots": {"bleeding_type": {"heavy": ["bleeding a lot"]}}})
+    names = [c.name for c in keep_trees(["he's bleeding a lot and not breathing"],
+                                        {"bites": bites, "wfa-bleeding": bleed, "wfa-cpr": cpr})]
+    assert names.index("bites") > min(names.index("wfa-cpr"), names.index("wfa-bleeding"))
