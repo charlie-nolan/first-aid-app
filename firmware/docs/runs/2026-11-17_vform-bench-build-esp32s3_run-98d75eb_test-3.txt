@@ -1,0 +1,4 @@
+$ idf.py -B build build   (firmware/vform_bench, ESP-IDF v5.3.2, plain XIAO S3)
+vform_bench.bin binary size 0x3bd90 bytes. Smallest app partition is 0x200000 bytes. 0x1c4270 bytes (88%) free.
+Bootloader binary size 0x59c0 bytes. 0x2640 bytes (30%) free.
+Project build complete. To flash, run:

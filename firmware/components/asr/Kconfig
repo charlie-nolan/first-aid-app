@@ -1,0 +1,34 @@
+menu "Speech recognizer engine"
+
+choice ASR_ENGINE
+    prompt "Engine that turns a TALK clip into word hypotheses"
+    default ASR_ENGINE_MULTINET
+    help
+        All engines give the same output (voice_hyp_t: up to 5 guesses of lexicon word ids,
+        confidences and a reject score), so the form engine (components/vform) and the router
+        do not care which one runs. Bench them for speed, size and agreement.
+
+config ASR_ENGINE_DIY
+    bool "DIY int8 phoneme CTC model (pipeline/speech/fasr), plain C kernels"
+    help
+        Preferred. Causal depthwise-conv CTC model (0.5-1 M params), log-mel front end,
+        lexicon-trie beam search with <unk> garbage. NOT BUILT YET: waits for the int8 export
+        and golden files from the speech thread.
+
+config ASR_ENGINE_ESPDL
+    bool "Same fasr model run through ESP-DL"
+    help
+        The fasr ONNX export quantized for ESP-DL. NOT BUILT YET.
+
+config ASR_ENGINE_MULTINET
+    bool "ESP-SR MultiNet (fallback, fixed phrase list)"
+    help
+        What main/voice.c does today: MultiNet with the phrase list in library/phrases.txt.
+endchoice
+
+config ASR_MAX_HYPS
+    int "n-best guesses kept"
+    range 1 5
+    default 5
+
+endmenu

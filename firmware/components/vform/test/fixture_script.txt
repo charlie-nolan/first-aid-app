@@ -1,0 +1,114 @@
+CASE f000-pick
+SAY a raccoon bit my thigh
+CASE f001-pick
+SAY something bit me
+CASE f002-pick
+SAY a dog bit his cheek
+CASE f003-pick
+SAY the dog bite is gushing
+CASE f004-pick
+SAY she's not breathing
+CASE f005-pick
+SAY she's not breathing she fell in icy water
+CASE f006-pick
+SAY he is breathing fine
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f006-say
+SAY he is breathing fine
+SAY Bites
+SAY snake
+CASE f007-pick
+SAY not spurting just oozing
+CASE f008-pick
+SAY can't tell if she's breathing
+CASE f009-pick
+SAY a rattler got him on the leg
+PICK @topic	bites	\N
+CASE f009-say
+SAY a rattler got him on the leg
+SAY Bites
+CASE f010-pick
+SAY a bee stung me
+PICK stinger	yes	\N
+CASE f010-say
+SAY a bee stung me
+SAY Yes, I can see it
+CASE f011-pick
+SAY i got stung and i can see the stinger
+CASE f012-pick
+SAY burned my hand on the stove, it's big
+CASE f013-pick
+SAY small burn on my arm
+PICK @topic	burns	\N
+CASE f013-say
+SAY small burn on my arm
+SAY Burns
+CASE f014-pick
+SAY my arm hurts
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f014-say
+SAY my arm hurts
+SAY Bites
+SAY snake
+CASE f015-pick
+SAY he stopped breathing
+CASE f016-pick
+SAY a little blood from a scrape
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f016-say
+SAY a little blood from a scrape
+SAY Bites
+SAY snake
+CASE f017-pick
+SAY it won't stop bleeding
+CASE f018-pick
+SAY cat bit my wrist
+CASE f019-pick
+SAY burns, a big one
+PICK where	face	\N
+CASE f019-say
+SAY burns, a big one
+SAY Face or hands
+CASE f020-pick
+SAY huge burn
+PICK where	face	\N
+CASE f020-say
+SAY huge burn
+SAY Face or hands
+CASE f021-pick
+SAY bleeding but now oozing
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f021-say
+SAY bleeding but now oozing
+SAY Bites
+SAY snake
+CASE f022-pick
+SAY isnt breathing
+CASE f023-pick
+SAY dog bite no time
+PICK where	\N	bites/evac
+CASE f023-say
+SAY dog bite no time
+SAY limb
+CASE f024-pick
+SAY something bit me skip
+CASE f025-pick
+SAY number two
+CASE f026-pick
+SAY multi
+CASE f027-pick
+SAY new
+CASE f028-pick
+SAY a bat bit her face and she's not breathing
+CASE f029-pick
+SAY wasp
+PICK stinger	yes	\N
+CASE f029-say
+SAY wasp
+SAY Yes, I can see it
+CASE f030-pick
+SAY nothing bit me

@@ -1,0 +1,4 @@
+# C form engine vs Python (vr.parity), real trees (labels not shown), slots v16b
+$ python tools/parity_check.py --pack real.fpk --parity parity_98d75eb_v16b.jsonl --fuzz
+770 cases, 1633 frames: 770 cases identical, 0 differ (0 frames)
+FUZZ 509 sentences, 0 loops

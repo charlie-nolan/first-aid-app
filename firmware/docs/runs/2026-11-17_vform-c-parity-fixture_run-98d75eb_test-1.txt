@@ -1,0 +1,4 @@
+$ cc -O2 -ffp-contract=off -o vform_test host_test.c vform.c vform_show.c -lm
+$ python tools/parity_check.py --pack test/fixture.fpk --parity test/fixture_parity.jsonl --fuzz
+42 cases, 72 frames: 42 cases identical, 0 differ (0 frames)
+FUZZ 31 sentences, 0 loops
