@@ -1,0 +1,3 @@
+# C form engine vs Python, real trees (labels not shown), official parity_bf8354f_v16b (after tonight's safety round)
+$ python tools/parity_check.py --pack real.fpk --parity parity_bf8354f_v16b.jsonl
+771 cases, 1572 frames: 771 cases identical, 0 differ (0 frames)
