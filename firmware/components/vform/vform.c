@@ -303,8 +303,10 @@ static int slot_index(const fp_sess_t *s, int t, fp_str slot) {
 static const char *const UNI_CONSCIOUS_NO[] = {"won't wake", "won't wake up", "will not wake", "can't wake",
     "can't wake him", "can't wake her", "not waking up", "unresponsive", "unconscious", "passed out",
     "knocked out", "won't respond", "won't open his eyes", "won't open her eyes", "won't open their eyes",
-    "won't answer", "not answering", "not responding", "out cold", 0};
-static const char *const UNI_BREATHING_NO[] = {"not breathing", "stopped breathing", "isn't breathing", "no breathing", 0};
+    "won't answer", "not answering", "not responding", "out cold", "doesn't open his eyes", "doesn't open her eyes",
+    "doesn't open their eyes", "doesn't respond", "isn't responding", "doesn't answer", 0};
+static const char *const UNI_BREATHING_NO[] = {"not breathing", "stopped breathing", "isn't breathing", "no breathing",
+    "chest isn't rising", "chest not rising", "chest is not rising", 0};
 static const char *const *universal(const char *slot, const char *value) {
     if (!strcmp(value, "no") && !strcmp(slot, "conscious")) return UNI_CONSCIOUS_NO;
     if (!strcmp(value, "no") && !strcmp(slot, "breathing")) return UNI_BREATHING_NO;
@@ -930,6 +932,7 @@ static bool handles_life(const fp_sess_t *s, int t, const fp_filled_t *f) {
     int go = rule_hit(s, &c);
     if (go < 0) return false;
     fp_str g = R_GO(rule(s, t, go));
+    if (!strncmp(S(g), "wfa-cpr/", 8)) return false;   /* the shared not-breathing -> CPR rule is CPR's own */
     for (int i = 0; i < s->trees[t].nrules; i++) {
         const uint8_t *r = rule(s, t, i);
         if (R_GO(r) != g) continue;
@@ -941,22 +944,71 @@ static bool handles_life(const fp_sess_t *s, int t, const fp_filled_t *f) {
     return false;
 }
 
+/* vr.live._own_words: was this blank filled by one of the tree's own phrases, not by a shared life
+ * phrase it happens to list too ("won't respond" in diabetic is not diabetic's own problem, s021) */
+static bool own_words(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_str slot, fp_str value) {
+    fp_toks_t stw, pw, p, u;
+    stems(raw, true, &stw);
+    int si = slot_index(s, t, slot);
+    if (si < 0) return false;
+    const uint8_t *sl = slotrec(s, t, si);
+    for (int vi = 0; vi < SL_NVAL(sl); vi++) {
+        const uint8_t *v = SL_VAL(s, sl, vi);
+        if (V_NAME(v) != value) continue;
+        for (int k = 0; k < V_NPH(v); k++) {
+            fp_tokenize(S(V_PH(s, v, k)), &pw);
+            stems(&pw, true, &p);
+            if (!p.n) continue;
+            bool life = false;                       /* one of the UNIVERSAL phrases (stemmed)? */
+            const char *const *lists[2] = {UNI_CONSCIOUS_NO, UNI_BREATHING_NO};
+            for (int l = 0; l < 2 && !life; l++)
+                for (int q = 0; lists[l][q] && !life; q++) {
+                    fp_toks_t ut;
+                    fp_tokenize(lists[l][q], &ut);
+                    stems(&ut, true, &u);
+                    if (u.n != p.n) continue;
+                    int z = 0;
+                    while (z < u.n && !strcmp(u.w[z], p.w[z])) z++;
+                    if (z == u.n) life = true;
+                }
+            if (!life && find(&stw, &p)) return true;
+        }
+        break;
+    }
+    return false;
+}
+
+/* vr.live._shared_slots: the CPR tree's own blanks and any blank 3+ trees carry say nothing about
+ * WHICH tree ("bleeding a lot and not breathing" must not open wfa-co/treat_now) */
+static bool shared_slot(const fp_sess_t *s, fp_str slot) {
+    int count = 0;
+    for (int t = 0; t < s->ntrees; t++) {
+        if (slot_index(s, t, slot) < 0) continue;
+        if (!strcmp(S(s->trees[t].name), "wfa-cpr")) return true;
+        if (++count >= 3) return true;
+    }
+    return false;
+}
+
 /* vr.live.INJURY_WORDS: with one of these a place is an injury ("broke my leg"), not a bare place */
 static const char *const INJURY_WORDS[] = {"broke", "broken", "break", "snap", "snapped", "crack", "cracked", "crooked",
     "bent", "deformed", "twisted", "twist", "rolled", "sprained", "dislocated", "whacked", "hit", "blow", "bump",
     "bumped", "smashed", "crushed", "fell", "fall", "landed", "stubbed", "jammed", "hurt", "hurts", "pain", "painful",
-    "sore", "swollen", "swelling", "bruised", "cut", "stake", "poked", "stabbed", "impaled", "stuck", 0};
+    "sore", "swollen", "swelling", "bruised", "cut", "stake", "poked", "stabbed", "impaled", "stuck", "tripped", "trip",
+    "slipped", "ballooning", "limping", "limp", "holding", "grabs", "grabbing", "clutching", "lift", "step", "weight", 0};
 
 /* vr.live.keep_trees */
 int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
     int sc[FP_MAX_TREES], idx[FP_MAX_TREES], nm[FP_MAX_TREES], n = 0;
     bool rl[FP_MAX_TREES], heard[FP_MAX_TREES], hurt = false;
+    fp_toks_t h0w;
     {
         fp_toks_t h0;
         fp_tokenize(nh > 0 ? hyps[0] : "", &h0);
         named_trees(s, &h0, heard);
         if (nh <= 0) memset(heard, 0, sizeof heard);
         for (int i = 0; i < h0.n && nh > 0; i++) if (in(h0.w[i], INJURY_WORDS)) hurt = true;
+        h0w = h0;
     }
     for (int t = 0; t < s->ntrees; t++) {
         fp_filled_t f, tie;                          /* fill_nbest's blanks + every slot whose words were */
@@ -992,7 +1044,8 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
             bool place = false;
             for (int q = 0; q < rd16(lc); q++) if (rd16(lc + 2 + 2 * q) == f.slot[i]) place = true;
             if (!place) nonplace = true;
-            if (!place && strcmp(sn, "conscious") && strcmp(sn, "breathing")) own = true;
+            if (!own && !place && strcmp(sn, "conscious") && strcmp(sn, "breathing") && !shared_slot(s, f.slot[i]) &&
+                own_words(s, t, &h0w, f.slot[i], f.val[i])) own = true;
         }
         rl[n] = named || (score > 0 && (hurt || nonplace));
         bool handles = !home && own && handles_life(s, t, &f);   /* its own life rule beats the CPR jump */
