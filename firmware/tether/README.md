@@ -57,8 +57,29 @@ recorder); `PICK {json}`; `FB <base64>` (the 250 x 122 framebuffer, 1 = black); 
 
 The board keeps at most 6 fields of 12 choices and 6 SKIP cards; longer strings are cut.
 
+## Board brain (the form runs on the board, in C)
+
+Build with `CONFIG_TETHER_BOARD_BRAIN=y` and the form pack (`components/vform/tools/formpack.py`;
+the real trees are personal, so the pack is built locally and never committed):
+
+    . ~/esp/esp-idf/export.sh
+    printf 'CONFIG_TETHER_BOARD_BRAIN=y\n' > /tmp/brain.cfg
+    idf.py -B build-brain -D SDKCONFIG=build-brain/sdkconfig -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;/tmp/brain.cfg" \
+        -D TETHER_FPK=/tmp/real.fpk build
+    python -m esptool --chip esp32s3 -p /dev/ttyACM0 write_flash 0x10000 build-brain/vr_tether.bin
+
+Then run the bridge with `--board-brain`. The PC only turns speech into words and sends
+`WORDS {"hyps": [...], "reject": N}`; the board builds every screen itself (same bytes as vr.form),
+draws it, and echoes it as `SHOWN <json>`. Taps, SKIP, new and open are answered on the board (still
+echoed as PICK for the log). The bridge runs vr.form in the shadow on the same inputs and marks every
+turn `shadow_match` true/false in turns.jsonl, so each bench session is also a live parity check.
+The board logs `LOG brain <ms>` per screen (how long the C took).
+
+Without the board: `python fake_board.py --bin /tmp/vform_test --pack /tmp/real.fpk` opens a
+pseudo-terminal that behaves like a board-brain board (the same C engine, through host_test).
+
 ## Not yet
 
 - Card text from `library.bin` by node (needs the PC node id mapped to a cartridge node).
 - Several problems at once: the bench board has no window keys, so only the first is shown.
-- The form logic in C (`components/vrouter`), piece by piece.
+- Speech on the board (the PC still decodes; the DIY int8 engine slot is `components/asr`).

@@ -12,7 +12,13 @@ PNG, so each bench run leaves real screenshots.
         [--port /dev/ttyACM0] [--out $WORK/speech/tether] [--typed]
 
 --typed reads sentences from stdin instead of clips (same screens go to the board), handy to test
-the screens without speaking. Format of SHOW / PICK: firmware/tether/README.md.
+the screens without speaking.
+
+--board-brain (board built with CONFIG_TETHER_BOARD_BRAIN): the board runs the form itself in C
+(firmware/components/vform). The PC only sends what it heard ("WORDS {hyps, reject}"); the board
+draws its own screens and echoes each as "SHOWN <json>". The bridge still runs vr.form in the
+shadow on the same inputs and logs whether every board frame is byte-identical to the Python's
+(turns.jsonl "shadow_match"; a mismatch also stores the Python frame as "shadow"). Format of SHOW / PICK: firmware/tether/README.md.
 Nothing here is committed from a run: clips, logs and screenshots go to --out (outside the repo).
 """
 from __future__ import annotations
@@ -199,6 +205,8 @@ def main(argv=None):
     ap.add_argument("--port", default="/dev/ttyACM0")
     ap.add_argument("--out", type=Path, default=Path(os.environ.get("WORK", "/mnt/data/first-aid-gpu")) / "speech" / "tether")
     ap.add_argument("--typed", action="store_true", help="type sentences instead of speaking")
+    ap.add_argument("--board-brain", action="store_true",
+                    help="the board runs the form (CONFIG_TETHER_BOARD_BRAIN); the PC sends words and checks the frames")
     ap.add_argument("--scenarios", type=Path,
                     default=Path(os.environ.get("WORK", "/mnt/data/first-aid-gpu")) / "speech" / "me_dev" / "scenarios" / "batch1.yaml")
     ap.add_argument("--start", type=int, default=1, help="first scenario number")
@@ -219,10 +227,38 @@ def main(argv=None):
     board.send("HELLO")
     print(f"bridge up: {a.port}, run folder {out}", flush=True)
 
-    def emit(screen, rec=None):
+    pending, early, tally = {}, {}, {"same": 0, "diff": 0}   # board-brain: frames by seq, both ways
+
+    def settle(raw, shadow_fr, rec):
+        same = raw == json.dumps(shadow_fr, separators=(",", ":"))
+        tally["same" if same else "diff"] += 1
+        rec["shadow_match"] = same
+        if not same:
+            rec["shadow"] = shadow_fr
+            print(f"  !! board frame differs from the Python (seq {shadow_fr.get('seq')}): logged", flush=True)
+        emit(json.loads(raw), rec, send=False)
+
+    def shadow(screen, rec):
         if not screen:
             return
-        board.send("SHOW " + json.dumps(screen, separators=(",", ":")))
+        sq = screen["seq"]
+        if sq in early:
+            settle(early.pop(sq), screen, rec)
+        else:
+            pending[sq] = (screen, rec)
+
+    def say(hyps, reject, rec):
+        if a.board_brain:
+            board.send("WORDS " + json.dumps({"hyps": hyps, "reject": reject}, separators=(",", ":")))
+            shadow(brain.said(hyps, reject, rec), rec)
+        else:
+            emit(brain.said(hyps, reject, rec), rec)
+
+    def emit(screen, rec=None, send=True):
+        if not screen:
+            return
+        if send:
+            board.send("SHOW " + json.dumps(screen, separators=(",", ":")))
         rec = rec or {}
         rec.update(t=time.time(), screen=screen)
         log.write(json.dumps(rec) + "\n"); log.flush()
@@ -236,7 +272,7 @@ def main(argv=None):
             desc += ": " + "; ".join(c["title"] for c in s.get("cards", []))
         print(f"  -> SHOW {s['seq']} {desc}", flush=True)
         sid, _ = scen.current()
-        t = {k: rec[k] for k in ("source", "hyps", "reject", "clip", "turn", "kept", "pick") if k in rec}
+        t = {k: rec[k] for k in ("source", "hyps", "reject", "clip", "turn", "kept", "pick", "shadow_match") if k in rec}
         t.update(t=rec["t"], scenario=sid, seq=s["seq"], screen=s["kind"])
         if s["kind"] == "form":
             t["form"] = {"heard": {k: v for c in (brain.cands or []) for k, v in c.filled.items()},
@@ -264,7 +300,7 @@ def main(argv=None):
                     scen.move(to=int(cmd) - 1)
                 continue
             rec = {"source": "typed", "typed": ln}
-            emit(brain.said([ln], 0, rec), rec)
+            say([ln], 0, rec)
     threading.Thread(target=keys, daemon=True).start()
     scen.print()
 
@@ -298,13 +334,16 @@ def main(argv=None):
             if brain.speech:
                 hyps, reject = brain.speech(wav)
                 print(f"  heard: {hyps[0]!r} (reject {reject})", flush=True)
-                emit(brain.said(hyps, reject, rec), rec)
+                say(hyps, reject, rec)
             take = None
         elif ln.startswith("PICK "):
             p = json.loads(ln[5:])
             print(f"  PICK {p}", flush=True)
             rec = {"source": "pick", "pick": p}
-            emit(brain.picked(p), rec)
+            if a.board_brain:
+                shadow(brain.picked(p), rec)              # the board already answered it itself
+            else:
+                emit(brain.picked(p), rec)
             if p.get("action") == "new":
                 scen.move(+1)
         elif ln.startswith("FB "):
@@ -315,6 +354,22 @@ def main(argv=None):
             if len(bits) == 32 * H:
                 nfb += 1
                 save_png(bits, out / "screens" / f"screen-{nfb:03d}.png")
+        elif ln.startswith("SHOWN ") and a.board_brain:
+            raw = ln[6:]
+            try:
+                sq = json.loads(raw)["seq"]
+            except (ValueError, KeyError):
+                print("  bad SHOWN line from the board", flush=True)
+                continue
+            if sq in pending:
+                settle(raw, *pending.pop(sq))
+            else:
+                early[sq] = raw
+            if (tally["same"] + tally["diff"]) % 10 == 0 and tally["same"] + tally["diff"]:
+                print(f"  board vs Python: {tally['same']} same, {tally['diff']} different", flush=True)
+        elif ln.startswith("LOG brain "):
+            print(f"  (board form: {ln[10:]})", flush=True)
+            log.write(json.dumps({"t": time.time(), "board": ln[4:]}) + "\n"); log.flush()
         elif ln.startswith("LOG "):
             log.write(json.dumps({"t": time.time(), "board": ln[4:]}) + "\n"); log.flush()
 

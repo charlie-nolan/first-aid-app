@@ -6,11 +6,14 @@
  *   CASE <id>            new case: fresh screen
  *   SAY <text>           a spoken sentence or answer
  *   PICK <field> <value|\N> <node|\N>
- *   FUZZ <text>          tap-loop finder (vr.form.fuzz): first then last choice, every tree */
+ *   SKIP - | OPEN <node> | NEW - | AGAIN <reject>\t<text>   (the tether's actions)
+ *   FUZZ <text>          tap-loop finder (vr.form.fuzz): first then last choice, every tree
+ * script "-" reads the lines from stdin and flushes each frame (tether/fake_board.py drives it). */
 #include "vform_show.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 static char *field(char **p) {
     char *s = *p, *t = strchr(s, '\t');
@@ -64,7 +67,7 @@ int main(int argc, char **argv) {
     static fp_sess_t s;
     if (!fp_sess_init(&s, blob, n)) { fprintf(stderr, "bad pack\n"); return 1; }
     fprintf(stderr, "%d trees, %ld bytes\n", s.ntrees, n);
-    FILE *g = fopen(argv[2], "r");
+    FILE *g = strcmp(argv[2], "-") ? fopen(argv[2], "r") : stdin;   /* "-": interactive (fake board) */
     if (!g) return 2;
     static char line[8192], out[65536];
     fp_screen_t sc;
@@ -75,14 +78,23 @@ int main(int argc, char **argv) {
         char *p = strchr(line, ' ');
         if (!p) continue;
         *p++ = 0;
-        if (!strcmp(line, "CASE")) { fp_reset(&s); fp_screen_init(&sc, &s); printf("CASE %s\n", p); continue; }
+        if (!strcmp(line, "CASE")) { fp_reset(&s); fp_screen_init(&sc, &s); printf("CASE %s\n", p); fflush(stdout); continue; }
+        struct timespec t0, t1;
+        clock_gettime(CLOCK_MONOTONIC, &t0);
         if (!strcmp(line, "SAY")) fp_screen_said(&sc, p, out, sizeof out);
         else if (!strcmp(line, "PICK")) {
             char *k = field(&p), *v = field(&p), *nd = field(&p);
             fp_screen_picked(&sc, k, v, nd, out, sizeof out);
-        } else if (!strcmp(line, "FUZZ")) { loops += fuzz(&s, p, 10); fuzzed++; continue; }
+        } else if (!strcmp(line, "SKIP")) fp_screen_skip(&sc, out, sizeof out);
+        else if (!strcmp(line, "OPEN")) fp_screen_open(&sc, p, out, sizeof out);
+        else if (!strcmp(line, "NEW")) fp_screen_new(&sc, out, sizeof out);
+        else if (!strcmp(line, "AGAIN")) { char *r = field(&p); fp_screen_again(&sc, p, r ? atoi(r) : 0, out, sizeof out); }
+        else if (!strcmp(line, "FUZZ")) { loops += fuzz(&s, p, 10); fuzzed++; continue; }
         else continue;
+        clock_gettime(CLOCK_MONOTONIC, &t1);
+        if (getenv("VFORM_TIME")) fprintf(stderr, "TIME %ld us %s %.60s\n", (t1.tv_sec - t0.tv_sec) * 1000000 + (t1.tv_nsec - t0.tv_nsec) / 1000, line, p);
         printf("%s\n", out);
+        fflush(stdout);
     }
     if (fuzzed) printf("FUZZ %d sentences, %d loops\n", fuzzed, loops);
     if (s.rank_overflow) printf("WARNING rank queue overflowed %u times\n", s.rank_overflow);

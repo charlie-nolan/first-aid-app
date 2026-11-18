@@ -10,3 +10,4 @@ only, never card text (the real trees are personal).
 | `2026-11-17_vform-bench-build-esp32s3_run-98d75eb_test-3` | The on-board bench app builds with ESP-IDF 5.3.2 for the plain XIAO S3 (not flashed yet: board busy) |
 | `2026-11-17_vform-c-parity-real-trees_run-727406e_test-4` | After porting 332d319 + 727406e (negated words never pick a tile): 770/770 identical, 0 tap loops |
 | `2026-11-17_vform-c-parity-fixture_run-727406e_test-5` | Fixture with scripted cases (bare yes/no, life threat said mid-form, "not on the face"): 58/58 identical |
+| `2026-11-17_tether-board-brain-fake-board_run-727406e_test-6` | Bridge `--board-brain` end to end against a fake board running the C engine: 192/198 frames match the Python shadow (the 6 are a test-harness race); C time per frame on the PC |
