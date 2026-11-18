@@ -317,3 +317,23 @@ def test_empty_answer_picks_nothing():
         {"label": "Yes", "to": "y", "value": "yes"}, {"label": "No", "to": "n", "value": "no"}]},
         "y": {"label": "Y"}, "n": {"label": "N"}}}
     assert answer_turn("", tree, {"slots": {}}, "q", "bleed", {}) == ({}, None, None)
+
+
+def test_kit_branch_and_menu_card_are_not_blanks():
+    tree = {"root": "where", "nodes": {
+        "where": {"label": "Where?", "choices": [{"label": "Forearm", "to": "forearm", "value": "forearm"},
+                                                 {"label": "Leg", "to": "leg", "value": "leg"}]},
+        "forearm": {"label": "Forearm, elbow or wrist", "cite": ["p1"], "choices": [
+            {"label": "Splinting rules", "to": "rules"}, {"label": "No sling", "to": "nosling", "value": "yes"},
+            {"label": "When to evacuate", "to": "evac"}]},
+        "leg": {"label": "Leg", "cite": ["p2"], "choices": [{"label": "No splint", "to": "nosplint"}]},
+        "rules": {"label": "Rules"}, "evac": {"label": "Evac"}, "nosling": {"label": "Improvised sling"},
+        "nosplint": {"label": "Improvised splint"}}}
+    smap = {"slots": {"body_part": {"forearm": ["forearm"], "leg": ["leg"]},
+                      "sling": {"yes": ["no sling"]}, "missing_kit": {"splint": ["no splint"]}},
+            "questions": {"where": {"slot": "body_part", "choices": {"forearm": "forearm", "leg": "leg"}},
+                          "forearm": {"slot": "sling", "choices": {"yes": "nosling"}},
+                          "leg": {"slot": "missing_kit", "choices": {"splint": "nosplint"}}}}
+    assert walk(tree, smap, fill("I broke my forearm", smap["slots"])) == ("forearm", ["where"], None)
+    assert walk(tree, smap, fill("I hurt my leg", smap["slots"])) == ("leg", ["where"], None)
+    assert walk(tree, smap, fill("forearm, we have no sling", smap["slots"]))[0] == "nosling"

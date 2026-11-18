@@ -325,6 +325,27 @@ def _leads(tree, qs, start, filled, implies, limit=12) -> bool:
     return False
 
 
+MENU_SLOTS = ("missing_kit",)
+
+
+def _menu_blank(tree, smap, qs, node, slot) -> bool:
+    """A blank the form never asks (board run 11-17: "Apply a tourniquet" showed as a field with
+    [No tourniquet], "Forearm, elbow or wrist" with [Splinting rules, No sling, When to evacuate]):
+    - an "I don't have this" kit branch (smap menu_slots, default missing_kit): it stays a tile on
+      the card, picked by tap or by saying it;
+    - a content card (it has text or cites) with only one answer for the blank beside plain menu
+      tiles. A plain tile that leads to more answers of the same blank ("Spider, tick or animal")
+      still counts as an answer; a bare question page ("Where?") always asks."""
+    if slot in (smap.get("menu_slots") or MENU_SLOTS):
+        return True
+    ts = tiles(tree, smap, node)
+    plain = [t for t in ts if not t.get("value")]
+    answers = sum(1 for t in ts if t.get("value")) + \
+        sum(1 for t in plain if qs.get(t["to"], {}).get("slot") == slot)
+    card = tree["nodes"].get(node, {})
+    return answers < 2 and len(plain) > 0 and bool(card.get("cite") or card.get("text"))
+
+
 def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = None):
     """Follow the tree from its root (or from `start`, after an answer), taking every answer the
     blanks already give. Returns (card to show, cards skipped, blank it is asking or None)."""
@@ -358,6 +379,8 @@ def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = Non
                 hits = {t for t in plain if _leads(tree, qs, t, filled, implies)}
                 target = hits.pop() if len(hits) == 1 else None
             if not target or target not in nodes:
+                if _menu_blank(tree, smap, qs, node, q["slot"]):
+                    return node, skipped, None     # a kit branch or a menu, not a blank: show the card
                 return node, skipped, q["slot"]    # blank still empty: ask it here
         else:                                      # plain card or menu: pass through only if exactly one
             nxt = [c.get("to") for c in nodes[node].get("choices", [])   # way on leads to an answered blank
