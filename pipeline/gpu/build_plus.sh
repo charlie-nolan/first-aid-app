@@ -27,7 +27,13 @@ DEFS="$DEFS$EXTRA"; B="$B$TAG"
 # IDF 5.3 ignores $CONFIG{} in idf_component.yml before sdkconfig exists, so the Plus
 # build uses its own lock file with ESP-SR in it (the plain build has none).
 LOCK=(); [ -f dependencies.plus.lock ] && LOCK=(-D DEPENDENCIES_LOCK=dependencies.plus.lock)
-ls -la library/library.bin
+# Cartridge: $FA_LIBRARY_BIN if set, else the personal library when the bake made one, else the
+# committed public library/library.bin. Always passed explicitly so a cached choice never sticks.
+if [ -n "${FA_LIBRARY_BIN:-}" ]; then LIBBIN="$(realpath "$FA_LIBRARY_BIN")"
+elif [ -s library/library_personal.bin ]; then LIBBIN="$PWD/library/library_personal.bin"
+else LIBBIN="$PWD/library/library.bin"; fi
+ls -la "$LIBBIN"
+LOCK+=(-D "LIBRARY_BIN=$LIBBIN")
 echo "build $B with $DEFS"
 idf.py -B "$B" "${LOCK[@]}" -D SDKCONFIG="$B/sdkconfig" -D "SDKCONFIG_DEFAULTS=$DEFS" set-target esp32s3 build 2>&1 | tee "$LOGS/build_plus.log"
 if [ "$FLASH" = 1 ]; then

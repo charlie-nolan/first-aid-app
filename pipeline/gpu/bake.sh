@@ -62,13 +62,18 @@ if [ -f sources.personal.yaml ]; then
     fi
 fi
 
-# The Plus carries the personal library when there is one (it's local only, never committed).
-LIB=build/library.bin; [ -s build/library_personal.bin ] && LIB=build/library_personal.bin
-cp "$LIB" "$REPO/firmware/library/library.bin"
+# The tracked firmware/library/library.bin is the public bench cart and is never overwritten here.
+# The personal library (local only, never committed) goes to the gitignored library_personal.bin;
+# build_plus.sh flashes that one when it exists.
 cp build/intermediate/phrases.txt "$REPO/firmware/library/phrases.txt" 2>/dev/null || true
-echo; echo "firmware/library/library.bin <- $LIB ($(stat -c %s "$LIB") bytes)"
+if [ -s build/library_personal.bin ]; then
+    cp build/library_personal.bin "$REPO/firmware/library/library_personal.bin"
+    echo; echo "firmware/library/library_personal.bin <- build/library_personal.bin ($(stat -c %s build/library_personal.bin) bytes)"
+    git -C "$REPO" check-ignore -q firmware/library/library_personal.bin \
+        || { echo "!! firmware/library/library_personal.bin is NOT gitignored"; fail=1; }
+else
+    echo; echo "no personal library: the Plus flashes the public firmware/library/library.bin"
+fi
 echo "reports: $R"
 [ "$fail" = 0 ] && echo "BAKE OK" || echo "BAKE HAD FAILURES: read $R/bake.log"
-# keep the personal library out of git: firmware/library/library.bin is tracked for the bench cart
-[ "$LIB" = build/library_personal.bin ] && git -C "$REPO" update-index --assume-unchanged firmware/library/library.bin
 exit $fail

@@ -22,7 +22,7 @@ thread; gitignored) into `pipeline/gpu/` before `run_all.sh`.
 
 | Step | Script | GPU | Output |
 |---|---|---|---|
-| Bake the cards | `bake.sh` | no | `build/library.bin` (+ `library_personal.bin`), verbatim, voice and review reports in `$WORK/reports/<time>/`, and the library copied to `firmware/library/` for the Plus |
+| Bake the cards | `bake.sh` | no | `build/library.bin` (+ `library_personal.bin`), verbatim, voice and review reports in `$WORK/reports/<time>/`, and the personal library copied to the gitignored `firmware/library/library_personal.bin`, which `build_plus.sh` flashes (the tracked public `library.bin` is never overwritten) |
 | Draft trees from the manuals | `draft_trees.py` | Ollama | `pipeline/plb/content/drafts/<topic>.yaml` + `drafts/review/<topic>.md` (personal: `drafts_personal/`) |
 | Voice clips | `make_clips.py` | Piper | `$WORK/clips/*.wav` + `manifest.jsonl` (each test sentence, 6 voices, wind / water / breath noise) |
 | Ranker experiments | `ranker_eval.py text`, `audio` | yes | `$WORK/reports/ranker-*.md`: how often a small embedding model, and Whisper on noisy clips, would pick the right card |
