@@ -67,13 +67,13 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
         c.filled = fill_nbest(c.hyps or hyps, c.smap)
         c.heard = (c.hyps or hyps)[0]
         c.advance()
-        if c.card not in c.tree["nodes"]:             # a life rule jumped to another tree's card
-            return "open", c.name, c.card
-    for c in cands:                                   # emergency card inside the tree: open it now (Charlie:
-        go = _rule_hit(c)                             # one-shot, general info first); its own blank ("very
-        if go:                                        # cold or from water?") only shows on the open card
-            if go in c.tree["nodes"]:                 # the card the rule names, not one past it ("bleeding
-                q = _questions(c.tree, c.smap).get(go)   # won't stop" + leg went on to tq: open severe)
+    for c in cands:                                   # in rank order, each tree's own emergency first
+        if c.card not in c.tree["nodes"]:             # (trees 11-18: asthma's jump to allergy/severe beat
+            return "open", c.name, c.card             # the top-ranked choking tree's own rule): a life
+        go = _rule_hit(c)                             # rule that jumped to another tree's card, or an
+        if go:                                        # emergency card inside the tree (Charlie: one-shot,
+            if go in c.tree["nodes"]:                 # general info first); its own blank shows on the card
+                q = _questions(c.tree, c.smap).get(go)
                 c.card, c.asking = go, (q["slot"] if q else None)
             return "open", c.name, c.card
     if (multi or AUTO_TABS) and len(split_tabs(cands)) > 1:

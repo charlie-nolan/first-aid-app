@@ -341,3 +341,21 @@ def test_named_condition_outranks_shared_words():
                                       "where": {"hand": ["hand"]}, "deep": {"yes": ["blister"]}})
     kept = keep_trees(["carbon monoxide from the tent stove, his hand has a blister"], pool)
     assert kept[0].name == "wfa-co"
+
+
+def test_top_ranked_tree_emergency_beats_a_lower_trees_jump():
+    from vr.live import keep_trees
+    pool = _s007_pool()
+    pool["wfa-asthma"] = ({"root": "s", "title": "Asthma", "nodes": {"s": {"label": "How bad?"}, "m": {}}},
+                          {"slots": {"severity": {"severe": ["can't breathe"], "mild": ["wheezy"]}},
+                           "questions": {"s": {"slot": "severity",
+                                               "choices": {"severe": "wfa-allergy/severe", "mild": "m"}}}})
+    choking = pool["wfa-choking"][1]
+    choking["slots"]["airway"] = {"blocked": ["can't breathe", "can't talk"]}
+    choking["life_threat"] = [{"if": {"conscious": "no"}, "go": "out"}, {"if": {"airway": "blocked"}, "go": "thrust"}]
+    line = "my dad is choking and can't breathe"
+    cands = keep_trees([line], pool)
+    assert cands[0].name == "wfa-choking"
+    assert first_sentence(line, cands) == ("open", "wfa-choking", "thrust")
+    cands = keep_trees(["he was choking and now he's passed out"], pool)
+    assert first_sentence("he was choking and now he's passed out", cands) == ("open", "wfa-choking", "out")
