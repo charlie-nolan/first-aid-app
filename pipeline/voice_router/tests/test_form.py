@@ -332,3 +332,12 @@ def test_s007_replay_misheard_then_choking_then_cant_breathe():
     first_sentence("eye think my dad is choking on dirty", cands)
     r = rescue(["choking in can't breathe"], pool, cands) or answer("choking in can't breathe", cands)
     assert r == ("open", "wfa-choking", "thrust")
+
+
+def test_named_condition_outranks_shared_words():
+    from vr.live import keep_trees
+    pool = _s010_pool()
+    pool["burns"][1]["slots"].update({"cause": {"stove": ["stove", "tent stove"]},
+                                      "where": {"hand": ["hand"]}, "deep": {"yes": ["blister"]}})
+    kept = keep_trees(["carbon monoxide from the tent stove, his hand has a blister"], pool)
+    assert kept[0].name == "wfa-co"

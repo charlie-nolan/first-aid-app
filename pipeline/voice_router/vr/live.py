@@ -69,8 +69,9 @@ def _heard_topic(hyps: list[str], name: str, tree: dict, smap: dict) -> bool:
 
 
 def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candidate]:
-    """Keyword stand-in for the router: trees ranked by blanks the sentence fills (life-threat
-    blanks count double) plus 3 when the tree is named outright ("choking")."""
+    """Keyword stand-in for the router, in two tiers: trees named outright ("choking", "carbon
+    monoxide", smap topic_words) first, then by blanks the sentence fills (life-threat blanks count
+    double; naming adds 3 to the share shown)."""
     scored = []
     for i, (name, (tree, smap)) in enumerate(trees.items()):
         filled = set(fill_nbest(hyps, smap)) | set(fill(hyps[0], slots_of(smap), smap.get("priority")))
@@ -79,11 +80,11 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
             continue                               # still evidence for the tree (board run s001)
         c = Candidate(name, tree, smap)
         life = _life_slots(c)
-        scored.append((sum(2 if s in life else 1 for s in filled) + 3 * named, -i, name))
-    scored.sort(reverse=True)
-    top = scored[:k]
-    tot = sum(s for s, _, _ in top) or 1
-    return [Candidate(n, *trees[n], p=s / tot) for s, _, n in top]
+        scored.append((named, sum(2 if s in life else 1 for s in filled) + 3 * named, -i, name))
+    scored.sort(reverse=True)                      # tiered (Charlie 11-18): a tree named outright
+    top = scored[:k]                               # ("carbon monoxide", "choking") always ranks above
+    tot = sum(s for _, s, _, _ in top) or 1        # trees that only share a word ("stove", "dirty")
+    return [Candidate(n, *trees[n], p=s / tot) for _, s, _, n in top]
 
 
 def rescue(hyps: list[str], trees: dict, cands: list[Candidate]):
