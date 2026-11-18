@@ -29,7 +29,7 @@ from pathlib import Path
 import yaml
 
 from .data import load_tree
-from .form import (_rule_hit, MAX_TREES, names_tree, topic_words, _key, Candidate, answer, first_sentence, open_fields, ranked_cards,
+from .form import (_rule_hit, MAX_TREES, named_trees, names_tree, topic_words, _key, Candidate, answer, first_sentence, open_fields, ranked_cards,
                    split_tabs, _life_slots, _rule_hit)
 from .intake import UNIVERSAL, _stem, fill, fill_nbest, slots_of, tokenize
 
@@ -82,9 +82,10 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
     monoxide", smap topic_words) first, then by blanks the sentence fills (life-threat blanks count
     double; naming adds 3 to the share shown)."""
     scored = []
+    heard = named_trees(tokenize(hyps[0]), trees) if hyps else set()
     for i, (name, (tree, smap)) in enumerate(trees.items()):
         vals = {**fill(hyps[0], slots_of(smap), smap.get("priority")), **fill_nbest(hyps, smap)}
-        named = _heard_topic(hyps, name, tree, smap)
+        named = name in heard
         if not vals and not named:                 # a tie ("leg" vs "shin") fills no blank but is
             continue                               # still evidence for the tree (board run s001)
         c = Candidate(name, tree, smap)
@@ -124,15 +125,16 @@ def rescue(hyps: list[str], trees: dict, cands: list[Candidate]):
       4. a tree not kept meets a life rule with these words alone: open that card.
     Returns first_sentence's result (and replaces cands), or None to read the words as an answer."""
     kept = {c.name for c in cands}
-    if any(_heard_topic(hyps, n, t, m) for n, (t, m) in trees.items() if n not in kept):
+    if hyps and named_trees(tokenize(hyps[0]), trees) - kept:
         new = keep_trees(hyps, trees)              # a condition named outright wins over a kept tree's
         if new:                                    # generic rule (s009: "choking unresponsive" must open
             cands[:] = new                         # choking/unconscious, not head-spine's cpr/start)
             return first_sentence(hyps, cands)
+    heard = named_trees(tokenize(hyps[0]), trees) if hyps else set()
     for c in cands:
         probe = Candidate(c.name, c.tree, c.smap)
         probe.filled = {**c.filled, **fill_nbest(hyps, c.smap)}
-        if _rule_hit(probe) or _heard_topic(hyps, c.name, c.tree, c.smap):
+        if _rule_hit(probe) or c.name in heard:
             return None
     if any(fill_nbest(hyps, c.smap) for c in cands):
         return None

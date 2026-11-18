@@ -477,3 +477,12 @@ def test_named_tree_own_life_rule_beats_generic_cpr():
     assert cands[0].name == "wfa-co"
     assert first_sentence(line, cands) == ("open", "wfa-co", "treat_now")
     assert keep_trees(["she's passed out and not breathing"], pool)[0].name == "wfa-cpr"
+
+
+def test_heat_stroke_names_heat_not_stroke():
+    from vr.form import named_trees
+    from vr.intake import tokenize
+    trees = {"heat": ({"root": "s", "title": "Heat illness", "nodes": {"s": {}}}, {"topic_words": ["heat stroke"]}),
+             "wfa-stroke": ({"root": "s", "title": "Stroke", "nodes": {"s": {}}}, {"topic_words": ["stroke"]})}
+    assert named_trees(tokenize("i think it's heat stroke"), trees) == {"heat"}
+    assert named_trees(tokenize("i think she's having a stroke"), trees) == {"wfa-stroke"}

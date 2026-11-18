@@ -448,6 +448,26 @@ def topic_words(name: str, tree: dict, smap: dict) -> set:
     return {w for t in topic_phrases(name, tree, smap) for w in t}
 
 
+def name_spans(words: list[str], name: str, tree: dict, smap: dict) -> list[tuple[int, int]]:
+    """Where in the words each of the tree's topic phrases is heard, as (start, end) spans."""
+    keys, out = [_key(w) for w in words], []
+    for t in topic_phrases(name, tree, smap):
+        pos = _find(keys, list(t), gap=0)
+        if pos is not None:
+            out.append((pos[0], pos[-1] + 1))
+    return out
+
+
+def named_trees(words: list[str], trees: dict) -> set:
+    """Trees named outright. A name heard only inside another tree's longer name does not count:
+    "heat stroke" names heat, not stroke (trees thread 11-18)."""
+    spans = {n: name_spans(words, n, t, m) for n, (t, m) in trees.items()}
+    every = [(sp, n) for n, ss in spans.items() for sp in ss]
+    def inside(sp, n):
+        return any(o != n and a <= sp[0] and sp[1] <= b and (b - a) > (sp[1] - sp[0]) for (a, b), o in every)
+    return {n for n, ss in spans.items() if any(not inside(sp, n) for sp in ss)}
+
+
 def names_tree(words: list[str], name: str, tree: dict, smap: dict) -> bool:
     """Do these words name the tree's condition (every word of one of its topic phrases, in order)?"""
     keys = [_key(w) for w in words]
