@@ -220,3 +220,13 @@ def test_tied_words_still_keep_their_tree():
     kept = keep_trees(["my friend fell and broke is leg is bone a sticking at two the shin"],
                       {"fractures": frac, "wfa-bleeding": bleed})
     assert "fractures" in [c.name for c in kept]
+
+
+def test_in_tree_life_rule_opens_the_card_it_names():
+    tree = {"root": "s", "title": "Bleeding", "nodes": {"s": {"label": "Bleeding?"},
+            "severe": {"label": "Stop the bleeding"}, "tq": {"label": "Apply a tourniquet"}}}
+    smap = {"life_threat": [{"if": {"bleeding_type": "heavy"}, "go": "severe"}],
+            "slots": {"bleeding_type": {"heavy": ["will not stop"]}, "body_part": {"limb": ["leg"]}},
+            "questions": {"severe": {"slot": "body_part", "choices": {"limb": "tq"}}}}
+    cands = [Candidate("bleed", tree, smap)]
+    assert first_sentence("cut his leg and the bleeding will not stop", cands) == ("open", "bleed", "severe")

@@ -357,3 +357,12 @@ def test_tie_between_a_value_and_what_it_implies_takes_the_finer():
             "implies": {"body_part": {"lower_leg": "leg"}}}
     assert _fill("broke his leg, the shin", smap) == {"body_part": "lower_leg"}
     assert _fill("hurt his leg and arm", smap) == {}          # unrelated tie still asks
+
+
+def test_implied_tie_still_asks_on_or_and_between():
+    from vr.intake import _fill
+    smap = {"slots": {"body_part": {"arm": ["arm", "shoulder"], "forearm": ["wrist", "elbow"]}},
+            "implies": {"body_part": {"forearm": "arm"}}}
+    assert _fill("hurt his arm at the wrist", smap) == {"body_part": "forearm"}
+    assert _fill("pain between her shoulder and elbow", smap) == {}
+    assert _fill("my arm or wrist hurts", smap) == {}

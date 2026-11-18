@@ -211,8 +211,9 @@ def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | N
         top = max(len(cv) for _, cv in cand)
         tied = sorted((v for v, cv in cand if len(cv) == top), key=order.index)
         up = (implies or {}).get(slot, {})
-        if len(tied) > 1:                          # "leg ... shin": lower_leg implies leg, so the
-            coarse = set()                         # finer answer says both (board run s001)
+        if len(tied) > 1 and not set(raw) & UNSURE_JOIN:   # "leg ... shin": lower_leg implies leg,
+            coarse = set()                         # so the finer answer says both (board run s001);
+                                                   # "wrist or elbow", "between shoulder and elbow": ask
             for v in tied:
                 u, seen = up.get(v), {v}
                 while u and u not in seen:
@@ -337,6 +338,7 @@ def _leads(tree, qs, start, filled, implies, limit=12) -> bool:
 
 
 MENU_SLOTS = ("missing_kit",)
+UNSURE_JOIN = {"or", "between", "either"}
 
 
 def _menu_blank(tree, smap, qs, node, slot) -> bool:
