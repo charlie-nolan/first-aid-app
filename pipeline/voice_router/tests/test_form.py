@@ -565,3 +565,23 @@ def test_shared_cpr_rule_is_not_a_trees_own_handling():
     names = [c.name for c in keep_trees(["he's bleeding a lot and not breathing"],
                                         {"bites": bites, "wfa-bleeding": bleed, "wfa-cpr": cpr})]
     assert names.index("bites") > min(names.index("wfa-cpr"), names.index("wfa-bleeding"))
+
+
+def test_shared_blanks_are_not_a_trees_own_problem():
+    """31298ea PC check: wfa-co / wfa-drowning / wfa-diabetic fill the shared cause, bleeding_type
+    and breathing blanks; their own not-breathing rule then beat CPR with no CO, water or sugar heard."""
+    from vr.live import keep_trees
+    shared = {"breathing": {"no": ["not breathing"]}, "bleeding_type": {"heavy": ["bleeding a lot"]},
+              "cause": {"hypothermia": ["freezing cold"]}}
+    def tree(rule_go, own):
+        return ({"root": "s", "title": "T", "nodes": {"s": {}, "x": {}}},
+                {"life_threat": [{"if": {"breathing": "no"}, "go": rule_go}], "slots": {**shared, **own}})
+    pool = {"wfa-cpr": ({"root": "s", "title": "CPR", "nodes": {"s": {}, "cpr": {}}},
+                        {"life_threat": [{"if": {"breathing": "no"}, "go": "cpr"}], "slots": dict(shared)}),
+            "wfa-co": tree("x", {"co_source": {"stove": ["stove fumes"]}}),
+            "wfa-drowning": tree("x", {"in_water": {"yes": ["pulled him out of the water"]}}),
+            "wfa-bleeding": ({"root": "s", "title": "Bleeding", "nodes": {"s": {}}}, {"slots": dict(shared)})}
+    for line in ["he's bleeding a lot and not breathing", "he is freezing cold and not breathing"]:
+        cands = keep_trees([line], pool)
+        assert cands[0].name == "wfa-cpr", (line, [c.name for c in cands])
+    assert keep_trees(["stove fumes and she's not breathing"], pool)[0].name == "wfa-co"

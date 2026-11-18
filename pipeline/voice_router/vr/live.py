@@ -55,7 +55,9 @@ INJURY_WORDS = {"broke", "broken", "break", "snap", "snapped", "crack", "cracked
                 "deformed", "twisted", "twist", "rolled", "sprained", "dislocated", "whacked", "hit",
                 "blow", "bump", "bumped", "smashed", "crushed", "fell", "fall", "landed", "stubbed",
                 "jammed", "hurt", "hurts", "pain", "painful", "sore", "swollen", "swelling", "bruised",
-                "cut", "stake", "poked", "stabbed", "impaled", "stuck"}
+                "cut", "stake", "poked", "stabbed", "impaled", "stuck", "tripped", "trip", "slipped",
+                "ballooning", "limping", "limp", "holding", "grabs", "grabbing", "clutching", "lift",
+                "step", "weight"}
 # df95add PC check: a place-only rule without these sent 51 real injuries ("i think i broke my
 # leg", "rolled my ankle", "blow to the head") to the start screen; only a bare place ("toe",
 # "my toe", "his leg") should.
@@ -90,6 +92,19 @@ def _handles_life(c: Candidate, vals: dict) -> bool:
     return any(r["go"] == go and any(s in UNIVERSAL for s in r["if"]) for r in rules)
 
 
+def _shared_slots(trees: dict) -> set:
+    """Blanks that say nothing about WHICH tree: the CPR tree's own (cause, breathing...) and any
+    blank three or more trees carry (bleeding_type). Hearing one is not a tree's own problem
+    (31298ea PC check: "bleeding a lot and not breathing" opened wfa-co/treat_now; cold
+    not-breathing scenes ranked wfa-co / wfa-drowning above CPR)."""
+    count: dict = {}
+    for _, m in trees.values():
+        for slot in (m.get("slots") or {}):
+            count[slot] = count.get(slot, 0) + 1
+    home = {slot for n in GENERIC_HOME if n in trees for slot in (trees[n][1].get("slots") or {})}
+    return home | {slot for slot, k in count.items() if k >= 3}
+
+
 def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candidate]:
     """Keyword stand-in for the router, in two tiers: trees named outright ("choking", "carbon
     monoxide", smap topic_words) first, then by blanks the sentence fills (life-threat blanks count
@@ -98,6 +113,7 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
     words = tokenize(hyps[0]) if hyps else []
     heard = named_trees(words, trees)
     hurt = bool(set(words) & INJURY_WORDS)
+    shared = _shared_slots(trees)
     for i, (name, (tree, smap)) in enumerate(trees.items()):
         vals = {**fill(hyps[0], slots_of(smap), smap.get("priority")), **fill_nbest(hyps, smap)}
         named = name in heard
@@ -111,7 +127,7 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
         score = sum(_weight(s, v, life, home) for s, v in vals.items())   # alone (hypothermia, drowning)
         loc = smap.get("location_slots") or LOCATION_SLOTS
         real = named or (score > 0 and (hurt or any(s not in loc for s in vals)))
-        own = named or any(s not in loc and s not in UNIVERSAL for s in vals)
+        own = named or any(s not in loc and s not in UNIVERSAL and s not in shared for s in vals)
         handles = not home and own and _handles_life(c, vals)
         scored.append((named or handles, score + 3 * named + 3 * handles, -i, name, real))
     if not any(x[4] for x in scored):              # only a place was heard ("toe", "my toe"): no problem
