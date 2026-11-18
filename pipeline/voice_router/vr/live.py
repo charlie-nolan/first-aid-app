@@ -31,7 +31,7 @@ import yaml
 from .data import load_tree
 from .form import (MAX_TREES, Candidate, answer, first_sentence, open_fields, ranked_cards,
                    split_tabs, _life_slots, _rule_hit)
-from .intake import _stem, fill, fill_nbest, tokenize
+from .intake import _stem, fill, fill_nbest, slots_of, tokenize
 
 
 def load_all(tree_dirs: list[Path], slots_dir: Path) -> dict[str, tuple[dict, dict]]:
@@ -46,7 +46,8 @@ def load_all(tree_dirs: list[Path], slots_dir: Path) -> dict[str, tuple[dict, di
 
 _TOPIC_STOP = {"wfa", "and", "or", "the", "of", "a", "an", "care", "first", "aid", "injury", "injuries",
                "problem", "problems", "other", "pain", "illness", "emergency", "emergencies", "gear",
-               "improvised", "sick", "bad", "personal"}
+               "improvised", "sick", "bad", "personal", "poison"}   # "carbon monoxide poisoning"
+                                                                       # is not poison ivy (s010)
 
 
 def _key(w: str) -> str:
@@ -72,7 +73,7 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
     blanks count double) plus 3 when the tree is named outright ("choking")."""
     scored = []
     for i, (name, (tree, smap)) in enumerate(trees.items()):
-        filled = set(fill_nbest(hyps, smap)) | set(fill(hyps[0], smap["slots"], smap.get("priority")))
+        filled = set(fill_nbest(hyps, smap)) | set(fill(hyps[0], slots_of(smap), smap.get("priority")))
         named = _heard_topic(hyps, name, tree, smap)
         if not filled and not named:               # a tie ("leg" vs "shin") fills no blank but is
             continue                               # still evidence for the tree (board run s001)
@@ -89,10 +90,26 @@ def rescue(hyps: list[str], trees: dict, cands: list[Candidate]):
     """Before a later answer is read against the open form: does it bring a life threat or name a
     problem the kept trees do not cover? (Board run s007: after a misheard first sentence kept burns
     and wounds, "choking", "can't breathe" were read as burns answers and never reached choking.)
-    A life rule met by these words alone in a tree not kept opens that tree's card; a tree named
-    outright and not kept restarts the form from these words. Returns first_sentence's result
-    (and replaces cands), or None to read the words as an answer."""
+    The kept trees read the words first (s007 replay: "can't breathe" must not jump from the kept
+    choking tree to allergy). In order:
+      1. a kept tree meets a life rule with these words, or is named in them: an answer (None);
+      2. a tree not kept is named outright ("choking"): restart the form from these words;
+      3. a kept tree fills any blank from them: an answer (None);
+      4. a tree not kept meets a life rule with these words alone: open that card.
+    Returns first_sentence's result (and replaces cands), or None to read the words as an answer."""
     kept = {c.name for c in cands}
+    for c in cands:
+        probe = Candidate(c.name, c.tree, c.smap)
+        probe.filled = {**c.filled, **fill_nbest(hyps, c.smap)}
+        if _rule_hit(probe) or _heard_topic(hyps, c.name, c.tree, c.smap):
+            return None
+    if any(_heard_topic(hyps, n, t, m) for n, (t, m) in trees.items() if n not in kept):
+        new = keep_trees(hyps, trees)
+        if new:
+            cands[:] = new
+            return first_sentence(hyps, cands)
+    if any(fill_nbest(hyps, c.smap) for c in cands):
+        return None
     for name, (tree, smap) in trees.items():
         if name in kept:
             continue
@@ -100,11 +117,6 @@ def rescue(hyps: list[str], trees: dict, cands: list[Candidate]):
         c.filled = fill_nbest(hyps, smap)
         if _rule_hit(c):
             cands[:] = [Candidate(name, tree, smap)]
-            return first_sentence(hyps, cands)
-    if any(_heard_topic(hyps, n, t, m) for n, (t, m) in trees.items() if n not in kept):
-        new = keep_trees(hyps, trees)
-        if new:
-            cands[:] = new
             return first_sentence(hyps, cands)
     return None
 

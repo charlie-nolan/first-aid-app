@@ -240,8 +240,28 @@ def decisive_slots(smap: dict) -> set:
     return {s for r in lt for s in list(r.get("if", {})) + list(r.get("unless") or {})}
 
 
+# Safety net (board runs s010 "won't wake", 11-18): life words every tree reads the same way. Added
+# only to a slot and value the tree already has, never a new blank. "can't breathe" is NOT here: in a
+# conscious person it is choking/asthma/allergy, not breathing=no.
+UNIVERSAL = {"conscious": {"no": ["won't wake", "won't wake up", "will not wake", "can't wake",
+                                  "can't wake him", "can't wake her", "not waking up", "unresponsive",
+                                  "unconscious", "passed out", "knocked out", "won't respond"]},
+             "breathing": {"no": ["not breathing", "stopped breathing", "isn't breathing",
+                                  "no breathing"]}}
+
+
+def slots_of(smap: dict) -> dict:
+    """The tree's slot phrases plus the UNIVERSAL life words for slots/values it already has."""
+    base = smap.get("slots") or {}
+    out = {}
+    for slot, values in base.items():
+        extra = UNIVERSAL.get(slot, {})
+        out[slot] = {v: list(ph) + [e for e in extra.get(v, []) if e not in ph] for v, ph in values.items()}
+    return out
+
+
 def _fill(text: str, smap: dict) -> dict[str, str]:
-    return fill(text, smap["slots"], smap.get("priority"), decisive_slots(smap), smap.get("implies"))
+    return fill(text, slots_of(smap), smap.get("priority"), decisive_slots(smap), smap.get("implies"))
 
 
 def fill_nbest(hyps: list[str], smap: dict) -> dict[str, str]:

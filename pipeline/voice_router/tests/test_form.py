@@ -279,3 +279,56 @@ def test_s007_choking_mid_form_switches_trees():
     cands = [c for c in keep_trees(["my dad's arm is dirty"], pool) if c.name != "wfa-choking"]
     first_sentence("my dad's arm is dirty", cands)
     assert rescue(["clean"], pool, cands) is None                     # a plain answer stays an answer
+
+
+def test_s007_kept_tree_reads_the_words_before_other_trees():
+    from vr.live import keep_trees, rescue
+    pool = _s007_pool()
+    pool["wfa-allergy"] = ({"root": "s", "title": "Allergic reaction", "nodes": {"s": {"label": "?"},
+                            "severe": {"label": "Severe reaction"}}},
+                           {"life_threat": [{"if": {"breathing": "hard"}, "go": "severe"}],
+                            "slots": {"breathing": {"hard": ["can't breathe"]}}})
+    cands = keep_trees(["choking"], pool)
+    assert [c.name for c in cands] == ["wfa-choking"]
+    first_sentence("choking", cands)
+    assert rescue(["can't breathe"], pool, cands) is None             # choking's own form reads it
+    assert answer("can't breathe", cands) == ("open", "wfa-choking", "thrust")
+
+
+def _s010_pool():
+    pool = _s007_pool()
+    pool["wfa-co"] = ({"root": "s", "title": "Carbon monoxide", "nodes": {"s": {"label": "Awake?"},
+                       "treat_now": {"label": "Get them to fresh air now"}, "mild": {"label": "Mild"}}},
+                      {"life_threat": [{"if": {"conscious": "no"}, "go": "treat_now"}],
+                       "slots": {"conscious": {"no": ["passed out"], "yes": ["awake"]},
+                                 "source": {"stove": ["stove", "heater"]}},
+                       "questions": {"s": {"slot": "conscious", "choices": {"no": "treat_now", "yes": "mild"}}}})
+    pool["wfa-poison-ivy"] = ({"root": "s", "title": "Poison ivy, oak and sumac", "nodes": {"s": {}}},
+                              {"slots": {"rash": {"yes": ["rash", "itchy"]}}})
+    return pool
+
+
+def test_s010_wont_wake_opens_the_co_card():
+    from vr.live import keep_trees
+    pool = _s010_pool()
+    line = "carbon monoxide poisoning from the tent stove and my partner won't wake up"
+    cands = keep_trees([line], pool)
+    assert "wfa-poison-ivy" not in [c.name for c in cands]
+    assert first_sentence(line, cands) == ("open", "wfa-co", "treat_now")
+
+
+def test_s009_choking_and_unresponsive_opens_the_life_card():
+    from vr.live import keep_trees
+    pool = _s007_pool()
+    cands = keep_trees(["choking unresponsive"], pool)
+    assert first_sentence("choking unresponsive", cands) == ("open", "wfa-choking", "out")
+
+
+def test_s007_replay_misheard_then_choking_then_cant_breathe():
+    from vr.live import keep_trees, rescue
+    pool = _s010_pool()
+    cands = keep_trees(["eye think my dad is choking on dirty"], pool)
+    assert cands[0].name == "wfa-choking"
+    first_sentence("eye think my dad is choking on dirty", cands)
+    r = rescue(["choking in can't breathe"], pool, cands) or answer("choking in can't breathe", cands)
+    assert r == ("open", "wfa-choking", "thrust")
