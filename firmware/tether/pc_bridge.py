@@ -47,7 +47,25 @@ class Board:
 
     def lines(self):
         while True:
-            d = self.s.read(8192)
+            try:
+                d = self.s.read(8192)
+            except (serial.SerialException, OSError):     # unplugged: wait and reopen
+                print("(board unplugged: waiting for it to come back)", flush=True)
+                try:
+                    self.s.close()
+                except Exception:
+                    pass
+                while True:
+                    time.sleep(1)
+                    try:
+                        self.s = serial.Serial(self.s.port, 115200, timeout=0.2)
+                        break
+                    except (serial.SerialException, OSError):
+                        pass
+                print("(board back)", flush=True)
+                self.buf = b""
+                self.send("HELLO")
+                continue
             if not d:
                 yield None
                 continue
@@ -250,7 +268,7 @@ def main(argv=None):
     threading.Thread(target=keys, daemon=True).start()
     scen.print()
 
-    take, data, nfb, last_hello = None, [], 0, time.time()
+    take, data, nfb, last_hello, last_banner = None, [], 0, time.time(), None
     for ln in board.lines():
         if ln is None:
             if time.time() - last_hello > 3 and take is None:   # board reset: say hello again
@@ -258,7 +276,9 @@ def main(argv=None):
             continue
         last_hello = time.time()
         if ln.startswith("VR-TETHER"):
-            print("board:", ln, flush=True)
+            if ln != last_banner:
+                print("board:", ln, flush=True)
+            last_banner = ln
         elif ln.startswith("TAKE "):
             take, data = json.loads(ln[5:]), []
         elif ln.startswith("D ") and take is not None:
