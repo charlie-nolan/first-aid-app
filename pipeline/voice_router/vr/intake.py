@@ -366,8 +366,10 @@ def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = Non
                 not any(filled.get(s) == v for s, v in (rule.get("unless") or {}).items()):
             if rule["go"] not in nodes:
                 return rule["go"], [], None        # another tree's card: open it
-            node = rule["go"]                      # same tree: keep walking from there
-            break
+            q = qs.get(rule["go"])                 # same tree: stop on the card the rule names
+            return rule["go"], [], (q["slot"] if q and not _answer(q, filled.get(q["slot"]), implies)
+                                    else None)     # ("bleeding a lot from my leg" must show direct
+                                                   # pressure first, not jump to the tourniquet)
     while node not in seen:
         seen.add(node)
         q = qs.get(node)

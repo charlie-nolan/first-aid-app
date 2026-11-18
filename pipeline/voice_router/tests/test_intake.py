@@ -92,7 +92,7 @@ def test_hedge_fills_nothing():
     assert fill("i can barely tell if she is breathing", slots) == {}
 
 
-def test_unless_and_same_tree_jump_keeps_walking():
+def test_unless_and_same_tree_jump_stops_on_the_life_card():
     tree = {"root": "start", "nodes": {"start": _q("bleeding_type", arterial="severe", minor="minor"),
                                        "severe": _q("body_part", limb="tq", junction="pack"),
                                        "minor": {}, "tq": {}, "pack": {}}}
@@ -102,7 +102,7 @@ def test_unless_and_same_tree_jump_keeps_walking():
             "life_threat": [{"if": {"conscious": "no"}, "unless": {"seizing": "yes"}, "go": "wfa-cpr/start"},
                             {"if": {"bleeding_type": "arterial"}, "go": "severe"}]}
     f = lambda t: walk(tree, smap, fill(t, smap["slots"]))
-    assert f("blood spurting from his groin") == ("pack", ["severe"], None)
+    assert f("blood spurting from his groin") == ("severe", [], None)     # general card first (11-18)
     assert f("he's unresponsive") == ("wfa-cpr/start", [], None)
     assert f("jerking and unresponsive")[0] == "start"
 
@@ -366,3 +366,13 @@ def test_implied_tie_still_asks_on_or_and_between():
     assert _fill("hurt his arm at the wrist", smap) == {"body_part": "forearm"}
     assert _fill("pain between her shoulder and elbow", smap) == {}
     assert _fill("my arm or wrist hurts", smap) == {}
+
+
+def test_walk_stops_on_an_in_tree_life_card():
+    tree = {"root": "s", "nodes": {"s": {"label": "Bleeding?"}, "severe": {"label": "Stop the bleeding"},
+                                   "tq": {"label": "Apply a tourniquet"}}}
+    smap = {"life_threat": [{"if": {"bleeding_type": "heavy"}, "go": "severe"}],
+            "slots": {"bleeding_type": {"heavy": ["bleeding a lot"]}, "body_part": {"limb": ["leg"]}},
+            "questions": {"severe": {"slot": "body_part", "choices": {"limb": "tq"}}}}
+    assert walk(tree, smap, fill("I'm bleeding a lot from my leg", smap["slots"]))[0] == "severe"
+    assert walk(tree, smap, {"bleeding_type": "heavy", "body_part": "limb"}, start="severe")[0] == "tq"
