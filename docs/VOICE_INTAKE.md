@@ -10,6 +10,45 @@ cited manual card.
 
 ![Voice flow](voice/voice-flow.png)
 
+## Why the intake changed
+
+The voice intake was redesigned on 2026-11-17 because the first version's own test results
+showed it could not meet the goal.
+
+**Version 1: one page per voice prompt.** Voice walked the same tree as the buttons. The first
+sentence filled whatever it could and jumped as far down the tree as those words allowed. After
+that, each voice prompt answered **one page** (one question) and moved one step down. For
+example: "Where is the injury?", then "Which bone?", then "Is bone showing?", one page each.
+
+**How it was tested.** This was a PC simulation, not speech and not the device:
+- The test sentences were typed lines written by language models.
+- The engine was given the right tree.
+- For each page it reached, the simulator "said" the right answer's words.
+- The score was whether the right card was open after voice prompt 1, 2 and 3.
+
+**Result.** On the held-out sets (test2 and test3, never tuned on), the right card was open:
+- after prompt 1: 43% and 40%;
+- **after prompt 2: 63% and 67%**;
+- after prompt 3: 86% and 88%.
+
+Charlie's goal is 70-80% after the second prompt.
+
+**Why prompt 2 fell short.** Many cards sit two or three questions below where the first
+sentence lands. With one question per prompt, prompt 2 can only move one step, so a card that
+still needed two answers could never open by prompt 2, however well the words were heard. The
+shortfall came from the layout, not from recognition.
+
+**Version 2: the fill-in-the-blanks form (this document).** After the first sentence, one
+screen lists **every** blank still open, and one spoken answer can fill several at once. The same
+simulation on the same sentences reached **76% and 77% after prompt 2**. Emergencies (not
+breathing, unresponsive, heavy bleeding...) still open their card on the first sentence. Button
+(manual) mode keeps the page-by-page tree. In the chart below, the blue bars are version 1 and the
+green bars are version 2.
+
+Both versions were scored under the same easy conditions (typed text, right tree given), so the
+gain from 63-67% to 76-77% comes from the layout change alone. Real-speech and router-in-the-loop
+numbers have not been measured for either version yet. See [What has been tested](#what-has-been-tested).
+
 ## The flow
 
 1. **Hold TALK and say what happened.** ("my buddy fell off a rock and hurt his ankle, it's swelling")
