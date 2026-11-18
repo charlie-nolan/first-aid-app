@@ -5,7 +5,7 @@ form logic moves to C. The board is the mic, the screen and the buttons; the PC 
 
 1. Hold **TALK** and speak. The clip (16 kHz mono, 500 ms pre-roll) goes over USB.
 2. `pc_bridge.py` decodes it with the speech model (fasr), runs the fill-in-the-blanks form
-   (`pipeline/voice_router/vr/form.py`, 459e39d or later) and sends back one screen as JSON.
+   (`pipeline/voice_router/vr/form.py`, 9a9dc67 or later) and sends back one screen as JSON.
 3. The board draws the form (each open field with its choices), the SKIP list, or the card
    that opens (title, cites, node id; no card text). Every screen can be answered with buttons.
 
@@ -28,14 +28,14 @@ Mic wiring is the recorder's: PDM CLK on D4, DAT on D5 (take the battery divider
 ## Run the PC side
 
     WORK=/mnt/data/first-aid-gpu ~/miniconda3/envs/firstaid/bin/python firmware/tether/pc_bridge.py \
-        --vr <voice_router folder at 459e39d or later> \
+        --vr <voice_router folder at 9a9dc67 or later> \
         --trees ~/first-aid-build/pipeline/plb/content/trees ~/first-aid-trees/pipeline/plb/content/trees_personal \
         --slots ~/first-aid-voice/slots --fasr ~/first-aid-speech/pipeline/speech
 
 Add `--typed` to type sentences instead of speaking. Each run writes to
 `$WORK/speech/tether/<date_time>/`: `clips/` (every take, as training data), `screens/` (a PNG of
-every screen the board drew, from its own framebuffer) and `log.jsonl` (what was heard, every
-SHOW and PICK). Nothing from a run goes into the repo except screenshots picked for `docs/`.
+every screen the board drew, from its own framebuffer) `turns.jsonl` (one line per turn, the shape of vr.live_web's, with the scenario id) and `log.jsonl`
+(every SHOW, PICK and board line). Nothing from a run goes into the repo except screenshots picked for `docs/`.
 
 ## Link format (USB serial, text lines)
 
@@ -49,7 +49,8 @@ recorder); `PICK {json}`; `FB <base64>` (the 250 x 122 framebuffer, 1 = black); 
           "top":[{"title":..,"node":"tree/card"}],
           "card":{"title":"Tree > Card","cites":[..],"node":"tree/card"},
           "cards":[{"title":..,"node":..}]}
-    PICK {"seq":N,"field":"<key>","value":"<value>","label":"<label>"}      -> vr.form.pick()
+    PICK {"seq":N,"field":"<key>","value":"<value>","label":"<label>"}      -> vr.form.pick(key, value)
+    PICK {"seq":N,"field":"<key>","value":null,"node":"tree/card"}          -> plain tile: vr.form.pick(key, None, to=card)
     PICK {"seq":N,"action":"skip"|"new"|"open","node":"tree/card"}          -> skip() / start over / card
 
 The board keeps at most 6 fields of 12 choices and 6 SKIP cards; longer strings are cut.

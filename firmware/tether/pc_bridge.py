@@ -6,7 +6,7 @@ come back as PICK lines. Every screen the board draws also comes back as a frame
 PNG, so each bench run leaves real screenshots.
 
     WORK=/mnt/data/first-aid-gpu python firmware/tether/pc_bridge.py \\
-        --vr  <voice_router root at 459e39d or later> \\
+        --vr  <voice_router root at 9a9dc67 or later> \\
         --trees ~/first-aid-build/pipeline/plb/content/trees ~/first-aid-trees/pipeline/plb/content/trees_personal \\
         --slots ~/first-aid-voice/slots --fasr ~/first-aid-speech/pipeline/speech \\
         [--port /dev/ttyACM0] [--out $WORK/speech/tether] [--typed]
@@ -125,8 +125,9 @@ class Brain:
     def __init__(self, a):
         sys.path.insert(0, str(Path(a.vr).expanduser()))
         from vr import form, live
-        if not hasattr(form, "pick"):
-            sys.exit("--vr is older than 459e39d (no vr.form.pick, and it can hang on fractures/sprains/wounds)")
+        import inspect
+        if not hasattr(form, "pick") or "to" not in inspect.signature(form.pick).parameters:
+            sys.exit("--vr is older than 9a9dc67 (no vr.form.pick with to=, and it can hang on fractures/sprains/wounds)")
         self.form, self.live = form, live
         self.trees = live.load_all(a.trees, a.slots)
         print(f"{len(self.trees)} trees with blanks loaded", flush=True)
@@ -148,8 +149,13 @@ class Brain:
     def form_screen(self, msg=""):
         fields = []
         for f in self.form.open_fields(self.cands):
-            ch = [{"label": str(c.get("label", c.get("value")))[:46], "value": str(c["value"])[:46]}
-                  for c in f.choices if c.get("value")]
+            ch = []
+            for c in f.choices:
+                if c.get("value"):
+                    ch.append({"label": str(c.get("label", c["value"]))[:46], "value": str(c["value"])[:46]})
+                elif c.get("to"):          # a plain tile (menu choice): PICK carries its target card
+                    ch.append({"label": str(c.get("label", c["to"]))[:46], "value": None,
+                               "node": f"{f.trees[0]}/{c['to']}"[:78]})
             if ch:
                 fields.append({"key": f.key, "q": f.question[:94], "choices": ch[:12],
                                "after": list(f.when) if f.when else None})
@@ -210,13 +216,15 @@ class Brain:
         if act == "skip":
             return self.result("skip", None, self.form.skip(self.cands))
         if p.get("field"):
+            if p.get("value") is None and p.get("node"):
+                return self.result(*self.form.pick(p["field"], None, self.cands, to=p["node"].partition("/")[2]))
             return self.result(*self.form.pick(p["field"], p["value"], self.cands))
         return None
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="pc_bridge")
-    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 459e39d or later")
+    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 9a9dc67 or later")
     ap.add_argument("--trees", type=Path, nargs="+", required=True)
     ap.add_argument("--slots", type=Path, required=True)
     ap.add_argument("--fasr", type=Path, help="speech package root (holds fasr/)")

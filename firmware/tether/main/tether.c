@@ -115,7 +115,7 @@ static void rec_stop(void) {
 
 /* ---------- screen description from the PC ---------- */
 enum { K_START, K_FORM, K_CARD, K_SKIP, K_AGAIN };
-typedef struct { char label[48], value[48]; } choice_t;
+typedef struct { char label[48], value[48], node[80]; } choice_t;  /* value "" = plain tile: node is its target */
 typedef struct { char key[40], q[96]; int nch; choice_t ch[12]; } field_t;
 typedef struct { char title[120], node[80]; } cardref_t;
 typedef struct {
@@ -156,8 +156,8 @@ static bool parse_show(const char *js) {
         const cJSON *c;
         cJSON_ArrayForEach(c, cJSON_GetObjectItem(f, "choices")) {
             if (d->nch >= 12) break;
-            cpy(d->ch[d->nch].label, sizeof d->ch->label, c, "label"); cpy(d->ch[d->nch].value, sizeof d->ch->value, c, "value");
-            if (!d->ch[d->nch].label[0]) strcpy(d->ch[d->nch].label, d->ch[d->nch].value);
+            cpy(d->ch[d->nch].label, sizeof d->ch->label, c, "label"); cpy(d->ch[d->nch].value, sizeof d->ch->value, c, "value"); cpy(d->ch[d->nch].node, sizeof d->ch->node, c, "node");
+            if (!d->ch[d->nch].label[0]) strcpy(d->ch[d->nch].label, d->ch[d->nch].value[0] ? d->ch[d->nch].value : d->ch[d->nch].node);
             d->nch++;
         }
         if (d->nch) s.nf++;
@@ -371,7 +371,11 @@ static void json_str(char *out, size_t cap, const char *s) {
 static void pick_choice(void) {
     field_t *f = &S.f[cur_f]; char k[96], v[96], l[96], b[256];
     json_str(k, sizeof k, f->key); json_str(v, sizeof v, f->ch[cur_c].value); json_str(l, sizeof l, f->ch[cur_c].label);
-    snprintf(b, sizeof b, "PICK {\"seq\":%d,\"field\":\"%s\",\"value\":\"%s\",\"label\":\"%s\"}", S.seq, k, v, l);
+    if (!f->ch[cur_c].value[0] && f->ch[cur_c].node[0]) {   /* plain tile: value null + its target card */
+        char n[96]; json_str(n, sizeof n, f->ch[cur_c].node);
+        snprintf(b, sizeof b, "PICK {\"seq\":%d,\"field\":\"%s\",\"value\":null,\"node\":\"%s\",\"label\":\"%s\"}", S.seq, k, n, l);
+    } else
+        snprintf(b, sizeof b, "PICK {\"seq\":%d,\"field\":\"%s\",\"value\":\"%s\",\"label\":\"%s\"}", S.seq, k, v, l);
     send_line(b);
 }
 static void pick_action(const char *a, const char *node) {
