@@ -372,9 +372,10 @@ def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = Non
             if rule["go"] not in nodes:
                 return rule["go"], [], None        # another tree's card: open it
             q = qs.get(rule["go"])                 # same tree: stop on the card the rule names
-            return rule["go"], [], (q["slot"] if q and not _answer(q, filled.get(q["slot"]), implies)
-                                    else None)     # ("bleeding a lot from my leg" must show direct
-                                                   # pressure first, not jump to the tourniquet)
+            return rule["go"], [], (q["slot"] if q else None)   # ("bleeding a lot from my leg" shows
+                                                   # direct pressure first, not the tourniquet; its blank
+                                                   # stays asked even if already heard, so saying "his
+                                                   # leg" again, or tapping it, moves on)
     while node not in seen:
         seen.add(node)
         q = qs.get(node)

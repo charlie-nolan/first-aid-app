@@ -74,7 +74,7 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
         if go:                                        # cold or from water?") only shows on the open card
             if go in c.tree["nodes"]:                 # the card the rule names, not one past it ("bleeding
                 q = _questions(c.tree, c.smap).get(go)   # won't stop" + leg went on to tq: open severe)
-                c.card, c.asking = go, (q["slot"] if q and q["slot"] not in c.filled else None)
+                c.card, c.asking = go, (q["slot"] if q else None)
             return "open", c.name, c.card
     if (multi or AUTO_TABS) and len(split_tabs(cands)) > 1:
         return "tabs", None, None                     # two problems named: one tab each

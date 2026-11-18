@@ -102,7 +102,7 @@ def test_unless_and_same_tree_jump_stops_on_the_life_card():
             "life_threat": [{"if": {"conscious": "no"}, "unless": {"seizing": "yes"}, "go": "wfa-cpr/start"},
                             {"if": {"bleeding_type": "arterial"}, "go": "severe"}]}
     f = lambda t: walk(tree, smap, fill(t, smap["slots"]))
-    assert f("blood spurting from his groin") == ("severe", [], None)     # general card first (11-18)
+    assert f("blood spurting from his groin") == ("severe", [], "body_part")   # general card first (11-18)
     assert f("he's unresponsive") == ("wfa-cpr/start", [], None)
     assert f("jerking and unresponsive")[0] == "start"
 

@@ -230,3 +230,14 @@ def test_in_tree_life_rule_opens_the_card_it_names():
             "questions": {"severe": {"slot": "body_part", "choices": {"limb": "tq"}}}}
     cands = [Candidate("bleed", tree, smap)]
     assert first_sentence("cut his leg and the bleeding will not stop", cands) == ("open", "bleed", "severe")
+
+
+def test_repeating_a_heard_answer_on_the_life_card_moves_on():
+    tree = {"root": "s", "title": "Bleeding", "nodes": {"s": {"label": "Bleeding?"},
+            "severe": {"label": "Stop the bleeding"}, "tq": {"label": "Apply a tourniquet"}}}
+    smap = {"life_threat": [{"if": {"bleeding_type": "heavy"}, "go": "severe"}],
+            "slots": {"bleeding_type": {"heavy": ["bleeding a lot"]}, "body_part": {"limb": ["leg"]}},
+            "questions": {"severe": {"slot": "body_part", "choices": {"limb": "tq"}}}}
+    cands = [Candidate("bleed", tree, smap)]
+    assert first_sentence("bleeding a lot from his leg", cands) == ("open", "bleed", "severe")
+    assert answer("it's his leg", cands) == ("open", "bleed", "tq")
