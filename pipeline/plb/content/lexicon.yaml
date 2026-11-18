@@ -2067,3 +2067,59 @@ words:
 - {id: 2056, word: "chunk", class: 0, phones: ["CH AH NG K"], g2p: hand, src: core}
 - {id: 2057, word: "row", class: 0, phones: ["R OW"], g2p: hand, src: core}
 - {id: 2058, word: "poop", class: 3, phones: ["P UW P"], g2p: hand, src: core}
+- {id: 2059, word: "appears", class: 0, phones: ["AH P IH R Z"], g2p: cmudict, src: core}
+- {id: 2060, word: "asleep", class: 3, phones: ["AH S L IY P"], g2p: cmudict, src: core}
+- {id: 2061, word: "bands", class: 0, phones: ["B AE N D Z"], g2p: cmudict, src: core}
+- {id: 2062, word: "blistering", class: 3, phones: ["B L IH S T ER IH NG"], g2p: cmudict, src: core}
+- {id: 2063, word: "blistery", class: 3, phones: ["B L IH S T ER IY"], g2p: hand, src: core}
+- {id: 2064, word: "breaking", class: 2, phones: ["B R EY K IH NG"], g2p: cmudict, src: core}
+- {id: 2065, word: "briefly", class: 0, phones: ["B R IY F L IY"], g2p: cmudict, src: core}
+- {id: 2066, word: "brushed", class: 2, phones: ["B R AH SH T"], g2p: cmudict, src: core}
+- {id: 2067, word: "bumps", class: 3, phones: ["B AH M P S"], g2p: cmudict, src: core}
+- {id: 2068, word: "clot", class: 3, phones: ["K L AA T"], g2p: cmudict, src: core}
+- {id: 2069, word: "clotting", class: 3, phones: ["K L AA T IH NG"], g2p: cmudict, src: core}
+- {id: 2070, word: "colder", class: 0, phones: ["K OW L D ER"], g2p: cmudict, src: core}
+- {id: 2071, word: "comfort", class: 0, phones: ["K AH M F ER T"], g2p: cmudict, src: core}
+- {id: 2072, word: "crashed", class: 2, phones: ["K R AE SH T"], g2p: cmudict, src: core}
+- {id: 2073, word: "death", class: 0, phones: ["D EH TH"], g2p: cmudict, src: core}
+- {id: 2074, word: "drifts", class: 0, phones: ["D R IH F T S"], g2p: cmudict, src: core}
+- {id: 2075, word: "droop", class: 3, phones: ["D R UW P"], g2p: cmudict, src: core}
+- {id: 2076, word: "droopy", class: 3, phones: ["D R UW P IY"], g2p: cmudict, src: core}
+- {id: 2077, word: "exercising", class: 2, phones: ["EH K S ER S AY Z IH NG"], g2p: cmudict, src: core}
+- {id: 2078, word: "extremely", class: 0, phones: ["EH K S T R IY M L IY"], g2p: cmudict, src: core}
+- {id: 2079, word: "eyelids", class: 1, phones: ["AY L IH D Z"], g2p: cmudict, src: core}
+- {id: 2080, word: "filling", class: 0, phones: ["F IH L IH NG"], g2p: cmudict, src: core}
+- {id: 2081, word: "flows", class: 0, phones: ["F L OW Z"], g2p: cmudict, src: core}
+- {id: 2082, word: "gotten", class: 0, phones: ["G AA T AH N", "G AO T AH N"], g2p: cmudict, src: core}
+- {id: 2083, word: "incredibly", class: 0, phones: ["IH N K R EH D AH B L IY"], g2p: cmudict, src: core}
+- {id: 2084, word: "itches", class: 3, phones: ["IH CH AH Z", "IH CH IH Z"], g2p: cmudict, src: core}
+- {id: 2085, word: "itself", class: 0, phones: ["IH T S EH L F"], g2p: cmudict, src: core}
+- {id: 2086, word: "lasting", class: 0, phones: ["L AE S T IH NG"], g2p: cmudict, src: core}
+- {id: 2087, word: "late", class: 0, phones: ["L EY T"], g2p: cmudict, src: core}
+- {id: 2088, word: "lopsided", class: 3, phones: ["L AA P S AY D IH D"], g2p: cmudict, src: core}
+- {id: 2089, word: "missed", class: 0, phones: ["M IH S T"], g2p: cmudict, src: core}
+- {id: 2090, word: "moved", class: 0, phones: ["M UW V D"], g2p: cmudict, src: core}
+- {id: 2091, word: "nowhere", class: 0, phones: ["N OW W EH R", "N OW HH W EH R"], g2p: cmudict, src: core}
+- {id: 2092, word: "palpitations", class: 3, phones: ["P AE L P IH T EY SH AH N Z"], g2p: cmudict, src: core}
+- {id: 2093, word: "patches", class: 0, phones: ["P AE CH AH Z", "P AE CH IH Z"], g2p: cmudict, src: core}
+- {id: 2094, word: "period", class: 0, phones: ["P IH R IY AH D"], g2p: cmudict, src: core}
+- {id: 2095, word: "randomly", class: 0, phones: ["R AE N D AH M L IY"], g2p: cmudict, src: core}
+- {id: 2096, word: "reason", class: 0, phones: ["R IY Z AH N"], g2p: cmudict, src: core}
+- {id: 2097, word: "regularly", class: 0, phones: ["R EH G Y AH L ER L IY"], g2p: cmudict, src: core}
+- {id: 2098, word: "sat", class: 0, phones: ["S AE T"], g2p: cmudict, src: core}
+- {id: 2099, word: "seem", class: 0, phones: ["S IY M"], g2p: cmudict, src: core}
+- {id: 2100, word: "sensitive", class: 0, phones: ["S EH N S AH T IH V", "S EH N S IH T IH V"], g2p: cmudict, src: core}
+- {id: 2101, word: "severely", class: 0, phones: ["S AH V IH R L IY"], g2p: cmudict, src: core}
+- {id: 2102, word: "smile", class: 0, phones: ["S M AY L"], g2p: cmudict, src: core}
+- {id: 2103, word: "speech", class: 0, phones: ["S P IY CH"], g2p: cmudict, src: core}
+- {id: 2104, word: "spouting", class: 3, phones: ["S P AW T IH NG"], g2p: cmudict, src: core}
+- {id: 2105, word: "squirts", class: 3, phones: ["S K W ER T S"], g2p: cmudict, src: core}
+- {id: 2106, word: "storing", class: 0, phones: ["S T AO R IH NG"], g2p: cmudict, src: core}
+- {id: 2107, word: "strained", class: 3, phones: ["S T R EY N D"], g2p: cmudict, src: core}
+- {id: 2108, word: "sumac", class: 0, phones: ["S UW M AE K"], g2p: cmudict, src: core}
+- {id: 2109, word: "uncontrollable", class: 3, phones: ["AH N K AH N T R OW L AH B AH L"], g2p: cmudict, src: core}
+- {id: 2110, word: "uncontrollably", class: 3, phones: ["AH N K AH N T R OW L AH B L IY"], g2p: cmudict, src: core}
+- {id: 2111, word: "uti", class: 0, phones: ["Y UW T IY AY"], g2p: hand, src: core}
+- {id: 2112, word: "wiggly", class: 0, phones: ["W IH G AH L IY"], g2p: cmudict, src: core}
+- {id: 2113, word: "wobbly", class: 3, phones: ["W AA B AH L IY"], g2p: cmudict, src: core}
+- {id: 2114, word: "welts", class: 3, phones: ["W EH L T S"], g2p: hand, src: core}
