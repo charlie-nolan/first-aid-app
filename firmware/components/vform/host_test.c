@@ -6,6 +6,7 @@
  *   CASE <id>            new case: fresh screen
  *   SAY <text>           a spoken sentence or answer
  *   PICK <field> <value|\N> <node|\N>
+ *   HINT <text>          tether form hint (pc_bridge.py's msg on form frames); CASE clears it
  *   SKIP - | OPEN <node> | NEW - | AGAIN <reject>\t<text>   (the tether's actions)
  *   FUZZ <text>          tap-loop finder (vr.form.fuzz): first then last choice, every tree
  * script "-" reads the lines from stdin and flushes each frame (tether/fake_board.py drives it). */
@@ -78,6 +79,7 @@ int main(int argc, char **argv) {
         char *p = strchr(line, ' ');
         if (!p) continue;
         *p++ = 0;
+        if (!strcmp(line, "HINT")) { static char hint[160]; snprintf(hint, sizeof hint, "%s", p); sc.form_hint = hint; continue; }
         if (!strcmp(line, "CASE")) { fp_reset(&s); fp_screen_init(&sc, &s); printf("CASE %s\n", p); fflush(stdout); continue; }
         struct timespec t0, t1;
         clock_gettime(CLOCK_MONOTONIC, &t0);

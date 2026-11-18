@@ -69,7 +69,7 @@ the real trees are personal, so the pack is built locally and never committed):
     python -m esptool --chip esp32s3 -p /dev/ttyACM0 write_flash 0x10000 build-brain/vr_tether.bin
 
 Then run the bridge with `--board-brain`. The PC only turns speech into words and sends
-`WORDS {"hyps": [...], "reject": N}`; the board builds every screen itself (same bytes as vr.form),
+`WORDS {"hyps": [...], "reject": N}` (and `BRAIN-RESET` when it (re)connects, so both screen counters restart); the board builds every screen itself (same bytes as vr.form),
 draws it, and echoes it as `SHOWN <json>`. Taps, SKIP, new and open are answered on the board (still
 echoed as PICK for the log). The bridge runs vr.form in the shadow on the same inputs and marks every
 turn `shadow_match` true/false in turns.jsonl, so each bench session is also a live parity check.

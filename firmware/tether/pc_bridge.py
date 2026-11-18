@@ -38,6 +38,7 @@ from pathlib import Path
 import serial
 
 W, H = 250, 122
+START_MSG = "Hold TALK down the whole time you describe it. Let go when done."
 
 
 class Board:
@@ -71,6 +72,7 @@ class Board:
                 print("(board back)", flush=True)
                 self.buf = b""
                 self.send("HELLO")
+                yield "RECONNECTED"
                 continue
             if not d:
                 yield None
@@ -139,7 +141,7 @@ class Scenarios:
         sid, txt = self.current()
         if sid or txt:
             n = len(self.items)
-            print(f"\n==================== SCENARIO {sid} ({self.i % max(1, n) + 1}/{n}) ====================\n"
+            print(f"\n==================== TEST {self.i % max(1, n) + 1} ({sid}, of {n}) ====================\n"
                   f"  {txt}\n  (act it out on the board; BACK hold = next scenario)\n", flush=True)
 
 
@@ -171,10 +173,15 @@ class Brain:
         text = hyps[0] if hyps else ""
         if self.speech and reject >= self.reject:
             self.scr.heard = text
+            if self.scr.cands:                 # a form is open: keep it on screen, just say so
+                return self.scr.form_screen(f"Didn't catch that. Hold TALK, say it again, or pick.")
             return self.scr.show("again", msg=f"Didn't catch that (reject {reject}). Hold TALK and say it again.")
         if self.scr.cands is None and text.strip().lower() not in ("", "new", "home", "back", "multi"):
             rec["kept"] = [[c.name, round(c.p, 2)] for c in self.live.keep_trees([text], self.trees)]   # for the log
-        return self.scr.said(text)
+        fr = self.scr.said(text)
+        if fr["kind"] == "form" and not fr.get("msg"):   # tell him the blanks can be filled by voice
+            fr["msg"] = "Hold TALK and say the answers, or pick with buttons."
+        return fr
 
     def picked(self, p: dict):
         act = p.get("action")
@@ -189,7 +196,10 @@ class Brain:
                 return self.scr.show("start", msg="Hold TALK and say what happened.")
             return self.scr.result("skip", None, self.form.skip(self.scr.cands))
         if p.get("field"):
-            return self.scr.picked(p)
+            fr = self.scr.picked(p)
+            if fr and fr["kind"] == "form" and not fr.get("msg"):
+                fr["msg"] = "Hold TALK and say the answers, or pick with buttons."
+            return fr
         return None
 
 
@@ -311,9 +321,19 @@ def main(argv=None):
                 board.send("HELLO"); last_hello = time.time()
             continue
         last_hello = time.time()
-        if ln.startswith("VR-TETHER"):
-            if ln != last_banner:
+        if ln == "RECONNECTED":
+            last_banner = None
+        elif ln.startswith("VR-TETHER"):
+            if last_banner is None:        # (re)connected: put the board on a fresh start screen
                 print("board:", ln, flush=True)
+                brain.scr.cands, brain.scr.heard = None, ""
+                if a.board_brain:                  # the board owns its screens: a "new" keeps both in step
+                    board.send("BRAIN-RESET")          # both screen counters start again from 1
+                    brain.scr.seq = 0
+                    pending.clear(); early.clear()
+                    say(["new"], 0, {"source": "connect"})
+                else:
+                    emit(brain.scr.show("start", msg=f"Test {scen.i + 1}. " + START_MSG), {"source": "connect"})
             last_banner = ln
         elif ln.startswith("TAKE "):
             take, data = json.loads(ln[5:]), []
@@ -340,12 +360,17 @@ def main(argv=None):
             p = json.loads(ln[5:])
             print(f"  PICK {p}", flush=True)
             rec = {"source": "pick", "pick": p}
-            if a.board_brain:
-                shadow(brain.picked(p), rec)              # the board already answered it itself
+            if p.get("action") == "new":         # next test: the board's start screen names it
+                scen.move(+1)
+                if a.board_brain:                    # the board drew its own start screen
+                    shadow(brain.picked(p), rec)
+                else:
+                    brain.picked(p)
+                    emit(brain.scr.show("start", msg=f"Test {scen.i + 1}. " + START_MSG), rec)
+            elif a.board_brain:
+                shadow(brain.picked(p), rec)          # the board already answered it itself
             else:
                 emit(brain.picked(p), rec)
-            if p.get("action") == "new":
-                scen.move(+1)
         elif ln.startswith("FB "):
             try:
                 bits = base64.b64decode(ln[3:])

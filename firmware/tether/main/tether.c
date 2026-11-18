@@ -202,7 +202,7 @@ static void send_line(const char *s) { char b[256]; strncpy(b, s, sizeof b - 1);
 #if CONFIG_TETHER_BOARD_BRAIN
 extern const uint8_t fpk_start[] asm("_binary_form_fpk_start");
 extern const uint8_t fpk_end[] asm("_binary_form_fpk_end");
-enum { BR_SAID, BR_PICK, BR_SKIP, BR_OPEN, BR_NEW, BR_AGAIN };
+enum { BR_SAID, BR_PICK, BR_SKIP, BR_OPEN, BR_NEW, BR_AGAIN, BR_RESET };
 typedef struct { int op; char a[400], b[96], c[96]; bool b_null; } brain_req_t;
 static QueueHandle_t brainq;
 static char *shown; static volatile bool shown_pending;   /* sent by the USB task (the only writer) */
@@ -221,9 +221,15 @@ static void brain_task(void *arg) {
     char *out = heap_caps_malloc(16384, MALLOC_CAP_SPIRAM);
     brain_ok = out && fp_sess_init(&s, fpk_start, fpk_end - fpk_start);
     fp_screen_init(&sc, &s);
+    sc.form_hint = "Hold TALK and say the answers, or pick with buttons.";   /* as pc_bridge.py */
     static brain_req_t r;
     for (;;) {
         if (xQueueReceive(brainq, &r, portMAX_DELAY) != pdTRUE || !brain_ok) continue;
+        if (r.op == BR_RESET) {                            /* the bridge (re)started: seq from 1 again */
+            fp_reset(&s); fp_screen_init(&sc, &s);
+            sc.form_hint = "Hold TALK and say the answers, or pick with buttons.";
+            continue;
+        }
         int64_t t = esp_timer_get_time();
         switch (r.op) {
         case BR_SAID: fp_screen_said(&sc, r.a, out, 16384); break;
@@ -292,6 +298,7 @@ static void handle(char *line) {
     else if (!strncmp(line, "SHOW ", 5)) { if (!parse_show(line + 5)) usb_line("LOG bad SHOW json"); }
 #if CONFIG_TETHER_BOARD_BRAIN
     else if (!strncmp(line, "WORDS ", 6)) brain_words(line + 6);
+    else if (!strcmp(line, "BRAIN-RESET")) brain_post(BR_RESET, NULL, "", NULL);
 #endif
 }
 static void usb_task(void *arg) {
@@ -410,7 +417,8 @@ static void draw(void) {
     }
     hline(122 - ls - 1);
     const char *hint = status[0] ? status
-        : S.kind == K_FORM ? "TALK tap pick/hold talk  DOWN next/hold skip  BACK hold new"
+        : S.kind == K_FORM && S.msg[0] ? S.msg                     /* the PC's line: "say the answer..." */
+        : S.kind == K_FORM ? "Hold TALK: say answers. Tap TALK: pick. DOWN: next"
         : S.kind == K_SKIP ? "TALK tap open  DOWN/BACK move  BACK hold new"
         : S.kind == K_CARD ? "Hold TALK: new problem   BACK hold: start"
         : "Hold TALK to talk   BACK hold: start over";

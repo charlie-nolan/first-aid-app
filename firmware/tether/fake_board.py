@@ -38,7 +38,13 @@ def main():
         os.write(master, (line + "\n").encode())
 
     taps, buf = 0, b""
-    run("CASE fake")                        # the engine echoes "CASE fake"
+    HINT = "HINT Hold TALK and say the answers, or pick with buttons."   # as tether.c's brain task
+
+    def reset():
+        run("CASE fake")                    # the engine echoes "CASE fake"
+        eng.stdin.write(HINT + "\n"); eng.stdin.flush()
+
+    reset()
     while True:
         buf += os.read(master, 65536)
         while b"\n" in buf:
@@ -46,6 +52,8 @@ def main():
             ln = ln.decode(errors="replace").strip()
             if ln == "HELLO":
                 out("VR-TETHER 1 0")
+            elif ln == "BRAIN-RESET":
+                reset()
             elif ln.startswith("WORDS "):
                 w = json.loads(ln[6:])
                 text = (w.get("hyps") or [""])[0].replace("\t", " ")

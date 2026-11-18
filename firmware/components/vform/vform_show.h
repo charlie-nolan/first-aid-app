@@ -9,6 +9,7 @@ typedef struct {
     bool open;                /* a problem is open (the Python's cands is not None) */
     bool multi;               /* next sentence = several problems */
     char heard[FP_HEARD];
+    const char *form_hint;    /* tether: msg on form frames that have none (NULL = vr.parity frames) */
 } fp_screen_t;
 
 void fp_screen_init(fp_screen_t *sc, fp_sess_t *s);

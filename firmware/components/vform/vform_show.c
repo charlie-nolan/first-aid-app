@@ -157,7 +157,7 @@ static int form_screen(fp_screen_t *sc, jb_t *b, const char *msg) {
     fp_ref_t r[3];
     int nr = fp_ranked_cards(s, 3, r, 3);
     refs(sc, b, r, nr);
-    raw(b, ",\"msg\":"); jstr(b, msg, -1);
+    raw(b, ",\"msg\":"); jstr(b, msg[0] || !sc->form_hint ? msg : sc->form_hint, -1);
     raw(b, "}");
     return (int)b->n;
 }
@@ -276,6 +276,8 @@ int fp_screen_again(fp_screen_t *sc, const char *text, int reject, char *out, si
     jb_t b = {out, cap, 0};
     char m[96];
     snprintf(sc->heard, sizeof sc->heard, "%s", text);
+    if (sc->open && sc->form_hint)      /* tether: a form is open, keep it on screen and just say so */
+        return form_screen(sc, &b, "Didn't catch that. Hold TALK, say it again, or pick.");
     snprintf(m, sizeof m, "Didn't catch that (reject %d). Hold TALK and say it again.", reject);
     head(sc, &b, "again");
     raw(&b, ",\"msg\":"); jstr(&b, m, -1);
