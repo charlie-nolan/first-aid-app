@@ -116,3 +116,10 @@ def test_partial_words_rank_the_likely_card_first():
     first_sentence("a dog got my lower part", [c])          # "lower" alone: not enough to fill
     assert c.asking == "where"
     assert ranked_cards([c])[0] == ("bites", "limb")
+
+
+def test_tapped_pick_fills_one_field():
+    from vr.form import pick
+    cands = [Candidate("bites", TREE, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert pick("where", "face", cands) == ("open", "bites", "face")

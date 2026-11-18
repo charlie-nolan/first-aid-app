@@ -206,6 +206,23 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
     return "form", None, None
 
 
+def pick(key: str, value: str, cands: list[Candidate]):
+    """A tapped answer (buttons on the form): fills that one field exactly, no word matching.
+    key "@topic" keeps only the tree named by value. Same returns as answer()."""
+    if key == "@topic":
+        cands[:] = [c for c in cands if c.name == value] or cands
+    else:
+        for c in cands:
+            if key in c.smap.get("slots", {}) or c.asking == key:
+                c.filled = {**c.filled, key: value}
+                if c.asking:
+                    c.advance(start=c.card)
+    done = [c for c in cands if not c.asking]
+    if len(cands) == 1 and done:
+        return "open", done[0].name, done[0].card
+    return "form", None, None
+
+
 def _soft(c: Candidate, slot: str, value: str, label: str) -> float:
     """Partial evidence for an answer the person did not quite say: the share of a phrase's words
     (or the tile label's) that were heard. Below fill strength by design: it only ranks."""
