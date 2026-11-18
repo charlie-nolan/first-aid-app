@@ -6,7 +6,7 @@ come back as PICK lines. Every screen the board draws also comes back as a frame
 PNG, so each bench run leaves real screenshots.
 
     WORK=/mnt/data/first-aid-gpu python firmware/tether/pc_bridge.py \\
-        --vr  <voice_router root at 3d07632 or later> \\
+        --vr  <voice_router root at 5fa165f or later> \\
         --trees ~/first-aid-build/pipeline/plb/content/trees ~/first-aid-trees/pipeline/plb/content/trees_personal \\
         --slots ~/first-aid-voice/slots --fasr ~/first-aid-speech/pipeline/speech \\
         [--port /dev/ttyACM0] [--out $WORK/speech/tether] [--typed]
@@ -120,111 +120,58 @@ class Scenarios:
 
 
 class Brain:
-    """vr.live's engine, driven by board events. One problem at a time."""
+    """Speech + vr.parity.Screen (the frame rules shared with the C port and the parity set).
+    The bridge adds what Screen leaves out: the reject gate, the board's actions and the turn log."""
 
     def __init__(self, a):
         sys.path.insert(0, str(Path(a.vr).expanduser()))
-        from vr import form, live
-        import inspect
-        if not hasattr(form, "pick") or "to" not in inspect.signature(form.pick).parameters:
-            sys.exit("--vr is older than 3d07632 (no vr.form.pick with to=, and it can hang on fractures/sprains/wounds)")
+        try:
+            from vr import form, live, parity
+        except ImportError:
+            sys.exit("--vr is older than 5fa165f (no vr.parity): update it")
+        if not hasattr(form, "node_id"):
+            sys.exit("--vr is older than 5fa165f (no vr.form.node_id): update it")
         self.form, self.live = form, live
         self.trees = live.load_all(a.trees, a.slots)
         print(f"{len(self.trees)} trees with blanks loaded", flush=True)
+        self.scr = parity.Screen(self.trees)
         self.speech = None if a.typed else live.Speech(a.fasr, a.run)
         self.reject = a.reject
-        self.cands, self.multi, self.turn, self.seq, self.heard = None, False, 0, 0, ""
 
-    # ---- screens ----
-    def _ref(self, name, card):
-        t, _ = self.live._title(self.trees, name, card)
-        return {"title": t, "node": f"{name}/{card}"}
+    @property
+    def cands(self):
+        return self.scr.cands
 
-    def show(self, kind, **kw):
-        self.seq += 1
-        d = {"v": 1, "seq": self.seq, "kind": kind, "heard": self.heard[:100]}
-        d.update(kw)
-        return d
-
-    def form_screen(self, msg=""):
-        fields = []
-        for f in self.form.open_fields(self.cands):
-            ch = []
-            for c in f.choices:
-                if c.get("value"):
-                    ch.append({"label": str(c.get("label", c["value"]))[:46], "value": str(c["value"])[:46]})
-                elif c.get("to"):          # a plain tile (menu choice): PICK carries its target card
-                    ch.append({"label": str(c.get("label", c["to"]))[:46], "value": None,
-                               "node": f"{f.trees[0]}/{c['to']}"[:78]})
-            if ch:
-                fields.append({"key": f.key, "q": f.question[:94], "choices": ch[:12],
-                               "after": list(f.when) if f.when else None})
-        top = [self._ref(n, c) for n, c in self.form.ranked_cards(self.cands, 3)]
-        return self.show("form", fields=fields[:6], top=top, msg=msg)
-
-    def card_screen(self, name, card):
-        t, cites = self.live._title(self.trees, name, card)
-        self.cands, self.turn = None, 0
-        return self.show("card", card={"title": t, "cites": [str(c.get("ref", c)) if isinstance(c, dict) else str(c) for c in cites][:6], "node": f"{name}/{card}"})
-
-    def result(self, kind, name, card):
-        if kind == "open":
-            return self.card_screen(name, card)
-        if kind == "skip":
-            return self.show("skip", cards=[self._ref(n, c) for n, c in card[:6]])
-        if kind == "tabs":   # the bench board has no window keys: show the first problem's form
-            self.cands = self.form.split_tabs(self.cands)[0]
-            return self.form_screen("Several problems: showing the first")
-        return self.form_screen()
-
-    # ---- events ----
     def said(self, hyps: list[str], reject: int, rec: dict):
-        self.heard = hyps[0] if hyps else ""
         rec.update(hyps=hyps, reject=reject)
+        text = hyps[0] if hyps else ""
         if self.speech and reject >= self.reject:
-            return self.show("again", msg=f"Didn't catch that (reject {reject}). Hold TALK and say it again.")
-        words = self.heard.strip().lower()
-        if words in ("new", "home", "back") or not words:
-            self.cands, self.turn = None, 0
-            return self.show("start")
-        if words == "multi":
-            self.multi = True
-            return self.show("start", msg="Next sentence = several problems")
-        self.turn += 1
-        if self.cands is None:
-            self.cands = self.live.keep_trees(hyps, self.trees)
-            rec["kept"] = [(c.name, round(c.p, 2)) for c in self.cands]
-            if not self.cands:
-                self.cands, self.turn = None, 0
-                return self.show("start", msg="No blanks heard in any tree. Hold TALK and say what happened.")
-            r = self.form.first_sentence(hyps, self.cands, multi=self.multi)
-            self.multi = False
-        else:
-            r = self.form.answer(hyps[0], self.cands)
-        return self.result(*r)
+            self.scr.heard = text
+            return self.scr.show("again", msg=f"Didn't catch that (reject {reject}). Hold TALK and say it again.")
+        if self.scr.cands is None and text.strip().lower() not in ("", "new", "home", "back", "multi"):
+            rec["kept"] = [[c.name, round(c.p, 2)] for c in self.live.keep_trees([text], self.trees)]   # for the log
+        return self.scr.said(text)
 
     def picked(self, p: dict):
         act = p.get("action")
         if act == "new":
-            self.cands, self.turn, self.heard = None, 0, ""
-            return self.show("start")
+            self.scr.cands, self.scr.heard, self.scr.multi = None, "", False
+            return self.scr.show("start")
         if act == "open" and p.get("node"):
             name, _, card = p["node"].partition("/")
-            return self.card_screen(name, card)
-        if self.cands is None:
-            return self.show("start", msg="Hold TALK and say what happened.")
+            return self.scr.card_screen(name, card)
         if act == "skip":
-            return self.result("skip", None, self.form.skip(self.cands))
+            if self.scr.cands is None:
+                return self.scr.show("start", msg="Hold TALK and say what happened.")
+            return self.scr.result("skip", None, self.form.skip(self.scr.cands))
         if p.get("field"):
-            if p.get("value") is None and p.get("node"):
-                return self.result(*self.form.pick(p["field"], None, self.cands, to=p["node"].partition("/")[2]))
-            return self.result(*self.form.pick(p["field"], p["value"], self.cands))
+            return self.scr.picked(p)
         return None
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="pc_bridge")
-    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 3d07632 or later")
+    ap.add_argument("--vr", type=Path, required=True, help="voice_router folder (holds vr/), 5fa165f or later")
     ap.add_argument("--trees", type=Path, nargs="+", required=True)
     ap.add_argument("--slots", type=Path, required=True)
     ap.add_argument("--fasr", type=Path, help="speech package root (holds fasr/)")
