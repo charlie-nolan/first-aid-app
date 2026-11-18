@@ -32,6 +32,7 @@ from pathlib import Path
 import serial
 
 W, H = 250, 122
+START_MSG = "Keep TALK held down while you say what happened. Let go when you finish."
 
 
 class Board:
@@ -65,6 +66,7 @@ class Board:
                 print("(board back)", flush=True)
                 self.buf = b""
                 self.send("HELLO")
+                yield "RECONNECTED"
                 continue
             if not d:
                 yield None
@@ -275,9 +277,13 @@ def main(argv=None):
                 board.send("HELLO"); last_hello = time.time()
             continue
         last_hello = time.time()
-        if ln.startswith("VR-TETHER"):
-            if ln != last_banner:
+        if ln == "RECONNECTED":
+            last_banner = None
+        elif ln.startswith("VR-TETHER"):
+            if last_banner is None:        # (re)connected: put the board on a fresh start screen
                 print("board:", ln, flush=True)
+                brain.scr.cands, brain.scr.heard = None, ""
+                emit(brain.scr.show("start", msg=START_MSG), {"source": "connect"})
             last_banner = ln
         elif ln.startswith("TAKE "):
             take, data = json.loads(ln[5:]), []
