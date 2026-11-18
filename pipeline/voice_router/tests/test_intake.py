@@ -309,3 +309,11 @@ def test_empty_blank_follows_plain_tile_to_an_answered_blank():
                           "open_q": {"slot": "open_fracture", "choices": {"yes": "open"}}}}
     assert walk(tree, smap, fill("there's a bone sticking out", smap["slots"]))[0] == "open"
     assert walk(tree, smap, fill("it hurts", smap["slots"]))[2] == "body_part"
+
+
+def test_empty_answer_picks_nothing():
+    from vr.intake import answer_turn
+    tree = {"root": "q", "nodes": {"q": {"label": "Still bleeding?", "slot": "bleed", "choices": [
+        {"label": "Yes", "to": "y", "value": "yes"}, {"label": "No", "to": "n", "value": "no"}]},
+        "y": {"label": "Y"}, "n": {"label": "N"}}}
+    assert answer_turn("", tree, {"slots": {}}, "q", "bleed", {}) == ({}, None, None)

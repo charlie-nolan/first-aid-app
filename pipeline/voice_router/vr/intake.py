@@ -383,6 +383,9 @@ def tiles(tree: dict, smap: dict, card: str) -> list[dict]:
         out += [{"label": v, "to": t, "value": v} for v, t in q.get("choices", {}).items() if t not in have]
         for c in out:                              # inline cards carry `value:`; slot-map cards get it here
             c.setdefault("value", next((v for v, t in q.get("choices", {}).items() if t == c["to"]), None))
+    for c in out:                                  # a choice with no label shows its value or target's label
+        if not c.get("label"):
+            c["label"] = c.get("value") or tree["nodes"].get(c["to"], {}).get("label") or c["to"]
     return out
 
 
@@ -394,6 +397,8 @@ def answer_turn(text: str, tree: dict, smap: dict, card: str, asking: str | None
     is filled too (never overwriting one already filled), so free speech can answer several."""
     words = tokenize(text)
     filled = dict(filled)
+    if not words:                                  # nothing said: answers nothing (never "No")
+        return filled, None, None
     if len(words) <= 2 and words and words[-1] in COMMANDS:
         return filled, None, words[-1]
     ts = tiles(tree, smap, card)

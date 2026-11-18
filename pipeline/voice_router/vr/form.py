@@ -198,12 +198,22 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
                     filled, pick = {**c.filled, c.asking: v}, {"value": v}
             if pick and pick.get("value"):
                 c.filled = filled
-                c.advance(start=c.card)
+                _step(c, pick if pick.get("to") else None)
                 progressed = True
     done = [c for c in cands if not c.asking]
     if len(cands) == 1 and done:
         return "open", done[0].name, done[0].card
     return "form", None, None
+
+
+def _step(c: Candidate, tile: dict | None):
+    """Advance after an answer. If the walk stays on the same card asking the same blank (the slot
+    map's question lists the value under another name or a card that moved), follow the tapped or
+    matched tile's own target instead: an answer always moves the form on."""
+    was = (c.card, c.asking)
+    c.advance(start=c.card)
+    if (c.card, c.asking) == was and tile and tile.get("to") in c.tree["nodes"]:
+        c.advance(start=tile["to"])
 
 
 def pick(key: str, value: str | None, cands: list[Candidate], to: str | None = None):
@@ -221,7 +231,8 @@ def pick(key: str, value: str | None, cands: list[Candidate], to: str | None = N
             if key in c.smap.get("slots", {}) or c.asking == key:
                 c.filled = {**c.filled, key: value}
                 if c.asking:
-                    c.advance(start=c.card)
+                    tile = next((t for t in tiles(c.tree, c.smap, c.card) if t.get("value") == value), None)
+                    _step(c, tile)
     done = [c for c in cands if not c.asking]
     if len(cands) == 1 and done:
         return "open", done[0].name, done[0].card

@@ -132,3 +132,14 @@ def test_tapped_plain_tile_moves_to_its_card():
     cands = [Candidate("bites", {**TREE, "nodes": nodes}, SMAP)]
     first_sentence("a dog got me", cands)
     assert pick("where", None, cands, to="other") == ("open", "bites", "other")
+
+
+def test_an_answer_always_moves_the_form_on():
+    from vr.form import pick
+    nodes = {**TREE["nodes"], "mammal": {**TREE["nodes"]["mammal"], "slot": "where", "choices": [
+        {"label": "Leg", "to": "limb", "value": "leg"}, {"to": "face", "value": "face"}]}}
+    qs = {**SMAP["questions"], "mammal": {"slot": "where", "choices": {"arm": "limb", "face": "face"}}}
+    cands = [Candidate("bites", {**TREE, "nodes": nodes}, {**SMAP, "questions": qs})]
+    first_sentence("a dog got me", cands)
+    assert [f.choices[1]["label"] for f in open_fields(cands)] == ["face"]     # no None labels
+    assert pick("where", "leg", cands) == ("open", "bites", "limb")            # "leg" not in the map
