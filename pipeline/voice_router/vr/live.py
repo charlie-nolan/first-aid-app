@@ -100,19 +100,23 @@ class Speech:
         import torch
         from fasr import lexicon as lx
         from fasr.data import load_wav
-        from fasr.decode import Params, Trie, life_bias, nbest
-        from fasr.evaluate import load_model
+        from fasr.decode import Params, Trie, decode, life_bias
+        from fasr.evaluate import WORK, load_model
         from fasr.features import logmel
-        self.torch, self.load_wav, self.logmel, self.nbest, self.Params = torch, load_wav, logmel, nbest, Params
+        self.torch, self.load_wav, self.logmel, self.decode, self.Params = torch, load_wav, logmel, decode, Params
         rows = yaml.safe_load(lx.LEXICON.read_text())["words"]
         self.words = {r["id"]: r["word"] for r in rows}
         self.trie, self.bias = Trie.from_lexicon(rows), life_bias(rows)
         self.model = load_model(run)
+        cal = WORK / "speech" / "runs" / run / "reject_calib.json"   # from `fasr calibrate`
+        self.calib = json.loads(cal.read_text()) if cal.exists() else None
+        if not self.calib:
+            print(f"(no {cal}: using the raw fit-gap reject)", flush=True)
 
     def __call__(self, wav: Path) -> tuple[list[str], int]:
         with self.torch.no_grad():
             lp = self.model(self.torch.from_numpy(self.logmel(self.load_wav(str(wav))))[None])[0].numpy()
-        res = self.nbest(lp, self.trie, self.Params(bias=self.bias))
+        res = self.decode(lp, self.trie, self.Params(bias=self.bias), self.calib)   # calibrated reject
         hyps = [" ".join(self.words.get(i, "?") for i in h["ids"] if i) for h in res["h"]]
         return hyps or [""], res["reject"]
 
@@ -137,7 +141,8 @@ def main(argv=None):
     ap.add_argument("--fasr", type=Path, help="speech package root (holds fasr/)")
     ap.add_argument("--run", default="firstaid", help="speech model run")
     ap.add_argument("--log", type=Path)
-    ap.add_argument("--reject", type=int, default=70, help="reject score at which a clip is asked again")
+    ap.add_argument("--reject", type=int, default=50,
+                    help="calibrated reject above which a clip is asked again (same as the tether bridge)")
     a = ap.parse_args(argv)
     trees = load_all(a.trees, a.slots)
     print(f"{len(trees)} trees with blanks loaded")
@@ -153,7 +158,7 @@ def main(argv=None):
             print(f"\n[{item.name}] heard: {hyps[0]!r}  (reject {reject}, {len(hyps)} guesses)")
         else:
             hyps, reject = [item], 0
-        if speech and reject >= a.reject:
+        if speech and reject > a.reject:
             print(f"  (not sure what was said, reject {reject}: the device would ask again)")
             _log(log, {"t": time.time(), "hyps": hyps, "reject": reject, "clip": str(item), "screen": "again"})
             continue

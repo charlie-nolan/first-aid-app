@@ -178,7 +178,7 @@ class Session:
         with self.lock:
             res = {"t": time.time(), "source": source, "hyps": hyps, "reject": reject, "clip": clip}
             words = (hyps[0] if hyps else "").strip().lower()
-            if self.speech and source != "typed" and reject >= self.reject:
+            if self.speech and source != "typed" and reject > self.reject:
                 res["screen"] = "again"
             elif words in ("new", "home", "back") or not words:
                 self.reset(); res["screen"] = "new"
@@ -354,7 +354,7 @@ def main(argv=None):
     ap.add_argument("--clips", type=Path, help="devrec FREE folder to watch for board-mic clips")
     ap.add_argument("--out", type=Path, default=Path("/mnt/data/first-aid-gpu/speech/me_dev/live"),
                     help="where PC-mic clips and the turn log go (outside any repo)")
-    ap.add_argument("--reject", type=int, default=70)
+    ap.add_argument("--reject", type=int, default=50, help="calibrated reject above which to ask again")
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--scenarios", type=Path, help="scenario YAML for Scenario mode (gold hidden on the page)")
     a = ap.parse_args(argv)
