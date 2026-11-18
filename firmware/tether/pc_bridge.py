@@ -190,7 +190,7 @@ class Brain:
     def said(self, hyps: list[str], reject: int, rec: dict):
         rec.update(hyps=hyps, reject=reject)
         text = hyps[0] if hyps else ""
-        if self.speech and reject >= self.reject:
+        if self.speech and (reject >= self.reject or not text.strip()):   # nothing decoded = not caught
             self.scr.heard = text
             if self.scr.cands:                 # a form is open: keep it on screen, just say so
                 return self.scr.form_screen(f"Didn't catch that. Hold TALK, say it again, or pick.")
