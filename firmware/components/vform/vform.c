@@ -1705,3 +1705,17 @@ bool fp_rescue(fp_sess_t *s, const char *const *hyps, int nh, fp_result_t *r) {
     }
     return false;
 }
+
+const void *fp_cart_chunk(const void *rom, size_t len, const char tag[4], size_t *size) {
+    const uint8_t *b = rom;
+    if (len < 28 || memcmp(b, "CRT1", 4)) return NULL;
+    uint16_t n = rd16(b + 6);
+    for (uint16_t i = 0; i < n && 28u + 12u * (i + 1) <= len; i++) {
+        const uint8_t *d = b + 28 + 12 * i;
+        uint32_t off = rd32(d + 4), sz = rd32(d + 8);
+        if (memcmp(d, tag, 4) || off + sz > len) continue;
+        if (size) *size = sz;
+        return b + off;
+    }
+    return NULL;
+}

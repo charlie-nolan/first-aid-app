@@ -141,3 +141,8 @@ void fp_tokenize(const char *text, fp_toks_t *t);               /* vr.intake.tok
 void fp_stem(const char *w, bool verbs, char *out);             /* vr.intake._stem */
 double fp_ratio(const char *a, const char *b);                  /* difflib.SequenceMatcher.ratio */
 void fp_fill(const fp_sess_t *s, int tree, const char *text, fp_filled_t *out);   /* vr.intake._fill */
+
+/* A chunk of the cartridge (CRT1, romkit/FORMAT.md) by tag, read in place: "FORM" (this engine's
+ * pack), "LEXI" (speech lexicon), "ASRM"/"ASRC" (speech model / reject calibration). NULL if absent.
+ * (tools/cart_add.py adds them; readers that don't know a tag ignore it.) */
+const void *fp_cart_chunk(const void *rom, size_t len, const char tag[4], size_t *size);

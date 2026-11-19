@@ -41,6 +41,9 @@
 #if CONFIG_TETHER_BOARD_BRAIN
 #include "vform_show.h"
 #endif
+#if CONFIG_TETHER_STANDALONE
+#include "asr.h"
+#endif
 
 #ifdef CONFIG_REC_EPD
 #define HAVE_EPD 1
@@ -54,6 +57,7 @@
 #define MAX_TAKE_S 15
 static const char *TAG = "tether";
 static SemaphoreHandle_t lock;
+static const void *cart_rom; static size_t cart_len;   /* the mapped library partition (set in app_main) */
 
 /* ---------- one clip at a time in PSRAM, kept until the PC ACKs it ---------- */
 static int16_t *clip; static size_t clip_cap;
@@ -209,6 +213,7 @@ typedef struct { int op; char a[400], b[96], c[96]; bool b_null; } brain_req_t;
 static QueueHandle_t brainq;
 static char *shown; static volatile bool shown_pending;   /* sent by the USB task (the only writer) */
 static bool brain_ok;
+static const char *brain_src = "none";
 static void brain_post(int op, const char *a, const char *b, const char *c) {
     static brain_req_t r;                                  /* posters: main loop and USB task, never both at once */
     memset(&r, 0, sizeof r); r.op = op;
@@ -221,7 +226,12 @@ static bool parse_show(const char *js);
 static void brain_task(void *arg) {
     static fp_sess_t s; static fp_screen_t sc;
     char *out = heap_caps_malloc(16384, MALLOC_CAP_SPIRAM);
-    brain_ok = out && fp_sess_init(&s, fpk_start, fpk_end - fpk_start);
+    size_t fl = 0;                                        /* the cart's FORM chunk (personal trees) wins */
+    const void *fp = cart_rom ? fp_cart_chunk(cart_rom, cart_len, "FORM", &fl) : NULL;
+    brain_ok = out && fp && fp_sess_init(&s, fp, fl);
+    if (brain_ok) brain_src = "cart";
+    else { brain_ok = out && fp_sess_init(&s, fpk_start, fpk_end - fpk_start); brain_src = brain_ok ? "built-in" : "none"; }
+    { char m[96]; snprintf(m, sizeof m, "LOG brain form pack: %s, %d trees", brain_src, s.ntrees); send_line(m); }
     fp_screen_init(&sc, &s);
     sc.form_hint = "Hold TALK and say the answers, or pick with buttons.";   /* as pc_bridge.py */
     static brain_req_t r;
@@ -250,6 +260,50 @@ static void brain_task(void *arg) {
         shown_pending = true;
     }
 }
+#if CONFIG_TETHER_STANDALONE
+/* ---------- board only: the speech engine on the board turns the clip into words (components/asr) ----------
+ * The cart carries LEXI (word id -> word), ASRM (model) and ASRC (reject calibration). Until the
+ * engine is built (asr_open says ASR_NOT_BUILT) the clip goes to the PC as before, if one is there. */
+static bool asr_ready;
+static const uint8_t *lexi; static size_t lexi_len;
+static const char *lex_word(uint16_t id) {
+    if (!lexi || lexi_len < 12 || memcmp(lexi, "LEX1", 4)) return NULL;
+    uint32_t n = lexi[8] | lexi[9] << 8 | lexi[10] << 16 | (uint32_t)lexi[11] << 24;
+    if (!id || id >= n) return NULL;
+    const uint8_t *o = lexi + 12 + 4 * id;
+    uint32_t off = o[0] | o[1] << 8 | o[2] << 16 | (uint32_t)o[3] << 24;
+    return off && off < lexi_len ? (const char *)lexi + off : NULL;
+}
+static void asr_setup(void) {
+    size_t ml = 0;
+    lexi = cart_rom ? fp_cart_chunk(cart_rom, cart_len, "LEXI", &lexi_len) : NULL;
+    const void *m = cart_rom ? fp_cart_chunk(cart_rom, cart_len, "ASRM", &ml) : NULL;
+    asr_err_t e = asr_open(m, ml);
+    asr_ready = e == ASR_OK && lexi;
+    char t[120];
+    snprintf(t, sizeof t, "LOG board speech: %s (%s, lexicon %s, model %s)", asr_ready ? "ready" : "not available",
+             asr_engine_name(), lexi ? "yes" : "no", m ? "yes" : "no");
+    send_line(t);
+}
+/* Decode the clip on the board. true = handled (the brain gets the words); false = send it to the PC. */
+static bool asr_take(void) {
+    if (!asr_ready) return false;
+    static asr_hyp_t h;
+    if (asr_decode(clip, clip_n, &h) != ASR_OK) return false;
+    static char text[400];
+    size_t o = 0;
+    text[0] = 0;
+    if (h.n) for (int i = 0; i < h.h[0].len && o + 2 < sizeof text; i++) {
+        const char *w = lex_word(h.h[0].id[i]);
+        if (w) o += snprintf(text + o, sizeof text - o, "%s%s", o ? " " : "", w);
+    }
+    char n[12]; snprintf(n, sizeof n, "%d", h.reject);
+    if (h.reject >= CONFIG_TETHER_REJECT) brain_post(BR_AGAIN, text, n, NULL);
+    else brain_post(BR_SAID, text, "", NULL);
+    char lg[460]; snprintf(lg, sizeof lg, "LOG board heard (reject %d): %s", h.reject, text); send_line(lg);
+    return true;
+}
+#endif
 static void brain_words(const char *js) {                  /* WORDS {"hyps": [...], "reject": N} */
     cJSON *r = cJSON_Parse(js);
     if (!r) return;
@@ -495,7 +549,7 @@ void app_main(void) {
     clip = heap_caps_malloc(clip_cap * 2, MALLOC_CAP_SPIRAM);
     const esp_partition_t *p = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_ANY, "library");
     const void *rom; esp_partition_mmap_handle_t mh;
-    if (p && esp_partition_mmap(p, 0, p->size, ESP_PARTITION_MMAP_DATA, &rom, &mh) == ESP_OK)
+    if (p && esp_partition_mmap(p, 0, p->size, ESP_PARTITION_MMAP_DATA, &rom, &mh) == ESP_OK && (cart_rom = rom, cart_len = p->size, 1))
         have_cart = cart_open(&cart, rom, p->size, 0) == 0 && cart_font_sizes(&cart) > 0;
     if (!have_cart) ESP_LOGE(TAG, "no library in flash (fonts): flash the main firmware once first");
     else if (cart_font_sizes(&cart) < 3) { S_MED = S_BIG = cart_font_sizes(&cart) - 1; }
@@ -509,6 +563,9 @@ void app_main(void) {
     brainq = xQueueCreate(4, sizeof(brain_req_t));
     shown = heap_caps_malloc(16400, MALLOC_CAP_SPIRAM);
     xTaskCreatePinnedToCore(brain_task, "brain", 32768, 0, 4, 0, 1);
+#endif
+#if CONFIG_TETHER_STANDALONE
+    asr_setup();
 #endif
     S.kind = K_START;
     if (HAVE_EPD) { memset(fbits, 0, sizeof fbits); epd_show(fbits, EPD_FULL); }
@@ -536,6 +593,10 @@ void app_main(void) {
             rec_start(); rec_dot = true; snprintf(status, sizeof status, "Listening... let go when done"); draw();
             while (down(0) && clip_n < clip_cap - SR / 2) vTaskDelay(pdMS_TO_TICKS(10));
             rec_stop(); rec_dot = false;
+#if CONFIG_TETHER_STANDALONE
+            if (asr_take()) { if (!host_seen) take_state = 0; snprintf(status, sizeof status, "Thinking (on the board)..."); draw(); continue; }
+            if (!host_seen) { take_state = 0; snprintf(status, sizeof status, "Board speech not built yet and no PC: use the buttons"); draw(); continue; }
+#endif
             if (take_peak < 300) snprintf(status, sizeof status, "No sound? check mic (CLK D4, DAT D5). Sent anyway");
             else snprintf(status, sizeof status, "Thinking... (%.1f s sent)", clip_n / (float)SR);
             wait_since = esp_timer_get_time();

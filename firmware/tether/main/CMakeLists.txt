@@ -11,5 +11,5 @@ endif()
 idf_component_register(SRCS tether.c ../../main/epd.c
                        INCLUDE_DIRS . ../../main
                        EMBED_FILES ${embed}
-                       PRIV_REQUIRES cart json vform esp_driver_spi esp_driver_gpio esp_driver_i2s esp_driver_usb_serial_jtag
+                       PRIV_REQUIRES cart json vform asr esp_driver_spi esp_driver_gpio esp_driver_i2s esp_driver_usb_serial_jtag
                                      esp_partition spi_flash nvs_flash mbedtls esp_timer)

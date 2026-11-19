@@ -43,6 +43,14 @@ config TETHER_BOARD_BRAIN
         The PC then only does speech: it sends "WORDS {hyps, reject}" and the board builds every
         screen itself, echoing each as "SHOWN <json>". Needs pc_bridge.py --board-brain.
         Build with -D TETHER_FPK=<form pack> (the real trees are personal; default: the fixture).
+config TETHER_STANDALONE
+    bool "Board only: speech on the board too (components/asr), no PC needed"
+    depends on TETHER_BOARD_BRAIN
+    default n
+    help
+        The clip is decoded on the board (speech engine slot, Kconfig ASR_ENGINE) and the words go
+        straight to the board brain. Needs a cart with LEXI + ASRM chunks (firmware/tools/cart_add.py).
+        Until the engine is built, clips still go to the PC when it is connected.
 config TETHER_REJECT
     int "Calibrated speech reject at or above which the board asks again (as pc_bridge --reject)"
     depends on TETHER_BOARD_BRAIN
