@@ -265,24 +265,11 @@ static void brain_task(void *arg) {
  * The cart carries LEXI (word id -> word), ASRM (model) and ASRC (reject calibration). Until the
  * engine is built (asr_open says ASR_NOT_BUILT) the clip goes to the PC as before, if one is there. */
 static bool asr_ready;
-static const uint8_t *lexi; static size_t lexi_len;
-static const char *lex_word(uint16_t id) {
-    if (!lexi || lexi_len < 12 || memcmp(lexi, "LEX1", 4)) return NULL;
-    uint32_t n = lexi[8] | lexi[9] << 8 | lexi[10] << 16 | (uint32_t)lexi[11] << 24;
-    if (!id || id >= n) return NULL;
-    const uint8_t *o = lexi + 12 + 4 * id;
-    uint32_t off = o[0] | o[1] << 8 | o[2] << 16 | (uint32_t)o[3] << 24;
-    return off && off < lexi_len ? (const char *)lexi + off : NULL;
-}
 static void asr_setup(void) {
-    size_t ml = 0;
-    lexi = cart_rom ? fp_cart_chunk(cart_rom, cart_len, "LEXI", &lexi_len) : NULL;
-    const void *m = cart_rom ? fp_cart_chunk(cart_rom, cart_len, "ASRM", &ml) : NULL;
-    asr_err_t e = asr_open(m, ml);
-    asr_ready = e == ASR_OK && lexi;
+    asr_err_t e = asr_open_cart(cart_rom, cart_len);
+    asr_ready = e == ASR_OK;
     char t[120];
-    snprintf(t, sizeof t, "LOG board speech: %s (%s, lexicon %s, model %s)", asr_ready ? "ready" : "not available",
-             asr_engine_name(), lexi ? "yes" : "no", m ? "yes" : "no");
+    snprintf(t, sizeof t, "LOG board speech: %s (%s, error %d)", asr_ready ? "ready" : "not available", asr_engine_name(), (int)e);
     send_line(t);
 }
 /* Decode the clip on the board. true = handled (the brain gets the words); false = send it to the PC. */
@@ -294,13 +281,15 @@ static bool asr_take(void) {
     size_t o = 0;
     text[0] = 0;
     if (h.n) for (int i = 0; i < h.h[0].len && o + 2 < sizeof text; i++) {
-        const char *w = lex_word(h.h[0].id[i]);
+        const char *w = asr_word(h.h[0].id[i]);
         if (w) o += snprintf(text + o, sizeof text - o, "%s%s", o ? " " : "", w);
     }
     char n[12]; snprintf(n, sizeof n, "%d", h.reject);
     if (h.reject >= CONFIG_TETHER_REJECT) brain_post(BR_AGAIN, text, n, NULL);
     else brain_post(BR_SAID, text, "", NULL);
-    char lg[460]; snprintf(lg, sizeof lg, "LOG board heard (reject %d): %s", h.reject, text); send_line(lg);
+    uint32_t a, b, c; asr_last_timing(&a, &b, &c);
+    char lg[460]; snprintf(lg, sizeof lg, "LOG board heard (reject %d, %lu+%lu+%lu ms): %s", h.reject,
+                           (unsigned long)(a / 1000), (unsigned long)(b / 1000), (unsigned long)(c / 1000), text); send_line(lg);
     return true;
 }
 #endif

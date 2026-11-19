@@ -2,7 +2,7 @@ menu "Speech recognizer engine"
 
 choice ASR_ENGINE
     prompt "Engine that turns a TALK clip into word hypotheses"
-    default ASR_ENGINE_MULTINET
+    default ASR_ENGINE_DIY
     help
         All engines give the same output (voice_hyp_t: up to 5 guesses of lexicon word ids,
         confidences and a reject score), so the form engine (components/vform) and the router
@@ -12,8 +12,9 @@ config ASR_ENGINE_DIY
     bool "DIY int8 phoneme CTC model (pipeline/speech/fasr), plain C kernels"
     help
         Preferred. Causal depthwise-conv CTC model (0.5-1 M params), log-mel front end,
-        lexicon-trie beam search with <unk> garbage. NOT BUILT YET: waits for the int8 export
-        and golden files from the speech thread.
+        lexicon-trie beam search with <unk> garbage, calibrated reject. Checked bit for bit against
+        the speech thread's Python (host tests in this folder). Model/lexicon/calibration come from
+        the cart's ASRM/LEXI/ASRC chunks (firmware/tools/cart_add.py).
 
 config ASR_ENGINE_ESPDL
     bool "Same fasr model run through ESP-DL"
