@@ -86,6 +86,7 @@ typedef struct {
     int ncands;
     fp_rank_ws_t *ws;         /* ranked_cards work space (heap; PSRAM on the device) */
     uint32_t rank_overflow;   /* times the ranking queue was full (should stay 0) */
+    void *phr;                /* compiled slot phrases by string id (built on first use) */
 } fp_sess_t;
 
 /* ---- pack ---- */

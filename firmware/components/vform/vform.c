@@ -230,6 +230,79 @@ static uint64_t find(const fp_toks_t *w, const fp_toks_t *p) {
     return 0;
 }
 
+/* ---- compiled phrases (speed): each slot phrase is tokenized and stemmed once, on first use ---- */
+#define FP_PHR_MAX 12
+typedef struct {
+    uint8_t n;                    /* words */
+    uint8_t neg, hedge, bleedout; /* a phrase word negates / hedges; "bleed(ing) out" ending */
+    const char *w[FP_PHR_MAX];    /* stems to match: plain if one word, verb stems otherwise */
+} cphr_t;
+static cphr_t *compile_phrase(const char *ph) {
+    fp_toks_t pw, p;
+    fp_tokenize(ph, &pw);
+    if (pw.n > FP_PHR_MAX) pw.n = FP_PHR_MAX;
+    stems(&pw, pw.n != 1, &p);
+    size_t L = sizeof(cphr_t);
+    for (int i = 0; i < p.n; i++) L += strlen(p.w[i]) + 1;
+    cphr_t *c = malloc(L);
+    if (!c) return NULL;
+    char *a = (char *)(c + 1);
+    c->n = (uint8_t)p.n; c->neg = c->hedge = 0;
+    for (int i = 0; i < p.n; i++) {
+        size_t k = strlen(p.w[i]) + 1;
+        memcpy(a, p.w[i], k); c->w[i] = a; a += k;
+        c->neg |= in(p.w[i], NEGATION); c->hedge |= in(p.w[i], HEDGE);
+    }
+    c->bleedout = pw.n > 1 && !strcmp(pw.w[pw.n - 1], "out") &&
+        (!strcmp(pw.w[pw.n - 2], "bleed") || !strcmp(pw.w[pw.n - 2], "bleeding") ||
+         !strcmp(pw.w[pw.n - 2], "bleeds") || !strcmp(pw.w[pw.n - 2], "bled"));
+    return c;
+}
+static const cphr_t *phrase_sid(const fp_sess_t *s, fp_str sid) {   /* cached by string id */
+    cphr_t **cache = (cphr_t **)s->phr;
+    if (!cache || sid >= s->pk.nstr) return compile_phrase(S(sid));  /* (no cache: leaks; never on the device) */
+    if (!cache[sid]) cache[sid] = compile_phrase(S(sid));
+    return cache[sid];
+}
+static const cphr_t *phrase_static(const char *ph) {               /* the built-in UNIVERSAL phrases */
+    static struct { const char *k; cphr_t *c; } tab[64];
+    static int n;
+    for (int i = 0; i < n; i++) if (tab[i].k == ph) return tab[i].c;
+    cphr_t *c = compile_phrase(ph);
+    if (n < 64) { tab[n].k = ph; tab[n].c = c; n++; }
+    return c;
+}
+/* find() on a compiled phrase, no copies. stop[i]: words[i] may not sit between two phrase words
+ * (a negation, hedge or clause start), computed once per sentence. Same result as find(). */
+static uint64_t find_c(const fp_toks_t *w, const bool *stop, const cphr_t *c) {
+    int n = c->n;
+    if (n == 0) return 0;
+    for (int i = 0; i + n <= w->n; i++) {
+        int k = 0;
+        while (k < n && !strcmp(w->w[i + k], c->w[k])) k++;
+        if (k == n) return ((1ull << n) - 1) << i;
+    }
+    if (n < 2 || c->neg || c->hedge) return 0;
+    for (int i = 0; i < w->n; i++) {
+        if (strcmp(w->w[i], c->w[0])) continue;
+        uint64_t pos = 1ull << i;
+        int j = i, got = 1;
+        for (int q = 1; q < n; q++) {
+            int hit = -1, lim = j + 3 < w->n ? j + 3 : w->n;
+            for (int k = j + 1; k < lim; k++) {
+                if (strcmp(w->w[k], c->w[q])) continue;
+                bool clean = true;
+                for (int x = j + 1; x < k; x++) if (stop[x]) { clean = false; break; }
+                if (clean) { hit = k; break; }
+            }
+            if (hit < 0) break;
+            pos |= 1ull << hit; j = hit; got++;
+        }
+        if (got == n) return pos;
+    }
+    return 0;
+}
+
 static bool ing(const char *w) { size_t L = strlen(w); return L > 4 && !strcmp(w + L - 3, "ing"); }
 
 /* vr.intake._scope: does a negation (neg) / hedge reach raw[i]? */
@@ -342,9 +415,14 @@ static void fill_toks(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled
 /* tie_any: vr.intake.fill(decisive=None): every tie takes the priority value */
 static bool tok_has(const fp_toks_t *t, const char *w);
 static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out, bool tie_any) {
-    fp_toks_t words, plain, pw, p;
+    fp_toks_t words, plain;
     stems(raw, true, &words);
     stems(raw, false, &plain);
+    bool stopw[FP_MAX_TOK], stopp[FP_MAX_TOK];
+    for (int i = 0; i < words.n; i++) {
+        stopw[i] = neg_or_hedge(words.w[i]) || in(words.w[i], CLAUSE_START);
+        stopp[i] = neg_or_hedge(plain.w[i]) || in(plain.w[i], CLAUSE_START);
+    }
     out->n = 0;
     uint64_t cuts = 0;
     for (int i = 0; i < words.n; i++) if (in(words.w[i], CONTRAST)) cuts |= 1ull << i;
@@ -367,21 +445,15 @@ static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_fill
                     for (int q = 0; q < V_NPH(v); q++) if (!strcmp(S(V_PH(s, v, q)), phs)) dup = true;
                     if (dup) continue;
                 }
-                fp_tokenize(phs, &pw);
-                uint64_t hit;
-                if (pw.n == 1) { stems(&pw, false, &p); hit = find(&plain, &p); }
-                else { stems(&pw, true, &p); hit = find(&words, &p); }
+                const cphr_t *cp = k < V_NPH(v) ? phrase_sid(s, V_PH(s, v, k)) : phrase_static(phs);
+                if (!cp || !cp->n) continue;
+                uint64_t hit = cp->n == 1 ? find_c(&plain, stopp, cp) : find_c(&words, stopw, cp);
                 if (!hit) continue;
                 int first = lowbit(hit), last = highbit(hit);
                 if (last + 1 < raw->n && in(raw->w[last + 1], NOT_A_STATE)) continue;
-                if (pw.n > 1 && !strcmp(pw.w[pw.n - 1], "out") &&
-                    (!strcmp(pw.w[pw.n - 2], "bleed") || !strcmp(pw.w[pw.n - 2], "bleeding") ||
-                     !strcmp(pw.w[pw.n - 2], "bleeds") || !strcmp(pw.w[pw.n - 2], "bled")) &&
-                    last + 1 < raw->n && !strcmp(raw->w[last + 1], "of")) continue;
-                bool pneg = false, phedge = false;
-                for (int q = 0; q < p.n; q++) { pneg |= in(p.w[q], NEGATION); phedge |= in(p.w[q], HEDGE); }
-                if (scoped(raw, first, true) && !pneg) continue;
-                if (scoped(raw, first, false) && !phedge) continue;
+                if (cp->bleedout && last + 1 < raw->n && !strcmp(raw->w[last + 1], "of")) continue;
+                if (scoped(raw, first, true) && !cp->neg) continue;
+                if (scoped(raw, first, false) && !cp->hedge) continue;
                 covered |= hit;
             }
             if (covered) { cv[nc] = vi; cm[nc] = covered; nc++; }
@@ -832,10 +904,14 @@ bool fp_sess_init(fp_sess_t *s, const void *blob, size_t len) {
         if (t->nnodes > FP_MAX_NODES || !t->nnodes) return false;
     }
     s->ws = malloc(sizeof *s->ws);
-    return s->ws != NULL;
+    s->phr = calloc(s->pk.nstr, sizeof(cphr_t *));
+    return s->ws != NULL && s->phr != NULL;
 }
 
-void fp_sess_free(fp_sess_t *s) { free(s->ws); s->ws = NULL; }
+void fp_sess_free(fp_sess_t *s) {
+    free(s->ws); s->ws = NULL;
+    if (s->phr) { cphr_t **c = s->phr; for (uint32_t i = 0; i < s->pk.nstr; i++) free(c[i]); free(c); s->phr = NULL; }
+}
 void fp_reset(fp_sess_t *s) { s->ncands = 0; }
 
 int fp_tree_by_name(const fp_sess_t *s, const char *name) {
