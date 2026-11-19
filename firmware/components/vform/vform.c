@@ -433,7 +433,8 @@ static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_fill
         for (int vi = 0; vi < nv && vi < 64; vi++) {
             const uint8_t *v = SL_VAL(s, sl, vi);
             uint64_t covered = 0;
-            const char *const *uni = universal(S(SL_NAME(sl)), S(V_NAME(v)));
+            const char *const *uni = V_NAME(v) == s->sid_no && (SL_NAME(sl) == s->sid_conscious || SL_NAME(sl) == s->sid_breathing)
+                ? universal(S(SL_NAME(sl)), S(V_NAME(v))) : NULL;   /* ids compared, no strcmp per value */
             int nuni = 0;
             if (uni) while (uni[nuni]) nuni++;
             for (int k = 0; k < V_NPH(v) + nuni; k++) {
@@ -905,6 +906,10 @@ bool fp_sess_init(fp_sess_t *s, const void *blob, size_t len) {
     }
     s->ws = malloc(sizeof *s->ws);
     s->phr = calloc(s->pk.nstr, sizeof(cphr_t *));
+    int i1 = fp_find_str(&s->pk, "no"), i2 = fp_find_str(&s->pk, "conscious"), i3 = fp_find_str(&s->pk, "breathing");
+    s->sid_no = i1 < 0 ? FP_NONE : (fp_str)i1;
+    s->sid_conscious = i2 < 0 ? FP_NONE - 1 : (fp_str)i2;
+    s->sid_breathing = i3 < 0 ? FP_NONE - 1 : (fp_str)i3;
     return s->ws != NULL && s->phr != NULL;
 }
 
