@@ -6,6 +6,7 @@
 static float win[FE_WIN];
 static float mel[FE_NMEL][FE_NFFT / 2 + 1];
 static double cs[FE_NFFT / 2], sn[FE_NFFT / 2];
+static short mlo[FE_NMEL], mhi[FE_NMEL];   /* nonzero span of each mel row (adding 0 changes nothing) */
 static int ready;
 
 static double hz2mel(double f) { return 2595.0 * log10(1.0 + f / 700.0); }
@@ -23,6 +24,10 @@ static void setup(void) {
             double v = a < b ? a : b;
             mel[m][k] = (float)(v > 0 ? v : 0);
         }
+    for (int m = 0; m < FE_NMEL; m++) {
+        mlo[m] = FE_NFFT / 2 + 1; mhi[m] = -1;
+        for (int k = 0; k <= FE_NFFT / 2; k++) if (mel[m][k] != 0.0f) { if (k < mlo[m]) mlo[m] = k; mhi[m] = k; }
+    }
     for (int i = 0; i < FE_NFFT / 2; i++) { cs[i] = cos(-2.0 * M_PI * i / FE_NFFT); sn[i] = sin(-2.0 * M_PI * i / FE_NFFT); }
     ready = 1;
 }
@@ -65,7 +70,7 @@ int fe_logmel(const int16_t *pcm, int n, float *out) {
         for (int k = 0; k <= FE_NFFT / 2; k++) pw[k] = re[k] * re[k] + im[k] * im[k];
         for (int m = 0; m < FE_NMEL; m++) {
             double s = 0;
-            for (int k = 0; k <= FE_NFFT / 2; k++) s += pw[k] * mel[m][k];
+            for (int k = mlo[m]; k <= mhi[m]; k++) s += pw[k] * mel[m][k];
             out[(size_t)t * FE_NMEL + m] = (float)log(s + 1e-6);
         }
     }

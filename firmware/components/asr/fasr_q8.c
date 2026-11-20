@@ -55,31 +55,42 @@ static inline int64_t rshift_round(int64_t v, int s) {
     return v;
 }
 
-/* one conv layer: x (cin x T) -> acc per output, requantised into y (cout x To), or int32 for the head */
+/* one conv layer: x (cin x T) -> acc per output, requantised into y (cout x To), or int32 for the head.
+ * Integer sums, so the loop order (per weight, then a run of t) gives the same result as the reference;
+ * this order reads x in sequence and skips the padding test in the inner loop. */
+#define FQ_TMAX 2048
+static int32_t fq_acc[FQ_TMAX];
 static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head) {
     int cin = L_CIN(l), cout = L_COUT(l), k = L_K(l), s = L_STRIDE(l), pad = L_PAD(l), g = L_GROUPS(l);
     int To = (T + pad - k) / s + 1, fl = L_FLAGS(l);
+    if (To > FQ_TMAX) return -1;
     const int8_t *w = L_W(m, l), *ew = L_EW(m, l);
     const uint8_t *bb = L_B(m, l);
     int cpg = cin / g;                                   /* input channels per group (1 for depthwise) */
     int lo = (fl & 1) || (fl & 2) ? 0 : -128;
+    int32_t *acc = fq_acc;
     for (int o = 0; o < cout; o++) {
         int32_t bias = (int32_t)r32(bb + 4 * o);
         const int8_t *wo = w + (size_t)o * cpg * k;
         int ib = g == 1 ? 0 : o * cpg;
         int sh = L_EIN(l) + ew[o] - L_EOUT(l);
-        for (int t = 0; t < To; t++) {
-            int32_t acc = bias;
-            int t0 = t * s - pad;                        /* left zero padding */
-            for (int i = 0; i < cpg; i++) {
-                const int8_t *xi = x + (size_t)(ib + i) * T, *wi = wo + i * k;
-                for (int kk = 0; kk < k; kk++) {
-                    int ti = t0 + kk;
-                    if (ti >= 0 && ti < T) acc += (int32_t)xi[ti] * wi[kk];
-                }
+        for (int t = 0; t < To; t++) acc[t] = bias;
+        for (int i = 0; i < cpg; i++) {
+            const int8_t *xi = x + (size_t)(ib + i) * T, *wi = wo + i * k;
+            for (int kk = 0; kk < k; kk++) {
+                int32_t wv = wi[kk];
+                if (!wv) continue;
+                int off = kk - pad;                      /* input index = t * s + off */
+                int ta = off >= 0 ? 0 : (-off + s - 1) / s;
+                int tb = (T - 1 - off) < 0 ? -1 : (T - 1 - off) / s;
+                if (tb > To - 1) tb = To - 1;
+                if (s == 1) { const int8_t *xp = xi + off; for (int t = ta; t <= tb; t++) acc[t] += (int32_t)xp[t] * wv; }
+                else for (int t = ta; t <= tb; t++) acc[t] += (int32_t)xi[t * s + off] * wv;
             }
-            if (fl & 4) { head[(size_t)o * To + t] = acc; continue; }
-            int64_t v = rshift_round(acc, sh);
+        }
+        for (int t = 0; t < To; t++) {
+            if (fl & 4) { head[(size_t)o * To + t] = acc[t]; continue; }
+            int64_t v = rshift_round(acc[t], sh);
             if (fl & 2) v += rshift_round(blk[(size_t)o * To + t], L_ERES(l) - L_EOUT(l));
             if (v < lo) v = lo;
             if (v > 127) v = 127;
@@ -106,6 +117,7 @@ int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t
         int is_dw = L_GROUPS(l) > 1;
         if (is_dw) memcpy(blk, x, (size_t)L_CIN(l) * Tc);  /* block input, for the residual */
         int To = conv(m, l, x, Tc, y, blk, logits);
+        if (To < 0) return -1;
         if (L_FLAGS(l) & 4) return To;
         if (cb) cb(ctx, i, y, L_COUT(l), To);
         int8_t *t = x; x = y; y = t;
@@ -124,11 +136,12 @@ int fq_logit_exp(const fq_model_t *m, int c) {
 
 void fq_logp(const fq_model_t *m, const int32_t *logits, int T, float *logp) {
     int C = m->ctok;
-    double z[512];
+    double z[512], sc[512];
+    for (int c = 0; c < C && c < 512; c++) sc[c] = ldexp(1.0, -fq_logit_exp(m, c));   /* same value, once */
     for (int t = 0; t < T; t++) {
         double mx = -1e300;
         for (int c = 0; c < C && c < 512; c++) {
-            z[c] = (double)logits[(size_t)c * T + t] * ldexp(1.0, -fq_logit_exp(m, c));
+            z[c] = (double)logits[(size_t)c * T + t] * sc[c];
             if (z[c] > mx) mx = z[c];
         }
         double s = 0;

@@ -10,10 +10,15 @@
 #include "esp_heap_caps.h"
 #include "esp_timer.h"
 static void *big(size_t n) { return heap_caps_malloc(n, MALLOC_CAP_SPIRAM); }
+static void *fast(size_t n) {   /* internal RAM when it fits (the model's planes are read most) */
+    void *p = heap_caps_malloc(n, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
+    return p ? p : big(n);
+}
 static int64_t now_us(void) { return esp_timer_get_time(); }
 #else
 #include <time.h>
 static void *big(size_t n) { return malloc(n); }
+static void *fast(size_t n) { return malloc(n); }
 static int64_t now_us(void) { struct timespec t; clock_gettime(CLOCK_MONOTONIC, &t); return t.tv_sec * 1000000LL + t.tv_nsec / 1000; }
 #endif
 
@@ -62,7 +67,7 @@ asr_err_t asr_open_cart(const void *rom, size_t len) {
     int T = fe_frames(16000 * ASR_MAX_SECONDS), To = fq_out_len(&M, T);
     feats = big(sizeof(float) * 40 * T); logp = big(sizeof(float) * M.ctok * To);
     logits = big(sizeof(int32_t) * M.ctok * To);
-    ws_model = big(fq_ws_size(&M, T)); ws_dec = big(fd_ws_size());
+    ws_model = fast(fq_ws_size(&M, T)); ws_dec = big(fd_ws_size());
     if (!feats || !logp || !logits || !ws_model || !ws_dec) return ASR_NO_MEMORY;
     ready = true;
     return ASR_OK;
