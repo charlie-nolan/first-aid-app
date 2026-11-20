@@ -10,6 +10,11 @@ inside the pocket**; the lid only closes with the toggle on RUN, so lid + toggle
 lid microswitch any more, no ferro rod). In FIRE the crank and supercaps feed the coil through a
 diode-OR; the coil heats only with the toggle on FIRE and the fire button held.
 
+**Battery-assisted fire (Charlie, 2026-11-20):** the coil (32 AWG Kanthal, 10 wraps, ~2.8 ohm, ~1 A) is fed
+from the LiPo (tapped before the cold-cutoff FET) through a diode and a 1.5 A polyfuse, with the
+supercap bank in parallel; the crank still fills the bank. The MCU has **no control** of the fire path
+(only the button drives the gate), and the bank-full LED is pure hardware.
+
 ## The timing problem
 
 A full e-ink refresh takes ~1-2 s at ~20-40 mA; a partial ~0.3-0.5 s. The power goes as soon as the
@@ -31,13 +36,17 @@ toggle moves, so the screen must be drawn **before** that, or during a short hol
    very bottom line**, revealed by a fast partial update of that one line after BUSY clears.
 5. The person flips the toggle (inside the pocket); power drops; the instructions stay on the glass.
 
-**Fire page content (hardware thread, 2026-11-20)**, to become a reviewed, cited card in the library:
+**Fire page content (hardware thread, 2026-11-20)**, to become a reviewed, cited card in the library.
+The page header shows the **battery %** (GPIO10, Plus), read just before the page is drawn, so the
+person knows what glow to expect; the number stays on the glass after the power drops.
 - Build the tinder nest. **"Bury only the sleeved tip in the tinder."** (exact wording)
 - Press FIRE from arm's length: about 2-3 s of bright glow per cap charge.
 - **"To make the glow last longer, pulse the button. Let go when the coil turns bright orange, and press
   again as it fades to red."** (exact wording; roughly doubles the useful glow per cap charge, ~4 s to ~8 s)
 - **"Pull the coil out as soon as the tinder catches. Keep the white wire out of the flames."**
   (exact wording; the lead's PTFE gives off toxic fumes above ~300 °C)
+- **"The fire draws from the battery. Below about 20%, expect a weaker glow. Crank to top up the bank."**
+  (exact wording)
 - Crank 15-20 s between tries.
 - **"Let the coil cool 1 minute before putting it back."** (the cool-down line, exact wording)
 - The lid only closes with the toggle back on RUN.
