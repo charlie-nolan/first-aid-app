@@ -32,8 +32,9 @@ toggle moves, so the screen must be drawn **before** that, or during a short hol
 5. The person flips the toggle (inside the pocket); power drops; the instructions stay on the glass.
 
 **Fire page content (hardware thread, 2026-11-20)**, to become a reviewed, cited card in the library:
-- Push the tinder into or onto the coil.
-- Hold the fire button: about 2-3 s of bright glow per cap charge.
+- Build the tinder nest and tuck the coil (on its ~200 mm lead) into the middle of the jelly cotton.
+- Press FIRE from arm's length: about 2-3 s of bright glow per cap charge.
+- Pull the coil out as soon as the tinder catches, before the kindling takes.
 - Crank 15-20 s between tries.
 - "Let the coil cool 1 minute before putting it back. The case is plastic." (the cool-down line, exact wording)
 - The lid only closes with the toggle back on RUN.
