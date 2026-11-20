@@ -629,3 +629,22 @@ def test_life_tab_order_bleeding_cpr_choking():
         c.filled = {"a": "y"}
     assert sorted(cs, key=life_rank)[0].name == "wfa-bleeding"
     assert [c.name for c in sorted(cs, key=life_rank)] == ["wfa-bleeding", "wfa-cpr", "wfa-choking", "wfa-allergy", "heat"]
+
+
+def test_one_tab_per_life_card_and_the_jumper_keeps_its_own_problem():
+    from vr.form import split_tabs
+    rule = [{"if": {"bleeding_type": "heavy"}, "go": "wfa-bleeding/severe"}]
+    bt = {"heavy": ["bleeding a lot"]}
+    frac = Candidate("fractures", {"root": "start", "title": "Fractures", "nodes": {"start": {"label": "Where?"},
+                     "leg": {"label": "Broken leg"}}},
+                     {"life_threat": rule, "slots": {"bleeding_type": bt, "where": {"leg": ["leg is broken"]}},
+                      "questions": {"start": {"slot": "where", "choices": {"leg": "leg"}}}}, p=0.5)
+    gear = Candidate("improvised_gear", {"root": "start", "title": "Gear", "nodes": {"start": {"label": "What's missing?"}}},
+                     {"life_threat": rule, "slots": {"bleeding_type": bt}}, p=0.3)
+    bleed = Candidate("wfa-bleeding", _tabtree("Bleeding", "How bad?"),
+                      {"life_threat": [{"if": {"bleeding_type": "heavy"}, "go": "severe"}], "slots": {"bleeding_type": bt}}, p=0.2)
+    cands = [frac, gear, bleed]
+    assert first_sentence("his arm is bleeding a lot and his leg is broken", cands, multi=True)[0] == "tabs"
+    tabs = split_tabs(cands)
+    assert [(t[0].name, t[0].card) for t in tabs] == [("wfa-bleeding", "severe"), ("fractures", "leg")]
+    assert [(t[0].name, t[0].card) for t in split_tabs(cands)] == [("wfa-bleeding", "severe"), ("fractures", "leg")]

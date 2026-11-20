@@ -136,17 +136,70 @@ def _own_evidence(c: Candidate, others: list[Candidate]) -> set:
 def split_tabs(cands: list[Candidate]) -> list[list[Candidate]]:
     """Charlie 11-17: when the first sentence names separate problems ("his arm is bleeding and
     I think his leg is broken"), each opens in its own tab (window) with its own form. A tree
-    gets its own tab when it filled a blank no other candidate tree has; candidates without
-    such evidence stay in the first tab (where a which-is-it field sorts them)."""
-    own = [c for c in cands if _own_evidence(c, [o for o in cands if o is not c]) or life_rank(c) <= LIFE_OTHER]
-    if len(own) < 2:
+    gets its own tab when it filled a blank no other candidate tree has, or was named outright;
+    candidates without such evidence join the first plain tab (where a which-is-it field sorts them).
+    Charlie 11-20 (C8): tabs sort by urgency (life_rank). ONE tab per life card: when several trees
+    jump to the same card (fractures and improvised_gear both -> wfa-bleeding/severe through the
+    shared bleeding blank), the card's own tree leads it and the others drop that jump and keep a
+    plain tab for their own problem (PC check d4e0125: 39 lines showed 2-3 copies of one card).
+    Works on copies, so calling it again gives the same tabs."""
+    by_card, plain = {}, []
+    for c in cands:
+        go = _life_target(c)
+        if go:
+            by_card.setdefault(go, []).append(c)
+        else:
+            plain.append(c)
+    life = []
+    for go, cs in by_card.items():
+        lead = next((c for c in cs if go.split("/", 1)[0] == c.name), cs[0])
+        life.append(lead)
+        plain += [_without_life(c) for c in cs if c is not lead or go.split("/", 1)[0] != c.name]
+    others = lambda c, pool: [o for o in pool if o is not c]
+    words = tokenize(cands[0].heard) if cands and cands[0].heard else []
+    own = [c for c in plain if _own_evidence(c, others(c, plain + life)) or
+           (words and names_tree(words, c.name, c.tree, c.smap))]
+    own = [c for c in own if c.card != c.tree.get("root") or not any(l.name == c.name for l in life)]
+                                                      # a jumper's plain copy needs a problem of its own
+    if len(life) + len(own) < 2:
         return [cands]
-    own = sorted(own, key=life_rank)[:MAX_TABS]       # stable: same rank keeps the router's order
-    rest = [c for c in cands if c not in own]
-    tabs = [[c] for c in own]
+    leads = sorted(life + own, key=life_rank)[:MAX_TABS]    # stable: same rank keeps the router's order
+    rest = [c for c in plain if c not in leads]
+    tabs = [[c] for c in leads]
     home = next((t for t in tabs if life_rank(t[0]) > LIFE_OTHER), tabs[0])
-    home += rest                                      # helpers join the first plain tab, never a life tab
-    return tabs
+    home += [c for c in rest if not any(c.name == t[0].name for t in tabs)]   # helpers join the first
+    return tabs                                                                 # plain tab, never a life tab
+
+
+def _life_target(c: Candidate) -> str | None:
+    """The life card this candidate stands on or its rule jumps to, as a full "tree/card" key."""
+    go = _rule_hit(c) or (c.card if c.card not in c.tree["nodes"] else None)
+    if not go and c.card in _life_cards(c):
+        go = c.card
+    if not go:
+        return None
+    return go if go not in c.tree["nodes"] and "/" in go else f"{c.name}/{go}"
+
+
+def _without_life(c: Candidate) -> Candidate:
+    """A copy that has dropped its life jump: the blanks of the rule that fired, and the shared
+    awake/breathing blanks, are forgotten, and the walk restarts from the root."""
+    from dataclasses import replace
+    hit = None
+    lt = c.smap.get("life_threat") or []
+    rules = [{"if": {s: v}, "go": g} for s, m in lt.items() for v, g in m.items()] if isinstance(lt, dict) else lt
+    for r in rules:
+        if all(c.filled.get(s) == v for s, v in r["if"].items()):
+            hit = r
+            break
+    drop = set(hit["if"]) if hit else set()
+    from .intake import UNIVERSAL
+    filled = {s: v for s, v in c.filled.items() if s not in drop and s not in UNIVERSAL}
+    d = replace(c, filled=filled)
+    d.advance()
+    if _life_target(d):                             # still on a life card: no plain problem left
+        d.card, d.asking = d.tree.get("root", "start"), None
+    return d
 
 
 LIFE_TAB_ORDER = ("wfa-bleeding", "wfa-cpr", "wfa-choking", "wfa-allergy")   # C8 (Charlie 11-19):
