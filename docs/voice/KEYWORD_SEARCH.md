@@ -23,7 +23,8 @@ is the sum of the best weight from each source:
 
 Ranking, in order:
 1. **Life cards first**: any node a `life_threat` rule goes to, when its score is at least 2 and at
-   least a third of the query's best score (a weak side match never buries the topic).
+   least a third of the query's best score, or when the word names its own tree's topic
+   ("nosebleed" puts the won't-stop card first). A weak side match never buries the topic.
 2. Score: the sum over the query words. A node must match **every** query word.
 3. Root tiles before inner nodes, then depth from the root, then tree name, then node id.
 
@@ -62,6 +63,9 @@ Titles hold tree labels, so keep personal outputs on the PC.
 | grid | short **TALK** | open the highlighted tile |
 | card opened from the grid | **BACK** | back to the grid, same page and highlight |
 | grid | **BACK** | leave search mode, back to where you were |
+
+The command words keep their meaning in this mode: "back", "again" and "home" are commands, never
+queries (so saying "back" for a back injury needs "spine" or "neck").
 
 The recognizer in this mode decodes against the whole lexicon (no per-question subset) and keeps
 only the top hypothesis's content words.

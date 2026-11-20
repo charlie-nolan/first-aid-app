@@ -80,3 +80,11 @@ def test_shared_blank_phrases_are_not_indexed_outside_home():
 
 def test_blood_also_finds_bleeding():
     assert "wfa-bleeding/start" in nodes("blood")
+
+
+def test_naming_the_topic_keeps_its_life_card_first():
+    t = {"wfa-nosebleed": ({"root": "start", "title": "Nosebleed", "nodes": {
+            "start": {"label": "Nosebleed", "phrases": ["nosebleed", "bloody nose"]}, "treat": {"label": "Pinch the nose"},
+            "persist": {"label": "Won't stop after 30 minutes"}}},
+         {"life_threat": [{"if": {"amount": "lots"}, "go": "persist"}], "slots": {"amount": {"lots": ["won't stop"]}}})}
+    assert [h["node"] for h in search("nosebleed", t)][0] == "wfa-nosebleed/persist"
