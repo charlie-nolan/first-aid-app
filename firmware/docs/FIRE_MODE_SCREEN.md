@@ -13,18 +13,16 @@ with the toggle on FIRE + the slide compartment open + the fire button held.
 A full e-ink refresh takes ~1-2 s at ~20-40 mA; a partial ~0.3-0.5 s. The power goes as soon as the
 toggle moves, so the screen must be drawn **before** that, or during a short hold-up.
 
-## Options (pick with the hardware thread)
+## Decision (hardware thread, 2026-11-20)
 
-1. **Pre-arm in the menu (no hardware change):** "Fire" in the hold-DOWN menu draws the fire
-   instructions and says "Now switch to FIRE". Simple and reliable; relies on the person using the menu.
-2. **Fire instructions as the resting screen:** every deep sleep / low-battery shutdown leaves a page
-   whose corner (or a full page in the sleep-art rotation) has the fire steps, so whatever the power
-   state, the steps are on the glass. Costs screen space on every sleep.
-3. **Sense the toggle early + hold-up:** a spare pole or a break-before-make contact on the 3PDT to a
-   GPIO (RTC-capable, wakes from sleep), plus enough hold-up on the device rail (a few mF on 3V3, or
-   leave one supercap on the device rail for ~2 s through a diode) to finish one partial refresh.
-   Most robust in use; needs a hardware change and a bench check of the hold-up time.
+- **Toggle sensing: not possible.** All 3 poles of the 3PDT are used, the Plus has no spare RTC GPIO,
+  and a sense pole would switch at the same moment the rails drop.
+- **Hold-up: not in v1.** It would need ~50 mF of low-ESR storage, not worth the space.
 
-Recommendation: **1 now** (firmware only), **3 when the hardware allows**, with 2 as the fallback if 3
-can't be made reliable. The page content itself (coil, crank, slide, button, ferro rod) should come
-from the library like every other card, so it is reviewed and cited.
+**So the only path is a menu pre-arm:** "Fire" in the hold-DOWN menu draws the fire instructions with a
+full refresh, waits for the refresh to finish, then shows (as part of the same page) "Now flip the
+toggle to FIRE". The page stays on the glass after the power goes. **Backup:** the same steps are
+printed or engraved inside the fire compartment lid.
+
+The page content (coil, crank, slide, fire button, ferro rod / striker / tinder) comes from the library
+like every other card, so it is reviewed and cited.
