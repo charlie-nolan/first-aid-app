@@ -104,7 +104,7 @@ class Screen:
         if kind == "tabs":
             self.cands = F.split_tabs(self.cands)[0]
             lead = self.cands[0]
-            if F.life_rank(lead) <= F.LIFE_OTHER:         # a life tab is first and stands on its card
+            if F._life_target(lead):         # a life tab is first and stands on its card
                 return self.card_screen(lead.name, lead.card)
             return self.form_screen("Several problems: showing the first")
         return self.form_screen()

@@ -648,3 +648,16 @@ def test_one_tab_per_life_card_and_the_jumper_keeps_its_own_problem():
     tabs = split_tabs(cands)
     assert [(t[0].name, t[0].card) for t in tabs] == [("wfa-bleeding", "severe"), ("fractures", "leg")]
     assert [(t[0].name, t[0].card) for t in split_tabs(cands)] == [("wfa-bleeding", "severe"), ("fractures", "leg")]
+
+
+def test_two_trees_landing_on_one_plain_card_share_a_tab():
+    from vr.form import split_tabs
+    heat = Candidate("heat", {"root": "start", "title": "Heat", "nodes": {"start": {"label": "Heat?"}, "syncope": {"label": "Fainted"}}},
+                     {"slots": {"heat": {"yes": ["hot day"]}}, "questions": {"start": {"slot": "heat", "choices": {"yes": "syncope"}}}}, p=0.4)
+    faint = Candidate("wfa-fainting", {"root": "start", "title": "Fainting", "nodes": {"start": {"label": "Cause?"}}},
+                      {"slots": {"cause": {"heat": ["fainted"]}}, "questions": {"start": {"slot": "cause", "choices": {"heat": "heat/syncope"}}}}, p=0.5)
+    burn = Candidate("burns", BURNS, BSMAP, p=0.3)
+    cands = [faint, heat, burn]
+    first_sentence("she fainted on a hot day and has a big burn", cands, multi=True)
+    cards = [t[0].card if t[0].card not in t[0].tree["nodes"] else f"{t[0].name}/{t[0].card}" for t in split_tabs(cands)]
+    assert len(cards) == len(set(cards))

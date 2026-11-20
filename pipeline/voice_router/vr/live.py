@@ -30,7 +30,7 @@ import yaml
 
 from .data import load_tree
 from .form import (_rule_hit, MAX_TREES, named_trees, names_tree, topic_words, _key, Candidate, answer, first_sentence, open_fields, ranked_cards,
-                   split_tabs, _life_slots, _rule_hit, life_rank, LIFE_OTHER)
+                   split_tabs, _life_slots, _rule_hit, _life_target)
 from .intake import UNIVERSAL, _find, _stem, fill, fill_nbest, slots_of, tokenize
 
 GENERIC_HOME = {"wfa-cpr"}   # the tree that owns the shared life blanks (smap generic_home: true adds one)
@@ -335,7 +335,7 @@ def main(argv=None):
         elif kind == "tabs":
             out = []
             for i, tab in enumerate(split_tabs(cands)[:5]):
-                life = life_rank(tab[0]) <= LIFE_OTHER
+                life = bool(_life_target(tab[0]))
                 head = f"  TAB {i + 1}: {', '.join(c.name for c in tab)}"
                 out += [head + (f"  OPEN {_title(trees, tab[0].name, tab[0].card)[0]}" if life else "")] + show_form(tab, trees)
         else:

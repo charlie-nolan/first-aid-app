@@ -32,7 +32,7 @@ import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from .form import LIFE_OTHER, answer, first_sentence, life_rank, open_fields, ranked_cards, split_tabs
+from .form import _life_target, answer, first_sentence, open_fields, ranked_cards, split_tabs
 from .form import _life_cards, Candidate
 from .live import Speech, _title, keep_trees, load_all, rescue
 
@@ -206,7 +206,7 @@ class Session:
                     res["skip"] = [_title(self.trees, n, c)[0] for n, c in card[:6]]
                 elif kind == "tabs":
                     res["tabs"] = [{"trees": [c.name for c in tab], **self._form(tab),
-                                    **({"card": f"{tab[0].name}/{tab[0].card}"} if life_rank(tab[0]) <= LIFE_OTHER else {})}
+                                    **({"card": f"{tab[0].name}/{tab[0].card}"} if _life_target(tab[0]) else {})}
                                    for tab in split_tabs(self.cands)[:5]]
                 else:
                     res["form"] = self._form(self.cands)
