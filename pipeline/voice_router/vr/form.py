@@ -160,8 +160,9 @@ def split_tabs(cands: list[Candidate]) -> list[list[Candidate]]:
     copies = {id(c) for c in plain if c not in cands}
     own = [c for c in plain if c.name not in HELPER_TREES and
            (_own_evidence(c, others(c, plain + life)) or (words and names_tree(words, c.name, c.tree, c.smap))
-            or (id(c) in copies and c.card != c.tree.get("root")))]   # a jumper whose own walk moved on
-    own = [c for c in own if c.card != c.tree.get("root") or not any(l.name == c.name for l in life)]
+            or (id(c) in copies and c.filled))]    # a jumper that heard more than its life jump
+                                                      # (9bc2864 spot1: "leg is broken" kept fractures at its root)
+    own = [c for c in own if id(c) in copies or c.card != c.tree.get("root") or not any(l.name == c.name for l in life)]
     leads, seen = [], set()
     for c in sorted(life + own, key=life_rank):       # stable: same rank keeps the router's order
         at = c.card if c.card not in c.tree["nodes"] else f"{c.name}/{c.card}"
@@ -212,21 +213,23 @@ HELPER_TREES = {"improvised_gear"}                    # "what can I use instead"
 LIFE_TAB_ORDER = ("wfa-bleeding", "wfa-cpr", "wfa-choking", "wfa-allergy")   # C8 (Charlie 11-19):
 LIFE_OTHER = len(LIFE_TAB_ORDER)                      # bleeding first, then CPR, choking, anaphylaxis,
 URGENT_TREES = ("wfa-head-spine", "burns", "wfa-shock")   # other life cards, urgent trees, the rest
-LIFE_NONE = LIFE_OTHER + 1 + len(URGENT_TREES)
+LIFE_NAMED = LIFE_OTHER + 1                           # a life topic named, no life rule fired yet
+LIFE_NONE = LIFE_NAMED + 1 + len(URGENT_TREES)
 
 
 def life_rank(c: Candidate) -> int:
-    """Tab order for several problems: 0 severe bleeding, 1 CPR, 2 choking, 3 anaphylaxis, 4 any
-    other life card, 5-7 head/spine, burns, shock, 8 the rest.
+    """Tab order for several problems (integers, for the C port): 0 severe bleeding, 1 CPR,
+    2 choking, 3 anaphylaxis, 4 any other life card, 5 a life topic named with no rule fired,
+    6-8 head/spine, burns, shock, 9 the rest.
     The life card is the tree's own rule's card, or the card its walk already jumped to."""
     go = _life_target(c)
     if go:
         tree = go.split("/", 1)[0]
         return LIFE_TAB_ORDER.index(tree) if tree in LIFE_TAB_ORDER else LIFE_OTHER
     if c.name in LIFE_TAB_ORDER and c.heard and names_tree(tokenize(c.heard), c.name, c.tree, c.smap):
-        return LIFE_OTHER + 0.5                       # named outright ("choking") but no life rule yet:
+        return LIFE_NAMED                             # named outright ("choking") but no life rule yet:
                                                       # after the life cards, before head/burns/shock
-    return LIFE_OTHER + 1 + URGENT_TREES.index(c.name) if c.name in URGENT_TREES else LIFE_NONE
+    return LIFE_NAMED + 1 + URGENT_TREES.index(c.name) if c.name in URGENT_TREES else LIFE_NONE
 
 
 def _rule_hit(c: Candidate) -> str | None:
