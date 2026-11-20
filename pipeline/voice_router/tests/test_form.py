@@ -77,8 +77,8 @@ def test_two_problems_open_two_tabs():
     assert first_sentence(two, [Candidate("bites", TREE, SMAP, p=0.5), Candidate("burns", BURNS, BSMAP, p=0.4)])[0] == "form"
     assert first_sentence(two, cands, multi=True)[0] == "tabs"     # TALK + WIN_R held
     tabs = split_tabs(cands)
-    assert [[c.name for c in t] for t in tabs] == [["bites"], ["burns"]]
-    assert answer("on the leg", tabs[0]) == ("open", "bites", "limb")
+    assert [[c.name for c in t] for t in tabs] == [["burns"], ["bites"]]   # burns is an urgent tree (11-20)
+    assert answer("on the leg", tabs[1]) == ("open", "bites", "limb")
 
 
 def test_sector_redecode_per_candidate():
@@ -601,3 +601,31 @@ def test_life_phrase_listed_in_a_trees_own_slot_is_not_its_own_problem():
     pool = {"wfa-cpr": cpr, "wfa-diabetic": diab}
     assert keep_trees(["he is ice cold and won't respond"], pool)[0].name == "wfa-cpr"
     assert keep_trees(["she's diabetic and drowsy and won't respond"], pool)[0].name == "wfa-diabetic"
+
+
+def _tabtree(title, label):
+    return {"root": "start", "title": title, "nodes": {"start": {"label": label}, "severe": {"label": "Severe"},
+            "arm": {"label": "Arm"}}}
+
+
+def test_several_problems_put_severe_bleeding_tab_first_on_its_card():
+    from vr.form import split_tabs
+    frac = Candidate("fractures", _tabtree("Fractures", "Where?"),
+                     {"slots": {"broken": {"leg": ["leg is broken"]}}, "questions": {}}, p=0.6)
+    bleed = Candidate("wfa-bleeding", _tabtree("Bleeding", "How bad?"),
+                      {"life_threat": [{"if": {"amount": "heavy"}, "go": "severe"}],
+                       "slots": {"amount": {"heavy": ["bleeding a lot"]}}}, p=0.3)
+    cands = [frac, bleed]
+    assert first_sentence("his arm is bleeding a lot and his leg is broken", cands, multi=True)[0] == "tabs"
+    tabs = split_tabs(cands)
+    assert [t[0].name for t in tabs] == ["wfa-bleeding", "fractures"] and tabs[0][0].card == "severe"
+
+
+def test_life_tab_order_bleeding_cpr_choking():
+    from vr.form import life_rank
+    mk = lambda n: Candidate(n, _tabtree(n, "x"), {"life_threat": [{"if": {"a": "y"}, "go": "severe"}], "slots": {}})
+    cs = [mk(n) for n in ("wfa-choking", "wfa-cpr", "wfa-bleeding", "wfa-allergy", "heat")]
+    for c in cs:
+        c.filled = {"a": "y"}
+    assert sorted(cs, key=life_rank)[0].name == "wfa-bleeding"
+    assert [c.name for c in sorted(cs, key=life_rank)] == ["wfa-bleeding", "wfa-cpr", "wfa-choking", "wfa-allergy", "heat"]

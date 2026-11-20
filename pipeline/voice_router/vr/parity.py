@@ -29,6 +29,8 @@ Frame rules (a C port must produce the same bytes):
   * kind "card": "card": {"title", "cites": [ref strings][:6], "node": node_id} (never text).
   * kind "skip": "cards": [{"title", "node"}][:6] from vr.form.skip.
   * kind "tabs" is never sent: the first tab's form is shown with msg "Several problems: showing the first".
+    Tabs are sorted by urgency (vr.form.life_rank): severe bleeding, CPR, choking, anaphylaxis, other
+    life cards, head/spine, burns, shock, the rest. A first tab on a life card sends its "card" frame.
   * kind "again": "msg": "Didn't catch that (reject N). Hold TALK and say it again." (speech only).
   * kind "start" (no other keys unless msg):
       after "new" / "home" / "back" / empty words: no msg;
@@ -101,6 +103,9 @@ class Screen:
             return self.show("skip", cards=[self._ref(n, c) for n, c in card[:6]])
         if kind == "tabs":
             self.cands = F.split_tabs(self.cands)[0]
+            lead = self.cands[0]
+            if F.life_rank(lead) <= F.LIFE_OTHER:         # a life tab is first and stands on its card
+                return self.card_screen(lead.name, lead.card)
             return self.form_screen("Several problems: showing the first")
         return self.form_screen()
 

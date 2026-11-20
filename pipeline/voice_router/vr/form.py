@@ -67,6 +67,15 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
         c.filled = fill_nbest(c.hyps or hyps, c.smap)
         c.heard = (c.hyps or hyps)[0]
         c.advance()
+    if (multi or AUTO_TABS) and len(split_tabs(cands)) > 1:
+        for c in cands:                               # several problems (TALK+WIN_R): every life tab
+            go = _rule_hit(c)                         # stands on its card, and split_tabs puts the life
+            if go and go in c.tree["nodes"]:          # tabs first, bleeding before CPR (Charlie 11-20, C8)
+                q = _questions(c.tree, c.smap).get(go)
+                c.card, c.asking = go, (q["slot"] if q else None)
+            elif go:
+                c.card, c.asking = go, None
+        return "tabs", None, None
     order = sorted(cands, key=lambda c: (-round(c.p, 6), not _rule_hit(c)))   # a tie: own rule first
     for c in order:                                   # in rank order, each tree's own emergency first
         if c.card not in c.tree["nodes"] and (c is order[0] or _rule_hit(c) == c.card):
@@ -84,8 +93,6 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
     land = _agreed_landing(cands)                     # top trees all land on one card (47c1afd PC check:
     if land:                                          # "anaphylaxis", "throat is closing up" lost
         return ("open",) + land                       # wfa-allergy/severe at p 0.67 / 3-way tie)
-    if (multi or AUTO_TABS) and len(split_tabs(cands)) > 1:
-        return "tabs", None, None                     # two problems named: one tab each
     if cands and (cands[0].p >= SURE or len(cands) == 1):
         del cands[1:]
     if len(cands) == 1 and not cands[0].asking and cands[0].card != cands[0].tree["root"] \
@@ -131,13 +138,34 @@ def split_tabs(cands: list[Candidate]) -> list[list[Candidate]]:
     I think his leg is broken"), each opens in its own tab (window) with its own form. A tree
     gets its own tab when it filled a blank no other candidate tree has; candidates without
     such evidence stay in the first tab (where a which-is-it field sorts them)."""
-    own = [c for c in cands if _own_evidence(c, [o for o in cands if o is not c])]
+    own = [c for c in cands if _own_evidence(c, [o for o in cands if o is not c]) or life_rank(c) <= LIFE_OTHER]
     if len(own) < 2:
         return [cands]
+    own = sorted(own, key=life_rank)[:MAX_TABS]       # stable: same rank keeps the router's order
     rest = [c for c in cands if c not in own]
-    tabs = [[c] for c in own[:MAX_TABS]]
-    tabs[0] += rest
+    tabs = [[c] for c in own]
+    home = next((t for t in tabs if life_rank(t[0]) > LIFE_OTHER), tabs[0])
+    home += rest                                      # helpers join the first plain tab, never a life tab
     return tabs
+
+
+LIFE_TAB_ORDER = ("wfa-bleeding", "wfa-cpr", "wfa-choking", "wfa-allergy")   # C8 (Charlie 11-19):
+LIFE_OTHER = len(LIFE_TAB_ORDER)                      # bleeding first, then CPR, choking, anaphylaxis,
+URGENT_TREES = ("wfa-head-spine", "burns", "wfa-shock")   # other life cards, urgent trees, the rest
+LIFE_NONE = LIFE_OTHER + 1 + len(URGENT_TREES)
+
+
+def life_rank(c: Candidate) -> int:
+    """Tab order for several problems: 0 severe bleeding, 1 CPR, 2 choking, 3 anaphylaxis, 4 any
+    other life card, 5-7 head/spine, burns, shock, 8 the rest.
+    The life card is the tree's own rule's card, or the card its walk already jumped to."""
+    go = _rule_hit(c) or (c.card if c.card not in c.tree["nodes"] else None)
+    if not go and c.card in _life_cards(c):
+        go = c.card
+    if not go:
+        return LIFE_OTHER + 1 + URGENT_TREES.index(c.name) if c.name in URGENT_TREES else LIFE_NONE
+    tree = go.split("/", 1)[0] if go not in c.tree["nodes"] and "/" in go else c.name
+    return LIFE_TAB_ORDER.index(tree) if tree in LIFE_TAB_ORDER else LIFE_OTHER
 
 
 def _rule_hit(c: Candidate) -> str | None:

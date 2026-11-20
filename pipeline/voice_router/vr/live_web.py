@@ -32,7 +32,7 @@ import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-from .form import answer, first_sentence, open_fields, ranked_cards, split_tabs
+from .form import LIFE_OTHER, answer, first_sentence, life_rank, open_fields, ranked_cards, split_tabs
 from .form import _life_cards, Candidate
 from .live import Speech, _title, keep_trees, load_all, rescue
 
@@ -205,7 +205,9 @@ class Session:
                 elif kind == "skip":
                     res["skip"] = [_title(self.trees, n, c)[0] for n, c in card[:6]]
                 elif kind == "tabs":
-                    res["tabs"] = [{"trees": [c.name for c in tab], **self._form(tab)} for tab in split_tabs(self.cands)[:5]]
+                    res["tabs"] = [{"trees": [c.name for c in tab], **self._form(tab),
+                                    **({"card": f"{tab[0].name}/{tab[0].card}"} if life_rank(tab[0]) <= LIFE_OTHER else {})}
+                                   for tab in split_tabs(self.cands)[:5]]
                 else:
                     res["form"] = self._form(self.cands)
             if res.get("screen") not in ("again", "new", "multi"):
@@ -282,7 +284,7 @@ function show(r){const heard=r.hyps?`"${esc(r.hyps[0])}"`:'';let h='';
  else if(r.screen==='start')h=`<h2>Injury | Survival</h2><div class="dim">no blanks heard in any tree for ${heard}</div>${verdict(r)}`;
  else if(r.screen==='open'){h=`<div class="card"><h2>${esc(r.card.title)}</h2>${r.card.cites.map(c=>`<div class="cite"><span class="dim">${esc(c.ref)}</span>${esc(c.text)}</div>`).join('')}<div class="dim">${esc(r.card.id)}</div></div>${verdict(r)}`}
  else if(r.screen==='skip')h=`<h2>Likely cards</h2>${r.skip.map((s,i)=>`<div class="field"><b>${i+1}</b> ${esc(s)}</div>`).join('')}`;
- else if(r.screen==='tabs')h=r.tabs.map((t,i)=>`<h2>Tab ${i+1}: ${esc(t.trees.join(', '))}</h2>${form(t)}`).join('');
+ else if(r.screen==='tabs')h=r.tabs.map((t,i)=>`<h2>Tab ${i+1}: ${esc(t.trees.join(', '))}${t.card?' OPEN '+esc(t.card):''}</h2>${form(t)}`).join('');
  else if(r.screen==='form')h=`<h2>Fill in what's missing</h2>${form(r.form)}${verdict(r)}`;else h=`<h2>${esc(r.screen)}</h2><div class="alert">${esc(r.error||'')}</div>`;
  S.innerHTML=h;const k=r.kept?'  kept: '+r.kept.map(x=>x[0]+' '+Math.round(x[1]*100)+'%').join(', '):'';
  L.textContent=`[${r.source}] ${r.hyps?r.hyps[0]:''}  (reject ${r.reject??'-'})${k}  -> ${r.screen}${r.card?' '+r.card.id:''}\n`+L.textContent}
