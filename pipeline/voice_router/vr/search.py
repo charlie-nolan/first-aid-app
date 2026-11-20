@@ -54,6 +54,10 @@ STOP = _FILLER | {"he", "she", "they", "we", "you", "me", "him", "her", "his", "
                   "someone", "somebody", "something", "help", "please", "get", "got", "go", "very"}
 
 
+# Extra whole condition names for SEARCH ONLY (not intake topic words, which would change tree
+# choice): the bleeding tree's title is "Severe bleeding", so plain "bleeding" named no tree and
+# the nosebleed won't-stop card led (PC check 43e8d08).
+SEARCH_NAMES = {"wfa-bleeding": ["bleeding"], "bleeding": ["bleeding"]}
 ALIASES = {"blood": ["bleed"]}   # query side only: "blood" also finds the bleeding cards
 
 
@@ -98,7 +102,8 @@ def build_index(trees: dict) -> dict:
 
     for name, (tree, smap) in trees.items():
         nodes, root, dep = tree.get("nodes") or {}, tree.get("root", "start"), _depths(tree)
-        names = [tuple(sorted(_keys(tree.get("title", name))))] + [tuple(sorted(t)) for t in topic_phrases(name, tree, smap or {})]
+        names = [tuple(sorted(_keys(tree.get("title", name))))] + [tuple(sorted(t)) for t in topic_phrases(name, tree, smap or {})] + \
+            [tuple(sorted(_keys(p))) for p in SEARCH_NAMES.get(name, [])]
         topic = {k for t in names for k in t}
         for nid, n in nodes.items():
             idx[(name, nid)] = {"words": {}, "topic": topic, "names": [t for t in names if t], "life": False, "root": nid == root,
