@@ -31,10 +31,17 @@ toggle moves, so the screen must be drawn **before** that, or during a short hol
    very bottom line**, revealed by a fast partial update of that one line after BUSY clears.
 5. The person flips the toggle (inside the pocket); power drops; the instructions stay on the glass.
 
-**Cool-down warning (Charlie, 2026-11-20):** "Let the coil cool before stowing" is part of the pre-drawn
+**Fire page content (hardware thread, 2026-11-20)**, to become a reviewed, cited card in the library:
+- Push the tinder into or onto the coil.
+- Hold the fire button: about 2-3 s of bright glow per cap charge.
+- Crank 15-20 s between tries.
+- "Let the coil cool 1 minute before putting it back. The case is plastic." (the cool-down line, exact wording)
+- The lid only closes with the toggle back on RUN.
+
+**Cool-down warning (Charlie, 2026-11-20):** the cool-down line is part of the pre-drawn
 fire page, **boxed and bold**, so it is on the glass the whole time the board is off. The pre-arm also
 sets a flag in NVS; on the next power-up (toggle back to RUN) the first screen is a short "Coil may still
-be hot: let it cool before stowing" reminder (any button dismisses it), then the flag is cleared.
+be hot: let it cool 1 minute before putting it back" reminder (any button dismisses it), then the flag is cleared.
 
 The page content (coil, crank, fire button, cool before stowing) comes from the library
 like every other card, so it is reviewed and cited.
