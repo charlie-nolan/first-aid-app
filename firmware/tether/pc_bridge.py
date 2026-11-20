@@ -14,6 +14,10 @@ PNG, so each bench run leaves real screenshots.
 --typed reads sentences from stdin instead of clips (same screens go to the board), handy to test
 the screens without speaking.
 
+Keyword search mode (board: hold TALK + WIN_L on the Plus, TALK + DOWN on the plain board): the board
+sends "MODE search"; each clip is then only decoded and sent back as WORDS, and the board ranks and
+pages the cards itself (components/vform/vform_search.c, the cart's SRCH chunk). "MODE form" ends it.
+
 --board-brain (board built with CONFIG_TETHER_BOARD_BRAIN): the board runs the form itself in C
 (firmware/components/vform). The PC only sends what it heard ("WORDS {hyps, reject}"); the board
 draws its own screens and echoes each as "SHOWN <json>". The bridge still runs vr.form in the
@@ -262,6 +266,7 @@ def main(argv=None):
     board.send("HELLO")
     print(f"bridge up: {a.port}, run folder {out}", flush=True)
 
+    mode = {"search": False}                        # keyword search mode on the board (MODE lines)
     pending, early, tally = {}, {}, {"same": 0, "diff": 0}   # board-brain: frames by seq, both ways
 
     def settle(raw, shadow_fr, rec):
@@ -380,7 +385,12 @@ def main(argv=None):
             if brain.speech:
                 hyps, reject = brain.speech(wav)
                 print(f"  heard: {hyps[0]!r} (reject {reject})", flush=True)
-                say(hyps, reject, rec)
+                if mode["search"]:                         # keyword search: the board ranks the cards itself
+                    board.send("WORDS " + json.dumps({"hyps": hyps, "reject": reject}, separators=(",", ":")))
+                    rec.update(source="board", hyps=hyps, reject=reject, mode="search")
+                    log.write(json.dumps(rec) + "\n"); log.flush()
+                else:
+                    say(hyps, reject, rec)
             take = None
         elif ln.startswith("PICK "):
             p = json.loads(ln[5:])
@@ -419,6 +429,9 @@ def main(argv=None):
                 early[sq] = raw
             if (tally["same"] + tally["diff"]) % 10 == 0 and tally["same"] + tally["diff"]:
                 print(f"  board vs Python: {tally['same']} same, {tally['diff']} different", flush=True)
+        elif ln.startswith("MODE "):                       # the board entered / left keyword search
+            mode["search"] = ln[5:].strip() == "search"
+            print(f"  (board: {'keyword search' if mode['search'] else 'form'} mode)", flush=True)
         elif ln.startswith("LOG brain "):
             print(f"  (board form: {ln[10:]})", flush=True)
             log.write(json.dumps({"t": time.time(), "board": ln[4:]}) + "\n"); log.flush()

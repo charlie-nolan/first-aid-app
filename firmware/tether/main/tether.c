@@ -41,6 +41,7 @@
 #if CONFIG_TETHER_BOARD_BRAIN
 #include "vform_show.h"
 #endif
+#include "vform_search.h"
 #if CONFIG_TETHER_STANDALONE
 #include "asr.h"
 #endif
@@ -52,12 +53,22 @@
 #endif
 
 #define SR 16000
+#ifdef CONFIG_TETHER_REJECT
+#define CONFIG_TETHER_REJECT_ANY CONFIG_TETHER_REJECT
+#else
+#define CONFIG_TETHER_REJECT_ANY 51            /* calibrated reject: ask again at 51+ (pc_bridge --reject) */
+#endif
 #define PRE_MS 500
 #define HOLD_MS 300
 #define MAX_TAKE_S 15
 static const char *TAG = "tether";
 static SemaphoreHandle_t lock;
 static const void *cart_rom; static size_t cart_len;   /* the mapped library partition (set in app_main) */
+/* keyword search mode state (shared by the USB task, the board speech and the main loop) */
+static bool search_mode, s_card;
+static volatile bool s_words_ready; static char s_words[400]; static int s_reject;
+enum { B_TALK, B_BACK, B_DOWN, B_UP, B_WIN_L, B_WIN_R };
+static const int BTN[6] = { PIN_BTN_TALK, PIN_BTN_BACK, PIN_BTN_DOWN, PIN_BTN_UP, PIN_BTN_WIN_L, PIN_BTN_WIN_R };
 
 /* ---------- one clip at a time in PSRAM, kept until the PC ACKs it ---------- */
 static int16_t *clip; static size_t clip_cap;
@@ -285,7 +296,11 @@ static bool asr_take(void) {
         if (w) o += snprintf(text + o, sizeof text - o, "%s%s", o ? " " : "", w);
     }
     char n[12]; snprintf(n, sizeof n, "%d", h.reject);
-    if (h.reject >= CONFIG_TETHER_REJECT) brain_post(BR_AGAIN, text, n, NULL);
+    if (search_mode) {                                    /* search: the words go to the grid, not the form */
+        xSemaphoreTake(lock, portMAX_DELAY);
+        snprintf(s_words, sizeof s_words, "%s", text); s_reject = h.reject; s_words_ready = true;
+        xSemaphoreGive(lock);
+    } else if (h.reject >= CONFIG_TETHER_REJECT) brain_post(BR_AGAIN, text, n, NULL);
     else brain_post(BR_SAID, text, "", NULL);
     uint32_t a, b, c; asr_last_timing(&a, &b, &c);
     char lg[460]; snprintf(lg, sizeof lg, "LOG board heard (reject %d, %lu+%lu+%lu ms): %s", h.reject,
@@ -341,6 +356,15 @@ static void handle(char *line) {
     else if (!strncmp(line, "ACK ", 4)) { if (strtoul(line + 4, 0, 10) == take_id && take_state == 2) take_state = 0; }
     else if (!strcmp(line, "RESEND")) { if (take_state == 2) take_state = 1; }
     else if (!strncmp(line, "SHOW ", 5)) { if (!parse_show(line + 5)) usb_line("LOG bad SHOW json"); }
+    else if (!strncmp(line, "WORDS ", 6) && search_mode) {          /* the PC heard the search word */
+        cJSON *r = cJSON_Parse(line + 6);
+        const cJSON *h = r ? cJSON_GetArrayItem(cJSON_GetObjectItem(r, "hyps"), 0) : NULL, *rj = r ? cJSON_GetObjectItem(r, "reject") : NULL;
+        xSemaphoreTake(lock, portMAX_DELAY);
+        snprintf(s_words, sizeof s_words, "%s", cJSON_IsString(h) ? h->valuestring : "");
+        s_reject = cJSON_IsNumber(rj) ? rj->valueint : 0; s_words_ready = true;
+        xSemaphoreGive(lock);
+        cJSON_Delete(r);
+    }
 #if CONFIG_TETHER_BOARD_BRAIN
     else if (!strncmp(line, "WORDS ", 6)) brain_words(line + 6);
     else if (!strcmp(line, "BRAIN-RESET")) brain_post(BR_RESET, NULL, "", NULL);
@@ -492,6 +516,62 @@ static bool draw_full_card(int y, int bottom, char *foot, size_t fcap) {
 
 
 static void push_screen_txt(void);
+/* ---------- keyword search mode (vform_search: the SRCH chunk in the cart) ----------
+ * Enter: hold TALK + WIN_L (Plus) or TALK + DOWN (plain board), say one word. A 4 x 2 grid of matching
+ * cards, life cards inverted. Plus: UP/DOWN move, WIN_L/WIN_R page, TALK tap opens, hold TALK = new
+ * word, BACK = card -> grid -> leave. Plain: DOWN = next tile, BACK tap = previous tile (on a card:
+ * back to the grid), hold BACK = leave. Opened cards are the full cards (NKEY). */
+static bool sidx_ok;
+static fs_index_t sidx;
+static fs_hit_t shits[FS_MAX_HITS];
+static int snhits, ssel;
+static char squery[100];
+static screen_t s_saved;                  /* the screen to return to when search mode ends */
+static void search_run(const char *q) {
+    snprintf(squery, sizeof squery, "%s", q);
+    snhits = sidx_ok ? fs_search(&sidx, q, shits) : 0;
+    ssel = 0; s_card = false;
+    char t[160]; snprintf(t, sizeof t, "LOG search '%s': %d hits", q, snhits); send_line(t);
+}
+static void draw_grid(int y, int bottom) {
+    char h[140];
+    int np = (snhits + FS_PAGE - 1) / FS_PAGE, pg = ssel / FS_PAGE;
+    if (!sidx_ok) { wrap(S_MED, 3, y + 4, 244, bottom - y - 4, "No search index in the library (SRCH chunk)."); return; }
+    if (!squery[0]) { wrap(S_MED, 3, y + 4, 244, bottom - y - 4, "Search: hold TALK and say one word."); return; }
+    if (!snhits) { snprintf(h, sizeof h, "No cards for '%s'. Hold TALK and say another word.", squery); wrap(S_MED, 3, y + 4, 244, bottom - y - 4, h); return; }
+    snprintf(h, sizeof h, "'%s'  %d/%d  (%d cards)", squery, pg + 1, np, snhits);
+    int ls = cart_font_line_height(&cart, S_SMALL);
+    line_fit(S_SMALL, 1, 3, y + ls - ls / 4, 244, h);
+    int gy = y + ls + 1, cw = 62, ch = (bottom - gy) / 2;
+    for (int i = 0; i < FS_PAGE; i++) {
+        int k = pg * FS_PAGE + i;
+        if (k >= snhits) break;
+        int x0 = (i % 4) * cw, y0 = gy + (i / 4) * ch;
+        const char *lab = strstr(shits[k].title, " > "); lab = lab ? lab + 3 : shits[k].title;
+        int lh = ls, ty = y0 + 2;                     /* label, word-wrapped into the tile */
+        char line[64]; size_t at = 0, L = strlen(lab);
+        for (int row = 0; row * lh + lh <= ch - 3 && at < L; row++) {
+            size_t n = 0, brk = 0;
+            while (at + n < L && n < sizeof line - 1) {
+                memcpy(line, lab + at, n + 1); line[n + 1] = 0;
+                if (cart_draw_str(&cart, S_SMALL, 0, 0, 0, 0, line) > cw - 6) break;
+                n++; if (at + n < L && lab[at + n] == ' ') brk = n;
+            }
+            if (at + n < L && brk) n = brk;
+            if (!n) n = 1;
+            memcpy(line, lab + at, n); line[n] = 0;
+            cart_draw_str(&cart, S_SMALL, k == ssel, &fb, x0 + 3, ty + lh - lh / 4, line);
+            ty += lh; at += n; while (at < L && lab[at] == ' ') at++;
+        }
+        if (shits[k].life)                            /* life card: white on black */
+            for (int yy = y0 + 1; yy < y0 + ch - 1; yy++) for (int xx = x0 + 1; xx < x0 + cw - 1; xx++) fbits[yy * 32 + xx / 8] ^= 0x80 >> (xx % 8);
+        box(x0, y0, x0 + cw - 1, y0 + ch - 1);
+        if (k == ssel) {                               /* highlight: a second frame, XOR so it shows on black too */
+            for (int xx = x0 + 2; xx < x0 + cw - 2; xx++) { fbits[(y0 + 2) * 32 + xx / 8] ^= 0x80 >> (xx % 8); fbits[(y0 + ch - 3) * 32 + xx / 8] ^= 0x80 >> (xx % 8); }
+            for (int yy = y0 + 3; yy < y0 + ch - 3; yy++) { fbits[yy * 32 + (x0 + 2) / 8] ^= 0x80 >> ((x0 + 2) % 8); fbits[yy * 32 + (x0 + cw - 3) / 8] ^= 0x80 >> ((x0 + cw - 3) % 8); }
+        }
+    }
+}
 static char card_foot[140];
 static void draw(void) {
     card_foot[0] = 0;
@@ -501,13 +581,16 @@ static void draw(void) {
     char top[160];
     const char *kn[] = { "START", "FORM", "CARD", "SKIP", "AGAIN" };
     char tn[16] = ""; if (S.test) snprintf(tn, sizeof tn, "TEST %d  ", S.test);
-    if (S.heard[0]) snprintf(top, sizeof top, "%s%s  heard: %s", tn, kn[S.kind], S.heard);
+    if (search_mode && !s_card) snprintf(top, sizeof top, "%sSEARCH%s%s", tn, squery[0] ? "  heard: " : "", squery);
+    else if (S.heard[0]) snprintf(top, sizeof top, "%s%s  heard: %s", tn, kn[S.kind], S.heard);
     else snprintf(top, sizeof top, "%s%s%s", tn, kn[S.kind], host_seen ? "" : "  (PC not connected)");
     line_fit(S_SMALL, 1, 3, ls - 2, rec_dot ? 228 : 244, top);
     if (rec_dot) for (int y = 2; y < 13; y++) for (int x = 237; x < 248; x++) fbits[y * 32 + x / 8] |= 0x80 >> (x % 8);
     hline(ls + 1);
     int y = ls + 3, bottom = 122 - ls - 2;
-    if (S.kind == K_FORM && S.nf) {
+    if (search_mode && !s_card) {
+        draw_grid(y, bottom);
+    } else if (S.kind == K_FORM && S.nf) {
         field_t *f = &S.f[cur_f];
         char q[140]; snprintf(q, sizeof q, "%s", f->key[0] == '@' ? "Which is it?" : f->q);
         char pos[16]; snprintf(pos, sizeof pos, "%d/%d", cur_f + 1, S.nf);
@@ -544,6 +627,8 @@ static void draw(void) {
     }
     hline(122 - ls - 1);
     const char *hint = status[0] ? status
+        : search_mode && !s_card ? (BTN[B_UP] != PIN_NONE ? "UP/DN move  WIN page  TALK open/hold:word  BACK out"
+                                                         : "DN next  BACK prev/hold:out  TALK open/hold:word")
         : S.kind == K_CARD && card_foot[0] ? card_foot
         : S.kind == K_FORM && S.msg[0] ? S.msg                     /* the PC's line: "say the answer..." */
         : S.kind == K_FORM ? "Hold TALK: say answers. Tap TALK: pick. DOWN: next"
@@ -604,8 +689,7 @@ static void move(int d) {
 }
 
 /* ---------- buttons ---------- */
-static const int BTN[3] = { PIN_BTN_TALK, PIN_BTN_BACK, PIN_BTN_DOWN };
-static bool down(int b) { return gpio_get_level(BTN[b]) == 0; }
+static bool down(int b) { return BTN[b] != PIN_NONE && gpio_get_level(BTN[b]) == 0; }
 /* wait while held; returns ms held, or stops at `cap` ms (still held) */
 static int held_ms(int b, int cap) { int t = 0; while (down(b) && t < cap) { vTaskDelay(pdMS_TO_TICKS(10)); t += 10; } return t; }
 
@@ -626,10 +710,16 @@ void app_main(void) {
         const uint8_t *b = cart_rom; uint16_t nc = (uint16_t)(b[6] | b[7] << 8);
         for (uint16_t i = 0; i < nc; i++) { const uint8_t *d = b + 28 + 12 * i; if (!memcmp(d, "NKEY", 4)) nkey = b + rd32le(d + 4); }
         if (nkey && memcmp(nkey, "NK01", 4)) nkey = NULL;
+        for (uint16_t i = 0; i < nc; i++) {                  /* keyword search index (SRCH chunk) */
+            const uint8_t *d = b + 28 + 12 * i;
+            if (!memcmp(d, "SRCH", 4)) sidx_ok = fs_open(&sidx, b + rd32le(d + 4), rd32le(d + 8));
+        }
     }
     if (!have_cart) ESP_LOGE(TAG, "no library in flash (fonts): flash the main firmware once first");
     else if (cart_font_sizes(&cart) < 3) { S_MED = S_BIG = cart_font_sizes(&cart) - 1; }
-    gpio_config_t g = { .pin_bit_mask = (1ULL << PIN_BTN_TALK) | (1ULL << PIN_BTN_BACK) | (1ULL << PIN_BTN_DOWN),
+    uint64_t bmask = 0;
+    for (int i = 0; i < 6; i++) if (BTN[i] != PIN_NONE) bmask |= 1ULL << BTN[i];
+    gpio_config_t g = { .pin_bit_mask = bmask,
                         .mode = GPIO_MODE_INPUT, .pull_up_en = 1 };
     gpio_config(&g);
     if (HAVE_EPD) { epd_init(); }
@@ -659,8 +749,49 @@ void app_main(void) {
         if (wait_since && esp_timer_get_time() - wait_since > 20000000) {
             wait_since = 0; snprintf(status, sizeof status, "No answer from the PC (is pc_bridge running?)"); draw();
         }
+        if (s_words_ready) {                                       /* a search word arrived (PC or board speech) */
+            xSemaphoreTake(lock, portMAX_DELAY); char q[400]; snprintf(q, sizeof q, "%s", s_words); int rj = s_reject; s_words_ready = false; xSemaphoreGive(lock);
+            status[0] = 0; wait_since = 0;
+            if (rj >= CONFIG_TETHER_REJECT_ANY) snprintf(status, sizeof status, "Didn't catch that. Hold TALK, say one word.");
+            else if (!strcmp(q, "home")) { search_mode = false; s_card = false; S = s_saved; send_line("MODE form"); }
+            else if (!strcmp(q, "back")) { if (s_card) s_card = false; else { search_mode = false; S = s_saved; send_line("MODE form"); } }
+            else if (strcmp(q, "again")) search_run(q);
+            draw();
+            continue;
+        }
+        if (search_mode && !down(0)) {                             /* search mode buttons (TALK is shared below) */
+            bool plus = BTN[B_UP] != PIN_NONE;
+            int np = (snhits + FS_PAGE - 1) / FS_PAGE;
+            if (down(B_DOWN)) { held_ms(B_DOWN, 700); if (s_card) card_page_i++; else if (snhits) ssel = (ssel + 1) % snhits; draw(); while (down(B_DOWN)) vTaskDelay(10); continue; }
+            if (plus && down(B_UP)) { held_ms(B_UP, 700); if (s_card) card_page_i--; else if (snhits) ssel = (ssel + snhits - 1) % snhits; draw(); while (down(B_UP)) vTaskDelay(10); continue; }
+            if (plus && down(B_WIN_R)) { held_ms(B_WIN_R, 700); if (!s_card && np) ssel = ((ssel / FS_PAGE + 1) % np) * FS_PAGE; draw(); continue; }
+            if (plus && down(B_WIN_L)) { held_ms(B_WIN_L, 700); if (!s_card && np) ssel = ((ssel / FS_PAGE + np - 1) % np) * FS_PAGE; draw(); continue; }
+            if (down(B_BACK)) {
+                int t = held_ms(B_BACK, 700);
+                if (t >= 700 || (!s_card && plus)) { search_mode = false; s_card = false; S = s_saved; send_line("MODE form"); }
+                else if (s_card) { s_card = false; }
+                else if (snhits) ssel = (ssel + snhits - 1) % snhits;
+                draw(); while (down(B_BACK)) vTaskDelay(10);
+                continue;
+            }
+        }
         if (down(0)) {                                             /* TALK: tap = pick, hold = speak */
             int t = held_ms(0, HOLD_MS);
+            bool combo = down(BTN[B_WIN_L] != PIN_NONE ? B_WIN_L : B_DOWN);   /* TALK + WIN_L (Plus) / + DOWN (plain) */
+            if (t >= HOLD_MS && combo && !search_mode) {           /* enter keyword search */
+                s_saved = S; search_mode = true; s_card = false; squery[0] = 0; snhits = 0;
+                send_line("MODE search");
+            }
+            if (t < HOLD_MS && search_mode) {                      /* search: open the highlighted card */
+                if (!s_card && snhits) {
+                    s_card = true; card_page_i = 0;
+                    memset(&S, 0, sizeof S); S.kind = K_CARD; S.test = s_saved.test;
+                    snprintf(S.card.node, sizeof S.card.node, "%s", shits[ssel].node);
+                    snprintf(S.card.title, sizeof S.card.title, "%s", shits[ssel].title);
+                    draw();
+                }
+                continue;
+            }
             if (t < HOLD_MS) {
                 if (S.kind == K_FORM && S.nf) { pick_choice(); snprintf(status, sizeof status, "Picked: %s ...", S.f[cur_f].ch[cur_c].label); wait_since = esp_timer_get_time(); draw(); }
                 else if (S.kind == K_SKIP && S.ncards) { pick_action("open", S.cards[cur_card].node); snprintf(status, sizeof status, "Opening ..."); wait_since = esp_timer_get_time(); draw(); }
@@ -673,6 +804,7 @@ void app_main(void) {
             if (asr_take()) { if (!host_seen) take_state = 0; snprintf(status, sizeof status, "Thinking (on the board)..."); draw(); continue; }
             if (!host_seen) { take_state = 0; snprintf(status, sizeof status, "Board speech not built yet and no PC: use the buttons"); draw(); continue; }
 #endif
+            if (search_mode) { while (down(B_DOWN) || down(B_WIN_L)) vTaskDelay(10); }
             if (take_peak < 300) snprintf(status, sizeof status, "No sound? check mic (CLK D4, DAT D5). Sent anyway");
             else snprintf(status, sizeof status, "Thinking... (%.1f s sent)", clip_n / (float)SR);
             wait_since = esp_timer_get_time();

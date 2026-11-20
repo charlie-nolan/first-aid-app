@@ -78,6 +78,17 @@ The board logs `LOG brain <ms>` per screen (how long the C took).
 Without the board: `python fake_board.py --bin /tmp/vform_test --pack /tmp/real.fpk` opens a
 pseudo-terminal that behaves like a board-brain board (the same C engine, through host_test).
 
+## Full cards and keyword search
+
+With a voice cart in the library partition (`firmware/tools/cart_add.py`: the personal library plus
+FORM, ASRM, LEXI, ASRC, NKEY and SRCH chunks; flash with `firmware/tools/flash_voice.sh plain|plus`):
+
+- A voice result opens the **full card** (title, text pages, figure, source; DOWN / BACK tap turn pages).
+- **Keyword search**: hold TALK + WIN_L (Plus) or TALK + DOWN (plain), say one word. A 4 x 2 grid of
+  matching cards (life cards inverted). Plus: UP/DOWN move, WIN_L/WIN_R page, TALK tap open, hold TALK
+  new word, BACK card -> grid -> out. Plain: DOWN next, BACK tap previous (on a card: back to the grid),
+  hold BACK out. Saying "back" / "home" works as the commands.
+
 ## Not yet
 
 - Card text from `library.bin` by node (needs the PC node id mapped to a cartridge node).
