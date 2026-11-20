@@ -104,3 +104,13 @@ def test_the_named_topic_leads_among_life_cards():
     t = {**TREES, "wfa-nosebleed": ({"root": "start", "title": "Nosebleed", "nodes": {"start": {"label": "Nosebleed"},
          "persist": {"label": "Bleeding won't stop"}}}, {"life_threat": [{"if": {"a": "b"}, "go": "persist"}], "slots": {"a": {"b": ["gushing nose"]}}})}
     assert [h["node"] for h in search("bleeding", t)][0] == "wfa-bleeding/severe"
+
+
+def test_inline_slot_tags_and_search_words_reach_nodes():
+    tree = {"root": "start", "title": "Heat", "nodes": {
+        "start": {"label": "Heat illness", "slot": "heat_type", "choices": [{"label": "Tired", "value": "exhaustion", "to": "exh"}]},
+        "exh": {"label": "Heat exhaustion"}, "cramps": {"label": "Cramps"}}}
+    smap = {"slots": {"heat_type": {"exhaustion": ["dizzy"]}}, "search_words": {"cramps": ["charley horse"]}}
+    t = {"heat": (tree, smap)}
+    assert [h["node"] for h in search("dizzy", t)] == ["heat/exh"]
+    assert [h["node"] for h in search("charley horse", t)] == ["heat/cramps"]

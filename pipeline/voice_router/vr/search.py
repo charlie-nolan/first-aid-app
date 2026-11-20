@@ -11,6 +11,8 @@ mentions it in its label) (keyed with vr.form._key, so choke/choking/choked all 
     weight 3  the node's own label
     weight 2  the node's own phrases; slot phrases whose answer leads to the node (questions
               choices) or whose life rule goes to it (life_threat)
+    weight 2  search_words in the voice slot file ({node: [phrases]}): SEARCH ONLY, never packed
+              into the ROM/ESP-SR and ignored by intake, so they need no card review (trees 11-20)
     weight 1  the tree's phrases (root), choice labels pointing at the node
     weight 1  every node of a tree whose title/condition name matched (browse the whole topic)
 
@@ -43,7 +45,7 @@ import json
 from pathlib import Path
 
 from .form import _FILLER, _key, node_id, topic_phrases
-from .intake import UNIVERSAL, tokenize
+from .intake import UNIVERSAL, _questions, tokenize
 
 PAGE = 8          # 4 x 2 grid
 MAX_HITS = 48     # 6 pages; past that the word is too vague to browse
@@ -128,7 +130,10 @@ def build_index(trees: dict) -> dict:
             {k: v for k, v in (smap.get("slots") or {}).items() if k not in shared}
         slots = {k: {v: [p for p in ps if tuple(tokenize(p)) not in life_ph] for v, ps in vs.items()}
                  for k, vs in own.items()}
-        for node, q in (smap.get("questions") or {}).items():
+        for node, at_words in (smap.get("search_words") or {}).items():   # search-only phrases
+            for ph in at_words or []:
+                add(_resolve(name, node, trees), _keys(ph), 2, "search")
+        for node, q in _questions(tree, smap).items():   # map form and inline slot:/value: tags
             for value, to in (q.get("choices") or {}).items():
                 at = _resolve(name, to, trees)
                 for ph in (slots.get(q.get("slot")) or {}).get(value) or []:

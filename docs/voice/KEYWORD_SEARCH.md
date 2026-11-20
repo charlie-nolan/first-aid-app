@@ -16,7 +16,8 @@ is the sum of the best weight from each source:
 | 6 | tree title and condition names (`topic_phrases`) | the tree's root tile |
 | 3 | the node's label | the node |
 | 2 | the node's own phrases | the node |
-| 2 | slot phrases whose answer leads to the node (`questions`), or whose life rule goes to it | the node (cross-tree targets resolve to their own tree) |
+| 2 | slot phrases whose answer leads to the node (`questions`, or inline `slot:`/`value:` tags), or whose life rule goes to it | the node (cross-tree targets resolve to their own tree) |
+| 2 | `search_words: {node: [phrases]}` in the voice slot file (search only: never packed into the ROM or ESP-SR, ignored by intake) | the node |
 | 1 | tree phrases | root |
 | 1 | labels of choices pointing at the node | the node |
 | 1 | the word names the tree's topic | every node of that tree (browse the topic) |
