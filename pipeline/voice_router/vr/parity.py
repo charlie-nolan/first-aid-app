@@ -39,6 +39,7 @@ Frame rules (a C port must produce the same bytes):
       a tap with no problem open: msg "Hold TALK and say what happened."
 
     python -m vr.parity --trees DIR [DIR] --slots SLOTS_DIR --seeds FILE [FILE ...] --out OUT.jsonl
+    python -m vr.parity ... --tabs [--lines LOCAL.txt] --out TABS.jsonl   (multi-injury tab parity)
 
 Seeds: YAML with topics/reject (topics.yaml) or nodes (an expert seed file); train+test lines are
 used. Use public seed files only; the frames hold tree labels, so keep personal outputs local.
@@ -178,16 +179,41 @@ def run_case(trees, text: str, mode: str, steps: int = 3):
     return answers, s.frames
 
 
+def tabs_case(trees, text: str):
+    """Multi-injury (TALK+WIN_R) tab parity: keep_trees([text]) -> first_sentence(multi=True) ->
+    split_tabs; one entry per tab from its lead (tab[0]). None unless the result is "tabs"."""
+    cands = keep_trees([text], trees)
+    if not cands or F.first_sentence([text], cands, multi=True)[0] != "tabs":
+        return None
+    return [{"lead": t[0].name, "node": F.node_id(t[0].name, t[0].card, t[0].tree),
+             "rank": F.life_rank(t[0]), "asking": t[0].asking} for t in F.split_tabs(cands)]
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="vr.parity")
     ap.add_argument("--trees", type=Path, nargs="+", required=True)
     ap.add_argument("--slots", type=Path, required=True)
     ap.add_argument("--seeds", type=Path, nargs="+", required=True, help="public seed YAMLs only")
     ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--tabs", action="store_true",
+                    help="multi-injury tab parity instead: {id, text, tabs: [{lead, node, rank, asking}]}")
+    ap.add_argument("--lines", type=Path, nargs="*", default=[],
+                    help="extra plain-text lines (one per line, ids l0000...), e.g. local scenes; keep outputs local")
     a = ap.parse_args(argv)
     trees = load_all(a.trees, a.slots)
     lines = seed_lines(a.seeds)
     n = 0
+    if a.tabs:
+        extra = [l.strip() for f in a.lines for l in Path(f).read_text().splitlines() if l.strip()]
+        with open(a.out, "w") as out:
+            for pre, group in (("p", lines), ("l", extra)):
+                for i, t in enumerate(group):
+                    tabs = tabs_case(trees, t)
+                    if tabs:
+                        out.write(json.dumps({"id": f"{pre}{i:04d}", "text": t, "tabs": tabs}) + "\n")
+                        n += 1
+        print(f"{len(lines) + len(extra)} lines -> {n} tabs cases -> {a.out}")
+        return
     with open(a.out, "w") as out:
         for i, t in enumerate(lines):
             for mode in ("pick", "say"):
