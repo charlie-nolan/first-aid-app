@@ -19,9 +19,15 @@ toggle moves, so the screen must be drawn **before** that, or during a short hol
   and a sense pole would switch at the same moment the rails drop.
 - **Hold-up: not in v1.** It would need ~50 mF of low-ESR storage, not worth the space.
 
-**So the only path is a menu pre-arm:** "Fire" in the hold-DOWN menu draws the fire instructions with a
-full refresh, waits for the refresh to finish, then shows (as part of the same page) "Now flip the
-toggle to FIRE". The page stays on the glass after the power goes. **Backup:** the same steps are
+**So the only path is a menu pre-arm** (flow set by Charlie, 2026-11-20):
+
+1. **Fire** in the hold-DOWN menu opens page 1: how to remove the sealed fire kit.
+2. "Press NEXT and wait for the fire instructions to load." The person presses next.
+3. The firmware draws the fire instructions (coil, crank, slide, fire button, ferro rod / striker /
+   tinder) with a **full refresh** and waits for the panel's BUSY line to clear, so the image is complete.
+4. Only then does the same page show **"Screen ready: flip the toggle to FIRE"** (drawn in the same
+   refresh, revealed by a fast partial update of that one line after BUSY clears).
+5. The person flips the toggle; power drops; the instructions stay on the glass. **Backup:** the same steps are
 printed or engraved inside the fire compartment lid.
 
 The page content (coil, crank, slide, fire button, ferro rod / striker / tinder) comes from the library
