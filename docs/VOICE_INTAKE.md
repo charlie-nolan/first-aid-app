@@ -74,6 +74,8 @@ numbers have not been measured for either version yet. See [What has been tested
 names opens in its own tab (up to 5 windows, window L/R switches), each with its own form.
 Plain TALK is always one problem.
 
+**Tab order (Charlie 11-20, C8 bleeding first):** tabs sort by urgency, not router likelihood: severe bleeding, CPR / not breathing, choking, anaphylaxis, any other life card, then head/spine, burns, shock, then the rest. Every life tab opens on its life card; helper candidates join the first plain tab (`vr.form.life_rank`, `split_tabs`).
+
 ![Screen mockups](voice/voice-screens-mockup.png)
 
 *Mockups only, drawn with PIL at the panel's real 250x122 (2x); not taken from the device or the engine. Wording is illustrative, not manual text. The C port of these screens has not started.*
