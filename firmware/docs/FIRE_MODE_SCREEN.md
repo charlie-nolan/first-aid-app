@@ -34,6 +34,8 @@ toggle moves, so the screen must be drawn **before** that, or during a short hol
 **Fire page content (hardware thread, 2026-11-20)**, to become a reviewed, cited card in the library:
 - Build the tinder nest. **"Bury only the sleeved tip in the tinder."** (exact wording)
 - Press FIRE from arm's length: about 2-3 s of bright glow per cap charge.
+- **"To make the glow last longer, pulse the button. Let go when the coil turns bright orange, and press
+  again as it fades to red."** (exact wording; roughly doubles the useful glow per cap charge, ~4 s to ~8 s)
 - **"Pull the coil out as soon as the tinder catches. Keep the white wire out of the flames."**
   (exact wording; the lead's PTFE gives off toxic fumes above ~300 °C)
 - Crank 15-20 s between tries.
