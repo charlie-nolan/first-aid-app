@@ -2,7 +2,8 @@
 
 ## Hardware
 
-- **Board 2:** XIAO ESP32-S3 + Wio-SX1262, stock Meshtastic firmware, L76K GPS (BN-880 on the bench).
+- **Board 2:** Seeed kit 102010611 (XIAO ESP32-S3 + Wio-SX1262), stock Meshtastic firmware, with a Seeed L76K
+  GNSS stacked on top (BN-880 on the bench).
 - **Power:** AO3401 high-side switch. The Plus drives **D13 (GPIO40, `PIN_MESH_PWR`) LOW = on**; a 100 k
   pull-up keeps board 2 **off by default**.
   - The Plus must **hold D13 through deep sleep** (RTC GPIO hold) while a mode needs board 2 on.
@@ -22,12 +23,12 @@
 
 ## SOS message
 
-One Meshtastic text, about 90 characters, re-sent every few minutes with a fresh fix:
+One Meshtastic text, about 90 characters and **at most ~150**, re-sent every few minutes with a fresh fix:
 
     SOS 47.6123,-121.2345 ±10m 14:05 | leg fracture, can't walk | ~30 yo M | awake, breathing | 2 in group
 
 - Injury and state come **only from intake-form blanks the user confirmed** (never guessed).
-- Age band and sex come from a one-time **"about me"** setting.
+- Age band and sex come from a one-time **"about me"** setting, saved in **NVS**.
 - **No names, no medical history**: the channel is public.
 
 ## Firmware pieces (to build)
