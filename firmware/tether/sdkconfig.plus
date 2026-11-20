@@ -1,0 +1,5 @@
+# XIAO ESP32-S3 Plus (16 MB flash): idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.plus" build
+# The library partition is at 0x800000 on the Plus (partitions-16mb.csv), not 0x210000.
+CONFIG_LIB_BOARD_PLUS=y
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="../partitions-16mb.csv"
