@@ -3,6 +3,7 @@
  *   python tools/asrpack.py EXPORT -o asrm.bin && python tools/golden2raw.py EXPORT/golden raw/
  *   cc -O2 -o /tmp/asr_test host_test.c fasr_q8.c -lm && /tmp/asr_test asrm.bin raw/ 00 01 ... */
 #include "fasr_q8.h"
+#include "fasr_frontend.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,6 +51,12 @@ int main(int argc, char **argv) {
         if (!fb) { printf("no %s\n", p); return 2; }
         int T = fb[0] | fb[1] << 8 | fb[2] << 16;
         const float *feats = (const float *)(fb + 8);
+        if (getenv("ASR_FROM_AUDIO")) {                  /* end to end: our own log-mel from the int16 audio */
+            snprintf(p, sizeof p, "%s/%s.audio", argv[2], argv[a]); long an; uint8_t *au = slurp(p, &an);
+            int ns = au[0] | au[1] << 8 | au[2] << 16;
+            float *ff = malloc(sizeof(float) * 40 * fe_frames(ns));
+            T = fe_logmel((const int16_t *)(au + 4), ns, ff); feats = ff;
+        }
         void *ws = malloc(fq_ws_size(&m, T));
         int To = fq_out_len(&m, T);
         int32_t *lg = malloc(sizeof(int32_t) * m.ctok * To);
