@@ -88,3 +88,13 @@ def test_naming_the_topic_keeps_its_life_card_first():
             "persist": {"label": "Won't stop after 30 minutes"}}},
          {"life_threat": [{"if": {"amount": "lots"}, "go": "persist"}], "slots": {"amount": {"lots": ["won't stop"]}}})}
     assert [h["node"] for h in search("nosebleed", t)][0] == "wfa-nosebleed/persist"
+
+
+def test_one_word_of_a_longer_condition_name_does_not_lift_its_life_card():
+    t = {"wfa-chest-pain": ({"root": "start", "title": "Chest pain", "nodes": {"start": {"label": "Chest pain"},
+            "heart": {"label": "Heart attack signs"}, "ribs": {"label": "Broken ribs"}}},
+            {"topic_words": ["broken ribs"], "life_threat": [{"if": {"pain": "crushing"}, "go": "heart"}],
+             "slots": {"pain": {"crushing": ["crushing"]}}}),
+         "fractures": ({"root": "start", "title": "Fractures", "nodes": {"start": {"label": "Broken bone"}}}, {})}
+    out = [h["node"] for h in search("broken", t)]
+    assert out[0] != "wfa-chest-pain/heart"

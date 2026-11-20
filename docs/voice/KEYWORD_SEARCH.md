@@ -23,7 +23,7 @@ is the sum of the best weight from each source:
 
 Ranking, in order:
 1. **Life cards first**: any node a `life_threat` rule goes to, when its score is at least 2 and at
-   least a third of the query's best score, or when the word names its own tree's topic
+   least a third of the query's best score, or when the words hold a whole title or condition name of its own tree
    ("nosebleed" puts the won't-stop card first). A weak side match never buries the topic.
 2. Score: the sum over the query words. A node must match **every** query word.
 3. Root tiles before inner nodes, then depth from the root, then tree name, then node id.

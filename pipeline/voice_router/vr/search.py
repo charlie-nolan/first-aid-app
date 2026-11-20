@@ -17,8 +17,9 @@ mentions it in its label) (keyed with vr.form._key, so choke/choking/choked all 
 Ranking (a C port must reproduce it exactly):
     1. life cards first: any node some tree's life_threat rule goes to ("tree/card" keys resolved
        to their own tree), but only when its score is at least 2 and at least a third of the best score
-       for the query (score >= 2 and 3 * score >= top), or a query word names its own tree's topic
-       ("nosebleed" -> wfa-nosebleed/persist first), so a weak side match never buries the topic (PC check de06aaa: "eye")
+       for the query (score >= 2 and 3 * score >= top), or the query holds a WHOLE title or condition name of its own tree
+       ("nosebleed" -> wfa-nosebleed/persist first; one word of a longer name, "dog" of "dog bite",
+       "broken" of "broken ribs", does not count: PC check b627942), so a weak side match never buries the topic (PC check de06aaa: "eye")
     2. score: sum over query words of that word's weight on the node; a node must
        match EVERY query word (one-word queries: that word)
     3. root tiles before inner nodes, then depth from the root (BFS), then node id
@@ -95,9 +96,10 @@ def build_index(trees: dict) -> dict:
 
     for name, (tree, smap) in trees.items():
         nodes, root, dep = tree.get("nodes") or {}, tree.get("root", "start"), _depths(tree)
-        topic = _keys(tree.get("title", name)) | {k for t in topic_phrases(name, tree, smap or {}) for k in t}
+        names = [tuple(sorted(_keys(tree.get("title", name))))] + [tuple(sorted(t)) for t in topic_phrases(name, tree, smap or {})]
+        topic = {k for t in names for k in t}
         for nid, n in nodes.items():
-            idx[(name, nid)] = {"words": {}, "topic": topic, "life": False, "root": nid == root,
+            idx[(name, nid)] = {"words": {}, "topic": topic, "names": [t for t in names if t], "life": False, "root": nid == root,
                                 "depth": dep.get(nid, 99), "tree": tree.get("title", name),
                                 "label": str(n.get("label", nid))}
             add((name, nid), _keys(n.get("label")), 3, "label")
@@ -157,7 +159,7 @@ def search(query: str, trees: dict, index: dict | None = None, limit: int = MAX_
         else:
             found.append((score, name, nid, e))
     top = max((f[0] for f in found), default=0)
-    hits = sorted((not (e["life"] and (any(k in e["topic"] for k in q) or (sc >= 2 and 3 * sc >= top))), -sc, not e["root"], e["depth"], n, c, e)
+    hits = sorted((not (e["life"] and (any(set(t) <= set(q) for t in e["names"]) or (sc >= 2 and 3 * sc >= top))), -sc, not e["root"], e["depth"], n, c, e)
                   for sc, n, c, e in found)
     return [{"tree": n, "card": c, "node": node_id(n, c, trees[n][0]), "title": f"{e['tree']} > {e['label']}",
              "life": e["life"], "score": -s} for _, s, _, _, n, c, e in hits[:limit]]
