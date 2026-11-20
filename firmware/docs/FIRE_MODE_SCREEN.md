@@ -25,8 +25,8 @@ toggle moves, so the screen must be drawn **before** that, or during a short hol
 2. "Press NEXT and wait for the fire instructions to load." The person presses next.
 3. The firmware draws the fire instructions (coil, crank, slide, fire button, ferro rod / striker /
    tinder) with a **full refresh** and waits for the panel's BUSY line to clear, so the image is complete.
-4. Only then does the same page show **"Screen ready: flip the toggle to FIRE"** (drawn in the same
-   refresh, revealed by a fast partial update of that one line after BUSY clears).
+4. Only then does the same page show **"Screen ready: flip the toggle to FIRE"** in the **small font on
+   the very bottom line** (Charlie), revealed by a fast partial update of that one line after BUSY clears.
 5. The person flips the toggle; power drops; the instructions stay on the glass. **Backup:** the same steps are
 printed or engraved inside the fire compartment lid.
 
