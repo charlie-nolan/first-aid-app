@@ -415,8 +415,86 @@ static screen_t S; static int cur_f, cur_c, cur_card;
 static char status[96];
 static bool rec_dot;
 
+/* ---------- full card view: a voice result opens the real card from the library ----------
+ * The cart's NKEY chunk (firmware/tools/nkeypack.py, checked by nkey_check) maps "tree/card" (the form
+ * engine's node id) to the cart node. Pages: each passage (word-wrapped, cart_page), then the figure.
+ * DOWN / BACK tap turn pages. Without NKEY the old title + cites screen is shown. */
+static const uint8_t *nkey;
+static int card_page_i;
+static uint32_t rd32le(const uint8_t *p) { return p[0] | p[1] << 8 | p[2] << 16 | (uint32_t)p[3] << 24; }
+static int card_node_of(const char *key) {
+    if (!nkey) return -1;
+    uint32_t lo = 0, hi = rd32le(nkey + 4);
+    while (lo < hi) {
+        uint32_t mid = (lo + hi) / 2;
+        const uint8_t *e = nkey + 8 + 12 * mid;
+        int c = strcmp((const char *)nkey + rd32le(e), key);
+        if (!c) return e[8] | e[9] << 8;
+        if (c < 0) lo = mid + 1; else hi = mid;
+    }
+    return -1;
+}
+typedef struct { int seg, idx, sub; } cpage_t;      /* seg 0 = passage idx page sub, 1 = figure */
+static char card_scratch[6144];
+static int card_pages(const cart_node_t *n, int bx, int by, int bw, int bh, cpage_t *out, int max) {
+    int k = 0;
+    for (int i = 0; i < n->n_passages + n->n_lookalikes && k < max; i++) {
+        cart_passage_t ps = cart_node_passage(&cart, n, (unsigned)i);
+        int np = cart_page(&cart, ps.text, S_SMALL, 0, 0, bx, by, bw, bh, card_scratch, sizeof card_scratch);
+        for (int s = 0; s < np && k < max; s++) out[k++] = (cpage_t){0, i, s};
+    }
+    if (n->figure != CART_NONE && k < max) out[k++] = (cpage_t){1, 0, 0};
+    return k;
+}
+typedef struct { int x0, y0, ymax, crop; } cpic_t;
+static void card_pic_row(void *user, int y, const uint8_t *row, int bpr) {
+    cpic_t *p = user; int yy = p->y0 + y;
+    if (yy < 0 || yy > p->ymax || yy >= 122) return;
+    for (int x = 0; x < bpr * 8; x++) {
+        int xx = p->x0 + x - p->crop;
+        if (xx >= 0 && xx < 250 && (row[x >> 3] & (0x80 >> (x & 7)))) fbits[yy * 32 + xx / 8] |= 0x80 >> (xx % 8);
+    }
+}
+/* draws the card into fbits below the top line; returns true if the card was found */
+static bool draw_full_card(int y, int bottom, char *foot, size_t fcap) {
+    int node = card_node_of(S.card.node);
+    if (node < 0 || !have_cart) return false;
+    const cart_node_t *n = cart_node(&cart, (uint16_t)node);
+    if (!n) return false;
+    char lab[120]; cart_text(&cart, n->label, 0, lab, sizeof lab);
+    int lm = cart_font_line_height(&cart, S_MED);
+    line_fit(S_MED, 1, 3, y + lm - lm / 4, 244, lab);
+    int by = y + lm + 1, bh = bottom - by;
+    static cpage_t pg[64];
+    int np = card_pages(n, 3, by, 244, bh, pg, 64);
+    if (!np) { wrap(S_SMALL, 3, by, 244, bh, "(this card has no text)"); snprintf(foot, fcap, "%s", S.card.node); return true; }
+    if (card_page_i >= np) card_page_i = np - 1;
+    if (card_page_i < 0) card_page_i = 0;
+    cpage_t *P = &pg[card_page_i];
+    char cite[100] = "";
+    if (P->seg == 0) {
+        cart_passage_t ps = cart_node_passage(&cart, n, (unsigned)P->idx);
+        cart_page(&cart, ps.text, S_SMALL, P->sub, &fb, 3, by, 244, bh, card_scratch, sizeof card_scratch);
+        cart_text(&cart, ps.citation, 0, cite, sizeof cite);
+    } else {
+        cart_pic_t pic;
+        if (!cart_pic(&cart, n->figure, &pic)) {
+            cpic_t c = {0, by + (bh - (int)pic.h) / 2, bottom - 1, 0};
+            if (pic.w > 250) c.crop = (pic.w - 250) / 2; else c.x0 = (250 - pic.w) / 2;
+            if (c.y0 < by) c.y0 = by;
+            cart_pic_decode(&pic, card_pic_row, &c);
+            cart_text(&cart, pic.citation, 0, cite, sizeof cite);
+        }
+    }
+    snprintf(foot, fcap, "%d/%d %s", card_page_i + 1, np, cite[0] ? cite : "");
+    return true;
+}
+
+
 static void push_screen_txt(void);
+static char card_foot[140];
 static void draw(void) {
+    card_foot[0] = 0;
     memset(fbits, 0, sizeof fbits);
     int ls = have_cart ? cart_font_line_height(&cart, S_SMALL) : 12;
     int lm = have_cart ? cart_font_line_height(&cart, S_MED) : 16;
@@ -444,6 +522,8 @@ static void draw(void) {
             if (i == cur_c) box(1, y, 248, y + ls);
             y += ls;
         }
+    } else if (S.kind == K_CARD && draw_full_card(y, bottom, card_foot, sizeof card_foot)) {
+        /* drawn: the real card (text pages, figure); its footer carries page and source */
     } else if (S.kind == K_CARD) {
         y = wrap(S_BIG, 3, y, 244, bottom - y - ls * 2, S.card.title);
         y = wrap(S_SMALL, 3, y, 244, bottom - y, S.cites[0] ? S.cites : "no cites");
@@ -464,6 +544,7 @@ static void draw(void) {
     }
     hline(122 - ls - 1);
     const char *hint = status[0] ? status
+        : S.kind == K_CARD && card_foot[0] ? card_foot
         : S.kind == K_FORM && S.msg[0] ? S.msg                     /* the PC's line: "say the answer..." */
         : S.kind == K_FORM ? "Hold TALK: say answers. Tap TALK: pick. DOWN: next"
         : S.kind == K_SKIP ? "TALK tap open  DOWN/BACK move  BACK hold new"
@@ -519,6 +600,7 @@ static void move(int d) {
         if (cur_c >= S.f[cur_f].nch) { cur_f = (cur_f + 1) % S.nf; cur_c = 0; }
         if (cur_c < 0) { cur_f = (cur_f + S.nf - 1) % S.nf; cur_c = S.f[cur_f].nch - 1; }
     } else if (S.kind == K_SKIP && S.ncards) cur_card = (cur_card + d + S.ncards) % S.ncards;
+    else if (S.kind == K_CARD) card_page_i += d;     /* full card: DOWN / BACK tap turn pages */
 }
 
 /* ---------- buttons ---------- */
@@ -540,6 +622,11 @@ void app_main(void) {
     const void *rom; esp_partition_mmap_handle_t mh;
     if (p && esp_partition_mmap(p, 0, p->size, ESP_PARTITION_MMAP_DATA, &rom, &mh) == ESP_OK && (cart_rom = rom, cart_len = p->size, 1))
         have_cart = cart_open(&cart, rom, p->size, 0) == 0 && cart_font_sizes(&cart) > 0;
+    if (have_cart) {                                      /* full cards for voice results (NKEY chunk) */
+        const uint8_t *b = cart_rom; uint16_t nc = (uint16_t)(b[6] | b[7] << 8);
+        for (uint16_t i = 0; i < nc; i++) { const uint8_t *d = b + 28 + 12 * i; if (!memcmp(d, "NKEY", 4)) nkey = b + rd32le(d + 4); }
+        if (nkey && memcmp(nkey, "NK01", 4)) nkey = NULL;
+    }
     if (!have_cart) ESP_LOGE(TAG, "no library in flash (fonts): flash the main firmware once first");
     else if (cart_font_sizes(&cart) < 3) { S_MED = S_BIG = cart_font_sizes(&cart) - 1; }
     gpio_config_t g = { .pin_bit_mask = (1ULL << PIN_BTN_TALK) | (1ULL << PIN_BTN_BACK) | (1ULL << PIN_BTN_DOWN),
@@ -565,7 +652,7 @@ void app_main(void) {
         vTaskDelay(pdMS_TO_TICKS(10));
         if (seen_ver != scr_ver) {                                 /* a new screen from the PC */
             xSemaphoreTake(lock, portMAX_DELAY); seen_ver = scr_ver; S = scr_in; xSemaphoreGive(lock);
-            cur_f = cur_c = cur_card = 0; status[0] = 0; wait_since = 0;
+            cur_f = cur_c = cur_card = 0; card_page_i = 0; status[0] = 0; wait_since = 0;
             draw();
         }
         if (last_host != host_seen) { last_host = host_seen; draw(); }
