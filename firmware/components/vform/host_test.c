@@ -11,6 +11,7 @@
  *   FUZZ <text>          tap-loop finder (vr.form.fuzz): first then last choice, every tree
  * script "-" reads the lines from stdin and flushes each frame (tether/fake_board.py drives it). */
 #include "vform_show.h"
+#include "vform_search.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -79,6 +80,17 @@ int main(int argc, char **argv) {
         char *p = strchr(line, ' ');
         if (!p) continue;
         *p++ = 0;
+        if (!strcmp(line, "SEARCH")) {                /* SEARCH <srch.bin path>\t<query>: the search frame */
+            static fs_index_t sx; static void *sb; static char sp[512];
+            char *path = field(&p);
+            if (!sb || strcmp(sp, path)) {
+                FILE *sf = fopen(path, "rb"); if (!sf) { printf("no %s\n", path); continue; }
+                fseek(sf, 0, SEEK_END); long sn = ftell(sf); rewind(sf); free(sb); sb = malloc(sn);
+                if (fread(sb, 1, sn, sf) != (size_t)sn || !fs_open(&sx, sb, sn)) { printf("bad index\n"); fclose(sf); continue; }
+                fclose(sf); snprintf(sp, sizeof sp, "%s", path);
+            }
+            fs_frame_json(&sx, p, out, sizeof out); printf("%s\n", out); fflush(stdout); continue;
+        }
         if (!strcmp(line, "FILL")) {                  /* FILL <tree>\t<text>: debug, the blanks _fill gives */
             char *tn = field(&p); int t = fp_tree_by_name(&s, tn);
             fp_filled_t f; if (t >= 0) fp_fill(&s, t, p, &f); else f.n = 0;
