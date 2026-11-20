@@ -98,3 +98,9 @@ def test_one_word_of_a_longer_condition_name_does_not_lift_its_life_card():
          "fractures": ({"root": "start", "title": "Fractures", "nodes": {"start": {"label": "Broken bone"}}}, {})}
     out = [h["node"] for h in search("broken", t)]
     assert out[0] != "wfa-chest-pain/heart"
+
+
+def test_the_named_topic_leads_among_life_cards():
+    t = {**TREES, "wfa-nosebleed": ({"root": "start", "title": "Nosebleed", "nodes": {"start": {"label": "Nosebleed"},
+         "persist": {"label": "Bleeding won't stop"}}}, {"life_threat": [{"if": {"a": "b"}, "go": "persist"}], "slots": {"a": {"b": ["gushing nose"]}}})}
+    assert [h["node"] for h in search("bleeding", t)][0] == "wfa-bleeding/severe"

@@ -20,9 +20,11 @@ Ranking (a C port must reproduce it exactly):
        for the query (score >= 2 and 3 * score >= top), or the query holds a WHOLE title or condition name of its own tree
        ("nosebleed" -> wfa-nosebleed/persist first; one word of a longer name, "dog" of "dog bite",
        "broken" of "broken ribs", does not count: PC check b627942), so a weak side match never buries the topic (PC check de06aaa: "eye")
-    2. score: sum over query words of that word's weight on the node; a node must
+    2. nodes of a tree the query names whole (title or condition name) before the rest
+       ("bleeding": wfa-bleeding/severe before wfa-nosebleed/persist)
+    3. score: sum over query words of that word's weight on the node; a node must
        match EVERY query word (one-word queries: that word)
-    3. root tiles before inner nodes, then depth from the root (BFS), then node id
+    4. root tiles before inner nodes, then depth from the root (BFS), then node id
 Not indexed: phrases of shared blanks (vr.live._shared_slots: CPR's own blanks and any blank 3+
 trees carry, plus UNIVERSAL awake/breathing) except in their home tree, and the UNIVERSAL life
 phrases themselves ("won't open her eyes"), which say nothing about a topic.
@@ -159,10 +161,11 @@ def search(query: str, trees: dict, index: dict | None = None, limit: int = MAX_
         else:
             found.append((score, name, nid, e))
     top = max((f[0] for f in found), default=0)
-    hits = sorted((not (e["life"] and (any(set(t) <= set(q) for t in e["names"]) or (sc >= 2 and 3 * sc >= top))), -sc, not e["root"], e["depth"], n, c, e)
+    named = lambda e: any(set(t) <= set(q) for t in e["names"])
+    hits = sorted((not (e["life"] and (named(e) or (sc >= 2 and 3 * sc >= top))), not named(e), -sc, not e["root"], e["depth"], n, c, e)
                   for sc, n, c, e in found)
     return [{"tree": n, "card": c, "node": node_id(n, c, trees[n][0]), "title": f"{e['tree']} > {e['label']}",
-             "life": e["life"], "score": -s} for _, s, _, _, n, c, e in hits[:limit]]
+             "life": e["life"], "score": -s} for _, _, s, _, _, n, c, e in hits[:limit]]
 
 
 def pages(hits: list[dict], size: int = PAGE) -> list[list[dict]]:
