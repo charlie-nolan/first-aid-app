@@ -126,6 +126,13 @@ def _exp_for(maxabs: float, bits=7) -> int:
     return int(np.floor(np.log2((2 ** bits - 1) / maxabs)))
 
 
+def to_int16(x: np.ndarray) -> np.ndarray:
+    """float [-1,1] -> int16 the way the mic delivers it; logmel() reads int16 back as v/32768."""
+    if x.dtype == np.int16:
+        return x
+    return np.clip(np.round(np.asarray(x, np.float64) * 32768.0), -32768, 32767).astype(np.int16)
+
+
 def rshift_round(v: np.ndarray, s) -> np.ndarray:
     s = np.asarray(s, np.int64)
     v = v.astype(np.int64)
@@ -286,7 +293,7 @@ def main(argv=None):
     clips = []
     for r in recs[: a.n_calib + a.n_golden]:
         wav = Path(r["wav"]) if Path(r["wav"]).is_absolute() else cp.parent / r["wav"]
-        x = load_wav(str(wav))
+        x = to_int16(load_wav(str(wav)))  # the device only ever sees int16, so feats come from int16
         clips.append((x, logmel(x), r.get("text", "")))
     golden, calib = clips[: a.n_golden], clips[a.n_golden:]
 
@@ -319,10 +326,11 @@ def main(argv=None):
     cal_f = WORK / "speech" / "runs" / a.run / "reject_calib.json"
     calib_json = json.loads(cal_f.read_text()) if cal_f.exists() else None
     for i, (x, f, text) in enumerate(golden):
+        assert x.dtype == np.int16 and np.array_equal(logmel(x), f), "golden feats must come from the saved int16 audio"
         x_q, outs, acc = forward_q(q, f)
         lpq = logits_to_logp(q, acc)
         hyp = decode(lpq.astype(np.float64), trie, params, calib_json)
-        np.savez(out / "golden" / f"{i:02d}.npz", audio=(np.clip(x, -1, 1) * 32767).astype(np.int16) if x.dtype != np.int16 else x,
+        np.savez(out / "golden" / f"{i:02d}.npz", audio=x,
                  feats=f, x_q=x_q, logits=acc, logp=lpq, decode=json.dumps(hyp), text=text,
                  **{f"out_{k.replace('.', '_')}": v for k, v in outs.items()})
 
