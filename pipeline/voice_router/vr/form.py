@@ -146,22 +146,25 @@ def split_tabs(cands: list[Candidate]) -> list[list[Candidate]]:
     by_card, plain = {}, []
     for c in cands:
         go = _life_target(c)
-        if go:
-            by_card.setdefault(go, []).append(c)
+        if go:                                        # one life tab per life TREE (s014: cpr and start
+            by_card.setdefault(go.split("/", 1)[0], []).append(c)   # were two CPR tabs)
         else:
             plain.append(c)
     life = []
-    for go, cs in by_card.items():
-        lead = next((c for c in cs if go.split("/", 1)[0] == c.name), cs[0])
+    for tree, cs in by_card.items():
+        lead = next((c for c in cs if tree == c.name), cs[0])
         life.append(lead)
-        plain += [_without_life(c) for c in cs if c is not lead or go.split("/", 1)[0] != c.name]
+        plain += [_without_life(c) for c in cs if c is not lead or tree != c.name]
     others = lambda c, pool: [o for o in pool if o is not c]
     words = tokenize(cands[0].heard) if cands and cands[0].heard else []
-    copies = {id(c) for c in plain if c not in cands}
+    copies = {id(c) for c in plain if not any(c is o for o in cands)}
+    from .live import INJURY_WORDS
+    hurt = bool(set(words) & INJURY_WORDS)
     own = [c for c in plain if c.name not in HELPER_TREES and
            (_own_evidence(c, others(c, plain + life)) or (words and names_tree(words, c.name, c.tree, c.smap))
-            or (id(c) in copies and c.filled))]    # a jumper that heard more than its life jump
-                                                      # (9bc2864 spot1: "leg is broken" kept fractures at its root)
+            or (id(c) in copies and (c.filled or (hurt and _has_location(c)))))]   # a jumper that heard
+                                                      # more than its life jump, or an injury word on a
+                                                      # tree with a where-blank ("leg broken", 940f447 spot1)
     own = [c for c in own if id(c) in copies or c.card != c.tree.get("root") or not any(l.name == c.name for l in life)]
     leads, seen = [], set()
     for c in sorted(life + own, key=life_rank):       # stable: same rank keeps the router's order
@@ -173,11 +176,15 @@ def split_tabs(cands: list[Candidate]) -> list[list[Candidate]]:
     leads = leads[:MAX_TABS]
     if len(leads) < 2:
         return [cands]
-    rest = [c for c in plain if c not in leads]
+    rest = [c for c in plain if not any(c is l for l in leads)]   # identity: dataclass == compares fields
     tabs = [[c] for c in leads]
     home = next((t for t in tabs if not _life_target(t[0])), tabs[0])
     home += [c for c in rest if not any(c.name == t[0].name for t in tabs)]   # helpers join the first
     return tabs                                                                 # plain tab, never a life tab
+
+
+def _has_location(c: Candidate) -> bool:
+    return bool({"body_part", "side", "location", "where"} & set(c.smap.get("slots") or {}))
 
 
 def _life_target(c: Candidate) -> str | None:
@@ -192,16 +199,12 @@ def _without_life(c: Candidate) -> Candidate:
     """A copy that has dropped its life jump: the blanks of the rule that fired, and the shared
     awake/breathing blanks, are forgotten, and the walk restarts from the root."""
     from dataclasses import replace
-    hit = None
     lt = c.smap.get("life_threat") or []
     rules = [{"if": {s: v}, "go": g} for s, m in lt.items() for v, g in m.items()] if isinstance(lt, dict) else lt
-    for r in rules:
-        if all(c.filled.get(s) == v for s, v in r["if"].items()):
-            hit = r
-            break
-    drop = set(hit["if"]) if hit else set()
     from .intake import UNIVERSAL
-    filled = {s: v for s, v in c.filled.items() if s not in drop and s not in UNIVERSAL}
+    drop = {s for r in rules if all(c.filled.get(s) == v for s, v in r["if"].items()) for s in r["if"]}
+    filled = {s: v for s, v in c.filled.items() if s not in drop and s not in UNIVERSAL}   # EVERY rule
+                                                    # that fired (940f447 spot2: fractures had two)
     d = replace(c, filled=filled)
     d.advance()
     if _life_target(d):                             # still on a life card: no plain problem left
