@@ -22,9 +22,14 @@ is the sum of the best weight from each source:
 | 1 | the word names the tree's topic | every node of that tree (browse the topic) |
 
 Ranking, in order:
-1. **Life cards first**: any node a `life_threat` rule goes to.
+1. **Life cards first**: any node a `life_threat` rule goes to, when its score is at least 2 and at
+   least a third of the query's best score (a weak side match never buries the topic).
 2. Score: the sum over the query words. A node must match **every** query word.
 3. Root tiles before inner nodes, then depth from the root, then tree name, then node id.
+
+Not indexed: phrases of shared blanks (CPR's own blanks, and any blank 3+ trees carry) outside
+their home tree, and the shared awake/breathing life phrases ("won't open her eyes"). Query alias:
+"blood" also searches "bleed".
 
 Each node is listed once, under its own tree. At most 48 hits (6 pages). Filler words and words
 that match no node give no hits.

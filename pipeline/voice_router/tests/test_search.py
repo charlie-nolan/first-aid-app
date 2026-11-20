@@ -58,3 +58,25 @@ def test_frame_pages_of_eight():
     f = frame("burn", big, build_index(big))
     assert f["kind"] == "search" and f["hits"] == 19 and [len(p) for p in f["pages"]] == [PAGE, PAGE, 3]
     assert pages([1, 2, 3], 2) == [[1, 2], [3]]
+
+
+def test_weak_life_match_does_not_bury_the_topic():
+    eye = ({"root": "start", "title": "Eye injury", "nodes": {"start": {"label": "Something in the eye"},
+            "wash": {"label": "Wash the eye"}}}, {})
+    cpr = ({"root": "start", "title": "CPR", "nodes": {"start": {"label": "Breathing?"}, "cpr": {"label": "Start CPR"}}},
+           {"life_threat": [{"if": {"conscious": "no"}, "go": "cpr"}],
+            "slots": {"conscious": {"no": ["won't open her eyes", "eyes rolled back"]}}})
+    t = {"wfa-eye": eye, "wfa-cpr": cpr}
+    out = [h["node"] for h in search("eyes", t)]
+    assert out[0] == "wfa-eye/start" and "wfa-cpr/cpr" in out
+
+
+def test_shared_blank_phrases_are_not_indexed_outside_home():
+    a = ({"root": "start", "title": "Alpha", "nodes": {"start": {"label": "A"}, "x": {"label": "X"}}},
+         {"life_threat": [{"if": {"bleeding_type": "heavy"}, "go": "x"}], "slots": {"bleeding_type": {"heavy": ["gushing"]}}})
+    t = {"a": a, "b": ({**a[0], "title": "Beta"}, a[1]), "c": ({**a[0], "title": "Gamma"}, a[1])}
+    assert search("gushing", t) == []
+
+
+def test_blood_also_finds_bleeding():
+    assert "wfa-bleeding/start" in nodes("blood")

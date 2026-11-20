@@ -15,11 +15,15 @@ mentions it in its label) (keyed with vr.form._key, so choke/choking/choked all 
     weight 1  every node of a tree whose title/condition name matched (browse the whole topic)
 
 Ranking (a C port must reproduce it exactly):
-    1. life cards first: any node some tree's life_threat rule goes to (vr.form._life_cards,
-       "tree/card" keys resolved to their own tree)
+    1. life cards first: any node some tree's life_threat rule goes to ("tree/card" keys resolved
+       to their own tree), but only when its score is at least 2 and at least a third of the best score
+       for the query (score >= 2 and 3 * score >= top), so a weak side match never buries the topic (PC check de06aaa: "eye")
     2. score: sum over query words of that word's weight on the node; a node must
        match EVERY query word (one-word queries: that word)
     3. root tiles before inner nodes, then depth from the root (BFS), then node id
+Not indexed: phrases of shared blanks (vr.live._shared_slots: CPR's own blanks and any blank 3+
+trees carry, plus UNIVERSAL awake/breathing) except in their home tree, and the UNIVERSAL life
+phrases themselves ("won't open her eyes"), which say nothing about a topic.
 Duplicates: a node is listed once under its own tree ("wfa-bleeding/severe" never twice).
 
     python -m vr.search --trees DIR [DIR] --slots SLOTS_DIR WORD [WORD ...]
@@ -35,7 +39,7 @@ import json
 from pathlib import Path
 
 from .form import _FILLER, _key, node_id, topic_phrases
-from .intake import tokenize
+from .intake import UNIVERSAL, tokenize
 
 PAGE = 8          # 4 x 2 grid
 MAX_HITS = 48     # 6 pages; past that the word is too vague to browse
@@ -44,6 +48,9 @@ STOP = _FILLER | {"he", "she", "they", "we", "you", "me", "him", "her", "his", "
                   "did", "not", "this", "that", "what", "how", "when", "where", "who", "if", "so",
                   "can", "will", "should", "up", "out", "off", "over", "after", "before", "one",
                   "someone", "somebody", "something", "help", "please", "get", "got", "go", "very"}
+
+
+ALIASES = {"blood": ["bleed"]}   # query side only: "blood" also finds the bleeding cards
 
 
 def _keys(text) -> set:
@@ -102,9 +109,15 @@ def build_index(trees: dict) -> dict:
         for ph in tree.get("phrases") or []:
             add((name, root), _keys(ph), 1, "tree")
 
+    from .live import GENERIC_HOME, _shared_slots
+    shared = _shared_slots(trees) | set(UNIVERSAL)
+    life_ph = {tuple(tokenize(p)) for vs in UNIVERSAL.values() for ps in vs.values() for p in ps}
     for name, (tree, smap) in trees.items():
         smap = smap or {}
-        slots = smap.get("slots") or {}
+        own = (smap.get("slots") or {}) if name in GENERIC_HOME or smap.get("generic_home") else \
+            {k: v for k, v in (smap.get("slots") or {}).items() if k not in shared}
+        slots = {k: {v: [p for p in ps if tuple(tokenize(p)) not in life_ph] for v, ps in vs.items()}
+                 for k, vs in own.items()}
         for node, q in (smap.get("questions") or {}).items():
             for value, to in (q.get("choices") or {}).items():
                 at = _resolve(name, to, trees)
@@ -130,19 +143,21 @@ def search(query: str, trees: dict, index: dict | None = None, limit: int = MAX_
     q = sorted(_keys(query))
     if not q:
         return []
-    hits = []
+    found = []
     for (name, nid), e in idx.items():
         score = 0
         for k in q:
-            w = sum((e["words"].get(k) or {}).values())
+            w = max(sum((e["words"].get(a) or {}).values()) for a in [k] + ALIASES.get(k, []))
             if not w and k in e["topic"]:
                 w = 1                      # the word names the topic: browse every card in it
             if not w:
                 break
             score += w
         else:
-            hits.append((not e["life"], -score, not e["root"], e["depth"], name, nid, e))
-    hits.sort(key=lambda h: h[:6])
+            found.append((score, name, nid, e))
+    top = max((f[0] for f in found), default=0)
+    hits = sorted((not (e["life"] and sc >= 2 and 3 * sc >= top), -sc, not e["root"], e["depth"], n, c, e)
+                  for sc, n, c, e in found)
     return [{"tree": n, "card": c, "node": node_id(n, c, trees[n][0]), "title": f"{e['tree']} > {e['label']}",
              "life": e["life"], "score": -s} for _, s, _, _, n, c, e in hits[:limit]]
 
