@@ -1165,42 +1165,183 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
 
 static fp_result_t res(int kind, int tree, fp_card card) { return (fp_result_t){kind, (uint8_t)tree, card}; }
 
-/* vr.form._own_evidence + split_tabs */
-static bool own_evidence(const fp_sess_t *s, int ci) {
-    const fp_cand_t *c = &s->cands[ci];
+/* ---- several problems (TALK + WIN_R): vr.form.split_tabs at 65ea22a, tabs sorted by urgency ---- */
+static int rule_hit(const fp_sess_t *s, const fp_cand_t *c);
+static const char *const LIFE_TAB_ORDER[] = {"wfa-bleeding", "wfa-cpr", "wfa-choking", "wfa-allergy", 0};
+static const char *const URGENT_TREES[] = {"wfa-head-spine", "burns", "wfa-shock", 0};
+static const char *const HELPER_TREES[] = {"improvised_gear", 0};
+#define LIFE_OTHER 4
+#define LIFE_NAMED 5
+#define LIFE_NONE 9
+
+static void card_str(const fp_sess_t *s, const fp_cand_t *c, fp_card card, char *out, size_t cap) {
+    if (card >= 0) snprintf(out, cap, "%s", S(N_KEY(node(s, c->tree, card))));
+    else snprintf(out, cap, "%s", S(FP_EXT_SID(card)));
+}
+/* vr.form._life_target: the life card this candidate stands on or its rule jumps to, "tree/card" */
+static bool life_target(const fp_sess_t *s, const fp_cand_t *c, char *out, size_t cap) {
+    char go[160];
+    int r = rule_hit(s, c);
+    bool local;
+    if (r >= 0) {
+        const uint8_t *ru = rule(s, c->tree, r);
+        snprintf(go, sizeof go, "%s", S(R_GO(ru)));
+        local = R_GONODE(ru) >= 0;
+    } else if (life_card(s, c->tree, c->card)) {
+        card_str(s, c, c->card, go, sizeof go);
+        local = c->card >= 0;
+    } else return false;
+    if (!local && strchr(go, '/')) snprintf(out, cap, "%s", go);
+    else snprintf(out, cap, "%s/%s", S(s->trees[c->tree].name), go);
+    return true;
+}
+static bool in_list(const char *w, const char *const *l, int *at) {
+    for (int i = 0; l[i]; i++) if (!strcmp(w, l[i])) { if (at) *at = i; return true; }
+    return false;
+}
+static bool heard_topic(const fp_sess_t *s, int t, const fp_toks_t *heard);
+/* vr.form.life_rank: 0 severe bleeding, 1 CPR, 2 choking, 3 anaphylaxis, 4 other life card,
+ * 5 a life topic named with no rule fired, 6-8 head/spine, burns, shock, 9 the rest */
+static int life_rank(const fp_sess_t *s, const fp_cand_t *c) {
+    char go[200]; int at;
+    if (life_target(s, c, go, sizeof go)) {
+        char tr[96]; const char *sl = strchr(go, '/');
+        size_t L = sl ? (size_t)(sl - go) : strlen(go); if (L >= sizeof tr) L = sizeof tr - 1;
+        memcpy(tr, go, L); tr[L] = 0;
+        return in_list(tr, LIFE_TAB_ORDER, &at) ? at : LIFE_OTHER;
+    }
+    const char *nm = S(s->trees[c->tree].name);
+    if (in_list(nm, LIFE_TAB_ORDER, NULL) && c->heard[0]) {
+        fp_toks_t h; fp_tokenize(c->heard, &h);
+        if (heard_topic(s, c->tree, &h)) return LIFE_NAMED;
+    }
+    return in_list(nm, URGENT_TREES, &at) ? LIFE_NAMED + 1 + at : LIFE_NONE;
+}
+/* vr.form._without_life: a copy that drops every life rule that fired (and the shared awake /
+ * breathing blanks), walked again from the root; still on a life card -> its root, nothing asked */
+static fp_cand_t without_life(fp_sess_t *s, const fp_cand_t *c) {
+    fp_cand_t d = *c;
+    fp_str drop[FP_MAX_FILLED]; int nd = 0;
+    for (int i = 0; i < s->trees[c->tree].nrules; i++) {
+        const uint8_t *r = rule(s, c->tree, i);
+        bool all = true;
+        for (int k = 0; k < R_NIF(r) && all; k++) { const uint8_t *pp = R_PAIR(s, r, k); if (fget(&c->filled, rd16(pp)) != rd16(pp + 2)) all = false; }
+        if (!all) continue;
+        for (int k = 0; k < R_NIF(r) && nd < FP_MAX_FILLED; k++) drop[nd++] = rd16(R_PAIR(s, r, k));
+    }
+    d.filled.n = 0;
+    for (int i = 0; i < c->filled.n; i++) {
+        bool dr = c->filled.slot[i] == s->sid_conscious || c->filled.slot[i] == s->sid_breathing;
+        for (int k = 0; k < nd; k++) if (drop[k] == c->filled.slot[i]) dr = true;
+        if (!dr) fset(&d.filled, c->filled.slot[i], c->filled.val[i]);
+    }
+    advance(s, &d, -1);
+    char go[200];
+    if (life_target(s, &d, go, sizeof go)) { d.card = s->trees[d.tree].root; d.asking = FP_NONE; }
+    return d;
+}
+static bool own_ev(const fp_sess_t *s, const fp_cand_t *pool, const int *idx, int n, int ci) {
+    const fp_cand_t *c = &pool[ci];                  /* blanks no OTHER candidate in the pool even has */
     for (int k = 0; k < c->filled.n; k++) {
         bool theirs = false;
-        for (int o = 0; o < s->ncands && !theirs; o++)
-            if (o != ci && slot_index(s, s->cands[o].tree, c->filled.slot[k]) >= 0) theirs = true;
+        for (int o = 0; o < n && !theirs; o++)
+            if (idx[o] != ci && slot_index(s, pool[idx[o]].tree, c->filled.slot[k]) >= 0) theirs = true;
         if (!theirs) return true;
     }
     return false;
 }
-int fp_split_tabs(const fp_sess_t *s, fp_tab_t *tabs, int max) {
-    int own[FP_MAX_CANDS], nown = 0;
-    for (int i = 0; i < s->ncands; i++) if (s->ncands > 1 && own_evidence(s, i)) own[nown++] = i;
-    if (max < 1) return 0;
-    if (nown < 2) {
-        tabs[0].n = (uint8_t)s->ncands;
-        for (int i = 0; i < s->ncands; i++) tabs[0].c[i] = (uint8_t)i;
+static bool has_location(const fp_sess_t *s, int t) {
+    static const char *const L[] = {"body_part", "side", "location", "where", 0};
+    for (int i = 0; i < s->trees[t].nslots; i++) if (in_list(S(SL_NAME(slotrec(s, t, i))), L, NULL)) return true;
+    return false;
+}
+
+int fp_split_tabs(fp_sess_t *s, fp_tab_t *tabs, int max) {
+    static fp_cand_t pool[3 * FP_MAX_CANDS];        /* originals 0..n-1, then copies */
+    int n = s->ncands, np = n;
+    for (int i = 0; i < n; i++) pool[i] = s->cands[i];
+    char tree_of[FP_MAX_CANDS][200]; int ntr = 0, mem[FP_MAX_CANDS][FP_MAX_CANDS], nmem[FP_MAX_CANDS] = {0};
+    int plain[3 * FP_MAX_CANDS], npl = 0, life[FP_MAX_CANDS], nlife = 0;
+    for (int i = 0; i < n; i++) {
+        char go[200];
+        if (life_target(s, &pool[i], go, sizeof go)) {
+            char *sl = strchr(go, '/'); if (sl) *sl = 0;
+            int t = -1;
+            for (int k = 0; k < ntr; k++) if (!strcmp(tree_of[k], go)) t = k;
+            if (t < 0) { t = ntr++; snprintf(tree_of[t], sizeof tree_of[t], "%s", go); }
+            mem[t][nmem[t]++] = i;
+        } else plain[npl++] = i;
+    }
+    for (int t = 0; t < ntr; t++) {
+        int lead = mem[t][0];
+        for (int k = 0; k < nmem[t]; k++) if (!strcmp(S(s->trees[pool[mem[t][k]].tree].name), tree_of[t])) { lead = mem[t][k]; break; }
+        life[nlife++] = lead;
+        for (int k = 0; k < nmem[t]; k++) {
+            int ci = mem[t][k];
+            if (ci != lead || strcmp(tree_of[t], S(s->trees[pool[ci].tree].name))) { pool[np] = without_life(s, &pool[ci]); plain[npl++] = np++; }
+        }
+    }
+    fp_toks_t words; words.n = 0;
+    if (n && s->cands[0].heard[0]) fp_tokenize(s->cands[0].heard, &words);
+    bool hurt = false;
+    for (int i = 0; i < words.n; i++) if (in_list(words.w[i], INJURY_WORDS, NULL)) hurt = true;
+    int all[4 * FP_MAX_CANDS], na = 0;              /* plain + life, for "others" */
+    for (int i = 0; i < npl; i++) all[na++] = plain[i];
+    for (int i = 0; i < nlife; i++) all[na++] = life[i];
+    int own[3 * FP_MAX_CANDS], nown = 0;
+    for (int i = 0; i < npl; i++) {
+        int ci = plain[i]; const fp_cand_t *c = &pool[ci];
+        if (in_list(S(s->trees[c->tree].name), HELPER_TREES, NULL)) continue;
+        bool copy = ci >= n;
+        bool ok = own_ev(s, pool, all, na, ci) || (words.n && heard_topic(s, c->tree, &words)) ||
+                  (copy && (c->filled.n || (hurt && has_location(s, c->tree))));
+        if (!ok) continue;
+        bool keep = copy || c->card != s->trees[c->tree].root;
+        if (!keep) { keep = true; for (int k = 0; k < nlife; k++) if (pool[life[k]].tree == c->tree) keep = false; }
+        if (keep) own[nown++] = ci;
+    }
+    int cand[4 * FP_MAX_CANDS], rk[4 * FP_MAX_CANDS], nc = 0;
+    for (int i = 0; i < nlife; i++) { cand[nc] = life[i]; rk[nc] = life_rank(s, &pool[life[i]]); nc++; }
+    for (int i = 0; i < nown; i++) { cand[nc] = own[i]; rk[nc] = life_rank(s, &pool[own[i]]); nc++; }
+    for (int i = 1; i < nc; i++)                    /* stable sort by rank */
+        for (int j = i; j > 0 && rk[j] < rk[j - 1]; j--) { int t = rk[j]; rk[j] = rk[j - 1]; rk[j - 1] = t; t = cand[j]; cand[j] = cand[j - 1]; cand[j - 1] = t; }
+    int leads[8], nl = 0; char seen[16][200]; int nseen = 0;
+    for (int i = 0; i < nc && nl < 5; i++) {
+        const fp_cand_t *c = &pool[cand[i]];
+        char at[200], key[160];
+        card_str(s, c, c->card, key, sizeof key);
+        if (c->card < 0) snprintf(at, sizeof at, "%s", key); else snprintf(at, sizeof at, "%s/%s", S(s->trees[c->tree].name), key);
+        bool dup = false;
+        for (int k = 0; k < nseen; k++) if (!strcmp(seen[k], at)) dup = true;
+        if (c->card != s->trees[c->tree].root && dup) continue;
+        if (nseen < 16) snprintf(seen[nseen++], sizeof seen[0], "%s", at);
+        leads[nl++] = cand[i];
+    }
+    if (nl < 2 || max < 1) {
+        tabs[0].n = (uint8_t)n;
+        for (int i = 0; i < n; i++) tabs[0].c[i] = s->cands[i];
         return 1;
     }
-    int n = 0;
-    for (int i = 0; i < nown && n < 5 && n < max; i++) { tabs[n].n = 1; tabs[n].c[0] = (uint8_t)own[i]; n++; }
-    for (int i = 0; i < s->ncands; i++) {
-        bool o = false;
-        for (int k = 0; k < nown; k++) if (own[k] == i) o = true;
-        if (!o) tabs[0].c[tabs[0].n++] = (uint8_t)i;
+    if (nl > max) nl = max;
+    for (int i = 0; i < nl; i++) { tabs[i].n = 1; tabs[i].c[0] = pool[leads[i]]; }
+    int home = 0;
+    for (int i = 0; i < nl; i++) { char g[200]; if (!life_target(s, &pool[leads[i]], g, sizeof g)) { home = i; break; } }
+    for (int i = 0; i < npl; i++) {                 /* rest: plain not a lead, and no tab of its tree */
+        int ci = plain[i]; bool lead = false, named = false;
+        for (int k = 0; k < nl; k++) { if (leads[k] == ci) lead = true; if (pool[leads[k]].tree == pool[ci].tree) named = true; }
+        if (lead || named || tabs[home].n >= FP_MAX_CANDS) continue;
+        tabs[home].c[tabs[home].n++] = pool[ci];
     }
-    return n;
+    return nl;
 }
 
 void fp_keep_tab(fp_sess_t *s, const fp_tab_t *tab) {
-    fp_cand_t keep[FP_MAX_CANDS];
-    for (int i = 0; i < tab->n; i++) keep[i] = s->cands[tab->c[i]];
-    for (int i = 0; i < tab->n; i++) s->cands[i] = keep[i];
+    for (int i = 0; i < tab->n; i++) s->cands[i] = tab->c[i];
     s->ncands = tab->n;
 }
+
+int fp_tab_rank(fp_sess_t *s, const fp_cand_t *c) { return life_rank(s, c); }
+bool fp_tab_life(fp_sess_t *s, const fp_cand_t *c) { char g[200]; return life_target(s, c, g, sizeof g); }
 
 static int rule_hit(const fp_sess_t *s, const fp_cand_t *c) {
     for (int i = 0; i < s->trees[c->tree].nrules; i++) if (rule_fires(s, rule(s, c->tree, i), &c->filled)) return i;
@@ -1262,6 +1403,20 @@ fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nh, boo
         strncpy(c->heard, nh ? hyps[0] : "", FP_HEARD - 1); c->heard[FP_HEARD - 1] = 0;
         advance(s, c, -1);
     }
+    if (multi) {                                      /* several problems (TALK + WIN_R): every life tab */
+        static fp_tab_t tabs[5];                      /* stands on its card; split_tabs sorts them, bleeding first */
+        if (fp_split_tabs(s, tabs, 5) > 1) {
+            for (int i = 0; i < s->ncands; i++) {
+                fp_cand_t *c = &s->cands[i];
+                int go = rule_hit(s, c);
+                if (go < 0) continue;
+                const uint8_t *r = rule(s, c->tree, go);
+                if (R_GONODE(r) >= 0) { c->card = R_GONODE(r); c->asking = N_QSLOT(node(s, c->tree, c->card)); }
+                else { c->card = FP_EXT(R_GO(r)); c->asking = FP_NONE; }
+            }
+            return res(FP_TABS, 0, 0);
+        }
+    }
     int ord[FP_MAX_CANDS];                            /* rank order; a tie on p: a tree's own rule first */
     long long pr[FP_MAX_CANDS]; bool own[FP_MAX_CANDS];
     for (int i = 0; i < s->ncands; i++) { ord[i] = i; pr[i] = llround(s->cands[i].p * 1e6); own[i] = rule_hit(s, &s->cands[i]) >= 0; }
@@ -1293,8 +1448,7 @@ fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nh, boo
         fp_result_t land;                             /* card ("anaphylaxis" -> allergy/severe below SURE) */
         if (agreed_landing(s, &land)) return land;
     }
-    fp_tab_t tabs[8];
-    if (multi && fp_split_tabs(s, tabs, 8) > 1) return res(FP_TABS, 0, 0);
+
     if (s->ncands && (s->cands[0].p >= 0.80 || s->ncands == 1)) s->ncands = 1;
     if (s->ncands == 1) {
         fp_cand_t *c = &s->cands[0];

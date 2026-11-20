@@ -192,10 +192,12 @@ static int result(fp_screen_t *sc, jb_t *b, fp_result_t r) {
         raw(b, "}");
         return (int)b->n;
     }
-    if (r.kind == FP_TABS) {
-        fp_tab_t tabs[8];
-        fp_split_tabs(sc->s, tabs, 8);
+    if (r.kind == FP_TABS) {                         /* the first (most urgent) tab; a life tab opens its card */
+        static fp_tab_t tabs[5];
+        fp_split_tabs(sc->s, tabs, 5);
         fp_keep_tab(sc->s, &tabs[0]);
+        fp_cand_t *lead = &sc->s->cands[0];
+        if (fp_tab_life(sc->s, lead)) return card_screen(sc, b, lead->tree, lead->card);
         return form_screen(sc, b, "Several problems: showing the first");
     }
     return form_screen(sc, b, "");

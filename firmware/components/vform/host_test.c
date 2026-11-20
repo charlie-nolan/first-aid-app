@@ -80,6 +80,23 @@ int main(int argc, char **argv) {
         char *p = strchr(line, ' ');
         if (!p) continue;
         *p++ = 0;
+        if (!strcmp(line, "TABS")) {                  /* TABS <text>: first sentence with multi, the tabs */
+            fp_reset(&s); const char *h[1] = {p};
+            int nk = fp_keep_trees(&s, h, 1, 3);
+            fp_result_t r = nk ? fp_first_sentence(&s, h, 1, true) : (fp_result_t){FP_FORM, 0, 0};
+            if (r.kind != FP_TABS) { printf("NOTABS\n"); fflush(stdout); continue; }
+            static fp_tab_t tb[5]; int nt = fp_split_tabs(&s, tb, 5);
+            printf("[");
+            for (int i = 0; i < nt; i++) {
+                fp_cand_t *c = &tb[i].c[0]; char key[200];
+                const char *nm = fp_s(&s.pk, s.trees[c->tree].name);
+                if (c->card >= 0) snprintf(key, sizeof key, "%s/%s", nm, fp_s(&s.pk, fp_node_key(&s, c->tree, c->card)));
+                else { const char *e = fp_s(&s.pk, (fp_str)(-1 - c->card)); if (strchr(e, '/')) snprintf(key, sizeof key, "%s", e); else snprintf(key, sizeof key, "%s/%s", nm, e); }
+                printf("%s{\"lead\":\"%s\",\"node\":\"%s\",\"rank\":%d,\"asking\":", i ? "," : "", nm, key, fp_tab_rank(&s, c));
+                if (c->asking == FP_NONE) printf("null}"); else printf("\"%s\"}", fp_s(&s.pk, c->asking));
+            }
+            printf("]\n"); fflush(stdout); continue;
+        }
         if (!strcmp(line, "SEARCH")) {                /* SEARCH <srch.bin path>\t<query>: the search frame */
             static fs_index_t sx; static void *sb; static char sp[512];
             char *path = field(&p);

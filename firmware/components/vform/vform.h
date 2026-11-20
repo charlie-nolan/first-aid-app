@@ -118,8 +118,10 @@ int fp_open_fields(fp_sess_t *s, fp_field_t *out, int max);
 /* vr.form.ranked_cards / skip: cards the blanks still allow, best first. */
 int fp_ranked_cards(fp_sess_t *s, int limit, fp_ref_t *out, int max);
 /* vr.form.split_tabs: tab i holds tabs[i].n candidate indices, in the Python's order. Returns the number of tabs. */
-typedef struct { uint8_t n, c[FP_MAX_CANDS]; } fp_tab_t;
-int fp_split_tabs(const fp_sess_t *s, fp_tab_t *tabs, int max);
+typedef struct { uint8_t n; fp_cand_t c[FP_MAX_CANDS]; } fp_tab_t;   /* candidates (copies included), lead first */
+int fp_split_tabs(fp_sess_t *s, fp_tab_t *tabs, int max);
+int fp_tab_rank(fp_sess_t *s, const fp_cand_t *c);     /* vr.form.life_rank */
+bool fp_tab_life(fp_sess_t *s, const fp_cand_t *c);    /* vr.form._life_target is set */
 /* Keep only the candidates of one tab (vr bridge: cands = split_tabs(cands)[0]). */
 void fp_keep_tab(fp_sess_t *s, const fp_tab_t *tab);
 /* vr.form.most_telling: the open blank to put first, or FP_NONE. */
