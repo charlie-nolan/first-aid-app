@@ -51,3 +51,13 @@ One Meshtastic text, about 90 characters and **at most ~150**, re-sent every few
 Stock Meshtastic can't send on two networks. Our own beacon firmware could run an optimised loop:
 wake every 5 min -> GPS hot fix -> send on Meshtastic, then MeshCore -> listen 10 s -> sleep.
 Estimated ~9-10 days on a 1000 mAh cell without Wi-Fi (Charlie is considering 1000 mAh instead of 300 mAh).
+
+## Strobe modes (Charlie 2026-11-20)
+
+- **Night default, rescue strobe:** a 50 ms flash every ~3 s, **alternating white and IR, one LED at a
+  time**. Averages ~7-8 mA, about 9 nights on a 1000 mAh cell. Can switch on automatically at night
+  from GPS time.
+- **Manual "blast":** Morse SOS (··· ––– ···) on white + IR for passing aircraft or distant hikers, in
+  bursts of about a minute. ~200 mA average, so it **times out**; it never runs nonstop.
+- **LED limits:** on the 300 mAh cell white and IR **alternate and are never lit together**. Both at
+  once (~0.9 A) only on the 1000 mAh cell, and only after a bench check.
