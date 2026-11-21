@@ -2,6 +2,7 @@
 #include "fasr_q8.h"
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
 #ifdef ESP_PLATFORM
 #include "sdkconfig.h"
 #include "esp_timer.h"
@@ -109,13 +110,30 @@ static int conv_pw(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T
         for (int t = 0; t < T; t++) xt[(size_t)t * cin + i] = xi[t];
     }
     static int8_t wrow[1024] __attribute__((aligned(16)));
+    int sr = (fl & 2) ? L_ERES(l) - L_EOUT(l) : 0;
     for (int o = 0; o < cout; o++) {
         const int8_t *wo = w + (size_t)o * cin;
         if (((uintptr_t)wo & 15) || cin > (int)sizeof wrow) { if (cin > (int)sizeof wrow) return -1; memcpy(wrow, wo, cin); wo = wrow; }
         int32_t bias = (int32_t)r32(bb + 4 * o);
         int sh = L_EIN(l) + ew[o] - L_EOUT(l);
-        for (int t = 0; t < T; t++)
-            fq_out(l, fl, lo, sh, bias + fq_dot16(xt + (size_t)t * cin, wo, n16), o, t, T, y, blk, head);
+        const int8_t *xp = xt;
+        if (fl & 4) {
+            int32_t *hp = head + (size_t)o * T;
+            for (int t = 0; t < T; t++, xp += cin) hp[t] = bias + fq_dot16(xp, wo, n16);
+            continue;
+        }
+        int8_t *yp = y + (size_t)o * T;
+        const int8_t *bp = blk + (size_t)o * T;
+        bool fast = sh > 0 && sh < 31;
+        int32_t half = fast ? 1 << (sh - 1) : 0;
+        for (int t = 0; t < T; t++, xp += cin) {
+            int32_t acc = bias + fq_dot16(xp, wo, n16);
+            int64_t v = fast && acc < (1 << 29) && acc > -(1 << 29) ? (int64_t)((acc + half) >> sh) : rshift_round(acc, sh);
+            if (fl & 2) v += rshift_round(bp[t], sr);
+            if (v < lo) v = lo;
+            if (v > 127) v = 127;
+            yp[t] = (int8_t)v;
+        }
     }
     return T;
 }

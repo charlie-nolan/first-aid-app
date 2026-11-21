@@ -46,7 +46,10 @@ static int node_word(const fd_lex_t *x, int node, int i) { return r16(x->b + r32
 
 static double lse(double a, double b) {
     if (a < b) { double t = a; a = b; b = t; }
-    return b <= NEG ? a : a + log1p(exp(b - a));
+    if (b <= NEG) return a;
+    /* exact shortcut: log1p(exp(d)) < 4.3e-18 for d < -40, less than half an ulp of any |a| >= 1, so the sum is a */
+    if (b - a < -40.0 && (a <= -1.0 || a >= 1.0)) return a;
+    return a + log1p(exp(b - a));
 }
 
 /* ---- word sequences: hash-consed (parent, word) chains, so equal tuples have equal ids ---- */
