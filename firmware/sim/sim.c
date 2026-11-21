@@ -1,18 +1,39 @@
 /* Host simulator: runs the firmware's ui.c on a PC and saves each screen.
- *   gcc -O2 -Wall -Wextra -I../main -I../../romkit/reader -o sim sim.c ../main/ui.c ../../romkit/reader/cart.c
+ *   gcc -O2 -Wall -Wextra -I../main -I../../romkit/reader -o sim sim.c ../main/ui.c ../main/sleep_art.c ../../romkit/reader/cart.c
  *   ./sim ../library/library.bin OUTDIR [plain|plus] KEYS...
  * KEYS: down up talk back wl wr (short press), DOWN UP TALK BACK WL WR (long press),
  *       say:N[,M..] (voice result, command ids), num:1-4 / key:back|again|home (voice keys, plus), low / ok (battery reserve on/off), sleep,
  *       family:N (0 Lexend, 1 Bitter), font:N (text size 0-2).
+ * Board voice (build with -DSIM_VOICE, see below): speak:<words> (a TALK clip that was heard as <words>: new
+ *       problem, an answer on the form, or the search word, as main.c decides), again:<words> (heard, but
+ *       rejected), and the form's picks / skip / open run the real form engine (main/vbrain.c) on the cart.
+ *   gcc -O2 -DSIM_VOICE -I../main -I../../romkit/reader -I../components/vform -I$IDF_PATH/components/json/cJSON
+ *       -o simv sim.c ../main/ui.c ../main/sleep_art.c ../main/vbrain.c ../../romkit/reader/cart.c ../components/vform/vform.c
+ *       ../components/vform/vform_show.c ../components/vform/vform_search.c $IDF_PATH/components/json/cJSON/cJSON.c -lm
  * Writes OUTDIR/NN.pbm per step (250x122, 1 = black). */
 #include "ui.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#ifdef SIM_VOICE
+#include "vbrain.h"
+static ui_t u;
+static vs_screen_t vs; static vs_hit_t hits[VS_HITS];
+static ui_act_t vspeak(const char *text, int reject) {   /* as main.c: where the clip goes */
+    if (u.mode == M_SEARCH) {
+        u.nhits = (int16_t)vb_search(text, reject, 51, hits, VS_HITS); snprintf(u.squery, sizeof u.squery, "%s", text);
+        return ui_vsearch(&u);
+    }
+    vb_said(text, reject, 51, u.mode != M_FORM, &vs);
+    return ui_vscreen(&u);
+}
+#endif
 static uint8_t bits[UI_STRIDE * UI_H];
 static ui_saved_t saved;
+#ifndef SIM_VOICE
 static ui_t u;
+#endif
 static void dump(const char *dir, int n, const char *what) {
     char p[512]; snprintf(p, sizeof p, "%s/%02d.pbm", dir, n);
     FILE *f = fopen(p, "wb"); fprintf(f, "P4\n# %s\n256 %d\n", what, UI_H); fwrite(bits, 1, sizeof bits, f); fclose(f);
@@ -30,10 +51,14 @@ int main(int argc, char **argv) {
     u.has_ir = 1; u.battery_pct = plus ? 78 : -1;
     u.voice_numbers = (uint8_t)plus; u.key_min_pct = 50;   /* Plus: numbered tiles, voice keys */
     cart_fb_t fb = { bits, UI_STRIDE, UI_W, UI_H };
+#ifdef SIM_VOICE
+    if (vb_init(rom, (size_t)n)) { u.vs = &vs; u.hits = hits; u.has_form = 1; u.has_search = vb_has_search(); u.has_voice = 1; u.voice_numbers = 0; }
+    fprintf(stderr, "board voice: form %d (%d trees), search %d, cards %d\n", vb_has_form(), vb_ntrees(), vb_has_search(), vb_has_cards());
+#endif
     int k = 0;
     ui_render(&u, &fb); dump(argv[2], k++, "boot");
     for (int i = 4; i < argc; i++) {
-        const char *s = argv[i]; ui_act_t a = { 0, 0, -1, 0, 0, 0, 0 };
+        const char *s = argv[i]; ui_act_t a = { 0, 0, -1, 0, 0, 0, 0, 0 };
         static const char *names[] = { "talk", "back", "wl", "wr", "up", "down" };
         int b = -1, lng = isupper((unsigned char)s[0]);
         for (int j = 0; j < B_COUNT; j++) if (!strcasecmp(s, names[j])) b = j;
@@ -47,7 +72,11 @@ int main(int argc, char **argv) {
                 if (r[j].signal >= 0) a.signal = r[j].signal;
                 a.light_step |= r[j].light_step; a.sleep_now |= r[j].sleep_now;
                 if (r[j].voice) a.voice = r[j].voice;
+                if (r[j].vf) a.vf = r[j].vf;
             }
+#ifdef SIM_VOICE
+            if (a.vf) { vb_op_t o; if (vb_op_of(a.vf, &u, &o) && vb_op(&o, &vs)) a = ui_vscreen(&u); }
+#endif
         } else if (!strncmp(s, "say:", 4)) {
             int cmd[3]; float pr[3] = { 0.9f, 0.3f, 0.2f }; int m = 0;
             for (char *p = (char *)s + 4; *p && m < 3; ) { cmd[m++] = (int)strtol(p, &p, 10); if (*p == ',') p++; }
@@ -59,7 +88,12 @@ int main(int argc, char **argv) {
             if (kk < 0) { fprintf(stderr, "bad %s\n", s); return 2; }
             int cmd[1] = { UI_VOICE_KEY(kk) }; float pr[1] = { 0.9f };
             a = ui_voice(&u, cmd, pr, 1);
-        } else if (!strncmp(s, "family:", 7)) saved.family = (uint8_t)atoi(s + 7);
+        }
+#ifdef SIM_VOICE
+        else if (!strncmp(s, "speak:", 6)) a = vspeak(s + 6, 0);
+        else if (!strncmp(s, "again:", 6)) a = vspeak(s + 6, 90);
+#endif
+        else if (!strncmp(s, "family:", 7)) saved.family = (uint8_t)atoi(s + 7);
         else if (!strncmp(s, "font:", 5)) { saved.font = (uint8_t)atoi(s + 5); saved.win[saved.cur].page = 0; }
         else if (!strcmp(s, "low")) { u.low_battery = 1; u.battery_pct = 15; }
         else if (!strcmp(s, "ok")) { u.low_battery = 0; u.battery_pct = 78; }

@@ -1,4 +1,4 @@
-set(srcs main.c ui.c sleep_art.c epd.c buttons.c lights.c power.c voice.c voice_diy.c psram_test.c)
+set(srcs main.c ui.c sleep_art.c epd.c buttons.c lights.c power.c voice.c voice_diy.c vbrain.c psram_test.c)
 set(PHRASES ${CMAKE_CURRENT_LIST_DIR}/../library/phrases.txt)
 set(embed "")
 if(CONFIG_LIB_VOICE)

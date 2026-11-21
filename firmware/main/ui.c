@@ -913,10 +913,10 @@ static void render_form(ui_t *u, cart_fb_t *fb) {
         vs_field_t *f = &v->f[u->vs_f < v->nf ? u->vs_f : 0];
         char r[16]; snprintf(r, sizeof r, "%d/%d", u->vs_f + 1, v->nf);
         draw_list(u, fb, f->key[0] == '@' ? "Which is it?" : f->q, r, f->nch, u->vs_c, lbl_vs_choice,
-                  u->vs_status[0] ? u->vs_status : "TALK: pick  hold TALK: say it  DOWN: next  BACK: reading");
+                  u->vs_status[0] ? u->vs_status : "TALK pick  hold TALK say  DOWN next  BACK read");
     } else if (v->kind == VS_SKIP && v->ncards) {
         draw_list(u, fb, "Likely cards", 0, v->ncards, u->vs_card, lbl_vs_card,
-                  u->vs_status[0] ? u->vs_status : "TALK: open  DOWN: next  BACK: reading");
+                  u->vs_status[0] ? u->vs_status : "TALK open  DOWN next  BACK read");
     } else {
         header(u, fb, vs_heard(u, h, sizeof h), 0);
         const char *m = v->kind == VS_CARD ? v->card.title
