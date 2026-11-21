@@ -23,6 +23,7 @@
 #include "power.h"
 #include "voice.h"
 #include "esp_heap_caps.h"
+#include "driver/usb_serial_jtag.h"
 void psram_test_start(void);
 #include "cart.h"
 
@@ -224,7 +225,7 @@ void app_main(void) {
             show(RD_DEEP);                           /* pace light on: back to the CPR instructions */
             last = now;
         }
-        bool busy = lights_signal_active() || ui.listening;
+        bool busy = lights_signal_active() || ui.listening || usb_serial_jtag_is_connected();   /* on a computer's USB: stay awake (bench) */
 #if CONFIG_LIB_VOICE_BENCH || CONFIG_LIB_PSRAM_TEST
         busy = true;                                 /* bench modes: stay awake for the clip loop / soak test */
 #endif

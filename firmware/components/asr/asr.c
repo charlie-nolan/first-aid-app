@@ -1,6 +1,7 @@
 /* asr.c - engine dispatch. DIY int8: fasr_frontend + fasr_q8 + fasr_decode. ESP-DL is a placeholder
  * (ASR_NOT_BUILT). MultiNet stays in main/voice.c (the fallback). */
 #include "asr.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "fasr_decode.h"
@@ -12,10 +13,51 @@
 static void *big(size_t n) { return heap_caps_malloc(n, MALLOC_CAP_SPIRAM); }
 static void *fast_tmp(size_t n) { return heap_caps_malloc(n, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT); }
 static int64_t now_us(void) { return esp_timer_get_time(); }
+/* weight prefetch (fq_prefetch_t): copies run on core 0 while the model runs on core 1 */
+#include "freertos/FreeRTOS.h"
+#include "freertos/queue.h"
+#include "freertos/semphr.h"
+#include "freertos/task.h"
+#ifdef CONFIG_ASR_PREFETCH
+typedef struct { void *d; const void *s; size_t n; } pf_job_t;
+static QueueHandle_t pf_q; static SemaphoreHandle_t pf_done; static volatile int pf_busy;
+static void pf_task(void *a) {
+    pf_job_t j;
+    for (;;) if (xQueueReceive(pf_q, &j, portMAX_DELAY) == pdTRUE) { memcpy(j.d, j.s, j.n); pf_busy = 0; xSemaphoreGive(pf_done); }
+}
+static void pf_wait(void *c) { (void)c; if (pf_busy) xSemaphoreTake(pf_done, portMAX_DELAY); }
+static void pf_start(void *c, void *d, const void *s, size_t n) {
+    pf_wait(c);                                      /* one copy at a time */
+    xSemaphoreTake(pf_done, 0);                      /* clear a stale give */
+    pf_busy = 1; pf_job_t j = { d, s, n }; xQueueSend(pf_q, &j, portMAX_DELAY);
+}
+#endif
+static void prefetch_setup(const fq_model_t *m) {
+    size_t cap = 0;
+    for (int i = 0; i < m->nl; i++) {
+        const uint8_t *l = m->layers + 32 * i;
+        int cin = l[0] | l[1] << 8, cout = l[2] | l[3] << 8, k = l[4] | l[5] << 8, g = l[10] | l[11] << 8;
+        if (k == 1 && g == 1 && (size_t)cin * cout > cap) cap = (size_t)cin * cout;
+    }
+#ifdef CONFIG_ASR_PREFETCH
+    static fq_prefetch_t p;
+    p.buf[0] = heap_caps_aligned_alloc(16, cap, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
+    p.buf[1] = heap_caps_aligned_alloc(16, cap, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
+    if (!p.buf[0] || !p.buf[1]) { free(p.buf[0]); free(p.buf[1]); return; }   /* no room: weights read in place */
+    p.cap = cap; p.start = pf_start; p.wait = pf_wait;
+    pf_q = xQueueCreate(1, sizeof(pf_job_t)); pf_done = xSemaphoreCreateBinary();
+    xTaskCreatePinnedToCore(pf_task, "asr_pf", 2048, 0, 6, 0, 0);
+    fq_set_prefetch(&p);
+    printf("ASR prefetch on: 2 x %u bytes internal\n", (unsigned)cap);
+#else
+    (void)cap;
+#endif
+}
 #else
 #include <time.h>
 static void *big(size_t n) { return malloc(n); }
 static void *fast_tmp(size_t n) { (void)n; return NULL; }
+static void prefetch_setup(const fq_model_t *m) { (void)m; }
 static int64_t now_us(void) { struct timespec t; clock_gettime(CLOCK_MONOTONIC, &t); return t.tv_sec * 1000000LL + t.tv_nsec / 1000; }
 #endif
 
@@ -66,6 +108,7 @@ asr_err_t asr_open_cart(const void *rom, size_t len) {
     logits = big(sizeof(int32_t) * M.ctok * To);
     ws_model = big(fq_ws_size(&M, T)); ws_dec = big(fd_ws_size());
     if (!feats || !logp || !logits || !ws_model || !ws_dec) return ASR_NO_MEMORY;
+    prefetch_setup(&M);
     ready = true;
     return ASR_OK;
 #endif

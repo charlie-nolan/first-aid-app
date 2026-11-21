@@ -61,6 +61,7 @@ static void fft(double *re, double *im) {            /* in place, radix 2, n = 5
 /* ln(x) for x > 0 from plain float operations (FE_FAST), so the PC (glibc) and the chip (newlib) give the same bits:
  * x = m * 2^e with m in [sqrt(1/2), sqrt(2)), ln(m) = 2 atanh(s), s = (m - 1) / (m + 1), |s| < 0.172, series to s^9
  * (error ~1e-9, below float precision), plus e * ln 2 in two parts. Exponent handling is exact (frexpf). */
+#ifdef FE_FAST
 static float fe_logf(float x) {
     int e; float m = frexpf(x, &e);
     if (m < 0.70710678f) { m *= 2.0f; e--; }
@@ -92,6 +93,8 @@ static void fftf(float *re, float *im) {
             }
     }
 }
+
+#endif
 
 int fe_frames(int n) { if (n < FE_WIN) n = FE_WIN; return 1 + (n - FE_WIN) / FE_HOP; }
 

@@ -25,6 +25,18 @@ size_t fq_ws_size(const fq_model_t *m, int T);
  * fq_logit_exp). cb (may be NULL) sees each layer's int8 output (C x T'), for the golden test. */
 typedef void (*fq_layer_cb)(void *ctx, int layer, const int8_t *x, int c, int t);
 int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t *logits, fq_layer_cb cb, void *ctx);
+/* Weight prefetch (optional): two 16-byte-aligned buffers of `cap` bytes in fast RAM. Before each pointwise layer
+ * the engine waits for its weights (wait), then asks for the next pointwise layer's (start: copy n bytes src ->
+ * dst, may return at once and copy in the background, e.g. on the other core) and reads the layer from the
+ * buffer. Layers bigger than cap read from the model in place. Same results (only where the bytes are read). */
+typedef struct {
+    int8_t *buf[2]; size_t cap;
+    void (*start)(void *ctx, void *dst, const void *src, size_t n);
+    void (*wait)(void *ctx);
+    void *ctx;
+} fq_prefetch_t;
+void fq_set_prefetch(const fq_prefetch_t *p);    /* NULL: off */
+
 /* Head output exponent of token c: real logit = logits * 2^-e. */
 int fq_logit_exp(const fq_model_t *m, int c);
 /* Head logits -> log-softmax, frame-major (T' x ctok), as logits_to_logp. */

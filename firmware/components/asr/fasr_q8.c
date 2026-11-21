@@ -10,7 +10,10 @@
 #else
 #define PROF_NOW() 0
 #endif
-uint32_t fq_prof_us[5];   /* input quantise, pointwise, depthwise, other convs, log-softmax (summed) */
+uint32_t fq_prof_us[5];
+static fq_prefetch_t pf; static bool pf_on;
+void fq_set_prefetch(const fq_prefetch_t *p) { pf_on = p != NULL; if (p) pf = *p; }
+static const int8_t *pw_w;                  /* the current pointwise layer's weights in a prefetch buffer, or NULL */   /* input quantise, pointwise, depthwise, other convs, log-softmax (summed) */
 
 /* Exact int8 dot product of n16 blocks of 16 bytes, both 16-byte aligned: the S3 vector unit on the chip
  * (fasr_dot_s3.S), plain C elsewhere. Integer sums, so both give the same value. */
@@ -102,7 +105,7 @@ static inline void fq_out(const uint8_t *l, int fl, int lo, int sh, int32_t acc,
 static int conv_pw(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk,
                    int32_t *head, int8_t *xt) {
     int cin = L_CIN(l), cout = L_COUT(l), fl = L_FLAGS(l), n16 = cin / 16;
-    const int8_t *w = L_W(m, l), *ew = L_EW(m, l);
+    const int8_t *w = pw_w ? pw_w : L_W(m, l), *ew = L_EW(m, l);
     const uint8_t *bb = L_B(m, l);
     int lo = (fl & 1) || (fl & 2) ? 0 : -128;
     for (int i = 0; i < cin; i++) {
@@ -234,6 +237,9 @@ static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, i
     return To;
 }
 
+static bool is_pw(const uint8_t *l) { return L_K(l) == 1 && L_STRIDE(l) == 1 && L_PAD(l) == 0 && L_GROUPS(l) == 1 && L_CIN(l) % 16 == 0; }
+static size_t pw_bytes(const uint8_t *l) { return (size_t)L_CIN(l) * L_COUT(l); }
+
 int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t *logits, fq_layer_cb cb, void *ctx) {
     size_t plane = (size_t)m->cmax * (T > 0 ? T : 1);
     int8_t *x = ws, *y = x + plane, *blk = y + plane;
@@ -249,8 +255,25 @@ int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t
     }
     fq_prof_us[0] += (uint32_t)(PROF_NOW() - p0);
     int Tc = T;
+    /* prefetch: the pointwise layers in order; buffer b holds the k-th one when k % 2 == b */
+    int pw_next = -1, pw_k = 0;
+    if (pf_on) {
+        for (int i = 0; i < m->nl && pw_next < 0; i++) if (is_pw(LAYER(m, i))) pw_next = i;
+        if (pw_next >= 0 && pw_bytes(LAYER(m, pw_next)) <= pf.cap) pf.start(pf.ctx, pf.buf[0], L_W(m, LAYER(m, pw_next)), pw_bytes(LAYER(m, pw_next)));
+    }
     for (int i = 0; i < m->nl; i++) {
         const uint8_t *l = LAYER(m, i);
+        pw_w = NULL;
+        if (pf_on && i == pw_next) {
+            bool here = pw_bytes(l) <= pf.cap;
+            if (here) pf.wait(pf.ctx);
+            int nx = -1;
+            for (int j = i + 1; j < m->nl && nx < 0; j++) if (is_pw(LAYER(m, j))) nx = j;
+            if (nx >= 0 && pw_bytes(LAYER(m, nx)) <= pf.cap)   /* the next one into the other buffer, while this one runs */
+                pf.start(pf.ctx, pf.buf[(pw_k + 1) & 1], L_W(m, LAYER(m, nx)), pw_bytes(LAYER(m, nx)));
+            if (here) pw_w = pf.buf[pw_k & 1];
+            pw_next = nx; pw_k++;
+        }
         int is_dw = L_GROUPS(l) > 1;
         if (is_dw) memcpy(blk, x, (size_t)L_CIN(l) * Tc);  /* block input, for the residual */
         int To = conv(m, l, x, Tc, y, blk, logits, xt);

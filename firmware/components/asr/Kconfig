@@ -36,6 +36,13 @@ config ASR_FE_FLOAT
         reject decision flipped, but it is no longer bit-exact with pipeline/speech/fasr until the
         speech thread builds its goldens from this C front end. Off until that re-baseline.
 
+config ASR_PREFETCH
+    bool "Prefetch the next pointwise layer's weights into internal RAM (core 0) while the model runs"
+    default n
+    help
+        Two internal buffers of one pointwise layer each (64 KB for size m, ~100 KB for size l). Same
+        results; whether it is faster depends on what else uses internal RAM (time it with asr_bench).
+
 config ASR_MAX_HYPS
     int "n-best guesses kept"
     range 1 5

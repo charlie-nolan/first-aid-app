@@ -37,7 +37,14 @@ static void cb(void *vc, int layer, const int8_t *x, int c, int t) {
     free(g);
 }
 
+static void pf_start(void *c, void *d, const void *s, size_t n) { (void)c; memcpy(d, s, n); }
+static void pf_wait(void *c) { (void)c; }
 int main(int argc, char **argv) {
+    if (getenv("ASR_PREFETCH")) {                    /* the chip's weight prefetch path, done with memcpy here */
+        static int8_t b0[1 << 17] __attribute__((aligned(16))), b1[1 << 17] __attribute__((aligned(16)));
+        static fq_prefetch_t p = { { b0, b1 }, sizeof b0, pf_start, pf_wait, 0 };
+        fq_set_prefetch(&p);
+    }
     if (argc < 4) { fprintf(stderr, "usage: %s asrm.bin rawdir clip...\n", argv[0]); return 2; }
     long n; void *blob = slurp(argv[1], &n);
     fq_model_t m;
