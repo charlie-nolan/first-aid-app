@@ -14,3 +14,6 @@
 int fe_frames(int n);
 /* pcm: n int16 samples -> out: frames x 40 float. Returns frames. */
 int fe_logmel(const int16_t *pcm, int n, float *out);
+/* Frames [t0, t1) only (streaming: frame t needs samples t*HOP .. t*HOP + WIN, so fe_frames(n) frames are
+ * final as soon as n samples are in; the same values as fe_logmel). */
+void fe_logmel_range(const int16_t *pcm, int n, int t0, int t1, float *out);

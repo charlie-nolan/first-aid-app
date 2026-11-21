@@ -32,4 +32,9 @@ asr_err_t asr_decode(const int16_t *pcm, size_t samples, asr_hyp_t *out);
 const char *asr_word(uint16_t id);
 const char *asr_engine_name(void);
 /* Time of the last decode, microseconds: front end, model, search. */
+/* Streaming (same words as asr_decode): begin at TALK, feed the clip so far now and then while it is held,
+ * end with the whole clip. asr_last_timing then gives only what ran after the end. */
+asr_err_t asr_stream_begin(void);
+void asr_stream_feed(const int16_t *pcm, size_t samples);
+asr_err_t asr_stream_end(const int16_t *pcm, size_t samples, asr_hyp_t *out);
 void asr_last_timing(uint32_t *fe_us, uint32_t *model_us, uint32_t *search_us);

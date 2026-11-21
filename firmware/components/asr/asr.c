@@ -87,6 +87,7 @@ static const void *chunk(const void *rom, size_t len, const char tag[4], size_t 
 static fq_model_t M; static fd_lex_t X; static fd_calib_t CAL; static bool have_cal, ready;
 static float *feats, *logp; static void *ws_model, *ws_dec; static int32_t *logits;
 static uint32_t t_fe, t_model, t_search;
+static fq_stream_t ST; static void *st_mem; static int st_fe, st_lp, st_T; static bool st_on;
 
 asr_err_t asr_open_cart(const void *rom, size_t len) {
 #if !CONFIG_ASR_ENGINE_DIY
@@ -109,6 +110,7 @@ asr_err_t asr_open_cart(const void *rom, size_t len) {
     ws_model = big(fq_ws_size(&M, T)); ws_dec = big(fd_ws_size());
     if (!feats || !logp || !logits || !ws_model || !ws_dec) return ASR_NO_MEMORY;
     prefetch_setup(&M);
+    st_T = T; st_mem = big(fq_stream_size(&M, T));
     ready = true;
     return ASR_OK;
 #endif
@@ -147,4 +149,50 @@ const char *asr_word(uint16_t id) { return ready ? fd_word(&X, id) : NULL; }
 
 void asr_last_timing(uint32_t *fe_us, uint32_t *model_us, uint32_t *search_us) {
     *fe_us = t_fe; *model_us = t_model; *search_us = t_search;
+}
+
+/* ---- streaming: the front end, the model and the beam search run while TALK is held ---- */
+asr_err_t asr_stream_begin(void) {
+    if (!ready || !st_mem) return ASR_NOT_BUILT;
+    fq_stream_init(&ST, &M, st_mem, st_T);
+    fd_begin(&X, ws_dec);
+    st_fe = st_lp = 0; st_on = true;
+    return ASR_OK;
+}
+static void stream_step(const int16_t *pcm, size_t samples, bool final) {
+    if (samples > (size_t)16000 * ASR_MAX_SECONDS) samples = (size_t)16000 * ASR_MAX_SECONDS;
+    int nf = final ? fe_frames((int)samples) : (samples >= FE_WIN ? fe_frames((int)samples) : 0);
+    if (nf > st_T) nf = st_T;
+    int64_t a = now_us();
+    if (nf > st_fe) { fe_logmel_range(pcm, (int)samples, st_fe, nf, feats); st_fe = nf; }
+    int64_t b = now_us();
+    int out = fq_stream_feed(&ST, feats, st_fe, final, logp);
+    int64_t c = now_us();
+    if (out > st_lp) { fd_frames(&X, logp, st_lp, out, ws_dec); st_lp = out; }
+    int64_t d = now_us();
+    t_fe += (uint32_t)(b - a); t_model += (uint32_t)(c - b); t_search += (uint32_t)(d - c);
+}
+void asr_stream_feed(const int16_t *pcm, size_t samples) {
+    if (!st_on) return;
+    stream_step(pcm, samples, false);
+}
+asr_err_t asr_stream_end(const int16_t *pcm, size_t samples, asr_hyp_t *out) {
+    memset(out, 0, sizeof *out);
+    out->reject = 100;
+    if (!st_on) return ASR_NOT_BUILT;
+    st_on = false;
+    t_fe = t_model = t_search = 0;                 /* the timings now = what is left after TALK is let go */
+    stream_step(pcm, samples, true);
+    int64_t a = now_us();
+    static fd_result_t r;
+    fd_finish(&X, logp, st_lp, have_cal ? &CAL : NULL, ws_dec, &r);
+    t_search += (uint32_t)(now_us() - a);
+    out->n = (uint8_t)r.n;
+    for (int h = 0; h < r.n && h < ASR_MAX_HYP; h++) {
+        out->h[h].len = r.h[h].len;
+        memcpy(out->h[h].id, r.h[h].id, sizeof out->h[h].id);
+        memcpy(out->h[h].conf, r.h[h].conf, sizeof out->h[h].conf);
+    }
+    out->reject = (uint8_t)r.reject; out->reject_raw = (uint8_t)r.reject_raw; out->veto = r.veto;
+    return ASR_OK;
 }

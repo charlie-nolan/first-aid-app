@@ -144,7 +144,7 @@ static int32_t fq_acc[FQ_TMAX];
 /* depthwise, causal (left padding k - 1, stride 1, k <= 16): each output is one 16-wide dot product of the
  * channel's taps (zero-padded to 16, aligned copy) with 16 consecutive inputs; the first k - 1 outputs touch
  * the padding and go the plain way. Exact (integer sums). */
-static int conv_dw(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head) {
+static int conv_dw(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int t0, int8_t *y, const int8_t *blk, int32_t *head) {
     int cout = L_COUT(l), k = L_K(l), pad = L_PAD(l), fl = L_FLAGS(l);
     const int8_t *w = L_W(m, l), *ew = L_EW(m, l);
     const uint8_t *bb = L_B(m, l);
@@ -155,40 +155,46 @@ static int conv_dw(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T
         const int8_t *xo = x + (size_t)o * T;
         int32_t bias = (int32_t)r32(bb + 4 * o);
         int sh = L_EIN(l) + ew[o] - L_EOUT(l);
-        for (int t = 0; t < T; t++) {
+        for (int t = t0; t < T; t++) {                    /* outputs t0.. (streaming: the first t0 inputs are history) */
             int32_t acc = bias;
             if (t < pad) { for (int kk = pad - t; kk < k; kk++) acc += (int32_t)xo[t - pad + kk] * wk[kk]; }
             else acc += fq_dot16u(wk, xo + t - pad, 1);
-            fq_out(l, fl, lo, sh, acc, o, t, T, y, blk, head);
+            fq_out(l, fl, lo, sh, acc, o, t - t0, T - t0, y, blk, head);
         }
     }
-    return T;
+    return T - t0;
 }
 
 /* any other conv (the stem: 40 x 5, stride 2) as im2col: each output frame's cin x k inputs in one aligned row
  * (zero padded to 16), weights copied to an aligned row, one dot per output. Exact. */
-static int conv_col(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head,
-                    int8_t *col) {
+/* outputs [t0, t1) of a strided conv whose input rows have stride `stride` and Tin valid frames (zeros past them) */
+static int conv_col_range(const fq_model_t *m, const uint8_t *l, const int8_t *x, int stride, int Tin, int t0, int t1,
+                          int8_t *y, const int8_t *blk, int32_t *head, int8_t *col) {
     int cin = L_CIN(l), cout = L_COUT(l), k = L_K(l), s = L_STRIDE(l), pad = L_PAD(l), fl = L_FLAGS(l);
-    int To = (T + pad - k) / s + 1, n = cin * k, n16 = (n + 15) / 16, rl = 16 * n16;
+    int n = cin * k, n16 = (n + 15) / 16, rl = 16 * n16, No = t1 - t0;
     const int8_t *w = L_W(m, l), *ew = L_EW(m, l);
     const uint8_t *bb = L_B(m, l);
     int lo = (fl & 1) || (fl & 2) ? 0 : -128;
     static int8_t wr[1024] __attribute__((aligned(16)));
     if (rl > (int)sizeof wr) return -2;
-    for (int t = 0; t < To; t++) {
-        int8_t *c = col + (size_t)t * rl;
+    for (int t = t0; t < t1; t++) {
+        int8_t *c = col + (size_t)(t - t0) * rl;
         for (int i = 0; i < cin; i++)
-            for (int kk = 0; kk < k; kk++) { int ti = t * s - pad + kk; c[i * k + kk] = ti >= 0 && ti < T ? x[(size_t)i * T + ti] : 0; }
+            for (int kk = 0; kk < k; kk++) { int ti = t * s - pad + kk; c[i * k + kk] = ti >= 0 && ti < Tin ? x[(size_t)i * stride + ti] : 0; }
         memset(c + n, 0, rl - n);
     }
     for (int o = 0; o < cout; o++) {
         memcpy(wr, w + (size_t)o * n, n); memset(wr + n, 0, rl - n);
         int32_t bias = (int32_t)r32(bb + 4 * o);
         int sh = L_EIN(l) + ew[o] - L_EOUT(l);
-        for (int t = 0; t < To; t++) fq_out(l, fl, lo, sh, bias + fq_dot16(col + (size_t)t * rl, wr, n16), o, t, To, y, blk, head);
+        for (int t = 0; t < No; t++) fq_out(l, fl, lo, sh, bias + fq_dot16(col + (size_t)t * rl, wr, n16), o, t, No, y, blk, head);
     }
-    return To;
+    return No;
+}
+static int conv_col(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head,
+                    int8_t *col) {
+    int To = (T + L_PAD(l) - L_K(l)) / L_STRIDE(l) + 1;
+    return conv_col_range(m, l, x, T, T, 0, To, y, blk, head, col);
 }
 
 static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head,
@@ -202,7 +208,7 @@ static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, i
     int To = (T + pad - k) / s + 1, fl = L_FLAGS(l);
     if (To > FQ_TMAX) return -1;
     if (g == cin && g == cout && s == 1 && pad == k - 1 && k <= 16) {
-        int r = conv_dw(m, l, x, T, y, blk, head); fq_prof_us[2] += (uint32_t)(PROF_NOW() - p0); return r;
+        int r = conv_dw(m, l, x, T, 0, y, blk, head); fq_prof_us[2] += (uint32_t)(PROF_NOW() - p0); return r;
     }
     if (g == 1 && cin * k <= 1024 && (size_t)((cin * k + 15) / 16 * 16) * To <= (size_t)m->cmax * T) {
         int r = conv_col(m, l, x, T, y, blk, head, xt); fq_prof_us[3] += (uint32_t)(PROF_NOW() - p0); return r;
@@ -237,6 +243,17 @@ static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, i
     return To;
 }
 
+/* (feats - mu) / sd, quantised, frames [t0, t1) into channel-major rows of stride `stride` */
+static void quant_in(const fq_model_t *m, const float *feats, int t0, int t1, int8_t *x, int stride) {
+    double sc = ldexp(1.0, m->e_in);
+    for (int c = 0; c < 40; c++) {
+        double mu = rf(m->mu + 4 * c), sd = rf(m->sd + 4 * c);
+        for (int t = t0; t < t1; t++) {
+            double v = nearbyint(((double)feats[(size_t)t * 40 + c] - mu) / sd * sc);
+            x[(size_t)c * stride + t] = (int8_t)(v < -128 ? -128 : v > 127 ? 127 : v);
+        }
+    }
+}
 static bool is_pw(const uint8_t *l) { return L_K(l) == 1 && L_STRIDE(l) == 1 && L_PAD(l) == 0 && L_GROUPS(l) == 1 && L_CIN(l) % 16 == 0; }
 static size_t pw_bytes(const uint8_t *l) { return (size_t)L_CIN(l) * L_COUT(l); }
 
@@ -245,14 +262,7 @@ int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t
     int8_t *x = ws, *y = x + plane, *blk = y + plane;
     int8_t *xt = (int8_t *)(((uintptr_t)(blk + plane) + 15) & ~(uintptr_t)15);
     int64_t p0 = PROF_NOW();
-    double sc = ldexp(1.0, m->e_in);
-    for (int c = 0; c < 40; c++) {                       /* (feats - mu) / sd, quantised; channel-major */
-        double mu = rf(m->mu + 4 * c), sd = rf(m->sd + 4 * c);
-        for (int t = 0; t < T; t++) {
-            double v = nearbyint(((double)feats[(size_t)t * 40 + c] - mu) / sd * sc);
-            x[(size_t)c * T + t] = (int8_t)(v < -128 ? -128 : v > 127 ? 127 : v);
-        }
-    }
+    quant_in(m, feats, 0, T, x, T);
     fq_prof_us[0] += (uint32_t)(PROF_NOW() - p0);
     int Tc = T;
     /* prefetch: the pointwise layers in order; buffer b holds the k-th one when k % 2 == b */
@@ -311,4 +321,69 @@ void fq_logp(const fq_model_t *m, const int32_t *logits, int T, float *logp) {
         for (int c = 0; c < C; c++) logp[(size_t)t * C + c] = (float)(z[c] - ls);
     }
     fq_prof_us[4] += (uint32_t)(PROF_NOW() - p0);
+}
+
+/* ---- streaming (fasr_q8.h) ---- */
+#define FQ_CH 64                                  /* model frames per chunk */
+static size_t al16(size_t n) { return (n + 15) & ~(size_t)15; }
+size_t fq_stream_size(const fq_model_t *m, int Tmax) {
+    size_t c = (size_t)m->cmax, h = 0;
+    for (int i = 0; i < m->nl; i++) { const uint8_t *l = LAYER(m, i); if (L_GROUPS(l) > 1) h += (size_t)L_CIN(l) * (L_K(l) - 1); }
+    return sizeof(fq_stream_t) + 16 * 8 + al16(40 * (size_t)Tmax) + al16(h) + 4 * al16(c * (FQ_CH + 16)) + al16(c * FQ_CH)
+           + al16(208 * (size_t)FQ_CH) + al16(4 * (size_t)m->ctok * FQ_CH);
+}
+void fq_stream_init(fq_stream_t *st, const fq_model_t *m, void *mem, int Tmax) {
+    uint8_t *p = (uint8_t *)(((uintptr_t)mem + sizeof *st + 15) & ~(uintptr_t)15);
+    size_t c = (size_t)m->cmax, h = 0;
+    for (int i = 0; i < m->nl; i++) { const uint8_t *l = LAYER(m, i); if (L_GROUPS(l) > 1) h += (size_t)L_CIN(l) * (L_K(l) - 1); }
+    memset(st, 0, sizeof *st); st->m = m; st->Tmax = Tmax;
+    st->xin = (int8_t *)p; p += al16(40 * (size_t)Tmax);
+    st->hist = (int8_t *)p; p += al16(h); memset(st->hist, 0, h);   /* zeros = the left padding */
+    for (int i = 0; i < 4; i++) { st->pl[i] = (int8_t *)p; p += al16(c * (FQ_CH + 16)); }
+    st->xt = (int8_t *)p; p += al16(c * FQ_CH);
+    st->col = (int8_t *)p; p += al16(208 * (size_t)FQ_CH);
+    st->lg = (int32_t *)p;
+}
+/* feats: all frames so far (frame-major), nfeat of them; final: the clip is complete. Runs every model frame
+ * whose inputs are all here and writes its log-probs to logp (frame-major, row t). Returns model frames done. */
+int fq_stream_feed(fq_stream_t *st, const float *feats, int nfeat, bool final, float *logp) {
+    const fq_model_t *m = st->m;
+    pw_w = NULL;                                  /* weights read in place (no prefetch here) */
+    if (nfeat > st->Tmax) nfeat = st->Tmax;
+    if (nfeat > st->nin) { quant_in(m, feats, st->nin, nfeat, st->xin, st->Tmax); st->nin = nfeat; }
+    const uint8_t *l0 = LAYER(m, 0);
+    int num = st->nin + L_PAD(l0) - L_K(l0);
+    int avail = num < 0 ? (final && st->nin > 0 ? 1 : 0) : num / L_STRIDE(l0) + 1;
+    if (!final) {                                 /* not final: only outputs whose last input has arrived */
+        int last_ok = st->nin - 1 - (L_K(l0) - 1 - L_PAD(l0));
+        avail = last_ok < 0 ? 0 : last_ok / L_STRIDE(l0) + 1;
+    }
+    while (st->nout < avail) {
+        int t0 = st->nout, n = avail - t0; if (n > FQ_CH) n = FQ_CH;
+        int8_t *a = st->pl[0], *b = st->pl[1], *ext = st->pl[2], *blk = st->pl[3];
+        if (conv_col_range(m, l0, st->xin, st->Tmax, st->nin, t0, t0 + n, a, NULL, NULL, st->col) < 0) return -1;
+        int8_t *h = st->hist;
+        for (int i = 1; i < m->nl; i++) {
+            const uint8_t *l = LAYER(m, i);
+            int C = L_CIN(l);
+            if (L_GROUPS(l) > 1) {                    /* depthwise: history + chunk, outputs for the chunk only */
+                int k1 = L_K(l) - 1, w = k1 + n;
+                for (int ch = 0; ch < C; ch++) {
+                    memcpy(ext + (size_t)ch * w, h + (size_t)ch * k1, k1);
+                    memcpy(ext + (size_t)ch * w + k1, a + (size_t)ch * n, n);
+                    memcpy(h + (size_t)ch * k1, ext + (size_t)ch * w + w - k1, k1);   /* last k-1 inputs for the next chunk */
+                }
+                memcpy(blk, a, (size_t)C * n);        /* block input, for the residual */
+                conv_dw(m, l, ext, w, k1, b, blk, NULL);
+                h += (size_t)C * k1;
+            } else if (L_FLAGS(l) & 4) {              /* head: logits -> log-probs for these frames */
+                if (conv_pw(m, l, a, n, NULL, blk, st->lg, st->xt) < 0) return -1;
+                fq_logp(m, st->lg, n, logp + (size_t)t0 * m->ctok);
+                break;
+            } else if (conv(m, l, a, n, b, blk, NULL, st->xt) < 0) return -1;
+            int8_t *t = a; a = b; b = t;
+        }
+        st->nout += n;
+    }
+    return st->nout;
 }

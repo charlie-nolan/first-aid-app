@@ -82,9 +82,10 @@ static SemaphoreHandle_t lock;
 static vs_screen_t *staged;                 /* worker -> main (main copies it into ui.vs on MSG_VSCREEN) */
 static vs_hit_t *staged_hits; static int staged_nhits; static char staged_q[64];
 /* ---------- the worker: speech + form + search, one job at a time ---------- */
-enum { J_SPEECH, J_OP };
+enum { J_SPEECH, J_OP, J_LISTEN, J_CANCEL };
 typedef struct { uint8_t op, target; vb_op_t o; } job_t;
 static QueueHandle_t jobs;
+static bool streaming;                      /* worker only: a stream was begun for the clip being recorded */
 
 static void post(msg_type_t t) { app_msg_t m = { .type = t }; xQueueSend(app_q, &m, pdMS_TO_TICKS(200)); }
 static void words_of(const asr_hyp_t *h, char *text, size_t cap) {
@@ -100,8 +101,18 @@ static void worker(void *arg) {
         if (xQueueReceive(jobs, &j, portMAX_DELAY) != pdTRUE) continue;
         int64_t t0 = esp_timer_get_time();
         bool ok;
+        if (j.op == J_LISTEN) {                     /* TALK held: front end + model + search on the clip so far */
+            if (asr_ok && asr_stream_begin() == ASR_OK) {
+                streaming = true;
+                while (recording) { asr_stream_feed(clip, clip_n); vTaskDelay(pdMS_TO_TICKS(30)); }
+            }
+            continue;
+        }
+        if (j.op == J_CANCEL) { if (streaming) { asr_stream_end(clip, clip_n, &h); streaming = false; } continue; }
         if (j.op == J_SPEECH) {
-            if (!asr_ok || asr_decode(clip, clip_n, &h) != ASR_OK) { memset(&h, 0, sizeof h); h.reject = 100; }
+            asr_err_t ae = !asr_ok ? ASR_NOT_BUILT : streaming ? asr_stream_end(clip, clip_n, &h) : asr_decode(clip, clip_n, &h);
+            streaming = false;
+            if (ae != ASR_OK) { memset(&h, 0, sizeof h); h.reject = 100; }
             words_of(&h, text, sizeof text);
             uint32_t a, b, c; asr_last_timing(&a, &b, &c);
             ESP_LOGI(TAG, "heard (reject %d, %lu+%lu+%lu ms): %s", h.reject, (unsigned long)(a / 1000), (unsigned long)(b / 1000),
@@ -154,6 +165,8 @@ void voice_start(void) {
     size_t np = sizeof pre / 2, p = pre_pos;               /* pre-roll: whatever the mic had just before */
     for (size_t i = 0; i < np; i++) clip[i] = pre[(p + i) % np];
     clip_n = np; recording = true;
+    job_t j = { .op = J_LISTEN };
+    xQueueSend(jobs, &j, 0);
 }
 static void mic_off(void) {
     if (!mic_on) return;
@@ -166,7 +179,7 @@ void voice_stop_to(bool recognise, int target) {
     if (recognise) vTaskDelay(pdMS_TO_TICKS(250));          /* keep the last word's tail */
     recording = false;
     mic_off();
-    if (!recognise) return;
+    if (!recognise) { job_t c = { .op = J_CANCEL }; xQueueSend(jobs, &c, pdMS_TO_TICKS(100)); return; }
     job_t j = { .op = J_SPEECH, .target = (uint8_t)target };
     xQueueSend(jobs, &j, pdMS_TO_TICKS(100));
 }

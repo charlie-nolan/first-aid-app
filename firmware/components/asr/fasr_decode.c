@@ -178,15 +178,18 @@ static double round3(double v) { return nearbyint(v * 1000.0) / 1000.0; }
 
 size_t fd_ws_size(void) { return sizeof(fd_ws_t); }
 
-int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal, void *wsv, fd_result_t *r) {
+void fd_begin(const fd_lex_t *x, void *wsv) {
     fd_ws_t *w = wsv;
-    memset(r, 0, sizeof *r);
     w->nseq = 0; memset(w->sh, 0, sizeof w->sh);
     w->ne = 0; memset(w->eh, 0, sizeof w->eh);
+    w->nb = 1; w->beam[0].seq = -1; w->beam[0].node = 0; w->beam[0].last = (uint8_t)x->sep; w->beam[0].pb = 0.0; w->beam[0].pnb = NEG;
+}
+/* frames [t0, t1) of the beam search (frame-synchronous: fed in chunks or all at once, the same result) */
+void fd_frames(const fd_lex_t *x, const float *logp, int t0, int t1, void *wsv) {
+    fd_ws_t *w = wsv;
     int C = x->ntok, B = x->blank, SEP = x->sep;
-    w->nb = 1; w->beam[0].seq = -1; w->beam[0].node = 0; w->beam[0].last = (uint8_t)SEP; w->beam[0].pb = 0.0; w->beam[0].pnb = NEG;
     int fs[64]; double fdl[64];
-    for (int t = 0; t < T; t++) {
+    for (int t = t0; t < t1; t++) {
         const float *rowf = logp + (size_t)t * C;
         double row[FD_MAX_TOK];
         for (int c = 0; c < C; c++) row[c] = rowf[c];
@@ -252,6 +255,12 @@ int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
         }
         if (w->nseq > FD_MAX_SEQ / 2) compact(w);   /* ids never affect order, only space */
     }
+}
+int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal, void *wsv, fd_result_t *r) {
+    fd_ws_t *w = wsv;
+    memset(r, 0, sizeof *r);
+    int C = x->ntok, B = x->blank;
+    int fs[64]; double fdl[64];
     /* final: close every beam, fit to 16 words, merge equal fitted tuples (first-seen order) */
     static struct { uint16_t w[FD_MAX_WORDS]; uint8_t n; double sc; int full; } fin[256];
     int nfin = 0;
@@ -369,4 +378,10 @@ int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
     }
     free(best);
     return r->n;
+}
+
+int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal, void *wsv, fd_result_t *r) {
+    fd_begin(x, wsv);
+    fd_frames(x, logp, 0, T, wsv);
+    return fd_finish(x, logp, T, cal, wsv, r);
 }

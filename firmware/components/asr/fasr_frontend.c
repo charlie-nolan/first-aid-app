@@ -98,16 +98,16 @@ static void fftf(float *re, float *im) {
 
 int fe_frames(int n) { if (n < FE_WIN) n = FE_WIN; return 1 + (n - FE_WIN) / FE_HOP; }
 
-int fe_logmel(const int16_t *pcm, int n, float *out) {
+int fe_logmel(const int16_t *pcm, int n, float *out) { int T = fe_frames(n); fe_logmel_range(pcm, n, 0, T, out); return T; }
+void fe_logmel_range(const int16_t *pcm, int n, int t0, int T, float *out) {
     if (!ready) setup();
-    int T = fe_frames(n);
     double pw[FE_NFFT / 2 + 1];
 #ifdef FE_FAST
     float re[FE_NFFT], im[FE_NFFT];
 #else
     double re[FE_NFFT], im[FE_NFFT];
 #endif
-    for (int t = 0; t < T; t++) {
+    for (int t = t0; t < T; t++) {
         for (int i = 0; i < FE_NFFT; i++) {
             int si = t * FE_HOP + i;
             float x = (i < FE_WIN && si < n) ? (float)pcm[si] / 32768.0f : 0.0f;   /* float32 as numpy */
@@ -133,5 +133,4 @@ int fe_logmel(const int16_t *pcm, int n, float *out) {
             out[(size_t)t * FE_NMEL + m] = (float)log(s + 1e-6);
         }
     }
-    return T;
 }

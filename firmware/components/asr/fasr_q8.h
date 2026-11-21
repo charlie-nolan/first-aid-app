@@ -44,3 +44,13 @@ void fq_logp(const fq_model_t *m, const int32_t *logits, int T, float *logp);
 
 /* time per stage, microseconds, summed since boot (0 on the PC): quantise, pointwise, depthwise, other, softmax */
 extern uint32_t fq_prof_us[5];
+
+/* Streaming: feed the log-mel frames as they arrive (TALK still held); each model frame is computed once, from
+ * the same inputs and with the same integer sums as fq_forward, so the log-probs are identical. */
+typedef struct {
+    const fq_model_t *m; int Tmax, nin, nout;
+    int8_t *xin, *hist, *pl[4], *xt, *col; int32_t *lg;
+} fq_stream_t;
+size_t fq_stream_size(const fq_model_t *m, int Tmax);          /* bytes for fq_stream_init's mem (Tmax feature frames) */
+void fq_stream_init(fq_stream_t *st, const fq_model_t *m, void *mem, int Tmax);
+int fq_stream_feed(fq_stream_t *st, const float *feats, int nfeat, bool final, float *logp);

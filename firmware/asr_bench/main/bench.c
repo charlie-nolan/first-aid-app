@@ -50,6 +50,17 @@ static void run(void *arg) {
                t / 1000, (unsigned long)(a / 1000), (unsigned long)(b / 1000), (unsigned long)(d / 1000), h.reject, h.reject_raw, h.veto ? " veto" : "");
         for (int k = 0; h.n && k < h.h[0].len; k++) { const char *w = asr_word(h.h[0].id[k]); printf(" %s", w ? w : "<unk>"); }
         printf("\n");
+        {   /* streaming: feed 0.32 s pieces (as while TALK is held), then time what is left after release */
+            static asr_hyp_t h2; asr_stream_begin();
+            int64_t s0 = esp_timer_get_time();
+            for (uint32_t fed = 5120; fed < n; fed += 5120) asr_stream_feed((const int16_t *)(c + 4), fed);
+            int64_t s1 = esp_timer_get_time();
+            asr_stream_end((const int16_t *)(c + 4), n, &h2);
+            int64_t s2 = esp_timer_get_time();
+            int same = h2.n == h.n && h2.reject == h.reject && (!h.n || (h2.h[0].len == h.h[0].len && !memcmp(h2.h[0].id, h.h[0].id, 2 * h.h[0].len)));
+            printf("STREAM %02d while held %lld ms (%.2f s audio), after release %lld ms, %s\n", i, (s1 - s0) / 1000, n / 16000.0,
+                   (s2 - s1) / 1000, same ? "same words" : "DIFFERENT");
+        }
         printf("PROF %02d quant %lu pw %lu dw %lu other %lu softmax %lu ms\n", i, fq_prof_us[0] / 1000, fq_prof_us[1] / 1000,
                fq_prof_us[2] / 1000, fq_prof_us[3] / 1000, fq_prof_us[4] / 1000);
         memset(fq_prof_us, 0, sizeof fq_prof_us);

@@ -41,3 +41,7 @@ const char *fd_word(const fd_lex_t *x, uint16_t id);
 size_t fd_ws_size(void);
 /* logp: T x ntok float log-probs (fasr_q8 fq_logp). cal may be NULL (raw reject). Returns n. */
 int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal, void *ws, fd_result_t *r);
+/* the same in steps, for streaming: begin, frames as they arrive, finish once the clip ends (same result) */
+void fd_begin(const fd_lex_t *x, void *ws);
+void fd_frames(const fd_lex_t *x, const float *logp, int t0, int t1, void *ws);
+int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal, void *ws, fd_result_t *r);
