@@ -45,7 +45,7 @@ import torch
 import yaml
 
 from . import lexicon as lx
-from .features import FMAX, FMIN, HOP, NFFT, NMEL, SR, WIN, logmel
+from .features import FMAX, FMIN, HOP, NFFT, NMEL, SR, WIN, frontend_name, logmel
 
 WORK = Path(os.environ.get("WORK", "/mnt/data/first-aid-gpu"))
 FORMAT = "FASR-Q8 v1"
@@ -309,7 +309,7 @@ def main(argv=None):
     meta = write_bin(q, out)
     meta.update(format=FORMAT, e_in=q["e_in"], mu=q["mu"].tolist(), sd=q["sd"].tolist(), commit=commit, run=a.run, frontend=dict(
         sr=SR, win=WIN, hop=HOP, nfft=NFFT, nmel=NMEL, fmin=FMIN, fmax=FMAX, window="hann(periodic, N+1 drop last)",
-        log="ln(power + 1e-6)", out_stride=2, note="pipeline/speech/fasr/features.py is the reference"))
+        log="ln(power + 1e-6)", out_stride=2, impl=frontend_name(), note="golden feats come from this implementation"))
     (out / "model.json").write_text(json.dumps(meta, indent=1))
     write_header(q, out, commit)
 

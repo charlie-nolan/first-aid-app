@@ -81,3 +81,11 @@ def test_long_sentence_still_decodes():
     assert len(top) <= 16
     for w in ("ankle", "swollen", "bleeding", "not"):
         assert ids[w] in top
+
+
+def test_device_frontend_close_to_numpy():
+    """E1: the device's float32 C front end stays within float32 rounding of the numpy reference."""
+    from fasr.features import logmel_np
+    x = (np.random.default_rng(1).standard_normal(16000) * 3000).astype(np.int16)
+    a, b = logmel(x), logmel_np(x)
+    assert a.shape == b.shape and np.abs(a - b).max() < 1e-3

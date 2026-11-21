@@ -4,9 +4,13 @@
 40 mel bands 60-7600 Hz (the PDM mic gives little below/above), log(power + 1e-6).
 Per-utterance mean removal is NOT used (it needs the whole clip; the device streams);
 instead the model starts with a fixed affine norm learned from training data stats.
-The numpy version is the reference the C port must match.
+The numpy version (logmel_np) is the readable reference. Since E1 (2026-11-20) the device runs a
+float32 FFT, so logmel() runs that same C file (fasr/cfe.py) for evaluation and golden files.
+FASR_FE=numpy switches back to the float64 numpy path.
 """
 from __future__ import annotations
+
+import os
 
 import numpy as np
 
@@ -35,8 +39,23 @@ _MEL = mel_matrix()
 _WIN = np.hanning(WIN + 1)[:WIN].astype(np.float32)
 
 
+def frontend_name() -> str:
+    if os.environ.get("FASR_FE", "device") == "numpy":
+        return "numpy float64 (features.logmel_np)"
+    from .cfe import NAME
+    return NAME
+
+
 def logmel(x: np.ndarray) -> np.ndarray:
-    """int16 or float [-1,1] mono 16 kHz -> (frames, 40) float32."""
+    """int16 or float [-1,1] mono 16 kHz -> (frames, 40) float32, as the device computes it."""
+    if os.environ.get("FASR_FE", "device") == "numpy":
+        return logmel_np(x)
+    from .cfe import logmel as c_logmel
+    return c_logmel(x)
+
+
+def logmel_np(x: np.ndarray) -> np.ndarray:
+    """int16 or float [-1,1] mono 16 kHz -> (frames, 40) float32. float64 numpy reference."""
     x = np.asarray(x)
     if x.dtype == np.int16:
         x = x.astype(np.float32) / 32768.0
