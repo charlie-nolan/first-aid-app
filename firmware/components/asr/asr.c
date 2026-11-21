@@ -10,15 +10,12 @@
 #include "esp_heap_caps.h"
 #include "esp_timer.h"
 static void *big(size_t n) { return heap_caps_malloc(n, MALLOC_CAP_SPIRAM); }
-static void *fast(size_t n) {   /* internal RAM when it fits (the model's planes are read most) */
-    void *p = heap_caps_malloc(n, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
-    return p ? p : big(n);
-}
+static void *fast_tmp(size_t n) { return heap_caps_malloc(n, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT); }
 static int64_t now_us(void) { return esp_timer_get_time(); }
 #else
 #include <time.h>
 static void *big(size_t n) { return malloc(n); }
-static void *fast(size_t n) { return malloc(n); }
+static void *fast_tmp(size_t n) { (void)n; return NULL; }
 static int64_t now_us(void) { struct timespec t; clock_gettime(CLOCK_MONOTONIC, &t); return t.tv_sec * 1000000LL + t.tv_nsec / 1000; }
 #endif
 
@@ -67,7 +64,7 @@ asr_err_t asr_open_cart(const void *rom, size_t len) {
     int T = fe_frames(16000 * ASR_MAX_SECONDS), To = fq_out_len(&M, T);
     feats = big(sizeof(float) * 40 * T); logp = big(sizeof(float) * M.ctok * To);
     logits = big(sizeof(int32_t) * M.ctok * To);
-    ws_model = fast(fq_ws_size(&M, T)); ws_dec = big(fd_ws_size());
+    ws_model = big(fq_ws_size(&M, T)); ws_dec = big(fd_ws_size());
     if (!feats || !logp || !logits || !ws_model || !ws_dec) return ASR_NO_MEMORY;
     ready = true;
     return ASR_OK;
@@ -82,7 +79,11 @@ asr_err_t asr_decode(const int16_t *pcm, size_t samples, asr_hyp_t *out) {
     int64_t t0 = now_us();
     int T = fe_logmel(pcm, (int)samples, feats);
     int64_t t1 = now_us();
-    int To = fq_forward(&M, feats, T, ws_model, logits, NULL, NULL);
+    /* the work planes for THIS clip in internal RAM when they fit (~4 x 256 x frames bytes), else the
+     * PSRAM ones sized for ASR_MAX_SECONDS */
+    void *ws = fast_tmp(fq_ws_size(&M, T)), *wsm = ws ? ws : ws_model;
+    int To = fq_forward(&M, feats, T, wsm, logits, NULL, NULL);
+    if (ws) free(ws);
     fq_logp(&M, logits, To, logp);
     int64_t t2 = now_us();
     static fd_result_t r;

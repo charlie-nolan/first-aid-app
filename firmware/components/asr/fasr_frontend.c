@@ -6,6 +6,7 @@
 static float win[FE_WIN];
 static float mel[FE_NMEL][FE_NFFT / 2 + 1];
 static double cs[FE_NFFT / 2], sn[FE_NFFT / 2];
+static float csf[FE_NFFT / 2], snf[FE_NFFT / 2];
 static short mlo[FE_NMEL], mhi[FE_NMEL];   /* nonzero span of each mel row (adding 0 changes nothing) */
 static int ready;
 
@@ -28,7 +29,7 @@ static void setup(void) {
         mlo[m] = FE_NFFT / 2 + 1; mhi[m] = -1;
         for (int k = 0; k <= FE_NFFT / 2; k++) if (mel[m][k] != 0.0f) { if (k < mlo[m]) mlo[m] = k; mhi[m] = k; }
     }
-    for (int i = 0; i < FE_NFFT / 2; i++) { cs[i] = cos(-2.0 * M_PI * i / FE_NFFT); sn[i] = sin(-2.0 * M_PI * i / FE_NFFT); }
+    for (int i = 0; i < FE_NFFT / 2; i++) { cs[i] = cos(-2.0 * M_PI * i / FE_NFFT); sn[i] = sin(-2.0 * M_PI * i / FE_NFFT); csf[i] = (float)cs[i]; snf[i] = (float)sn[i]; }
     ready = 1;
 }
 
@@ -54,20 +55,54 @@ static void fft(double *re, double *im) {            /* in place, radix 2, n = 5
     }
 }
 
+/* float32 FFT (FE_FAST): the chip has a hardware float unit but no double one (double is ~60 cycles an op).
+ * Plain C built with -ffp-contract=off, so the PC and the chip give the same bits; vs numpy's float64
+ * FFT the features move a little (fe_test reports by how much). */
+static void fftf(float *re, float *im) {
+    int n = FE_NFFT;
+    for (int i = 1, j = 0; i < n; i++) {
+        int bit = n >> 1;
+        for (; j & bit; bit >>= 1) j ^= bit;
+        j ^= bit;
+        if (i < j) { float t = re[i]; re[i] = re[j]; re[j] = t; t = im[i]; im[i] = im[j]; im[j] = t; }
+    }
+    for (int len = 2; len <= n; len <<= 1) {
+        int step = n / len, h = len / 2;
+        for (int i = 0; i < n; i += len)
+            for (int k = 0; k < h; k++) {
+                float wr = csf[k * step], wi = snf[k * step];
+                float *ar = re + i + k, *ai = im + i + k, *br = ar + h, *bi = ai + h;
+                float vr = *br * wr - *bi * wi, vi = *br * wi + *bi * wr;
+                float ur = *ar, ui = *ai;
+                *ar = ur + vr; *ai = ui + vi; *br = ur - vr; *bi = ui - vi;
+            }
+    }
+}
+
 int fe_frames(int n) { if (n < FE_WIN) n = FE_WIN; return 1 + (n - FE_WIN) / FE_HOP; }
 
 int fe_logmel(const int16_t *pcm, int n, float *out) {
     if (!ready) setup();
     int T = fe_frames(n);
-    double re[FE_NFFT], im[FE_NFFT], pw[FE_NFFT / 2 + 1];
+    double pw[FE_NFFT / 2 + 1];
+#ifdef FE_FAST
+    float re[FE_NFFT], im[FE_NFFT];
+#else
+    double re[FE_NFFT], im[FE_NFFT];
+#endif
     for (int t = 0; t < T; t++) {
         for (int i = 0; i < FE_NFFT; i++) {
             int si = t * FE_HOP + i;
             float x = (i < FE_WIN && si < n) ? (float)pcm[si] / 32768.0f : 0.0f;   /* float32 as numpy */
-            re[i] = i < FE_WIN ? (double)(x * win[i]) : 0.0; im[i] = 0.0;
+            re[i] = i < FE_WIN ? x * win[i] : 0; im[i] = 0;
         }
+#ifdef FE_FAST
+        fftf(re, im);
+        for (int k = 0; k <= FE_NFFT / 2; k++) pw[k] = (double)re[k] * re[k] + (double)im[k] * im[k];
+#else
         fft(re, im);
         for (int k = 0; k <= FE_NFFT / 2; k++) pw[k] = re[k] * re[k] + im[k] * im[k];
+#endif
         for (int m = 0; m < FE_NMEL; m++) {
             double s = 0;
             for (int k = mlo[m]; k <= mhi[m]; k++) s += pw[k] * mel[m][k];

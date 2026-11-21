@@ -2,6 +2,21 @@
 #include "fasr_q8.h"
 #include <math.h>
 #include <string.h>
+#ifdef ESP_PLATFORM
+#include "sdkconfig.h"
+#endif
+
+/* Exact int8 dot product of n16 blocks of 16 bytes, both 16-byte aligned: the S3 vector unit on the chip
+ * (fasr_dot_s3.S), plain C elsewhere. Integer sums, so both give the same value. */
+#if defined(ESP_PLATFORM) && CONFIG_IDF_TARGET_ESP32S3
+int32_t fq_dot16(const int8_t *a, const int8_t *b, int n16);
+#else
+static int32_t fq_dot16(const int8_t *a, const int8_t *b, int n16) {
+    int32_t s = 0;
+    for (int i = 0; i < 16 * n16; i++) s += (int32_t)a[i] * b[i];
+    return s;
+}
+#endif
 
 static inline uint16_t r16(const uint8_t *p) { return (uint16_t)(p[0] | p[1] << 8); }
 static inline int16_t rs16(const uint8_t *p) { return (int16_t)r16(p); }
@@ -46,7 +61,8 @@ int fq_out_len(const fq_model_t *m, int T) {
 }
 
 size_t fq_ws_size(const fq_model_t *m, int T) {
-    return 3 * (size_t)m->cmax * (T > 0 ? T : 1);   /* three int8 C x T planes (x, y, block input) */
+    /* three int8 C x T planes (x, y, block input) + one T x C plane (pointwise input, 16-byte aligned) */
+    return 4 * (size_t)m->cmax * (T > 0 ? T : 1) + 16;
 }
 
 static inline int64_t rshift_round(int64_t v, int s) {
@@ -59,9 +75,45 @@ static inline int64_t rshift_round(int64_t v, int s) {
  * Integer sums, so the loop order (per weight, then a run of t) gives the same result as the reference;
  * this order reads x in sequence and skips the padding test in the inner loop. */
 #define FQ_TMAX 2048
+
+static inline void fq_out(const uint8_t *l, int fl, int lo, int sh, int32_t acc, int o, int t, int To,
+                          int8_t *y, const int8_t *blk, int32_t *head) {
+    if (fl & 4) { head[(size_t)o * To + t] = acc; return; }
+    int64_t v = rshift_round(acc, sh);
+    if (fl & 2) v += rshift_round(blk[(size_t)o * To + t], L_ERES(l) - L_EOUT(l));
+    if (v < lo) v = lo;
+    if (v > 127) v = 127;
+    y[(size_t)o * To + t] = (int8_t)v;
+}
+
+/* pointwise (k 1, stride 1, no padding, cin a multiple of 16): x goes time-major into xt, then each
+ * output is one vector dot product of a weight row with a frame. ~95 % of the model's work. */
+static int conv_pw(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk,
+                   int32_t *head, int8_t *xt) {
+    int cin = L_CIN(l), cout = L_COUT(l), fl = L_FLAGS(l), n16 = cin / 16;
+    const int8_t *w = L_W(m, l), *ew = L_EW(m, l);
+    const uint8_t *bb = L_B(m, l);
+    int lo = (fl & 1) || (fl & 2) ? 0 : -128;
+    for (int i = 0; i < cin; i++) {
+        const int8_t *xi = x + (size_t)i * T;
+        for (int t = 0; t < T; t++) xt[(size_t)t * cin + i] = xi[t];
+    }
+    static int8_t wrow[1024] __attribute__((aligned(16)));
+    for (int o = 0; o < cout; o++) {
+        const int8_t *wo = w + (size_t)o * cin;
+        if (((uintptr_t)wo & 15) || cin > (int)sizeof wrow) { if (cin > (int)sizeof wrow) return -1; memcpy(wrow, wo, cin); wo = wrow; }
+        int32_t bias = (int32_t)r32(bb + 4 * o);
+        int sh = L_EIN(l) + ew[o] - L_EOUT(l);
+        for (int t = 0; t < T; t++)
+            fq_out(l, fl, lo, sh, bias + fq_dot16(xt + (size_t)t * cin, wo, n16), o, t, T, y, blk, head);
+    }
+    return T;
+}
 static int32_t fq_acc[FQ_TMAX];
-static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head) {
+static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head,
+                int8_t *xt) {
     int cin = L_CIN(l), cout = L_COUT(l), k = L_K(l), s = L_STRIDE(l), pad = L_PAD(l), g = L_GROUPS(l);
+    if (k == 1 && s == 1 && pad == 0 && g == 1 && cin % 16 == 0) return conv_pw(m, l, x, T, y, blk, head, xt);
     int To = (T + pad - k) / s + 1, fl = L_FLAGS(l);
     if (To > FQ_TMAX) return -1;
     const int8_t *w = L_W(m, l), *ew = L_EW(m, l);
@@ -88,14 +140,7 @@ static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, i
                 else for (int t = ta; t <= tb; t++) acc[t] += (int32_t)xi[t * s + off] * wv;
             }
         }
-        for (int t = 0; t < To; t++) {
-            if (fl & 4) { head[(size_t)o * To + t] = acc[t]; continue; }
-            int64_t v = rshift_round(acc[t], sh);
-            if (fl & 2) v += rshift_round(blk[(size_t)o * To + t], L_ERES(l) - L_EOUT(l));
-            if (v < lo) v = lo;
-            if (v > 127) v = 127;
-            y[(size_t)o * To + t] = (int8_t)v;
-        }
+        for (int t = 0; t < To; t++) fq_out(l, fl, lo, sh, acc[t], o, t, To, y, blk, head);
     }
     return To;
 }
@@ -103,6 +148,7 @@ static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, i
 int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t *logits, fq_layer_cb cb, void *ctx) {
     size_t plane = (size_t)m->cmax * (T > 0 ? T : 1);
     int8_t *x = ws, *y = x + plane, *blk = y + plane;
+    int8_t *xt = (int8_t *)(((uintptr_t)(blk + plane) + 15) & ~(uintptr_t)15);
     double sc = ldexp(1.0, m->e_in);
     for (int c = 0; c < 40; c++) {                       /* (feats - mu) / sd, quantised; channel-major */
         double mu = rf(m->mu + 4 * c), sd = rf(m->sd + 4 * c);
@@ -116,7 +162,7 @@ int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t
         const uint8_t *l = LAYER(m, i);
         int is_dw = L_GROUPS(l) > 1;
         if (is_dw) memcpy(blk, x, (size_t)L_CIN(l) * Tc);  /* block input, for the residual */
-        int To = conv(m, l, x, Tc, y, blk, logits);
+        int To = conv(m, l, x, Tc, y, blk, logits, xt);
         if (To < 0) return -1;
         if (L_FLAGS(l) & 4) return To;
         if (cb) cb(ctx, i, y, L_COUT(l), To);

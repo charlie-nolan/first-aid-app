@@ -27,6 +27,15 @@ config ASR_ENGINE_MULTINET
         What main/voice.c does today: MultiNet with the phrase list in library/phrases.txt.
 endchoice
 
+config ASR_FE_FLOAT
+    bool "Float32 FFT in the front end (fast; features move ~1 ulp from the Python)"
+    default n
+    help
+        The S3 has no double-precision hardware, so the float64 FFT is ~1 s per second of audio.
+        Float32 is ~20x faster. On 633 recordings the top words changed on 1 (noise) and no
+        reject decision flipped, but it is no longer bit-exact with pipeline/speech/fasr until the
+        speech thread builds its goldens from this C front end. Off until that re-baseline.
+
 config ASR_MAX_HYPS
     int "n-best guesses kept"
     range 1 5
