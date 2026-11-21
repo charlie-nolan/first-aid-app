@@ -52,6 +52,7 @@ static void on_tick(void *arg) {
 }
 
 static void chan(ledc_channel_t ch, int pin) {
+    if (pin < 0) return;                                 /* not fitted (e.g. the voice beta on the bench board) */
     ledc_channel_config_t c = { .gpio_num = pin, .speed_mode = LEDC_LOW_SPEED_MODE, .channel = ch,
                                 .timer_sel = LEDC_TIMER_0, .duty = 0, .hpoint = 0 };
     ledc_channel_config(&c);
@@ -66,10 +67,12 @@ void lights_init(void) {
     ledc_timer_config(&t);
     chan(CH_FRONT, PIN_FRONT);
     if (!SHARED) chan(CH_WHITE, PIN_WHITE);
-    if (PIN_IR >= 0) {
+#if PIN_IR >= 0
+    {
         gpio_config_t c = { .pin_bit_mask = 1ULL << PIN_IR, .mode = GPIO_MODE_OUTPUT, .pull_down_en = 1 };
         gpio_config(&c); gpio_set_level(PIN_IR, 0);
     }
+#endif
     esp_timer_create_args_t a = { .callback = on_tick, .name = "lights" };
     esp_timer_create(&a, &timer);
 }

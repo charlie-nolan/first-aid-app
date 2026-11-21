@@ -341,13 +341,15 @@ static void to_passage(ui_t *u, int k) {
 }
 
 /* ------------------------------------------------------------- the menu */
-enum { MI_CPR, MI_FLASH, MI_SOS, MI_IR, MI_MESH, MI_FONT, MI_FAMILY, MI_CLEAN, MI_CONTEXT, MI_HOME, MI_LIBRARY, MI_WINDOW, MI_SIG_OFF, MI_SLEEP };
+enum { MI_SEARCH, MI_FORM, MI_CPR, MI_FLASH, MI_SOS, MI_IR, MI_MESH, MI_FONT, MI_FAMILY, MI_CLEAN, MI_CONTEXT, MI_HOME, MI_LIBRARY, MI_WINDOW, MI_SIG_OFF, MI_SLEEP };
 #ifndef CONFIG_LIB_FULL_REFRESH_EVERY
 #define CONFIG_LIB_FULL_REFRESH_EVERY 15
 #endif
 static int menu_items(const ui_t *u, int *out) {
     int n = 0;
-    if (u->menu_cpr) out[n++] = MI_CPR;           /* opened from a CPR page: hold DOWN, TALK starts the pace */
+    if (u->menu_cpr) out[n++] = MI_CPR;
+    if (u->has_search) out[n++] = MI_SEARCH;
+    if (u->has_form && u->vs && (u->vs->kind == VS_FORM || u->vs->kind == VS_SKIP)) out[n++] = MI_FORM;           /* opened from a CPR page: hold DOWN, TALK starts the pace */
     out[n++] = MI_FLASH; out[n++] = MI_SOS;
     if (u->has_ir) out[n++] = MI_IR;
     if (u->has_mesh) out[n++] = MI_MESH;
@@ -365,6 +367,8 @@ static void menu_label(const ui_t *u, int item, char *b, size_t cap) {
     static const char *sizes[] = { "small", "medium", "large" };
     const char *on = "  [on]";
     switch (item) {
+    case MI_SEARCH:  snprintf(b, cap, "Search by word"); break;
+    case MI_FORM:    snprintf(b, cap, "Back to the questions"); break;
     case MI_CPR:     snprintf(b, cap, "CPR pace light%s", u->signal == SIG_CPR ? on : ""); break;
     case MI_FLASH:   snprintf(b, cap, "Flashlight%s", u->signal == SIG_FLASHLIGHT ? on : ""); break;
     case MI_SOS:     snprintf(b, cap, "SOS flash (white)%s", u->signal == SIG_SOS_WHITE ? on : ""); break;
@@ -618,7 +622,10 @@ static void render_wake(ui_t *u, cart_fb_t *fb) {
     draw_fit(u, fb, 0, 0, 2, base_of(u, 0, l.ftr_y + 1), UI_W - 10 - rw, b);
 }
 
+static ui_act_t after_(ui_t *u, ui_act_t a, uint16_t node0, uint8_t mode0);
 static void render_home(ui_t *u, cart_fb_t *fb);
+static void render_form(ui_t *u, cart_fb_t *fb);
+static void render_search(ui_t *u, cart_fb_t *fb);
 void ui_render(ui_t *u, cart_fb_t *fb) {
     char b[64];
     fb_clear(fb);
@@ -638,6 +645,8 @@ void ui_render(ui_t *u, cart_fb_t *fb) {
     case M_CTX_VALUES: { uint8_t v[97]; draw_list(u, fb, "Pick one", 0, ctx_values(u, v), u->list_sel, lbl_value, 0); break; }
     case M_MENU: { int it[LIST_MAX]; draw_list(u, fb, "Menu", 0, menu_items(u, it), u->list_sel, lbl_menu, "Hold BACK: front light"); break; }
     case M_HOME: render_home(u, fb); break;
+    case M_FORM: render_form(u, fb); break;
+    case M_SEARCH: render_search(u, fb); break;
     case M_PICK:
         if (u->has_window_keys) {
             char ab[4][64];
@@ -870,6 +879,8 @@ static ui_act_t menu_select(ui_t *u, ui_act_t a) {
         return a;
     }
     case MI_CONTEXT: u->mode = M_CTX_DIMS; u->list_sel = 0; return a;
+    case MI_SEARCH:  u->mode = M_SEARCH; u->squery[0] = 0; u->nhits = 0; u->hsel = 0; return a;
+    case MI_FORM:    u->mode = M_FORM; return a;
     case MI_HOME:    open_home(u); return a;
     case MI_LIBRARY: open_library(u); return a;
     case MI_WINDOW: u->s->cur = (uint8_t)((u->s->cur + 1) % UI_WINDOWS); u->mode = M_READ; return a;
@@ -880,14 +891,138 @@ static ui_act_t menu_select(ui_t *u, ui_act_t a) {
     return a;
 }
 
+/* ------------------------------------------------- board voice: the form and keyword search
+ * Buttons first: every form screen works without speaking.
+ *   Form:   TALK tap = pick the highlighted choice   hold TALK = say the answer
+ *           DOWN / UP = next / previous choice (DOWN runs on into the next question)
+ *           WIN_R / WIN_L = next / previous question   hold DOWN = the likely cards (skip)
+ *           BACK = back to reading (the questions stay: Menu > Back to the questions)
+ *   Search: hold TALK and say one word; 4 x 2 tiles, life cards white on black
+ *           DOWN / UP = next / previous tile, WIN_R / WIN_L = page, TALK tap = open, BACK = leave */
+static const char *vs_heard(ui_t *u, char *b, size_t cap) {
+    if (u->vs_status[0]) return u->vs_status;
+    if (u->vs->heard[0]) { snprintf(b, cap, "Heard: %s", u->vs->heard); return b; }
+    return "Voice";
+}
+static void lbl_vs_choice(ui_t *u, int i, char *b, size_t cap) { snprintf(b, cap, "%d  %s", i + 1, u->vs->f[u->vs_f].ch[i].label); }
+static void lbl_vs_card(ui_t *u, int i, char *b, size_t cap) { snprintf(b, cap, "%d  %s", i + 1, u->vs->cards[i].title); }
+static void render_form(ui_t *u, cart_fb_t *fb) {
+    vs_screen_t *v = u->vs; lay_t l = layout(u); char h[160];
+    if (!v) { header(u, fb, "Voice", 0); return; }
+    if (v->kind == VS_FORM && v->nf) {
+        vs_field_t *f = &v->f[u->vs_f < v->nf ? u->vs_f : 0];
+        char r[16]; snprintf(r, sizeof r, "%d/%d", u->vs_f + 1, v->nf);
+        draw_list(u, fb, f->key[0] == '@' ? "Which is it?" : f->q, r, f->nch, u->vs_c, lbl_vs_choice,
+                  u->vs_status[0] ? u->vs_status : "TALK: pick  hold TALK: say it  DOWN: next  BACK: reading");
+    } else if (v->kind == VS_SKIP && v->ncards) {
+        draw_list(u, fb, "Likely cards", 0, v->ncards, u->vs_card, lbl_vs_card,
+                  u->vs_status[0] ? u->vs_status : "TALK: open  DOWN: next  BACK: reading");
+    } else {
+        header(u, fb, vs_heard(u, h, sizeof h), 0);
+        const char *m = v->kind == VS_CARD ? v->card.title
+                      : v->msg[0] ? v->msg : v->kind == VS_AGAIN ? "Didn't catch that. Hold TALK and say it again."
+                      : "Hold TALK and say what happened.";
+        draw_wrap(u, fb, 1, 6, l.body_y, UI_W - 12, l.body_h, m);
+        footer(u, fb, "Hold TALK: speak   BACK: reading");
+    }
+}
+static void render_search(ui_t *u, cart_fb_t *fb) {
+    lay_t l = layout(u); char h[120];
+    int np = (u->nhits + 7) / 8, pg = u->hsel / 8;
+    if (!u->squery[0] || u->nhits <= 0) {
+        header(u, fb, "Search by word", 0);
+        const char *m = u->vs_status[0] ? u->vs_status : !u->squery[0] ? "Hold TALK and say one word, like burn or ankle."
+                      : u->nhits < 0 ? "Didn't catch that. Hold TALK and say one word." : "No cards for that word. Hold TALK and say another.";
+        draw_wrap(u, fb, 1, 6, l.body_y, UI_W - 12, l.body_h, m);
+        footer(u, fb, "Hold TALK: say a word   BACK: leave");
+        return;
+    }
+    snprintf(h, sizeof h, "'%s'", u->squery);
+    char r[24]; snprintf(r, sizeof r, "%d/%d", pg + 1, np);
+    header(u, fb, h, r);
+    int cw = UI_W / 4, ch = (l.ftr_y - l.body_y + 1) / 2;
+    for (int i = 0; i < 8; i++) {
+        int k = pg * 8 + i;
+        if (k >= u->nhits) break;
+        int x0 = (i % 4) * cw, y0 = l.body_y - 2 + (i / 4) * ch;
+        draw_wrap(u, fb, 0, x0 + 3, y0 + 2, cw - 6, ch - 4, u->hits[k].title);
+        if (u->hits[k].life) fb_xor_rect(fb, x0 + 1, y0 + 1, cw - 2, ch - 2);
+        for (int x = x0; x < x0 + cw; x++) { fb_px(fb, x, y0); fb_px(fb, x, y0 + ch - 1); }
+        for (int y = y0; y < y0 + ch; y++) { fb_px(fb, x0, y); fb_px(fb, x0 + cw - 1, y); }
+        if (k == u->hsel) {                               /* highlight: an inner frame, XOR so it shows on black */
+            fb_xor_rect(fb, x0 + 2, y0 + 2, cw - 4, 1); fb_xor_rect(fb, x0 + 2, y0 + ch - 3, cw - 4, 1);
+            fb_xor_rect(fb, x0 + 2, y0 + 3, 1, ch - 6); fb_xor_rect(fb, x0 + cw - 3, y0 + 3, 1, ch - 6);
+        }
+    }
+    footer(u, fb, u->vs_status[0] ? u->vs_status : "TALK: open  DOWN/UP: move  BACK: leave");
+}
+static void vs_move(ui_t *u, int d) {
+    vs_screen_t *v = u->vs;
+    if (v->kind == VS_FORM && v->nf) {
+        int c = u->vs_c + d, f = u->vs_f;
+        if (c >= v->f[f].nch) { f = (f + 1) % v->nf; c = 0; }
+        if (c < 0) { f = (f + v->nf - 1) % v->nf; c = v->f[f].nch - 1; }
+        u->vs_f = (uint8_t)f; u->vs_c = (uint8_t)c;
+    } else if (v->kind == VS_SKIP && v->ncards) u->vs_card = (uint8_t)((u->vs_card + d + v->ncards) % v->ncards);
+}
+static ui_act_t form_event(ui_t *u, ui_btn_t b, ui_evkind_t k, ui_act_t a) {
+    vs_screen_t *v = u->vs;
+    if (!v) { u->mode = M_READ; return a; }
+    u->vs_status[0] = 0;
+    if (b == B_DOWN && k == E_LONG) { a.vf = VF_SKIP; snprintf(u->vs_status, sizeof u->vs_status, "Looking for cards..."); return a; }
+    if (k != E_SHORT) { a.redraw = RD_NONE; return a; }
+    if (b == B_TALK) {
+        if (v->kind == VS_FORM && v->nf) { a.vf = VF_PICK; snprintf(u->vs_status, sizeof u->vs_status, "Picked: %s", v->f[u->vs_f].ch[u->vs_c].label); }
+        else if (v->kind == VS_SKIP && v->ncards) { a.vf = VF_OPEN; snprintf(u->vs_status, sizeof u->vs_status, "Opening..."); }
+        else a.redraw = RD_NONE;
+    } else if (b == B_DOWN) vs_move(u, +1);
+    else if (b == B_UP) vs_move(u, -1);
+    else if ((b == B_WIN_R || b == B_WIN_L) && v->kind == VS_FORM && v->nf) {
+        u->vs_f = (uint8_t)((u->vs_f + (b == B_WIN_R ? 1 : v->nf - 1)) % v->nf); u->vs_c = 0;
+    } else if (b == B_BACK) u->mode = M_READ;
+    else a.redraw = RD_NONE;
+    return a;
+}
+static ui_act_t search_event(ui_t *u, ui_btn_t b, ui_evkind_t k, ui_act_t a) {
+    if (k != E_SHORT) { a.redraw = RD_NONE; return a; }
+    u->vs_status[0] = 0;
+    int n = u->nhits > 0 ? u->nhits : 0, np = (n + 7) / 8;
+    if (b == B_BACK) { u->mode = M_READ; return a; }
+    if (!n) { a.redraw = RD_NONE; return a; }
+    if (b == B_DOWN) u->hsel = (int16_t)((u->hsel + 1) % n);
+    else if (b == B_UP) u->hsel = (int16_t)((u->hsel + n - 1) % n);
+    else if (b == B_WIN_R) { u->hsel = (int16_t)(((u->hsel / 8 + 1) % np) * 8); }
+    else if (b == B_WIN_L) { u->hsel = (int16_t)(((u->hsel / 8 + np - 1) % np) * 8); }
+    else if (b == B_TALK) {
+        uint16_t nd = u->hits[u->hsel].cart_node;
+        if (nd == CART_NONE || !cart_node(u->c, nd)) { snprintf(u->vs_status, sizeof u->vs_status, "That card isn't in this library."); return a; }
+        go_node(u, nd); u->ret_mode = M_SEARCH; u->ret_node = nd;
+    } else a.redraw = RD_NONE;
+    return a;
+}
+ui_act_t ui_vscreen(ui_t *u) {
+    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0 };
+    uint16_t node0 = W(u)->node; uint8_t mode0 = (uint8_t)u->mode;
+    u->listening = 0; u->vs_f = u->vs_c = u->vs_card = 0; u->vs_status[0] = 0;
+    if (u->vs->kind == VS_CARD && u->vs->card.cart_node != CART_NONE && cart_node(u->c, u->vs->card.cart_node)) {
+        go_node(u, u->vs->card.cart_node); u->ret_mode = M_FORM; u->ret_node = u->vs->card.cart_node;
+    } else u->mode = M_FORM;
+    return after_(u, a, node0, mode0);
+}
+ui_act_t ui_vsearch(ui_t *u) {
+    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0 };
+    u->listening = 0; u->hsel = 0; u->vs_status[0] = 0; u->mode = M_SEARCH;
+    return a;
+}
+
 static ui_act_t event_(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
-    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0 };
+    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0 };
 
     if (b == B_BACK && k == E_LONG) { a.light_step = 1; a.redraw = RD_NONE; return a; }   /* front light, any screen */
 
     /* push-to-talk: TALK down starts listening, release recognises. A quick tap is a normal TALK press. */
     if (b == B_TALK && u->has_voice && k == E_PRESS &&
-        (u->mode == M_WAKE || u->mode == M_READ || u->mode == M_HOME || u->mode == M_PICK)) u->talk_armed = 1;
+        (u->mode == M_WAKE || u->mode == M_READ || u->mode == M_HOME || u->mode == M_PICK || u->mode == M_FORM || u->mode == M_SEARCH)) u->talk_armed = 1;
     if (b == B_TALK && u->talk_armed) {               /* only presses that started on a reading screen */
         if (k == E_PRESS) { a.voice = VO_START; a.redraw = RD_NONE; return a; }
         if (k == E_LONG) { u->listening = 1; return a; }                  /* show MIC */
@@ -932,6 +1067,7 @@ static ui_act_t event_(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
         if (b == B_DOWN) step(u, +1, !u->has_window_keys);
         else if (b == B_UP) step(u, -1, 0);
         else if (b == B_TALK) talk_short(u);
+        else if (b == B_BACK && u->ret_mode && W(u)->node == u->ret_node) { u->mode = (ui_mode_t)u->ret_mode; u->ret_mode = 0; }
         else if (b == B_BACK) back(u);
         else if (b == B_WIN_L) u->s->cur = (uint8_t)((u->s->cur + UI_WINDOWS - 1) % UI_WINDOWS);
         else if (b == B_WIN_R) u->s->cur = (uint8_t)((u->s->cur + 1) % UI_WINDOWS);
@@ -1006,6 +1142,8 @@ static ui_act_t event_(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
     case M_MSG:
         u->mode = u->back_mode;
         break;
+    case M_FORM: return form_event(u, b, k, a);
+    case M_SEARCH: return search_event(u, b, k, a);
     }
     return a;
 }
@@ -1058,7 +1196,7 @@ static ui_act_t voice_key(ui_t *u, const int *cmd, const float *prob, int n, ui_
 }
 
 static ui_act_t voice_(ui_t *u, const int *cmd, const float *prob, int n) {
-    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0 };
+    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0 };
     u->listening = 0;
     if (n > 0 && u->voice_numbers && UI_VOICE_IS_KEY(cmd[0])) return voice_key(u, cmd, prob, n, a);
     u->npicks = 0;

@@ -4,6 +4,7 @@
  * cartridge, restore the 5 reading windows from RTC memory, show the wake
  * screen ("Life threat? Call 911 / SOS first."). Then handle buttons and voice
  * until idle, draw the sleep card, and deep sleep until a button is pressed. */
+#include <stdio.h>
 #include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -21,6 +22,7 @@
 #include "lights.h"
 #include "power.h"
 #include "voice.h"
+#include "esp_heap_caps.h"
 void psram_test_start(void);
 #include "cart.h"
 
@@ -169,6 +171,12 @@ void app_main(void) {
     show(RD_FULL);                                   /* wake screen */
     buttons_init();
     ui.has_voice = voice_init(&cart);
+#if CONFIG_LIB_VOICE_DIY
+    ui.vs = heap_caps_calloc(1, sizeof *ui.vs, MALLOC_CAP_SPIRAM);
+    ui.hits = heap_caps_calloc(VS_HITS, sizeof *ui.hits, MALLOC_CAP_SPIRAM);
+    ui.has_form = ui.has_voice && ui.vs && voice_has_form();
+    ui.has_search = ui.has_voice && ui.hits && voice_has_search();
+#endif
     psram_test_start();                              /* no-op unless Kconfig LIB_PSRAM_TEST */
 #if CONFIG_LIB_VOICE && CONFIG_LIB_VOICE_NUMBERS
     ui.voice_numbers = ui.has_voice;
@@ -183,11 +191,22 @@ void app_main(void) {
         if (xQueueReceive(app_q, &m, pdMS_TO_TICKS(1000))) {
             last = esp_timer_get_time();
             if (m.type == MSG_BUTTON && combo_filter(&m)) continue;
-            ui_act_t a = m.type == MSG_BUTTON ? ui_event(&ui, (ui_btn_t)m.btn, (ui_evkind_t)m.kind, m.held_ms)
-                                              : ui_voice(&ui, m.cmd, m.prob, m.n);
+            ui_act_t a;
+            if (m.type == MSG_BUTTON) a = ui_event(&ui, (ui_btn_t)m.btn, (ui_evkind_t)m.kind, m.held_ms);
+            else if (m.type == MSG_VSCREEN) { voice_take(ui.vs, 0, 0, 0, 0); a = ui_vscreen(&ui); }
+            else if (m.type == MSG_VSEARCH) { voice_take(0, ui.hits, &ui.nhits, ui.squery, sizeof ui.squery); a = ui_vsearch(&ui); }
+            else a = ui_voice(&ui, m.cmd, m.prob, m.n);
             if (a.voice == VO_START) voice_start();
+            else if (a.voice == VO_STOP && ui.vs) {          /* board voice: the clip goes to the form or the search */
+                int to = ui.mode == M_SEARCH ? VT_SEARCH : ui.mode == M_FORM ? VT_ANSWER : VT_NEW;
+                if (to == VT_NEW) { ui.vs->kind = VS_START; ui.vs->heard[0] = ui.vs->msg[0] = 0; ui.mode = M_FORM; }
+                snprintf(ui.vs_status, sizeof ui.vs_status, "Thinking...");
+                voice_stop_to(true, to);
+                a.redraw = RD_PARTIAL;
+            }
             else if (a.voice == VO_STOP) voice_stop(true);
             else if (a.voice == VO_CANCEL) voice_stop(false);
+            if (a.vf) voice_form_op(a.vf, &ui);
             if (a.light_step) { saved.light = (uint8_t)((saved.light + 1) % 3); lights_front(saved.light); }
             if (a.signal >= 0) lights_signal((uint8_t)a.signal);
             if (a.mesh) power_mesh(saved.mesh_on);

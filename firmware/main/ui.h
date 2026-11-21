@@ -21,9 +21,30 @@ extern const uint8_t ui_sleep_art[];   /* sleep_art.c: built-in sleep picture */
 typedef enum { B_TALK, B_BACK, B_WIN_L, B_WIN_R, B_UP, B_DOWN, B_COUNT } ui_btn_t;
 typedef enum { E_PRESS, E_SHORT, E_LONG, E_RELEASE } ui_evkind_t;
 typedef enum { SIG_OFF, SIG_FLASHLIGHT, SIG_SOS_WHITE, SIG_IR, SIG_CPR } ui_signal_t;   /* SIG_CPR: compression pace on the front light */
-typedef enum { M_WAKE, M_READ, M_LIBRARY, M_MENU, M_PICK, M_MSG, M_CTX_DIMS, M_CTX_VALUES, M_HOME } ui_mode_t;
+typedef enum { M_WAKE, M_READ, M_LIBRARY, M_MENU, M_PICK, M_MSG, M_CTX_DIMS, M_CTX_VALUES, M_HOME, M_FORM, M_SEARCH } ui_mode_t;
 enum { RD_NONE, RD_PARTIAL, RD_FULL, RD_DEEP };   /* RD_DEEP: full black-white flash, e.g. opening a CPR page */
 enum { VO_NONE, VO_START, VO_STOP, VO_CANCEL };
+enum { VF_NONE, VF_PICK, VF_OPEN, VF_SKIP };   /* board voice form: what main sends to the form engine */
+
+/* ---- board voice (DIY speech + the fill-in-the-blanks form, main/voice_diy.c) ----
+ * One screen from the form engine (components/vform, the same frames as vr.form): the open fields with
+ * their choices, the likely cards (SKIP), "say it again", or a card. Card ids are the engine's
+ * "tree/card"; card_node is that card in this cartridge (NKEY chunk), CART_NONE if it isn't there. */
+#define VS_FIELDS 6
+#define VS_CHOICES 12
+#define VS_CARDS 6
+#define VS_HITS 40
+enum { VS_START, VS_FORM, VS_CARD, VS_SKIP, VS_AGAIN };
+typedef struct { char label[48], value[48], node[80]; } vs_choice_t;   /* value "" = plain tile, node = its card */
+typedef struct { char key[40], q[96]; uint8_t nch; vs_choice_t ch[VS_CHOICES]; } vs_field_t;
+typedef struct { char title[120], node[80]; uint16_t cart_node; } vs_card_t;
+typedef struct {
+    int seq; uint8_t kind, nf, ncards;
+    char heard[128], msg[128];
+    vs_field_t f[VS_FIELDS];
+    vs_card_t cards[VS_CARDS], card;
+} vs_screen_t;
+typedef struct { char title[96]; uint16_t cart_node; uint8_t life; } vs_hit_t;   /* keyword search tile */
 
 /* One reading window. Lives in RTC memory so it survives deep sleep. */
 typedef struct {
@@ -55,6 +76,7 @@ typedef struct {
     uint8_t mesh;                   /* 1: apply ui->saved->mesh_on */
     uint8_t sleep_now;
     uint8_t ctx_changed;            /* 1: save ui->s->ctx to NVS, reload voice list */
+    uint8_t vf;                     /* VF_*: a pick / open / skip on the voice form (main reads u->vs + cursor) */
 } ui_act_t;
 
 typedef struct {
@@ -76,13 +98,23 @@ typedef struct {
     uint8_t lib_folder;             /* Library: 0xFF = top level, else the first tree of the open folder */
     uint8_t home_lvl, home_cat, home_grp, home_page;   /* Home tiles: 0 Injury/Survival, 1 folders, 2 topics */
     uint16_t picks[3]; uint8_t npicks;
+    /* board voice form + keyword search (set up by main when the DIY voice is built; NULL otherwise) */
+    vs_screen_t *vs; vs_hit_t *hits;
+    uint8_t has_form, has_search, vs_f, vs_c, vs_card;
+    int16_t nhits, hsel;
+    char squery[64], vs_status[64];
+    uint8_t ret_mode; uint16_t ret_node; /* BACK on this card (opened from the form / search) returns there */
     const char *msg;
     char scratch[4096];
 } ui_t;
 
 void ui_init(ui_t *u, const cart_t *c, ui_saved_t *s);   /* resets s if magic/build_id don't match */
 void ui_render(ui_t *u, cart_fb_t *fb);                   /* clears and draws the current screen */
-int ui_pace_return(ui_t *u);   /* pace light on and the reader wandered off: back to the CPR page (1 = moved) */
+int ui_pace_return(ui_t *u);
+/* main filled u->vs with a new form screen (a card result opens in the reader; BACK comes back) */
+ui_act_t ui_vscreen(ui_t *u);
+/* main filled u->hits / u->nhits / u->squery with a keyword search (nhits < 0: not heard, ask again) */
+ui_act_t ui_vsearch(ui_t *u);   /* pace light on and the reader wandered off: back to the CPR page (1 = moved) */
 void ui_render_sleep(ui_t *u, cart_fb_t *fb);             /* the picture left on the panel while asleep */
 ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms);
 /* Voice keys: the small word list used inside a topic. Answer tiles are numbered

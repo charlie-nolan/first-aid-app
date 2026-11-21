@@ -20,6 +20,22 @@ config LIB_PLUS_WHITE_GPIO
         warm-white front light. Set 11 only for an old build where the bead
         shares the front-light pin.
 
+config LIB_VOICE_DIY
+    bool "Board voice: our own speech engine + the fill-in-the-blanks form + keyword search"
+    default n
+    depends on !LIB_VOICE
+    help
+        The beta firmware's voice, all on the board (voice_diy.c): components/asr decodes the TALK clip,
+        components/vform runs the form (the same screens as vr.form), and "Search by word" in the menu
+        shows matching cards. Needs a voice library (ASRM, LEXI, ASRC, FORM, SRCH, NKEY chunks;
+        firmware/tools/cart_add.py). On the plain bench board the mic takes D4/D5 (no front light / IR).
+
+config LIB_VOICE_REJECT
+    int "Ask again when the speech reject score is at least"
+    depends on LIB_VOICE_DIY
+    range 1 101
+    default 51
+
 config LIB_VOICE
     bool "Push-to-talk voice (ESP-SR MultiNet, PDM mic)"
     depends on LIB_BOARD_PLUS
