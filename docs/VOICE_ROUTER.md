@@ -1,5 +1,9 @@
 # Voice router + per-tree experts (pseudo mixture of experts)
 
+> **Previous setup.** Every number in this file is the router on its own, from 2026-11-16, before
+> the fill-in-the-blanks form (2026-11-17). The router was then followed by one question per page.
+> The router has not yet been scored inside the new flow. See [VOICE_INTAKE.md](VOICE_INTAKE.md#what-has-been-tested).
+
 Status: prototype, 2026-11-16. Trained on the 11-10 draft trees (unreviewed) and on seed
 sentences written by Claude for Charlie's review. Nothing here is signed off.
 

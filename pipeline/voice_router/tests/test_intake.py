@@ -92,7 +92,7 @@ def test_hedge_fills_nothing():
     assert fill("i can barely tell if she is breathing", slots) == {}
 
 
-def test_unless_and_same_tree_jump_keeps_walking():
+def test_unless_and_same_tree_jump_stops_on_the_life_card():
     tree = {"root": "start", "nodes": {"start": _q("bleeding_type", arterial="severe", minor="minor"),
                                        "severe": _q("body_part", limb="tq", junction="pack"),
                                        "minor": {}, "tq": {}, "pack": {}}}
@@ -102,7 +102,7 @@ def test_unless_and_same_tree_jump_keeps_walking():
             "life_threat": [{"if": {"conscious": "no"}, "unless": {"seizing": "yes"}, "go": "wfa-cpr/start"},
                             {"if": {"bleeding_type": "arterial"}, "go": "severe"}]}
     f = lambda t: walk(tree, smap, fill(t, smap["slots"]))
-    assert f("blood spurting from his groin") == ("pack", ["severe"], None)
+    assert f("blood spurting from his groin") == ("severe", [], "body_part")   # general card first (11-18)
     assert f("he's unresponsive") == ("wfa-cpr/start", [], None)
     assert f("jerking and unresponsive")[0] == "start"
 
@@ -309,3 +309,89 @@ def test_empty_blank_follows_plain_tile_to_an_answered_blank():
                           "open_q": {"slot": "open_fracture", "choices": {"yes": "open"}}}}
     assert walk(tree, smap, fill("there's a bone sticking out", smap["slots"]))[0] == "open"
     assert walk(tree, smap, fill("it hurts", smap["slots"]))[2] == "body_part"
+
+
+def test_empty_answer_picks_nothing():
+    from vr.intake import answer_turn
+    tree = {"root": "q", "nodes": {"q": {"label": "Still bleeding?", "slot": "bleed", "choices": [
+        {"label": "Yes", "to": "y", "value": "yes"}, {"label": "No", "to": "n", "value": "no"}]},
+        "y": {"label": "Y"}, "n": {"label": "N"}}}
+    assert answer_turn("", tree, {"slots": {}}, "q", "bleed", {}) == ({}, None, None)
+
+
+def test_kit_branch_is_not_a_blank_but_a_real_question_is():
+    tree = {"root": "where", "nodes": {
+        "where": {"label": "Where?", "choices": [{"label": "Forearm", "to": "forearm", "value": "forearm"},
+                                                 {"label": "Leg", "to": "leg", "value": "leg"}]},
+        "forearm": {"label": "Forearm, elbow or wrist", "cite": ["p1"], "choices": [
+            {"label": "Splinting rules", "to": "rules"}, {"label": "When to evacuate", "to": "evac"}]},
+        "leg": {"label": "Leg", "cite": ["p2"], "choices": [{"label": "Splinting rules", "to": "rules"}]},
+        "rules": {"label": "Rules"}, "evac": {"label": "Evac"}, "local": {"label": "Local sling"}}}
+    smap = {"slots": {"body_part": {"forearm": ["forearm"], "leg": ["leg"]},
+                      "missing_kit": {"sling": ["no sling"], "splint": ["no splint"]}},
+            "questions": {"where": {"slot": "body_part", "choices": {"forearm": "forearm", "leg": "leg"}},
+                          "forearm": {"slot": "missing_kit", "choices": {"sling": "improvised_gear/sling"}},
+                          "leg": {"slot": "missing_kit", "choices": {"splint": "local"}}}}
+    assert walk(tree, smap, fill("I broke my forearm", smap["slots"])) == ("forearm", ["where"], None)
+    assert walk(tree, smap, fill("forearm, we have no sling", smap["slots"]))[0] == "improvised_gear/sling"
+    assert walk(tree, smap, fill("I hurt my leg", smap["slots"]))[2] == "missing_kit"   # local answer: asked
+
+
+def test_named_finding_beats_a_location_that_leads_nowhere():
+    tree = {"root": "where", "nodes": {
+        "where": {"label": "Where?", "choices": [{"label": "Bone through the skin", "to": "open_q"}]},
+        "arm": {"label": "Arm", "choices": [{"label": "When to evacuate", "to": "evac"}]},
+        "leg": {"label": "Leg"}, "evac": {"label": "Evac"},
+        "open_q": {"label": "Bleeding?"}, "open": {"label": "Open fracture"}}}
+    smap = {"slots": {"body_part": {"arm": ["arm", "forearm"], "leg": ["leg"]},
+                      "open_fracture": {"yes": ["bone sticking out", "through the skin"]}},
+            "questions": {"where": {"slot": "body_part", "choices": {"arm": "arm", "leg": "leg"}},
+                          "open_q": {"slot": "open_fracture", "choices": {"yes": "open"}}}}
+    assert walk(tree, smap, fill("broke his forearm, bone sticking out", smap["slots"]))[0] == "open"
+    assert walk(tree, smap, fill("broke his forearm", smap["slots"]))[0] == "arm"
+
+
+def test_tie_between_a_value_and_what_it_implies_takes_the_finer():
+    from vr.intake import _fill
+    smap = {"slots": {"body_part": {"leg": ["leg"], "lower_leg": ["shin"], "arm": ["arm"]}},
+            "implies": {"body_part": {"lower_leg": "leg"}}}
+    assert _fill("broke his leg, the shin", smap) == {"body_part": "lower_leg"}
+    assert _fill("hurt his leg and arm", smap) == {}          # unrelated tie still asks
+
+
+def test_implied_tie_still_asks_on_or_and_between():
+    from vr.intake import _fill
+    smap = {"slots": {"body_part": {"arm": ["arm", "shoulder"], "forearm": ["wrist", "elbow"]}},
+            "implies": {"body_part": {"forearm": "arm"}}}
+    assert _fill("hurt his arm at the wrist", smap) == {"body_part": "forearm"}
+    assert _fill("pain between her shoulder and elbow", smap) == {}
+    assert _fill("my arm or wrist hurts", smap) == {}
+
+
+def test_walk_stops_on_an_in_tree_life_card():
+    tree = {"root": "s", "nodes": {"s": {"label": "Bleeding?"}, "severe": {"label": "Stop the bleeding"},
+                                   "tq": {"label": "Apply a tourniquet"}}}
+    smap = {"life_threat": [{"if": {"bleeding_type": "heavy"}, "go": "severe"}],
+            "slots": {"bleeding_type": {"heavy": ["bleeding a lot"]}, "body_part": {"limb": ["leg"]}},
+            "questions": {"severe": {"slot": "body_part", "choices": {"limb": "tq"}}}}
+    assert walk(tree, smap, fill("I'm bleeding a lot from my leg", smap["slots"]))[0] == "severe"
+    assert walk(tree, smap, {"bleeding_type": "heavy", "body_part": "limb"}, start="severe")[0] == "tq"
+
+
+def test_noun_contraction_matches_the_noun():
+    from vr.intake import tokenize
+    assert tokenize("the bone's sticking out and she's pale") == ["the", "bone", "sticking", "out", "and", "she's", "pale"]
+
+
+def test_wont_open_eyes_or_answer_is_unresponsive():
+    """4108045 scene s016: "won't open his eyes or answer you" filled nothing anywhere."""
+    from vr.intake import fill, slots_of
+    smap = {"slots": {"conscious": {"no": ["unresponsive"]}}}
+    assert fill("he won't open his eyes or answer me but his chest is going up and down",
+                slots_of(smap))["conscious"] == "no"
+
+
+def test_chest_not_rising_is_not_breathing():
+    from vr.intake import fill, slots_of
+    smap = {"slots": {"breathing": {"no": ["x"], "yes": ["breathing"]}}}
+    assert fill("the jogger's chest isn't rising", slots_of(smap))["breathing"] == "no"

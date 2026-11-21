@@ -19,7 +19,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
-from .intake import (_stem, _fill, _questions, answer_turn, fill_nbest, tiles, tokenize, walk, _FILLER)
+from .intake import (_find, _stem, _fill, fill, _questions, answer_turn, fill_nbest, tiles, tokenize, walk, _FILLER)
 
 SURE = 0.80            # router probability above which the other trees are dropped
 MAX_TREES = 3
@@ -67,20 +67,64 @@ def first_sentence(hyps: list[str] | str, cands: list[Candidate], multi: bool = 
         c.filled = fill_nbest(c.hyps or hyps, c.smap)
         c.heard = (c.hyps or hyps)[0]
         c.advance()
-        if c.card not in c.tree["nodes"]:             # a life rule jumped to another tree's card
-            return "open", c.name, c.card
-    for c in cands:                                   # emergency card inside the tree: open it now (Charlie:
-        go = _rule_hit(c)                             # one-shot, general info first); its own blank ("very
-        if go:                                        # cold or from water?") only shows on the open card
-            return "open", c.name, c.card
     if (multi or AUTO_TABS) and len(split_tabs(cands)) > 1:
-        return "tabs", None, None                     # two problems named: one tab each
+        for c in cands:                               # several problems (TALK+WIN_R): every life tab
+            go = _rule_hit(c)                         # stands on its card, and split_tabs puts the life
+            if go and go in c.tree["nodes"]:          # tabs first, bleeding before CPR (Charlie 11-20, C8)
+                q = _questions(c.tree, c.smap).get(go)
+                c.card, c.asking = go, (q["slot"] if q else None)
+            elif go:
+                c.card, c.asking = go, None
+        return "tabs", None, None
+    order = sorted(cands, key=lambda c: (-round(c.p, 6), not _rule_hit(c)))   # a tie: own rule first
+    for c in order:                                   # in rank order, each tree's own emergency first
+        if c.card not in c.tree["nodes"] and (c is order[0] or _rule_hit(c) == c.card):
+            return "open", c.name, c.card             # (trees 11-18: asthma's jump to allergy/severe beat
+                                                      # the top-ranked choking tree's own rule). A lower
+                                                      # tree's plain walk to another tree's card does not
+                                                      # open ("heat stroke": fainting's cause=heat ->
+                                                      # heat/syncope beat heat's own form, 4108045). A life
+        go = _rule_hit(c)                             # rule that jumped to another tree's card, or an
+        if go:                                        # emergency card inside the tree (Charlie: one-shot,
+            if go in c.tree["nodes"]:                 # general info first); its own blank shows on the card
+                q = _questions(c.tree, c.smap).get(go)
+                c.card, c.asking = go, (q["slot"] if q else None)
+            return "open", c.name, c.card
+    land = _agreed_landing(cands)                     # top trees all land on one card (47c1afd PC check:
+    if land:                                          # "anaphylaxis", "throat is closing up" lost
+        return ("open",) + land                       # wfa-allergy/severe at p 0.67 / 3-way tie)
     if cands and (cands[0].p >= SURE or len(cands) == 1):
         del cands[1:]
     if len(cands) == 1 and not cands[0].asking and cands[0].card != cands[0].tree["root"] \
             and cands[0].card not in _life_cards(cands[0]):    # "breathing fine" must not open a CPR-tree card
         return "open", cands[0].name, cands[0].card
     return "form", None, None
+
+
+def _landing(c: Candidate):
+    """(tree, card) where this tree's walk stopped on a card with nothing left to ask, else None."""
+    if c.asking or c.card == c.tree["root"]:
+        return None
+    if c.card not in c.tree["nodes"]:
+        t, _, card = c.card.partition("/")
+        return (t, card)
+    return (c.name, c.card)
+
+
+def _agreed_landing(cands: list[Candidate]):
+    """Open a card below SURE only when EVERY kept tree lands on that same card with nothing left
+    to ask ("anaphylaxis": allergy and asthma both land on allergy/severe). A tree still asking
+    blocks it (04df032 PC check: "any tree lands, the rest still asking" opened HACE, rash and
+    finger-fracture cards on 30 wrong scenes)."""
+    if len(cands) < 2:
+        return None
+    lands = [_landing(c) for c in cands]
+    if None in lands or len(set(lands)) != 1:
+        return None
+    land = lands[0]
+    if any(c.name == land[0] and land[1] in _life_cards(c) for c in cands):
+        return None                                   # a life card only by its rule ("breathing fine")
+    return land
 
 
 def _own_evidence(c: Candidate, others: list[Candidate]) -> set:
@@ -92,15 +136,103 @@ def _own_evidence(c: Candidate, others: list[Candidate]) -> set:
 def split_tabs(cands: list[Candidate]) -> list[list[Candidate]]:
     """Charlie 11-17: when the first sentence names separate problems ("his arm is bleeding and
     I think his leg is broken"), each opens in its own tab (window) with its own form. A tree
-    gets its own tab when it filled a blank no other candidate tree has; candidates without
-    such evidence stay in the first tab (where a which-is-it field sorts them)."""
-    own = [c for c in cands if _own_evidence(c, [o for o in cands if o is not c])]
-    if len(own) < 2:
+    gets its own tab when it filled a blank no other candidate tree has, or was named outright;
+    candidates without such evidence join the first plain tab (where a which-is-it field sorts them).
+    Charlie 11-20 (C8): tabs sort by urgency (life_rank). ONE tab per life card: when several trees
+    jump to the same card (fractures and improvised_gear both -> wfa-bleeding/severe through the
+    shared bleeding blank), the card's own tree leads it and the others drop that jump and keep a
+    plain tab for their own problem (PC check d4e0125: 39 lines showed 2-3 copies of one card).
+    Works on copies, so calling it again gives the same tabs."""
+    by_card, plain = {}, []
+    for c in cands:
+        go = _life_target(c)
+        if go:                                        # one life tab per life TREE (s014: cpr and start
+            by_card.setdefault(go.split("/", 1)[0], []).append(c)   # were two CPR tabs)
+        else:
+            plain.append(c)
+    life = []
+    for tree, cs in by_card.items():
+        lead = next((c for c in cs if tree == c.name), cs[0])
+        life.append(lead)
+        plain += [_without_life(c) for c in cs if c is not lead or tree != c.name]
+    others = lambda c, pool: [o for o in pool if o is not c]
+    words = tokenize(cands[0].heard) if cands and cands[0].heard else []
+    copies = {id(c) for c in plain if not any(c is o for o in cands)}
+    from .live import INJURY_WORDS
+    hurt = bool(set(words) & INJURY_WORDS)
+    own = [c for c in plain if c.name not in HELPER_TREES and
+           (_own_evidence(c, others(c, plain + life)) or (words and names_tree(words, c.name, c.tree, c.smap))
+            or (id(c) in copies and (c.filled or (hurt and _has_location(c)))))]   # a jumper that heard
+                                                      # more than its life jump, or an injury word on a
+                                                      # tree with a where-blank ("leg broken", 940f447 spot1)
+    own = [c for c in own if id(c) in copies or c.card != c.tree.get("root") or not any(l.name == c.name for l in life)]
+    leads, seen = [], set()
+    for c in sorted(life + own, key=life_rank):       # stable: same rank keeps the router's order
+        at = c.card if c.card not in c.tree["nodes"] else f"{c.name}/{c.card}"
+        if c.card != c.tree.get("root") and at in seen:
+            continue                                  # never two tabs on one card
+        seen.add(at)
+        leads.append(c)
+    leads = leads[:MAX_TABS]
+    if len(leads) < 2:
         return [cands]
-    rest = [c for c in cands if c not in own]
-    tabs = [[c] for c in own[:MAX_TABS]]
-    tabs[0] += rest
-    return tabs
+    rest = [c for c in plain if not any(c is l for l in leads)]   # identity: dataclass == compares fields
+    tabs = [[c] for c in leads]
+    home = next((t for t in tabs if not _life_target(t[0])), tabs[0])
+    home += [c for c in rest if not any(c.name == t[0].name for t in tabs)]   # helpers join the first
+    return tabs                                                                 # plain tab, never a life tab
+
+
+def _has_location(c: Candidate) -> bool:
+    return bool({"body_part", "side", "location", "where"} & set(c.smap.get("slots") or {}))
+
+
+def _life_target(c: Candidate) -> str | None:
+    """The life card this candidate stands on or its rule jumps to, as a full "tree/card" key."""
+    go = _rule_hit(c) or (c.card if c.card in _life_cards(c) else None)
+    if not go:                                      # a plain cross-tree landing (fainting -> heat/syncope)
+        return None                                 # is not a life card (PC check 0407c74: p0128, s071)
+    return go if go not in c.tree["nodes"] and "/" in go else f"{c.name}/{go}"
+
+
+def _without_life(c: Candidate) -> Candidate:
+    """A copy that has dropped its life jump: the blanks of the rule that fired, and the shared
+    awake/breathing blanks, are forgotten, and the walk restarts from the root."""
+    from dataclasses import replace
+    lt = c.smap.get("life_threat") or []
+    rules = [{"if": {s: v}, "go": g} for s, m in lt.items() for v, g in m.items()] if isinstance(lt, dict) else lt
+    from .intake import UNIVERSAL
+    drop = {s for r in rules if all(c.filled.get(s) == v for s, v in r["if"].items()) for s in r["if"]}
+    filled = {s: v for s, v in c.filled.items() if s not in drop and s not in UNIVERSAL}   # EVERY rule
+                                                    # that fired (940f447 spot2: fractures had two)
+    d = replace(c, filled=filled)
+    d.advance()
+    if _life_target(d):                             # still on a life card: no plain problem left
+        d.card, d.asking = d.tree.get("root", "start"), None
+    return d
+
+
+HELPER_TREES = {"improvised_gear"}                    # "what can I use instead" helps a problem, never is one
+LIFE_TAB_ORDER = ("wfa-bleeding", "wfa-cpr", "wfa-choking", "wfa-allergy")   # C8 (Charlie 11-19):
+LIFE_OTHER = len(LIFE_TAB_ORDER)                      # bleeding first, then CPR, choking, anaphylaxis,
+URGENT_TREES = ("wfa-head-spine", "burns", "wfa-shock")   # other life cards, urgent trees, the rest
+LIFE_NAMED = LIFE_OTHER + 1                           # a life topic named, no life rule fired yet
+LIFE_NONE = LIFE_NAMED + 1 + len(URGENT_TREES)
+
+
+def life_rank(c: Candidate) -> int:
+    """Tab order for several problems (integers, for the C port): 0 severe bleeding, 1 CPR,
+    2 choking, 3 anaphylaxis, 4 any other life card, 5 a life topic named with no rule fired,
+    6-8 head/spine, burns, shock, 9 the rest.
+    The life card is the tree's own rule's card, or the card its walk already jumped to."""
+    go = _life_target(c)
+    if go:
+        tree = go.split("/", 1)[0]
+        return LIFE_TAB_ORDER.index(tree) if tree in LIFE_TAB_ORDER else LIFE_OTHER
+    if c.name in LIFE_TAB_ORDER and c.heard and names_tree(tokenize(c.heard), c.name, c.tree, c.smap):
+        return LIFE_NAMED                             # named outright ("choking") but no life rule yet:
+                                                      # after the life cards, before head/burns/shock
+    return LIFE_NAMED + 1 + URGENT_TREES.index(c.name) if c.name in URGENT_TREES else LIFE_NONE
 
 
 def _rule_hit(c: Candidate) -> str | None:
@@ -163,7 +295,10 @@ def open_fields(cands: list[Candidate]) -> list[Field]:
             if slot in seen:
                 seen[slot].trees.append(c.name)
                 continue
-            f = Field(slot, c.tree["nodes"][card].get("label", slot), tiles(c.tree, c.smap, card), [c.name], when)
+            ts = tiles(c.tree, c.smap, card)
+            if when:                                  # not asked yet: answers only, no menu tiles
+                ts = [t for t in ts if t.get("value")]
+            f = Field(slot, c.tree["nodes"][card].get("label", slot), ts, [c.name], when)
             seen[slot] = f
             rows.append(f)
     top = most_telling(cands)                         # stable: life blanks, then the most telling
@@ -181,24 +316,112 @@ def answer(text: str, cands: list[Candidate], fields: list[Field] | None = None)
     if words & {"skip", "dunno"} or {"don't", "know"} <= words or {"no", "time"} <= words:
         return "skip", None, skip(cands)           # same as the SKIP buttons (UP+DOWN together)
     if fields and fields[0].key == "@topic":
-        hit = [c for c in cands if _named(c, words)]
+        hit = [c for c in cands if _named(c, tokenize(text))]
         if len(hit) == 1:
             cands[:] = hit
-    progressed = True
-    while progressed:
-        progressed = False
+    bare_yn = len(words) <= 3 and words and not words - {"yes", "yeah", "yep", "no", "nope", "nah"}
+    fired = {c.name: _rule_hit(c) for c in cands}   # rules already met before this answer
+    progressed, states, passes = True, set(), 0     # tiles can loop back to a page already
+    while progressed and passes < 20:               # answered in this call: never re-ask it
+        progressed, passes = False, passes + 1
         for c in cands:
-            if not c.asking:
+            if not c.asking or (c.name, c.card, c.asking) in states:
                 continue
+            states.add((c.name, c.card, c.asking))
             filled, pick, _ = answer_turn(text, c.tree, c.smap, c.card, c.asking, c.filled)
+            extra = {k: v for k, v in filled.items() if k not in c.filled and k != c.asking}
+            if extra:                                  # other blanks heard in the same breath stay
+                c.filled = {**c.filled, **extra}       # ("he's unresponsive now" on any field)
+                go = _rule_hit(c)                      # life first, as on the first sentence
+                if go and go != fired[c.name]:
+                    return "open", c.name, go
             if not (pick and pick.get("value")):
                 v = snap(text, c)                      # madlibs: a near word snaps to its answer
                 if v:
                     filled, pick = {**c.filled, c.asking: v}, {"value": v}
             if pick and pick.get("value"):
-                c.filled = filled
-                c.advance(start=c.card)
+                c.filled = {**filled, **c.filled, c.asking: filled.get(c.asking, pick["value"])}
+                go = _rule_hit(c)
+                if go and go != fired[c.name]:
+                    return "open", c.name, go
+                _step(c, pick if pick.get("to") else None)
                 progressed = True
+                if bare_yn:                            # a bare "no" answers one field, not the next
+                    progressed = False                 # one too ("out of place? no" is not "no splint")
+                    break
+    done = [c for c in cands if not c.asking]
+    if len(cands) == 1 and done:
+        return "open", done[0].name, done[0].card
+    return "form", None, None
+
+
+def _step(c: Candidate, tile: dict | None):
+    """Advance after an answer. If the walk stays on the same card asking the same blank (the slot
+    map's question lists the value under another name or a card that moved), follow the tapped or
+    matched tile's own target instead: an answer always moves the form on."""
+    was = (c.card, c.asking)
+    c.advance(start=c.card)
+    if (c.card, c.asking) == was and tile and tile.get("to"):
+        if tile["to"] in c.tree["nodes"]:
+            c.advance(start=tile["to"])
+        else:                                       # another tree's card ("improvised_gear/splint")
+            c.card, c.asking = tile["to"], None
+
+
+def node_id(name: str, card: str, tree: dict) -> str:
+    """The board's id for a card: "tree/card"; a card in another tree keeps its own id."""
+    return card if card not in tree["nodes"] and "/" in card else f"{name}/{card}"
+
+
+def fuzz(trees: dict, sentences: list[str], depth: int = 10) -> list[str]:
+    """Tap the first, then the last choice of the top field, up to `depth` taps, for each sentence
+    and every tree that keeps it. Returns the loops found ("tree: sentence -> card asking slot"):
+    a tap that leaves the form exactly as it was. Run on the real trees after any slot change."""
+    bad = []
+    for text in sentences:
+        for end in (0, -1):
+            for name, (tree, smap) in trees.items():
+                cands = [Candidate(name, tree, smap)]
+                kind, _, _ = first_sentence(text, cands)
+                for _ in range(depth):
+                    if kind != "form":
+                        break
+                    fs = open_fields(cands)
+                    if not fs or not fs[0].choices:
+                        break
+                    ch = fs[0].choices[end]
+                    before = (cands[0].card, cands[0].asking, dict(cands[0].filled))
+                    kind, _, _ = pick(fs[0].key, ch.get("value"), cands, to=ch.get("to"))
+                    if kind == "form" and (cands[0].card, cands[0].asking, cands[0].filled) == before:
+                        bad.append(f"{name}: {text!r} -> {cands[0].card} asking {cands[0].asking} "
+                                   f"(tap {ch.get('label')!r})")
+                        break
+    return bad
+
+
+def pick(key: str, value: str | None, cands: list[Candidate], to: str | None = None):
+    """A tapped answer (buttons on the form): fills that one field exactly, no word matching.
+    key "@topic" keeps only the tree named by value. A plain tile (no value: a menu choice) gives
+    `to`, its target card: the tree asking that field goes there. Same returns as answer()."""
+    if value is None and to:
+        for c in cands:
+            if c.asking != key:
+                continue
+            if to.startswith(c.name + "/"):         # a full node id "tree/card" from the board
+                to = to[len(c.name) + 1:]
+            if to in c.tree["nodes"]:
+                c.advance(start=to)
+            elif "/" in to:                         # a plain tile into another tree ("Start CPR")
+                return "open", c.name, to
+    elif key == "@topic":
+        cands[:] = [c for c in cands if c.name == value] or cands
+    else:
+        for c in cands:
+            if key in c.smap.get("slots", {}) or c.asking == key:
+                c.filled = {**c.filled, key: value}
+                if c.asking:
+                    tile = next((t for t in tiles(c.tree, c.smap, c.card) if t.get("value") == value), None)
+                    _step(c, tile)
     done = [c for c in cands if not c.asking]
     if len(cands) == 1 and done:
         return "open", done[0].name, done[0].card
@@ -290,7 +513,11 @@ def snap(text: str, c: Candidate) -> str | None:
         return None
     card_q = _questions(c.tree, c.smap).get(c.card, {})
     best: dict[str, float] = {}
-    heard = [w for w in tokenize(text) if len(w) >= 4 and w not in _FILLER]
+    from .intake import HEDGE, NEGATION, _scope
+    raw = tokenize(text)                               # same guard as fill(): a negated or hedged word
+    heard = [w for i, w in enumerate(raw) if len(w) >= 4 and w not in _FILLER   # never snaps
+             and not any(x in NEGATION for x in _scope(raw, i, True))           # ("not on the face")
+             and not any(x in HEDGE for x in _scope(raw, i, False))]
     for t in tiles(c.tree, c.smap, c.card):
         v = t.get("value")
         if not v:
@@ -317,12 +544,83 @@ def _life_slots(c: Candidate) -> set:
     return set(lt) if isinstance(lt, dict) else {s for r in lt for s in r.get("if", {})}
 
 
-def _named(c: Candidate, words: set) -> bool:
+# Tier-1 topic words name a CONDITION, never a body area, object or common adjective (PC check
+# 11-18 of 40f375f: titles gave "back", "chest", "cold", "tent", "broken", "wound", "bit"... and
+# flipped 52 scenes to the wrong tree). Source: smap topic_words (phrases, curated with the
+# trees), else the tree's file name when it is itself a condition name, plus these defaults.
+_NAME_IS_TOPIC = {"choking", "hypothermia", "frostbite", "drowning", "lightning", "nosebleed",
+                  "seizures", "stroke", "asthma", "allergy", "dehydration", "diabetic", "fainting",
+                  "altitude", "fractures", "sprains", "cpr"}
+_DEFAULT_TOPICS = {"wfa-co": ["carbon monoxide"], "wfa-allergy": ["anaphylaxis", "anaphylactic",
+                   "allergic reaction"], "wfa-poison-ivy": ["poison ivy", "poison oak", "sumac"],
+                   "heat": ["heat stroke", "heatstroke", "heat exhaustion"],
+                   "wfa-choking": ["choking", "choke", "choked"], "wfa-seizures": ["seizure", "seizing"],
+                   "wfa-cpr": ["cpr"], "fractures": ["fracture", "fractured"],
+                   "wfa-diabetic": ["diabetic", "diabetes"], "wfa-altitude": ["altitude sickness"]}
+
+
+def _key(w: str) -> str:
+    k = _stem(w)
+    return k[:-1] if len(k) >= 5 and k.endswith("e") else k   # choke/choking/choked -> chok; be != bee
+
+
+def topic_phrases(name: str, tree: dict, smap: dict) -> list[tuple]:
+    """Condition names for the tree, each a tuple of keyed words ("carbon", "monoxid")."""
+    base = name.split("wfa-")[-1]
+    raw = list(smap.get("topic_words") or []) + _DEFAULT_TOPICS.get(name, []) + \
+        ([base] if base in _NAME_IS_TOPIC else [])
+    return [t for t in {tuple(_key(w) for w in tokenize(ph)) for ph in raw} if t]
+
+
+def topic_words(name: str, tree: dict, smap: dict) -> set:
+    return {w for t in topic_phrases(name, tree, smap) for w in t}
+
+
+def name_spans(words: list[str], name: str, tree: dict, smap: dict) -> list[tuple[int, int]]:
+    """Where in the words each of the tree's topic phrases is heard, as (start, end) spans."""
+    keys, out = [_key(w) for w in words], []
+    for t in topic_phrases(name, tree, smap):
+        pos = _find(keys, list(t), gap=0)
+        if pos is not None:
+            out.append((pos[0], pos[-1] + 1))
+    return out
+
+
+def named_trees(words: list[str], trees: dict) -> set:
+    """Trees named outright. A name heard only inside another tree's longer name does not count:
+    "heat stroke" names heat, not stroke (trees thread 11-18)."""
+    spans = {n: name_spans(words, n, t, m) for n, (t, m) in trees.items()}
+    every = [(sp, n) for n, ss in spans.items() for sp in ss]
+    def inside(sp, n):
+        return any(o != n and a <= sp[0] and sp[1] <= b and (b - a) > (sp[1] - sp[0]) for (a, b), o in every)
+    return {n for n, ss in spans.items() if any(not inside(sp, n) for sp in ss)}
+
+
+def names_tree(words: list[str], name: str, tree: dict, smap: dict) -> bool:
+    """Do these words name the tree's condition (every word of one of its topic phrases, in order)?"""
+    keys = [_key(w) for w in words]
+    return any(_find(keys, list(t), gap=0) is not None for t in topic_phrases(name, tree, smap))
+
+
+def _named(c: Candidate, words: list[str]) -> bool:
+    """The answer names this tree on the which-is-it field: its tile label (every title word) or
+    one of its condition names (s010: "carbon monoxide poisoning" for "Carbon monoxide")."""
     title = set(tokenize(c.tree.get("title", c.name))) - _FILLER
-    return bool(title) and title <= words
+    return (bool(title) and title <= set(words)) or names_tree(words, c.name, c.tree, c.smap)
 
 
 # ---- scoring: how many spoken turns to the right card with this screen --------------------------
+
+def _say(c: Candidate, slot: str, value: str) -> str:
+    """What a person would say for a grouped tile: the first of the value's own phrases that
+    fills it on its own (11-18: the raw value name "neck back" filled nothing and looped)."""
+    slots = c.smap.get("slots", {})
+    vals = slots.get(slot, {})
+    ok = [ph for ph in vals.get(value, [])
+          if fill(ph, {slot: vals}, c.smap.get("priority")).get(slot) == value]
+    clean = [ph for ph in ok if not set(fill(ph, slots, c.smap.get("priority"))) - {slot}]
+    return (clean or ok or [value.replace("_", " ")])[0]   # prefer one no other blank also hears
+
 
 def _path_labels(c: Candidate, ok: set, anc: dict, most: int = 8):
     """The right tile's words for each open blank on the way to the goal, in order, plus how
@@ -336,14 +634,18 @@ def _path_labels(c: Candidate, ok: set, anc: dict, most: int = 8):
         if card not in toward:
             return None
         ts = tiles(c.tree, c.smap, card)
-        k = next((i for i, t in enumerate(ts) if t["to"] in toward), None)
+        life = _life_cards(c) - ok
+        order = [i for i, t in enumerate(ts) if t["to"] in ok] + \
+                [i for i, t in enumerate(ts) if t["to"] in toward and t["to"] not in life] + \
+                [i for i, t in enumerate(ts) if t["to"] in toward]
+        k = order[0] if order else None
         if k is None:
             return None
         if asking and ts[k].get("value"):
             lab = ts[k].get("label") or ""
             group = (" or " in lab or "," in lab or not lab) and ts[k]["value"] not in ("yes", "no")
-            said.append(ts[k]["value"].replace("_", " ") if group else lab)   # "Sunburn or snow blindness": say
-                                                                            # the one that fits; yes/no: the label
+            said.append(_say(c, asking, ts[k]["value"]) if group else lab)   # "Sunburn or snow blindness": say
+                                                                               # the one that fits; yes/no: the label
             filled = {**filled, asking: ts[k]["value"]}
             card, _, asking = walk(c.tree, c.smap, filled, start=card)
         else:
