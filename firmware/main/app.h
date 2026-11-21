@@ -3,7 +3,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 #include "ui.h"
-typedef enum { MSG_BUTTON, MSG_VOICE, MSG_VSCREEN, MSG_VSEARCH } msg_type_t;   /* VSCREEN/VSEARCH: voice_diy.c results */
+typedef enum { MSG_BUTTON, MSG_VOICE, MSG_VSCREEN, MSG_VSEARCH, MSG_REC } msg_type_t;   /* VSCREEN/VSEARCH: voice_diy.c results */
 typedef struct {
     msg_type_t type;
     uint8_t btn, kind;           /* MSG_BUTTON: ui_btn_t, ui_evkind_t */

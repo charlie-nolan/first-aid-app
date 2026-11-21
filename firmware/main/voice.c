@@ -263,4 +263,6 @@ bool voice_has_form(void) { return false; }
 bool voice_has_search(void) { return false; }
 void voice_form_op(int vf, const ui_t *u) { (void)vf; (void)u; }
 void voice_take(vs_screen_t *s, vs_hit_t *hits, int16_t *nhits, char *q, size_t qcap) { (void)s; (void)hits; (void)nhits; (void)q; (void)qcap; }
+void voice_rec_button(int rc) { (void)rc; }
+int voice_rec_take(ui_t *u) { (void)u; return -1; }
 #endif

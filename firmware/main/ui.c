@@ -626,6 +626,7 @@ static ui_act_t after_(ui_t *u, ui_act_t a, uint16_t node0, uint8_t mode0);
 static void render_home(ui_t *u, cart_fb_t *fb);
 static void render_form(ui_t *u, cart_fb_t *fb);
 static void render_search(ui_t *u, cart_fb_t *fb);
+static void render_rec(ui_t *u, cart_fb_t *fb);
 void ui_render(ui_t *u, cart_fb_t *fb) {
     char b[64];
     fb_clear(fb);
@@ -647,6 +648,7 @@ void ui_render(ui_t *u, cart_fb_t *fb) {
     case M_HOME: render_home(u, fb); break;
     case M_FORM: render_form(u, fb); break;
     case M_SEARCH: render_search(u, fb); break;
+    case M_REC: render_rec(u, fb); break;
     case M_PICK:
         if (u->has_window_keys) {
             char ab[4][64];
@@ -1001,7 +1003,7 @@ static ui_act_t search_event(ui_t *u, ui_btn_t b, ui_evkind_t k, ui_act_t a) {
     return a;
 }
 ui_act_t ui_vscreen(ui_t *u) {
-    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0 };
+    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0, 0 };
     uint16_t node0 = W(u)->node; uint8_t mode0 = (uint8_t)u->mode;
     u->listening = 0; u->vs_f = u->vs_c = u->vs_card = 0; u->vs_status[0] = 0;
     if (u->vs->kind == VS_CARD && u->vs->card.cart_node != CART_NONE && cart_node(u->c, u->vs->card.cart_node)) {
@@ -1010,19 +1012,42 @@ ui_act_t ui_vscreen(ui_t *u) {
     return after_(u, a, node0, mode0);
 }
 ui_act_t ui_vsearch(ui_t *u) {
-    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0 };
+    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0, 0 };
     u->listening = 0; u->hsel = 0; u->vs_status[0] = 0; u->mode = M_SEARCH;
     return a;
 }
 
+/* ------------------------------------------------- training mode (PC recording)
+ * The PC script (firmware/tether/rec_tether.py) picks the prompt; it shows here and on the PC.
+ * Hold TALK and say it; the clip goes to the PC. DOWN = skip, BACK = record the last one again,
+ * UP = previous prompt. Closing the PC script ends the mode. */
+static void render_rec(ui_t *u, cart_fb_t *fb) {
+    lay_t l = layout(u); char h[48];
+    snprintf(h, sizeof h, "Training: %s", u->rec_mode[0] ? u->rec_mode : "...");
+    char r[16]; snprintf(r, sizeof r, "%d", u->rec_n);
+    header(u, fb, h, r);
+    unsigned big = cart_font_sizes(u->c) > 2 ? 2 : 1;
+    if (u->rec_answer[0]) {
+        draw_wrap(u, fb, 0, 6, l.body_y, UI_W - 12, l.body_h / 2, u->rec_prompt);
+        draw_wrap(u, fb, big, 6, l.body_y + l.body_h / 2, UI_W - 12, l.body_h / 2, u->rec_answer);
+    } else draw_wrap(u, fb, big, 6, l.body_y, UI_W - 12, l.body_h, u->rec_prompt[0] ? u->rec_prompt : "Waiting for the PC...");
+    footer(u, fb, u->listening ? "Listening... let go when done" : u->rec_status[0] ? u->rec_status : "Hold TALK: say it  DOWN: skip  BACK: redo");
+}
+ui_act_t ui_rec(ui_t *u, int on) {
+    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0, 0 };
+    if (on && u->mode != M_REC) { u->back_mode = u->mode == M_REC ? M_READ : u->mode; u->mode = M_REC; }
+    else if (!on && u->mode == M_REC) u->mode = u->back_mode == M_REC ? M_READ : u->back_mode;
+    return a;
+}
+
 static ui_act_t event_(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
-    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0 };
+    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0, 0 };
 
     if (b == B_BACK && k == E_LONG) { a.light_step = 1; a.redraw = RD_NONE; return a; }   /* front light, any screen */
 
     /* push-to-talk: TALK down starts listening, release recognises. A quick tap is a normal TALK press. */
     if (b == B_TALK && u->has_voice && k == E_PRESS &&
-        (u->mode == M_WAKE || u->mode == M_READ || u->mode == M_HOME || u->mode == M_PICK || u->mode == M_FORM || u->mode == M_SEARCH)) u->talk_armed = 1;
+        (u->mode == M_WAKE || u->mode == M_READ || u->mode == M_HOME || u->mode == M_PICK || u->mode == M_FORM || u->mode == M_SEARCH || u->mode == M_REC)) u->talk_armed = 1;
     if (b == B_TALK && u->talk_armed) {               /* only presses that started on a reading screen */
         if (k == E_PRESS) { a.voice = VO_START; a.redraw = RD_NONE; return a; }
         if (k == E_LONG) { u->listening = 1; return a; }                  /* show MIC */
@@ -1144,6 +1169,13 @@ static ui_act_t event_(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms) {
         break;
     case M_FORM: return form_event(u, b, k, a);
     case M_SEARCH: return search_event(u, b, k, a);
+    case M_REC:
+        if (k != E_SHORT) { a.redraw = RD_NONE; break; }
+        if (b == B_DOWN) a.rc = RC_SKIP;
+        else if (b == B_BACK) a.rc = RC_REDO;
+        else if (b == B_UP) a.rc = RC_BACK;
+        a.redraw = RD_NONE;                              /* the PC answers with the next prompt */
+        break;
     }
     return a;
 }
@@ -1196,7 +1228,7 @@ static ui_act_t voice_key(ui_t *u, const int *cmd, const float *prob, int n, ui_
 }
 
 static ui_act_t voice_(ui_t *u, const int *cmd, const float *prob, int n) {
-    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0 };
+    ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0, 0 };
     u->listening = 0;
     if (n > 0 && u->voice_numbers && UI_VOICE_IS_KEY(cmd[0])) return voice_key(u, cmd, prob, n, a);
     u->npicks = 0;

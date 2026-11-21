@@ -9,6 +9,7 @@
  * chunk ("tree/card" -> cart node); they are the real, cited cards.
  *
  * Ported from the voice tether (firmware/tether/main/tether.c, board-brain + standalone builds). */
+#pragma GCC diagnostic ignored "-Wformat-truncation"   /* long prompts / status lines are cut on purpose */
 #include "voice.h"
 #include "sdkconfig.h"
 #if CONFIG_LIB_VOICE_DIY
@@ -20,6 +21,9 @@
 #include "board.h"
 #include "driver/gpio.h"
 #include "driver/i2s_pdm.h"
+#include "driver/usb_serial_jtag.h"
+#include "driver/usb_serial_jtag_vfs.h"
+#include "esp_random.h"
 #include "esp_heap_caps.h"
 #include "esp_log.h"
 #include "esp_timer.h"
@@ -134,6 +138,111 @@ static void worker(void *arg) {
     }
 }
 
+
+/* ---------- training mode: the PC script (firmware/tether/rec_tether.py) over USB ----------
+ * PC -> board: "REC-HELLO", "PROMPT <mode>|<n>|<text>|<answer>", "STATUS <text>", "PING", "ACK <id>", "RESEND", "REC-BYE"
+ * board -> PC: "REC-BETA 1", "TAKE {json}" + "D <base64>"... + "END <crc32>" (as the recorder), "BTN skip|redo|back"
+ * The link drops (mode ends) after 8 s without a line from the PC. */
+#include "mbedtls/base64.h"
+static volatile bool rec_link;              /* training mode: the PC script is connected */
+static volatile int take_state;             /* 0 none, 1 ready to send, 2 sent (waiting for ACK) */
+static uint32_t take_id; static int take_peak, take_clip; static size_t take_n;
+static QueueHandle_t outq;                  /* short lines to the PC */
+static char rec_mode[16], rec_prompt[200], rec_answer[96], rec_status[96]; static int rec_n; static volatile int rec_on_req = -1;
+static uint32_t crc32(const uint8_t *p, size_t n, uint32_t c) {
+    c = ~c;
+    while (n--) { c ^= *p++; for (int k = 0; k < 8; k++) c = c >> 1 ^ (0xEDB88320u & -(c & 1)); }
+    return ~c;
+}
+static void uwrite(const char *s, size_t n) { while (n) { int w = usb_serial_jtag_write_bytes(s, n, pdMS_TO_TICKS(500)); if (w <= 0) return; s += w; n -= w; } }
+static void uline(const char *s) { uwrite(s, strlen(s)); uwrite("\n", 1); }
+static void rec_send_clip(void) {
+    int peak = 0, clipped = 0;
+    for (size_t i = 0; i < clip_n; i++) { int v = abs(clip[i]); if (v > peak) peak = v; if (v >= 32000) clipped++; }
+    take_peak = peak > 32767 ? 32767 : peak; take_clip = clip_n ? (int)(1000LL * clipped / clip_n) : 0;
+    take_n = clip_n; take_id++; take_state = 1;
+}
+static void send_take(void) {
+    char hdr[256];
+    snprintf(hdr, sizeof hdr, "TAKE {\"id\": %lu, \"samples\": %u, \"sr\": %d, \"peak\": %d, \"clip_per_mille\": %d, \"board\": \"%s\", \"beta\": 1}",
+             (unsigned long)take_id, (unsigned)take_n, SR, take_peak, take_clip, BOARD_NAME);
+    uline(hdr);
+    const uint8_t *p = (const uint8_t *)clip; size_t left = take_n * 2; uint32_t c = 0;
+    static unsigned char b64[4200]; size_t olen;
+    while (left) {
+        size_t k = left > 3072 ? 3072 : left;
+        mbedtls_base64_encode(b64 + 2, sizeof b64 - 3, &olen, p, k);
+        b64[0] = 'D'; b64[1] = ' '; b64[olen + 2] = '\n';
+        uwrite((const char *)b64, olen + 3);
+        c = crc32(p, k, c); p += k; left -= k;
+    }
+    char end[24]; snprintf(end, sizeof end, "END %08lx", (unsigned long)c); uline(end);
+    take_state = 2;
+}
+static void field(char **s, char *out, size_t cap) {      /* next '|' field of *s */
+    char *e = strchr(*s, '|'); size_t n = e ? (size_t)(e - *s) : strlen(*s);
+    if (n >= cap) n = cap - 1;
+    memcpy(out, *s, n); out[n] = 0; *s += e ? n + 1 : n;
+}
+static void link_line(char *l) {
+    if (!strcmp(l, "REC-HELLO")) {
+        if (!rec_link) { esp_log_level_set("*", ESP_LOG_NONE); rec_link = true; rec_on_req = 1; post(MSG_REC); }
+        uline("REC-BETA 1");
+    } else if (!rec_link) return;
+    else if (!strncmp(l, "PROMPT ", 7)) {
+        char *p = l + 7, n[12];
+        xSemaphoreTake(lock, portMAX_DELAY);
+        field(&p, rec_mode, sizeof rec_mode); field(&p, n, sizeof n); field(&p, rec_prompt, sizeof rec_prompt); field(&p, rec_answer, sizeof rec_answer);
+        rec_n = atoi(n); rec_status[0] = 0;
+        xSemaphoreGive(lock);
+        post(MSG_REC);
+    } else if (!strncmp(l, "STATUS ", 7)) {
+        xSemaphoreTake(lock, portMAX_DELAY); snprintf(rec_status, sizeof rec_status, "%s", l + 7); xSemaphoreGive(lock);
+        post(MSG_REC);
+    } else if (!strncmp(l, "ACK ", 4)) { if (strtoul(l + 4, 0, 10) == take_id && take_state == 2) take_state = 0; }
+    else if (!strcmp(l, "RESEND")) { if (take_state == 2) take_state = 1; }
+    else if (!strcmp(l, "REC-BYE")) { rec_link = false; rec_on_req = 0; esp_log_level_set("*", ESP_LOG_INFO); post(MSG_REC); }
+}
+static void usb_task(void *arg) {
+    static char line[512]; int n = 0; uint8_t in[128]; char out[64];
+    int64_t last = esp_timer_get_time();
+    for (;;) {
+        while (xQueueReceive(outq, out, 0) == pdTRUE) uline(out);
+        if (take_state == 1 && !recording) send_take();
+        int got = usb_serial_jtag_read_bytes(in, sizeof in, pdMS_TO_TICKS(20));
+        if (got > 0) last = esp_timer_get_time();
+        for (int i = 0; i < got; i++) {
+            char ch = (char)in[i];
+            if (ch != '\n' && ch != '\r') { if (n < (int)sizeof line - 1) line[n++] = ch; continue; }
+            line[n] = 0; if (n) link_line(line); n = 0;
+        }
+        if (rec_link && esp_timer_get_time() - last > 8000000) {   /* the PC script went away */
+            rec_link = false; rec_on_req = 0; take_state = 0; esp_log_level_set("*", ESP_LOG_INFO); post(MSG_REC);
+        }
+    }
+}
+static void link_init(void) {
+    usb_serial_jtag_driver_config_t uc = { .rx_buffer_size = 2048, .tx_buffer_size = 8192 };
+    if (usb_serial_jtag_driver_install(&uc) != ESP_OK) return;
+    usb_serial_jtag_vfs_use_driver();                     /* logs (printf) keep working through the driver */
+    outq = xQueueCreate(8, 64);
+    take_id = esp_random() % 100000;                      /* ids differ across boots (the PC keys clips by time anyway) */
+    xTaskCreatePinnedToCore(usb_task, "usblink", 6144, 0, 5, 0, 0);
+}
+void voice_rec_button(int rc) {
+    static const char *nm[] = { "", "skip", "redo", "back" };
+    if (!outq || rc <= 0 || rc > 3) return;
+    char b[64]; snprintf(b, sizeof b, "BTN %s", nm[rc]); xQueueSend(outq, b, pdMS_TO_TICKS(50));
+}
+int voice_rec_take(ui_t *u) {
+    xSemaphoreTake(lock, portMAX_DELAY);
+    snprintf(u->rec_mode, sizeof u->rec_mode, "%s", rec_mode); snprintf(u->rec_prompt, sizeof u->rec_prompt, "%s", rec_prompt);
+    snprintf(u->rec_answer, sizeof u->rec_answer, "%s", rec_answer); snprintf(u->rec_status, sizeof u->rec_status, "%s", rec_status);
+    u->rec_n = rec_n;
+    xSemaphoreGive(lock);
+    int r = rec_on_req; rec_on_req = -1; return r;      /* 1 on, 0 off, -1 no change */
+}
+
 /* ---------- voice.h ---------- */
 bool voice_init(const cart_t *c) {
     cart = c;
@@ -152,6 +261,7 @@ bool voice_init(const cart_t *c) {
              vb_has_search() ? "ready" : "missing", vb_has_cards() ? "NKEY" : "missing", mic ? "ok" : "missing");
     if (!mic || !asr_ok) return false;
     jobs = xQueueCreate(4, sizeof(job_t));
+    link_init();
     xTaskCreatePinnedToCore(worker, "vbrain", 32768, 0, 4, 0, 1);
     return true;
 }
@@ -165,6 +275,7 @@ void voice_start(void) {
     size_t np = sizeof pre / 2, p = pre_pos;               /* pre-roll: whatever the mic had just before */
     for (size_t i = 0; i < np; i++) clip[i] = pre[(p + i) % np];
     clip_n = np; recording = true;
+    if (rec_link) return;                                 /* training mode: the clip goes to the PC, not the brain */
     job_t j = { .op = J_LISTEN };
     xQueueSend(jobs, &j, 0);
 }
@@ -179,6 +290,7 @@ void voice_stop_to(bool recognise, int target) {
     if (recognise) vTaskDelay(pdMS_TO_TICKS(250));          /* keep the last word's tail */
     recording = false;
     mic_off();
+    if (rec_link) { if (recognise) rec_send_clip(); return; }
     if (!recognise) { job_t c = { .op = J_CANCEL }; xQueueSend(jobs, &c, pdMS_TO_TICKS(100)); return; }
     job_t j = { .op = J_SPEECH, .target = (uint8_t)target };
     xQueueSend(jobs, &j, pdMS_TO_TICKS(100));

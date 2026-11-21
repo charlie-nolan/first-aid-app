@@ -195,9 +195,11 @@ void app_main(void) {
             ui_act_t a;
             if (m.type == MSG_BUTTON) a = ui_event(&ui, (ui_btn_t)m.btn, (ui_evkind_t)m.kind, m.held_ms);
             else if (m.type == MSG_VSCREEN) { voice_take(ui.vs, 0, 0, 0, 0); a = ui_vscreen(&ui); }
+            else if (m.type == MSG_REC) { int on = voice_rec_take(&ui); a = ui_rec(&ui, on < 0 ? ui.mode == M_REC : on); }
             else if (m.type == MSG_VSEARCH) { voice_take(0, ui.hits, &ui.nhits, ui.squery, sizeof ui.squery); a = ui_vsearch(&ui); }
             else a = ui_voice(&ui, m.cmd, m.prob, m.n);
             if (a.voice == VO_START) voice_start();
+            else if (a.voice == VO_STOP && ui.mode == M_REC) { voice_stop(true); snprintf(ui.rec_status, sizeof ui.rec_status, "Sending..."); a.redraw = RD_PARTIAL; }
             else if (a.voice == VO_STOP && ui.vs) {          /* board voice: the clip goes to the form or the search */
                 int to = ui.mode == M_SEARCH ? VT_SEARCH : ui.mode == M_FORM ? VT_ANSWER : VT_NEW;
                 if (to == VT_NEW) { ui.vs->kind = VS_START; ui.vs->heard[0] = ui.vs->msg[0] = 0; ui.mode = M_FORM; }
@@ -208,6 +210,7 @@ void app_main(void) {
             else if (a.voice == VO_STOP) voice_stop(true);
             else if (a.voice == VO_CANCEL) voice_stop(false);
             if (a.vf) voice_form_op(a.vf, &ui);
+            if (a.rc) voice_rec_button(a.rc);
             if (a.light_step) { saved.light = (uint8_t)((saved.light + 1) % 3); lights_front(saved.light); }
             if (a.signal >= 0) lights_signal((uint8_t)a.signal);
             if (a.mesh) power_mesh(saved.mesh_on);

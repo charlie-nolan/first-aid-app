@@ -17,3 +17,6 @@ bool voice_has_search(void);
 void voice_form_op(int vf, const ui_t *u);      /* VF_PICK / VF_OPEN / VF_SKIP on the screen u shows */
 /* copy the newest result out (MSG_VSCREEN: s; MSG_VSEARCH: hits, nhits, q) */
 void voice_take(vs_screen_t *s, vs_hit_t *hits, int16_t *nhits, char *q, size_t qcap);
+/* training mode (PC recording): rc = RC_* button; take: copy the prompt into u, returns 1 on / 0 off / -1 no change */
+void voice_rec_button(int rc);
+int voice_rec_take(ui_t *u);

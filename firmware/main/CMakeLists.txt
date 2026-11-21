@@ -7,7 +7,7 @@ endif()
 idf_component_register(SRCS ${srcs}
                        INCLUDE_DIRS "."
                        EMBED_TXTFILES ${embed}
-                       PRIV_REQUIRES cart asr vform json esp_driver_usb_serial_jtag esp_driver_spi esp_driver_gpio esp_driver_ledc esp_driver_i2s
+                       PRIV_REQUIRES cart asr vform json mbedtls esp_driver_usb_serial_jtag esp_driver_spi esp_driver_gpio esp_driver_ledc esp_driver_i2s
                                      esp_adc esp_timer esp_partition spi_flash nvs_flash esp_driver_tsens)
 
 # `idf.py flash` also writes the cartridge into the "library" partition.

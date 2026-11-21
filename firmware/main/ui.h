@@ -21,10 +21,11 @@ extern const uint8_t ui_sleep_art[];   /* sleep_art.c: built-in sleep picture */
 typedef enum { B_TALK, B_BACK, B_WIN_L, B_WIN_R, B_UP, B_DOWN, B_COUNT } ui_btn_t;
 typedef enum { E_PRESS, E_SHORT, E_LONG, E_RELEASE } ui_evkind_t;
 typedef enum { SIG_OFF, SIG_FLASHLIGHT, SIG_SOS_WHITE, SIG_IR, SIG_CPR } ui_signal_t;   /* SIG_CPR: compression pace on the front light */
-typedef enum { M_WAKE, M_READ, M_LIBRARY, M_MENU, M_PICK, M_MSG, M_CTX_DIMS, M_CTX_VALUES, M_HOME, M_FORM, M_SEARCH } ui_mode_t;
+typedef enum { M_WAKE, M_READ, M_LIBRARY, M_MENU, M_PICK, M_MSG, M_CTX_DIMS, M_CTX_VALUES, M_HOME, M_FORM, M_SEARCH, M_REC } ui_mode_t;
 enum { RD_NONE, RD_PARTIAL, RD_FULL, RD_DEEP };   /* RD_DEEP: full black-white flash, e.g. opening a CPR page */
 enum { VO_NONE, VO_START, VO_STOP, VO_CANCEL };
-enum { VF_NONE, VF_PICK, VF_OPEN, VF_SKIP };   /* board voice form: what main sends to the form engine */
+enum { VF_NONE, VF_PICK, VF_OPEN, VF_SKIP };
+enum { RC_NONE, RC_SKIP, RC_REDO, RC_BACK };    /* training mode (M_REC): what main sends to the PC */   /* board voice form: what main sends to the form engine */
 
 /* ---- board voice (DIY speech + the fill-in-the-blanks form, main/voice_diy.c) ----
  * One screen from the form engine (components/vform, the same frames as vr.form): the open fields with
@@ -77,6 +78,7 @@ typedef struct {
     uint8_t sleep_now;
     uint8_t ctx_changed;            /* 1: save ui->s->ctx to NVS, reload voice list */
     uint8_t vf;                     /* VF_*: a pick / open / skip on the voice form (main reads u->vs + cursor) */
+    uint8_t rc;                     /* RC_*: training mode button (main tells the PC) */
 } ui_act_t;
 
 typedef struct {
@@ -103,7 +105,9 @@ typedef struct {
     uint8_t has_form, has_search, vs_f, vs_c, vs_card;
     int16_t nhits, hsel;
     char squery[64], vs_status[64];
-    uint8_t ret_mode; uint16_t ret_node; /* BACK on this card (opened from the form / search) returns there */
+    uint8_t ret_mode; uint16_t ret_node;
+    /* training mode (PC recording, firmware/tether/rec_tether.py): the PC sends the prompt, TALK records */
+    char rec_mode[16], rec_prompt[200], rec_answer[96], rec_status[96]; int rec_n; /* BACK on this card (opened from the form / search) returns there */
     const char *msg;
     char scratch[4096];
 } ui_t;
@@ -114,7 +118,9 @@ int ui_pace_return(ui_t *u);
 /* main filled u->vs with a new form screen (a card result opens in the reader; BACK comes back) */
 ui_act_t ui_vscreen(ui_t *u);
 /* main filled u->hits / u->nhits / u->squery with a keyword search (nhits < 0: not heard, ask again) */
-ui_act_t ui_vsearch(ui_t *u);   /* pace light on and the reader wandered off: back to the CPR page (1 = moved) */
+ui_act_t ui_vsearch(ui_t *u);
+/* training mode on / off (the PC script opened / closed the link) and a new prompt / status from the PC */
+ui_act_t ui_rec(ui_t *u, int on);   /* pace light on and the reader wandered off: back to the CPR page (1 = moved) */
 void ui_render_sleep(ui_t *u, cart_fb_t *fb);             /* the picture left on the panel while asleep */
 ui_act_t ui_event(ui_t *u, ui_btn_t b, ui_evkind_t k, int held_ms);
 /* Voice keys: the small word list used inside a topic. Answer tiles are numbered
