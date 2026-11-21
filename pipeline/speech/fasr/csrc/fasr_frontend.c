@@ -33,6 +33,7 @@ static void setup(void) {
     ready = 1;
 }
 
+#ifndef FE_FAST
 static void fft(double *re, double *im) {            /* in place, radix 2, n = 512 */
     int n = FE_NFFT;
     for (int i = 1, j = 0; i < n; i++) {
@@ -53,6 +54,19 @@ static void fft(double *re, double *im) {            /* in place, radix 2, n = 5
                 re[i + k + len / 2] = ur - vr; im[i + k + len / 2] = ui - vi;
             }
     }
+}
+
+#endif
+
+/* ln(x) for x > 0 from plain float operations (FE_FAST), so the PC (glibc) and the chip (newlib) give the same bits:
+ * x = m * 2^e with m in [sqrt(1/2), sqrt(2)), ln(m) = 2 atanh(s), s = (m - 1) / (m + 1), |s| < 0.172, series to s^9
+ * (error ~1e-9, below float precision), plus e * ln 2 in two parts. Exponent handling is exact (frexpf). */
+static float fe_logf(float x) {
+    int e; float m = frexpf(x, &e);
+    if (m < 0.70710678f) { m *= 2.0f; e--; }
+    float f = m - 1.0f, s = f / (2.0f + f), z = s * s;
+    float p = 1.0f + z * (0.33333333f + z * (0.2f + z * (0.14285714f + z * 0.11111111f)));
+    return 2.0f * s * p + (float)e * 0.693145751953125f + (float)e * 1.428606765330187e-06f;
 }
 
 /* float32 FFT (FE_FAST): the chip has a hardware float unit but no double one (double is ~60 cycles an op).
@@ -103,7 +117,7 @@ int fe_logmel(const int16_t *pcm, int n, float *out) {
         for (int m = 0; m < FE_NMEL; m++) {
             float s = 0;
             for (int k = mlo[m]; k <= mhi[m]; k++) s += pf[k] * mel[m][k];
-            out[(size_t)t * FE_NMEL + m] = logf(s + 1e-6f);
+            out[(size_t)t * FE_NMEL + m] = fe_logf(s + 1e-6f);
         }
         continue;
 #else

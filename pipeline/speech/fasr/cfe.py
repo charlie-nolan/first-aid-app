@@ -3,7 +3,7 @@
 Charlie OK'd E1 on 2026-11-20: the S3 computes features with a float32 FFT (FE_FAST, ~20x faster than
 float64 there), which moves features ~1 ulp from numpy. So the PC builds the exact same C file with the
 exact same float flags and uses it for golden files and evaluation; the numpy version (features.logmel_np)
-stays as the readable reference. Source copied from claude/project-thread-lvj6uv at 045d6d8 into csrc/.
+stays as the readable reference. Source copied from claude/project-thread-lvj6uv at ea8b0ef (own fe_logf, so glibc and newlib agree) into csrc/.
 
 Build: cc -O2 -fPIC -shared -DFE_FAST -ffp-contract=off  (no -ffast-math: keeps the chip's rounding).
 """
