@@ -98,7 +98,14 @@ int fe_logmel(const int16_t *pcm, int n, float *out) {
         }
 #ifdef FE_FAST
         fftf(re, im);
-        for (int k = 0; k <= FE_NFFT / 2; k++) pw[k] = (double)re[k] * re[k] + (double)im[k] * im[k];
+        float pf[FE_NFFT / 2 + 1];
+        for (int k = 0; k <= FE_NFFT / 2; k++) pf[k] = re[k] * re[k] + im[k] * im[k];
+        for (int m = 0; m < FE_NMEL; m++) {
+            float s = 0;
+            for (int k = mlo[m]; k <= mhi[m]; k++) s += pf[k] * mel[m][k];
+            out[(size_t)t * FE_NMEL + m] = logf(s + 1e-6f);
+        }
+        continue;
 #else
         fft(re, im);
         for (int k = 0; k <= FE_NFFT / 2; k++) pw[k] = re[k] * re[k] + im[k] * im[k];

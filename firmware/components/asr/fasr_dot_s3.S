@@ -25,3 +25,25 @@ fq_dot16:
     rur.accx_0 a2
     retw.n
     .size   fq_dot16, . - fq_dot16
+
+// int32_t fq_dot16u(const int8_t *a, const int8_t *b, int n16)
+//   a 16-byte aligned, b any alignment; reads up to 16 bytes past b + 16 * n16 (callers keep that readable).
+//   Unaligned loads as in esp-nn's esp_nn_dot_s8_unaligned_esp32s3 (ee.ld.128.usar + ee.src.q.qup).
+    .align  4
+    .global fq_dot16u
+    .type   fq_dot16u, @function
+fq_dot16u:
+    entry   a1, 32
+    ee.zero.accx
+    ee.ld.128.usar.ip   q0, a3, 16
+    loopgtz a4, .Lu_end
+    ee.vld.128.ip       q1, a2, 16
+    ee.ld.128.usar.ip   q2, a3, 16
+    ee.src.q.qup        q4, q0, q2
+    ee.vmulas.s8.accx   q4, q1
+.Lu_end:
+    nop
+    nop
+    rur.accx_0 a2
+    retw.n
+    .size   fq_dot16u, . - fq_dot16u

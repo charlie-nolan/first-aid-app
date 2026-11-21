@@ -4,13 +4,20 @@
 #include <string.h>
 #ifdef ESP_PLATFORM
 #include "sdkconfig.h"
+#include "esp_timer.h"
+#define PROF_NOW() esp_timer_get_time()
+#else
+#define PROF_NOW() 0
 #endif
+uint32_t fq_prof_us[5];   /* input quantise, pointwise, depthwise, other convs, log-softmax (summed) */
 
 /* Exact int8 dot product of n16 blocks of 16 bytes, both 16-byte aligned: the S3 vector unit on the chip
  * (fasr_dot_s3.S), plain C elsewhere. Integer sums, so both give the same value. */
 #if defined(ESP_PLATFORM) && CONFIG_IDF_TARGET_ESP32S3
 int32_t fq_dot16(const int8_t *a, const int8_t *b, int n16);
+int32_t fq_dot16u(const int8_t *a, const int8_t *b, int n16);   /* b any alignment */
 #else
+#define fq_dot16u fq_dot16
 static int32_t fq_dot16(const int8_t *a, const int8_t *b, int n16) {
     int32_t s = 0;
     for (int i = 0; i < 16 * n16; i++) s += (int32_t)a[i] * b[i];
@@ -79,7 +86,10 @@ static inline int64_t rshift_round(int64_t v, int s) {
 static inline void fq_out(const uint8_t *l, int fl, int lo, int sh, int32_t acc, int o, int t, int To,
                           int8_t *y, const int8_t *blk, int32_t *head) {
     if (fl & 4) { head[(size_t)o * To + t] = acc; return; }
-    int64_t v = rshift_round(acc, sh);
+    int64_t v;
+    if (sh > 0 && sh < 31 && acc < (1 << 29) && acc > -(1 << 29))   /* no overflow possible: same value in 32 bits */
+        v = (acc + (1 << (sh - 1))) >> sh;
+    else v = rshift_round(acc, sh);
     if (fl & 2) v += rshift_round(blk[(size_t)o * To + t], L_ERES(l) - L_EOUT(l));
     if (v < lo) v = lo;
     if (v > 127) v = 127;
@@ -110,12 +120,72 @@ static int conv_pw(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T
     return T;
 }
 static int32_t fq_acc[FQ_TMAX];
+/* depthwise, causal (left padding k - 1, stride 1, k <= 16): each output is one 16-wide dot product of the
+ * channel's taps (zero-padded to 16, aligned copy) with 16 consecutive inputs; the first k - 1 outputs touch
+ * the padding and go the plain way. Exact (integer sums). */
+static int conv_dw(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head) {
+    int cout = L_COUT(l), k = L_K(l), pad = L_PAD(l), fl = L_FLAGS(l);
+    const int8_t *w = L_W(m, l), *ew = L_EW(m, l);
+    const uint8_t *bb = L_B(m, l);
+    int lo = (fl & 1) || (fl & 2) ? 0 : -128;
+    static int8_t wk[16] __attribute__((aligned(16)));
+    for (int o = 0; o < cout; o++) {
+        memset(wk, 0, 16); memcpy(wk, w + (size_t)o * k, k);
+        const int8_t *xo = x + (size_t)o * T;
+        int32_t bias = (int32_t)r32(bb + 4 * o);
+        int sh = L_EIN(l) + ew[o] - L_EOUT(l);
+        for (int t = 0; t < T; t++) {
+            int32_t acc = bias;
+            if (t < pad) { for (int kk = pad - t; kk < k; kk++) acc += (int32_t)xo[t - pad + kk] * wk[kk]; }
+            else acc += fq_dot16u(wk, xo + t - pad, 1);
+            fq_out(l, fl, lo, sh, acc, o, t, T, y, blk, head);
+        }
+    }
+    return T;
+}
+
+/* any other conv (the stem: 40 x 5, stride 2) as im2col: each output frame's cin x k inputs in one aligned row
+ * (zero padded to 16), weights copied to an aligned row, one dot per output. Exact. */
+static int conv_col(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head,
+                    int8_t *col) {
+    int cin = L_CIN(l), cout = L_COUT(l), k = L_K(l), s = L_STRIDE(l), pad = L_PAD(l), fl = L_FLAGS(l);
+    int To = (T + pad - k) / s + 1, n = cin * k, n16 = (n + 15) / 16, rl = 16 * n16;
+    const int8_t *w = L_W(m, l), *ew = L_EW(m, l);
+    const uint8_t *bb = L_B(m, l);
+    int lo = (fl & 1) || (fl & 2) ? 0 : -128;
+    static int8_t wr[1024] __attribute__((aligned(16)));
+    if (rl > (int)sizeof wr) return -2;
+    for (int t = 0; t < To; t++) {
+        int8_t *c = col + (size_t)t * rl;
+        for (int i = 0; i < cin; i++)
+            for (int kk = 0; kk < k; kk++) { int ti = t * s - pad + kk; c[i * k + kk] = ti >= 0 && ti < T ? x[(size_t)i * T + ti] : 0; }
+        memset(c + n, 0, rl - n);
+    }
+    for (int o = 0; o < cout; o++) {
+        memcpy(wr, w + (size_t)o * n, n); memset(wr + n, 0, rl - n);
+        int32_t bias = (int32_t)r32(bb + 4 * o);
+        int sh = L_EIN(l) + ew[o] - L_EOUT(l);
+        for (int t = 0; t < To; t++) fq_out(l, fl, lo, sh, bias + fq_dot16(col + (size_t)t * rl, wr, n16), o, t, To, y, blk, head);
+    }
+    return To;
+}
+
 static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, int8_t *y, const int8_t *blk, int32_t *head,
                 int8_t *xt) {
     int cin = L_CIN(l), cout = L_COUT(l), k = L_K(l), s = L_STRIDE(l), pad = L_PAD(l), g = L_GROUPS(l);
-    if (k == 1 && s == 1 && pad == 0 && g == 1 && cin % 16 == 0) return conv_pw(m, l, x, T, y, blk, head, xt);
+    if (k == 1 && s == 1 && pad == 0 && g == 1 && cin % 16 == 0) {
+        int64_t p0 = PROF_NOW(); int r = conv_pw(m, l, x, T, y, blk, head, xt);
+        fq_prof_us[1] += (uint32_t)(PROF_NOW() - p0); return r;
+    }
+    int64_t p0 = PROF_NOW();
     int To = (T + pad - k) / s + 1, fl = L_FLAGS(l);
     if (To > FQ_TMAX) return -1;
+    if (g == cin && g == cout && s == 1 && pad == k - 1 && k <= 16) {
+        int r = conv_dw(m, l, x, T, y, blk, head); fq_prof_us[2] += (uint32_t)(PROF_NOW() - p0); return r;
+    }
+    if (g == 1 && cin * k <= 1024 && (size_t)((cin * k + 15) / 16 * 16) * To <= (size_t)m->cmax * T) {
+        int r = conv_col(m, l, x, T, y, blk, head, xt); fq_prof_us[3] += (uint32_t)(PROF_NOW() - p0); return r;
+    }
     const int8_t *w = L_W(m, l), *ew = L_EW(m, l);
     const uint8_t *bb = L_B(m, l);
     int cpg = cin / g;                                   /* input channels per group (1 for depthwise) */
@@ -142,6 +212,7 @@ static int conv(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T, i
         }
         for (int t = 0; t < To; t++) fq_out(l, fl, lo, sh, acc[t], o, t, To, y, blk, head);
     }
+    fq_prof_us[g > 1 ? 2 : 3] += (uint32_t)(PROF_NOW() - p0);
     return To;
 }
 
@@ -149,6 +220,7 @@ int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t
     size_t plane = (size_t)m->cmax * (T > 0 ? T : 1);
     int8_t *x = ws, *y = x + plane, *blk = y + plane;
     int8_t *xt = (int8_t *)(((uintptr_t)(blk + plane) + 15) & ~(uintptr_t)15);
+    int64_t p0 = PROF_NOW();
     double sc = ldexp(1.0, m->e_in);
     for (int c = 0; c < 40; c++) {                       /* (feats - mu) / sd, quantised; channel-major */
         double mu = rf(m->mu + 4 * c), sd = rf(m->sd + 4 * c);
@@ -157,6 +229,7 @@ int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t
             x[(size_t)c * T + t] = (int8_t)(v < -128 ? -128 : v > 127 ? 127 : v);
         }
     }
+    fq_prof_us[0] += (uint32_t)(PROF_NOW() - p0);
     int Tc = T;
     for (int i = 0; i < m->nl; i++) {
         const uint8_t *l = LAYER(m, i);
@@ -181,6 +254,7 @@ int fq_logit_exp(const fq_model_t *m, int c) {
 }
 
 void fq_logp(const fq_model_t *m, const int32_t *logits, int T, float *logp) {
+    int64_t p0 = PROF_NOW();
     int C = m->ctok;
     double z[512], sc[512];
     for (int c = 0; c < C && c < 512; c++) sc[c] = ldexp(1.0, -fq_logit_exp(m, c));   /* same value, once */
@@ -195,4 +269,5 @@ void fq_logp(const fq_model_t *m, const int32_t *logits, int T, float *logp) {
         double ls = log(s);
         for (int c = 0; c < C; c++) logp[(size_t)t * C + c] = (float)(z[c] - ls);
     }
+    fq_prof_us[4] += (uint32_t)(PROF_NOW() - p0);
 }

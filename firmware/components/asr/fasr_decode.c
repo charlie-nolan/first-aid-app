@@ -56,6 +56,7 @@ struct fd_ws {
     int32_t sh[FD_SEQ_HASH];                         /* seq hash -> index + 1 */
     struct { int32_t seq; int32_t node; uint8_t last; double pb, pnb; } e[FD_MAX_ENT]; int ne;
     int32_t eh[FD_ENT_HASH];
+    int32_t eslot[FD_MAX_ENT];                       /* hash slot of each entry (to clear only those) */
     struct { int32_t seq; int32_t node; uint8_t last; double pb, pnb; } beam[FD_MAX_BEAM]; int nb;
 };
 static int seq_get(fd_ws_t *w, int parent, int word) {  /* interned (parent + word) */
@@ -101,6 +102,7 @@ static void add(fd_ws_t *w, int seq, int node, int last, double pb, double pnb) 
             if (w->ne >= FD_MAX_ENT) return;
             w->e[w->ne].seq = seq; w->e[w->ne].node = node; w->e[w->ne].last = (uint8_t)last;
             w->e[w->ne].pb = pb; w->e[w->ne].pnb = pnb;
+            w->eslot[w->ne] = (int32_t)i;
             w->eh[i] = ++w->ne;
             return;
         }
@@ -177,6 +179,7 @@ int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
     fd_ws_t *w = wsv;
     memset(r, 0, sizeof *r);
     w->nseq = 0; memset(w->sh, 0, sizeof w->sh);
+    w->ne = 0; memset(w->eh, 0, sizeof w->eh);
     int C = x->ntok, B = x->blank, SEP = x->sep;
     w->nb = 1; w->beam[0].seq = -1; w->beam[0].node = 0; w->beam[0].last = (uint8_t)SEP; w->beam[0].pb = 0.0; w->beam[0].pnb = NEG;
     int fs[64]; double fdl[64];
@@ -186,7 +189,18 @@ int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
         for (int c = 0; c < C; c++) row[c] = rowf[c];
         int cand[FD_MAX_TOK], nc = 0;
         for (int c = 0; c < C; c++) if (row[c] > x->tok_prune && c != B) cand[nc++] = c;
-        w->ne = 0; memset(w->eh, 0, sizeof w->eh);
+        if (nc == 0) {
+            /* only blank survives this frame: every beam just becomes (lse(pb, pnb) + blank, NEG). The beams'
+             * keys are distinct, so nothing merges; adding one constant keeps their order (ties keep the
+             * insertion order, which is the old order), so the keep/sort step changes nothing. Exact. */
+            for (int bi = 0; bi < w->nb; bi++) {
+                w->beam[bi].pb = lse(w->beam[bi].pb, w->beam[bi].pnb) + row[B];
+                w->beam[bi].pnb = NEG;
+            }
+            continue;
+        }
+        for (int i = 0; i < w->ne; i++) w->eh[w->eslot[i]] = 0;   /* = memset of the whole table */
+        w->ne = 0;
         for (int bi = 0; bi < w->nb; bi++) {
             int seq = w->beam[bi].seq, node = w->beam[bi].node, last = w->beam[bi].last;
             double pb = w->beam[bi].pb, pnb = w->beam[bi].pnb, tot = lse(pb, pnb);
@@ -233,7 +247,7 @@ int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
             w->beam[i].seq = w->e[e].seq; w->beam[i].node = w->e[e].node; w->beam[i].last = w->e[e].last;
             w->beam[i].pb = w->e[e].pb; w->beam[i].pnb = w->e[e].pnb;
         }
-        compact(w);
+        if (w->nseq > FD_MAX_SEQ / 2) compact(w);   /* ids never affect order, only space */
     }
     /* final: close every beam, fit to 16 words, merge equal fitted tuples (first-seen order) */
     static struct { uint16_t w[FD_MAX_WORDS]; uint8_t n; double sc; int full; } fin[256];

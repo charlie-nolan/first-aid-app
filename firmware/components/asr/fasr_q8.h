@@ -29,3 +29,6 @@ int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t
 int fq_logit_exp(const fq_model_t *m, int c);
 /* Head logits -> log-softmax, frame-major (T' x ctok), as logits_to_logp. */
 void fq_logp(const fq_model_t *m, const int32_t *logits, int T, float *logp);
+
+/* time per stage, microseconds, summed since boot (0 on the PC): quantise, pointwise, depthwise, other, softmax */
+extern uint32_t fq_prof_us[5];
