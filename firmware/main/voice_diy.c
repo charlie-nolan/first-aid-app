@@ -30,6 +30,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 #include "freertos/task.h"
+#include "freertos/idf_additions.h"
 #include "power.h"
 #include "vbrain.h"
 
@@ -188,6 +189,12 @@ static void link_line(char *l) {
     if (!strcmp(l, "REC-HELLO")) {
         if (!rec_link) { esp_log_level_set("*", ESP_LOG_NONE); rec_link = true; rec_on_req = 1; post(MSG_REC); }
         uline("REC-BETA 1");
+    } else if (!strncmp(l, "KEY ", 4)) {                   /* bench: "KEY <btn> <kind> <held_ms>" = a button event (ui_btn_t, ui_evkind_t) */
+        int b = 0, k = 0, h = 0;
+        if (sscanf(l + 4, "%d %d %d", &b, &k, &h) >= 2) {
+            app_msg_t m = { .type = MSG_BUTTON, .btn = (uint8_t)b, .kind = (uint8_t)k, .held_ms = (int16_t)h };
+            xQueueSend(app_q, &m, pdMS_TO_TICKS(100));
+        }
     } else if (!rec_link) return;
     else if (!strncmp(l, "PROMPT ", 7)) {
         char *p = l + 7, n[12];
@@ -261,8 +268,15 @@ bool voice_init(const cart_t *c) {
              vb_has_search() ? "ready" : "missing", vb_has_cards() ? "NKEY" : "missing", mic ? "ok" : "missing");
     if (!mic || !asr_ok) return false;
     jobs = xQueueCreate(4, sizeof(job_t));
+    ESP_LOGI(TAG, "internal RAM before the voice task: %u free, largest %u", (unsigned)heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+             (unsigned)heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL));
+    /* the speech + form task: its stack in PSRAM if internal RAM is short (11-21: with the USB link added, the
+     * 32 KB internal stack failed silently and TALK stuck on "Thinking...") */
+    BaseType_t ok = xTaskCreatePinnedToCore(worker, "vbrain", 32768, 0, 4, 0, 1);
+    if (ok != pdPASS) ok = xTaskCreatePinnedToCoreWithCaps(worker, "vbrain", 32768, 0, 4, 0, 1, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
+    ESP_LOGI(TAG, "voice task %s", ok == pdPASS ? "started" : "FAILED");
+    if (ok != pdPASS) return false;
     link_init();
-    xTaskCreatePinnedToCore(worker, "vbrain", 32768, 0, 4, 0, 1);
     return true;
 }
 bool voice_has_form(void) { return vb_has_form(); }
