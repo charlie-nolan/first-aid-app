@@ -220,6 +220,15 @@ void app_main(void) {
             show(a.redraw);
         }
         int64_t now = esp_timer_get_time();
+        static int64_t think_since;                  /* board voice: no answer from the engine -> say so */
+        if (ui.vs && !strcmp(ui.vs_status, "Thinking...")) {
+            if (!think_since) think_since = now;
+            else if (now - think_since > 20 * 1000000LL) {
+                snprintf(ui.vs_status, sizeof ui.vs_status, "No answer from the speech engine. Hold TALK to try again.");
+                ESP_LOGE(TAG, "voice: no result 20 s after TALK");
+                think_since = 0; show(RD_PARTIAL);
+            }
+        } else think_since = 0;
         if (now - last_bat > 10 * 1000000LL) { last_bat = now; update_battery(); }
 #ifndef CONFIG_LIB_PACE_RETURN_SECONDS
 #define CONFIG_LIB_PACE_RETURN_SECONDS 20

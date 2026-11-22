@@ -276,8 +276,10 @@ void voice_start(void) {
     for (size_t i = 0; i < np; i++) clip[i] = pre[(p + i) % np];
     clip_n = np; recording = true;
     if (rec_link) return;                                 /* training mode: the clip goes to the PC, not the brain */
+#if CONFIG_LIB_VOICE_STREAM
     job_t j = { .op = J_LISTEN };
     xQueueSend(jobs, &j, 0);
+#endif
 }
 static void mic_off(void) {
     if (!mic_on) return;

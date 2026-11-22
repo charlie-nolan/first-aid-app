@@ -30,6 +30,15 @@ config LIB_VOICE_DIY
         shows matching cards. Needs a voice library (ASRM, LEXI, ASRC, FORM, SRCH, NKEY chunks;
         firmware/tools/cart_add.py). On the plain bench board the mic takes D4/D5 (no front light / IR).
 
+config LIB_VOICE_STREAM
+    bool "Decode while TALK is held (streaming)"
+    depends on LIB_VOICE_DIY
+    default n
+    help
+        Front end, model and word search run on the clip while it is being recorded, so only the
+        last part is left after release. Off until timed on the board (11-21: a beta with it on
+        stuck on "Thinking..."); off = the whole clip is decoded after release (asr_decode).
+
 config LIB_VOICE_REJECT
     int "Ask again when the speech reject score is at least"
     depends on LIB_VOICE_DIY
