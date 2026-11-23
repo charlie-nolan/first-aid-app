@@ -147,10 +147,13 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
         handles = not home and own and _handles_life(c, vals)
         c.filled = dict(vals)
         lifeh = bool(_rule_hit(c))                 # holds a life value: never cut (trees thread 11-23)
-        scored.append((named or handles, score + 3 * named + 3 * handles, -i, name, real, lifeh))
+        scored.append((named or handles, score + 3 * named + 3 * handles, -i, name, real, lifeh, own))
     if not any(x[4] for x in scored):              # only a place was heard ("toe", "my toe"): no problem
         return []                                  # yet, so no card; start screen (81fe3ed "toe in")
     life_of = {x[3]: x[5] for x in scored}
+    if any(x[6] for x in scored):                  # a tree heard its own problem: trees that only matched
+        scored = [(t, sc * 2 if (own or life) else sc, i, n, r)   # a place ("eye" misheard from "I",
+                  for t, sc, i, n, r, life, own in scored]        # board 11-22 femur turn) count half
     scored = [x[:4] for x in scored]
     if any(sc for _, sc, _, _ in scored):          # "he's not breathing": the shared life blanks
         scored = [x for x in scored if x[1]]       # (awake, breathing) rank only their home tree,

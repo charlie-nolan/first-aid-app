@@ -661,3 +661,17 @@ def test_two_trees_landing_on_one_plain_card_share_a_tab():
     first_sentence("she fainted on a hot day and has a big burn", cands, multi=True)
     cards = [t[0].card if t[0].card not in t[0].tree["nodes"] else f"{t[0].name}/{t[0].card}" for t in split_tabs(cands)]
     assert len(cards) == len(set(cards))
+
+
+def test_place_only_match_loses_its_tile_to_trees_with_own_evidence():
+    """Board 11-22: 'eye think my friend femur is broken ... can't walk' kept burns on body_part=eye."""
+    from vr.live import keep_trees
+    def t(slots, q):
+        return ({"root": "s", "nodes": {"s": {"label": "?"}, "a": {}}},
+                {"slots": slots, "questions": {"s": {"slot": q, "choices": {next(iter(slots[q])): "a"}}}})
+    pool = {"burns": t({"body_part": {"eye": ["eye"]}}, "body_part"),
+            "fractures": t({"body_part": {"femur": ["femur"]}, "injury": {"broken": ["is broken"]}}, "injury"),
+            "wfa-bleeding": t({"body_part": {"limb": ["leg"]}}, "body_part"),
+            "wfa-sprains": t({"can_use": {"no": ["can't walk"]}}, "can_use")}
+    kept = [c.name for c in keep_trees(["eye think my friend femur is broken eat camp put any way on legs can't walk"], pool)]
+    assert kept[:2] == ["fractures", "wfa-sprains"] and "burns" not in kept
