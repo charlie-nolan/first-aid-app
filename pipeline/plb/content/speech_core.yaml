@@ -108,6 +108,8 @@ phones:
   epipen: [EH P IY P EH N, EH P AH P EH N]
   rockfall: [R AA K F AO L]
   fishhook: [F IH SH HH UH K]
+  # CMUdict has only "TER-ni-kit"; most people (and the TTS voices) say "TOR-ni-kit" / "TOR-ni-ket"
+  tourniquet: [T ER N IH K IH T, T AO R N IH K IH T, T AO R N AH K AH T]
   junctional: [JH AH NG K SH AH N AH L]
   splinting: [S P L IH N T IH NG]
   toothache: [T UW TH EY K]

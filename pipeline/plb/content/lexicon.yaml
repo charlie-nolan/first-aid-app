@@ -488,7 +488,7 @@ words:
 - {id: 477, word: "splint", class: 0, phones: ["S P L IH N T"], g2p: cmudict, src: core}
 - {id: 478, word: "bandage", class: 0, phones: ["B AE N D IH JH"], g2p: cmudict, src: core}
 - {id: 479, word: "gauze", class: 0, phones: ["G AO Z"], g2p: cmudict, src: core}
-- {id: 480, word: "tourniquet", class: 3, phones: ["T ER N IH K IH T"], g2p: cmudict, src: core}
+- {id: 480, word: "tourniquet", class: 3, phones: ["T ER N IH K IH T", "T AO R N IH K IH T", "T AO R N AH K AH T"], g2p: hand, src: core}
 - {id: 481, word: "pressure", class: 0, phones: ["P R EH SH ER"], g2p: cmudict, src: core}
 - {id: 482, word: "dressing", class: 0, phones: ["D R EH S IH NG"], g2p: cmudict, src: core}
 - {id: 483, word: "sling", class: 0, phones: ["S L IH NG"], g2p: cmudict, src: core}
