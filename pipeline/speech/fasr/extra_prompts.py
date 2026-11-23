@@ -47,7 +47,67 @@ PAIRS = {
         "she's choking", "he's choking on food", "can't breathe choking", "i'm not joking he's choking"],
     ("chest", "test"): [
         "pain in my chest", "crushing chest pain", "chest feels tight", "hit in the chest"],
+    ("asthma", "as my"): [   # board log 2026-11-22: "asthma" came out as "as my" twice
+        "she's having an asthma attack", "asthma attack and can't breathe", "he has asthma", "my asthma is bad",
+        "asthma and no inhaler", "as my friend said he has asthma", "bad asthma attack", "it's his asthma"],
+    ("fell", "fall"): [
+        "i fell", "he fell off a rock", "she fell and hit her head", "a bad fall", "he took a fall",
+        "fell down the hill", "fell on the trail", "fall from a cliff"],
 }
+
+# Everyday first-aid words, said in a few plain sentences each. append() puts the ones Charlie has
+# recorded fewer than COVER_MIN times FIRST in the PAIRS list, so the gaps get filled before anything else.
+COVER_MIN = 3
+COVER = {
+    "inhaler": ["where is his inhaler", "she needs her inhaler", "no inhaler with us"],
+    "fainted": ["she fainted", "he fainted and fell", "i think he fainted"],
+    "dizzy": ["i feel dizzy", "he's dizzy and pale", "dizzy and sick"],
+    "allergic": ["he's having an allergic reaction", "she's allergic to bees", "allergic to bee stings"],
+    "hives": ["she has hives all over", "hives and a swollen face"],
+    "wheezing": ["he's wheezing", "wheezing and can't talk"],
+    "epipen": ["give her the epipen", "where is the epipen", "he has an epipen"],
+    "seizure": ["he's having a seizure", "she had a seizure", "seizure and not waking up"],
+    "diabetic": ["he's diabetic", "diabetic and confused", "she's a diabetic"],
+    "sugar": ["his sugar is low", "low blood sugar", "give him sugar"],
+    "unconscious": ["he's unconscious", "she went unconscious", "unconscious and breathing"],
+    "unresponsive": ["he's unresponsive", "unresponsive and not breathing"],
+    "pulse": ["i can't find a pulse", "is there a pulse", "weak pulse"],
+    "cpr": ["start cpr", "should i do cpr", "doing cpr now"],
+    "tourniquet": ["put on a tourniquet", "do i need a tourniquet", "tourniquet on his leg"],
+    "pressure": ["put pressure on it", "keep pressure on it", "pressure is not working"],
+    "concussion": ["i think he has a concussion", "concussion from the fall"],
+    "sprained": ["i sprained my ankle", "sprained wrist"],
+    "broken": ["i think it's broken", "broken leg", "his arm is broken"],
+    "splint": ["make a splint", "do i need a splint"],
+    "dislocated": ["my shoulder is dislocated", "dislocated finger"],
+    "burned": ["i burned my hand", "he burned his arm on the stove"],
+    "blister": ["a big blister on my heel", "the blister popped"],
+    "hypothermia": ["he has hypothermia", "shivering and cold, maybe hypothermia"],
+    "frostbite": ["frostbite on her toes", "i think it's frostbite"],
+    "heatstroke": ["he has heatstroke", "hot and confused, maybe heatstroke"],
+    "drowning": ["he was drowning", "pulled her out of the lake drowning"],
+    "vomiting": ["he keeps vomiting", "vomiting and dizzy"],
+    "poison": ["he ate something poison", "poison ivy rash"],
+    "stung": ["i got stung by a bee", "stung on the neck"],
+    "rattlesnake": ["a rattlesnake bit him", "bitten by a rattlesnake"],
+    "tick": ["a tick on my leg", "how do i get a tick out"],
+    "nosebleed": ["i have a nosebleed", "his nosebleed won't stop"],
+    "swollen": ["my ankle is swollen", "her face is swollen"],
+    "numb": ["my fingers are numb", "numb and tingling"],
+    "confused": ["he's confused", "confused and sleepy"],
+    "pale": ["she's pale and sweaty", "very pale"],
+    "blue": ["his lips are blue", "fingers turning blue"],
+}
+
+
+def coverage(texts: list[str]) -> dict[str, int]:
+    """How often each COVER / life word occurs in the recorded texts (Charlie's own clips)."""
+    n = {w: 0 for w in COVER}
+    for t in texts:
+        for w in lx.tokenize(t):
+            if w in n:
+                n[w] += 1
+    return n
 
 # (question shown, slot class or explicit answers) -> short answers to say
 QUESTIONS = [
@@ -69,9 +129,14 @@ QUESTIONS = [
 ]
 
 
-def build(seed: int = 7) -> tuple[list[str], list[str]]:
+def build(seed: int = 7, recorded: list[str] | None = None) -> tuple[list[str], list[str]]:
     words = {r["word"] for r in lx.load_existing()}
     pairs, answers, missing = [], [], set()
+    n = coverage(recorded or [])
+    gaps = [w for w, k in sorted(n.items(), key=lambda x: x[1]) if k < COVER_MIN]
+    first = [s for w in gaps for s in COVER[w]] + PAIRS[("asthma", "as my")] + PAIRS[("fell", "fall")]
+    for s in first:
+        missing |= {w for w in lx.tokenize(s) if w not in words}
     for sents in PAIRS.values():
         for s in sents:
             missing |= {w for w in lx.tokenize(s) if w not in words}
@@ -84,6 +149,11 @@ def build(seed: int = 7) -> tuple[list[str], list[str]]:
         print("not in lexicon (will decode as <unk>):", sorted(missing))
     rng = random.Random(seed)
     rng.shuffle(pairs); rng.shuffle(answers)
+    rng.shuffle(first)
+    seen = set(first)
+    pairs = first + [p for p in pairs if p not in seen]   # word gaps first, then the confusion pairs
+    if gaps:
+        print(f"recorded fewer than {COVER_MIN} times, asked first: {', '.join(gaps)}")
     return pairs, answers
 
 
@@ -166,9 +236,9 @@ def from_form(yaml_path, combos_per_tree: int = 12, seed: int = 11, cap: int = 3
     return out
 
 
-def append(path, pages=None, form=False) -> None:
+def append(path, pages=None, form=False, recorded: list[str] | None = None) -> None:
     keep = [l for l in path.read_text().splitlines() if l[:2] in ("T|", "E|")]
-    pairs, answers = build()
+    pairs, answers = build(recorded=recorded)
     if pages:
         answers = (from_form(pages) if form else from_pages(pages)) + [a for a in answers if a.startswith("Pick one|")]
         print("ANSWERS from the router's pages: this prompts.txt is PC-only, do not commit it")

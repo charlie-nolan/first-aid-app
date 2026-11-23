@@ -203,7 +203,9 @@ def main(argv=None):
     a = ap.parse_args(argv)
     if a.what == "extra":
         from .extra_prompts import append
-        append(PROMPTS, a.pages, a.form)
+        st = Store()   # Charlie's own recorded texts (not guest): word gaps are asked first
+        mine = [r.get("text", "") for r in st.rows.values() if r.get("speaker", "charlie") == "charlie"]
+        append(PROMPTS, a.pages, a.form, recorded=mine)
         return
     if a.what == "prompts":
         make_prompts(a.train, a.eval, seed=a.seed, new_only=a.new_only)
