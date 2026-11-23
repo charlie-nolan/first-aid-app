@@ -925,7 +925,7 @@ static void render_form(ui_t *u, cart_fb_t *fb) {
                       : v->msg[0] ? v->msg : v->kind == VS_AGAIN ? "Didn't catch that. Hold TALK and say it again."
                       : "Hold TALK and say what happened.";
         draw_wrap(u, fb, 1, 6, l.body_y, UI_W - 12, l.body_h, m);
-        footer(u, fb, "Hold TALK: speak   BACK: reading");
+        footer(u, fb, u->has_search && v->kind != VS_CARD ? "Hold TALK: say it again  Menu: Search by word" : "Hold TALK: speak   BACK: reading");
     }
 }
 static void render_search(ui_t *u, cart_fb_t *fb) {
