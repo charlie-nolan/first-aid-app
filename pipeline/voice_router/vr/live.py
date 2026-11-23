@@ -145,9 +145,12 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
         own = named or any(s not in loc and s not in UNIVERSAL and s not in shared
                            and _own_words(words, smap, s, vals[s]) for s in vals)
         handles = not home and own and _handles_life(c, vals)
-        scored.append((named or handles, score + 3 * named + 3 * handles, -i, name, real))
+        c.filled = dict(vals)
+        lifeh = bool(_rule_hit(c))                 # holds a life value: never cut (trees thread 11-23)
+        scored.append((named or handles, score + 3 * named + 3 * handles, -i, name, real, lifeh))
     if not any(x[4] for x in scored):              # only a place was heard ("toe", "my toe"): no problem
         return []                                  # yet, so no card; start screen (81fe3ed "toe in")
+    life_of = {x[3]: x[5] for x in scored}
     scored = [x[:4] for x in scored]
     if any(sc for _, sc, _, _ in scored):          # "he's not breathing": the shared life blanks
         scored = [x for x in scored if x[1]]       # (awake, breathing) rank only their home tree,
@@ -155,7 +158,10 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
                                                    # Tiered (Charlie 11-18): a tree named outright
                                                    # ("carbon monoxide", "choking") ranks above trees
                                                    # that only share a word ("stove", "dirty").
-    top = scored[:k]
+    best = scored[0][1] if scored else 0           # a weak side match never takes a tile (board 11-22:
+    scored = [x for j, x in enumerate(scored)      # "femur broken, can't walk" offered Burns): keep a
+              if j == 0 or 3 * x[1] >= best or life_of[x[3]]]   # tree at a third of the leader's score,
+    top = scored[:k]                               # or any tree holding a life value (allergy/choking/asthma)
     tot = sum(s for _, s, _, _ in top) or 1
     return [Candidate(n, *trees[n], p=s / tot) for _, s, _, n in top]
 
