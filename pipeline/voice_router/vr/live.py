@@ -151,6 +151,11 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
     if not any(x[4] for x in scored):              # only a place was heard ("toe", "my toe"): no problem
         return []                                  # yet, so no card; start screen (81fe3ed "toe in")
     life_of = {x[3]: x[5] for x in scored}
+    raw = {x[3]: x[1] for x in scored}
+    old = sorted((x[:4] for x in scored if x[1] or not any(y[1] for y in scored)), reverse=True)
+    tot = sum(sc for _, sc, _, _ in old[:k]) or 1   # shares (p) as before the cut: the cut and the
+                                                   # halving pick the TILES, never push a leader past SURE
+                                                   # (PC check da65496: s046 opened head-spine at p 0.80)
     if any(x[6] for x in scored):                  # a tree heard its own problem: trees that only matched
         scored = [(t, sc * 2 if (own or life) else sc, i, n, r)   # a place ("eye" misheard from "I",
                   for t, sc, i, n, r, life, own in scored]        # board 11-22 femur turn) count half
@@ -162,12 +167,10 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
                                                    # ("carbon monoxide", "choking") ranks above trees
                                                    # that only share a word ("stove", "dirty").
     best = scored[0][1] if scored else 0           # a weak side match never takes a tile (board 11-22:
-    scored = [x for j, x in enumerate(scored)      # "femur broken, can't walk" offered Burns): keep a
-              if j <= 1 or 3 * x[1] >= best or life_of[x[3]]]   # never down to one tree: a lone
-                                                   # tree auto-opens (PC check 1c77ac2: 4 new WRONG, s046)   # tree at a third of the leader's score,
-    top = scored[:k]                               # or any tree holding a life value (allergy/choking/asthma)
-    tot = sum(s for _, s, _, _ in top) or 1
-    return [Candidate(n, *trees[n], p=s / tot) for _, s, _, n in top]
+    scored = [x for j, x in enumerate(scored)      # "femur broken, can't walk" offered Burns): keep a tree
+              if j <= 1 or 3 * x[1] >= best or life_of[x[3]]]   # at a third of the leader's score, any
+    top = scored[:k]                               # tree holding a life value, and always the best two
+    return [Candidate(n, *trees[n], p=raw[n] / tot) for _, _, _, n in top]
 
 
 def rescue(hyps: list[str], trees: dict, cands: list[Candidate]):
