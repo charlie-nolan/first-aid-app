@@ -163,7 +163,8 @@ def keep_trees(hyps: list[str], trees: dict, k: int = MAX_TREES) -> list[Candida
                                                    # that only share a word ("stove", "dirty").
     best = scored[0][1] if scored else 0           # a weak side match never takes a tile (board 11-22:
     scored = [x for j, x in enumerate(scored)      # "femur broken, can't walk" offered Burns): keep a
-              if j == 0 or 3 * x[1] >= best or life_of[x[3]]]   # tree at a third of the leader's score,
+              if j <= 1 or 3 * x[1] >= best or life_of[x[3]]]   # never down to one tree: a lone
+                                                   # tree auto-opens (PC check 1c77ac2: 4 new WRONG, s046)   # tree at a third of the leader's score,
     top = scored[:k]                               # or any tree holding a life value (allergy/choking/asthma)
     tot = sum(s for _, s, _, _ in top) or 1
     return [Candidate(n, *trees[n], p=s / tot) for _, s, _, n in top]
