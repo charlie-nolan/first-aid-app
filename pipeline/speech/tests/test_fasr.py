@@ -101,3 +101,10 @@ def test_i_eye_homophone():
     out = resolve_homophones(hyp, trie)
     assert out["h"][0]["ids"][0] == ids["i"]
     assert out["h"][1]["ids"][3] == ids["eye"]
+    cases = [(["scratch", "eye", "ball"], 1, "eye"),   # next word only follows "eye"
+             (["i", "poked", "i"], 2, "eye"),          # verb done to an eye
+             (["i", "poked", "i"], 0, "i"),
+             (["eye", "hurt", "it"], 0, "i")]
+    for words, pos, want in cases:
+        got = resolve_homophones({"h": [{"ids": [ids[w] for w in words]}]}, trie)["h"][0]["ids"]
+        assert trie.name[got[pos]] == want, (words, pos)

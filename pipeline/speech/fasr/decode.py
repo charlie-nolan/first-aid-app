@@ -291,10 +291,15 @@ def calibrated_reject(logp: np.ndarray, hyp: dict, calib: dict) -> int:
     return min(r, 40) if hyp.get("veto") else r
 
 
-# Homophones the acoustics cannot separate (same phones). "eye" (body part) only after a word that can
-# own or place a body part; anywhere else the sound is "i" (board test 2026-11-24: "eye fell on my arm").
+# Homophones the acoustics cannot separate (same phones). "eye" (body part) only in an eye context;
+# anywhere else the sound is "i" (board test 2026-11-24: "eye fell on my arm"; "scratch eye ball" kept).
+# prev/next are the neighbouring words in the SAME hypothesis, read before this position is rewritten
+# (left to right; a rewritten earlier word is the one seen as prev).
 # Runs after the search, so the C port applies the same table to the final ids.
-EYE_BEFORE = frozenset("my his her your their the an left right both one in either its our".split())
+# Keep "eye" if the word BEFORE owns/places it or is a verb done to an eye, or the word AFTER only follows "eye".
+EYE_BEFORE = frozenset(("my his her your their the an left right both one in either its our into "
+                        "scratched scratch poked poke rubbed rub hit cut burned splashed stung flush rinse wash").split())
+EYE_AFTER = frozenset("ball balls lid lids socket brow lash lashes drops patch hurts is was looks swollen red".split())
 
 
 def resolve_homophones(hyp: dict, trie: Trie) -> dict:
@@ -307,7 +312,8 @@ def resolve_homophones(hyp: dict, trie: Trie) -> dict:
         for k, w in enumerate(out):
             if w in (i_id, eye_id):
                 prev = trie.name.get(out[k - 1], "") if k else ""
-                out[k] = eye_id if prev in EYE_BEFORE else i_id
+                nxt = trie.name.get(out[k + 1], "") if k + 1 < len(out) else ""
+                out[k] = eye_id if (prev in EYE_BEFORE or nxt in EYE_AFTER) else i_id
     return hyp
 
 
