@@ -1,0 +1,27 @@
+Internal RAM + streaming buffer placement, plain XIAO S3, medium model, 8 golden clips (words left out).
+Beta d03dd59 boot: internal free before the speech task 261 KB, largest block 196 KB; speech task stack in internal RAM; ~5 KB of 32 KB stack used after a decode.
+(before the review fixes, 359de99: 99 KB free, largest 37 KB, stack had to go to PSRAM)
+
+== stream buffers in PSRAM
+ASR-BENCH stream buffers 232388 bytes, internal free after open 321747 largest 249856
+STREAM 00 while held 867 ms (1.63 s audio), after release 49 ms (same words)
+STREAM 01 while held 604 ms (1.52 s audio), after release 154 ms (same words)
+STREAM 02 while held 587 ms (1.34 s audio), after release 64 ms (same words)
+STREAM 03 while held 1058 ms (2.35 s audio), after release 80 ms (same words)
+STREAM 04 while held 903 ms (2.23 s audio), after release 145 ms (same words)
+STREAM 05 while held 799 ms (1.61 s audio), after release 2 ms (same words)
+STREAM 06 while held 438 ms (1.23 s audio), after release 132 ms (same words)
+STREAM 07 while held 920 ms (2.04 s audio), after release 79 ms (same words)
+total while held 6176 ms, after release 705 ms
+
+== stream buffers in internal RAM
+ASR-BENCH stream buffers 232388 bytes, internal free after open 89355 largest 31744
+STREAM 00 while held 842 ms (1.63 s audio), after release 47 ms (same words)
+STREAM 01 while held 583 ms (1.52 s audio), after release 150 ms (same words)
+STREAM 02 while held 567 ms (1.34 s audio), after release 62 ms (same words)
+STREAM 03 while held 1022 ms (2.35 s audio), after release 77 ms (same words)
+STREAM 04 while held 872 ms (2.23 s audio), after release 140 ms (same words)
+STREAM 05 while held 773 ms (1.61 s audio), after release 2 ms (same words)
+STREAM 06 while held 422 ms (1.23 s audio), after release 127 ms (same words)
+STREAM 07 while held 889 ms (2.04 s audio), after release 76 ms (same words)
+total while held 5970 ms, after release 681 ms
