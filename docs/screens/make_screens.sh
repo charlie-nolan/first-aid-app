@@ -28,11 +28,9 @@ run b2 "speak:my friend cut his leg with an axe and it is spurting"
 run c "speak:my buddy is bleeding" wr "speak:his leg and we have no tourniquet"
 run d "speak:my buddy is bleeding" DOWN talk
 run e DOWN talk "speak:tourniquet" down
-run f sleep
 cd "$W"; P="python3 $HERE/strip.py"
 $P "$OUT/${D}_screens-buttons-home-to-card_run1_test1.png" "Buttons only: Home > Injury > First aid > Bleeding (public ATP library)" '[["a/00.pbm","Start screen: Injury | Survival"],["a/01.pbm","Injury folder tiles"],["a/02.pbm","Topic tiles"],["a/03.pbm","Cited card, page 1"],["a/04.pbm","DOWN: next page"]]'
 $P "$OUT/${D}_screens-voice-life-card-first-sentence_run1_test2.png" "Life threats open on the first sentence (typed input, real form engine)" '[["b1/01.pbm","\"she is not breathing\" -> CPR card"],["b2/01.pbm","\"...cut his leg with an axe, it is spurting\""]]'
 $P "$OUT/${D}_screens-voice-form-screen2_run1_test3.png" "Screen 2: the fill-in-the-blanks form, then the cited card" '[["c/01.pbm","\"my buddy is bleeding\": blank 1 of 3"],["c/02.pbm","WIN_R: blank 2 of 3"],["c/03.pbm","\"his leg, no tourniquet\" -> card"]]'
 $P "$OUT/${D}_screens-voice-skip-likely-cards_run1_test4.png" "SKIP: hold DOWN on the form for the likely cards, best first" '[["d/01.pbm","Form after \"my buddy is bleeding\""],["d/02.pbm","Hold DOWN: likely cards"],["d/03.pbm","TALK: open the highlighted card"]]'
 $P "$OUT/${D}_screens-keyword-search-grid_run1_test5.png" "Keyword search: Menu > Search by word, say one word" '[["e/01.pbm","Hold DOWN: menu"],["e/02.pbm","Search by word"],["e/03.pbm","\"tourniquet\": 4 x 2 ranked tiles"],["e/04.pbm","DOWN: next tile"]]'
-$P "$OUT/${D}_screens-sleep-art_run1_test6.png" "Sleep screen (stays on the e-ink with no power)" '[["f/01.pbm","Sleep art"]]'

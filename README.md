@@ -282,9 +282,7 @@ don't apply; emergency pages are never hidden. Waking from sleep returns to the 
 ![Buttons only: Home, folder tiles, topic tiles, cited card (firmware sim, 2026-11-23)](docs/screens/2026-11-23_screens-buttons-home-to-card_run1_test1.png)
 
 *Button mode from the PC screen simulator, public library, 2026-11-23. Every card shows its
-citation on the bottom line. The sleep screen stays on the e-ink with no power:*
-
-![Sleep screen (firmware sim, 2026-11-23)](docs/screens/2026-11-23_screens-sleep-art_run1_test6.png)
+citation on the bottom line.*
 
 ## Status and metrics
 

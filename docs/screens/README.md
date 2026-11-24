@@ -16,6 +16,5 @@ library never appears here.
 | `2026-11-23_screens-voice-form-screen2_run1_test3` | Screen 2, the fill-in-the-blanks form, then the card |
 | `2026-11-23_screens-voice-skip-likely-cards_run1_test4` | SKIP (hold DOWN): ranked likely cards |
 | `2026-11-23_screens-keyword-search-grid_run1_test5` | Search by word: the 4 x 2 tile grid |
-| `2026-11-23_screens-sleep-art_run1_test6` | Sleep screen |
 
 Rebuild: `FW=<checkout with the board-voice firmware> VR=<voice_router with vr/live.py> ./make_screens.sh`.
