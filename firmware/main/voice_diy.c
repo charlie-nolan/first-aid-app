@@ -89,7 +89,8 @@ static vs_hit_t *staged_hits; static int staged_nhits; static char staged_q[64];
 /* ---------- the worker: speech + form + search, one job at a time ---------- */
 enum { J_SPEECH, J_OP, J_LISTEN, J_CANCEL, J_REC };
 static void rec_send_clip(void);
-typedef struct { uint8_t op, target; vb_op_t o; } job_t;
+typedef struct { uint8_t op, target; uint32_t gen; vb_op_t o; } job_t;
+static volatile uint32_t clip_gen;          /* +1 for every clip: a stream only ever feeds the clip it began on */
 static QueueHandle_t jobs;
 static bool streaming;                      /* worker only: a stream was begun for the clip being recorded */
 static volatile bool speech_busy;           /* a clip is being decoded: a new TALK waits (clip[] is in use) */
@@ -115,7 +116,7 @@ static void worker(void *arg) {
         if (j.op == J_LISTEN) {                     /* TALK held: front end + model + search on the clip so far */
             if (asr_ok && asr_stream_begin() == ASR_OK) {
                 streaming = true;
-                while (recording) { asr_stream_feed(clip, clip_n); vTaskDelay(pdMS_TO_TICKS(30)); }
+                while (recording && clip_gen == j.gen) { asr_stream_feed(clip, clip_n); vTaskDelay(pdMS_TO_TICKS(30)); }
             }
             continue;
         }
@@ -151,7 +152,8 @@ static void worker(void *arg) {
         if (!ok) continue;
         xSemaphoreTake(lock, portMAX_DELAY); *staged = s; xSemaphoreGive(lock);
         post(MSG_VSCREEN);
-        ESP_LOGI(TAG, "job %d: %lld ms", j.op, (esp_timer_get_time() - t0) / 1000);
+        ESP_LOGI(TAG, "job %d: %lld ms (task stack never used: %u bytes of 32768)", j.op, (esp_timer_get_time() - t0) / 1000,
+                 (unsigned)uxTaskGetStackHighWaterMark(NULL));
     }
 #undef s
 }
@@ -292,8 +294,9 @@ bool voice_init(const cart_t *c) {
     /* the speech + form task: its stack in PSRAM if internal RAM is short (11-21: with the USB link added, the
      * 32 KB internal stack failed silently and TALK stuck on "Thinking...") */
     BaseType_t ok = xTaskCreatePinnedToCore(worker, "vbrain", 32768, 0, 4, 0, 1);
-    if (ok != pdPASS) ok = xTaskCreatePinnedToCoreWithCaps(worker, "vbrain", 32768, 0, 4, 0, 1, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT);
-    ESP_LOGI(TAG, "voice task %s", ok == pdPASS ? "started" : "FAILED");
+    const char *where = "internal RAM";
+    if (ok != pdPASS) { ok = xTaskCreatePinnedToCoreWithCaps(worker, "vbrain", 32768, 0, 4, 0, 1, MALLOC_CAP_SPIRAM | MALLOC_CAP_8BIT); where = "PSRAM"; }
+    ESP_LOGI(TAG, "voice task %s (stack in %s)", ok == pdPASS ? "started" : "FAILED", where);
     if (ok != pdPASS) return false;
     link_init();
     return true;
@@ -305,10 +308,11 @@ void voice_start(void) {
     if (!rx || recording || speech_busy) return;          /* the last clip is still being decoded / sent */
     if (rec_link && take_state) return;                  /* training: the PC hasn't got the last clip yet */
     power_mic(true);
+    clip_gen++;
     clip_n = 0; stop_at = 0; recording = true; mic_want = true;
     if (rec_link) return;                                 /* training mode: the clip goes to the PC, not the brain */
 #if CONFIG_LIB_VOICE_STREAM
-    job_t j = { .op = J_LISTEN };
+    job_t j = { .op = J_LISTEN, .gen = clip_gen };
     xQueueSend(jobs, &j, 0);
 #endif
 }

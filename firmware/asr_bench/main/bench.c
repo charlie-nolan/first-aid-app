@@ -35,6 +35,8 @@ static void run(void *arg) {
     int64_t t0 = esp_timer_get_time();
     asr_err_t e = asr_open_cart(rom, p->size);
     printf("ASR-BENCH internal free %u largest %u\n", heap_caps_get_free_size(MALLOC_CAP_INTERNAL), heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    printf("ASR-BENCH stream buffers %u bytes, internal free after open %u largest %u\n", (unsigned)asr_stream_bytes(),
+           heap_caps_get_free_size(MALLOC_CAP_INTERNAL), heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
     printf("ASR-BENCH 1 engine %s open %d (%lld us), psram free %u\n", asr_engine_name(), (int)e,
            esp_timer_get_time() - t0, heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
     const uint8_t *clips[8] = {clip0_start, clip1_start, clip2_start, clip3_start, clip4_start, clip5_start, clip6_start, clip7_start};

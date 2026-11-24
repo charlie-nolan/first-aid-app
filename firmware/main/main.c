@@ -203,11 +203,16 @@ void app_main(void) {
             else if (m.type == MSG_VSEARCH) { think_draw_at = 0; voice_take(0, ui.hits, &ui.nhits, ui.squery, sizeof ui.squery); a = ui_vsearch(&ui); }
             else a = ui_voice(&ui, m.cmd, m.prob, m.n);
             if (a.voice == VO_START) voice_start();
-            else if (a.voice == VO_STOP && ui.mode == M_REC) { voice_stop(true); snprintf(ui.rec_status, sizeof ui.rec_status, "Sending..."); a.redraw = RD_PARTIAL; }
+            else if (a.voice == VO_STOP && ui.mode == M_REC) {
+                snprintf(ui.rec_status, sizeof ui.rec_status, "%s", voice_stop_to(true, VT_NEW) ? "Sending..." : "Still sending the last one. Hold TALK again.");
+                a.redraw = RD_PARTIAL;
+            }
             else if (a.voice == VO_STOP && ui.vs) {          /* board voice: the clip goes to the form or the search */
                 int to = ui.mode == M_SEARCH ? VT_SEARCH : ui.mode == M_FORM ? VT_ANSWER : VT_NEW;
-                if (to == VT_NEW) { ui.vs->kind = VS_START; ui.vs->heard[0] = ui.vs->msg[0] = 0; ui.mode = M_FORM; }
                 if (voice_stop_to(true, to)) {
+                    /* a new problem: the form screen starts fresh (only once the clip is really on its way, so a busy
+                     * press from a card leaves the card alone) */
+                    if (to == VT_NEW) { ui.vs->kind = VS_START; ui.vs->heard[0] = ui.vs->msg[0] = 0; ui.mode = M_FORM; }
                     snprintf(ui.vs_status, sizeof ui.vs_status, "Thinking...");
                     a.redraw = RD_NONE;                      /* the answer usually lands in ~0.3 s: draw "Thinking..."
                                                                only if it hasn't (saves one e-ink refresh a turn) */
@@ -223,6 +228,7 @@ void app_main(void) {
              * again on the old screen, and its answer replaced the card that had just opened (Charlie 11-24) */
             if (a.vf && !vf_pending) { voice_form_op(a.vf, &ui); vf_pending = esp_timer_get_time(); }
             else if (a.vf) ESP_LOGI(TAG, "voice: tap ignored, the last pick is still being answered");
+            if (a.vf) a.redraw = RD_NONE;                    /* the answer (~5 ms) brings the next screen: one refresh, not two */
             if (a.rc) voice_rec_button(a.rc);
             if (a.light_step) { saved.light = (uint8_t)((saved.light + 1) % 3); lights_front(saved.light); }
             if (a.signal >= 0) lights_signal((uint8_t)a.signal);

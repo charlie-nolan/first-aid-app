@@ -117,7 +117,7 @@ int fe_logmel(const int16_t *pcm, int n, float *out) { int T = fe_frames(n); fe_
 void fe_logmel_range(const int16_t *pcm, int n, int t0, int T, float *out) {
     if (!ready) setup();
 #ifdef FE_FAST
-    float re[FE_NFFT], im[FE_NFFT];
+    static float re[FE_NFFT], im[FE_NFFT];             /* static, not on the caller's stack (one decode at a time) */
 #else
     double re[FE_NFFT], im[FE_NFFT], pw[FE_NFFT / 2 + 1];
 #endif
@@ -129,7 +129,7 @@ void fe_logmel_range(const int16_t *pcm, int n, int t0, int T, float *out) {
         }
 #ifdef FE_FAST
         fftf(re, im);
-        float pf[FE_NFFT / 2 + 1];
+        static float pf[FE_NFFT / 2 + 1];
         for (int k = 0; k <= FE_NFFT / 2; k++) pf[k] = re[k] * re[k] + im[k] * im[k];
         for (int m = 0; m < FE_NMEL; m++) {
             float s = 0;

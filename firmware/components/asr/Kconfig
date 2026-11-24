@@ -43,6 +43,10 @@ config ASR_PREFETCH
         Two internal buffers of one pointwise layer each (64 KB for size m, ~100 KB for size l). Same
         results; whether it is faster depends on what else uses internal RAM (time it with asr_bench).
 
+config ASR_STREAM_INTERNAL
+    bool "Streaming buffers in internal RAM when they fit (else PSRAM)"
+    default n
+
 config ASR_MAX_HYPS
     int "n-best guesses kept"
     range 1 5

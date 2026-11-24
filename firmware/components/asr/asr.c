@@ -110,7 +110,11 @@ asr_err_t asr_open_cart(const void *rom, size_t len) {
     ws_model = big(fq_ws_size(&M, T)); ws_dec = big(fd_ws_size());
     if (!feats || !logp || !logits || !ws_model || !ws_dec) return ASR_NO_MEMORY;
     prefetch_setup(&M);
-    st_T = T; st_mem = big(fq_stream_size(&M, T));      /* NULL: no streaming, asr_decode still works */
+    st_T = T;
+#if defined(ESP_PLATFORM) && CONFIG_ASR_STREAM_INTERNAL
+    st_mem = heap_caps_malloc(fq_stream_size(&M, T), MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);   /* fast RAM if it fits */
+#endif
+    if (!st_mem) st_mem = big(fq_stream_size(&M, T));    /* NULL: no streaming, asr_decode still works */
     ready = true;
     return ASR_OK;
 #endif
@@ -176,6 +180,7 @@ void asr_stream_feed(const int16_t *pcm, size_t samples) {
     if (!st_on) return;
     stream_step(pcm, samples, false);
 }
+size_t asr_stream_bytes(void) { return st_mem ? fq_stream_size(&M, st_T) : 0; }
 void asr_stream_abort(void) { st_on = false; }     /* a TALK tap: nothing to finish */
 asr_err_t asr_stream_end(const int16_t *pcm, size_t samples, asr_hyp_t *out) {
     memset(out, 0, sizeof *out);
