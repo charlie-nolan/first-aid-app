@@ -1,0 +1,5 @@
+Outside code review fixes (11-23), PC checks after the changes:
+  vform  snap_2026-11-22_1755: form 770/770 identical (1632 frames), fuzz 509 sentences 0 loops; tabs 204/204; search 54/54; fixture 95/95
+  asr    decode_test 16/16; 633 recordings x 2 models (exact front end) identical to the earlier baseline;
+         streamed (new code) vs whole (old code), float front end, m: 633/633 identical; goldens 273a452 m + l: 8/8 bit-exact
+  n-best: 'my friend fell down and he is not' + guess 2 '... not breathing': C and Python both open wfa-cpr/cpr (top guess alone: head-spine form)

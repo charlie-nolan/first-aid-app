@@ -25,7 +25,8 @@ static ui_act_t vspeak(const char *text, int reject) {   /* as main.c: where the
         u.nhits = (int16_t)vb_search(text, reject, 51, hits, VS_HITS); snprintf(u.squery, sizeof u.squery, "%s", text);
         return ui_vsearch(&u);
     }
-    vb_said(text, reject, 51, u.mode != M_FORM, &vs);
+    const char *h1[1] = {text};
+    vb_said(h1, 1, reject, 51, u.mode != M_FORM, &vs);
     return ui_vscreen(&u);
 }
 #endif

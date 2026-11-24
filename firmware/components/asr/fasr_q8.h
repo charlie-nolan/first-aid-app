@@ -6,6 +6,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#define FQ_MAXTOK 128
 typedef struct {
     const uint8_t *b;          /* the ASRM blob (tools/asrpack.py), read in place */
     uint16_t nl;               /* layers */
@@ -14,6 +15,7 @@ typedef struct {
     const uint8_t *layers, *w; /* layer table, weights block */
     int ctok;                  /* output tokens (head cout) */
     int cmax;                  /* widest layer */
+    double lsc[FQ_MAXTOK];     /* 2^-exponent of each head token (fq_logp) */
 } fq_model_t;
 
 bool fq_open(fq_model_t *m, const void *blob, size_t len);

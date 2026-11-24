@@ -36,5 +36,6 @@ const char *asr_engine_name(void);
  * end with the whole clip. asr_last_timing then gives only what ran after the end. */
 asr_err_t asr_stream_begin(void);
 void asr_stream_feed(const int16_t *pcm, size_t samples);
+void asr_stream_abort(void);                   /* drop the stream (a tap, not speech) */
 asr_err_t asr_stream_end(const int16_t *pcm, size_t samples, asr_hyp_t *out);
 void asr_last_timing(uint32_t *fe_us, uint32_t *model_us, uint32_t *search_us);

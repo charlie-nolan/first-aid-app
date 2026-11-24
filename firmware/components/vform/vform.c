@@ -7,6 +7,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef ESP_PLATFORM            /* big scratch arrays: in PSRAM on the chip (internal RAM is short), plain statics on the PC */
+#include "esp_attr.h"
+#define FP_BIG EXT_RAM_BSS_ATTR
+#else
+#define FP_BIG
+#endif
 
 /* ------------------------------------------------------------------ pack */
 
@@ -1094,10 +1100,8 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
     for (int t = 0; t < s->ntrees; t++) {
         fp_filled_t f, tie;                          /* fill_nbest's blanks + every slot whose words were */
         fill_nbest(s, t, hyps, nh, &f);              /* heard, ties too ("leg" vs "shin"): tree evidence */
-        if (nh > 0) {
-            fp_toks_t raw;
-            fp_tokenize(hyps[0], &raw);
-            fill_toks_d(s, t, &raw, &tie, true);
+        if (nh > 0) {                                /* hyps[0]'s tokens: h0w (tokenized once, above) */
+            fill_toks_d(s, t, &h0w, &tie, true);
             for (int i = 0; i < tie.n; i++) if (!fhas(&f, tie.slot[i])) fset(&f, tie.slot[i], tie.val[i]);
         }
         bool named = heard[t];
@@ -1105,12 +1109,12 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
         const uint8_t *m = s->trees[t].menu, *tp = m + 2 + 2 * rd16(m), *fl = tp + 2 + 2 * rd16(tp), *lc = fl + 2;
         bool home = rd16(fl) & 1;                    /* the shared life blanks (awake, breathing) score */
         if (home) {                                  /* CPR ranks only on a life value; its own cause alone */
-            bool lifev = false;                      /* (hypothermia, drowning) says nothing */
+            bool lifeval = false;                    /* (hypothermia, drowning) says nothing */
             for (int i = 0; i < f.n; i++) {
                 const char *sn = S(f.slot[i]);
-                if ((!strcmp(sn, "conscious") || !strcmp(sn, "breathing")) && !strcmp(S(f.val[i]), "no")) lifev = true;
+                if ((!strcmp(sn, "conscious") || !strcmp(sn, "breathing")) && !strcmp(S(f.val[i]), "no")) lifeval = true;
             }
-            if (!lifev) f.n = 0;
+            if (!lifeval) f.n = 0;
         }
         int score = 0;
         for (int i = 0; i < f.n; i++) {               /* only in their home tree, CPR ("he's not breathing") */
@@ -1280,7 +1284,7 @@ static bool has_location(const fp_sess_t *s, int t) {
 }
 
 int fp_split_tabs(fp_sess_t *s, fp_tab_t *tabs, int max) {
-    static fp_cand_t pool[3 * FP_MAX_CANDS];        /* originals 0..n-1, then copies */
+    static FP_BIG fp_cand_t pool[3 * FP_MAX_CANDS];        /* originals 0..n-1, then copies */
     int n = s->ncands, np = n;
     for (int i = 0; i < n; i++) pool[i] = s->cands[i];
     char tree_of[FP_MAX_CANDS][200]; int ntr = 0, mem[FP_MAX_CANDS][FP_MAX_CANDS], nmem[FP_MAX_CANDS] = {0};
@@ -1427,7 +1431,7 @@ fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nh, boo
         advance(s, c, -1);
     }
     if (multi) {                                      /* several problems (TALK + WIN_R): every life tab */
-        static fp_tab_t tabs[5];                      /* stands on its card; split_tabs sorts them, bleeding first */
+        static FP_BIG fp_tab_t tabs[5];                      /* stands on its card; split_tabs sorts them, bleeding first */
         if (fp_split_tabs(s, tabs, 5) > 1) {
             for (int i = 0; i < s->ncands; i++) {
                 fp_cand_t *c = &s->cands[i];
@@ -1655,7 +1659,7 @@ int fp_open_fields(fp_sess_t *s, fp_field_t *out, int max) {
         out[n++] = (fp_field_t){FP_TOPIC, FP_NONE, 0, 0, (1u << s->ncands) - 1, FP_NONE, FP_NONE};
     }
     fp_field_t rows[FP_MAX_FIELDS * 2]; int nr = 0;
-    static struct { int card; fp_str asking; fp_filled_t f; fp_str ws, wv; } q[128];
+    static FP_BIG struct { int card; fp_str asking; fp_filled_t f; fp_str ws, wv; } q[128];
     for (int ci = 0; ci < s->ncands; ci++) {
         fp_cand_t *c = &s->cands[ci];
         fp_str seen[8]; int nseen = 0, nout = 0, head = 0, tail = 0;

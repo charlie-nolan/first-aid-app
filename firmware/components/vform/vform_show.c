@@ -5,6 +5,12 @@
 #include "vform_show.h"
 #include <stdio.h>
 #include <string.h>
+#ifdef ESP_PLATFORM            /* big scratch arrays: in PSRAM on the chip (internal RAM is short), plain statics on the PC */
+#include "esp_attr.h"
+#define FP_BIG EXT_RAM_BSS_ATTR
+#else
+#define FP_BIG
+#endif
 
 typedef struct { char *p; size_t cap, n; } jb_t;
 
@@ -193,7 +199,7 @@ static int result(fp_screen_t *sc, jb_t *b, fp_result_t r) {
         return (int)b->n;
     }
     if (r.kind == FP_TABS) {                         /* the first (most urgent) tab; a life tab opens its card */
-        static fp_tab_t tabs[5];
+        static FP_BIG fp_tab_t tabs[5];
         fp_split_tabs(sc->s, tabs, 5);
         fp_keep_tab(sc->s, &tabs[0]);
         fp_cand_t *lead = &sc->s->cands[0];
@@ -206,6 +212,13 @@ static int result(fp_screen_t *sc, jb_t *b, fp_result_t r) {
 void fp_screen_init(fp_screen_t *sc, fp_sess_t *s) { memset(sc, 0, sizeof *sc); sc->s = s; }
 
 int fp_screen_said(fp_screen_t *sc, const char *text, char *out, size_t cap) {
+    const char *h[1] = {text};
+    return fp_screen_said_n(sc, h, 1, out, cap);
+}
+/* vr.live's loop: keep_trees, first_sentence and rescue see every guess (a lower guess may add a
+ * life-threat blank the top one missed: fill_nbest); the answer and the commands use the top one. */
+int fp_screen_said_n(fp_screen_t *sc, const char *const *hyps, int nh, char *out, size_t cap) {
+    const char *text = nh > 0 ? hyps[0] : "";
     jb_t b = {out, cap, 0};
     snprintf(sc->heard, sizeof sc->heard, "%s", text);
     char w[16]; size_t n = 0;                         /* text.strip().lower(), enough to compare */
@@ -223,17 +236,16 @@ int fp_screen_said(fp_screen_t *sc, const char *text, char *out, size_t cap) {
     if (fits && !strcmp(w, "multi")) { sc->multi = true; return start(sc, &b, "Next sentence = several problems"); }
     fp_result_t r;
     if (!sc->open) {
-        const char *h[1] = {text};
-        if (!fp_keep_trees(sc->s, h, 1, 3)) {
+        if (!fp_keep_trees(sc->s, hyps, nh, 3)) {
             sc->open = false;
             return start(sc, &b, "No blanks heard in any tree. Hold TALK and say what happened.");
         }
         sc->open = true;
-        r = fp_first_sentence(sc->s, h, 1, sc->multi);
+        r = fp_first_sentence(sc->s, hyps, nh, sc->multi);
         sc->multi = false;
     } else {
-        const char *h[1] = {text};                   /* a life threat / new problem named mid-form */
-        if (!fp_rescue(sc->s, h, 1, &r)) r = fp_answer(sc->s, text);
+        /* a life threat / new problem named mid-form */
+        if (!fp_rescue(sc->s, hyps, nh, &r)) r = fp_answer(sc->s, text);
     }
     return result(sc, &b, r);
 }

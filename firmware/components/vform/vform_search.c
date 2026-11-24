@@ -6,6 +6,12 @@
 #include "vform.h"
 #include <stdio.h>
 #include <string.h>
+#ifdef ESP_PLATFORM            /* big scratch arrays: in PSRAM on the chip (internal RAM is short), plain statics on the PC */
+#include "esp_attr.h"
+#define FP_BIG EXT_RAM_BSS_ATTR
+#else
+#define FP_BIG
+#endif
 
 static inline uint16_t r16(const uint8_t *p) { return (uint16_t)(p[0] | p[1] << 8); }
 static inline uint32_t r32(const uint8_t *p) { return p[0] | p[1] << 8 | p[2] << 16 | (uint32_t)p[3] << 24; }
@@ -68,7 +74,7 @@ int fs_search(const fs_index_t *x, const char *query, fs_hit_t *out) {
     int qk[FP_MAX_TOK];
     for (int i = 0; i < nq; i++) qk[i] = key_id(x, qs[i]);
     const uint8_t *nodes = x->b + r32(x->b + 24), *trees = x->b + r32(x->b + 20), *al = x->b + r32(x->b + 28);
-    static cand_t c[1024]; int nc = 0, top = 0;
+    static FP_BIG cand_t c[1024]; int nc = 0, top = 0;
     for (uint32_t n = 0; n < x->nnodes && nc < 1024; n++) {
         const uint8_t *nd = nodes + 24 * n, *tr = trees + 16 * r16(nd);
         int score = 0; bool ok = true;
@@ -138,7 +144,10 @@ static size_t js(char *o, size_t cap, const char *s, int maxcp) {
         if (c >= 0x80) {
             int k = (c & 0xE0) == 0xC0 ? 2 : (c & 0xF0) == 0xE0 ? 3 : (c & 0xF8) == 0xF0 ? 4 : 1;
             unsigned v = k > 1 ? c & (0x7F >> k) : 0xFFFD;
-            for (int i = 1; i < k; i++) v = v << 6 | (p[i] & 0x3F);
+            for (int i = 1; i < k; i++) {               /* a cut or bad sequence (the NUL included) stops here */
+                if ((p[i] & 0xC0) != 0x80) { v = 0xFFFD; k = 1; break; }
+                v = v << 6 | (p[i] & 0x3F);
+            }
             c = v; L = k;
         }
         p += L;

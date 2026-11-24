@@ -114,6 +114,11 @@ int main(int argc, char **argv) {
             printf("FILL %s:", tn); for (int i = 0; i < f.n; i++) printf(" %s=%s", fp_s(&s.pk, f.slot[i]), fp_s(&s.pk, f.val[i]));
             printf("\n"); fflush(stdout); continue;
         }
+        if (!strcmp(line, "SAYN")) {                  /* SAYN h0|h1|...: a said turn with n-best guesses */
+            const char *hy[5]; int nh = 0; char *q = p;
+            while (nh < 5) { hy[nh++] = q; char *e = strchr(q, '|'); if (!e) break; *e = 0; q = e + 1; }
+            fp_screen_said_n(&sc, hy, nh, out, sizeof out); printf("%s\n", out); fflush(stdout); continue;
+        }
         if (!strcmp(line, "HINT")) { static char hint[160]; snprintf(hint, sizeof hint, "%s", p); sc.form_hint = hint; continue; }
         if (!strcmp(line, "CASE")) { fp_reset(&s); fp_screen_init(&sc, &s); printf("CASE %s\n", p); fflush(stdout); continue; }
         struct timespec t0, t1;

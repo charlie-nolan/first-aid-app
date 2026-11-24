@@ -4,10 +4,16 @@
 #include <string.h>
 
 static float win[FE_WIN];
-static float mel[FE_NMEL][FE_NFFT / 2 + 1];
+/* the mel triangles, packed: row m holds its nonzero span mlo..mhi at melw[moff[m]...] (each bin is in at most
+ * two triangles, so <= 2 x 257 weights instead of a 40 x 257 table: 41 KB of internal RAM back) */
+#define MEL_PACK (2 * (FE_NFFT / 2 + 1))
+static float melw[MEL_PACK];
+static short mlo[FE_NMEL], mhi[FE_NMEL], moff[FE_NMEL];
+#define MEL(m, k) melw[moff[m] + (k) - mlo[m]]
+#ifndef FE_FAST
 static double cs[FE_NFFT / 2], sn[FE_NFFT / 2];
+#endif
 static float csf[FE_NFFT / 2], snf[FE_NFFT / 2];
-static short mlo[FE_NMEL], mhi[FE_NMEL];   /* nonzero span of each mel row (adding 0 changes nothing) */
 static int ready;
 
 static double hz2mel(double f) { return 2595.0 * log10(1.0 + f / 700.0); }
@@ -18,18 +24,27 @@ static void setup(void) {
         win[i] = (float)(0.5 - 0.5 * cos(2.0 * M_PI * i / FE_WIN));
     double lo = hz2mel(60.0), hi = hz2mel(7600.0), pts[FE_NMEL + 2];
     for (int i = 0; i < FE_NMEL + 2; i++) pts[i] = mel2hz(lo + (hi - lo) * i / (FE_NMEL + 1));
-    for (int m = 0; m < FE_NMEL; m++)
+    int used = 0;
+    for (int m = 0; m < FE_NMEL; m++) {
+        float row[FE_NFFT / 2 + 1];
         for (int k = 0; k <= FE_NFFT / 2; k++) {
             double f = (double)k * FE_SR / FE_NFFT;
             double a = (f - pts[m]) / (pts[m + 1] - pts[m]), b = (pts[m + 2] - f) / (pts[m + 2] - pts[m + 1]);
             double v = a < b ? a : b;
-            mel[m][k] = (float)(v > 0 ? v : 0);
+            row[k] = (float)(v > 0 ? v : 0);
         }
-    for (int m = 0; m < FE_NMEL; m++) {
         mlo[m] = FE_NFFT / 2 + 1; mhi[m] = -1;
-        for (int k = 0; k <= FE_NFFT / 2; k++) if (mel[m][k] != 0.0f) { if (k < mlo[m]) mlo[m] = k; mhi[m] = k; }
+        for (int k = 0; k <= FE_NFFT / 2; k++) if (row[k] != 0.0f) { if (k < mlo[m]) mlo[m] = k; mhi[m] = k; }
+        moff[m] = (short)used;
+        for (int k = mlo[m]; k <= mhi[m] && used < MEL_PACK; k++) melw[used++] = row[k];   /* zeros inside a span stay */
     }
-    for (int i = 0; i < FE_NFFT / 2; i++) { cs[i] = cos(-2.0 * M_PI * i / FE_NFFT); sn[i] = sin(-2.0 * M_PI * i / FE_NFFT); csf[i] = (float)cs[i]; snf[i] = (float)sn[i]; }
+    for (int i = 0; i < FE_NFFT / 2; i++) {
+        double c = cos(-2.0 * M_PI * i / FE_NFFT), sv = sin(-2.0 * M_PI * i / FE_NFFT);
+#ifndef FE_FAST
+        cs[i] = c; sn[i] = sv;
+#endif
+        csf[i] = (float)c; snf[i] = (float)sv;
+    }
     ready = 1;
 }
 
@@ -101,11 +116,10 @@ int fe_frames(int n) { if (n < FE_WIN) n = FE_WIN; return 1 + (n - FE_WIN) / FE_
 int fe_logmel(const int16_t *pcm, int n, float *out) { int T = fe_frames(n); fe_logmel_range(pcm, n, 0, T, out); return T; }
 void fe_logmel_range(const int16_t *pcm, int n, int t0, int T, float *out) {
     if (!ready) setup();
-    double pw[FE_NFFT / 2 + 1];
 #ifdef FE_FAST
     float re[FE_NFFT], im[FE_NFFT];
 #else
-    double re[FE_NFFT], im[FE_NFFT];
+    double re[FE_NFFT], im[FE_NFFT], pw[FE_NFFT / 2 + 1];
 #endif
     for (int t = t0; t < T; t++) {
         for (int i = 0; i < FE_NFFT; i++) {
@@ -119,18 +133,17 @@ void fe_logmel_range(const int16_t *pcm, int n, int t0, int T, float *out) {
         for (int k = 0; k <= FE_NFFT / 2; k++) pf[k] = re[k] * re[k] + im[k] * im[k];
         for (int m = 0; m < FE_NMEL; m++) {
             float s = 0;
-            for (int k = mlo[m]; k <= mhi[m]; k++) s += pf[k] * mel[m][k];
+            for (int k = mlo[m]; k <= mhi[m]; k++) s += pf[k] * MEL(m, k);
             out[(size_t)t * FE_NMEL + m] = fe_logf(s + 1e-6f);
         }
-        continue;
 #else
         fft(re, im);
         for (int k = 0; k <= FE_NFFT / 2; k++) pw[k] = re[k] * re[k] + im[k] * im[k];
-#endif
         for (int m = 0; m < FE_NMEL; m++) {
             double s = 0;
-            for (int k = mlo[m]; k <= mhi[m]; k++) s += pw[k] * mel[m][k];
+            for (int k = mlo[m]; k <= mhi[m]; k++) s += pw[k] * MEL(m, k);
             out[(size_t)t * FE_NMEL + m] = (float)log(s + 1e-6);
         }
+#endif
     }
 }

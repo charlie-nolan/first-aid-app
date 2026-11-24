@@ -36,7 +36,6 @@
 
 static const char *TAG = "voice";
 #define SR 16000
-#define PRE_MS 300
 #define MAX_S 15
 #ifndef CONFIG_LIB_VOICE_REJECT
 #define CONFIG_LIB_VOICE_REJECT 51
@@ -45,28 +44,29 @@ static const char *TAG = "voice";
 static const cart_t *cart;
 static bool asr_ok;
 
-/* ---------- mic (same code as the recorder / tether: read both PDM slots, keep the one that moves) ---------- */
+/* ---------- mic (same code as the recorder / tether: read both PDM slots, keep the one that moves) ----------
+ * The mic task owns the I2S channel: it turns it on / off as asked (mic_want) and ends the clip itself at the
+ * tail deadline (stop_at, 250 ms after TALK is let go), so nothing else blocks on it. No pre-roll: the mic
+ * starts on the TALK press (11-23 review: the old pre-roll only held the last clip's tail or zeros). */
 static i2s_chan_handle_t rx;
 static int16_t *clip; static size_t clip_cap; static volatile size_t clip_n;
-static volatile bool recording, mic_on;
-static int16_t pre[SR * PRE_MS / 1000]; static size_t pre_pos;
+static volatile bool recording, mic_want; static volatile int64_t stop_at;
 static uint32_t act[2]; static volatile int mic_slot;
 static void mic_task(void *arg) {
-    int16_t raw[512];
+    int16_t raw[512]; bool on = false;
     for (;;) {
-        if (!mic_on) { vTaskDelay(pdMS_TO_TICKS(20)); continue; }
+        if (mic_want && !on) { i2s_channel_enable(rx); on = true; }
+        if (!mic_want && on) { i2s_channel_disable(rx); on = false; power_mic(false); }
+        if (!on) { vTaskDelay(pdMS_TO_TICKS(10)); continue; }
         size_t got = 0;
-        if (i2s_channel_read(rx, raw, sizeof raw, &got, pdMS_TO_TICKS(100)) != ESP_OK) continue;
+        if (i2s_channel_read(rx, raw, sizeof raw, &got, pdMS_TO_TICKS(40)) != ESP_OK) got = 0;
         size_t n = got / 4;
         uint32_t d[2] = {0, 0};
         for (size_t i = 1; i < n; i++) for (int c = 0; c < 2; c++) d[c] += abs(raw[2 * i + c] - raw[2 * i - 2 + c]);
         for (int c = 0; c < 2; c++) act[c] = act[c] - (act[c] >> 4) + (d[c] >> 4);
         if (act[mic_slot ^ 1] > 4 * act[mic_slot] + 64) mic_slot ^= 1;
-        for (size_t i = 0; i < n; i++) {
-            int16_t v = raw[2 * i + mic_slot];
-            if (recording) { if (clip_n < clip_cap) clip[clip_n++] = v; }
-            else { pre[pre_pos] = v; pre_pos = (pre_pos + 1) % (sizeof pre / 2); }
-        }
+        if (recording) for (size_t i = 0; i < n && clip_n < clip_cap; i++) { clip[clip_n] = raw[2 * i + mic_slot]; clip_n = clip_n + 1; }
+        if (stop_at && esp_timer_get_time() >= stop_at) { stop_at = 0; recording = false; mic_want = false; }
     }
 }
 static bool mic_init(void) {
@@ -87,21 +87,27 @@ static SemaphoreHandle_t lock;
 static vs_screen_t *staged;                 /* worker -> main (main copies it into ui.vs on MSG_VSCREEN) */
 static vs_hit_t *staged_hits; static int staged_nhits; static char staged_q[64];
 /* ---------- the worker: speech + form + search, one job at a time ---------- */
-enum { J_SPEECH, J_OP, J_LISTEN, J_CANCEL };
+enum { J_SPEECH, J_OP, J_LISTEN, J_CANCEL, J_REC };
+static void rec_send_clip(void);
 typedef struct { uint8_t op, target; vb_op_t o; } job_t;
 static QueueHandle_t jobs;
 static bool streaming;                      /* worker only: a stream was begun for the clip being recorded */
+static volatile bool speech_busy;           /* a clip is being decoded: a new TALK waits (clip[] is in use) */
 
 static void post(msg_type_t t) { app_msg_t m = { .type = t }; xQueueSend(app_q, &m, pdMS_TO_TICKS(200)); }
-static void words_of(const asr_hyp_t *h, char *text, size_t cap) {
+static void words_of(const asr_hyp_t *h, int k, char *text, size_t cap) {   /* guess k as text */
     size_t o = 0; text[0] = 0;
-    if (h->n) for (int i = 0; i < h->h[0].len && o + 2 < cap; i++) {
-        const char *w = asr_word(h->h[0].id[i]);
+    if (k < h->n) for (int i = 0; i < h->h[k].len && o + 2 < cap; i++) {
+        const char *w = asr_word(h->h[k].id[i]);
         if (w) o += snprintf(text + o, cap - o, "%s%s", o ? " " : "", w);
     }
 }
 static void worker(void *arg) {
-    static job_t j; static asr_hyp_t h; static char text[400]; static vs_screen_t s; static vs_hit_t hits[VS_HITS];
+    static job_t j; static asr_hyp_t h; static char text[400];
+    vs_screen_t *sp = heap_caps_malloc(sizeof *sp, MALLOC_CAP_SPIRAM);          /* big: PSRAM, not internal */
+    vs_hit_t *hits = heap_caps_malloc(sizeof *hits * VS_HITS, MALLOC_CAP_SPIRAM);
+    if (!sp || !hits) { ESP_LOGE(TAG, "voice task: no memory"); vTaskDelete(NULL); }
+#define s (*sp)
     for (;;) {
         if (xQueueReceive(jobs, &j, portMAX_DELAY) != pdTRUE) continue;
         int64_t t0 = esp_timer_get_time();
@@ -113,30 +119,41 @@ static void worker(void *arg) {
             }
             continue;
         }
-        if (j.op == J_CANCEL) { if (streaming) { asr_stream_end(clip, clip_n, &h); streaming = false; } continue; }
+        if (j.op == J_CANCEL) { if (streaming) { asr_stream_abort(); streaming = false; } continue; }   /* a TALK tap */
+        if (j.op == J_REC) {                        /* training mode: the clip to the PC once its tail is in */
+            while (recording) vTaskDelay(pdMS_TO_TICKS(5));
+            rec_send_clip(); speech_busy = false; continue;
+        }
         if (j.op == J_SPEECH) {
+            while (recording) vTaskDelay(pdMS_TO_TICKS(5));   /* the tail (stop_at) is still coming in */
             asr_err_t ae = !asr_ok ? ASR_NOT_BUILT : streaming ? asr_stream_end(clip, clip_n, &h) : asr_decode(clip, clip_n, &h);
             streaming = false;
             if (ae != ASR_OK) { memset(&h, 0, sizeof h); h.reject = 100; }
-            words_of(&h, text, sizeof text);
+            static char nb[ASR_MAX_HYP][400]; const char *hy[ASR_MAX_HYP]; int nh = h.n < ASR_MAX_HYP ? h.n : ASR_MAX_HYP;
+            for (int q = 0; q < nh; q++) { words_of(&h, q, nb[q], sizeof nb[q]); hy[q] = nb[q]; }
+            if (!nh) { nb[0][0] = 0; hy[0] = nb[0]; nh = 1; }
+            snprintf(text, sizeof text, "%s", hy[0]);
             uint32_t a, b, c; asr_last_timing(&a, &b, &c);
             ESP_LOGI(TAG, "heard (reject %d, %lu+%lu+%lu ms): %s", h.reject, (unsigned long)(a / 1000), (unsigned long)(b / 1000),
                      (unsigned long)(c / 1000), text);
             if (j.target == VT_SEARCH) {
                 int n = vb_search(text, h.reject, CONFIG_LIB_VOICE_REJECT, hits, VS_HITS);
                 xSemaphoreTake(lock, portMAX_DELAY);
-                memcpy(staged_hits, hits, sizeof hits); staged_nhits = n; snprintf(staged_q, sizeof staged_q, "%s", text);
+                memcpy(staged_hits, hits, sizeof *hits * VS_HITS); staged_nhits = n; snprintf(staged_q, sizeof staged_q, "%s", text);
                 xSemaphoreGive(lock);
                 post(MSG_VSEARCH);
+                speech_busy = false;
                 continue;
             }
-            ok = vb_said(text, h.reject, CONFIG_LIB_VOICE_REJECT, j.target == VT_NEW, &s);
+            ok = vb_said(hy, nh, h.reject, CONFIG_LIB_VOICE_REJECT, j.target == VT_NEW, &s);   /* all guesses: life words in #2-#5 count */
+            speech_busy = false;                    /* clip[] is free again */
         } else ok = vb_op(&j.o, &s);
         if (!ok) continue;
         xSemaphoreTake(lock, portMAX_DELAY); *staged = s; xSemaphoreGive(lock);
         post(MSG_VSCREEN);
         ESP_LOGI(TAG, "job %d: %lld ms", j.op, (esp_timer_get_time() - t0) / 1000);
     }
+#undef s
 }
 
 
@@ -150,6 +167,7 @@ static volatile int take_state;             /* 0 none, 1 ready to send, 2 sent (
 static uint32_t take_id; static int take_peak, take_clip; static size_t take_n;
 static QueueHandle_t outq;                  /* short lines to the PC */
 static char rec_mode[16], rec_prompt[200], rec_answer[96], rec_status[96]; static int rec_n; static volatile int rec_on_req = -1;
+static void set_req(int v) { xSemaphoreTake(lock, portMAX_DELAY); rec_on_req = v; xSemaphoreGive(lock); }
 static uint32_t crc32(const uint8_t *p, size_t n, uint32_t c) {
     c = ~c;
     while (n--) { c ^= *p++; for (int k = 0; k < 8; k++) c = c >> 1 ^ (0xEDB88320u & -(c & 1)); }
@@ -187,11 +205,11 @@ static void field(char **s, char *out, size_t cap) {      /* next '|' field of *
 }
 static void link_line(char *l) {
     if (!strcmp(l, "REC-HELLO")) {
-        if (!rec_link) { esp_log_level_set("*", ESP_LOG_NONE); rec_link = true; rec_on_req = 1; post(MSG_REC); }
+        if (!rec_link) { esp_log_level_set("*", ESP_LOG_NONE); rec_link = true; set_req(1); post(MSG_REC); }
         uline("REC-BETA 1");
     } else if (!strncmp(l, "KEY ", 4)) {                   /* bench: "KEY <btn> <kind> <held_ms>" = a button event (ui_btn_t, ui_evkind_t) */
         int b = 0, k = 0, h = 0;
-        if (sscanf(l + 4, "%d %d %d", &b, &k, &h) >= 2) {
+        if (sscanf(l + 4, "%d %d %d", &b, &k, &h) >= 2 && b >= 0 && b < B_COUNT && k >= 0 && k <= E_RELEASE) {
             app_msg_t m = { .type = MSG_BUTTON, .btn = (uint8_t)b, .kind = (uint8_t)k, .held_ms = (int16_t)h };
             xQueueSend(app_q, &m, pdMS_TO_TICKS(100));
         }
@@ -208,7 +226,7 @@ static void link_line(char *l) {
         post(MSG_REC);
     } else if (!strncmp(l, "ACK ", 4)) { if (strtoul(l + 4, 0, 10) == take_id && take_state == 2) take_state = 0; }
     else if (!strcmp(l, "RESEND")) { if (take_state == 2) take_state = 1; }
-    else if (!strcmp(l, "REC-BYE")) { rec_link = false; rec_on_req = 0; esp_log_level_set("*", ESP_LOG_INFO); post(MSG_REC); }
+    else if (!strcmp(l, "REC-BYE")) { rec_link = false; set_req(0); esp_log_level_set("*", ESP_LOG_INFO); post(MSG_REC); }
 }
 static void usb_task(void *arg) {
     static char line[512]; int n = 0; uint8_t in[128]; char out[64];
@@ -224,7 +242,7 @@ static void usb_task(void *arg) {
             line[n] = 0; if (n) link_line(line); n = 0;
         }
         if (rec_link && esp_timer_get_time() - last > 8000000) {   /* the PC script went away */
-            rec_link = false; rec_on_req = 0; take_state = 0; esp_log_level_set("*", ESP_LOG_INFO); post(MSG_REC);
+            rec_link = false; set_req(0); take_state = 0; esp_log_level_set("*", ESP_LOG_INFO); post(MSG_REC);
         }
     }
 }
@@ -246,8 +264,9 @@ int voice_rec_take(ui_t *u) {
     snprintf(u->rec_mode, sizeof u->rec_mode, "%s", rec_mode); snprintf(u->rec_prompt, sizeof u->rec_prompt, "%s", rec_prompt);
     snprintf(u->rec_answer, sizeof u->rec_answer, "%s", rec_answer); snprintf(u->rec_status, sizeof u->rec_status, "%s", rec_status);
     u->rec_n = rec_n;
+    int r = rec_on_req; rec_on_req = -1;                 /* 1 on, 0 off, -1 no change (read + clear under the lock) */
     xSemaphoreGive(lock);
-    int r = rec_on_req; rec_on_req = -1; return r;      /* 1 on, 0 off, -1 no change */
+    return r;
 }
 
 /* ---------- voice.h ---------- */
@@ -283,32 +302,27 @@ bool voice_has_form(void) { return vb_has_form(); }
 bool voice_has_search(void) { return vb_has_search(); }
 void voice_load(uint16_t tree, const cart_tags_t *ctx) { (void)tree; (void)ctx; }   /* no phrase lists: open vocabulary */
 void voice_start(void) {
-    if (!rx || recording) return;
+    if (!rx || recording || speech_busy) return;          /* the last clip is still being decoded / sent */
+    if (rec_link && take_state) return;                  /* training: the PC hasn't got the last clip yet */
     power_mic(true);
-    if (!mic_on) { i2s_channel_enable(rx); mic_on = true; }
-    size_t np = sizeof pre / 2, p = pre_pos;               /* pre-roll: whatever the mic had just before */
-    for (size_t i = 0; i < np; i++) clip[i] = pre[(p + i) % np];
-    clip_n = np; recording = true;
+    clip_n = 0; stop_at = 0; recording = true; mic_want = true;
     if (rec_link) return;                                 /* training mode: the clip goes to the PC, not the brain */
 #if CONFIG_LIB_VOICE_STREAM
     job_t j = { .op = J_LISTEN };
     xQueueSend(jobs, &j, 0);
 #endif
 }
-static void mic_off(void) {
-    if (!mic_on) return;
-    mic_on = false; vTaskDelay(pdMS_TO_TICKS(30));
-    i2s_channel_disable(rx); power_mic(false);
-}
 void voice_stop(bool recognise) { voice_stop_to(recognise, VT_NEW); }
 void voice_stop_to(bool recognise, int target) {
-    if (!recording) return;
-    if (recognise) vTaskDelay(pdMS_TO_TICKS(250));          /* keep the last word's tail */
-    recording = false;
-    mic_off();
-    if (rec_link) { if (recognise) rec_send_clip(); return; }
-    if (!recognise) { job_t c = { .op = J_CANCEL }; xQueueSend(jobs, &c, pdMS_TO_TICKS(100)); return; }
-    job_t j = { .op = J_SPEECH, .target = (uint8_t)target };
+    if (!recording || stop_at) return;
+    if (!recognise) {                                     /* a tap: drop the clip now */
+        recording = false; mic_want = false;
+        if (!rec_link) { job_t c = { .op = J_CANCEL }; xQueueSend(jobs, &c, pdMS_TO_TICKS(100)); }
+        return;
+    }
+    speech_busy = true;
+    stop_at = esp_timer_get_time() + 250000;              /* keep the last word's tail; the mic task ends the clip */
+    job_t j = { .op = rec_link ? J_REC : J_SPEECH, .target = (uint8_t)target };
     xQueueSend(jobs, &j, pdMS_TO_TICKS(100));
 }
 void voice_form_op(int vf, const ui_t *u) {

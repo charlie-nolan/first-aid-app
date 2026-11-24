@@ -14,7 +14,7 @@ bool vb_has_form(void), vb_has_search(void), vb_has_cards(void);
 int vb_ntrees(void);
 uint16_t vb_node_of(const char *key);             /* "tree/card" -> cart node (CART_NONE if not there) */
 /* spoken words (reject: the speech engine's calibrated score; at reject_at or above it asks again) */
-bool vb_said(const char *text, int reject, int reject_at, bool new_problem, vs_screen_t *s);
+bool vb_said(const char *const *hyps, int nh, int reject, int reject_at, bool new_problem, vs_screen_t *s);   /* hyps: n-best, best first */
 bool vb_op_of(int vf, const ui_t *u, vb_op_t *o); /* the pick / open / skip on the screen u shows */
 bool vb_op(const vb_op_t *o, vs_screen_t *s);
 int vb_search(const char *q, int reject, int reject_at, vs_hit_t *hits, int max);   /* -1: not heard */

@@ -147,6 +147,7 @@ static void update_battery(void) {
     }
 }
 
+static int64_t think_draw_at;                         /* board voice: draw "Thinking..." at this time (0 = no) */
 void app_main(void) {
     ESP_LOGI(TAG, "board: %s", BOARD_NAME);
     app_q = xQueueCreate(16, sizeof(app_msg_t));
@@ -189,14 +190,15 @@ void app_main(void) {
     int64_t last = esp_timer_get_time(), last_bat = last;
     for (;;) {
         app_msg_t m;
-        if (xQueueReceive(app_q, &m, pdMS_TO_TICKS(1000))) {
+        if (think_draw_at && esp_timer_get_time() >= think_draw_at) { think_draw_at = 0; show(RD_PARTIAL); }
+        if (xQueueReceive(app_q, &m, pdMS_TO_TICKS(think_draw_at ? 40 : 1000))) {
             last = esp_timer_get_time();
             if (m.type == MSG_BUTTON && combo_filter(&m)) continue;
             ui_act_t a;
             if (m.type == MSG_BUTTON) a = ui_event(&ui, (ui_btn_t)m.btn, (ui_evkind_t)m.kind, m.held_ms);
-            else if (m.type == MSG_VSCREEN) { voice_take(ui.vs, 0, 0, 0, 0); a = ui_vscreen(&ui); }
+            else if (m.type == MSG_VSCREEN) { think_draw_at = 0; voice_take(ui.vs, 0, 0, 0, 0); a = ui_vscreen(&ui); }
             else if (m.type == MSG_REC) { int on = voice_rec_take(&ui); a = ui_rec(&ui, on < 0 ? ui.mode == M_REC : on); }
-            else if (m.type == MSG_VSEARCH) { voice_take(0, ui.hits, &ui.nhits, ui.squery, sizeof ui.squery); a = ui_vsearch(&ui); }
+            else if (m.type == MSG_VSEARCH) { think_draw_at = 0; voice_take(0, ui.hits, &ui.nhits, ui.squery, sizeof ui.squery); a = ui_vsearch(&ui); }
             else a = ui_voice(&ui, m.cmd, m.prob, m.n);
             if (a.voice == VO_START) voice_start();
             else if (a.voice == VO_STOP && ui.mode == M_REC) { voice_stop(true); snprintf(ui.rec_status, sizeof ui.rec_status, "Sending..."); a.redraw = RD_PARTIAL; }
@@ -205,7 +207,9 @@ void app_main(void) {
                 if (to == VT_NEW) { ui.vs->kind = VS_START; ui.vs->heard[0] = ui.vs->msg[0] = 0; ui.mode = M_FORM; }
                 snprintf(ui.vs_status, sizeof ui.vs_status, "Thinking...");
                 voice_stop_to(true, to);
-                a.redraw = RD_PARTIAL;
+                a.redraw = RD_NONE;                          /* the answer usually lands in ~0.3 s: draw "Thinking..."
+                                                               only if it hasn't (saves one e-ink refresh a turn) */
+                think_draw_at = esp_timer_get_time() + 400000;
             }
             else if (a.voice == VO_STOP) voice_stop(true);
             else if (a.voice == VO_CANCEL) voice_stop(false);

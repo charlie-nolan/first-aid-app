@@ -6,6 +6,12 @@
 #ifdef ESP_PLATFORM
 #include "sdkconfig.h"
 #include "esp_timer.h"
+#ifdef ESP_PLATFORM            /* big scratch arrays: in PSRAM on the chip (internal RAM is short), plain statics on the PC */
+#include "esp_attr.h"
+#define FP_BIG EXT_RAM_BSS_ATTR
+#else
+#define FP_BIG
+#endif
 #define PROF_NOW() esp_timer_get_time()
 #else
 #define PROF_NOW() 0
@@ -63,7 +69,9 @@ bool fq_open(fq_model_t *m, const void *blob, size_t len) {
         if (L_COUT(l) > m->cmax) m->cmax = L_COUT(l);
         if (L_FLAGS(l) & 4) m->ctok = L_COUT(l);
     }
-    return m->ctok > 0;
+    if (m->ctok <= 0 || m->ctok > FQ_MAXTOK) return false;
+    for (int c = 0; c < m->ctok; c++) m->lsc[c] = ldexp(1.0, -fq_logit_exp(m, c));   /* head scale per token, once */
+    return true;
 }
 
 int fq_out_len(const fq_model_t *m, int T) {
@@ -140,7 +148,7 @@ static int conv_pw(const fq_model_t *m, const uint8_t *l, const int8_t *x, int T
     }
     return T;
 }
-static int32_t fq_acc[FQ_TMAX];
+static FP_BIG int32_t fq_acc[FQ_TMAX];
 /* depthwise, causal (left padding k - 1, stride 1, k <= 16): each output is one 16-wide dot product of the
  * channel's taps (zero-padded to 16, aligned copy) with 16 consecutive inputs; the first k - 1 outputs touch
  * the padding and go the plain way. Exact (integer sums). */
@@ -306,13 +314,12 @@ int fq_logit_exp(const fq_model_t *m, int c) {
 
 void fq_logp(const fq_model_t *m, const int32_t *logits, int T, float *logp) {
     int64_t p0 = PROF_NOW();
-    int C = m->ctok;
-    double z[512], sc[512];
-    for (int c = 0; c < C && c < 512; c++) sc[c] = ldexp(1.0, -fq_logit_exp(m, c));   /* same value, once */
+    int C = m->ctok;                                     /* <= FQ_MAXTOK (fq_open checks) */
+    double z[FQ_MAXTOK];
     for (int t = 0; t < T; t++) {
         double mx = -1e300;
-        for (int c = 0; c < C && c < 512; c++) {
-            z[c] = (double)logits[(size_t)c * T + t] * sc[c];
+        for (int c = 0; c < C; c++) {
+            z[c] = (double)logits[(size_t)c * T + t] * m->lsc[c];
             if (z[c] > mx) mx = z[c];
         }
         double s = 0;

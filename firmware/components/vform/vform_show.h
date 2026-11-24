@@ -15,6 +15,8 @@ typedef struct {
 void fp_screen_init(fp_screen_t *sc, fp_sess_t *s);
 /* Each returns the frame length (it may be more than cap: then out holds a cut, NUL-ended copy). */
 int fp_screen_said(fp_screen_t *sc, const char *text, char *out, size_t cap);
+/* the same with the speech engine's n-best guesses, best first (as vr.live: lower guesses can add a life blank) */
+int fp_screen_said_n(fp_screen_t *sc, const char *const *hyps, int nh, char *out, size_t cap);
 /* A tapped choice: value NULL + node = a plain tile (node id sent back unchanged). */
 int fp_screen_picked(fp_screen_t *sc, const char *field, const char *value, const char *node, char *out, size_t cap);
 int fp_screen_skip(fp_screen_t *sc, char *out, size_t cap);

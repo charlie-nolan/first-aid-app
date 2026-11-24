@@ -5,11 +5,17 @@
 #include "cJSON.h"
 #include "vform_search.h"
 #include "vform_show.h"
+#ifdef ESP_PLATFORM            /* big scratch arrays: in PSRAM on the chip (internal RAM is short), plain statics on the PC */
+#include "esp_attr.h"
+#define FP_BIG EXT_RAM_BSS_ATTR
+#else
+#define FP_BIG
+#endif
 
 static const uint8_t *nkey;                 /* NK01: sorted "tree/card" -> cart node */
 static fs_index_t sidx; static bool sidx_ok;
 static fp_sess_t sess; static fp_screen_t scr; static bool form_ok;
-static char out[16384];                     /* one SHOW frame */
+static FP_BIG char out[16384];                     /* one SHOW frame */
 #define OUT_CAP sizeof out
 
 /* ---------- the cart's chunks ---------- */
@@ -87,11 +93,12 @@ bool vb_has_form(void) { return form_ok; }
 bool vb_has_search(void) { return sidx_ok; }
 bool vb_has_cards(void) { return nkey != NULL; }
 int vb_ntrees(void) { return form_ok ? sess.ntrees : 0; }
-bool vb_said(const char *text, int reject, int reject_at, bool new_problem, vs_screen_t *s) {
+bool vb_said(const char *const *hyps, int nh, int reject, int reject_at, bool new_problem, vs_screen_t *s) {
     if (!form_ok) return false;
+    const char *text = nh > 0 ? hyps[0] : "";
     if (new_problem) fp_screen_new(&scr, out, OUT_CAP);
     if (reject >= reject_at) fp_screen_again(&scr, text, reject, out, OUT_CAP);
-    else fp_screen_said(&scr, text, out, OUT_CAP);
+    else fp_screen_said_n(&scr, hyps, nh, out, OUT_CAP);
     return parse_screen(out, s);
 }
 bool vb_op(const vb_op_t *o, vs_screen_t *s) {

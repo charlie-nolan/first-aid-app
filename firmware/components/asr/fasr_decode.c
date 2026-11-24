@@ -14,6 +14,7 @@ static inline uint16_t r16(const uint8_t *p) { return (uint16_t)(p[0] | p[1] << 
 static inline uint32_t r32(const uint8_t *p) { return p[0] | p[1] << 8 | p[2] << 16 | (uint32_t)p[3] << 24; }
 static inline double rd(const uint8_t *p) { double d; memcpy(&d, p, 8); return d; }
 
+static int child(const fd_lex_t *x, int node, int tok);
 bool fd_open(fd_lex_t *x, const void *blob, size_t len) {
     const uint8_t *b = blob;
     if (len < 108 || memcmp(b, "LEX2", 4) || r16(b + 4) != 2) return false;
@@ -25,7 +26,9 @@ bool fd_open(fd_lex_t *x, const void *blob, size_t len) {
     x->reject_gap_scale = rd(b + 76); x->life_veto_conf = (int)r32(b + 84);
     x->words = b + r32(b + 88); x->cls = b + r32(b + 92); x->flags = b + r32(b + 96);
     x->bias = b + r32(b + 100); x->nodes = b + r32(b + 104);
-    return x->ntok <= FD_MAX_TOK && x->beam <= FD_MAX_BEAM;
+    if (x->ntok > FD_MAX_TOK || x->beam > FD_MAX_BEAM) return false;
+    for (int t = 0; t < x->ntok; t++) x->ch0[t] = child(x, 0, t);   /* same answer as the scan, once */
+    return true;
 }
 
 const char *fd_word(const fd_lex_t *x, uint16_t id) {
@@ -61,6 +64,9 @@ struct fd_ws {
     int32_t eh[FD_ENT_HASH];
     int32_t eslot[FD_MAX_ENT];                       /* hash slot of each entry (to clear only those) */
     struct { int32_t seq; int32_t node; uint8_t last; double pb, pnb; } beam[FD_MAX_BEAM]; int nb;
+    uint16_t cwords[FD_MAX_BEAM][SEARCH_WORDS]; int clens[FD_MAX_BEAM];   /* compact()'s scratch */
+    struct { uint16_t w[FD_MAX_WORDS]; uint8_t n; double sc; int full; } fin[256];   /* fd_finish's closed beams */
+    double best[FD_MAX_T], sb[FD_MAX_T];                                  /* fd_finish's per-frame sums */
 };
 static int seq_get(fd_ws_t *w, int parent, int word) {  /* interned (parent + word) */
     uint32_t h = ((uint32_t)(parent + 1) * 2654435761u) ^ ((uint32_t)word * 40503u);
@@ -87,7 +93,7 @@ static int seq_words(const fd_ws_t *w, int s, uint16_t *out) {
 
 /* Rebuild the arena with only the chains the beams still use (ids change, equality does not). */
 static void compact(fd_ws_t *w) {
-    static uint16_t words[FD_MAX_BEAM][SEARCH_WORDS]; static int lens[FD_MAX_BEAM];
+    uint16_t (*words)[SEARCH_WORDS] = w->cwords; int *lens = w->clens;
     for (int i = 0; i < w->nb; i++) lens[i] = seq_words(w, w->beam[i].seq, words[i]);
     w->nseq = 0; memset(w->sh, 0, sizeof w->sh);
     for (int i = 0; i < w->nb; i++) {
@@ -211,12 +217,11 @@ void fd_frames(const fd_lex_t *x, const float *logp, int t0, int t1, void *wsv) 
             int seq = w->beam[bi].seq, node = w->beam[bi].node, last = w->beam[bi].last;
             double pb = w->beam[bi].pb, pnb = w->beam[bi].pnb, tot = lse(pb, pnb);
             add(w, seq, node, last, tot + row[B], NEG);                       /* blank */
-            bool last_in = false;
-            for (int i = 0; i < nc; i++) if (cand[i] == last) last_in = true;
+            bool last_in = last != B && last < C && row[last] > x->tok_prune;   /* = last is in cand[] */
             if (last_in && pnb > NEG) add(w, seq, node, last, NEG, pnb + row[last]);   /* repeat */
             for (int i = 0; i < nc; i++) {
                 int c = cand[i];
-                double base = c != last ? lse(pb, pnb) : pb;
+                double base = c != last ? tot : pb;          /* tot = lse(pb, pnb), the same value */
                 if (base <= NEG) continue;
                 double s = base + row[c];
                 if (c == SEP) {
@@ -230,7 +235,7 @@ void fd_frames(const fd_lex_t *x, const float *logp, int t0, int t1, void *wsv) 
                 if (ch >= 0) add(w, seq, ch, c, NEG, s);
                 if (node == 0) add(w, seq, GARB, c, NEG, s + x->garbage_enter + x->garbage_phone);
                 else {                                                        /* implicit boundary */
-                    int ch0 = child(x, 0, c);
+                    int ch0 = x->ch0[c];
                     if (ch0 >= 0) {
                         int nf = finish(x, w, seq, node, fs, fdl, 64);
                         for (int k = 0; k < nf; k++) add(w, fs[k], ch0, c, NEG, s + fdl[k] + x->implicit_sep);
@@ -262,7 +267,7 @@ int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
     int C = x->ntok, B = x->blank;
     int fs[64]; double fdl[64];
     /* final: close every beam, fit to 16 words, merge equal fitted tuples (first-seen order) */
-    static struct { uint16_t w[FD_MAX_WORDS]; uint8_t n; double sc; int full; } fin[256];
+#define fin (w->fin)
     int nfin = 0;
     for (int bi = 0; bi < w->nb; bi++) {
         double tot = lse(w->beam[bi].pb, w->beam[bi].pnb);
@@ -288,7 +293,8 @@ int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
         ord[j] = i;
     }
     /* nbest */
-    double *best = malloc(sizeof(double) * (T > 0 ? T : 1));
+    double *best = T <= FD_MAX_T ? w->best : malloc(sizeof(double) * (T > 0 ? T : 1));
+    if (!best) return r->n = 0, r->reject = 100, -1;
     int speech = 0;
     for (int t = 0; t < T; t++) {
         const float *rw = logp + (size_t)t * C;
@@ -346,7 +352,8 @@ int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
         int n_full = r->n ? r->full_len : 0, unk_full = r->n ? r->full_unk : 0;
         double cs = 0;
         for (int i = 0; i < n_ids; i++) cs += r->h[0].conf[i];
-        double *sb = malloc(sizeof(double) * (T > 0 ? T : 1));
+        double *sb = T <= FD_MAX_T ? w->sb : malloc(sizeof(double) * (T > 0 ? T : 1));
+        if (!sb) { if (best != w->best) free(best); r->n = 0; r->reject = 100; return -1; }
         int ns = 0;
         for (int t = 0; t < T; t++) {
             const float *rw = logp + (size_t)t * C;
@@ -364,7 +371,7 @@ int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
         f[5] = ns ? pairwise(sb, ns) / ns : -10.0;
         f[6] = n_full / (ns + 1.0);
         f[7] = r->n ? r->gap : 0.0;
-        free(sb);
+        if (sb != w->sb) free(sb);
         double z = cal->bias;
         double dot = 0.0;
         for (int i = 0; i < 8; i++) dot += (f[i] - cal->mean[i]) / cal->std[i] * cal->weights[i];
@@ -376,10 +383,11 @@ int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
         int rr = (int)nearbyint(100.0 / (1.0 + exp(-z)));
         r->reject = r->veto && rr > 40 ? 40 : rr;
     }
-    free(best);
+    if (best != w->best) free(best);
     return r->n;
 }
 
+#undef fin
 int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal, void *wsv, fd_result_t *r) {
     fd_begin(x, wsv);
     fd_frames(x, logp, 0, T, wsv);

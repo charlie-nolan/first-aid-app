@@ -20,16 +20,16 @@ static int64_t now_us(void) { return esp_timer_get_time(); }
 #include "freertos/task.h"
 #ifdef CONFIG_ASR_PREFETCH
 typedef struct { void *d; const void *s; size_t n; } pf_job_t;
-static QueueHandle_t pf_q; static SemaphoreHandle_t pf_done; static volatile int pf_busy;
+static QueueHandle_t pf_q; static SemaphoreHandle_t pf_done;
+static bool pf_in_flight;                            /* model task only; the semaphore carries the copy's completion */
 static void pf_task(void *a) {
     pf_job_t j;
-    for (;;) if (xQueueReceive(pf_q, &j, portMAX_DELAY) == pdTRUE) { memcpy(j.d, j.s, j.n); pf_busy = 0; xSemaphoreGive(pf_done); }
+    for (;;) if (xQueueReceive(pf_q, &j, portMAX_DELAY) == pdTRUE) { memcpy(j.d, j.s, j.n); xSemaphoreGive(pf_done); }
 }
-static void pf_wait(void *c) { (void)c; if (pf_busy) xSemaphoreTake(pf_done, portMAX_DELAY); }
+static void pf_wait(void *c) { (void)c; if (pf_in_flight) { xSemaphoreTake(pf_done, portMAX_DELAY); pf_in_flight = false; } }
 static void pf_start(void *c, void *d, const void *s, size_t n) {
     pf_wait(c);                                      /* one copy at a time */
-    xSemaphoreTake(pf_done, 0);                      /* clear a stale give */
-    pf_busy = 1; pf_job_t j = { d, s, n }; xQueueSend(pf_q, &j, portMAX_DELAY);
+    pf_in_flight = true; pf_job_t j = { d, s, n }; xQueueSend(pf_q, &j, portMAX_DELAY);
 }
 #endif
 static void prefetch_setup(const fq_model_t *m) {
@@ -110,7 +110,7 @@ asr_err_t asr_open_cart(const void *rom, size_t len) {
     ws_model = big(fq_ws_size(&M, T)); ws_dec = big(fd_ws_size());
     if (!feats || !logp || !logits || !ws_model || !ws_dec) return ASR_NO_MEMORY;
     prefetch_setup(&M);
-    st_T = T; st_mem = big(fq_stream_size(&M, T));
+    st_T = T; st_mem = big(fq_stream_size(&M, T));      /* NULL: no streaming, asr_decode still works */
     ready = true;
     return ASR_OK;
 #endif
@@ -176,6 +176,7 @@ void asr_stream_feed(const int16_t *pcm, size_t samples) {
     if (!st_on) return;
     stream_step(pcm, samples, false);
 }
+void asr_stream_abort(void) { st_on = false; }     /* a TALK tap: nothing to finish */
 asr_err_t asr_stream_end(const int16_t *pcm, size_t samples, asr_hyp_t *out) {
     memset(out, 0, sizeof *out);
     out->reject = 100;
