@@ -42,14 +42,22 @@ CONDITIONS = [("clean", None, None), ("wind", "wind", 15), ("wind", "wind", 5),
               ("water", "water", 10), ("breath", "breath", 12)]
 
 
-def load_voices(vdir: Path, cuda: bool):
+def load_voices(vdir: Path, cuda: bool, threads: int = 0):
+    """threads > 0 (CPU only): limit each voice's onnxruntime threads, for several synth processes at once."""
+    import onnxruntime
     from piper import PiperVoice
+    if cuda and hasattr(onnxruntime, "preload_dlls"):
+        onnxruntime.preload_dlls()   # cuDNN/cuBLAS come from the nvidia-* pip wheels (torch's), not the system path
     out = []
     for onnx in sorted(vdir.glob("*.onnx")):
         try:
             v = PiperVoice.load(str(onnx), use_cuda=cuda)
         except TypeError:
             v = PiperVoice.load(str(onnx))
+        if threads and not cuda:
+            so = onnxruntime.SessionOptions()
+            so.intra_op_num_threads, so.inter_op_num_threads = threads, 1
+            v.session = onnxruntime.InferenceSession(str(onnx), sess_options=so, providers=["CPUExecutionProvider"])
         out.append((onnx.stem, v))
     if not out:
         sys.exit(f"no voices in {vdir}: run setup.sh first")

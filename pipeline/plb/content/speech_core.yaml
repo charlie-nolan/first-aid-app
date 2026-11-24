@@ -1,0 +1,117 @@
+# Core first-aid vocabulary for the custom speech recognizer, grouped by the class byte
+# the router uses (0 other, 1 body_part, 2 mechanism, 3 symptom, 4 negation, 5 quantity, 6 animal).
+# These words are always in the lexicon, even before a tree mentions them, so the
+# recognizer can hear them and the router can learn them. Everyday backcountry speech,
+# violent/military wording left out on purpose (Charlie 2026-11-08).
+# Written by Claude 2026-11-16 as a DRAFT for Charlie's review.
+
+body_part:
+  - head, face, forehead, scalp, skull, eye, eyes, ear, ears, nose, mouth, lip, lips, tongue, teeth, tooth, jaw, chin, cheek
+  - neck, throat, spine, back, shoulder, shoulders, collarbone, chest, ribs, rib, breastbone, belly, stomach, abdomen, gut
+  - side, hip, hips, pelvis, groin, butt, tailbone
+  - arm, arms, armpit, elbow, forearm, wrist, hand, hands, palm, finger, fingers, thumb, knuckle, nail
+  - leg, legs, thigh, knee, kneecap, shin, calf, ankle, foot, feet, heel, toe, toes, sole
+  - skin, bone, bones, joint, muscle, tendon, artery, vein, lung, lungs, heart, brain, blood, pulse
+  - left, right, upper, lower
+mechanism:
+  - fell, fall, fallen, falling, slipped, tripped, rolled, twisted, landed, hit, struck, crushed, pinned, trapped
+  - cut, sliced, stabbed, impaled, punctured, scraped, gashed, ripped, torn
+  - burn, burned, burnt, scalded, fire, stove, boiling, sun, sunburn, lightning, electric
+  - bite, bit, bitten, sting, stung
+  - ate, swallowed, choking, choked, drowning, drowned, water, river, lake, ice, snow, avalanche, rock, rockfall, tree, branch
+  - knife, axe, hatchet, saw, chainsaw, glass, nail, fishhook, hook, crampon
+  - cold, freezing, frozen, wet, hot, heat, altitude, poison, poisoned, plant, ivy, oak, mushroom, allergy, allergic, peanut
+  - crash, bike, car, horse, climbing, skiing, hiking, cliff, ledge, trail, tent, carbon, monoxide, smoke
+symptom:
+  - bleeding, bleed, bleeds, blood, spurting, pumping, oozing, gushing, pulsing, squirting, dripping, trickling, seeping, flowing
+  - pain, hurts, hurt, sore, ache, aching, tender, sharp, throbbing, cramp, cramps, cramping
+  - broken, break, fracture, fractured, dislocated, dislocation, sprain, sprained, strain, deformed, crooked, bent, snapped, popped
+  - swollen, swelling, bruise, bruised, blister, blisters, rash, hives, itchy, itching, red, blue, purple, white, black, grey, gray, pale, waxy
+  - numb, numbness, tingling, tingly, weak, weakness, dizzy, faint, fainted, lightheaded, confused, confusion, drowsy, sleepy
+  - unconscious, unresponsive, passed, out, awake, conscious, alert, seizure, seizing, shaking, shivering, convulsing
+  - breathe, breathing, breath, wheezing, gasping, coughing, cough, choke, gagging, blue, lips
+  - vomiting, vomit, throwing, puking, nausea, nauseous, diarrhea, sweating, sweaty, clammy, fever, chills, thirsty, dehydrated
+  - headache, stiff, stuck, can't, move, feel, see, talk, speak, slurred, drooping, fast, slow, racing, pounding
+  - limp, floppy, resuscitation, rescue, breaths, unresponsive, unconscious, compressions, tourniquet, epipen, anaphylaxis, gushing, choke, heatstroke
+  - cardiac, arrest, rhythm, anaphylactic, airway, reaction, turning, blue, push, alive
+  - shock, frostbite, frostnip, hypothermia, hypothermic, heatstroke, exhaustion, exhausted, sick, hives, swelling
+  - cpr, heartbeat, stopped, collapsed, choking, drowning, stroke, attack, asthma, diabetic, sugar, epipen, anaphylaxis
+negation:
+  - not, no, can't, cannot, don't, isn't, won't, without, never, didn't, doesn't, wasn't, aren't, haven't, nothing, none, nobody
+quantity:
+  - one, two, three, four, five, six, seven, eight, nine, ten, twenty, thirty, hundred, half
+  - minute, minutes, hour, hours, day, days, inch, inches, little, lot, lots, much, many, more, less, very, really, badly, bad
+animal:
+  - animal, snake, rattlesnake, spider, bee, wasp, hornet, yellowjacket, tick, dog, bear, scorpion, insect, bug, ant, mosquito
+  - raccoon, bat, rat, mouse, squirrel, fox, coyote, cougar, wolf, moose, elk, deer, horse, cat, skunk, jellyfish, fish
+other:
+  - yes, back, again, home, help, please, okay, ok, stop, start, over, next, previous, menu, cancel, never, mind, what, how, where, why, when
+  - i, me, my, he, him, his, she, her, they, them, their, we, our, you, your, it, its, someone, somebody, friend, kid, child, baby, person
+  - is, are, was, were, be, been, has, have, had, do, does, did, got, get, getting, think, looks, look, seems, feels, keeps, won't, will, should, can, could
+  - a, an, the, and, or, but, so, of, on, in, at, to, from, with, up, down, off, into, this, that, there, here, it's, he's, she's, i'm, i've, we're, they're, there's
+  - splint, bandage, gauze, tourniquet, pressure, dressing, sling, tape, wrap, clean, rinse, wash, warm, cool, shelter, sleeping, bag, fluids, food
+  - fire, signal, rescue, lost, water, filter, purify, map, compass, night, dark, rain, storm, wind
+  # everyday words people use around an injury (general English, not taken from any test set)
+  - near, above, below, under, behind, between, around, inside, outside, through, across, against, about, after, before
+  - open, closed, hard, soft, dry, deep, big, huge, small, tiny, long, short, high, low, heavy, light, weird, wrong, fine
+  - ran, run, walk, walked, stepped, step, jumped, bumped, banged, smashed, caught, pulled, pushed, lifted, carry, carrying
+  - drink, drinking, drank, eat, eating, sleep, sleeping, lying, sitting, standing, wake, woke
+  - himself, herself, myself, themselves, another, other, again, still, just, now, already, yet, only, also, too, maybe
+  - accident, injury, injured, wound, gash, scrape, cut, hole, blood, soaked, soaking, poking, sticking, snap, crack, cracked, pop
+  - um, uh, like, well, oh, hey, hello, thanks, sorry
+  # ~200 common everyday English words (general frequency list, added 2026-11-16 at the router's request)
+  - know, knew, heard, hear, think, thought, said, say, says, tell, told, ask, asked, want, need, needs, try, tried, going, gonna, go, went, come, came, coming
+  - make, made, take, took, give, gave, put, keep, kept, let, find, found, leave, left, call, called, use, used, work, works, working, happen, happened, happening
+  - see, saw, seen, watch, wait, waiting, turn, turned, hold, holding, sit, stand, lie, lay, show, bring, brought, check, checked, worried, scared, afraid
+  - here, there, where, everywhere, somewhere, anything, something, everything, nothing, everyone, anyone, all, some, any, every, each, both, few, most, enough, whole
+  - good, better, best, worse, worst, okay, alright, sure, really, pretty, kind, sort, way, thing, things, stuff, place, time, times, today, tonight, morning, yesterday, ago, soon, later
+  - first, last, second, third, once, twice, almost, about, around, maybe, probably, actually, quite, totally, completely, suddenly, slowly, quickly, right, away
+  - if, because, than, then, while, until, since, though, even, as, for, by, out, like, what's, that's, who, whose, which, how's, where's, can, would, might, must
+  - i'd, i'll, you're, you'll, we'll, he'll, she'll, they'll, it'll, let's, there's, here's, isn't, couldn't, shouldn't, wouldn't, hasn't, hadn't
+  - man, woman, guy, girl, boy, dad, mom, brother, sister, wife, husband, partner, son, daughter, buddy, group, people, everybody, anybody
+  - camp, campsite, car, road, mountain, hill, creek, stream, woods, forest, rocks, mud, sand, grass, dirt, path, pack, backpack, boots, shoe, shoes, gear, phone
+  - fuel, gas, propane, lantern, knife, rope, stick, sticks, wood, log, logs, leaves, food, eat, meal, cup, bottle, pot
+  - hike, hiking, walking, running, climbed, slid, sliding, swimming, paddling, kayak, canoe, fishing, hunting, camping
+  - abdominal, guts, charred, compressions, eyeball, fang, fangs, puncture, wounds, cuts, bruises, scratches, cramping, vomited, coughed, breathing, burning
+
+# Hand sound spellings (ARPAbet, no stress) for words CMUdict lacks. Used before any machine guess.
+phones:
+  anaphylactic: [AE N AH F AH L AE K T IH K]
+  yellowjacket: [Y EH L OW JH AE K AH T]
+  windpipe: [W IH N D P AY P]
+  hyperventilating: [HH AY P ER V EH N T AH L EY T IH NG]
+  ribcage: [R IH B K EY JH]
+  noggin: [N AA G IH N]
+  backcountry: [B AE K K AH N T R IY]
+  pecked: [P EH K T]
+  wrinkly: [R IH NG K L IY]
+  treeline: [T R IY L AY N]
+  thunderclouds: [TH AH N D ER K L AW D Z]
+  thunderclap: [TH AH N D ER K L AE P]
+  sunburnt: [S AH N B ER N T]
+  keeled: [K IY L D]
+  hungover: [HH AH NG OW V ER]
+  thighbone: [TH AY B OW N]
+  steri: [S T EH R IY]
+  hyponatremia: [HH AY P OW N AH T R IY M IY AH]
+  aed: [EY IY D IY]
+  epi: [EH P IY]
+  breastbone: [B R EH S T B OW N]
+  tailbone: [T EY L B OW N]
+  tingly: [T IH NG G L IY, T IH NG L IY]
+  convulsing: [K AH N V AH L S IH NG]
+  gagging: [G AE G IH NG]
+  frostnip: [F R AO S T N IH P]
+  hypothermic: [HH AY P AH TH ER M IH K, HH AY P OW TH ER M IH K]
+  heatstroke: [HH IY T S T R OW K]
+  cpr: [S IY P IY AA R]
+  epipen: [EH P IY P EH N, EH P AH P EH N]
+  rockfall: [R AA K F AO L]
+  fishhook: [F IH SH HH UH K]
+  # CMUdict has only "TER-ni-kit"; most people (and the TTS voices) say "TOR-ni-kit" / "TOR-ni-ket"
+  tourniquet: [T ER N IH K IH T, T AO R N IH K IH T, T AO R N AH K AH T]
+  junctional: [JH AH NG K SH AH N AH L]
+  splinting: [S P L IH N T IH NG]
+  toothache: [T UW TH EY K]
+  compressions: [K AH M P R EH SH AH N Z]
+  vomited: [V AA M AH T IH D, V AA M IH T IH D]
