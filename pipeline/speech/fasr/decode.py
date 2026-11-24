@@ -291,6 +291,32 @@ def calibrated_reject(logp: np.ndarray, hyp: dict, calib: dict) -> int:
     return min(r, 40) if hyp.get("veto") else r
 
 
+# Homophones the acoustics cannot separate (same phones). "eye" (body part) only in an eye context;
+# anywhere else the sound is "i" (board test 2026-11-24: "eye fell on my arm"; "scratch eye ball" kept).
+# prev/next are the neighbouring words in the SAME hypothesis, read before this position is rewritten
+# (left to right; a rewritten earlier word is the one seen as prev).
+# Runs after the search, so the C port applies the same table to the final ids.
+# Keep "eye" if the word BEFORE owns/places it or is a verb done to an eye, or the word AFTER only follows "eye".
+EYE_BEFORE = frozenset(("my his her your their the an left right both one in either its our into "
+                        "scratched scratch poked poke rubbed rub hit cut burned splashed stung flush rinse wash").split())
+EYE_AFTER = frozenset("ball balls lid lids socket brow lash lashes drops patch hurts is looks swollen red".split())
+
+
+def resolve_homophones(hyp: dict, trie: Trie) -> dict:
+    ids = {w: i for i, w in trie.name.items() if w in ("i", "eye")}
+    if len(ids) < 2:
+        return hyp
+    i_id, eye_id = ids["i"], ids["eye"]
+    for h in hyp.get("h", []):
+        out = h["ids"]
+        for k, w in enumerate(out):
+            if w in (i_id, eye_id):
+                prev = trie.name.get(out[k - 1], "") if k else ""
+                nxt = trie.name.get(out[k + 1], "") if k + 1 < len(out) else ""
+                out[k] = eye_id if (prev in EYE_BEFORE or nxt in EYE_AFTER) else i_id
+    return hyp
+
+
 def decode(logp: np.ndarray, trie: Trie, p: Params = Params(), calib: dict | None = None) -> dict:
     """THE entry point for anything live (tether bridge, device reference, C port golden files).
     Canonical reject = calibrated_reject (runs/<run>/reject_calib.json, from `fasr calibrate`);
@@ -300,4 +326,4 @@ def decode(logp: np.ndarray, trie: Trie, p: Params = Params(), calib: dict | Non
     hyp["reject_raw"] = hyp["reject"]
     if calib:
         hyp["reject"] = calibrated_reject(logp, hyp, calib)
-    return hyp
+    return resolve_homophones(hyp, trie)   # after the reject, so calibration is unchanged

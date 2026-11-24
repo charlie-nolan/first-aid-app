@@ -53,6 +53,12 @@ PAIRS = {
     ("fell", "fall"): [
         "i fell", "he fell off a rock", "she fell and hit her head", "a bad fall", "he took a fall",
         "fell down the hill", "fell on the trail", "fall from a cliff"],
+    ("sprained", "strain"): [   # board test 2026-11-24: "sprained" came out as "sprained are strain"
+        "i sprained my ankle", "a sprained wrist", "i think it's sprained", "sprained it on the rocks",
+        "it's just a strain", "a muscle strain in my back", "sprained not broken", "sprained knee"],
+    ("i", "eye"): [   # same sound; the decoder now picks by the word before, these teach the timing
+        "i fell on my arm", "i cut my hand", "i can't move it", "i got stung",
+        "something in my eye", "his left eye is swollen", "i hurt my eye", "i think i broke it"],
 }
 
 # Everyday first-aid words, said in a few plain sentences each. append() puts the ones Charlie has
@@ -134,7 +140,7 @@ def build(seed: int = 7, recorded: list[str] | None = None) -> tuple[list[str], 
     pairs, answers, missing = [], [], set()
     n = coverage(recorded or [])
     gaps = [w for w, k in sorted(n.items(), key=lambda x: x[1]) if k < COVER_MIN]
-    first = [s for w in gaps for s in COVER[w]] + PAIRS[("asthma", "as my")] + PAIRS[("fell", "fall")]
+    first = [s for w in gaps for s in COVER[w]] + PAIRS[("asthma", "as my")] + PAIRS[("fell", "fall")] + PAIRS[("sprained", "strain")] + PAIRS[("i", "eye")]
     for s in first:
         missing |= {w for w in lx.tokenize(s) if w not in words}
     for sents in PAIRS.values():
