@@ -1,0 +1,47 @@
+parity refresh, engine 82db807, snap_2026-11-20_1416 (trees 7752486 + slots 14:11-14:14), pytest 112 passed, guard 0/122 (both)
+== bites.yaml 14:11
+  ~ slots.rash_now.yes (list 11->14)
+== fractures.yaml 14:14
+  ~ search_words.start (list 6->8)
+== heat.yaml 14:11
+  ~ slots.heat_type.exhaustion (list 21->24)
+== wfa-drowning.yaml 14:11
+  ~ slots.water_event.yes (list 24->34)
+== wfa-fainting.yaml 14:14
+  + search_words.start
+== wfa-poison-ivy.yaml 14:11
+  ~ slots.exposure.rash (list 11->13)
+  ~ slots.rash_now.yes (list 11->13)
+== wfa-sprains.yaml 14:14
+  ~ search_words.knee (list 4->8)
+  ~ slots.can_use.yes (list 21->26)
+  + slots.sprain_sign
+== wounds.yaml 14:11
+  ~ topic_words (list 9->11)
+first_sentence 82db807 on snap_2026-11-20_1416 vs 65ea22a run18: 3 of 666 changed (509 seeds + 157 scenes)
+  public   form -> open wounds/blister public
+  public   form -> open wounds/blister public
+  s071    gold improvised_gear/blister form -> open improvised_gear/blister RIGHT
+new WRONG: 0
+search vs run18: 4 of 54 words changed
+  bite         20->20 wfa-allergy/severe bites/start bites/spider bites/mammal bites/snake wounds/clean bites/tick bites/lyme
+  dizzy        4->5 heat/exhaustion wfa-dehydration/start wfa-fainting/start wfa-altitude/ams wfa-fainting/about_to
+  eye          13->14 wfa-eye/stuck_q wfa-eye/impaled burns/eye wfa-eye/abrasion wfa-eye/foreign wfa-eye/start wfa-cpr/start heat/fluid_q
+  blister      7->19 wounds/start wounds/blister wounds/clean wounds/deep wounds/infect wounds/close_q wounds/dress wounds/evac
+  first hit life: bite->wfa-allergy/severe
+plain parity: run18 773 cases -> 771; ids only in run18: ['p0245-say', 'p0248-say']; changed frames: ['p0023-pick', 'p0023-say', 'p0034-pick', 'p0034-say', 'p0089-pick', 'p0089-say', 'p0102-pick', 'p0102-say', 'p0182-say', 'p0187-say', 'p0197-pick', 'p0197-say', 'p0241-pick', 'p0241-say', 'p0242-pick', 'p0242-say', 'p0245-pick', 'p0246-pick', 'p0246-say', 'p0248-pick', 'p0439-pick', 'p0439-say']
+{
+ "engine": "82db807a8830d0cf34280f927e92785b4ea50f82",
+ "trees_commit_at_snapshot": "7752486 (bake run19 in progress; slots changed 14:11-14:14)",
+ "files": {
+  "parity_82db807_snap_2026-11-20_1416_v16b.jsonl": {
+   "lines": 771
+  },
+  "parity_search_82db807_snap_2026-11-20_1416.jsonl": {
+   "lines": 54
+  },
+  "parity_tabs_82db807_snap_2026-11-20_1416.jsonl": {
+   "lines": 185
+  }
+ }
+}

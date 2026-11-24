@@ -1,0 +1,38 @@
+vr.search 43e8d08 vs 4ce361e, run17: 9 of 54 words changed ; pytest 107 passed ; bleeding unchanged: wfa-nosebleed/persist #1 (score 6), wfa-bleeding/severe #2 (5)
+burn            26->26 hits 0 life  burns/start burns/chem burns/thermal burns/depth burns/eye burns/thermal_more burns/elec burns/sun
+burns           26->26 hits 0 life  burns/start burns/chem burns/thermal burns/depth burns/eye burns/thermal_more burns/elec burns/sun
+fracture        32->32 hits 1 life  fractures/open fractures/where fractures/femur fractures/pelvis fractures/femur_signs fractures/pelvis_signs fractures/realign fractures/arm
+sprain          11->11 hits 0 life  wfa-sprains/start wfa-sprains/can_use_q wfa-sprains/finger wfa-sprains/knee wfa-sprains/shoulder wfa-sprains/dislocated_q wfa-sprains/evac wfa-sprains/rice
+hypothermia     14->14 hits 2 life  hypothermia/severe wfa-cpr/cold hypothermia/start hypothermia/mild hypothermia/moderate hypothermia/mild_more hypothermia/mild_signs hypothermia/moderate_signs
+lightning        7-> 7 hits 0 life  wfa-lightning/start wfa-lightning/struck wfa-lightning/signs wfa-lightning/evac wfa-lightning/safety wfa-lightning/safety_more burns/elec
+stroke          18->18 hits 0 life  wfa-stroke/start wfa-stroke/check wfa-stroke/treat heat/start heat/ehs heat/ehs_more heat/ehs_signs heat/cramps
+faint            5-> 5 hits 0 life  wfa-fainting/start wfa-fainting/about_to wfa-fainting/after heat/syncope heat/syncope_signs
+shock           11->11 hits 1 life  wfa-shock/start wfa-shock/signs wfa-shock/treat wfa-shock/evac wfa-diabetic/start wfa-stress/start wfa-diabetic/drowsy wfa-diabetic/evac
+
+first hit is a life card:
+  bleeding        wfa-nosebleed/persist
+  blood           wfa-nosebleed/persist
+  breathing       wfa-cpr/breathing
+  cpr             wfa-cpr/start
+  choking         wfa-choking/unconscious
+  choke           wfa-choking/unconscious
+  bite            wfa-allergy/severe
+  bee             wfa-allergy/severe
+  sting           wfa-allergy/severe
+  allergy         wfa-allergy/severe
+  arm             wfa-chest-pain/heart
+  back            wfa-choking/conscious
+  fracture        fractures/open
+  hypothermia     hypothermia/severe
+  water           wfa-drowning/care
+  drowning        wfa-drowning/care
+  diabetic        wfa-diabetic/drowsy
+  sugar           wfa-diabetic/drowsy
+  carbon monoxide wfa-co/treat_now
+  nosebleed       wfa-nosebleed/persist
+  stop            wfa-bleeding/severe
+
+root not in top 3:
+  leg             fractures/where #None (hits 2)
+  arm             fractures/where #None (hits 4)
+  dizzy           wfa-fainting/start #None (hits 1)

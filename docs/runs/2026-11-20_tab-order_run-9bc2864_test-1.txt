@@ -1,0 +1,21 @@
+tab order 9bc2864, run17, 112 passed in 1.48s
+multi=False: first_sentence changes vs 6a9e39a: 0 of 666
+parity_9bc2864_run17_v16b byte-identical to parity_6a9e39a_run17_v16b
+(a) multi=True kinds {'open': 93, 'form': 244, 'tabs': 186, 'start': 143}  (0407c74: {'open': 89, 'form': 227, 'tabs': 207, 'start': 143} )
+(b) same-card tabs: 0 []
+(c) order violations: 0 []
+(d) lines:
+  p0409   wfa-bleeding:severe?(r0) | fractures:leg?(r8,+1)
+  s004    wfa-bleeding:severe?(r0) | fractures:big?(r8,+1)
+  s088    wounds:wfa-bleeding/severe(r0) | fractures:arm?(r8,+1)
+  s089    wfa-bleeding:severe?(r0) | fractures:leg?(r8,+1)
+  s138    wfa-bleeding:severe?(r0) | wfa-frostbite:start?(r8,+1)
+  spot1   open wfa-bleeding/severe
+  spot2   wfa-cpr:wfa-bleeding/severe(r0,+1) | fractures:wfa-cpr/cpr(r1)
+  spot3   wfa-choking:start?(r4.5,+1) | burns:start?(r6)
+  spot4   wfa-allergy:severe?(r3) | bites:anaphylaxis?(r4) | fractures:foot(r8)
+  spot5   wfa-head-spine:head_q?(r5,+1) | burns:start?(r6)
+  spot6   wfa-poison-ivy:rash(r8,+1) | fractures:foot(r8)
+multi scenes, every named problem has a tab: 2/10  s138:miss fractures s139:miss hypothermia s140:miss wfa-sprains s141:miss burns,wounds s142:ok s143:miss heat,wounds s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures s147:miss hypothermia,wfa-drowning
+tree covered in 0407c74 but uncovered now (improvised_gear ignored): 17  p0005:-wounds p0010:-wfa-nosebleed p0066:-wounds p0067:-wounds p0073:-wounds p0159:-wfa-allergy p0250:-wounds p0268:-wfa-diabetic p0351:-wounds p0365:-heat p0427:-wounds p0431:-wounds p0461:-wfa-bleeding p0506:-wfa-nosebleed s029:-heat s068:-wfa-sprains s069:-hypothermia,wfa-shock
+note: the 17 'uncovered' lines all became a single form that still keeps every tree (2-tab splits with improvised_gear as lead -> one form); the only real loss: spot1 tabs -> open wfa-bleeding/severe (fractures kept, no tab)

@@ -1,0 +1,33 @@
+keep-trees cut 1c77ac2 vs 82db807 | partial run20 slots (17:47) | metrics and ids only
+new: TOTAL 666  right / on way / stuck / WRONG = 72.0% / 24.9% / 0.8% / 2.3%  WRONG lines 15
+new: right card by voice turn (tile numbers)  1: 72.0%  2: 88.0%  3: 96.2%  4: 96.5%  never: 3.4%
+new: right card by voice turn (saying the tile words)  1: 72.0%  2: 88.0%  3: 95.7%  4: 96.0%  never: 3.9%
+new: right card by voice turn (fill-in-the-blanks screen, vr.form)  1: 72.0%  2: 94.9%  3: 95.5%  4: 96.1%  never: 3.9%
+new: life-threat cards opened on the first sentence: 76/78   (666 lines)
+new: right card ranked after the first sentence: all: top1 82.9% top3 87.5% (n=666)  0-40: top1 35.5% top3 53.0% (n=132)  40-60: top1 44.8% top3 61.3% (n=49)  6
+new: guard: 0 of 122 opened a life card (life-threat jump fired in any tree)
+dev sim + guard identical to 82db807 (sim does not use keep_trees)
+
+first_sentence 82db807 -> 1c77ac2 (frozen live slots 17:47, run20 partial): 35 of 666 changed
+new WRONG: 4
+kept-tree sets changed on 177 of 666 lines (first_sentence result unchanged on 142)
+
+tabs cases (multi=True, seeds + 157 scenes): 82db807 197 -> 1c77ac2 173; lost 39, new 15, changed 34
+multi scenes, every named problem has a tab [82db807]: 6/10  s138:ok s139:miss hypothermia,wfa-head-spine s140:ok s141:miss burns,wounds s142:ok s143:ok s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures,wfa-chest-pain s147:ok
+multi scenes, every named problem has a tab [1c77ac2]: 5/10  s138:ok s139:miss hypothermia,wfa-head-spine s140:ok s141:miss burns,wounds s142:ok s143:miss heat,wounds s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures,wfa-chest-pain s147:ok
+  s046    gold fractures/clavicle form -> open wfa-head-spine/spine WRONG 
+  s063    gold improvised_gear/wound_closure form -> open wounds/close WRONG 
+  s065    gold improvised_gear/splint form -> open improvised_gear/splint RIGHT 
+  s083    gold wfa-belly/vomiting form -> open wfa-belly/vomiting RIGHT 
+  s101    gold wfa-eye/impaled form -> open wounds/impaled WRONG 
+  s107    gold wfa-frostbite/full form -> open wfa-frostbite/full RIGHT 
+  s120    gold wfa-sprains/rice form -> open wfa-sprains/rice RIGHT 
+  s122    gold wfa-sprains/shoulder form -> open wfa-sprains/shoulder RIGHT 
+  s132    gold wounds/infect form -> open wounds/infect RIGHT 
+  s134    gold wounds/close form -> open wounds/close RIGHT 
+  s137    gold wounds/evisc form -> open wounds/evisc RIGHT 
+  s143    gold heat/exhaustion form -> open wounds/blister WRONG 
+  s146    gold wfa-chest-pain/ribs form -> open wfa-chest-pain/ribs RIGHT 
+
+board femur turn (heard text withheld): kept [fractures, burns, wfa-bleeding] -> [fractures, wfa-sprains]
+board rock turn (heard text withheld): kept [fractures, wfa-head-spine] (unchanged)

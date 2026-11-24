@@ -1,0 +1,23 @@
+tab order 940f447, run17, 112 passed in 1.47s
+multi=False: first_sentence changes vs 6a9e39a: 0 of 666
+parity_940f447_run17_v16b byte-identical to parity_6a9e39a_run17_v16b
+(a) multi=True kinds {'open': 93, 'form': 244, 'tabs': 186, 'start': 143}  (9bc2864: {'open': 93, 'form': 244, 'tabs': 186, 'start': 143} )
+(b) same-card tabs: 0 []
+(c) order violations: 0 []
+(d) lines:
+  p0409   wfa-bleeding:severe?(r0) | fractures:leg?(r9,+1)
+  s004    wfa-bleeding:severe?(r0) | fractures:big?(r9,+1)
+  s088    wounds:wfa-bleeding/severe(r0) | wounds:start?(r9,+1) | fractures:arm?(r9)
+  s089    wfa-bleeding:severe?(r0) | fractures:leg?(r9,+1)
+  s138    wfa-bleeding:severe?(r0) | wfa-frostbite:start?(r9,+1)
+  spot1   open wfa-bleeding/severe
+  spot2   wfa-cpr:wfa-bleeding/severe(r0,+1) | fractures:where(r0) | fractures:wfa-cpr/cpr(r1)
+  spot3   wfa-choking:start?(r5,+1) | burns:start?(r7)
+  spot4   wfa-allergy:severe?(r3) | bites:anaphylaxis?(r4) | fractures:foot(r9)
+  spot5   wfa-head-spine:head_q?(r6,+1) | burns:start?(r7)
+  spot6   wfa-poison-ivy:rash(r9,+1) | fractures:foot(r9)
+multi scenes, every named problem has a tab: 2/10  s138:miss fractures s139:miss hypothermia s140:miss wfa-sprains s141:miss burns,wounds s142:ok s143:miss heat,wounds s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures s147:miss hypothermia,wfa-drowning
+tree covered in 9bc2864 but uncovered now (improvised_gear ignored): 0  
+tabs ranked r0/r1 (bleeding/CPR) on a non-bleeding/CPR card: 1 spot2:fractures/where(r0)
+lines where one tree leads two tabs: 3 s014 s088 spot2
+spot1 cause: fractures fills only bleeding_type (no body_part: 'arm' and 'leg' both heard) -> its only evidence is the life jump; spot2: fractures leads 2 tabs (plain copy 'where' ranked r0 sits ahead of the CPR tab)

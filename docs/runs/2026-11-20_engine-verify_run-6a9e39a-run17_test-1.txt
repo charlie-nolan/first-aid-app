@@ -1,0 +1,26 @@
+engine 6a9e39a | slots run16 frozen (drafts voice_slots_before_c8 + wfa-bleeding_before_c8) -> run17 (trees a4ea512)
+
+TOTAL 666  right / on way / stuck / WRONG = 71.9% / 25.0% / 0.8% / 2.3%  WRONG lines 15
+right card by voice turn (tile numbers)  1: 71.9%  2: 87.8%  3: 96.2%  4: 96.5%  never: 3.4%
+right card by voice turn (saying the tile words)  1: 71.9%  2: 87.8%  3: 95.6%  4: 95.9%  never: 4.0%
+right card by voice turn (fill-in-the-blanks screen, vr.form)  1: 71.9%  2: 94.8%  3: 95.4%  4: 96.0%  never: 4.0%
+life-threat cards opened on the first sentence: 76/78   (666 lines)
+right card ranked after the first sentence: all: top1 82.8% top3 87.3% (n=666)  0-40: top1 35.3% top3 52.5% (n=133)  40-60: top1 44.8% top3 61.3% (n=49)  60-80: top1 80.0% top3 80.0% (n=5)  80-100: top1 99.8% top3 99.8% (n=479)
+guard: 0 of 122 opened a life card (life-threat jump fired in any tree)
+guard (vr.form first_sentence, every tree): 0 of 122 opened a life card
+(run16 dev sim: identical numbers)
+fuzz ok 2368
+parity_6a9e39a_run17_v16b.jsonl: 773 {'card': 614, 'form': 25, 'start': 134} maxSHOW 1843
+
+== first_sentence engine 6a9e39a, slots run16 (voice_slots_before_c8 + pre-C8 wfa-bleeding tree) -> run17 (a4ea512 bake): 1 of 666 changed
+new WRONG: 0
+  1 public seed line: wfa-bleeding/severe -> wfa-nosebleed/persist
+
+spot lines (opened card):
+  1: open wfa-bleeding/severe
+  2: open wfa-bleeding/severe
+  3: open wfa-cpr/cpr
+  4: open wfa-cpr/cpr
+  5: open wfa-nosebleed/persist
+  6: open wfa-bleeding/severe
+  7: open wfa-bleeding/severe

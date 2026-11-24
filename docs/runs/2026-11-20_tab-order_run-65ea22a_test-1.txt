@@ -1,0 +1,25 @@
+tab order 65ea22a, run17, 112 passed in 1.46s
+multi=False: first_sentence changes vs 6a9e39a: 0 of 666
+parity_65ea22a_run17_v16b byte-identical to parity_6a9e39a_run17_v16b
+(a) multi=True kinds {'open': 92, 'form': 244, 'tabs': 187, 'start': 143}  (940f447: {'open': 93, 'form': 244, 'tabs': 186, 'start': 143} )
+(b) same-card tabs: 0 []
+(c) order violations: 0 []
+(d) lines:
+  p0409   wfa-bleeding:severe?(r0) | fractures:leg?(r9,+1)
+  s004    wfa-bleeding:severe?(r0) | fractures:big?(r9,+1)
+  s014    wfa-cpr:cpr?(r1) | wfa-choking:unconscious?(r2) | heat:fluid_q?(r9)
+  s088    wounds:wfa-bleeding/severe(r0) | wounds:start?(r9,+1) | fractures:arm?(r9)
+  s089    wfa-bleeding:severe?(r0) | fractures:leg?(r9,+1)
+  s138    wfa-bleeding:severe?(r0) | fractures:where?(r9) | wfa-frostbite:start?(r9)
+  spot1   wfa-bleeding:severe?(r0) | fractures:where?(r9,+1)
+  spot2   wfa-cpr:wfa-bleeding/severe(r0) | fractures:wfa-cpr/cpr(r1) | fractures:leg?(r9,+1)
+  spot3   wfa-choking:start?(r5,+1) | burns:start?(r7)
+  spot4   wfa-allergy:severe?(r3) | bites:anaphylaxis?(r4) | fractures:foot(r9)
+  spot5   wfa-head-spine:head_q?(r6,+1) | burns:start?(r7)
+  spot6   wfa-poison-ivy:rash(r9,+1) | fractures:foot(r9)
+multi scenes, every named problem has a tab: 3/10  s138:ok s139:miss hypothermia s140:miss wfa-sprains s141:miss burns,wounds s142:ok s143:miss heat,wounds s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures s147:miss hypothermia,wfa-drowning
+tree covered in 940f447 but uncovered now (improvised_gear ignored): 0  
+r0/r1 tab on a non-bleeding/CPR card: 0 
+one tree leading 2 tabs: 2 s088 spot2
+two life tabs from one life tree: 0 
+parity_tabs_65ea22a_run17.jsonl written: 187 + spot tabs cases

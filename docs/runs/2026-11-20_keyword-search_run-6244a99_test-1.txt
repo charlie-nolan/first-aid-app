@@ -1,0 +1,30 @@
+vr.search 6244a99 vs 43e8d08, run17: 1 of 54 words changed ; pytest 107 passed
+bleeding        13->13 hits 2 life  wfa-bleeding/severe wfa-nosebleed/persist wfa-bleeding/start wfa-bleeding/junctional wfa-bleeding/tq wfa-bleeding/evac wfa-bleeding/tq_long wfa-nosebleed/start
+
+first hit is a life card:
+  bleeding        wfa-bleeding/severe
+  blood           wfa-nosebleed/persist
+  breathing       wfa-cpr/breathing
+  cpr             wfa-cpr/start
+  choking         wfa-choking/unconscious
+  choke           wfa-choking/unconscious
+  bite            wfa-allergy/severe
+  bee             wfa-allergy/severe
+  sting           wfa-allergy/severe
+  allergy         wfa-allergy/severe
+  arm             wfa-chest-pain/heart
+  back            wfa-choking/conscious
+  fracture        fractures/open
+  hypothermia     hypothermia/severe
+  water           wfa-drowning/care
+  drowning        wfa-drowning/care
+  diabetic        wfa-diabetic/drowsy
+  sugar           wfa-diabetic/drowsy
+  carbon monoxide wfa-co/treat_now
+  nosebleed       wfa-nosebleed/persist
+  stop            wfa-bleeding/severe
+
+root not in top 3:
+  leg             fractures/where #None (hits 2)
+  arm             fractures/where #None (hits 4)
+  dizzy           wfa-fainting/start #None (hits 1)
