@@ -397,11 +397,18 @@ int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
 }
 
 #undef fin
-/* (resolve_homophones is declared before fd_finish) */
-/* decode.resolve_homophones (speech 4a29209): "i" and "eye" sound the same (AY); after the reject, in every
- * guess, it is "eye" only after one of these words, else "i" (the reject and the confidences are unchanged). */
+/* decode.resolve_homophones (speech 55c32ea): "i" and "eye" sound the same (AY). After the reject, in every guess,
+ * left to right: "eye" if the word before (as already rewritten) is in EYE_BEFORE or the word after (as heard)
+ * is in EYE_AFTER, else "i". The reject and the confidences are unchanged. Words match by spelling. */
 static const char *const EYE_BEFORE[] = {"my", "his", "her", "your", "their", "the", "an", "left", "right", "both", "one",
-                                         "in", "either", "its", "our", 0};
+    "in", "either", "its", "our", "into", "scratched", "scratch", "poked", "poke", "rubbed", "rub", "hit", "cut", "burned",
+    "splashed", "stung", "flush", "rinse", "wash", 0};
+static const char *const EYE_AFTER[] = {"ball", "balls", "lid", "lids", "socket", "brow", "lash", "lashes", "drops", "patch",
+    "hurts", "is", "looks", "swollen", "red", 0};
+static bool in_set(const char *w, const char *const *set) {
+    for (int q = 0; w && set[q]; q++) if (!strcmp(w, set[q])) return true;
+    return false;
+}
 static void resolve_homophones(const fd_lex_t *x, fd_result_t *r) {
     if (x->id_i < 0 || x->id_eye < 0) return;
     for (int h = 0; h < r->n; h++)
@@ -409,9 +416,8 @@ static void resolve_homophones(const fd_lex_t *x, fd_result_t *r) {
             int w = r->h[h].id[k];
             if (w != x->id_i && w != x->id_eye) continue;
             const char *prev = k ? fd_word(x, r->h[h].id[k - 1]) : NULL;
-            bool eye = false;
-            for (int q = 0; prev && EYE_BEFORE[q]; q++) if (!strcmp(prev, EYE_BEFORE[q])) eye = true;
-            r->h[h].id[k] = (uint16_t)(eye ? x->id_eye : x->id_i);
+            const char *next = k + 1 < r->h[h].len ? fd_word(x, r->h[h].id[k + 1]) : NULL;
+            r->h[h].id[k] = (uint16_t)(in_set(prev, EYE_BEFORE) || in_set(next, EYE_AFTER) ? x->id_eye : x->id_i);
         }
 }
 int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal, void *wsv, fd_result_t *r) {
