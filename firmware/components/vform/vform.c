@@ -1080,8 +1080,8 @@ static const char *const INJURY_WORDS[] = {"broke", "broken", "break", "snap", "
 
 /* vr.live.keep_trees */
 int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
-    int sc[FP_MAX_TREES], idx[FP_MAX_TREES], nm[FP_MAX_TREES], n = 0;
-    bool rl[FP_MAX_TREES], heard[FP_MAX_TREES], hurt = false;
+    int sc[FP_MAX_TREES], idx[FP_MAX_TREES], nm[FP_MAX_TREES], raw[FP_MAX_TREES], n = 0;
+    bool rl[FP_MAX_TREES], heard[FP_MAX_TREES], ownv[FP_MAX_TREES], lifev[FP_MAX_TREES], hurt = false;
     fp_toks_t h0w;
     {
         fp_toks_t h0;
@@ -1131,16 +1131,37 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
         rl[n] = named || (score > 0 && (hurt || nonplace));
         bool handles = !home && own && handles_life(s, t, &f);   /* its own life rule beats the CPR jump */
         int v = score + (named ? 3 : 0) + (handles ? 3 : 0);
-        sc[n] = v; idx[n] = t; nm[n] = named || handles; n++;
+        fp_cand_t tmp; memset(&tmp, 0, sizeof tmp); tmp.tree = (uint8_t)t; tmp.filled = f;
+        lifev[n] = rule_hit(s, &tmp) >= 0;           /* holds a life value: never cut (vr a105c95) */
+        sc[n] = v; raw[n] = v; idx[n] = t; nm[n] = named || handles; ownv[n] = own; n++;
     }
     bool anyreal = false;                            /* only a place was heard: no problem yet, no card */
     for (int i = 0; i < n; i++) if (rl[i]) anyreal = true;
     if (!anyreal) n = 0;
-    bool any = false;                                /* when any tree scores, drop the ones that scored 0 */
+    if (k > FP_MAX_CANDS) k = FP_MAX_CANDS;
+    bool any = false;
     for (int i = 0; i < n; i++) if (sc[i]) any = true;
-    if (any) {
+    /* the shares (p) as before the cut: the raw scores of the old top k (the halving and the cut only pick
+     * the tiles, they never push a leader past SURE) */
+    int tot = 0;
+    {
+        int o[FP_MAX_TREES], m = 0;
+        for (int i = 0; i < n; i++) if (sc[i] || !any) o[m++] = i;
+        for (int i = 1; i < m; i++)
+            for (int j = i; j > 0 && (nm[o[j]] > nm[o[j - 1]] || (nm[o[j]] == nm[o[j - 1]] && sc[o[j]] > sc[o[j - 1]])); j--) {
+                int a = o[j]; o[j] = o[j - 1]; o[j - 1] = a;
+            }
+        for (int i = 0; i < m && i < k; i++) tot += sc[o[i]];
+        if (!tot) tot = 1;
+    }
+    bool anyown = false;                             /* a tree heard its own problem: place-only matches count half */
+    for (int i = 0; i < n; i++) if (ownv[i]) anyown = true;
+    if (anyown) for (int i = 0; i < n; i++) if (ownv[i] || lifev[i]) sc[i] *= 2;
+    if (any) {                                       /* when any tree scores, drop the ones that scored 0 */
         int k2 = 0;
-        for (int i = 0; i < n; i++) if (sc[i]) { sc[k2] = sc[i]; idx[k2] = idx[i]; nm[k2] = nm[i]; k2++; }
+        for (int i = 0; i < n; i++) if (sc[i]) {
+            sc[k2] = sc[i]; idx[k2] = idx[i]; nm[k2] = nm[i]; raw[k2] = raw[i]; lifev[k2] = lifev[i]; k2++;
+        }
         n = k2;
     }
     for (int i = 1; i < n; i++)                      /* two tiers: named trees first, then score desc, */
@@ -1148,17 +1169,19 @@ int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
             int a = sc[j]; sc[j] = sc[j - 1]; sc[j - 1] = a;     /* then tree order (stable) */
             a = idx[j]; idx[j] = idx[j - 1]; idx[j - 1] = a;
             a = nm[j]; nm[j] = nm[j - 1]; nm[j - 1] = a;
+            a = raw[j]; raw[j] = raw[j - 1]; raw[j - 1] = a;
+            bool b = lifev[j]; lifev[j] = lifev[j - 1]; lifev[j - 1] = b;
         }
-    if (k > FP_MAX_CANDS) k = FP_MAX_CANDS;
+    int best = n ? sc[0] : 0, m = 0;                 /* a weak side match never takes a tile: keep the best two, */
+    for (int i = 0; i < n; i++)                      /* any tree at a third of the leader, any holding a life value */
+        if (i <= 1 || 3 * sc[i] >= best || lifev[i]) { sc[m] = sc[i]; idx[m] = idx[i]; raw[m] = raw[i]; m++; }
+    n = m;
     if (n > k) n = k;
-    int tot = 0;
-    for (int i = 0; i < n; i++) tot += sc[i];
-    if (!tot) tot = 1;
     s->ncands = n;
     for (int i = 0; i < n; i++) {
         fp_cand_t *c = &s->cands[i];
         memset(c, 0, sizeof *c);
-        c->tree = (uint8_t)idx[i]; c->p = (double)sc[i] / tot; c->card = s->trees[idx[i]].root; c->asking = FP_NONE;
+        c->tree = (uint8_t)idx[i]; c->p = (double)raw[i] / tot; c->card = s->trees[idx[i]].root; c->asking = FP_NONE;
     }
     return n;
 }
