@@ -89,3 +89,15 @@ def test_device_frontend_close_to_numpy():
     x = (np.random.default_rng(1).standard_normal(16000) * 3000).astype(np.int16)
     a, b = logmel(x), logmel_np(x)
     assert a.shape == b.shape and np.abs(a - b).max() < 1e-3
+
+
+def test_i_eye_homophone():
+    """Board test 2026-11-24: 'I fell on my arm' came out as 'eye fell'. Same phones (AY)."""
+    from fasr.decode import resolve_homophones
+    trie = Trie.from_lexicon(ROWS)
+    ids = {r["word"]: r["id"] for r in ROWS}
+    hyp = {"h": [{"ids": [ids["eye"], ids["fell"], ids["on"], ids["my"], ids["arm"]]},
+                 {"ids": [ids["something"], ids["in"], ids["my"], ids["i"]]}]}
+    out = resolve_homophones(hyp, trie)
+    assert out["h"][0]["ids"][0] == ids["i"]
+    assert out["h"][1]["ids"][3] == ids["eye"]
