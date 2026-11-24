@@ -1,7 +1,7 @@
 # vform: the fill-in-the-blanks form, in C
 
 C port of `pipeline/voice_router/vr/intake.py` + `vr/form.py` (+ `vr.live.keep_trees`), from
-`claude/project-thread-ypggtj` at **3040f99**. The Python stays the reference: every behaviour change
+`claude/project-thread-ypggtj` at **a105c95** (snap_2026-11-22_1755). The Python stays the reference: every behaviour change
 there is ported here and re-checked with the parity set below.
 
 What it does: the first sentence fills every blank it can in the 2-3 likely trees; one screen lists
