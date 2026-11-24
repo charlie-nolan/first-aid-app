@@ -1,4 +1,10 @@
-set(srcs main.c ui.c sleep_art.c epd.c buttons.c lights.c power.c voice.c voice_diy.c vbrain.c psram_test.c)
+# A personal sleep picture (main/sleep_art_personal.c, gitignored) replaces the neutral built-in one when present.
+if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/sleep_art_personal.c)
+    set(sleep_art sleep_art_personal.c)
+else()
+    set(sleep_art sleep_art.c)
+endif()
+set(srcs main.c ui.c ${sleep_art} epd.c buttons.c lights.c power.c voice.c voice_diy.c vbrain.c psram_test.c)
 set(PHRASES ${CMAKE_CURRENT_LIST_DIR}/../library/phrases.txt)
 set(embed "")
 if(CONFIG_LIB_VOICE)
