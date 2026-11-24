@@ -110,6 +110,28 @@ A narrow vocabulary can **force out-of-domain speech into domain words** (a fals
 - Pass-1 n-best life words, which always count;
 - banks never removing a life word.
 
+### Before committing: 2A vs 2B on the PC
+
+Both run on the same Pass-1 `logp` grid. Both are built for the benchmark only, and the winner goes to the
+board.
+
+- **2A, narrow re-decode:** the search above (`fasr_decode`), with the bank's trie.
+- **2B, phrase spotting:** each open blank's choices become phoneme target sequences (from the shared
+  lexicon), and each is scored straight on `logp`:
+  - best-path CTC score over a sliding window, minus a garbage-model score on the same window (a free phone
+    loop, for normalization);
+  - accept if the normalized score clears a threshold set on the `train` split;
+  - a pre-window negation check ("no", "not", "isn't", "never" within ~1 s before the hit) fills nothing,
+    matching the form's negation rule.
+- **Flash per expert:** 2A needs word ids only (~0.5–1 KB). 2B needs targets per choice (~2–4 KB:
+  phoneme strings for each slot value), or the same ids, expanded at load.
+- **Compared on the 633 recordings:** key-word recall, false triggers (fills the label doesn't support), life
+  recall, and S3 time per second of audio. 2B is the likely winner for **turn-2 blanks** (2–4 choices open):
+  scoring 4 targets is much cheaper and tighter than a search. 2A is likely better for Pass 1 (open
+  sentence). The choice can be per turn: 2A for Pass 1, 2B for turn 2.
+- **Pick rule:** fewer false triggers with equal or better life recall wins. If they tie, the faster one on the
+  S3 wins.
+
 ### Measuring (PC, exactly as on the board, plus board timing)
 
 - **Data:** the 633 labelled me_dev recordings (train / eval / answers text), plus your board clips.
@@ -132,4 +154,4 @@ A narrow vocabulary can **force out-of-domain speech into domain words** (a fals
 
 1. Sign off the Stage 1 layout (plain + Plus) and the "clear a blank by selecting its chip" control.
 2. OK for the form-thread changes: `filled` in frames, plus `unfill`.
-3. Sign off the Stage 2 bank format (id lists + a trie built at load) and the pass/fail rule.
+3. Sign off the Stage 2 bank format (id lists + a trie built at load), the 2A vs 2B benchmark and the pass/fail rule.
