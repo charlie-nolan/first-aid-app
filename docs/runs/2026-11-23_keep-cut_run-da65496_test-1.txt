@@ -1,0 +1,57 @@
+keep-trees cut da65496 vs 82db807 | partial run20 slots (17:47) | metrics and ids only
+TOTAL 666  right / on way / stuck / WRONG = 72.0% / 24.9% / 0.8% / 2.3%  WRONG lines 15
+right card by voice turn (tile numbers)  1: 72.0%  2: 88.0%  3: 96.2%  4: 96.5%  never: 3.4%
+right card by voice turn (saying the tile words)  1: 72.0%  2: 88.0%  3: 95.7%  4: 96.0%  never: 3.9%
+right card by voice turn (fill-in-the-blanks screen, vr.form)  1: 72.0%  2: 94.9%  3: 95.5%  4: 96.1%  never: 3.9%
+life-threat cards opened on the first sentence: 76/78   (666 lines)
+right card ranked after the first sentence: all: top1 82.9% top3 87.5% (n=666)  0-40: top1 35.5% top3 53.0% (n=132)  40-60: top1 44.8% top3 61.3% (n=49)  60-80: top1 80.0
+guard: 0 of 122 opened a life card (life-threat jump fired in any tree)
+guard (vr.form first_sentence, every tree): 0 of 122 opened a life card
+sim + guard identical to 82db807
+spot/board line changes vs 82db807:
+first_sentence 82db807 -> da65496: 35 of 666 changed
+  public   form -> open improvised_gear/splint public
+  public   form -> open wfa-belly/vomiting public
+  public   form -> open wfa-belly/vomiting public
+  public   form -> open wfa-belly/vomiting public
+  public   form -> open wounds/blister public
+  public   form -> open wounds/blister public
+  public   form -> open wounds/blister public
+  public   form -> open wfa-belly/diarrhea public
+  public   form -> open wfa-belly/vomiting public
+  public   form -> open improvised_gear/litter public
+  public   form -> open improvised_gear/tourniquet public
+  public   form -> open improvised_gear/splint public
+  public   form -> open improvised_gear/sling public
+  public   form -> open improvised_gear/splint public
+  public   form -> open improvised_gear/splint public
+  public   form -> open improvised_gear/splint public
+  public   form -> open improvised_gear/sling public
+  public   form -> open improvised_gear/sling public
+  public   form -> open improvised_gear/sling public
+  public   form -> open improvised_gear/sling public
+  public   form -> open improvised_gear/sling public
+  public   form -> open improvised_gear/splint public
+  s046    gold fractures/clavicle form -> open wfa-head-spine/spine WRONG 
+  s063    gold improvised_gear/wound_closure form -> open wounds/close WRONG 
+  s065    gold improvised_gear/splint form -> open improvised_gear/splint RIGHT 
+  s083    gold wfa-belly/vomiting form -> open wfa-belly/vomiting RIGHT 
+  s101    gold wfa-eye/impaled form -> open wounds/impaled WRONG 
+  s107    gold wfa-frostbite/full form -> open wfa-frostbite/full RIGHT 
+  s120    gold wfa-sprains/rice form -> open wfa-sprains/rice RIGHT 
+  s122    gold wfa-sprains/shoulder form -> open wfa-sprains/shoulder RIGHT 
+  s132    gold wounds/infect form -> open wounds/infect RIGHT 
+  s134    gold wounds/close form -> open wounds/close RIGHT 
+  s137    gold wounds/evisc form -> open wounds/evisc RIGHT 
+  s143    gold heat/exhaustion form -> open wounds/blister WRONG 
+  s146    gold wfa-chest-pain/ribs form -> open wfa-chest-pain/ribs RIGHT 
+new WRONG: 4 | kept sets changed on 168 lines
+tabs cases: 82db807 197 -> da65496 218; lost 2 ['l0070', 'l0136'], new 23 ['l0001', 'l0002', 'l0004', 'l0039', 'l0040', 'l0050', 'l0060', 'l0061', 'l0062', 'l0107', 'l0125', 'l0131', 'l0133', 'l0140', 'l0145', 'p0026', 'p0076', 'p0167', 'p0171', 'p0174', 'p0184', 'p0187', 'p0242'], changed 48
+multi scenes [82db807]: 6/10  s138:ok s139:miss hypothermia,wfa-head-spine s140:ok s141:miss burns,wounds s142:ok s143:ok s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures,wfa-chest-pain s147:ok
+multi scenes [da65496]: 7/10  s138:ok s139:miss hypothermia,wfa-head-spine s140:ok s141:ok s142:ok s143:ok s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures s147:ok
+  multi l0140: (none) -> burns:burns/thermal(r7) | wounds:wounds/clean(r9)
+  multi l0142: wounds:wounds/blister(r9) | fractures:fractures/foot(r9) | heat:heat/exhaustion(r9) -> wounds:wounds/blister(r9) | heat:heat/exhaustion(r9)
+  multi l0145: (none) -> wfa-chest-pain:wfa-chest-pain/ribs(r9) | wfa-bleeding:wfa-bleeding/start(r9)
+s046: keep_trees -> head-spine p0.80, fractures p0.20 (2 kept; doubling puts leader at SURE 0.80 -> open). s143: wounds 0.80, heat 0.20 -> open wounds/blister.
+board femur turn (heard text withheld): kept [fractures, burns, wfa-bleeding] -> [fractures, wfa-sprains]
+board rock turn (heard text withheld): kept [fractures, wfa-head-spine] (unchanged)

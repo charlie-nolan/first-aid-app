@@ -1,0 +1,58 @@
+tab order 0407c74, run17, pytest 111 passed; multi=False: 0/666 changes vs 6a9e39a, parity_0407c74_run17_v16b byte-identical (773)
+(a) multi=True kinds {'open': 89, 'form': 227, 'tabs': 207, 'start': 143}  (d4e0125: {'tabs': 206, 'form': 240, 'open': 77, 'start': 143} )
+(b) same-card tabs: 2 ['p0128', 's071']
+(c) order violations: 0 []
+(d) spot + named lines:
+  p0000   open wfa-bleeding/severe
+  p0409   wfa-bleeding:severe?(r0) | improvised_gear:bleed_group?(r8,+1)
+  s009    open wfa-cpr/start
+  s088    wounds:wfa-bleeding/severe(r0) | improvised_gear:tourniquet(r8) | fractures:arm?(r8)
+  s142    wfa-cpr:cpr?(r1) | wfa-head-spine:head_mild?(r5) | wfa-lightning:start?(r8)
+  spot1   wfa-bleeding:severe?(r0) | improvised_gear:bleed_group?(r8,+1)
+  spot2   wfa-cpr:wfa-bleeding/severe(r0) | improvised_gear:start(r0) | fractures:wfa-cpr/cpr(r1)
+  spot3   burns:start?(r6,+1) | wfa-choking:start?(r8)
+  spot4   wfa-allergy:severe?(r3) | bites:anaphylaxis?(r4) | fractures:foot(r8)
+  spot5   wfa-head-spine:head_q?(r5,+1) | burns:start?(r6)
+  spot6   wfa-poison-ivy:rash(r8,+1) | fractures:foot(r8)
+(e) 39 old duplicate lines -> now:
+  p0000   jumpers ['improvised_gear', 'bites', 'burns'] own tab 0/3  now: open wfa-bleeding/severe
+  p0001   jumpers ['bites', 'burns', 'fractures'] own tab 0/3  now: open wfa-bleeding/severe
+  p0002   jumpers ['improvised_gear', 'bites', 'burns'] own tab 0/3  now: open wfa-bleeding/severe
+  p0006   jumpers ['improvised_gear', 'wfa-drowning', 'bites'] own tab 1/3  now: improvised_gear:wfa-bleeding/severe(r0) | wfa-drowning:out?(r8,+1)
+  p0009   jumpers ['improvised_gear', 'bites', 'burns'] own tab 0/3  now: open wfa-bleeding/severe
+  p0012   jumpers ['improvised_gear', 'bites', 'burns'] own tab 0/3  now: open wfa-bleeding/severe
+  p0015   jumpers ['improvised_gear', 'bites', 'burns'] own tab 0/3  now: open wfa-bleeding/severe
+  p0019   jumpers ['improvised_gear', 'wfa-head-spine', 'bites'] own tab 1/3  now: improvised_gear:wfa-bleeding/severe(r0) | wfa-head-spine:head_q?(r5,+1)
+  p0041   jumpers ['wfa-head-spine', 'wfa-tooth'] own tab 2/2  now: wfa-cpr:start?(r1) | wfa-head-spine:start?(r5) | wfa-tooth:knocked_out(r8)
+  p0048   jumpers ['wfa-head-spine', 'wfa-chest-pain'] own tab 2/2  now: wfa-cpr:start?(r1) | wfa-head-spine:head_q?(r5) | wfa-chest-pain:ribs(r8)
+  p0128   jumpers ['wfa-fainting'] own tab 0/1  now: wfa-fainting:heat/syncope(r4) | burns:sun?(r6) | heat:syncope?(r8)
+  p0203   jumpers ['heat'] own tab 1/1  now: wfa-cpr:cpr?(r1) | heat:fluid_q?(r8)
+  p0205   jumpers ['wfa-fainting'] own tab 0/1  now: open wfa-chest-pain/heart
+  p0211   jumpers ['wfa-fainting'] own tab 0/1  now: open wfa-chest-pain/heart
+  p0212   jumpers ['wfa-frostbite'] own tab 1/1  now: wfa-cpr:cpr?(r1) | wfa-frostbite:frostbite?(r8)
+  p0321   jumpers ['wfa-head-spine', 'wfa-tooth'] own tab 2/2  now: wfa-cpr:start?(r1) | wfa-head-spine:start?(r5) | wfa-tooth:knocked_out(r8)
+  p0385   jumpers ['improvised_gear', 'bites', 'burns'] own tab 0/3  now: open wfa-bleeding/severe
+  p0405   jumpers ['improvised_gear', 'bites', 'burns'] own tab 0/3  now: open wfa-bleeding/severe
+  p0407   jumpers ['improvised_gear', 'bites', 'burns'] own tab 0/3  now: open wfa-bleeding/severe
+  p0409   jumpers ['fractures', 'improvised_gear'] own tab 1/2  now: wfa-bleeding:severe?(r0) | improvised_gear:bleed_group?(r8,+1)
+  s004    jumpers ['fractures', 'improvised_gear'] own tab 1/2  now: wfa-bleeding:severe?(r0) | improvised_gear:bleed_group?(r8,+1)
+  s009    jumpers ['burns', 'fractures'] own tab 0/2  now: open wfa-cpr/start
+  s010    jumpers ['burns'] own tab 1/1  now: wfa-cpr:start?(r1) | wfa-co:treat_now(r4) | burns:thermal?(r6)
+  s013    jumpers ['heat'] own tab 1/1  now: wfa-cpr:cpr?(r1) | heat:syncope?(r8)
+  s018    jumpers ['hypothermia'] own tab 1/1  now: wfa-cpr:start?(r1) | wfa-drowning:out?(r8) | hypothermia:mild?(r8)
+  s019    jumpers ['hypothermia'] own tab 1/1  now: wfa-cpr:start?(r1) | hypothermia:start(r8,+1)
+  s020    jumpers ['hypothermia'] own tab 1/1  now: wfa-cpr:cold(r1) | wfa-drowning:care?(r4) | hypothermia:start(r8)
+  s021    jumpers ['bites'] own tab 0/1  now: wfa-cpr:start?(r1,+1) | hypothermia:severe(r4)
+  s024    jumpers ['hypothermia'] own tab 1/1  now: wfa-cpr:start?(r1) | wfa-diabetic:drowsy?(r4) | hypothermia:start(r8)
+  s026    jumpers ['wfa-frostbite'] own tab 1/1  now: wfa-cpr:cpr?(r1) | wfa-frostbite:frostbite?(r8)
+  s031    jumpers ['hypothermia', 'wfa-seizures'] own tab 2/2  now: wfa-cpr:start?(r1) | hypothermia:start(r8) | wfa-seizures:start?(r8)
+  s032    jumpers ['hypothermia'] own tab 1/1  now: wfa-cpr:start?(r1) | hypothermia:moderate?(r8)
+  s071    jumpers ['wounds'] own tab 0/1  now: wounds:improvised_gear/blister(r4) | improvised_gear:blister(r8) | wfa-poison-ivy:rash(r8)
+  s088    jumpers ['wounds', 'improvised_gear', 'fractures'] own tab 2/3  now: wounds:wfa-bleeding/severe(r0) | improvised_gear:tourniquet(r8) | fractures:arm?(r8)
+  s089    jumpers ['fractures', 'improvised_gear'] own tab 1/2  now: wfa-bleeding:severe?(r0) | improvised_gear:bleed_group?(r8,+1)
+  s138    jumpers ['fractures', 'wfa-frostbite'] own tab 1/2  now: wfa-bleeding:severe?(r0) | wfa-frostbite:start?(r8,+1)
+  s142    jumpers ['wfa-lightning', 'wfa-head-spine'] own tab 2/2  now: wfa-cpr:cpr?(r1) | wfa-head-spine:head_mild?(r5) | wfa-lightning:start?(r8)
+  spot    jumpers ['fractures', 'improvised_gear'] own tab 1/2  now: wfa-bleeding:severe?(r0) | improvised_gear:bleed_group?(r8,+1)
+  spot    jumpers ['wfa-cpr', 'fractures', 'improvised_gear'] own tab 1/3  now: wfa-cpr:wfa-bleeding/severe(r0) | improvised_gear:start(r0) | fractures:wfa-cpr/cpr(r1)
+multi scenes (10), every named problem has a tab [d4e0125]: 2/10  s138:ok s139:miss hypothermia s140:miss wfa-sprains s141:miss burns,wounds s142:ok s143:miss heat,wounds s144:miss hypothermia,wfa-frostbite s145:miss wfa-sprains s146:miss fractures s147:miss hypothermia,wfa-drowning
+multi scenes (10), every named problem has a tab [0407c74]: 2/10  s138:miss fractures s139:miss hypothermia s140:miss wfa-sprains s141:miss burns,wounds s142:ok s143:miss heat,wounds s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures s147:miss hypothermia,wfa-drowning

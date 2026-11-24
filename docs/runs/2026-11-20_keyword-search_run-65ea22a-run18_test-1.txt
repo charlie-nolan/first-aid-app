@@ -1,0 +1,48 @@
+vr.search 65ea22a (77cee50 search_words), run18 slots (7752486) vs parity_search_6244a99_run17; pytest 112 passed
+35 of 54 words changed (first 8 or hits); query 15.5 ms via frame() w/o index
+tourniquet       3-> 4 hits 0->0 life  improvised_gear/tourniquet wfa-bleeding/tq wfa-bleeding/tq_long improvised_gear/bleed_group
+breathing       17->20 hits 10->10 life  wfa-cpr/breathing wfa-cpr/start wfa-co/treat_now wfa-cpr/cpr wfa-allergy/severe wfa-bleeding/severe wfa-choking/conscious wfa-choking/unconscious
+burn            26->29 hits 0->0 life  burns/start burns/eye burns/chem burns/thermal burns/depth burns/thermal_more burns/sun burns/snow
+burns           26->29 hits 0->0 life  burns/start burns/eye burns/chem burns/thermal burns/depth burns/thermal_more burns/sun burns/snow
+bite            19->20 hits 2->2 life  wfa-allergy/severe bites/start bites/spider bites/mammal bites/snake wounds/clean bites/tick wounds/leave_open
+snake           17->17 hits 1->1 life  bites/start bites/coral bites/snake bites/other bites/sting bites/anaphylaxis bites/mammal bites/snake_evac
+dog             17->17 hits 1->1 life  bites/start bites/mammal bites/other bites/snake bites/sting bites/anaphylaxis bites/coral bites/snake_evac
+bee             18->18 hits 2->2 life  wfa-allergy/severe bites/anaphylaxis bites/start bites/sting bites/other bites/snake bites/coral bites/mammal
+sting           18->20 hits 2->2 life  wfa-allergy/severe bites/anaphylaxis bites/start bites/sting wfa-belly/urinary wfa-frostbite/frostnip bites/other bites/snake
+allergy          7-> 8 hits 1->1 life  wfa-allergy/severe wfa-allergy/start wfa-allergy/evac wfa-allergy/mild wfa-allergy/signs wfa-allergy/after wfa-allergy/epipen improvised_gear/med_group
+leg              2-> 4 hits 0->0 life  fractures/leg fractures/tibia fractures/start heat/cramps
+arm              4-> 6 hits 1->1 life  wfa-chest-pain/heart wfa-stroke/start fractures/arm fractures/humerus fractures/start wfa-stroke/treat
+head            12->14 hits 0->0 life  wfa-head-spine/start wfa-head-spine/head_mild wfa-head-spine/head_severe wfa-head-spine/head_evac wfa-head-spine/head_mild_signs wfa-head-spine/head_severe_signs heat/exhaustion wfa-altitude/ams
+back            13->15 hits 1->1 life  wfa-choking/conscious wfa-head-spine/start wfa-drowning/out wfa-drowning/rescue wfa-head-spine/head_q wfa-head-spine/spine wfa-head-spine/head_mild wfa-head-spine/head_severe
+chest           16->17 hits 6->6 life  wfa-chest-pain/start wfa-chest-pain/flail wfa-chest-pain/open wfa-chest-pain/flail_signs wfa-chest-pain/injury_evac wfa-chest-pain/open_signs wfa-altitude/hape wfa-bleeding/severe
+broken          48->48 hits 2->2 life  fractures/where wfa-chest-pain/start wfa-head-spine/start wfa-tooth/start wfa-chest-pain/ribs fractures/start improvised_gear/bone_group wfa-chest-pain/flail
+fracture        32->33 hits 1->1 life  fractures/open fractures/where fractures/femur fractures/pelvis fractures/femur_signs fractures/pelvis_signs fractures/realign fractures/arm
+sprain          11->12 hits 0->0 life  wfa-sprains/start wfa-sprains/can_use_q wfa-sprains/finger wfa-sprains/knee wfa-sprains/shoulder wfa-sprains/dislocated_q wfa-sprains/evac wfa-sprains/rice
+cold            16->17 hits 2->2 life  wfa-frostbite/start hypothermia/cold_stress hypothermia/start wfa-shock/start hypothermia/cold_stress_signs improvised_gear/cold_pack wfa-cpr/cause hypothermia/severe
+hypothermia     14->15 hits 2->2 life  hypothermia/severe wfa-cpr/cold hypothermia/start hypothermia/mild hypothermia/moderate hypothermia/mild_more hypothermia/mild_signs hypothermia/moderate_signs
+heat            17->17 hits 0->0 life  heat/exhaustion heat/start heat/syncope burns/thermal heat/cramps burns/thermal_more heat/cramps_signs heat/ehs
+heat stroke     15->15 hits 0->0 life  heat/start heat/exhaustion heat/syncope heat/ehs heat/ehs_more heat/ehs_signs heat/cramps heat/fluid_q
+water            9->14 hits 2->2 life  wfa-drowning/care wfa-drowning/start wfa-drowning/out heat/fluid_q wfa-cpr/cause bites/snake burns/thermal wfa-drowning/rescue
+drowning         6-> 6 hits 1->1 life  wfa-drowning/care wfa-drowning/start wfa-drowning/rescue wfa-drowning/out wfa-drowning/evac wfa-drowning/signs
+lightning        7-> 7 hits 0->0 life  wfa-lightning/start wfa-lightning/struck wfa-lightning/signs wfa-lightning/safety wfa-lightning/evac wfa-lightning/safety_more burns/elec
+seizure          5-> 6 hits 0->0 life  wfa-seizures/start wfa-seizures/after wfa-seizures/during wfa-seizures/signs wfa-seizures/evac heat/fluid_q
+stroke          18->18 hits 0->0 life  wfa-stroke/start wfa-stroke/check wfa-stroke/treat heat/start heat/ehs heat/ehs_more heat/ehs_signs heat/fluid_q
+faint            5-> 6 hits 0->0 life  wfa-fainting/start wfa-fainting/about_to wfa-fainting/after heat/syncope heat/syncope_signs heat/exhaustion
+dizzy            1-> 4 hits 0->0 life  heat/exhaustion wfa-dehydration/start wfa-altitude/ams wfa-fainting/about_to
+poison          19->19 hits 1->1 life  wfa-poison-ivy/start wfa-belly/start wfa-co/start burns/sun_poison wfa-co/treat wfa-poison-ivy/rash wfa-poison-ivy/signs wfa-co/treat_now
+eye             11->13 hits 3->3 life  wfa-eye/stuck_q wfa-eye/impaled burns/eye wfa-eye/abrasion wfa-eye/foreign wfa-eye/start wfa-cpr/start heat/fluid_q
+rash             2-> 5 hits 0->0 life  wfa-poison-ivy/rash wfa-poison-ivy/start wounds/clean bites/tick bites/lyme
+blister          2-> 7 hits 0->0 life  wounds/blister improvised_gear/blister improvised_gear/move_group wfa-frostbite/frostbite wfa-poison-ivy/rash burns/sun_poison bites/lyme
+shock           11->12 hits 1->1 life  wfa-shock/start wfa-shock/signs wfa-shock/treat wfa-shock/evac wfa-diabetic/start wfa-stress/start burns/elec wfa-diabetic/drowsy
+stop             8->12 hits 6->6 life  wfa-bleeding/severe wfa-nosebleed/persist wfa-cpr/cpr hypothermia/severe wfa-drowning/care wfa-cpr/cold wfa-nosebleed/treat wfa-cpr/stop
+
+first hit is a life card:
+  bleeding->wfa-bleeding/severe  blood->wfa-nosebleed/persist  breathing->wfa-cpr/breathing  cpr->wfa-cpr/start  choking->wfa-choking/unconscious  choke->wfa-choking/unconscious  bite->wfa-allergy/severe  bee->wfa-allergy/severe  sting->wfa-allergy/severe  allergy->wfa-allergy/severe  arm->wfa-chest-pain/heart  back->wfa-choking/conscious  fracture->fractures/open  hypothermia->hypothermia/severe  water->wfa-drowning/care  drowning->wfa-drowning/care  diabetic->wfa-diabetic/drowsy  sugar->wfa-diabetic/drowsy  carbon monoxide->wfa-co/treat_now  nosebleed->wfa-nosebleed/persist  stop->wfa-bleeding/severe
+
+root not in top 3:
+  leg             fractures/where #None (hits 4)
+  arm             fractures/where #None (hits 6)
+  dizzy           wfa-fainting/start #None (hits 4)
+plain first_sentence run17 -> run18 (65ea22a): 0 changes of 666
+parity_65ea22a_run18_v16b byte-identical to parity_65ea22a_run17_v16b (773)
+extra queries: knee 1 [wfa-sprains/knee]; leg -> fractures/start #3; arm -> fractures/start #5; dizzy -> wfa-fainting/about_to #4 (root wfa-fainting/start absent)

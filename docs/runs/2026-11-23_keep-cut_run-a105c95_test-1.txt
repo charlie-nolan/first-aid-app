@@ -1,0 +1,14 @@
+keep-trees cut a105c95 vs 82db807 | partial run20 slots (17:47) | metrics and ids only
+sim + guard identical to 82db807:
+TOTAL 666  right / on way / stuck / WRONG = 72.0% / 24.9% / 0.8% / 2.3%  WRONG lines 15
+life-threat cards opened on the first sentence: 76/78   (666 lines)
+guard: 0 of 122 opened a life card (life-threat jump fired in any tree)
+guard (vr.form first_sentence, every tree): 0 of 122 opened a life card
+spot/board line changes vs 82db807:
+first_sentence 82db807 -> a105c95: 0 of 666 changed
+new WRONG: 0  new RIGHT: 0
+tabs cases: 82db807 197 -> a105c95 218; lost 2 ['l0070', 'l0136'], new 23, changed 48
+multi scenes [82db807]: 6/10  s138:ok s139:miss hypothermia,wfa-head-spine s140:ok s141:miss burns,wounds s142:ok s143:ok s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures,wfa-chest-pain s147:ok
+multi scenes [a105c95]: 7/10  s138:ok s139:miss hypothermia,wfa-head-spine s140:ok s141:ok s142:ok s143:ok s144:miss hypothermia,wfa-frostbite s145:ok s146:miss fractures s147:ok
+board femur turn (heard text withheld): kept [fractures, burns, wfa-bleeding] -> [fractures, wfa-sprains]
+board rock turn (heard text withheld): kept [fractures, wfa-head-spine] (unchanged)

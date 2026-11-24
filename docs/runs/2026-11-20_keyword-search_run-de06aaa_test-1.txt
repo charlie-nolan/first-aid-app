@@ -1,0 +1,57 @@
+vr.search de06aaa | trees+slots run17 (a4ea512) | pytest 101 passed | 54 words -> parity_search_de06aaa_run17.jsonl
+time: build_index 42.5 ms once; query 0.06 ms with index (frame() without index rebuilds it: ~42.5 ms)
+
+bleeding        13 hits  2 life  wfa-nosebleed/persist wfa-bleeding/severe wfa-bleeding/start wfa-nosebleed/start improvised_gear/bleed_group wfa-head-spine/scalp wfa-nosebleed/injury wfa-nosebleed/treat
+blood            7 hits  3 life  wfa-bleeding/severe wfa-diabetic/drowsy wfa-nosebleed/persist wfa-diabetic/start wfa-diabetic/signs wfa-diabetic/evac wfa-diabetic/sugar
+tourniquet       3 hits  0 life  improvised_gear/tourniquet wfa-bleeding/tq wfa-bleeding/tq_long
+breathing       17 hits 10 life  wfa-co/treat_now wfa-cpr/breathing wfa-cpr/start wfa-cpr/cpr wfa-allergy/severe wfa-bleeding/severe wfa-choking/conscious wfa-choking/unconscious
+cpr              9 hits  4 life  wfa-cpr/start wfa-cpr/cpr wfa-cpr/cold wfa-cpr/breathing wfa-cpr/stop wfa-cpr/dont_start wfa-cpr/aed wfa-cpr/cause
+choking          5 hits  2 life  wfa-choking/unconscious wfa-choking/conscious wfa-choking/start wfa-choking/clear wfa-choking/open
+choke            5 hits  2 life  wfa-choking/unconscious wfa-choking/conscious wfa-choking/start wfa-choking/clear wfa-choking/open
+burn            26 hits  0 life  burns/start heat/start burns/chem burns/thermal burns/depth burns/eye burns/thermal_more burns/elec
+burns           26 hits  0 life  burns/start heat/start burns/chem burns/thermal burns/depth burns/eye burns/thermal_more burns/elec
+bite            19 hits  2 life  wfa-allergy/severe bites/anaphylaxis bites/start bites/mammal bites/spider wounds/leave_open bites/other bites/snake
+snake           17 hits  1 life  bites/anaphylaxis bites/start bites/coral bites/other bites/snake bites/sting bites/mammal bites/snake_evac
+dog             17 hits  1 life  bites/anaphylaxis bites/start bites/other bites/snake bites/sting bites/coral bites/mammal bites/snake_evac
+bee             18 hits  2 life  wfa-allergy/severe bites/anaphylaxis bites/start bites/other bites/snake bites/sting bites/coral bites/mammal
+sting           18 hits  2 life  wfa-allergy/severe bites/anaphylaxis bites/start bites/sting bites/other bites/snake bites/coral bites/mammal
+allergy          7 hits  1 life  wfa-allergy/severe wfa-allergy/start wfa-allergy/evac wfa-allergy/mild wfa-allergy/signs wfa-allergy/after wfa-allergy/epipen
+ankle           11 hits  0 life  wfa-sprains/start fractures/foot wfa-sprains/can_use_q wfa-sprains/finger wfa-sprains/knee wfa-sprains/shoulder wfa-sprains/dislocated_q wfa-sprains/evac
+leg              2 hits  0 life  fractures/leg fractures/tibia
+arm              4 hits  1 life  wfa-chest-pain/heart wfa-stroke/start fractures/arm fractures/humerus
+head            12 hits  0 life  wfa-head-spine/start wfa-head-spine/head_mild wfa-head-spine/head_severe wfa-head-spine/head_evac wfa-head-spine/head_mild_signs wfa-head-spine/head_severe_signs wfa-head-spine/head_q wfa-head-spine/spine
+neck            14 hits  1 life  wfa-choking/conscious wfa-head-spine/start wfa-bleeding/junctional wfa-head-spine/head_q wfa-head-spine/spine wfa-head-spine/head_mild wfa-head-spine/head_severe wfa-head-spine/move
+back            13 hits  1 life  wfa-choking/conscious wfa-head-spine/start wfa-head-spine/head_q wfa-head-spine/spine wfa-head-spine/head_mild wfa-head-spine/head_severe wfa-head-spine/move wfa-head-spine/spine_evac
+chest           18 hits  8 life  wfa-bleeding/severe wfa-chest-pain/heart wfa-choking/unconscious wfa-co/treat_now wfa-cpr/breathing wfa-cpr/cpr wfa-drowning/care wfa-cpr/cold
+broken          48 hits  2 life  wfa-chest-pain/heart fractures/open fractures/where wfa-chest-pain/start wfa-head-spine/start wfa-tooth/start wfa-chest-pain/ribs fractures/arm
+fracture        32 hits  1 life  fractures/open fractures/where wfa-head-spine/start fractures/femur fractures/pelvis fractures/femur_signs fractures/pelvis_signs fractures/realign
+sprain          11 hits  0 life  wfa-sprains/start fractures/rices wfa-sprains/can_use_q wfa-sprains/finger wfa-sprains/knee wfa-sprains/shoulder wfa-sprains/dislocated_q wfa-sprains/evac
+splint          23 hits  1 life  fractures/open fractures/where improvised_gear/bone_group improvised_gear/splint fractures/rules wfa-sprains/cant_use fractures/arm fractures/big
+cold            22 hits  8 life  wfa-cpr/start hypothermia/severe wfa-choking/unconscious wfa-co/treat_now wfa-cpr/breathing wfa-diabetic/drowsy wfa-drowning/care wfa-cpr/cold
+hypothermia     14 hits  2 life  wfa-cpr/cold hypothermia/severe hypothermia/start hypothermia/mild hypothermia/moderate hypothermia/mild_more hypothermia/mild_signs hypothermia/moderate_signs
+frostbite        8 hits  0 life  wfa-frostbite/start wfa-frostbite/frostbite wfa-frostbite/full wfa-frostbite/signs wfa-frostbite/superficial wfa-frostbite/evac wfa-frostbite/frostnip wfa-frostbite/trench
+heat            17 hits  0 life  heat/start burns/thermal heat/cramps heat/exhaustion heat/syncope burns/thermal_more heat/cramps_signs heat/ehs
+heat stroke     15 hits  0 life  heat/start heat/ehs heat/ehs_more heat/ehs_signs heat/cramps heat/exhaustion heat/syncope heat/cramps_signs
+dehydration      6 hits  0 life  wfa-dehydration/start wfa-dehydration/treat wfa-dehydration/diarrhea wfa-dehydration/evac wfa-dehydration/ors wfa-dehydration/belly
+water            9 hits  2 life  wfa-drowning/care wfa-cpr/cold wfa-drowning/start heat/fluid_q wfa-drowning/out wfa-cpr/cause wfa-drowning/rescue wfa-drowning/evac
+drowning         6 hits  1 life  wfa-drowning/care wfa-drowning/start wfa-drowning/out wfa-drowning/rescue wfa-drowning/evac wfa-drowning/signs
+lightning        7 hits  0 life  wfa-lightning/start burns/elec wfa-lightning/struck wfa-lightning/signs wfa-lightning/evac wfa-lightning/safety wfa-lightning/safety_more
+seizure          5 hits  0 life  wfa-seizures/start wfa-seizures/after wfa-seizures/during wfa-seizures/signs wfa-seizures/evac
+diabetic         5 hits  1 life  wfa-diabetic/drowsy wfa-diabetic/start wfa-diabetic/evac wfa-diabetic/signs wfa-diabetic/sugar
+sugar            5 hits  1 life  wfa-diabetic/drowsy wfa-diabetic/start wfa-diabetic/signs wfa-diabetic/sugar wfa-diabetic/evac
+stroke          18 hits  0 life  heat/start wfa-stroke/start wfa-stroke/check wfa-stroke/treat heat/ehs heat/ehs_more heat/ehs_signs heat/cramps
+faint            5 hits  0 life  wfa-fainting/start heat/syncope wfa-fainting/about_to wfa-fainting/after heat/syncope_signs
+dizzy            1 hits  0 life  wfa-dehydration/start
+altitude         9 hits  0 life  wfa-altitude/start wfa-altitude/ams wfa-altitude/evac wfa-altitude/hace wfa-altitude/hape wfa-altitude/ams_severe wfa-altitude/ams_signs wfa-altitude/hace_signs
+poison          19 hits  1 life  wfa-co/treat_now wfa-poison-ivy/start wfa-belly/start wfa-co/start wfa-co/treat wfa-poison-ivy/rash burns/sun_poison wfa-poison-ivy/signs
+carbon monoxide  5 hits  1 life  wfa-co/treat_now wfa-co/start wfa-co/signs wfa-co/treat wfa-co/evac
+nosebleed        5 hits  1 life  wfa-nosebleed/persist wfa-nosebleed/start wfa-nosebleed/injury wfa-nosebleed/treat wfa-nosebleed/evac
+eye             15 hits  7 life  wfa-cpr/start hypothermia/severe wfa-choking/unconscious wfa-co/treat_now wfa-cpr/breathing wfa-diabetic/drowsy wfa-drowning/care wfa-eye/stuck_q
+tooth            6 hits  0 life  wfa-tooth/start wfa-tooth/knocked_out wfa-tooth/swollen_gum wfa-tooth/storage wfa-tooth/toothache wfa-tooth/evac
+rash             2 hits  0 life  wfa-poison-ivy/start wfa-poison-ivy/rash
+blister          2 hits  0 life  wounds/blister improvised_gear/blister
+shock           11 hits  1 life  wfa-diabetic/drowsy wfa-diabetic/start wfa-shock/start wfa-stress/start wfa-shock/signs wfa-shock/treat wfa-diabetic/evac wfa-diabetic/signs
+stop            10 hits  8 life  wfa-bleeding/severe wfa-nosebleed/persist wfa-cpr/cpr hypothermia/severe wfa-choking/unconscious wfa-co/treat_now wfa-drowning/care wfa-cpr/cold
+help             0 hits  0 life  
+the              0 hits  0 life  
+zebra            0 hits  0 life  
