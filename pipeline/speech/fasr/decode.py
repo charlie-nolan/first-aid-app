@@ -299,7 +299,7 @@ def calibrated_reject(logp: np.ndarray, hyp: dict, calib: dict) -> int:
 # Keep "eye" if the word BEFORE owns/places it or is a verb done to an eye, or the word AFTER only follows "eye".
 EYE_BEFORE = frozenset(("my his her your their the an left right both one in either its our into "
                         "scratched scratch poked poke rubbed rub hit cut burned splashed stung flush rinse wash").split())
-EYE_AFTER = frozenset("ball balls lid lids socket brow lash lashes drops patch hurts is was looks swollen red".split())
+EYE_AFTER = frozenset("ball balls lid lids socket brow lash lashes drops patch hurts is looks swollen red".split())
 
 
 def resolve_homophones(hyp: dict, trie: Trie) -> dict:
