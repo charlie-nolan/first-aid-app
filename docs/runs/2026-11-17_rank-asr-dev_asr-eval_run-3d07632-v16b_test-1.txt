@@ -1,0 +1,19 @@
+$ rank_asr.py (vr.form first_rank / second_rank on recognizer 5-best, gold tree known, calibrated reject >= 50): dev_asr 600 TTS clips + EVAL 120 own-voice clips; firstaid vs firstaid2
+dev nbest_cal_firstaid.jsonl: clips 600 (gold card lacking/skipped 0); reject>=50: 193 = 32.2%
+  after turn 1 (n-best first sentence): top1 62.9%  top3 69.5%   of 407 decoded   [all clips: top1 42.7% top3 47.2%]
+  after turn 2 (+ right answer to top blank): top1 79.6%  top3 83.8%   [all clips: top1 54.0% top3 56.8%]
+  reference, typed text turn 1 top1 on the same decoded clips: 82.1%
+dev nbest_cal_firstaid2.jsonl: clips 600 (gold card lacking/skipped 0); reject>=50: 201 = 33.5%
+  after turn 1 (n-best first sentence): top1 59.4%  top3 66.2%   of 399 decoded   [all clips: top1 39.5% top3 44.0%]
+  after turn 2 (+ right answer to top blank): top1 77.4%  top3 81.2%   [all clips: top1 51.5% top3 54.0%]
+  reference, typed text turn 1 top1 on the same decoded clips: 81.0%
+eval nbest-me_dev-eval (firstaid): clips 56 (gold card lacking/skipped 27); reject>=50: 1 = 1.8%
+  after turn 1 (n-best first sentence): top1 72.7%  top3 76.4%   of 55 decoded   [all clips: top1 71.4% top3 75.0%]
+  after turn 2 (+ right answer to top blank): top1 94.5%  top3 94.5%   [all clips: top1 92.9% top3 92.9%]
+  reference, typed text turn 1 top1 on the same decoded clips: 100.0%
+eval nbest-me_dev-eval (firstaid2): clips 56 (gold card lacking/skipped 27); reject>=50: 4 = 7.1%
+  after turn 1 (n-best first sentence): top1 75.0%  top3 76.9%   of 52 decoded   [all clips: top1 69.6% top3 71.4%]
+  after turn 2 (+ right answer to top blank): top1 98.1%  top3 98.1%   [all clips: top1 91.1% top3 91.1%]
+  reference, typed text turn 1 top1 on the same decoded clips: 100.0%
+# setup: recognizer 5-best (speech 58a52b7), RIGHT TREE GIVEN (no router), turn-2 answer simulated.
+# dev_asr = TTS voices; eval = Charlie's 2-4 word bench prompts, gold card derived from the typed prompt.

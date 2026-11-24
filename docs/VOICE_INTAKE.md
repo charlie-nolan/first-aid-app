@@ -1,11 +1,53 @@
 # Voice intake: the new layout (Charlie, 2026-11-17)
 
+> **Status, 2026-11-17: designed and simulated in Python only. The full flow has not been run
+> end to end, with real speech or on the device.** See [What has been tested](#what-has-been-tested).
+
 Buttons stay exactly as before: manual mode walks a tree page by page. Voice mode is rebuilt
 around one idea: **the first sentence fills in the blanks, one screen asks for the rest, then the
 cited card opens.** Nothing is generated on the device; every card shown is a signed-off,
 cited manual card.
 
 ![Voice flow](voice/voice-flow.png)
+
+## Why the intake changed
+
+The voice intake was redesigned on 2026-11-17 because the first version's own test results
+showed it could not meet the goal.
+
+**Version 1: one page per voice prompt.** Voice walked the same tree as the buttons. The first
+sentence filled whatever it could and jumped as far down the tree as those words allowed. After
+that, each voice prompt answered **one page** (one question) and moved one step down. For
+example: "Where is the injury?", then "Which bone?", then "Is bone showing?", one page each.
+
+**How it was tested.** This was a PC simulation, not speech and not the device:
+- The test sentences were typed lines written by language models.
+- The engine was given the right tree.
+- For each page it reached, the simulator "said" the right answer's words.
+- The score was whether the right card was open after voice prompt 1, 2 and 3.
+
+**Result.** On the held-out sets (test2 and test3, never tuned on), the right card was open:
+- after prompt 1: 43% and 40%;
+- **after prompt 2: 63% and 67%**;
+- after prompt 3: 86% and 88%.
+
+Charlie's goal is 70-80% after the second prompt.
+
+**Why prompt 2 fell short.** Many cards sit two or three questions below where the first
+sentence lands. With one question per prompt, prompt 2 can only move one step, so a card that
+still needed two answers could never open by prompt 2, however well the words were heard. The
+shortfall came from the layout, not from recognition.
+
+**Version 2: the fill-in-the-blanks form (this document).** After the first sentence, one
+screen lists **every** blank still open, and one spoken answer can fill several at once. The same
+simulation on the same sentences reached **76% and 77% after prompt 2**. Emergencies (not
+breathing, unresponsive, heavy bleeding...) still open their card on the first sentence. Button
+(manual) mode keeps the page-by-page tree. In the chart below, the blue bars are version 1 and the
+green bars are version 2.
+
+Both versions were scored under the same easy conditions (typed text, right tree given), so the
+gain from 63-67% to 76-77% comes from the layout change alone. Real-speech and router-in-the-loop
+numbers have not been measured for either version yet. See [What has been tested](#what-has-been-tested).
 
 ## The flow
 
@@ -32,10 +74,11 @@ cited manual card.
 names opens in its own tab (up to 5 windows, window L/R switches), each with its own form.
 Plain TALK is always one problem.
 
+**Tab order (Charlie 11-20, C8 bleeding first):** tabs sort by urgency, not router likelihood: severe bleeding, CPR / not breathing, choking, anaphylaxis, any other life card, then head/spine, burns, shock, then the rest. Every life tab opens on its life card; helper candidates join the first plain tab (`vr.form.life_rank`, `split_tabs`).
+
 ![Screen mockups](voice/voice-screens-mockup.png)
 
-*Mockups at the panel's real 250x122 (drawn 2x); wording is illustrative, not manual text. The C
-port of these screens is next.*
+*Mockups only, drawn with PIL at the panel's real 250x122 (2x); not taken from the device or the engine. Wording is illustrative, not manual text. The C port of these screens has not started.*
 
 ## Where things live
 
@@ -58,6 +101,26 @@ card's top-1/top-3 rank after the first sentence alone, split by how many blanks
 Tuning uses the dev sets only; test sets are scored once per change.
 
 ![Right card by voice turn](voice/2026-11-17_turn-accuracy_run-b4d9b2c_test-1.png)
+
+*What this chart is:* the form engine at b4d9b2c, slot files v15, 2026-11-17. The sentences were
+**typed text written by language models** (dev sets by local models, test2/test3 held out). The
+**right tree was handed to the engine**, so neither the router nor the recognizer took part. It
+measures the fill-in-the-blanks logic alone, on the best case of perfect words and the right
+tree, with the answer to the form also simulated (the sim says the right tile's words). The
+engine has changed since b4d9b2c (about 10 commits, new trees, slots v16/v16b); a rescore is
+running and this chart will be replaced. Real-voice and router-in-the-loop numbers will be lower and have not been measured yet.
+
+## What has been tested
+
+| Piece | Tested? | How |
+|---|---|---|
+| Keyword fill, life rules, one-form screen | Simulated | Typed sentences, right tree given, slots v15 (chart above) |
+| Snap, skip, tabs, ranking | Unit tests only | 47 tests on small made-up trees; ranking also tried on one real tree (fractures) |
+| Router picks the top 2-3 trees, then form | **Not yet** | Waiting on the topic-to-tree map |
+| Recognizer audio into the form, sector re-decode | **Not yet** | Recognizer is scored separately (PR #17) |
+| Charlie's real voice through the whole flow | **Not yet** | |
+| New blanks (slots v16b2) | Simulated | Same typed-text setup at 7005be8: turn 2 with the form 81% (test2) / 78.5% (test3); [capture](runs/2026-11-17_form-sim-dev-test2-test3_run-7005be8-v16b2_test-2.png) |
+| Firmware form screen, on-board timings | **Not started** | Mockups below are drawings, not the device |
 
 Run captures (terminal output of each training run / simulation) live in [docs/runs](runs/).
 Figures are made by `docs/voice/make_voice_figures.py` and `docs/voice/make_turn_chart.py`.

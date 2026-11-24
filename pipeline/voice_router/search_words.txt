@@ -1,0 +1,56 @@
+# Public query words for vr.search parity (one word or short phrase per line). Generic first-aid
+# words only: no manual text.
+bleeding
+blood
+tourniquet
+breathing
+cpr
+choking
+choke
+burn
+burns
+bite
+snake
+dog
+bee
+sting
+allergy
+ankle
+leg
+arm
+head
+neck
+back
+chest
+broken
+fracture
+sprain
+splint
+cold
+hypothermia
+frostbite
+heat
+heat stroke
+dehydration
+water
+drowning
+lightning
+seizure
+diabetic
+sugar
+stroke
+faint
+dizzy
+altitude
+poison
+carbon monoxide
+nosebleed
+eye
+tooth
+rash
+blister
+shock
+stop
+help
+the
+zebra

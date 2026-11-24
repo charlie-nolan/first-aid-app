@@ -56,10 +56,15 @@ _CONTRACT = {"isnt": "isn't", "cant": "can't", "dont": "don't", "didnt": "didn't
 NEGATION = _LEX_NEGATION | {"hasn't", "couldn't", "wouldn't", "shouldn't", "weren't", "ain't", "nobody"}
 
 
+_KEEP_S = {"she's", "he's", "it's", "that's", "there's", "what's", "who's", "let's", "here's", "where's"}
+
+
 def tokenize(text: str) -> list[str]:
     out = []
     for w in _lex_tokenize(text):
         w = _CONTRACT.get(w, w)
+        if w.endswith("'s") and w not in _KEEP_S:   # "the bone's sticking out" -> bone (lexicon has no
+            w = w[:-2]                              # "bone's"); pronoun contractions stay whole
         if w == "to" and out and out[-1] == "going":
             out[-1] = "gonna"                   # "going to pass out" is a hedge, "going numb" is not
             continue
@@ -108,7 +113,8 @@ def _find(words: list[str], phrase: list[str], gap: int = 1) -> list[int] | None
         pos, j = [i], i
         for p in phrase[1:]:
             for k in range(j + 1, min(j + 2 + gap, len(words))):
-                if words[k] == p and all(x not in NEGATION and x not in HEDGE for x in words[j + 1:k]):
+                if words[k] == p and all(x not in NEGATION and x not in HEDGE and x not in CLAUSE_START
+                                         for x in words[j + 1:k]):
                     pos.append(k); j = k
                     break
             else:
@@ -117,6 +123,11 @@ def _find(words: list[str], phrase: list[str], gap: int = 1) -> list[int] | None
             return pos
     return None
 
+
+CLAUSE_START = {"she's", "he's", "it's", "they're", "i'm", "we're", "you're", "she", "he", "it",
+                "they", "i", "we", "you", "and", "but", "then", "now"}
+# A filler word may not start a new clause: "the seizure stopped. she's breathing" must not match
+# "stopped breathing" (81fe3ed PC check: a breathing person got the CPR card; the tokenizer drops ".").
 
 HEDGE = {"if", "whether", "unsure", "maybe", "barely", "might", "check",
          "will", "gonna", "could", "about", "sure", "tell"}   # "will pass out", "not sure he's breathing"
@@ -157,7 +168,8 @@ def _scope(raw: list[str], i: int, neg: bool) -> list[str]:
     return out
 
 
-def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | None = None) -> dict[str, str]:
+def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | None = None,
+         implies: dict | None = None) -> dict[str, str]:
     """Blank -> value, from the words actually heard. Never guesses:
     - a hit right after a negation ("not spurting") or a hedge ("can't tell if she's breathing") fills nothing;
     - "X but Y" / "X, now Y": when values of one blank sit on both sides of the contrast word,
@@ -209,6 +221,17 @@ def fill(text: str, slots: dict, priority: dict | None = None, decisive: set | N
                 break
         top = max(len(cv) for _, cv in cand)
         tied = sorted((v for v, cv in cand if len(cv) == top), key=order.index)
+        up = (implies or {}).get(slot, {})
+        if len(tied) > 1 and not set(raw) & UNSURE_JOIN:   # "leg ... shin": lower_leg implies leg,
+            coarse = set()                         # so the finer answer says both (board run s001);
+                                                   # "wrist or elbow", "between shoulder and elbow": ask
+            for v in tied:
+                u, seen = up.get(v), {v}
+                while u and u not in seen:
+                    coarse.add(u)
+                    seen.add(u)
+                    u = up.get(u)
+            tied = [v for v in tied if v not in coarse] or tied
         if len(tied) > 1 and decisive is not None and slot not in decisive:
             continue                               # two equally strong answers: ask, don't pick
         out[slot] = tied[0]
@@ -223,8 +246,33 @@ def decisive_slots(smap: dict) -> set:
     return {s for r in lt for s in list(r.get("if", {})) + list(r.get("unless") or {})}
 
 
+# Safety net (board runs s010 "won't wake", 11-18): life words every tree reads the same way. Added
+# only to a slot and value the tree already has, never a new blank. "can't breathe" is NOT here: in a
+# conscious person it is choking/asthma/allergy, not breathing=no.
+UNIVERSAL = {"conscious": {"no": ["won't wake", "won't wake up", "will not wake", "can't wake",
+                                  "can't wake him", "can't wake her", "not waking up", "unresponsive",
+                                  "unconscious", "passed out", "knocked out", "won't respond",
+                                  "won't open his eyes", "won't open her eyes", "won't open their eyes",
+                                  "won't answer", "not answering", "not responding", "out cold",
+                                  "doesn't open his eyes", "doesn't open her eyes", "doesn't open their eyes",
+                                  "doesn't respond", "isn't responding", "doesn't answer"]},
+             "breathing": {"no": ["not breathing", "stopped breathing", "isn't breathing",
+                                  "no breathing", "chest isn't rising", "chest not rising",
+                                  "chest is not rising"]}}
+
+
+def slots_of(smap: dict) -> dict:
+    """The tree's slot phrases plus the UNIVERSAL life words for slots/values it already has."""
+    base = smap.get("slots") or {}
+    out = {}
+    for slot, values in base.items():
+        extra = UNIVERSAL.get(slot, {})
+        out[slot] = {v: list(ph) + [e for e in extra.get(v, []) if e not in ph] for v, ph in values.items()}
+    return out
+
+
 def _fill(text: str, smap: dict) -> dict[str, str]:
-    return fill(text, smap["slots"], smap.get("priority"), decisive_slots(smap))
+    return fill(text, slots_of(smap), smap.get("priority"), decisive_slots(smap), smap.get("implies"))
 
 
 def fill_nbest(hyps: list[str], smap: dict) -> dict[str, str]:
@@ -325,6 +373,22 @@ def _leads(tree, qs, start, filled, implies, limit=12) -> bool:
     return False
 
 
+MENU_SLOTS = ("missing_kit",)
+UNSURE_JOIN = {"or", "between", "either"}
+
+
+def _menu_blank(tree, smap, qs, node, slot) -> bool:
+    """A kit branch the form never asks (board run 11-17: "Apply a tourniquet" showed as a field
+    with [No tourniquet], "Forearm, elbow or wrist" with [Splinting rules, No sling, When to
+    evacuate]): a menu_slots blank (default missing_kit) whose answers all lead to another tree's
+    card (improvised_gear/...). The tile stays on the card, picked by tap or by saying it. In the
+    improvised_gear tree itself the same blank is the real question and is asked."""
+    if slot not in (smap.get("menu_slots") or MENU_SLOTS):
+        return False
+    to = [t["to"] for t in tiles(tree, smap, node) if t.get("value")]
+    return bool(to) and all(t not in tree["nodes"] and "/" in t for t in to)
+
+
 def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = None):
     """Follow the tree from its root (or from `start`, after an answer), taking every answer the
     blanks already give. Returns (card to show, cards skipped, blank it is asking or None)."""
@@ -338,14 +402,26 @@ def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = Non
                 not any(filled.get(s) == v for s, v in (rule.get("unless") or {}).items()):
             if rule["go"] not in nodes:
                 return rule["go"], [], None        # another tree's card: open it
-            node = rule["go"]                      # same tree: keep walking from there
-            break
+            q = qs.get(rule["go"])                 # same tree: stop on the card the rule names
+            return rule["go"], [], (q["slot"] if q else None)   # ("bleeding a lot from my leg" shows
+                                                   # direct pressure first, not the tourniquet; its blank
+                                                   # stays asked even if already heard, so saying "his
+                                                   # leg" again, or tapping it, moves on)
     while node not in seen:
         seen.add(node)
         q = qs.get(node)
         if q:
             v = filled.get(q["slot"])
             target = _answer(q, v, implies)
+            if target in nodes and not _leads(tree, qs, target, filled, implies):
+                side = [c.get("to") for c in nodes[node].get("choices", [])   # "Bone through the skin"
+                        if not c.get("value") and c.get("to") in qs        # beside the body parts, and
+                        and qs[c["to"]]["slot"] != q["slot"]               # the first sentence said so:
+                        and _answer(qs[c["to"]], filled.get(qs[c["to"]]["slot"]), implies)]
+                if len(side) == 1:                 # the named finding beats a location that leads
+                    target = side[0]               # nowhere further (board run s002)
+            if target and target not in nodes and "/" in target:
+                return target, skipped, None       # the answer leads to another tree's card: open it
             if not target or target not in nodes:
                 # value not on this card ("spider" on a snake / sting / "spider, tick or animal" card),
                 # or blank still empty but another blank answered below ("bone through the skin" tile
@@ -356,6 +432,8 @@ def walk(tree: dict, smap: dict, filled: dict[str, str], start: str | None = Non
                 hits = {t for t in plain if _leads(tree, qs, t, filled, implies)}
                 target = hits.pop() if len(hits) == 1 else None
             if not target or target not in nodes:
+                if _menu_blank(tree, smap, qs, node, q["slot"]):
+                    return node, skipped, None     # a kit branch or a menu, not a blank: show the card
                 return node, skipped, q["slot"]    # blank still empty: ask it here
         else:                                      # plain card or menu: pass through only if exactly one
             nxt = [c.get("to") for c in nodes[node].get("choices", [])   # way on leads to an answered blank
@@ -383,6 +461,9 @@ def tiles(tree: dict, smap: dict, card: str) -> list[dict]:
         out += [{"label": v, "to": t, "value": v} for v, t in q.get("choices", {}).items() if t not in have]
         for c in out:                              # inline cards carry `value:`; slot-map cards get it here
             c.setdefault("value", next((v for v, t in q.get("choices", {}).items() if t == c["to"]), None))
+    for c in out:                                  # a choice with no label shows its value or target's label
+        if not c.get("label"):
+            c["label"] = c.get("value") or tree["nodes"].get(c["to"], {}).get("label") or c["to"]
     return out
 
 
@@ -394,6 +475,8 @@ def answer_turn(text: str, tree: dict, smap: dict, card: str, asking: str | None
     is filled too (never overwriting one already filled), so free speech can answer several."""
     words = tokenize(text)
     filled = dict(filled)
+    if not words:                                  # nothing said: answers nothing (never "No")
+        return filled, None, None
     if len(words) <= 2 and words and words[-1] in COMMANDS:
         return filled, None, words[-1]
     ts = tiles(tree, smap, card)
@@ -415,7 +498,10 @@ def answer_turn(text: str, tree: dict, smap: dict, card: str, asking: str | None
                     next((c for c in ts if tokenize(c.get("label", ""))[:1] == [yn]), None)   # "No" tile, value not_impaled
         if pick is None:                           # the tile's own words: "the leg one", "arm or leg"
             lab = [(c, set(tokenize(c.get("label", ""))) - _FILLER) for c in ts]
-            hits = [c for c, lw in lab if lw and lw <= set(words)]
+            off = {w for i, w in enumerate(words)        # negated or hedged words name no tile
+                   if any(x in NEGATION for x in _scope(words, i, True))   # ("not on the face")
+                   or any(x in HEDGE for x in _scope(words, i, False))}
+            hits = [c for c, lw in lab if lw and lw <= set(words) and not lw & off]
             pick = hits[0] if len(hits) == 1 else None
     if pick and asking and pick.get("value"):
         filled[asking] = pick["value"]
