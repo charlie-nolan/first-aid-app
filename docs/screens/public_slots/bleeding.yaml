@@ -1,0 +1,25 @@
+# Public demo slot map (no manual text): words that fill each blank of the public ATP bleeding tree.
+life_threat:
+  - {if: {bleeding: severe, where_bleed: limb}, go: limb}
+  - {if: {bleeding: severe}, go: start}
+priority: {bleeding: [severe, minor]}
+topic_words: [bleeding, blood]
+slots:
+  bleeding:
+    severe: [spurting, gushing, "won't stop", pouring, pumping, "so much blood", "bleeding badly", "bleeding a lot"]
+    minor: [oozing, "a little blood", scrape]
+  where_bleed:
+    limb: [leg, arm, thigh, hand, calf, shin, forearm, wrist, foot]
+    junctional: [neck, armpit, groin]
+    controlled: [stopped, controlled, "under control"]
+  tourniquet:
+    "yes": ["have a tourniquet", "got a tourniquet", "tourniquet in the kit", cat]
+    "no": ["no tourniquet", "don't have a tourniquet", "nothing to tie"]
+  junction:
+    neck: [neck]
+    armpit: [armpit]
+    groin: [groin]
+questions:
+  start: {slot: where_bleed, choices: {limb: limb, junctional: junctional, controlled: dressing}}
+  limb: {slot: tourniquet, choices: {"yes": tq, "no": pack}}
+  junctional: {slot: junction, choices: {neck: neck, armpit: armpit, groin: groin}}

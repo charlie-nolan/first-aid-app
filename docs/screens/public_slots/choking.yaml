@@ -1,0 +1,14 @@
+# Public demo slot map (no manual text) for the public ATP choking tree.
+life_threat:
+  - {if: {airway: blocked}, go: thrusts}
+  - {if: {airway: out}, go: down}
+topic_words: [choking, choke, choked]
+slots:
+  airway:
+    partial: ["coughing hard", "can talk", "can speak", coughing]
+    blocked: ["can't breathe", "can't speak", "can't cough", "turning blue", "no sound"]
+    out: ["passed out", unconscious, collapsed]
+  body:
+    special: [pregnant, large, "belly wound"]
+questions:
+  start: {slot: airway, choices: {partial: partial, blocked: thrusts, out: down}}

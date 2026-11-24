@@ -1,0 +1,14 @@
+# Public demo slot map (no manual text) for the public ATP CPR tree.
+generic_home: true
+life_threat:
+  - {if: {breathing: "no"}, go: compress}
+topic_words: [cpr, "heart stopped"]
+slots:
+  breathing:
+    "no": ["not breathing", "stopped breathing", "isn't breathing", "no pulse", "heart stopped"]
+    poor: ["barely breathing", "breathing poorly", gasping]
+    "yes": ["breathing fine", "is breathing"]
+  injured:
+    "yes": ["badly hurt", "hit by", "crushed", "fell off a cliff", trauma]
+questions:
+  start: {slot: breathing, choices: {"no": compress, poor: breaths}}
