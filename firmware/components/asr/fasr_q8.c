@@ -6,14 +6,11 @@
 #ifdef ESP_PLATFORM
 #include "sdkconfig.h"
 #include "esp_timer.h"
-#ifdef ESP_PLATFORM            /* big scratch arrays: in PSRAM on the chip (internal RAM is short), plain statics on the PC */
 #include "esp_attr.h"
-#define FP_BIG EXT_RAM_BSS_ATTR
-#else
-#define FP_BIG
-#endif
+#define FP_BIG EXT_RAM_BSS_ATTR       /* big scratch arrays: in PSRAM on the chip (internal RAM is short) */
 #define PROF_NOW() esp_timer_get_time()
 #else
+#define FP_BIG
 #define PROF_NOW() 0
 #endif
 uint32_t fq_prof_us[5];

@@ -28,6 +28,13 @@ bool fd_open(fd_lex_t *x, const void *blob, size_t len) {
     x->bias = b + r32(b + 100); x->nodes = b + r32(b + 104);
     if (x->ntok > FD_MAX_TOK || x->beam > FD_MAX_BEAM) return false;
     for (int t = 0; t < x->ntok; t++) x->ch0[t] = child(x, 0, t);   /* same answer as the scan, once */
+    x->id_i = x->id_eye = -1;
+    for (uint32_t id = 1; id < x->nids; id++) {
+        const char *wd = fd_word(x, (uint16_t)id);
+        if (!wd) continue;
+        if (!strcmp(wd, "i") && x->id_i < 0) x->id_i = (int)id;
+        else if (!strcmp(wd, "eye") && x->id_eye < 0) x->id_eye = (int)id;
+    }
     return true;
 }
 
@@ -261,6 +268,7 @@ void fd_frames(const fd_lex_t *x, const float *logp, int t0, int t1, void *wsv) 
         if (w->nseq > FD_MAX_SEQ / 2) compact(w);   /* ids never affect order, only space */
     }
 }
+static void resolve_homophones(const fd_lex_t *x, fd_result_t *r);
 int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal, void *wsv, fd_result_t *r) {
     fd_ws_t *w = wsv;
     memset(r, 0, sizeof *r);
@@ -384,10 +392,28 @@ int fd_finish(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal
         r->reject = r->veto && rr > 40 ? 40 : rr;
     }
     if (best != w->best) free(best);
+    resolve_homophones(x, r);                       /* after the reject, as decode() */
     return r->n;
 }
 
 #undef fin
+/* (resolve_homophones is declared before fd_finish) */
+/* decode.resolve_homophones (speech 4a29209): "i" and "eye" sound the same (AY); after the reject, in every
+ * guess, it is "eye" only after one of these words, else "i" (the reject and the confidences are unchanged). */
+static const char *const EYE_BEFORE[] = {"my", "his", "her", "your", "their", "the", "an", "left", "right", "both", "one",
+                                         "in", "either", "its", "our", 0};
+static void resolve_homophones(const fd_lex_t *x, fd_result_t *r) {
+    if (x->id_i < 0 || x->id_eye < 0) return;
+    for (int h = 0; h < r->n; h++)
+        for (int k = 0; k < r->h[h].len; k++) {
+            int w = r->h[h].id[k];
+            if (w != x->id_i && w != x->id_eye) continue;
+            const char *prev = k ? fd_word(x, r->h[h].id[k - 1]) : NULL;
+            bool eye = false;
+            for (int q = 0; prev && EYE_BEFORE[q]; q++) if (!strcmp(prev, EYE_BEFORE[q])) eye = true;
+            r->h[h].id[k] = (uint16_t)(eye ? x->id_eye : x->id_i);
+        }
+}
 int fd_decode(const fd_lex_t *x, const float *logp, int T, const fd_calib_t *cal, void *wsv, fd_result_t *r) {
     fd_begin(x, wsv);
     fd_frames(x, logp, 0, T, wsv);

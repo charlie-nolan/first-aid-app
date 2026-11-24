@@ -22,6 +22,7 @@ typedef struct {
     double tok_prune, word_bonus, implicit_sep, garbage_enter, garbage_phone, reject_gap0, reject_gap_scale;
     const uint8_t *words, *cls, *flags, *bias, *nodes;
     int32_t ch0[FD_MAX_TOK];   /* the root's child for each token (-2 = none), cached by fd_open */
+    int id_i, id_eye;          /* the homophones "i" / "eye" (-1 = not in the lexicon), resolve_homophones */
 } fd_lex_t;
 #define FD_MAX_T 1024          /* frames whose per-frame sums live in the work space (longer: heap) */
 
