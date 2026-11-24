@@ -258,7 +258,7 @@ void voice_start(void) {}
 void voice_stop(bool recognise) { (void)recognise; }
 #endif
 #if !CONFIG_LIB_VOICE_DIY   /* the board-voice calls, unused without it */
-void voice_stop_to(bool recognise, int target) { (void)target; voice_stop(recognise); }
+bool voice_stop_to(bool recognise, int target) { (void)target; voice_stop(recognise); return false; }
 bool voice_has_form(void) { return false; }
 bool voice_has_search(void) { return false; }
 void voice_form_op(int vf, const ui_t *u) { (void)vf; (void)u; }

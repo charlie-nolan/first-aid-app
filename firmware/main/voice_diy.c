@@ -313,17 +313,18 @@ void voice_start(void) {
 #endif
 }
 void voice_stop(bool recognise) { voice_stop_to(recognise, VT_NEW); }
-void voice_stop_to(bool recognise, int target) {
-    if (!recording || stop_at) return;
+bool voice_stop_to(bool recognise, int target) {
+    if (!recording || stop_at) return false;           /* nothing was recording (e.g. the press came while busy) */
     if (!recognise) {                                     /* a tap: drop the clip now */
         recording = false; mic_want = false;
         if (!rec_link) { job_t c = { .op = J_CANCEL }; xQueueSend(jobs, &c, pdMS_TO_TICKS(100)); }
-        return;
+        return false;
     }
     speech_busy = true;
     stop_at = esp_timer_get_time() + 250000;              /* keep the last word's tail; the mic task ends the clip */
     job_t j = { .op = rec_link ? J_REC : J_SPEECH, .target = (uint8_t)target };
-    xQueueSend(jobs, &j, pdMS_TO_TICKS(100));
+    if (xQueueSend(jobs, &j, pdMS_TO_TICKS(100)) != pdTRUE) { speech_busy = false; return false; }
+    return true;
 }
 void voice_form_op(int vf, const ui_t *u) {
     job_t j = { .op = J_OP };

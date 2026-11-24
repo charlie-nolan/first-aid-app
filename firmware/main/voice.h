@@ -11,7 +11,7 @@ void voice_stop(bool recognise);   /* TALK released: post MSG_VOICE with the res
 /* Board voice (LIB_VOICE_DIY, voice_diy.c): where a TALK clip goes, and the form / search results. */
 #include "ui.h"
 enum { VT_NEW, VT_ANSWER, VT_SEARCH };          /* a new problem, an answer on the open form, a search word */
-void voice_stop_to(bool recognise, int target);
+bool voice_stop_to(bool recognise, int target);  /* true: a clip is on its way to the engine (a result will come) */
 bool voice_has_form(void);
 bool voice_has_search(void);
 void voice_form_op(int vf, const ui_t *u);      /* VF_PICK / VF_OPEN / VF_SKIP on the screen u shows */

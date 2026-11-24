@@ -147,6 +147,7 @@ static void update_battery(void) {
     }
 }
 
+static int64_t vf_pending;                            /* board voice: a pick / skip / open is being answered (since) */
 static int64_t think_draw_at;                         /* board voice: draw "Thinking..." at this time (0 = no) */
 void app_main(void) {
     ESP_LOGI(TAG, "board: %s", BOARD_NAME);
@@ -191,12 +192,13 @@ void app_main(void) {
     for (;;) {
         app_msg_t m;
         if (think_draw_at && esp_timer_get_time() >= think_draw_at) { think_draw_at = 0; show(RD_PARTIAL); }
+        if (vf_pending && esp_timer_get_time() - vf_pending > 3000000) vf_pending = 0;   /* no answer came: allow taps again */
         if (xQueueReceive(app_q, &m, pdMS_TO_TICKS(think_draw_at ? 40 : 1000))) {
             last = esp_timer_get_time();
             if (m.type == MSG_BUTTON && combo_filter(&m)) continue;
             ui_act_t a;
             if (m.type == MSG_BUTTON) a = ui_event(&ui, (ui_btn_t)m.btn, (ui_evkind_t)m.kind, m.held_ms);
-            else if (m.type == MSG_VSCREEN) { think_draw_at = 0; voice_take(ui.vs, 0, 0, 0, 0); a = ui_vscreen(&ui); }
+            else if (m.type == MSG_VSCREEN) { think_draw_at = 0; vf_pending = 0; voice_take(ui.vs, 0, 0, 0, 0); a = ui_vscreen(&ui); }
             else if (m.type == MSG_REC) { int on = voice_rec_take(&ui); a = ui_rec(&ui, on < 0 ? ui.mode == M_REC : on); }
             else if (m.type == MSG_VSEARCH) { think_draw_at = 0; voice_take(0, ui.hits, &ui.nhits, ui.squery, sizeof ui.squery); a = ui_vsearch(&ui); }
             else a = ui_voice(&ui, m.cmd, m.prob, m.n);
@@ -205,15 +207,22 @@ void app_main(void) {
             else if (a.voice == VO_STOP && ui.vs) {          /* board voice: the clip goes to the form or the search */
                 int to = ui.mode == M_SEARCH ? VT_SEARCH : ui.mode == M_FORM ? VT_ANSWER : VT_NEW;
                 if (to == VT_NEW) { ui.vs->kind = VS_START; ui.vs->heard[0] = ui.vs->msg[0] = 0; ui.mode = M_FORM; }
-                snprintf(ui.vs_status, sizeof ui.vs_status, "Thinking...");
-                voice_stop_to(true, to);
-                a.redraw = RD_NONE;                          /* the answer usually lands in ~0.3 s: draw "Thinking..."
+                if (voice_stop_to(true, to)) {
+                    snprintf(ui.vs_status, sizeof ui.vs_status, "Thinking...");
+                    a.redraw = RD_NONE;                      /* the answer usually lands in ~0.3 s: draw "Thinking..."
                                                                only if it hasn't (saves one e-ink refresh a turn) */
-                think_draw_at = esp_timer_get_time() + 400000;
+                    think_draw_at = esp_timer_get_time() + 400000;
+                } else {                                     /* the press came while the last one was still busy */
+                    snprintf(ui.vs_status, sizeof ui.vs_status, "Still working on the last one. Hold TALK again.");
+                    a.redraw = RD_PARTIAL;
+                }
             }
             else if (a.voice == VO_STOP) voice_stop(true);
             else if (a.voice == VO_CANCEL) voice_stop(false);
-            if (a.vf) voice_form_op(a.vf, &ui);
+            /* one form step at a time: a second tap while the e-ink is still redrawing (1-2 s) used to pick
+             * again on the old screen, and its answer replaced the card that had just opened (Charlie 11-24) */
+            if (a.vf && !vf_pending) { voice_form_op(a.vf, &ui); vf_pending = esp_timer_get_time(); }
+            else if (a.vf) ESP_LOGI(TAG, "voice: tap ignored, the last pick is still being answered");
             if (a.rc) voice_rec_button(a.rc);
             if (a.light_step) { saved.light = (uint8_t)((saved.light + 1) % 3); lights_front(saved.light); }
             if (a.signal >= 0) lights_signal((uint8_t)a.signal);
