@@ -48,3 +48,7 @@ pipeline/plb/content/voice/experts_personal*/
 
 # Local outputs of pipeline tools run from the repo root (may hold personal labels)
 /out/
+pipeline/plb/content/voice/*.personal.yaml
+# the personal cart the bake copies next to the public one, and anything else personal there
+firmware/library/library_personal.bin
+firmware/library/*_personal*

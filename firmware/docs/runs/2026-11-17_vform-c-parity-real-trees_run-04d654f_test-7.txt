@@ -1,0 +1,7 @@
+# C form engine vs Python, real trees (labels not shown), slots v16b, after porting 04d654f
+$ python tools/parity_check.py --pack real.fpk --parity parity_04d654f_v16b.jsonl --fuzz
+766 cases, 1493 frames: 766 cases identical, 0 differ (0 frames)
+FUZZ 509 sentences, 0 loops
+$ python tools/parity_check.py --pack test/fixture.fpk --parity test/fixture_parity.jsonl --fuzz   (adds fracture tree: kit branch, implied tie, named finding)
+73 cases, 150 frames: 73 cases identical, 0 differ (0 frames)
+FUZZ 41 sentences, 0 loops

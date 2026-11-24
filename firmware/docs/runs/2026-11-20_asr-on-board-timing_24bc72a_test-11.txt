@@ -1,0 +1,34 @@
+Speech on the plain XIAO S3 (240 MHz), export 24bc72a, 8 golden clips. Words left out (personal).
+
+== small, -Og, PSRAM 40 MHz
+CLIP 00 1.63 s audio: total 8019 ms (front end 2443, model 3919, search 1657)
+CLIP 01 1.52 s audio: total 7257 ms (front end 2199, model 3670, search 1386)
+CLIP 02 1.34 s audio: total 6216 ms (front end 1936, model 3229, search 1051)
+CLIP 03 2.35 s audio: total 11087 ms (front end 3416, model 5701, search 1968)
+CLIP 04 2.23 s audio: total 10554 ms (front end 3241, model 5401, search 1912)
+CLIP 05 1.61 s audio: total 7831 ms (front end 2331, model 3869, search 1630)
+CLIP 06 1.23 s audio: total 5738 ms (front end 1775, model 2935, search 1028)
+CLIP 07 2.04 s audio: total 9707 ms (front end 2963, model 4959, search 1784)
+total 13.95 s audio, 66.4 s compute: 4.76 s per second of audio
+
+== small, -O2 + loop changes, PSRAM 80 MHz
+CLIP 00 1.63 s audio: total 4258 ms (front end 1639, model 1696, search 921)
+CLIP 01 1.52 s audio: total 3756 ms (front end 1451, model 1599, search 705)
+CLIP 02 1.34 s audio: total 3160 ms (front end 1277, model 1424, search 458)
+CLIP 03 2.35 s audio: total 5569 ms (front end 2253, model 2396, search 919)
+CLIP 04 2.23 s audio: total 5338 ms (front end 2138, model 2279, search 920)
+CLIP 05 1.61 s audio: total 4116 ms (front end 1537, model 1677, search 901)
+CLIP 06 1.23 s audio: total 2966 ms (front end 1171, model 1308, search 487)
+CLIP 07 2.04 s audio: total 4927 ms (front end 1954, model 2105, search 867)
+total 13.95 s audio, 34.1 s compute: 2.44 s per second of audio
+
+== medium (2m), same build
+CLIP 00 1.63 s audio: total 5868 ms (front end 1639, model 3188, search 1040)
+CLIP 01 1.52 s audio: total 5120 ms (front end 1451, model 3006, search 662)
+CLIP 02 1.34 s audio: total 4466 ms (front end 1277, model 2680, search 509)
+CLIP 03 2.35 s audio: total 7743 ms (front end 2253, model 4500, search 989)
+CLIP 04 2.23 s audio: total 7293 ms (front end 2138, model 4281, search 873)
+CLIP 05 1.61 s audio: total 5510 ms (front end 1537, model 3152, search 819)
+CLIP 06 1.23 s audio: total 4084 ms (front end 1171, model 2462, search 451)
+CLIP 07 2.04 s audio: total 6710 ms (front end 1954, model 3954, search 801)
+total 13.95 s audio, 46.8 s compute: 3.35 s per second of audio

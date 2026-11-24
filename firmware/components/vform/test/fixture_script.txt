@@ -1,0 +1,285 @@
+CASE f000-pick
+SAY a raccoon bit my thigh
+PICK @topic	bites	\N
+CASE f000-say
+SAY a raccoon bit my thigh
+SAY Bites
+CASE f001-pick
+SAY something bit me
+CASE f002-pick
+SAY a dog bit his cheek
+CASE f003-pick
+SAY the dog bite is gushing
+CASE f004-pick
+SAY she's not breathing
+CASE f005-pick
+SAY she's not breathing she fell in icy water
+CASE f006-pick
+SAY he is breathing fine
+CASE f007-pick
+SAY not spurting just oozing
+CASE f008-pick
+SAY can't tell if she's breathing
+CASE f009-pick
+SAY a rattler got him on the leg
+PICK @topic	bites	\N
+CASE f009-say
+SAY a rattler got him on the leg
+SAY Bites
+CASE f010-pick
+SAY a bee stung me
+PICK stinger	yes	\N
+CASE f010-say
+SAY a bee stung me
+SAY Yes, I can see it
+CASE f011-pick
+SAY i got stung and i can see the stinger
+CASE f012-pick
+SAY burned my hand on the stove, it's big
+CASE f013-pick
+SAY small burn on my arm
+PICK @topic	burns	\N
+CASE f013-say
+SAY small burn on my arm
+SAY Burns
+CASE f014-pick
+SAY my arm hurts
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f014-say
+SAY my arm hurts
+SAY Bites
+SAY snake
+CASE f015-pick
+SAY he stopped breathing
+CASE f016-pick
+SAY a little blood from a scrape
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f016-say
+SAY a little blood from a scrape
+SAY Bites
+SAY snake
+CASE f017-pick
+SAY it won't stop bleeding
+CASE f018-pick
+SAY cat bit my wrist
+PICK @topic	bites	\N
+CASE f018-say
+SAY cat bit my wrist
+SAY Bites
+CASE f019-pick
+SAY burns, a big one
+PICK where	face	\N
+CASE f019-say
+SAY burns, a big one
+SAY Face or hands
+CASE f020-pick
+SAY huge burn
+PICK where	face	\N
+CASE f020-say
+SAY huge burn
+SAY Face or hands
+CASE f021-pick
+SAY bleeding but now oozing
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f021-say
+SAY bleeding but now oozing
+SAY Bites
+SAY snake
+CASE f022-pick
+SAY isnt breathing
+CASE f023-pick
+SAY dog bite no time
+PICK where	\N	bites/evac
+CASE f023-say
+SAY dog bite no time
+SAY limb
+CASE f024-pick
+SAY something bit me skip
+CASE f025-pick
+SAY number two
+CASE f026-pick
+SAY multi
+CASE f027-pick
+SAY new
+CASE f028-pick
+SAY a bat bit her face and she's not breathing
+CASE f029-pick
+SAY wasp
+PICK stinger	yes	\N
+CASE f029-say
+SAY wasp
+SAY Yes, I can see it
+CASE f030-pick
+SAY nothing bit me
+CASE f031-pick
+SAY broke my arm
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f031-say
+SAY broke my arm
+SAY Bites
+SAY snake
+CASE f032-pick
+SAY i think he broke his shin, there's bone sticking out
+CASE f033-pick
+SAY broken bone
+CASE f034-pick
+SAY broke my wrist and no sling
+CASE f035-pick
+SAY his leg or his arm is broken
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f035-say
+SAY his leg or his arm is broken
+SAY Bites
+SAY snake
+CASE f036-pick
+SAY hurt his leg, the shin
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f036-say
+SAY hurt his leg, the shin
+SAY Bites
+SAY snake
+CASE f037-pick
+SAY broke his leg
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f037-say
+SAY broke his leg
+SAY Bites
+SAY snake
+CASE f038-pick
+SAY broke his leg and no splint
+PICK @topic	fractures	\N
+CASE f038-say
+SAY broke his leg and no splint
+SAY Broken bones
+CASE f039-pick
+SAY his leg, either the shin or the thigh
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f039-say
+SAY his leg, either the shin or the thigh
+SAY Bites
+SAY snake
+CASE f040-pick
+SAY it won't stop bleeding from his leg
+CASE f041-pick
+SAY his leg is broken and the bone's sticking out
+PICK @topic	fractures	\N
+CASE f041-say
+SAY his leg is broken and the bone's sticking out
+SAY Broken bones
+CASE f042-pick
+SAY the seizure stopped she's breathing
+CASE f043-pick
+SAY toe
+CASE f044-pick
+SAY my thigh
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f044-say
+SAY my thigh
+SAY Bites
+SAY snake
+CASE f045-pick
+SAY i broke my thigh
+PICK @topic	bites	\N
+PICK animal	snake	\N
+CASE f045-say
+SAY i broke my thigh
+SAY Bites
+SAY snake
+CASE f046-pick
+SAY heat stroke
+CASE f047-pick
+SAY he won't open his eyes
+CASE f048-pick
+SAY i feel dizzy
+CASE f049-pick
+SAY she's not breathing
+CASE f050-pick
+SAY the dog's bite is on my arm
+PICK @topic	bites	\N
+CASE f050-say
+SAY the dog's bite is on my arm
+SAY Bites
+CASE s000
+SAY a bee stung me
+SAY no
+CASE s001
+SAY a bee stung me
+SAY yes
+CASE s002
+SAY something bit me
+SAY he's not breathing now
+CASE s003
+SAY something bit me
+SAY a dog
+SAY on his leg
+CASE s004
+SAY something bit me
+SAY dog bite and it's gushing
+CASE s005
+SAY my arm hurts
+SAY burns
+SAY big
+SAY face
+CASE s006
+SAY my arm hurts
+SAY number two
+CASE s007
+SAY my arm hurts
+SAY skip
+CASE s008
+SAY my arm hurts
+PICK @topic	bites	\N
+PICK animal	mammal	\N
+PICK where	\N	bites/evac
+CASE s009
+SAY something bit me
+PICK animal	mammal	\N
+PICK where	\N	bites/cpr/cpr
+CASE s010
+SAY multi
+SAY a dog bit his arm and he has a big burn on his leg
+CASE s011
+SAY huge burn
+SAY arm
+CASE s012
+SAY huge burn
+SAY armm
+CASE s013
+SAY small burn
+SAY new
+SAY a raccoon bit me
+SAY faec
+CASE s014
+SAY dog bite
+SAY not on the face
+SAY leg
+CASE s015
+SAY something bit me
+SAY it was a rattler
+CASE s016
+SAY small burn on my arm
+SAY now he's not breathing
+CASE s017
+SAY a bee stung me
+SAY actually it's a burn, a big one
+CASE s018
+SAY huge burn
+SAY bleeding
+CASE s019
+SAY small burn on my arm
+SAY and he won't wake up
+CASE s020
+SAY a dog bit him
+SAY he's unresponsive
+CASE s021
+SAY i think it was a bee
+SAY cpr

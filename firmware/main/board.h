@@ -44,6 +44,17 @@
 #define PIN_BTN_WIN_L PIN_NONE
 #define PIN_BTN_WIN_R PIN_NONE
 #define PIN_BTN_UP    PIN_NONE
+#if CONFIG_LIB_VOICE_DIY
+/* voice beta on the bench board: the PDM mic is wired to D4 (CLK) / D5 (DATA), as for the recorder and
+ * the tether, so the front light / IR bead are not available on this board in this build */
+#define PIN_FRONT     PIN_NONE
+#define PIN_WHITE     PIN_NONE
+#define PIN_IR        PIN_NONE
+#define PIN_BAT_ADC   PIN_NONE
+#define PIN_MIC_CLK   5
+#define PIN_MIC_DATA  6
+#define PIN_MIC_PWR   PIN_NONE
+#else
 #define PIN_FRONT     5    /* D4: white (front light + flashlight + SOS share it, as on the Plus) */
 #define PIN_WHITE     5
 #if CONFIG_LIB_PLAIN_BAT_D5
@@ -54,10 +65,11 @@
 #define PIN_IR        6    /* D5 */
 #define PIN_BAT_ADC   PIN_NONE
 #endif
-#define PIN_MESH_PWR  PIN_NONE
 #define PIN_MIC_PWR   PIN_NONE
 #define PIN_MIC_DATA  PIN_NONE
 #define PIN_MIC_CLK   PIN_NONE
+#endif
+#define PIN_MESH_PWR  PIN_NONE
 #if CONFIG_LIB_PLAIN_DOUBLE_TAP
 #define HAS_WINDOW_KEYS 1           /* double taps stand in for them (buttons.c) */
 #else

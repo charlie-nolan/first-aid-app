@@ -1,0 +1,59 @@
+menu "Voice tether"
+
+choice LIB_BOARD
+    prompt "Board"
+    default LIB_BOARD_PLAIN
+config LIB_BOARD_PLAIN
+    bool "Plain XIAO ESP32-S3 (bench: 3 buttons, mic on D4/D5 instead of the LED gates)"
+config LIB_BOARD_PLUS
+    bool "XIAO ESP32-S3 Plus"
+endchoice
+
+config LIB_PLUS_WHITE_GPIO
+    int
+    depends on LIB_BOARD_PLUS
+    default 12
+
+config REC_MIC_CLK
+    int "PDM mic CLK GPIO"
+    default 42 if LIB_BOARD_PLUS
+    default 5
+    help
+        Plain bench board: D4 (GPIO5). Unplug the LED gate jumper from D4 first.
+config REC_MIC_DATA
+    int "PDM mic DATA GPIO"
+    default 41 if LIB_BOARD_PLUS
+    default 6
+    help
+        Plain bench board: D5 (GPIO6). Unplug the LED gate jumper from D5 first.
+config REC_MIC_PWR
+    int "PDM mic power GPIO (-1 = mic wired to 3V3)"
+    default 39 if LIB_BOARD_PLUS
+    default -1
+config REC_EPD
+    bool "E-ink panel wired (off: screens only on the PC log)"
+    default y
+config REC_BUFFER_KB
+    int "PSRAM kept for clips not yet copied to the PC (KB)"
+    default 6144
+config TETHER_BOARD_BRAIN
+    bool "Board brain: run the fill-in-the-blanks form on the board (C, components/vform)"
+    default n
+    help
+        The PC then only does speech: it sends "WORDS {hyps, reject}" and the board builds every
+        screen itself, echoing each as "SHOWN <json>". Needs pc_bridge.py --board-brain.
+        Build with -D TETHER_FPK=<form pack> (the real trees are personal; default: the fixture).
+config TETHER_STANDALONE
+    bool "Board only: speech on the board too (components/asr), no PC needed"
+    depends on TETHER_BOARD_BRAIN
+    default n
+    help
+        The clip is decoded on the board (speech engine slot, Kconfig ASR_ENGINE) and the words go
+        straight to the board brain. Needs a cart with LEXI + ASRM chunks (firmware/tools/cart_add.py).
+        Until the engine is built, clips still go to the PC when it is connected.
+config TETHER_REJECT
+    int "Calibrated speech reject at or above which the board asks again (as pc_bridge --reject)"
+    depends on TETHER_BOARD_BRAIN
+    range 0 101
+    default 51
+endmenu

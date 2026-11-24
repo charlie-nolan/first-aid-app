@@ -1,0 +1,13 @@
+Speech speed on the plain XIAO S3, medium model (24bc72a 2m), 8 golden clips (words left out).
+E2 pointwise + E3 depthwise + E4 stem on the vector unit, exact requant, decoder blank-frame shortcut + lazy compaction (all exact)
+E1 float32 front end (FFT, mel, log) = not bit-exact vs Python: 1 of 633 recordings changes its top words, no reject flips.
+
+CLIP 00 1.63 s audio: total 1187 ms (front end 160, model 419, search 607)
+CLIP 01 1.52 s audio: total 722 ms (front end 74, model 396, search 251)
+CLIP 02 1.34 s audio: total 568 ms (front end 65, model 354, search 149)
+CLIP 03 2.35 s audio: total 1093 ms (front end 115, model 622, search 355)
+CLIP 04 2.23 s audio: total 972 ms (front end 109, model 591, search 270)
+CLIP 05 1.61 s audio: total 881 ms (front end 78, model 415, search 387)
+CLIP 06 1.23 s audio: total 510 ms (front end 60, model 326, search 124)
+CLIP 07 2.04 s audio: total 895 ms (front end 100, model 546, search 247)
+total 13.95 s audio, 6.8 s compute: 0.49 s per second of audio (was 4.6 at the start of the night)

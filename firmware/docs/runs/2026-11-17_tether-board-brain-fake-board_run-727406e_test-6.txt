@@ -1,0 +1,4 @@
+# pc_bridge.py --board-brain --typed against fake_board.py (same C engine as the firmware), 60 sentences + 'new', 2 auto taps each
+  board vs Python: 184 same, 6 different
+shadow_match True 192, False 6 (all 6: typed 'new' raced ahead of the fake board's auto-taps; harness timing, not the engine)
+# C time per frame on the PC, 1633 parity frames (real trees): avg 5.6 ms, p50 1.0 ms, p95 12.6 ms, max 18.8 ms

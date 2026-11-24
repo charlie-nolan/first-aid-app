@@ -1,0 +1,1898 @@
+/* vform.c - see vform.h. Each function names the Python it ports (vr/intake.py, vr/form.py,
+ * vr/live.py at 3d07632). Where the Python relies on dict / set order, the C keeps the same order:
+ * slot-map order for slots and values, screen order for tiles, insertion order for filled blanks. */
+#include "vform.h"
+#include <limits.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* ------------------------------------------------------------------ pack */
+
+static inline uint16_t rd16(const uint8_t *p) { return (uint16_t)(p[0] | p[1] << 8); }
+static inline int16_t rds16(const uint8_t *p) { return (int16_t)rd16(p); }
+static inline uint32_t rd32(const uint8_t *p) { return p[0] | p[1] << 8 | p[2] << 16 | (uint32_t)p[3] << 24; }
+
+bool fp_open(fp_pack_t *pk, const void *blob, size_t len) {
+    const uint8_t *b = blob;
+    if (len < 24 || memcmp(b, "FPK1", 4) || rd16(b + 4) != 6 || rd32(b + 20) != len) return false;
+    pk->b = b; pk->len = len; pk->ntrees = rd16(b + 6); pk->nstr = rd32(b + 8);
+    if (rd32(b + 12) + 4 * pk->nstr > len || rd32(b + 16) + 4u * pk->ntrees > len) return false;
+    return true;
+}
+
+const char *fp_s(const fp_pack_t *pk, fp_str id) {
+    if (id == FP_NONE || id >= pk->nstr) return NULL;
+    return (const char *)pk->b + rd32(pk->b + rd32(pk->b + 12) + 4u * id);
+}
+
+int fp_find_str(const fp_pack_t *pk, const char *s) {
+    for (uint32_t i = 0; i < pk->nstr; i++)
+        if (!strcmp(fp_s(pk, (fp_str)i), s)) return (int)i;
+    return -1;
+}
+
+#define S(id) fp_s(&s->pk, (id))
+#define AT(off) (s->pk.b + (off))
+
+/* records (layouts in tools/formpack.py) */
+static const uint8_t *node(const fp_sess_t *s, int t, int i) { return s->trees[t].nodes + 32 * i; }
+#define N_KEY(n) rd16((n) + 0)
+#define N_LABEL(n) rd16((n) + 2)
+#define N_QSLOT(n) rd16((n) + 4)
+#define N_NCH(n) rd16((n) + 6)
+#define N_NTILES(n) rd16((n) + 8)
+#define N_NQCH(n) rd16((n) + 10)
+#define N_NCITES(n) rd16((n) + 12)
+#define N_CONTENT(n) (rd16((n) + 14) & 1)
+#define N_CH(s, n, i) AT(rd32((n) + 16) + 8 * (i))
+#define N_TILE(s, n, i) AT(rd32((n) + 20) + 8 * (i))
+#define N_QCH(s, n, i) AT(rd32((n) + 24) + 8 * (i))
+#define N_CITE(s, n, i) rd16(AT(rd32((n) + 28) + 2 * (i)))
+/* CHOICE: to label to_node has_value kind_next */
+#define C_TO(c) rd16(c)
+#define C_NODE(c) rds16((c) + 4)
+#define C_HASVAL(c) ((c)[6])
+#define C_NEXT(c) ((c)[7])
+/* TILE: label value to to_node */
+#define T_LABEL(t) rd16(t)
+#define T_VALUE(t) rd16((t) + 2)
+#define T_TO(t) rd16((t) + 4)
+#define T_NODE(t) rds16((t) + 6)
+/* QCH: value to to_node */
+#define Q_VALUE(q) rd16(q)
+#define Q_TO(q) rd16((q) + 2)
+#define Q_NODE(q) rds16((q) + 4)
+
+static const uint8_t *slotrec(const fp_sess_t *s, int t, int i) { return s->trees[t].slots + 16 * i; }
+#define SL_NAME(r) rd16(r)
+#define SL_NVAL(r) rd16((r) + 2)
+#define SL_NPRIO(r) rd16((r) + 4)
+#define SL_PRIO_N(r) rd16((r) + 4)
+#define SL_VAL(s, r, i) AT(rd32((r) + 8) + 8 * (i))
+#define SL_PRIO(s, r, i) rd16(AT(rd32((r) + 12) + 2 * (i)))
+#define V_NAME(v) rd16(v)
+#define V_NPH(v) rd16((v) + 2)
+#define V_PH(s, v, i) rd16(AT(rd32((v) + 4) + 2 * (i)))
+static const uint8_t *rule(const fp_sess_t *s, int t, int i) { return s->trees[t].rules + 12 * i; }
+#define R_NIF(r) rd16(r)
+#define R_NUNL(r) rd16((r) + 2)
+#define R_GO(r) rd16((r) + 4)
+#define R_GONODE(r) rds16((r) + 6)
+#define R_PAIR(s, r, i) AT(rd32((r) + 8) + 4 * (i))
+
+static bool truthy(const fp_sess_t *s, fp_str id) { return id != FP_NONE && S(id)[0]; }
+
+/* ------------------------------------------------------------------ word sets */
+
+static bool in(const char *w, const char *const *set) {
+    for (; *set; set++) if (!strcmp(w, *set)) return true;
+    return false;
+}
+/* vr.intake.NEGATION = vr.lexicon.NEGATION | {...} */
+static const char *const NEGATION[] = {"not", "no", "can't", "cannot", "don't", "isn't", "won't", "without",
+    "never", "didn't", "doesn't", "wasn't", "aren't", "haven't", "nothing", "none",
+    "hasn't", "couldn't", "wouldn't", "shouldn't", "weren't", "ain't", "nobody", 0};
+static const char *const HEDGE[] = {"if", "whether", "unsure", "maybe", "barely", "might", "check",
+    "will", "gonna", "could", "about", "sure", "tell", 0};
+static const char *const NOT_A_STATE[] = {"problem", "problems", "trouble", "troubles", "issue", "issues",
+    "difficulty", "difficulties", "question", "questions", "advice", "tips", "rate", 0};
+static const char *const CONTRAST[] = {"but", "now", "though", "although", "except", 0};
+static const char *const CLAUSE[] = {"but", "now", "though", "although", "except",
+    "and", "so", "because", "cause", "then", "while", "plus", "also", "since", 0};
+static const char *const SUBJECT[] = {"she's", "he's", "it's", "they're", "i'm", "we're", "you're",
+    "she", "he", "they", "we", 0};
+static const char *const SEEING[] = {"seeing", "finding", "having", "getting", "feeling", "noticing", "showing", 0};
+static const char *const CLAUSE_START[] = {"she's", "he's", "it's", "they're", "i'm", "we're", "you're", "she", "he",
+    "it", "they", "i", "we", "you", "and", "but", "then", "now", 0};   /* "stopped. she's breathing" != "stopped breathing" */
+static const char *const FILLER[] = {"a", "an", "the", "or", "and", "of", "on", "in", "is", "it", "to", "my",
+    "your", "i", "yes", "no", 0};
+static const char *const COMMANDS[] = {"back", "again", "home", 0};
+static const char *const YESNO[] = {"yes", "yeah", "yep", "no", "nope", "nah", 0};
+static const char *const YES[] = {"yes", "yeah", "yep", 0};
+static const char *const NO[] = {"no", "nope", "nah", 0};
+static const char *const KEEP_S[] = {"she's", "he's", "it's", "that's", "there's", "what's", "who's",
+    "let's", "here's", "where's", 0};
+static const char *const CONTRACT[][2] = {{"isnt", "isn't"}, {"cant", "can't"}, {"dont", "don't"},
+    {"didnt", "didn't"}, {"doesnt", "doesn't"}, {"wont", "won't"}, {"wasnt", "wasn't"}, {"arent", "aren't"},
+    {"havent", "haven't"}, {"hasnt", "hasn't"}, {"couldnt", "couldn't"}, {"wouldnt", "wouldn't"},
+    {"shouldnt", "shouldn't"}, {"werent", "weren't"}, {"aint", "ain't"}, {"im", "i'm"}, {"ive", "i've"},
+    {"hes", "he's"}, {"shes", "she's"}, {"thats", "that's"}, {"theyre", "they're"}, {"youre", "you're"},
+    {"theres", "there's"}, {0, 0}};
+
+static int number(const char *w) {           /* vr.intake.NUMBERS; -1 = not a number (or "to"/"for") */
+    static const char *const T[][2] = {{"one", "0"}, {"1", "0"}, {"first", "0"}, {"two", "1"}, {"2", "1"},
+        {"second", "1"}, {"three", "2"}, {"3", "2"}, {"third", "2"}, {"four", "3"}, {"4", "3"}, {"fourth", "3"}, {0, 0}};
+    for (int i = 0; T[i][0]; i++) if (!strcmp(w, T[i][0])) return T[i][1][0] - '0';
+    return -1;
+}
+
+/* ------------------------------------------------------------------ text */
+
+/* vr.lexicon.tokenize: lower, ’ -> ', findall [a-z0-9]+(?:'[a-z]+)? ; then vr.intake.tokenize:
+ * contractions typed without the apostrophe, and "going to" -> "gonna". */
+static void lex_tokenize(const char *text, fp_toks_t *t) {
+    char buf[512];
+    size_t n = 0;
+    for (const unsigned char *p = (const unsigned char *)text; *p && n < sizeof buf - 1; p++) {
+        if (p[0] == 0xE2 && p[1] == 0x80 && p[2] == 0x99) { buf[n++] = '\''; p += 2; continue; }
+        unsigned char c = *p;
+        if (c >= 'A' && c <= 'Z') c += 32;
+        buf[n++] = (c >= 0x80) ? ' ' : (char)c;   /* non-ASCII never matches [a-z0-9] */
+    }
+    buf[n] = 0;
+    t->n = 0;
+#define AL(c) (((c) >= 'a' && (c) <= 'z') || ((c) >= '0' && (c) <= '9'))
+#define LT(c) ((c) >= 'a' && (c) <= 'z')
+    for (size_t i = 0; i < n && t->n < FP_MAX_TOK;) {
+        if (!AL(buf[i])) { i++; continue; }
+        size_t j = i;
+        while (j < n && AL(buf[j])) j++;
+        if (j + 1 < n && buf[j] == '\'' && LT(buf[j + 1])) { j += 2; while (j < n && LT(buf[j])) j++; }
+        size_t L = j - i < FP_WLEN - 1 ? j - i : FP_WLEN - 1;
+        memcpy(t->w[t->n], buf + i, L); t->w[t->n][L] = 0; t->n++;
+        i = j;
+    }
+}
+
+void fp_tokenize(const char *text, fp_toks_t *t) {
+    fp_toks_t r;
+    lex_tokenize(text, &r);
+    t->n = 0;
+    for (int i = 0; i < r.n; i++) {
+        const char *w = r.w[i];
+        for (int k = 0; CONTRACT[k][0]; k++) if (!strcmp(w, CONTRACT[k][0])) { w = CONTRACT[k][1]; break; }
+        if (!strcmp(w, "to") && t->n && !strcmp(t->w[t->n - 1], "going")) { strcpy(t->w[t->n - 1], "gonna"); continue; }
+        strcpy(t->w[t->n], w);
+        size_t L = strlen(w);                       /* "the bone's sticking out" -> bone; pronouns stay whole */
+        if (L >= 2 && !strcmp(w + L - 2, "'s") && !in(w, KEEP_S)) t->w[t->n][L - 2] = 0;
+        t->n++;
+    }
+}
+
+void fp_stem(const char *w, bool verbs, char *out) {
+    size_t L = strlen(w);
+    memcpy(out, w, L + 1);
+    if (in(w, NEGATION) || in(w, HEDGE) || strchr(w, '\'')) return;
+#define ENDS(sfx) (L >= sizeof(sfx) - 1 && !memcmp(out + L - (sizeof(sfx) - 1), sfx, sizeof(sfx) - 1))
+    if (L > 5 && ENDS("ly")) L -= 2;
+    if (!verbs) {
+        if (L > 3 && ENDS("s") && !ENDS("ss")) L--;
+        out[L] = 0;
+        return;
+    }
+    if (L > 5 && ENDS("ing")) L -= 3;
+    else if (L > 4 && ENDS("ed") && !ENDS("eed")) L -= 2;
+    else if (L > 3 && ENDS("s") && !ENDS("ss")) L--;
+    if (L > 3 && out[L - 1] == out[L - 2] && !strchr("aeiouls", out[L - 1])) L--;
+    out[L] = 0;
+#undef ENDS
+}
+
+static void stems(const fp_toks_t *t, bool verbs, fp_toks_t *o) {
+    o->n = t->n;
+    for (int i = 0; i < t->n; i++) fp_stem(t->w[i], verbs, o->w[i]);
+}
+
+static bool neg_or_hedge(const char *w) { return in(w, NEGATION) || in(w, HEDGE); }
+
+/* vr.intake._find: positions of the phrase in words (exact run first, else up to one filler word
+ * between phrase words, never a negation/hedge). Returns a bitmask of positions, 0 = no hit. */
+static uint64_t find(const fp_toks_t *w, const fp_toks_t *p) {
+    int n = p->n;
+    if (n == 0) return 0;                      /* (an empty phrase would crash the Python) */
+    for (int i = 0; i + n <= w->n; i++) {
+        int k = 0;
+        while (k < n && !strcmp(w->w[i + k], p->w[k])) k++;
+        if (k == n) return ((n == 64 ? ~0ull : (1ull << n) - 1)) << i;
+    }
+    if (n < 2) return 0;
+    for (int k = 0; k < n; k++) if (neg_or_hedge(p->w[k])) return 0;
+    const int gap = 1;
+    for (int i = 0; i < w->n; i++) {
+        if (strcmp(w->w[i], p->w[0])) continue;
+        uint64_t pos = 1ull << i;
+        int j = i, got = 1;
+        for (int q = 1; q < n; q++) {
+            int hit = -1, lim = j + 2 + gap < w->n ? j + 2 + gap : w->n;
+            for (int k = j + 1; k < lim; k++) {
+                if (strcmp(w->w[k], p->w[q])) continue;
+                bool clean = true;
+                for (int x = j + 1; x < k; x++) if (neg_or_hedge(w->w[x]) || in(w->w[x], CLAUSE_START)) { clean = false; break; }
+                if (clean) { hit = k; break; }
+            }
+            if (hit < 0) break;
+            pos |= 1ull << hit; j = hit; got++;
+        }
+        if (got == n) return pos;
+    }
+    return 0;
+}
+
+/* ---- compiled phrases (speed): each slot phrase is tokenized and stemmed once, on first use ---- */
+#define FP_PHR_MAX 12
+typedef struct {
+    uint8_t n;                    /* words */
+    uint8_t neg, hedge, bleedout; /* a phrase word negates / hedges; "bleed(ing) out" ending */
+    const char *w[FP_PHR_MAX];    /* stems to match: plain if one word, verb stems otherwise */
+} cphr_t;
+static cphr_t *compile_phrase(const char *ph) {
+    fp_toks_t pw, p;
+    fp_tokenize(ph, &pw);
+    if (pw.n > FP_PHR_MAX) pw.n = FP_PHR_MAX;
+    stems(&pw, pw.n != 1, &p);
+    size_t L = sizeof(cphr_t);
+    for (int i = 0; i < p.n; i++) L += strlen(p.w[i]) + 1;
+    cphr_t *c = malloc(L);
+    if (!c) return NULL;
+    char *a = (char *)(c + 1);
+    c->n = (uint8_t)p.n; c->neg = c->hedge = 0;
+    for (int i = 0; i < p.n; i++) {
+        size_t k = strlen(p.w[i]) + 1;
+        memcpy(a, p.w[i], k); c->w[i] = a; a += k;
+        c->neg |= in(p.w[i], NEGATION); c->hedge |= in(p.w[i], HEDGE);
+    }
+    c->bleedout = pw.n > 1 && !strcmp(pw.w[pw.n - 1], "out") &&
+        (!strcmp(pw.w[pw.n - 2], "bleed") || !strcmp(pw.w[pw.n - 2], "bleeding") ||
+         !strcmp(pw.w[pw.n - 2], "bleeds") || !strcmp(pw.w[pw.n - 2], "bled"));
+    return c;
+}
+static const cphr_t *phrase_sid(const fp_sess_t *s, fp_str sid) {   /* cached by string id */
+    cphr_t **cache = (cphr_t **)s->phr;
+    if (!cache || sid >= s->pk.nstr) return compile_phrase(S(sid));  /* (no cache: leaks; never on the device) */
+    if (!cache[sid]) cache[sid] = compile_phrase(S(sid));
+    return cache[sid];
+}
+static const cphr_t *phrase_static(const char *ph) {               /* the built-in UNIVERSAL phrases */
+    static struct { const char *k; cphr_t *c; } tab[64];
+    static int n;
+    for (int i = 0; i < n; i++) if (tab[i].k == ph) return tab[i].c;
+    cphr_t *c = compile_phrase(ph);
+    if (n < 64) { tab[n].k = ph; tab[n].c = c; n++; }
+    return c;
+}
+/* find() on a compiled phrase, no copies. stop[i]: words[i] may not sit between two phrase words
+ * (a negation, hedge or clause start), computed once per sentence. Same result as find(). */
+static uint64_t find_c(const fp_toks_t *w, const bool *stop, const cphr_t *c) {
+    int n = c->n;
+    if (n == 0) return 0;
+    for (int i = 0; i + n <= w->n; i++) {
+        int k = 0;
+        while (k < n && !strcmp(w->w[i + k], c->w[k])) k++;
+        if (k == n) return ((1ull << n) - 1) << i;
+    }
+    if (n < 2 || c->neg || c->hedge) return 0;
+    for (int i = 0; i < w->n; i++) {
+        if (strcmp(w->w[i], c->w[0])) continue;
+        uint64_t pos = 1ull << i;
+        int j = i, got = 1;
+        for (int q = 1; q < n; q++) {
+            int hit = -1, lim = j + 3 < w->n ? j + 3 : w->n;
+            for (int k = j + 1; k < lim; k++) {
+                if (strcmp(w->w[k], c->w[q])) continue;
+                bool clean = true;
+                for (int x = j + 1; x < k; x++) if (stop[x]) { clean = false; break; }
+                if (clean) { hit = k; break; }
+            }
+            if (hit < 0) break;
+            pos |= 1ull << hit; j = hit; got++;
+        }
+        if (got == n) return pos;
+    }
+    return 0;
+}
+
+static bool ing(const char *w) { size_t L = strlen(w); return L > 4 && !strcmp(w + L - 3, "ing"); }
+
+/* vr.intake._scope: does a negation (neg) / hedge reach raw[i]? */
+static bool scoped(const fp_toks_t *raw, int i, bool neg) {
+    for (int j = i - 1; j > i - 1 - 3 && j >= 0; j--) {
+        const char *w = raw->w[j];
+        if (in(w, CLAUSE)) break;
+        if (neg && in(w, SUBJECT)) break;
+        if (neg && j == i - 1 && ing(w) && ing(raw->w[i]) && !in(w, SEEING)) break;
+        if (in(w, neg ? NEGATION : HEDGE)) return true;
+    }
+    return false;
+}
+
+static int lowbit(uint64_t m) { int i = 0; while (!(m >> i & 1)) i++; return i; }
+static int highbit(uint64_t m) { int i = 63; while (!(m >> i & 1)) i--; return i; }
+static int popc(uint64_t m) { int n = 0; while (m) { m &= m - 1; n++; } return n; }
+
+/* ------------------------------------------------------------------ filled */
+
+static fp_str fget(const fp_filled_t *f, fp_str slot) {
+    for (int i = 0; i < f->n; i++) if (f->slot[i] == slot) return f->val[i];
+    return FP_NONE;
+}
+static void fset(fp_filled_t *f, fp_str slot, fp_str val) {
+    for (int i = 0; i < f->n; i++) if (f->slot[i] == slot) { f->val[i] = val; return; }
+    if (f->n < FP_MAX_FILLED) { f->slot[f->n] = slot; f->val[f->n] = val; f->n++; }
+}
+static bool fhas(const fp_filled_t *f, fp_str slot) { return fget(f, slot) != FP_NONE; }
+
+/* ------------------------------------------------------------------ life rules */
+
+static bool rule_fires(const fp_sess_t *s, const uint8_t *r, const fp_filled_t *f) {
+    for (int i = 0; i < R_NIF(r); i++) { const uint8_t *p = R_PAIR(s, r, i); if (fget(f, rd16(p)) != rd16(p + 2)) return false; }
+    for (int i = 0; i < R_NUNL(r); i++) { const uint8_t *p = R_PAIR(s, r, R_NIF(r) + i); if (fget(f, rd16(p)) == rd16(p + 2)) return false; }
+    return true;
+}
+static bool rule_go_is(const uint8_t *r, fp_card card) {
+    return card >= 0 ? R_GONODE(r) == card : R_GO(r) == FP_EXT_SID(card);
+}
+/* _life_slots (if-blanks) and decisive_slots (if + unless blanks) */
+static bool life_slot(const fp_sess_t *s, int t, fp_str slot, bool with_unless) {
+    for (int i = 0; i < s->trees[t].nrules; i++) {
+        const uint8_t *r = rule(s, t, i);
+        int n = R_NIF(r) + (with_unless ? R_NUNL(r) : 0);
+        for (int k = 0; k < n; k++) if (rd16(R_PAIR(s, r, k)) == slot) return true;
+    }
+    return false;
+}
+static bool life_card(const fp_sess_t *s, int t, fp_card card) {
+    for (int i = 0; i < s->trees[t].nrules; i++) if (rule_go_is(rule(s, t, i), card)) return true;
+    return false;
+}
+static bool is_danger(const fp_sess_t *s, int t, fp_str slot, fp_str val) {
+    for (int i = 0; i < s->trees[t].nrules; i++) {
+        const uint8_t *r = rule(s, t, i);
+        for (int k = 0; k < R_NIF(r); k++) { const uint8_t *p = R_PAIR(s, r, k); if (rd16(p) == slot && rd16(p + 2) == val) return true; }
+    }
+    return false;
+}
+
+/* ------------------------------------------------------------------ fill */
+
+static int slot_index(const fp_sess_t *s, int t, fp_str slot) {
+    for (int i = 0; i < s->trees[t].nslots; i++) if (SL_NAME(slotrec(s, t, i)) == slot) return i;
+    return -1;
+}
+
+/* vr.intake.UNIVERSAL: life words every tree reads the same way, added only to a slot and value the
+ * tree already has ("can't breathe" is not here: in a conscious person it is choking/asthma/allergy) */
+static const char *const UNI_CONSCIOUS_NO[] = {"won't wake", "won't wake up", "will not wake", "can't wake",
+    "can't wake him", "can't wake her", "not waking up", "unresponsive", "unconscious", "passed out",
+    "knocked out", "won't respond", "won't open his eyes", "won't open her eyes", "won't open their eyes",
+    "won't answer", "not answering", "not responding", "out cold", "doesn't open his eyes", "doesn't open her eyes",
+    "doesn't open their eyes", "doesn't respond", "isn't responding", "doesn't answer", 0};
+static const char *const UNI_BREATHING_NO[] = {"not breathing", "stopped breathing", "isn't breathing", "no breathing",
+    "chest isn't rising", "chest not rising", "chest is not rising", 0};
+static const char *const *universal(const char *slot, const char *value) {
+    if (!strcmp(value, "no") && !strcmp(slot, "conscious")) return UNI_CONSCIOUS_NO;
+    if (!strcmp(value, "no") && !strcmp(slot, "breathing")) return UNI_BREATHING_NO;
+    return NULL;
+}
+
+/* position of value vi in order = priority + the other values in file order */
+static int value_rank(const fp_sess_t *s, const uint8_t *sl, int vi) {
+    int nprio = SL_PRIO_N(sl);
+    fp_str vn = V_NAME(SL_VAL(s, sl, vi));
+    for (int k = 0; k < nprio; k++) if (SL_PRIO(s, sl, k) == vn) return k;
+    int rank = nprio;
+    for (int k = 0; k < vi; k++) {
+        fp_str o = V_NAME(SL_VAL(s, sl, k));
+        bool inp = false;
+        for (int q = 0; q < nprio; q++) if (SL_PRIO(s, sl, q) == o) inp = true;
+        if (!inp) rank++;
+    }
+    return rank;
+}
+/* implies[slot][v], or FP_NONE */
+static fp_str implied(const fp_sess_t *s, int t, fp_str slot, fp_str v) {
+    for (int i = 0; i < s->trees[t].nimplies; i++) {
+        const uint8_t *im = s->trees[t].implies + 8 * i;
+        if (rd16(im) == slot && rd16(im + 2) == v) return rd16(im + 4);
+    }
+    return FP_NONE;
+}
+
+/* vr.intake.fill with decisive = decisive_slots(smap) (that is vr.intake._fill). */
+static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out, bool tie_any);
+static void fill_toks(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out) { fill_toks_d(s, t, raw, out, false); }
+/* tie_any: vr.intake.fill(decisive=None): every tie takes the priority value */
+static bool tok_has(const fp_toks_t *t, const char *w);
+static void fill_toks_d(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_filled_t *out, bool tie_any) {
+    fp_toks_t words, plain;
+    stems(raw, true, &words);
+    stems(raw, false, &plain);
+    bool stopw[FP_MAX_TOK], stopp[FP_MAX_TOK];
+    for (int i = 0; i < words.n; i++) {
+        stopw[i] = neg_or_hedge(words.w[i]) || in(words.w[i], CLAUSE_START);
+        stopp[i] = neg_or_hedge(plain.w[i]) || in(plain.w[i], CLAUSE_START);
+    }
+    out->n = 0;
+    uint64_t cuts = 0;
+    for (int i = 0; i < words.n; i++) if (in(words.w[i], CONTRAST)) cuts |= 1ull << i;
+    for (int si = 0; si < s->trees[t].nslots; si++) {
+        const uint8_t *sl = slotrec(s, t, si);
+        int nv = SL_NVAL(sl);
+        int cv[64]; uint64_t cm[64]; int nc = 0;
+        for (int vi = 0; vi < nv && vi < 64; vi++) {
+            const uint8_t *v = SL_VAL(s, sl, vi);
+            uint64_t covered = 0;
+            const char *const *uni = V_NAME(v) == s->sid_no && (SL_NAME(sl) == s->sid_conscious || SL_NAME(sl) == s->sid_breathing)
+                ? universal(S(SL_NAME(sl)), S(V_NAME(v))) : NULL;   /* ids compared, no strcmp per value */
+            int nuni = 0;
+            if (uni) while (uni[nuni]) nuni++;
+            for (int k = 0; k < V_NPH(v) + nuni; k++) {
+                const char *phs;
+                if (k < V_NPH(v)) phs = S(V_PH(s, v, k));
+                else {                                 /* vr.intake.slots_of: UNIVERSAL extras not already listed */
+                    phs = uni[k - V_NPH(v)];
+                    bool dup = false;
+                    for (int q = 0; q < V_NPH(v); q++) if (!strcmp(S(V_PH(s, v, q)), phs)) dup = true;
+                    if (dup) continue;
+                }
+                const cphr_t *cp = k < V_NPH(v) ? phrase_sid(s, V_PH(s, v, k)) : phrase_static(phs);
+                if (!cp || !cp->n) continue;
+                uint64_t hit = cp->n == 1 ? find_c(&plain, stopp, cp) : find_c(&words, stopw, cp);
+                if (!hit) continue;
+                int first = lowbit(hit), last = highbit(hit);
+                if (last + 1 < raw->n && in(raw->w[last + 1], NOT_A_STATE)) continue;
+                if (cp->bleedout && last + 1 < raw->n && !strcmp(raw->w[last + 1], "of")) continue;
+                if (scoped(raw, first, true) && !cp->neg) continue;
+                if (scoped(raw, first, false) && !cp->hedge) continue;
+                covered |= hit;
+            }
+            if (covered) { cv[nc] = vi; cm[nc] = covered; nc++; }
+        }
+        if (!nc) continue;
+        for (int c = 63; c >= 0; c--) {            /* later clause wins over an earlier one */
+            if (!(cuts >> c & 1)) continue;
+            int nl = 0; bool ok = true;
+            for (int i = 0; i < nc; i++) {
+                if (lowbit(cm[i]) > c) nl++;
+                else if (highbit(cm[i]) >= c) ok = false;
+            }
+            if (nl && nl < nc && ok) {
+                int k = 0;
+                for (int i = 0; i < nc; i++) if (lowbit(cm[i]) > c) { cv[k] = cv[i]; cm[k] = cm[i]; k++; }
+                nc = k;
+                break;
+            }
+        }
+        int top = 0;
+        for (int i = 0; i < nc; i++) if (popc(cm[i]) > top) top = popc(cm[i]);
+        /* order = priority + the other values in file order; tied sorted by order.index */
+        int best = -1, best_rank = 1 << 30, ntied = 0;
+        for (int i = 0; i < nc; i++) {
+            if (popc(cm[i]) != top) continue;
+            ntied++;
+            int rank = value_rank(s, sl, cv[i]);
+            if (rank < best_rank) { best_rank = rank; best = cv[i]; }
+        }
+        bool unsure = tok_has(raw, "or") || tok_has(raw, "between") || tok_has(raw, "either");
+        if (ntied > 1 && !tie_any && !unsure) {      /* "leg ... shin": lower_leg implies leg, so the finer */
+            fp_str tv[64]; int nt = 0;                 /* answer says both: drop the coarser tied values */
+            for (int i = 0; i < nc; i++) if (popc(cm[i]) == top) tv[nt++] = V_NAME(SL_VAL(s, sl, cv[i]));
+            bool coarse[64] = {0};
+            for (int i = 0; i < nt; i++) {
+                fp_str seen[16]; int ns = 0; seen[ns++] = tv[i];
+                for (fp_str u = implied(s, t, SL_NAME(sl), tv[i]); u != FP_NONE && truthy(s, u); u = implied(s, t, SL_NAME(sl), u)) {
+                    bool rep = false;
+                    for (int k = 0; k < ns; k++) if (seen[k] == u) rep = true;
+                    if (rep || ns >= 16) break;
+                    seen[ns++] = u;
+                    for (int k = 0; k < nt; k++) if (tv[k] == u) coarse[k] = true;
+                }
+            }
+            int keep = 0;
+            for (int i = 0; i < nt; i++) if (!coarse[i]) keep++;
+            if (keep && keep < nt) {                   /* tied[0] among the finer values, by order */
+                ntied = keep; best = -1; best_rank = 1 << 30;
+                for (int i = 0; i < nc; i++) {
+                    if (popc(cm[i]) != top) continue;
+                    fp_str vn = V_NAME(SL_VAL(s, sl, cv[i]));
+                    bool co = false;
+                    for (int k = 0; k < nt; k++) if (tv[k] == vn && coarse[k]) co = true;
+                    if (co) continue;
+                    int r = value_rank(s, sl, cv[i]);
+                    if (r < best_rank) { best_rank = r; best = cv[i]; }
+                }
+            }
+        }
+        if (ntied > 1 && !tie_any && !life_slot(s, t, SL_NAME(sl), true)) continue;   /* two equally strong answers: ask */
+        fset(out, SL_NAME(sl), V_NAME(SL_VAL(s, sl, best)));
+    }
+}
+
+void fp_fill(const fp_sess_t *s, int t, const char *text, fp_filled_t *out) {
+    fp_toks_t raw;
+    fp_tokenize(text, &raw);
+    fill_toks(s, t, &raw, out);
+}
+
+/* vr.intake.SOUNDALIKE */
+static const char *soundalike(const char *w) {
+    static const char *const P[][2] = {{"breathing", "bleeding"}, {"breathe", "bleed"}, {"breath", "blood"}, {0, 0}};
+    for (int i = 0; P[i][0]; i++) {
+        if (!strcmp(w, P[i][0])) return P[i][1];
+        if (!strcmp(w, P[i][1])) return P[i][0];
+    }
+    return NULL;
+}
+static bool tok_has(const fp_toks_t *t, const char *w) {
+    for (int i = 0; i < t->n; i++) if (!strcmp(t->w[i], w)) return true;
+    return false;
+}
+
+/* vr.intake.fill_nbest */
+static void fill_nbest(const fp_sess_t *s, int t, const char *const *hyps, int nh, fp_filled_t *out) {
+    out->n = 0;
+    if (nh <= 0) return;
+    fp_fill(s, t, hyps[0], out);
+    fp_toks_t top, h;
+    fp_tokenize(hyps[0], &top);
+    for (int i = 1; i < nh; i++) {
+        fp_tokenize(hyps[i], &h);
+        bool twin = false;
+        for (int k = 0; k < h.n && !twin; k++) {
+            if (tok_has(&top, h.w[k])) continue;   /* new = words of h not in the top guess */
+            const char *a = soundalike(h.w[k]);
+            if (a && tok_has(&top, a)) twin = true;
+        }
+        if (twin) continue;
+        fp_filled_t f;
+        fill_toks(s, t, &h, &f);
+        for (int k = 0; k < f.n; k++)
+            if (!fhas(out, f.slot[k]) && is_danger(s, t, f.slot[k], f.val[k])) fset(out, f.slot[k], f.val[k]);
+    }
+}
+
+/* ------------------------------------------------------------------ walk */
+
+/* vr.intake._answer: the choice a filled value takes, climbing `implies`. Returns the qch record or NULL. */
+static const uint8_t *q_answer(const fp_sess_t *s, int t, const uint8_t *n, fp_str v) {
+    fp_str seen[16]; int ns = 0;
+    fp_str slot = N_QSLOT(n);
+    while (v != FP_NONE && truthy(s, v)) {
+        for (int i = 0; i < ns; i++) if (seen[i] == v) return NULL;
+        for (int i = 0; i < N_NQCH(n); i++) if (Q_VALUE(N_QCH(s, n, i)) == v) return N_QCH(s, n, i);
+        if (ns < 16) seen[ns++] = v; else return NULL;
+        fp_str nv = FP_NONE;
+        for (int i = 0; i < s->trees[t].nimplies; i++) {
+            const uint8_t *im = s->trees[t].implies + 8 * i;
+            if (rd16(im) == slot && rd16(im + 2) == v) { nv = rd16(im + 4); break; }
+        }
+        v = nv;
+    }
+    return NULL;
+}
+
+/* vr.intake._leads: does some question below `start` already have its blank answered? */
+static bool leads(const fp_sess_t *s, int t, int start, const fp_filled_t *f) {
+    int16_t todo[1024]; int nt = 0;
+    uint8_t seen[FP_MAX_NODES / 8] = {0}; int nseen = 0;
+    todo[nt++] = (int16_t)start;
+    while (nt && nseen < 12 * 8) {
+        int k = todo[--nt];
+        if (k < 0 || (seen[k >> 3] >> (k & 7) & 1)) continue;
+        seen[k >> 3] |= 1 << (k & 7); nseen++;
+        const uint8_t *n = node(s, t, k);
+        if (N_QSLOT(n) != FP_NONE) {
+            const uint8_t *q = q_answer(s, t, n, fget(f, N_QSLOT(n)));
+            if (q && truthy(s, Q_TO(q))) return true;
+        }
+        for (int i = 0; i < N_NCH(n) && nt < 1024; i++) {
+            const uint8_t *c = N_CH(s, n, i);
+            if (C_NEXT(c)) todo[nt++] = C_NODE(c);
+        }
+    }
+    return false;
+}
+
+/* vr.intake._menu_blank: a kit branch (smap menu_slots, default missing_kit) whose answers all lead
+ * to another tree's card (improvised_gear/...) is shown as a card, never asked as a form field. */
+static bool menu_blank(const fp_sess_t *s, int t, int nd, fp_str slot) {
+    const uint8_t *m = s->trees[t].menu;
+    bool menu = false;
+    for (int i = 0; i < rd16(m); i++) if (rd16(m + 2 + 2 * i) == slot) menu = true;
+    if (!menu) return false;
+    const uint8_t *n = node(s, t, nd);
+    int nto = 0;
+    for (int i = 0; i < N_NTILES(n); i++) {
+        const uint8_t *r = N_TILE(s, n, i);
+        if (!truthy(s, T_VALUE(r))) continue;
+        nto++;
+        if (T_NODE(r) >= 0 || !strchr(S(T_TO(r)), '/')) return false;
+    }
+    return nto > 0;
+}
+
+/* vr.intake.walk: follow the tree from its root (start < 0) or from `start`, taking every answer the
+ * blanks give. Returns the card to show; *asking = the blank it asks or FP_NONE. */
+static fp_card walk(const fp_sess_t *s, int t, const fp_filled_t *f, int start, fp_str *asking) {
+    const fp_tree_t *tr = &s->trees[t];
+    int nd = start >= 0 ? start : tr->root;
+    *asking = FP_NONE;
+    if (start < 0) {
+        for (int i = 0; i < tr->nrules; i++) {
+            const uint8_t *r = rule(s, t, i);
+            if (!rule_fires(s, r, f)) continue;
+            if (R_GONODE(r) < 0) return FP_EXT(R_GO(r));   /* another tree's card: open it */
+            nd = R_GONODE(r);                               /* same tree: stop on the card the rule names */
+            const uint8_t *n = node(s, t, nd);              /* ("bleeding a lot from my leg" shows direct */
+            *asking = N_QSLOT(n);                           /* pressure first, not the tourniquet); its */
+            return nd;                                      /* blank stays asked even if heard, so saying
+                                                             * or tapping it again moves on */
+        }
+    }
+    uint8_t seen[FP_MAX_NODES / 8] = {0};
+    while (!(seen[nd >> 3] >> (nd & 7) & 1)) {
+        seen[nd >> 3] |= 1 << (nd & 7);
+        const uint8_t *n = node(s, t, nd);
+        int target = -1;
+        if (N_QSLOT(n) != FP_NONE) {
+            const uint8_t *q = q_answer(s, t, n, fget(f, N_QSLOT(n)));
+            if (q && Q_NODE(q) >= 0 && !leads(s, t, Q_NODE(q), f)) {
+                /* "Bone through the skin" beside the body parts, and the first sentence said so:
+                 * the named finding beats a location that leads nowhere further */
+                int side = -1, nside = 0;
+                for (int i = 0; i < N_NCH(n); i++) {
+                    const uint8_t *c = N_CH(s, n, i);
+                    if (C_HASVAL(c) || C_NODE(c) < 0) continue;
+                    const uint8_t *tn = node(s, t, C_NODE(c));
+                    if (N_QSLOT(tn) == FP_NONE || N_QSLOT(tn) == N_QSLOT(n)) continue;
+                    const uint8_t *tq = q_answer(s, t, tn, fget(f, N_QSLOT(tn)));
+                    if (tq && truthy(s, Q_TO(tq))) { side = C_NODE(c); nside++; }
+                }
+                if (nside == 1) { target = side; goto have_target; }
+            }
+            if (q && truthy(s, Q_TO(q)) && Q_NODE(q) < 0 && strchr(S(Q_TO(q)), '/'))
+                return FP_EXT(Q_TO(q));                     /* the answer leads to another tree's card */
+            if (q && truthy(s, Q_TO(q))) target = Q_NODE(q);
+            if (target < 0) {
+                int hit = -1, nh = 0;
+                for (int i = 0; i < N_NCH(n); i++) {
+                    const uint8_t *c = N_CH(s, n, i);
+                    if (C_HASVAL(c) || !C_NEXT(c) || C_NODE(c) < 0) continue;
+                    if (C_NODE(c) == hit) continue;
+                    if (leads(s, t, C_NODE(c), f)) {
+                        if (nh && hit != C_NODE(c)) { nh = 2; continue; }
+                        hit = C_NODE(c); nh = 1;
+                    }
+                }
+                target = nh == 1 ? hit : -1;
+            }
+            if (target < 0) {
+                if (menu_blank(s, t, nd, N_QSLOT(n))) return nd;   /* a kit branch or a menu: show the card */
+                *asking = N_QSLOT(n); return nd;
+            }
+        have_target:;
+        } else {
+            int hit = -1, nh = 0;
+            for (int i = 0; i < N_NCH(n); i++) {
+                const uint8_t *c = N_CH(s, n, i);
+                if (!C_NEXT(c) || C_NODE(c) < 0) continue;
+                if (leads(s, t, C_NODE(c), f)) {
+                    if (nh && hit != C_NODE(c)) nh = 2;
+                    else if (!nh) { hit = C_NODE(c); nh = 1; }
+                }
+            }
+            if (nh != 1) return nd;
+            target = hit;
+        }
+        nd = target;
+    }
+    return nd;
+}
+
+static void advance(fp_sess_t *s, fp_cand_t *c, int start) { c->card = walk(s, c->tree, &c->filled, start, &c->asking); }
+
+/* ------------------------------------------------------------------ tiles */
+
+int fp_tiles(const fp_sess_t *s, int t, int nd, fp_tile_t *out, int max) {
+    const uint8_t *n = node(s, t, nd);
+    int k = 0;
+    for (int i = 0; i < N_NTILES(n) && k < max; i++, k++) {
+        const uint8_t *r = N_TILE(s, n, i);
+        out[k] = (fp_tile_t){T_LABEL(r), T_VALUE(r), T_TO(r), T_NODE(r)};
+    }
+    return k;
+}
+fp_str fp_node_key(const fp_sess_t *s, int t, int nd) { return N_KEY(node(s, t, nd)); }
+fp_str fp_node_label(const fp_sess_t *s, int t, int nd) { return N_LABEL(node(s, t, nd)); }
+int fp_node_cites(const fp_sess_t *s, int t, int nd, fp_str *out, int max) {
+    const uint8_t *n = node(s, t, nd);
+    int k = 0;
+    for (; k < N_NCITES(n) && k < max; k++) out[k] = N_CITE(s, n, k);
+    return k;
+}
+
+#define MAXT 32
+
+/* ------------------------------------------------------------------ answer_turn */
+
+static bool lower_eq(const char *v, const char *w) {   /* v.strip().lower() == w */
+    while (*v == ' ' || *v == '\t' || *v == '\n' || *v == '\r') v++;
+    size_t L = strlen(v);
+    while (L && (v[L - 1] == ' ' || v[L - 1] == '\t' || v[L - 1] == '\n' || v[L - 1] == '\r')) L--;
+    if (L != strlen(w)) return false;
+    for (size_t i = 0; i < L; i++) { char c = v[i]; if (c >= 'A' && c <= 'Z') c += 32; if (c != w[i]) return false; }
+    return true;
+}
+
+/* vr.intake.answer_turn. Returns the picked tile index or -1; *f is updated. */
+static int answer_turn(const fp_sess_t *s, int t, const char *text, int card, fp_str asking, fp_filled_t *f) {
+    fp_toks_t words, lab;
+    fp_tokenize(text, &words);
+    if (!words.n) return -1;
+    if (words.n <= 2 && in(words.w[words.n - 1], COMMANDS)) return -1;
+    fp_tile_t ts[MAXT];
+    int nt = fp_tiles(s, t, card, ts, MAXT), pick = -1;
+    int num = -2; bool one = true;
+    for (int i = 0; i < words.n; i++) {
+        int v = number(words.w[i]);
+        if (v < 0) continue;
+        if (num == -2) num = v; else if (num != v) one = false;
+    }
+    if (num >= 0 && one && words.n <= 3 && num < nt) {
+        pick = num;
+    } else {
+        fp_filled_t heard;
+        fill_toks(s, t, &words, &heard);
+        for (int k = 0; k < heard.n; k++) if (!fhas(f, heard.slot[k])) fset(f, heard.slot[k], heard.val[k]);
+        fp_str hv = asking != FP_NONE ? fget(&heard, asking) : FP_NONE;
+        bool yesno = words.n <= 3;
+        for (int i = 0; i < words.n && yesno; i++) if (!in(words.w[i], YESNO)) yesno = false;
+        if (hv != FP_NONE) {
+            const uint8_t *n = node(s, t, card);
+            const uint8_t *q = N_QSLOT(n) != FP_NONE ? q_answer(s, t, n, hv) : NULL;
+            fp_str target = q ? Q_TO(q) : FP_NONE;
+            for (int i = 0; i < nt && target != FP_NONE; i++) if (ts[i].to == target) { pick = i; break; }
+        } else if (yesno) {
+            bool y = false, no = false;
+            for (int i = 0; i < words.n; i++) { y |= in(words.w[i], YES); no |= in(words.w[i], NO); }
+            if (!(y && no)) {
+                const char *yn = y ? "yes" : "no";
+                for (int i = 0; i < nt && pick < 0; i++)
+                    if (lower_eq(ts[i].value == FP_NONE ? "" : S(ts[i].value), yn)) pick = i;
+                for (int i = 0; i < nt && pick < 0; i++) {
+                    fp_tokenize(ts[i].label == FP_NONE ? "" : S(ts[i].label), &lab);
+                    if (lab.n && !strcmp(lab.w[0], yn)) pick = i;
+                }
+            }
+        }
+        if (pick < 0) {                             /* the tile's own words: "the leg one" */
+            int hits = 0, h = -1;
+            for (int i = 0; i < nt; i++) {
+                fp_tokenize(ts[i].label == FP_NONE ? "" : S(ts[i].label), &lab);
+                int nonfill = 0; bool sub = true;
+                for (int k = 0; k < lab.n; k++) {
+                    if (in(lab.w[k], FILLER)) continue;
+                    nonfill++;
+                    if (!tok_has(&words, lab.w[k])) sub = false;
+                    for (int q = 0; q < words.n; q++)  /* negated or hedged words name no tile ("not on the face") */
+                        if (!strcmp(words.w[q], lab.w[k]) && (scoped(&words, q, true) || scoped(&words, q, false))) sub = false;
+                }
+                if (nonfill && sub) { hits++; if (h < 0) h = i; }
+            }
+            pick = hits == 1 ? h : -1;
+        }
+    }
+    if (pick >= 0 && asking != FP_NONE && truthy(s, ts[pick].value)) fset(f, asking, ts[pick].value);
+    return pick;
+}
+
+/* ------------------------------------------------------------------ snap */
+
+/* difflib.SequenceMatcher(None, a, b).ratio() for short words (no junk, no autojunk below 200). */
+static int longest(const char *a, int alo, int ahi, const char *b, int blo, int bhi, int *bi, int *bj) {
+    int besti = alo, bestj = blo, bestsize = 0;
+    int j2len[FP_WLEN + 1] = {0}, nj[FP_WLEN + 1];
+    for (int i = alo; i < ahi; i++) {
+        memset(nj, 0, sizeof nj);
+        for (int j = blo; j < bhi; j++) {
+            if (b[j] != a[i]) continue;
+            int k = (j > 0 ? j2len[j - 1] : 0) + 1;
+            nj[j] = k;
+            if (k > bestsize) { besti = i - k + 1; bestj = j - k + 1; bestsize = k; }
+        }
+        memcpy(j2len, nj, sizeof nj);
+    }
+    while (besti > alo && bestj > blo && a[besti - 1] == b[bestj - 1]) { besti--; bestj--; bestsize++; }
+    while (besti + bestsize < ahi && bestj + bestsize < bhi && a[besti + bestsize] == b[bestj + bestsize]) bestsize++;
+    *bi = besti; *bj = bestj;
+    return bestsize;
+}
+static int matches(const char *a, int alo, int ahi, const char *b, int blo, int bhi) {
+    int i, j, k = longest(a, alo, ahi, b, blo, bhi, &i, &j);
+    if (!k) return 0;
+    int m = k;
+    if (alo < i && blo < j) m += matches(a, alo, i, b, blo, j);
+    if (i + k < ahi && j + k < bhi) m += matches(a, i + k, ahi, b, j + k, bhi);
+    return m;
+}
+double fp_ratio(const char *a, const char *b) {
+    int la = (int)strlen(a), lb = (int)strlen(b);
+    if (la + lb == 0) return 1.0;
+    return 2.0 * matches(a, 0, la, b, 0, lb) / (la + lb);
+}
+
+/* vr.form.snap: a near word snaps to the one answer it is clearly closest to. Returns the value or FP_NONE. */
+static fp_str snap(const fp_sess_t *s, const char *text, const fp_cand_t *c) {
+    if (c->asking == FP_NONE || life_slot(s, c->tree, c->asking, false)) return FP_NONE;
+    fp_toks_t heard, words, w;
+    fp_tokenize(text, &words);
+    heard.n = 0;
+    for (int i = 0; i < words.n; i++)                 /* a negated or hedged word never snaps */
+        if (strlen(words.w[i]) >= 4 && !in(words.w[i], FILLER) && !scoped(&words, i, true) && !scoped(&words, i, false))
+            strcpy(heard.w[heard.n++], words.w[i]);
+    fp_tile_t ts[MAXT];
+    int nt = fp_tiles(s, c->tree, c->card, ts, MAXT);
+    fp_str bv[MAXT]; double bs[MAXT]; int nb = 0;
+    int si = slot_index(s, c->tree, c->asking);
+    for (int i = 0; i < nt; i++) {
+        fp_str v = ts[i].value;
+        if (!truthy(s, v)) continue;
+        /* the candidate words: label words + the phrase words of this value (a set: order is irrelevant to the max) */
+        char cw[64][FP_WLEN]; int ncw = 0;
+        fp_tokenize(ts[i].label == FP_NONE ? "" : S(ts[i].label), &w);
+        for (int k = 0; k < w.n && ncw < 64; k++) strcpy(cw[ncw++], w.w[k]);
+        if (si >= 0) {
+            const uint8_t *sl = slotrec(s, c->tree, si);
+            for (int vi = 0; vi < SL_NVAL(sl); vi++) {
+                const uint8_t *vr = SL_VAL(s, sl, vi);
+                if (V_NAME(vr) != v) continue;
+                for (int ph = 0; ph < V_NPH(vr); ph++) {
+                    fp_tokenize(S(V_PH(s, vr, ph)), &w);
+                    for (int k = 0; k < w.n && ncw < 64; k++) strcpy(cw[ncw++], w.w[k]);
+                }
+            }
+        }
+        for (int h = 0; h < heard.n; h++)
+            for (int k = 0; k < ncw; k++) {
+                if (strlen(cw[k]) < 4 || in(cw[k], FILLER)) continue;
+                double r = fp_ratio(heard.w[h], cw[k]);
+                int at = -1;
+                for (int q = 0; q < nb; q++) if (bv[q] == v) at = q;
+                if (r > (at < 0 ? 0.0 : bs[at])) {
+                    if (at < 0) { at = nb++; bv[at] = v; }
+                    bs[at] = r;
+                }
+            }
+    }
+    if (!nb) return FP_NONE;
+    int top = 0, second = -1;                       /* sorted by -score, stable */
+    for (int q = 1; q < nb; q++) if (bs[q] > bs[top]) top = q;
+    for (int q = 0; q < nb; q++) if (q != top && (second < 0 || bs[q] > bs[second])) second = q;
+    if (bs[top] < 0.80 || (nb > 1 && bs[top] - bs[second] < 0.10)) return FP_NONE;
+    return bv[top];
+}
+
+/* ------------------------------------------------------------------ session */
+
+struct fp_rank_ws {
+    struct { int32_t parent; fp_card card; fp_str slot, val, asking; uint8_t n, plain; double ev; } q[8192];
+    uint64_t seen[4096];
+    struct { uint8_t cand; fp_card card; double score; int order; bool life; } out[512];
+};
+
+bool fp_sess_init(fp_sess_t *s, const void *blob, size_t len) {
+    memset(s, 0, sizeof *s);
+    if (!fp_open(&s->pk, blob, len)) return false;
+    s->ntrees = s->pk.ntrees < FP_MAX_TREES ? s->pk.ntrees : FP_MAX_TREES;
+    for (int i = 0; i < s->ntrees; i++) {
+        const uint8_t *r = s->pk.b + rd32(s->pk.b + rd32(s->pk.b + 16) + 4 * i);
+        fp_tree_t *t = &s->trees[i];
+        t->rec = r; t->name = rd16(r); t->title = rd16(r + 2); t->root = rd16(r + 4); t->nnodes = rd16(r + 6);
+        t->nslots = rd16(r + 8); t->nrules = rd16(r + 10); t->nimplies = rd16(r + 12); t->nlifew = rd16(r + 14);
+        t->nodes = AT(rd32(r + 16)); t->slots = AT(rd32(r + 20)); t->rules = AT(rd32(r + 24));
+        t->implies = AT(rd32(r + 28)); t->lifew = AT(rd32(r + 32)); t->menu = AT(rd32(r + 36));
+        if (t->nnodes > FP_MAX_NODES || !t->nnodes) return false;
+    }
+    s->ws = malloc(sizeof *s->ws);
+    s->phr = calloc(s->pk.nstr, sizeof(cphr_t *));
+    int i1 = fp_find_str(&s->pk, "no"), i2 = fp_find_str(&s->pk, "conscious"), i3 = fp_find_str(&s->pk, "breathing");
+    s->sid_no = i1 < 0 ? FP_NONE : (fp_str)i1;
+    s->sid_conscious = i2 < 0 ? FP_NONE - 1 : (fp_str)i2;
+    s->sid_breathing = i3 < 0 ? FP_NONE - 1 : (fp_str)i3;
+    return s->ws != NULL && s->phr != NULL;
+}
+
+void fp_sess_free(fp_sess_t *s) {
+    free(s->ws); s->ws = NULL;
+    if (s->phr) { cphr_t **c = s->phr; for (uint32_t i = 0; i < s->pk.nstr; i++) free(c[i]); free(c); s->phr = NULL; }
+}
+void fp_reset(fp_sess_t *s) { s->ncands = 0; }
+
+int fp_tree_by_name(const fp_sess_t *s, const char *name) {
+    for (int i = 0; i < s->ntrees; i++) if (!strcmp(S(s->trees[i].name), name)) return i;
+    return -1;
+}
+int fp_node_by_key(const fp_sess_t *s, int t, const char *key) {
+    for (int i = 0; i < s->trees[t].nnodes; i++) if (!strcmp(S(N_KEY(node(s, t, i))), key)) return i;
+    return -1;
+}
+
+bool fp_resolve(const fp_sess_t *s, int t, fp_card card, int *ot, int *on) {
+    if (card >= 0) { *ot = t; *on = card; return true; }
+    const char *k = S(FP_EXT_SID(card)), *sl = strchr(k, '/');
+    if (!sl) return false;
+    char name[96];
+    size_t L = (size_t)(sl - k) < sizeof name - 1 ? (size_t)(sl - k) : sizeof name - 1;
+    memcpy(name, k, L); name[L] = 0;
+    int tt = fp_tree_by_name(s, name);
+    if (tt < 0) return false;
+    int nn = fp_node_by_key(s, tt, sl + 1);
+    if (nn < 0) return false;
+    *ot = tt; *on = nn;
+    return true;
+}
+
+/* vr.form._key / topic_phrases / names_tree: condition names that name a tree outright ("choking",
+ * "carbon monoxide"); phrases from the pack (smap topic_words + the Python's defaults + the name). */
+static void topic_key(const char *w, char *out) {         /* choke/choking/choked -> chok; be != bee */
+    fp_stem(w, true, out);
+    size_t L = strlen(out);
+    if (L >= 5 && out[L - 1] == 'e') out[L - 1] = 0;
+}
+static bool heard_topic(const fp_sess_t *s, int t, const fp_toks_t *heard) {
+    char hk[FP_MAX_TOK][FP_WLEN], pk[FP_MAX_TOK][FP_WLEN];
+    for (int i = 0; i < heard->n; i++) topic_key(heard->w[i], hk[i]);
+    const uint8_t *m = s->trees[t].menu;
+    const uint8_t *tp = m + 2 + 2 * rd16(m);
+    fp_toks_t w;
+    for (int i = 0; i < rd16(tp); i++) {             /* every word of one phrase, in order, no gap */
+        fp_tokenize(S(rd16(tp + 2 + 2 * i)), &w);
+        if (!w.n) continue;
+        for (int j = 0; j < w.n; j++) topic_key(w.w[j], pk[j]);
+        for (int st = 0; st + w.n <= heard->n; st++) {
+            int k = 0;
+            while (k < w.n && !strcmp(hk[st + k], pk[k])) k++;
+            if (k == w.n) return true;
+        }
+    }
+    return false;
+}
+
+/* vr.form.name_spans + named_trees: trees named outright; a name heard only inside another tree's
+ * longer name does not count ("heat stroke" names heat, not stroke). out[t] for every tree. */
+static void named_trees(const fp_sess_t *s, const fp_toks_t *heard, bool *out) {
+    static struct { uint8_t t; uint8_t a, b; } sp[256];
+    int nsp = 0;
+    char hk[FP_MAX_TOK][FP_WLEN], pk[FP_MAX_TOK][FP_WLEN];
+    for (int i = 0; i < heard->n; i++) topic_key(heard->w[i], hk[i]);
+    fp_toks_t w;
+    for (int t = 0; t < s->ntrees; t++) {
+        out[t] = false;
+        const uint8_t *m = s->trees[t].menu, *tp = m + 2 + 2 * rd16(m);
+        for (int i = 0; i < rd16(tp); i++) {              /* first contiguous match of each phrase */
+            fp_tokenize(S(rd16(tp + 2 + 2 * i)), &w);
+            if (!w.n) continue;
+            for (int j = 0; j < w.n; j++) topic_key(w.w[j], pk[j]);
+            for (int st = 0; st + w.n <= heard->n; st++) {
+                int k = 0;
+                while (k < w.n && !strcmp(hk[st + k], pk[k])) k++;
+                if (k == w.n) {
+                    if (nsp < 256) { sp[nsp].t = (uint8_t)t; sp[nsp].a = (uint8_t)st; sp[nsp].b = (uint8_t)(st + w.n); nsp++; }
+                    break;
+                }
+            }
+        }
+    }
+    for (int i = 0; i < nsp; i++) {
+        bool inside = false;
+        for (int j = 0; j < nsp && !inside; j++)
+            if (sp[j].t != sp[i].t && sp[j].a <= sp[i].a && sp[i].b <= sp[j].b && (sp[j].b - sp[j].a) > (sp[i].b - sp[i].a))
+                inside = true;
+        if (!inside) out[sp[i].t] = true;
+    }
+}
+
+static int rule_hit(const fp_sess_t *s, const fp_cand_t *c);
+/* vr.live._handles_life: the blanks heard meet one of the tree's own rules on breathing/conscious
+ * ("stove fumes, passed out, not breathing": wfa-co's own rule, protect yourself before CPR) */
+static bool handles_life(const fp_sess_t *s, int t, const fp_filled_t *f) {
+    fp_cand_t c;
+    memset(&c, 0, sizeof c);
+    c.tree = (uint8_t)t; c.filled = *f;
+    int go = rule_hit(s, &c);
+    if (go < 0) return false;
+    fp_str g = R_GO(rule(s, t, go));
+    if (!strncmp(S(g), "wfa-cpr/", 8)) return false;   /* the shared not-breathing -> CPR rule is CPR's own */
+    for (int i = 0; i < s->trees[t].nrules; i++) {
+        const uint8_t *r = rule(s, t, i);
+        if (R_GO(r) != g) continue;
+        for (int k = 0; k < R_NIF(r); k++) {
+            const char *sn = S(rd16(R_PAIR(s, r, k)));
+            if (!strcmp(sn, "conscious") || !strcmp(sn, "breathing")) return true;
+        }
+    }
+    return false;
+}
+
+/* vr.live._own_words: was this blank filled by one of the tree's own phrases, not by a shared life
+ * phrase it happens to list too ("won't respond" in diabetic is not diabetic's own problem, s021) */
+static bool own_words(const fp_sess_t *s, int t, const fp_toks_t *raw, fp_str slot, fp_str value) {
+    fp_toks_t stw, pw, p, u;
+    stems(raw, true, &stw);
+    int si = slot_index(s, t, slot);
+    if (si < 0) return false;
+    const uint8_t *sl = slotrec(s, t, si);
+    for (int vi = 0; vi < SL_NVAL(sl); vi++) {
+        const uint8_t *v = SL_VAL(s, sl, vi);
+        if (V_NAME(v) != value) continue;
+        for (int k = 0; k < V_NPH(v); k++) {
+            fp_tokenize(S(V_PH(s, v, k)), &pw);
+            stems(&pw, true, &p);
+            if (!p.n) continue;
+            bool life = false;                       /* one of the UNIVERSAL phrases (stemmed)? */
+            const char *const *lists[2] = {UNI_CONSCIOUS_NO, UNI_BREATHING_NO};
+            for (int l = 0; l < 2 && !life; l++)
+                for (int q = 0; lists[l][q] && !life; q++) {
+                    fp_toks_t ut;
+                    fp_tokenize(lists[l][q], &ut);
+                    stems(&ut, true, &u);
+                    if (u.n != p.n) continue;
+                    int z = 0;
+                    while (z < u.n && !strcmp(u.w[z], p.w[z])) z++;
+                    if (z == u.n) life = true;
+                }
+            if (!life && find(&stw, &p)) return true;
+        }
+        break;
+    }
+    return false;
+}
+
+/* vr.live._shared_slots: the CPR tree's own blanks and any blank 3+ trees carry say nothing about
+ * WHICH tree ("bleeding a lot and not breathing" must not open wfa-co/treat_now) */
+static bool shared_slot(const fp_sess_t *s, fp_str slot) {
+    int count = 0;
+    for (int t = 0; t < s->ntrees; t++) {
+        if (slot_index(s, t, slot) < 0) continue;
+        if (!strcmp(S(s->trees[t].name), "wfa-cpr")) return true;
+        if (++count >= 3) return true;
+    }
+    return false;
+}
+
+/* vr.live.INJURY_WORDS: with one of these a place is an injury ("broke my leg"), not a bare place */
+static const char *const INJURY_WORDS[] = {"broke", "broken", "break", "snap", "snapped", "crack", "cracked", "crooked",
+    "bent", "deformed", "twisted", "twist", "rolled", "sprained", "dislocated", "whacked", "hit", "blow", "bump",
+    "bumped", "smashed", "crushed", "fell", "fall", "landed", "stubbed", "jammed", "hurt", "hurts", "pain", "painful",
+    "sore", "swollen", "swelling", "bruised", "cut", "stake", "poked", "stabbed", "impaled", "stuck", "tripped", "trip",
+    "slipped", "ballooning", "limping", "limp", "holding", "grabs", "grabbing", "clutching", "lift", "step", "weight", 0};
+
+/* vr.live.keep_trees */
+int fp_keep_trees(fp_sess_t *s, const char *const *hyps, int nh, int k) {
+    int sc[FP_MAX_TREES], idx[FP_MAX_TREES], nm[FP_MAX_TREES], raw[FP_MAX_TREES], n = 0;
+    bool rl[FP_MAX_TREES], heard[FP_MAX_TREES], ownv[FP_MAX_TREES], lifev[FP_MAX_TREES], hurt = false;
+    fp_toks_t h0w;
+    {
+        fp_toks_t h0;
+        fp_tokenize(nh > 0 ? hyps[0] : "", &h0);
+        named_trees(s, &h0, heard);
+        if (nh <= 0) memset(heard, 0, sizeof heard);
+        for (int i = 0; i < h0.n && nh > 0; i++) if (in(h0.w[i], INJURY_WORDS)) hurt = true;
+        h0w = h0;
+    }
+    for (int t = 0; t < s->ntrees; t++) {
+        fp_filled_t f, tie;                          /* fill_nbest's blanks + every slot whose words were */
+        fill_nbest(s, t, hyps, nh, &f);              /* heard, ties too ("leg" vs "shin"): tree evidence */
+        if (nh > 0) {
+            fp_toks_t raw;
+            fp_tokenize(hyps[0], &raw);
+            fill_toks_d(s, t, &raw, &tie, true);
+            for (int i = 0; i < tie.n; i++) if (!fhas(&f, tie.slot[i])) fset(&f, tie.slot[i], tie.val[i]);
+        }
+        bool named = heard[t];
+        if (!f.n && !named) continue;
+        const uint8_t *m = s->trees[t].menu, *tp = m + 2 + 2 * rd16(m), *fl = tp + 2 + 2 * rd16(tp), *lc = fl + 2;
+        bool home = rd16(fl) & 1;                    /* the shared life blanks (awake, breathing) score */
+        if (home) {                                  /* CPR ranks only on a life value; its own cause alone */
+            bool lifev = false;                      /* (hypothermia, drowning) says nothing */
+            for (int i = 0; i < f.n; i++) {
+                const char *sn = S(f.slot[i]);
+                if ((!strcmp(sn, "conscious") || !strcmp(sn, "breathing")) && !strcmp(S(f.val[i]), "no")) lifev = true;
+            }
+            if (!lifev) f.n = 0;
+        }
+        int score = 0;
+        for (int i = 0; i < f.n; i++) {               /* only in their home tree, CPR ("he's not breathing") */
+            const char *sn = S(f.slot[i]);
+            bool uni = !strcmp(sn, "conscious") || !strcmp(sn, "breathing");
+            if (uni) score += home && !strcmp(S(f.val[i]), "no") ? 2 : 0;   /* only the life value, only CPR */
+            else score += life_slot(s, t, f.slot[i], false) ? 2 : 1;
+        }
+        bool nonplace = false, own = named;          /* a bare place ("toe", "his leg") is no problem yet */
+        for (int i = 0; i < f.n; i++) {
+            const char *sn = S(f.slot[i]);
+            bool place = false;
+            for (int q = 0; q < rd16(lc); q++) if (rd16(lc + 2 + 2 * q) == f.slot[i]) place = true;
+            if (!place) nonplace = true;
+            if (!own && !place && strcmp(sn, "conscious") && strcmp(sn, "breathing") && !shared_slot(s, f.slot[i]) &&
+                own_words(s, t, &h0w, f.slot[i], f.val[i])) own = true;
+        }
+        rl[n] = named || (score > 0 && (hurt || nonplace));
+        bool handles = !home && own && handles_life(s, t, &f);   /* its own life rule beats the CPR jump */
+        int v = score + (named ? 3 : 0) + (handles ? 3 : 0);
+        fp_cand_t tmp; memset(&tmp, 0, sizeof tmp); tmp.tree = (uint8_t)t; tmp.filled = f;
+        lifev[n] = rule_hit(s, &tmp) >= 0;           /* holds a life value: never cut (vr a105c95) */
+        sc[n] = v; raw[n] = v; idx[n] = t; nm[n] = named || handles; ownv[n] = own; n++;
+    }
+    bool anyreal = false;                            /* only a place was heard: no problem yet, no card */
+    for (int i = 0; i < n; i++) if (rl[i]) anyreal = true;
+    if (!anyreal) n = 0;
+    if (k > FP_MAX_CANDS) k = FP_MAX_CANDS;
+    bool any = false;
+    for (int i = 0; i < n; i++) if (sc[i]) any = true;
+    /* the shares (p) as before the cut: the raw scores of the old top k (the halving and the cut only pick
+     * the tiles, they never push a leader past SURE) */
+    int tot = 0;
+    {
+        int o[FP_MAX_TREES], m = 0;
+        for (int i = 0; i < n; i++) if (sc[i] || !any) o[m++] = i;
+        for (int i = 1; i < m; i++)
+            for (int j = i; j > 0 && (nm[o[j]] > nm[o[j - 1]] || (nm[o[j]] == nm[o[j - 1]] && sc[o[j]] > sc[o[j - 1]])); j--) {
+                int a = o[j]; o[j] = o[j - 1]; o[j - 1] = a;
+            }
+        for (int i = 0; i < m && i < k; i++) tot += sc[o[i]];
+        if (!tot) tot = 1;
+    }
+    bool anyown = false;                             /* a tree heard its own problem: place-only matches count half */
+    for (int i = 0; i < n; i++) if (ownv[i]) anyown = true;
+    if (anyown) for (int i = 0; i < n; i++) if (ownv[i] || lifev[i]) sc[i] *= 2;
+    if (any) {                                       /* when any tree scores, drop the ones that scored 0 */
+        int k2 = 0;
+        for (int i = 0; i < n; i++) if (sc[i]) {
+            sc[k2] = sc[i]; idx[k2] = idx[i]; nm[k2] = nm[i]; raw[k2] = raw[i]; lifev[k2] = lifev[i]; k2++;
+        }
+        n = k2;
+    }
+    for (int i = 1; i < n; i++)                      /* two tiers: named trees first, then score desc, */
+        for (int j = i; j > 0 && (nm[j] > nm[j - 1] || (nm[j] == nm[j - 1] && sc[j] > sc[j - 1])); j--) {
+            int a = sc[j]; sc[j] = sc[j - 1]; sc[j - 1] = a;     /* then tree order (stable) */
+            a = idx[j]; idx[j] = idx[j - 1]; idx[j - 1] = a;
+            a = nm[j]; nm[j] = nm[j - 1]; nm[j - 1] = a;
+            a = raw[j]; raw[j] = raw[j - 1]; raw[j - 1] = a;
+            bool b = lifev[j]; lifev[j] = lifev[j - 1]; lifev[j - 1] = b;
+        }
+    int best = n ? sc[0] : 0, m = 0;                 /* a weak side match never takes a tile: keep the best two, */
+    for (int i = 0; i < n; i++)                      /* any tree at a third of the leader, any holding a life value */
+        if (i <= 1 || 3 * sc[i] >= best || lifev[i]) { sc[m] = sc[i]; idx[m] = idx[i]; raw[m] = raw[i]; m++; }
+    n = m;
+    if (n > k) n = k;
+    s->ncands = n;
+    for (int i = 0; i < n; i++) {
+        fp_cand_t *c = &s->cands[i];
+        memset(c, 0, sizeof *c);
+        c->tree = (uint8_t)idx[i]; c->p = (double)raw[i] / tot; c->card = s->trees[idx[i]].root; c->asking = FP_NONE;
+    }
+    return n;
+}
+
+static fp_result_t res(int kind, int tree, fp_card card) { return (fp_result_t){kind, (uint8_t)tree, card}; }
+
+/* ---- several problems (TALK + WIN_R): vr.form.split_tabs at 65ea22a, tabs sorted by urgency ---- */
+static int rule_hit(const fp_sess_t *s, const fp_cand_t *c);
+static const char *const LIFE_TAB_ORDER[] = {"wfa-bleeding", "wfa-cpr", "wfa-choking", "wfa-allergy", 0};
+static const char *const URGENT_TREES[] = {"wfa-head-spine", "burns", "wfa-shock", 0};
+static const char *const HELPER_TREES[] = {"improvised_gear", 0};
+#define LIFE_OTHER 4
+#define LIFE_NAMED 5
+#define LIFE_NONE 9
+
+static void card_str(const fp_sess_t *s, const fp_cand_t *c, fp_card card, char *out, size_t cap) {
+    if (card >= 0) snprintf(out, cap, "%s", S(N_KEY(node(s, c->tree, card))));
+    else snprintf(out, cap, "%s", S(FP_EXT_SID(card)));
+}
+/* vr.form._life_target: the life card this candidate stands on or its rule jumps to, "tree/card" */
+static bool life_target(const fp_sess_t *s, const fp_cand_t *c, char *out, size_t cap) {
+    char go[160];
+    int r = rule_hit(s, c);
+    bool local;
+    if (r >= 0) {
+        const uint8_t *ru = rule(s, c->tree, r);
+        snprintf(go, sizeof go, "%s", S(R_GO(ru)));
+        local = R_GONODE(ru) >= 0;
+    } else if (life_card(s, c->tree, c->card)) {
+        card_str(s, c, c->card, go, sizeof go);
+        local = c->card >= 0;
+    } else return false;
+    if (!local && strchr(go, '/')) snprintf(out, cap, "%s", go);
+    else snprintf(out, cap, "%s/%s", S(s->trees[c->tree].name), go);
+    return true;
+}
+static bool in_list(const char *w, const char *const *l, int *at) {
+    for (int i = 0; l[i]; i++) if (!strcmp(w, l[i])) { if (at) *at = i; return true; }
+    return false;
+}
+static bool heard_topic(const fp_sess_t *s, int t, const fp_toks_t *heard);
+/* vr.form.life_rank: 0 severe bleeding, 1 CPR, 2 choking, 3 anaphylaxis, 4 other life card,
+ * 5 a life topic named with no rule fired, 6-8 head/spine, burns, shock, 9 the rest */
+static int life_rank(const fp_sess_t *s, const fp_cand_t *c) {
+    char go[200]; int at;
+    if (life_target(s, c, go, sizeof go)) {
+        char tr[96]; const char *sl = strchr(go, '/');
+        size_t L = sl ? (size_t)(sl - go) : strlen(go); if (L >= sizeof tr) L = sizeof tr - 1;
+        memcpy(tr, go, L); tr[L] = 0;
+        return in_list(tr, LIFE_TAB_ORDER, &at) ? at : LIFE_OTHER;
+    }
+    const char *nm = S(s->trees[c->tree].name);
+    if (in_list(nm, LIFE_TAB_ORDER, NULL) && c->heard[0]) {
+        fp_toks_t h; fp_tokenize(c->heard, &h);
+        if (heard_topic(s, c->tree, &h)) return LIFE_NAMED;
+    }
+    return in_list(nm, URGENT_TREES, &at) ? LIFE_NAMED + 1 + at : LIFE_NONE;
+}
+/* vr.form._without_life: a copy that drops every life rule that fired (and the shared awake /
+ * breathing blanks), walked again from the root; still on a life card -> its root, nothing asked */
+static fp_cand_t without_life(fp_sess_t *s, const fp_cand_t *c) {
+    fp_cand_t d = *c;
+    fp_str drop[FP_MAX_FILLED]; int nd = 0;
+    for (int i = 0; i < s->trees[c->tree].nrules; i++) {
+        const uint8_t *r = rule(s, c->tree, i);
+        bool all = true;
+        for (int k = 0; k < R_NIF(r) && all; k++) { const uint8_t *pp = R_PAIR(s, r, k); if (fget(&c->filled, rd16(pp)) != rd16(pp + 2)) all = false; }
+        if (!all) continue;
+        for (int k = 0; k < R_NIF(r) && nd < FP_MAX_FILLED; k++) drop[nd++] = rd16(R_PAIR(s, r, k));
+    }
+    d.filled.n = 0;
+    for (int i = 0; i < c->filled.n; i++) {
+        bool dr = c->filled.slot[i] == s->sid_conscious || c->filled.slot[i] == s->sid_breathing;
+        for (int k = 0; k < nd; k++) if (drop[k] == c->filled.slot[i]) dr = true;
+        if (!dr) fset(&d.filled, c->filled.slot[i], c->filled.val[i]);
+    }
+    advance(s, &d, -1);
+    char go[200];
+    if (life_target(s, &d, go, sizeof go)) { d.card = s->trees[d.tree].root; d.asking = FP_NONE; }
+    return d;
+}
+static bool own_ev(const fp_sess_t *s, const fp_cand_t *pool, const int *idx, int n, int ci) {
+    const fp_cand_t *c = &pool[ci];                  /* blanks no OTHER candidate in the pool even has */
+    for (int k = 0; k < c->filled.n; k++) {
+        bool theirs = false;
+        for (int o = 0; o < n && !theirs; o++)
+            if (idx[o] != ci && slot_index(s, pool[idx[o]].tree, c->filled.slot[k]) >= 0) theirs = true;
+        if (!theirs) return true;
+    }
+    return false;
+}
+static bool has_location(const fp_sess_t *s, int t) {
+    static const char *const L[] = {"body_part", "side", "location", "where", 0};
+    for (int i = 0; i < s->trees[t].nslots; i++) if (in_list(S(SL_NAME(slotrec(s, t, i))), L, NULL)) return true;
+    return false;
+}
+
+int fp_split_tabs(fp_sess_t *s, fp_tab_t *tabs, int max) {
+    static fp_cand_t pool[3 * FP_MAX_CANDS];        /* originals 0..n-1, then copies */
+    int n = s->ncands, np = n;
+    for (int i = 0; i < n; i++) pool[i] = s->cands[i];
+    char tree_of[FP_MAX_CANDS][200]; int ntr = 0, mem[FP_MAX_CANDS][FP_MAX_CANDS], nmem[FP_MAX_CANDS] = {0};
+    int plain[3 * FP_MAX_CANDS], npl = 0, life[FP_MAX_CANDS], nlife = 0;
+    for (int i = 0; i < n; i++) {
+        char go[200];
+        if (life_target(s, &pool[i], go, sizeof go)) {
+            char *sl = strchr(go, '/'); if (sl) *sl = 0;
+            int t = -1;
+            for (int k = 0; k < ntr; k++) if (!strcmp(tree_of[k], go)) t = k;
+            if (t < 0) { t = ntr++; snprintf(tree_of[t], sizeof tree_of[t], "%s", go); }
+            mem[t][nmem[t]++] = i;
+        } else plain[npl++] = i;
+    }
+    for (int t = 0; t < ntr; t++) {
+        int lead = mem[t][0];
+        for (int k = 0; k < nmem[t]; k++) if (!strcmp(S(s->trees[pool[mem[t][k]].tree].name), tree_of[t])) { lead = mem[t][k]; break; }
+        life[nlife++] = lead;
+        for (int k = 0; k < nmem[t]; k++) {
+            int ci = mem[t][k];
+            if (ci != lead || strcmp(tree_of[t], S(s->trees[pool[ci].tree].name))) { pool[np] = without_life(s, &pool[ci]); plain[npl++] = np++; }
+        }
+    }
+    fp_toks_t words; words.n = 0;
+    if (n && s->cands[0].heard[0]) fp_tokenize(s->cands[0].heard, &words);
+    bool hurt = false;
+    for (int i = 0; i < words.n; i++) if (in_list(words.w[i], INJURY_WORDS, NULL)) hurt = true;
+    int all[4 * FP_MAX_CANDS], na = 0;              /* plain + life, for "others" */
+    for (int i = 0; i < npl; i++) all[na++] = plain[i];
+    for (int i = 0; i < nlife; i++) all[na++] = life[i];
+    int own[3 * FP_MAX_CANDS], nown = 0;
+    for (int i = 0; i < npl; i++) {
+        int ci = plain[i]; const fp_cand_t *c = &pool[ci];
+        if (in_list(S(s->trees[c->tree].name), HELPER_TREES, NULL)) continue;
+        bool copy = ci >= n;
+        bool ok = own_ev(s, pool, all, na, ci) || (words.n && heard_topic(s, c->tree, &words)) ||
+                  (copy && (c->filled.n || (hurt && has_location(s, c->tree))));
+        if (!ok) continue;
+        bool keep = copy || c->card != s->trees[c->tree].root;
+        if (!keep) { keep = true; for (int k = 0; k < nlife; k++) if (pool[life[k]].tree == c->tree) keep = false; }
+        if (keep) own[nown++] = ci;
+    }
+    int cand[4 * FP_MAX_CANDS], rk[4 * FP_MAX_CANDS], nc = 0;
+    for (int i = 0; i < nlife; i++) { cand[nc] = life[i]; rk[nc] = life_rank(s, &pool[life[i]]); nc++; }
+    for (int i = 0; i < nown; i++) { cand[nc] = own[i]; rk[nc] = life_rank(s, &pool[own[i]]); nc++; }
+    for (int i = 1; i < nc; i++)                    /* stable sort by rank */
+        for (int j = i; j > 0 && rk[j] < rk[j - 1]; j--) { int t = rk[j]; rk[j] = rk[j - 1]; rk[j - 1] = t; t = cand[j]; cand[j] = cand[j - 1]; cand[j - 1] = t; }
+    int leads[8], nl = 0; char seen[16][200]; int nseen = 0;
+    for (int i = 0; i < nc && nl < 5; i++) {
+        const fp_cand_t *c = &pool[cand[i]];
+        char at[200], key[160];
+        card_str(s, c, c->card, key, sizeof key);
+        if (c->card < 0) snprintf(at, sizeof at, "%s", key); else snprintf(at, sizeof at, "%s/%s", S(s->trees[c->tree].name), key);
+        bool dup = false;
+        for (int k = 0; k < nseen; k++) if (!strcmp(seen[k], at)) dup = true;
+        if (c->card != s->trees[c->tree].root && dup) continue;
+        if (nseen < 16) snprintf(seen[nseen++], sizeof seen[0], "%s", at);
+        leads[nl++] = cand[i];
+    }
+    if (nl < 2 || max < 1) {
+        tabs[0].n = (uint8_t)n;
+        for (int i = 0; i < n; i++) tabs[0].c[i] = s->cands[i];
+        return 1;
+    }
+    if (nl > max) nl = max;
+    for (int i = 0; i < nl; i++) { tabs[i].n = 1; tabs[i].c[0] = pool[leads[i]]; }
+    int home = 0;
+    for (int i = 0; i < nl; i++) { char g[200]; if (!life_target(s, &pool[leads[i]], g, sizeof g)) { home = i; break; } }
+    for (int i = 0; i < npl; i++) {                 /* rest: plain not a lead, and no tab of its tree */
+        int ci = plain[i]; bool lead = false, named = false;
+        for (int k = 0; k < nl; k++) { if (leads[k] == ci) lead = true; if (pool[leads[k]].tree == pool[ci].tree) named = true; }
+        if (lead || named || tabs[home].n >= FP_MAX_CANDS) continue;
+        tabs[home].c[tabs[home].n++] = pool[ci];
+    }
+    return nl;
+}
+
+void fp_keep_tab(fp_sess_t *s, const fp_tab_t *tab) {
+    for (int i = 0; i < tab->n; i++) s->cands[i] = tab->c[i];
+    s->ncands = tab->n;
+}
+
+int fp_tab_rank(fp_sess_t *s, const fp_cand_t *c) { return life_rank(s, c); }
+bool fp_tab_life(fp_sess_t *s, const fp_cand_t *c) { char g[200]; return life_target(s, c, g, sizeof g); }
+
+static int rule_hit(const fp_sess_t *s, const fp_cand_t *c) {
+    for (int i = 0; i < s->trees[c->tree].nrules; i++) if (rule_fires(s, rule(s, c->tree, i), &c->filled)) return i;
+    return -1;
+}
+
+static fp_card rule_card(const fp_sess_t *s, int t, int i) {
+    const uint8_t *r = rule(s, t, i);
+    return R_GONODE(r) >= 0 ? R_GONODE(r) : FP_EXT(R_GO(r));
+}
+
+/* vr.form._landing: "tree/card" where this tree's walk stopped with nothing left to ask, else false */
+static bool landing(const fp_sess_t *s, const fp_cand_t *c, char *out, size_t cap) {
+    if (c->asking != FP_NONE || c->card == s->trees[c->tree].root) return false;
+    if (c->card < 0) snprintf(out, cap, "%s", S(FP_EXT_SID(c->card)));
+    else snprintf(out, cap, "%s/%s", S(s->trees[c->tree].name), S(N_KEY(node(s, c->tree, c->card))));
+    return true;
+}
+/* vr.form._agreed_landing: below SURE a card opens only when every kept tree lands on that same card
+ * with nothing left to ask; a tree's own life card still opens only through its rule. */
+static bool agreed_landing(fp_sess_t *s, fp_result_t *out) {
+    if (s->ncands < 2) return false;
+    char land[192] = "", l[192];                     /* EVERY kept tree lands on the same card; a tree */
+    for (int i = 0; i < s->ncands; i++) {            /* still asking blocks it (04df032 opened HACE from */
+        if (!landing(s, &s->cands[i], l, sizeof l)) return false;   /* one low tree) */
+        if (i && strcmp(l, land)) return false;
+        if (!i) snprintf(land, sizeof land, "%s", l);
+    }
+    const char *sl = strchr(land, '/');
+    char tname[96];
+    size_t L = (size_t)(sl - land) < sizeof tname - 1 ? (size_t)(sl - land) : sizeof tname - 1;
+    memcpy(tname, land, L); tname[L] = 0;
+    const char *ckey = sl + 1;
+    for (int i = 0; i < s->ncands; i++) {             /* a life card only by its rule ("breathing fine") */
+        const fp_cand_t *c = &s->cands[i];
+        if (strcmp(S(s->trees[c->tree].name), tname)) continue;
+        for (int k = 0; k < s->trees[c->tree].nrules; k++)
+            if (!strcmp(S(R_GO(rule(s, c->tree, k))), ckey)) return false;
+    }
+    int t = fp_tree_by_name(s, tname);
+    int nd = t >= 0 ? fp_node_by_key(s, t, ckey) : -1;
+    if (t >= 0 && nd >= 0) { *out = res(FP_OPEN, t, nd); return true; }
+    for (int i = 0; i < s->ncands; i++) {             /* not loaded here: open it as another tree's card */
+        int sid = fp_find_str(&s->pk, land);
+        if (sid >= 0) { *out = res(FP_OPEN, s->cands[0].tree, FP_EXT((fp_str)sid)); return true; }
+    }
+    return false;
+}
+
+/* vr.form.first_sentence */
+fp_result_t fp_first_sentence(fp_sess_t *s, const char *const *hyps, int nh, bool multi) {
+    for (int i = 1; i < s->ncands; i++)              /* sort by -p, stable */
+        for (int j = i; j > 0 && s->cands[j].p > s->cands[j - 1].p; j--) {
+            fp_cand_t tmp = s->cands[j]; s->cands[j] = s->cands[j - 1]; s->cands[j - 1] = tmp;
+        }
+    for (int i = 0; i < s->ncands; i++) {
+        fp_cand_t *c = &s->cands[i];
+        fill_nbest(s, c->tree, hyps, nh, &c->filled);
+        strncpy(c->heard, nh ? hyps[0] : "", FP_HEARD - 1); c->heard[FP_HEARD - 1] = 0;
+        advance(s, c, -1);
+    }
+    if (multi) {                                      /* several problems (TALK + WIN_R): every life tab */
+        static fp_tab_t tabs[5];                      /* stands on its card; split_tabs sorts them, bleeding first */
+        if (fp_split_tabs(s, tabs, 5) > 1) {
+            for (int i = 0; i < s->ncands; i++) {
+                fp_cand_t *c = &s->cands[i];
+                int go = rule_hit(s, c);
+                if (go < 0) continue;
+                const uint8_t *r = rule(s, c->tree, go);
+                if (R_GONODE(r) >= 0) { c->card = R_GONODE(r); c->asking = N_QSLOT(node(s, c->tree, c->card)); }
+                else { c->card = FP_EXT(R_GO(r)); c->asking = FP_NONE; }
+            }
+            return res(FP_TABS, 0, 0);
+        }
+    }
+    int ord[FP_MAX_CANDS];                            /* rank order; a tie on p: a tree's own rule first */
+    long long pr[FP_MAX_CANDS]; bool own[FP_MAX_CANDS];
+    for (int i = 0; i < s->ncands; i++) { ord[i] = i; pr[i] = llround(s->cands[i].p * 1e6); own[i] = rule_hit(s, &s->cands[i]) >= 0; }
+    for (int i = 1; i < s->ncands; i++)
+        for (int j = i; j > 0; j--) {
+            int a = ord[j - 1], b = ord[j];
+            bool swap = pr[b] > pr[a] || (pr[b] == pr[a] && own[b] && !own[a]);
+            if (!swap) break;
+            ord[j - 1] = b; ord[j] = a;
+        }
+    for (int oi = 0; oi < s->ncands; oi++) {          /* in rank order, each tree's own emergency first: */
+        fp_cand_t *c = &s->cands[ord[oi]];            /* a jump to another tree's card, or the in-tree card */
+        if (c->card < 0) {                            /* the rule names (not one past it). A lower tree's */
+            int g = rule_hit(s, c);                   /* plain walk to another tree's card does not open */
+            if (oi == 0 || (g >= 0 && R_GO(rule(s, c->tree, g)) == FP_EXT_SID(c->card)))   /* ("heat stroke") */
+                return res(FP_OPEN, c->tree, c->card);
+        }
+        int go = rule_hit(s, c);
+        if (go < 0) continue;
+        int gn = R_GONODE(rule(s, c->tree, go));
+        if (gn >= 0) {
+            fp_str qs = N_QSLOT(node(s, c->tree, gn));
+            c->card = gn;
+            c->asking = qs;
+        }
+        return res(FP_OPEN, c->tree, c->card);
+    }
+    {                                                 /* vr.form._agreed_landing: top trees all land on one */
+        fp_result_t land;                             /* card ("anaphylaxis" -> allergy/severe below SURE) */
+        if (agreed_landing(s, &land)) return land;
+    }
+
+    if (s->ncands && (s->cands[0].p >= 0.80 || s->ncands == 1)) s->ncands = 1;
+    if (s->ncands == 1) {
+        fp_cand_t *c = &s->cands[0];
+        if (c->asking == FP_NONE && c->card != s->trees[c->tree].root && !life_card(s, c->tree, c->card))
+            return res(FP_OPEN, c->tree, c->card);
+    }
+    return res(FP_FORM, 0, 0);
+}
+
+/* ------------------------------------------------------------------ ranking */
+
+static uint64_t mix(uint64_t x) {
+    x += 0x9E3779B97F4A7C15ull;
+    x = (x ^ (x >> 30)) * 0xBF58476D1CE4E5B9ull;
+    x = (x ^ (x >> 27)) * 0x94D049BB133111EBull;
+    return x ^ (x >> 31);
+}
+static uint64_t state_hash(fp_card card, fp_str asking, const fp_filled_t *f) {
+    uint64_t h = 0;
+    for (int i = 0; i < f->n; i++) h += mix((uint64_t)f->slot[i] << 16 | f->val[i]);
+    return mix(h ^ mix((uint64_t)(uint32_t)card << 16 | asking)) | 1;
+}
+static bool seen_add(fp_rank_ws_t *ws, uint64_t h) {   /* true if newly added */
+    for (uint32_t i = (uint32_t)h & 4095;; i = (i + 1) & 4095) {
+        if (ws->seen[i] == h) return false;
+        if (!ws->seen[i]) { ws->seen[i] = h; return true; }
+    }
+}
+
+typedef struct { int n; char w[FP_MAX_TOK][FP_WLEN]; } wset_t;
+static void wset_stems(const char *text, wset_t *o) {   /* {stem(w) for w in tokenize(text)} - FILLER */
+    fp_toks_t t; char st[FP_WLEN];
+    fp_tokenize(text, &t);
+    o->n = 0;
+    for (int i = 0; i < t.n; i++) {
+        fp_stem(t.w[i], true, st);
+        if (in(st, FILLER)) continue;
+        bool dup = false;
+        for (int k = 0; k < o->n; k++) if (!strcmp(o->w[k], st)) dup = true;
+        if (!dup) strcpy(o->w[o->n++], st);
+    }
+}
+/* vr.form._soft: share of a phrase's (or the tile label's) words that were heard */
+static double soft(const fp_sess_t *s, const fp_cand_t *c, const wset_t *heard, fp_str slot, fp_str value, fp_str label) {
+    double best = 0.0;
+    wset_t pw;
+    int si = slot_index(s, c->tree, slot);
+    if (si >= 0) {
+        const uint8_t *sl = slotrec(s, c->tree, si);
+        for (int vi = 0; vi < SL_NVAL(sl); vi++) {
+            const uint8_t *v = SL_VAL(s, sl, vi);
+            if (V_NAME(v) != value) continue;
+            for (int k = 0; k < V_NPH(v); k++) {
+                wset_stems(S(V_PH(s, v, k)), &pw);
+                if (!pw.n) continue;
+                int m = 0;
+                for (int a = 0; a < pw.n; a++) for (int b = 0; b < heard->n; b++) if (!strcmp(pw.w[a], heard->w[b])) { m++; break; }
+                double r = (double)m / pw.n;
+                if (r > best) best = r;
+            }
+            break;
+        }
+    }
+    wset_stems(label == FP_NONE ? "" : S(label), &pw);
+    if (pw.n) {
+        int m = 0;
+        for (int a = 0; a < pw.n; a++) for (int b = 0; b < heard->n; b++) if (!strcmp(pw.w[a], heard->w[b])) { m++; break; }
+        double r = (double)m / pw.n;
+        if (r > best) best = r;
+    }
+    return best;
+}
+
+static void rebuild(const fp_rank_ws_t *ws, int32_t at, const fp_filled_t *base, fp_filled_t *f) {
+    int32_t chain[64]; int n = 0;
+    for (int32_t i = at; i >= 0 && n < 64; i = ws->q[i].parent) if (ws->q[i].slot != FP_NONE) chain[n++] = i;
+    *f = *base;
+    while (n--) fset(f, ws->q[chain[n]].slot, ws->q[chain[n]].val);
+}
+
+/* vr.form.ranked_cards over the candidates in mask. Returns how many (<= limit), refs in out. */
+static int ranked(fp_sess_t *s, uint32_t mask, const fp_cand_t *cands, int ncands, int limit, fp_ref_t *out, int max) {
+    fp_rank_ws_t *ws = s->ws;
+    int nout = 0, order = 0;
+    for (int ci = 0; ci < ncands; ci++) {
+        if (!(mask >> ci & 1)) continue;
+        const fp_cand_t *c = &cands[ci];
+        wset_t heard;
+        wset_stems(c->heard, &heard);
+        memset(ws->seen, 0, sizeof ws->seen);
+        int head = 0, tail = 0, steps = 0;
+        ws->q[tail++] = (typeof(ws->q[0])){-1, c->card, FP_NONE, FP_NONE, c->asking, 0, 0, 0.0};
+        while (head < tail && nout < limit * 4 && steps < 2000) {
+            int at = head++;
+            fp_card card = ws->q[at].card;
+            fp_str asking = ws->q[at].asking;
+            fp_filled_t f;
+            rebuild(ws, at, &c->filled, &f);
+            if (!seen_add(ws, state_hash(card, asking, &f))) continue;
+            steps++;
+            if (asking == FP_NONE) {
+                bool dup = false;
+                for (int k = 0; k < nout; k++) if (ws->out[k].cand == ci && ws->out[k].card == card) dup = true;
+                if (!dup && nout < 512) {
+                    double sc = ws->q[at].ev - 0.1 * ws->q[at].n + 0.5 * c->p;
+                    ws->out[nout] = (typeof(ws->out[0])){(uint8_t)ci, card, sc, order++, life_card(s, c->tree, card)};
+                    nout++;
+                }
+                continue;
+            }
+            fp_tile_t ts[MAXT];
+            int nt = card >= 0 ? fp_tiles(s, c->tree, card, ts, MAXT) : 0;
+            for (int i = 0; i < nt; i++) {
+                if (tail >= (int)(sizeof ws->q / sizeof ws->q[0])) { s->rank_overflow++; break; }
+                if (truthy(s, ts[i].value)) {
+                    fp_filled_t f2 = f;
+                    fset(&f2, asking, ts[i].value);
+                    fp_str na;
+                    fp_card nc = walk(s, c->tree, &f2, card, &na);
+                    ws->q[tail++] = (typeof(ws->q[0])){at, nc, asking, ts[i].value, na, (uint8_t)(ws->q[at].n + 1), 0,
+                        ws->q[at].ev + soft(s, c, &heard, asking, ts[i].value, ts[i].label)};
+                } else if (ts[i].to_node >= 0) {
+                    ws->q[tail++] = (typeof(ws->q[0])){at, ts[i].to_node, FP_NONE, FP_NONE, FP_NONE, ws->q[at].n, 1, ws->q[at].ev};
+                }
+            }
+        }
+    }
+    /* sort: life cards first, then score desc, then discovery order */
+    for (int i = 1; i < nout; i++)
+        for (int j = i; j > 0; j--) {
+            typeof(ws->out[0]) *a = &ws->out[j - 1], *b = &ws->out[j];
+            bool swap = (a->life != b->life) ? (!a->life && b->life)
+                      : (a->score != b->score) ? (b->score > a->score) : (b->order < a->order);
+            if (!swap) break;
+            typeof(ws->out[0]) tmp = *a; *a = *b; *b = tmp;
+        }
+    int n = nout < limit ? nout : limit;
+    if (n > max) n = max;
+    for (int i = 0; i < n; i++) out[i] = (fp_ref_t){cands[ws->out[i].cand].tree, ws->out[i].card};
+    return n;
+}
+
+int fp_ranked_cards(fp_sess_t *s, int limit, fp_ref_t *out, int max) {
+    return ranked(s, (1u << s->ncands) - 1, s->cands, s->ncands, limit, out, max);
+}
+
+/* vr.form.most_telling */
+fp_str fp_most_telling(fp_sess_t *s) {
+    fp_str best = FP_NONE;
+    double best_h = -1.0;
+    fp_ref_t tmp[FP_MAX_RANKED];
+    for (int ci = 0; ci < s->ncands; ci++) {
+        fp_cand_t *c = &s->cands[ci];
+        if (c->asking == FP_NONE) continue;
+        fp_tile_t ts[MAXT];
+        int nt = fp_tiles(s, c->tree, c->card, ts, MAXT), counts[MAXT], nc = 0, tot = 0;
+        for (int i = 0; i < nt; i++) {
+            if (!truthy(s, ts[i].value)) continue;
+            fp_cand_t sub = *c;
+            fset(&sub.filled, c->asking, ts[i].value);
+            advance(s, &sub, c->card);
+            int n = ranked(s, 1, &sub, 1, 40, tmp, FP_MAX_RANKED);
+            counts[nc++] = n > 1 ? n : 1;
+        }
+        for (int i = 0; i < nc; i++) tot += counts[i];
+        double h = 0.0;
+        if (tot) {
+            double sum = 0.0;
+            for (int i = 0; i < nc; i++) sum += (double)counts[i] / tot * log((double)counts[i] / tot);
+            h = -sum;
+        }
+        if (h > best_h) { best = c->asking; best_h = h; }
+    }
+    return best;
+}
+
+/* vr.form._lookahead + open_fields */
+int fp_open_fields(fp_sess_t *s, fp_field_t *out, int max) {
+    int n = 0;
+    if (s->ncands > 1 && n < max) {
+        out[n++] = (fp_field_t){FP_TOPIC, FP_NONE, 0, 0, (1u << s->ncands) - 1, FP_NONE, FP_NONE};
+    }
+    fp_field_t rows[FP_MAX_FIELDS * 2]; int nr = 0;
+    static struct { int card; fp_str asking; fp_filled_t f; fp_str ws, wv; } q[128];
+    for (int ci = 0; ci < s->ncands; ci++) {
+        fp_cand_t *c = &s->cands[ci];
+        fp_str seen[8]; int nseen = 0, nout = 0, head = 0, tail = 0;
+        if (c->card >= 0) { q[tail].card = c->card; q[tail].asking = c->asking; q[tail].f = c->filled; q[tail].ws = q[tail].wv = FP_NONE; tail++; }
+        while (head < tail && nout < 6) {
+            int at = head++;
+            fp_str asking = q[at].asking;
+            if (asking == FP_NONE) continue;
+            bool dup = false;
+            for (int k = 0; k < nseen; k++) if (seen[k] == asking) dup = true;
+            if (dup) continue;
+            seen[nseen++] = asking; nout++;
+            int r = -1;                                 /* shared slot names appear once */
+            for (int k = 0; k < nr; k++) if (rows[k].key == asking) r = k;
+            if (r >= 0) rows[r].trees |= 1u << ci;
+            else if (nr < (int)(sizeof rows / sizeof rows[0]))
+                rows[nr++] = (fp_field_t){asking, N_LABEL(node(s, c->tree, q[at].card)), c->tree, (uint16_t)q[at].card,
+                                          1u << ci, q[at].ws, q[at].wv};
+            fp_tile_t ts[MAXT];
+            int nt = fp_tiles(s, c->tree, q[at].card, ts, MAXT);
+            for (int i = 0; i < nt && tail < 128; i++) {
+                if (!truthy(s, ts[i].value)) continue;
+                fp_filled_t f2 = q[at].f;
+                fset(&f2, asking, ts[i].value);
+                fp_str na;
+                fp_card nc = walk(s, c->tree, &f2, q[at].card, &na);
+                if (na != FP_NONE) {
+                    q[tail].card = nc; q[tail].asking = na; q[tail].f = f2; q[tail].ws = asking; q[tail].wv = ts[i].value; tail++;
+                }
+            }
+        }
+    }
+    fp_str top = fp_most_telling(s);
+    /* stable sort by (key not in life, key != top) */
+    int rank[FP_MAX_FIELDS * 2];
+    for (int k = 0; k < nr; k++) {
+        bool life = false;
+        for (int ci = 0; ci < s->ncands && !life; ci++) life = life_slot(s, s->cands[ci].tree, rows[k].key, false);
+        rank[k] = (life ? 0 : 2) + (rows[k].key == top ? 0 : 1);
+    }
+    for (int r = 0; r <= 3; r++)
+        for (int k = 0; k < nr; k++) if (rank[k] == r && n < max) out[n++] = rows[k];
+    return n;
+}
+
+/* vr.form._named: the answer names this tree on the which-is-it field: its tile label (every title
+ * word) or one of its condition names (s010: "carbon monoxide poisoning" for "Carbon monoxide") */
+static bool heard_topic(const fp_sess_t *s, int t, const fp_toks_t *heard);
+static bool named(const fp_sess_t *s, const fp_cand_t *c, const fp_toks_t *words) {
+    fp_toks_t t;
+    fp_tokenize(S(s->trees[c->tree].title), &t);
+    int k = 0; bool all = true;
+    for (int i = 0; i < t.n; i++) {
+        if (in(t.w[i], FILLER)) continue;
+        k++;
+        if (!tok_has(words, t.w[i])) all = false;
+    }
+    return (k > 0 && all) || heard_topic(s, c->tree, words);
+}
+
+/* vr.form._step: an answer always moves the form on */
+static void step(fp_sess_t *s, fp_cand_t *c, const fp_tile_t *tile) {
+    fp_card was = c->card; fp_str wa = c->asking;
+    advance(s, c, c->card);
+    if (c->card == was && c->asking == wa && tile && truthy(s, tile->to)) {
+        if (tile->to_node >= 0) advance(s, c, tile->to_node);
+        else { c->card = FP_EXT(tile->to); c->asking = FP_NONE; }
+    }
+}
+
+static fp_result_t done_or_form(fp_sess_t *s) {
+    if (s->ncands == 1 && s->cands[0].asking == FP_NONE) return res(FP_OPEN, s->cands[0].tree, s->cands[0].card);
+    return res(FP_FORM, 0, 0);
+}
+
+static void keep_only(fp_sess_t *s, int ci) { if (ci) s->cands[0] = s->cands[ci]; s->ncands = 1; }
+
+/* vr.form.answer */
+fp_result_t fp_answer(fp_sess_t *s, const char *text) {
+    fp_toks_t words;
+    fp_tokenize(text, &words);
+    if (tok_has(&words, "skip") || tok_has(&words, "dunno") || (tok_has(&words, "don't") && tok_has(&words, "know")) ||
+        (tok_has(&words, "no") && tok_has(&words, "time")))
+        return res(FP_SKIP, 0, 0);
+    if (s->ncands > 1) {                             /* fields[0] is the "which is it" field */
+        int hit = -1, nh = 0;
+        for (int i = 0; i < s->ncands; i++) if (named(s, &s->cands[i], &words)) { hit = i; nh++; }
+        if (nh == 1) keep_only(s, hit);
+    }
+    bool bare_yn = words.n > 0 && words.n <= 3;     /* a bare yes/no answers one field only */
+    for (int i = 0; i < words.n && bare_yn; i++) if (!in(words.w[i], YESNO)) bare_yn = false;
+    fp_str fired[FP_MAX_CANDS];                       /* rules already met before this answer */
+    for (int i = 0; i < s->ncands; i++) { int r = rule_hit(s, &s->cands[i]); fired[i] = r >= 0 ? R_GO(rule(s, s->cands[i].tree, r)) : FP_NONE; }
+    struct { uint8_t tree; fp_card card; fp_str asking; } states[256];
+    int nst = 0, passes = 0;
+    bool progressed = true;
+    while (progressed && passes < 20) {
+        progressed = false; passes++;
+        for (int i = 0; i < s->ncands; i++) {
+            fp_cand_t *c = &s->cands[i];
+            if (c->asking == FP_NONE) continue;
+            bool was = false;
+            for (int k = 0; k < nst; k++)
+                if (states[k].tree == c->tree && states[k].card == c->card && states[k].asking == c->asking) was = true;
+            if (was) continue;
+            if (nst < 256) { states[nst].tree = c->tree; states[nst].card = c->card; states[nst].asking = c->asking; nst++; }
+            fp_filled_t f = c->filled;
+            int pick = c->card >= 0 ? answer_turn(s, c->tree, text, c->card, c->asking, &f) : -1;
+            bool extra = false;                      /* other blanks heard in the same breath stay */
+            for (int k = 0; k < f.n; k++)
+                if (!fhas(&c->filled, f.slot[k]) && f.slot[k] != c->asking) { fset(&c->filled, f.slot[k], f.val[k]); extra = true; }
+            if (extra) {                             /* ("he's unresponsive now" on any field): life first */
+                int go = rule_hit(s, c);
+                if (go >= 0 && R_GO(rule(s, c->tree, go)) != fired[i]) return res(FP_OPEN, c->tree, rule_card(s, c->tree, go));
+            }
+            fp_tile_t ts[MAXT];
+            if (c->card >= 0) fp_tiles(s, c->tree, c->card, ts, MAXT);
+            bool has_tile = pick >= 0;
+            fp_str value = has_tile ? ts[pick].value : FP_NONE;
+            if (!truthy(s, value)) {
+                fp_str v = snap(s, text, c);         /* madlibs: a near word snaps to its answer */
+                if (v != FP_NONE) { f = c->filled; fset(&f, c->asking, v); value = v; has_tile = false; }
+            }
+            if (truthy(s, value)) {
+                /* {**filled, **c.filled, asking: filled.get(asking, value)}: never overwrite a filled blank */
+                fp_str av = fget(&f, c->asking);
+                if (av == FP_NONE) av = value;
+                for (int k = 0; k < c->filled.n; k++) fset(&f, c->filled.slot[k], c->filled.val[k]);
+                fset(&f, c->asking, av);
+                c->filled = f;
+                int go = rule_hit(s, c);
+                if (go >= 0 && R_GO(rule(s, c->tree, go)) != fired[i]) return res(FP_OPEN, c->tree, rule_card(s, c->tree, go));
+                step(s, c, has_tile && truthy(s, ts[pick].to) ? &ts[pick] : NULL);
+                progressed = true;
+                if (bare_yn) { progressed = false; break; }   /* "out of place? no" is not "no splint" */
+            }
+        }
+    }
+    return done_or_form(s);
+}
+
+/* vr.form.pick */
+fp_result_t fp_pick(fp_sess_t *s, const char *key, const char *value, const char *to) {
+    if (!value && to && *to) {
+        char cur[160];
+        snprintf(cur, sizeof cur, "%s", to);
+        for (int i = 0; i < s->ncands; i++) {
+            fp_cand_t *c = &s->cands[i];
+            if (c->asking == FP_NONE || strcmp(S(c->asking), key)) continue;
+            const char *nm = S(s->trees[c->tree].name);
+            size_t L = strlen(nm);
+            if (!strncmp(cur, nm, L) && cur[L] == '/') memmove(cur, cur + L + 1, strlen(cur + L + 1) + 1);
+            int nd = fp_node_by_key(s, c->tree, cur);
+            if (nd >= 0) advance(s, c, nd);
+            else if (strchr(cur, '/')) {               /* a plain tile into another tree ("Start CPR") */
+                int sid = fp_find_str(&s->pk, cur);
+                if (sid >= 0) return res(FP_OPEN, c->tree, FP_EXT((fp_str)sid));
+            }
+        }
+    } else if (!strcmp(key, "@topic")) {
+        for (int i = 0; i < s->ncands; i++)
+            if (value && !strcmp(S(s->trees[s->cands[i].tree].name), value)) { keep_only(s, i); break; }
+    } else if (value) {
+        int ks = fp_find_str(&s->pk, key), vs = fp_find_str(&s->pk, value);
+        for (int i = 0; i < s->ncands && ks >= 0 && vs >= 0; i++) {
+            fp_cand_t *c = &s->cands[i];
+            if (slot_index(s, c->tree, (fp_str)ks) < 0 && c->asking != ks) continue;
+            fset(&c->filled, (fp_str)ks, (fp_str)vs);
+            if (c->asking != FP_NONE) {
+                fp_tile_t ts[MAXT], *tile = NULL;
+                int nt = c->card >= 0 ? fp_tiles(s, c->tree, c->card, ts, MAXT) : 0;
+                for (int k = 0; k < nt; k++) if (ts[k].value == vs) { tile = &ts[k]; break; }
+                step(s, c, tile);
+            }
+        }
+    }
+    return done_or_form(s);
+}
+
+/* vr.live.rescue: before a later answer is read against the open form, does it bring a life threat
+ * or name a problem the kept trees do not cover? A life rule met by these words alone in a tree not
+ * kept opens that tree's card; a tree named outright and not kept restarts the form from these
+ * words. Returns true with *r set (the candidates are replaced), false = read it as an answer. */
+bool fp_rescue(fp_sess_t *s, const char *const *hyps, int nh, fp_result_t *r) {
+    bool kept[FP_MAX_TREES] = {0};
+    fp_toks_t h0;
+    fp_tokenize(nh > 0 ? hyps[0] : "", &h0);
+    for (int i = 0; i < s->ncands; i++) kept[s->cands[i].tree] = true;
+    bool heard[FP_MAX_TREES];
+    named_trees(s, &h0, heard);
+    if (nh <= 0) memset(heard, 0, sizeof heard);
+    bool named_out = false;                          /* 1. a tree not kept is named: restart from these words */
+    for (int t = 0; t < s->ntrees && !named_out; t++) if (!kept[t] && heard[t]) named_out = true;
+    if (named_out) {                                 /* (s009: "choking unresponsive" opens choking, not the */
+        fp_cand_t save[FP_MAX_CANDS]; int ns = s->ncands;   /* kept head-spine tree's generic cpr/start) */
+        memcpy(save, s->cands, sizeof save);
+        if (fp_keep_trees(s, hyps, nh, 3)) { *r = fp_first_sentence(s, hyps, nh, false); return true; }
+        memcpy(s->cands, save, sizeof save); s->ncands = ns;
+    }
+    for (int i = 0; i < s->ncands; i++) {            /* 2. a kept tree meets a life rule or is named: answer */
+        fp_cand_t probe = s->cands[i];
+        fp_filled_t f;
+        fill_nbest(s, probe.tree, hyps, nh, &f);
+        for (int k = 0; k < f.n; k++) fset(&probe.filled, f.slot[k], f.val[k]);
+        if (rule_hit(s, &probe) >= 0 || heard[probe.tree]) return false;
+    }
+    for (int i = 0; i < s->ncands; i++) {            /* 3. a kept tree fills any blank: answer */
+        fp_filled_t f;
+        fill_nbest(s, s->cands[i].tree, hyps, nh, &f);
+        if (f.n) return false;
+    }
+    for (int t = 0; t < s->ntrees; t++) {            /* 4. a life rule in a tree not kept: open its card */
+        if (kept[t]) continue;
+        fp_cand_t c;
+        memset(&c, 0, sizeof c);
+        c.tree = (uint8_t)t;
+        fill_nbest(s, t, hyps, nh, &c.filled);
+        if (rule_hit(s, &c) < 0) continue;
+        memset(&s->cands[0], 0, sizeof s->cands[0]);
+        s->cands[0].tree = (uint8_t)t; s->cands[0].p = 1.0; s->cands[0].card = s->trees[t].root; s->cands[0].asking = FP_NONE;
+        s->ncands = 1;
+        *r = fp_first_sentence(s, hyps, nh, false);
+        return true;
+    }
+    return false;
+}
+
+const void *fp_cart_chunk(const void *rom, size_t len, const char tag[4], size_t *size) {
+    const uint8_t *b = rom;
+    if (len < 28 || memcmp(b, "CRT1", 4)) return NULL;
+    uint16_t n = rd16(b + 6);
+    for (uint16_t i = 0; i < n && 28u + 12u * (i + 1) <= len; i++) {
+        const uint8_t *d = b + 28 + 12 * i;
+        uint32_t off = rd32(d + 4), sz = rd32(d + 8);
+        if (memcmp(d, tag, 4) || off + sz > len) continue;
+        if (size) *size = sz;
+        return b + off;
+    }
+    return NULL;
+}

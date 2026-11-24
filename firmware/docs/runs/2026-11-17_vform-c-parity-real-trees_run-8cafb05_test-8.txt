@@ -1,0 +1,4 @@
+# C form engine vs Python, real trees (new bake, labels not shown), slots v16b, after the 8cafb05 safety port
+$ python tools/parity_check.py --pack real.fpk --parity parity_8cafb05_v16b.jsonl --fuzz
+766 cases, 1493 frames: 766 cases identical, 0 differ (0 frames)
+FUZZ 509 sentences, 0 loops

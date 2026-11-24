@@ -251,9 +251,18 @@ void voice_start(void) {
 }
 void voice_stop(bool recognise) { if (!listening) return; want_result = recognise; listening = false; }
 
-#else
+#elif !CONFIG_LIB_VOICE_DIY
 bool voice_init(const cart_t *c) { (void)c; return false; }
 void voice_load(uint16_t tree, const cart_tags_t *ctx) { (void)tree; (void)ctx; }
 void voice_start(void) {}
 void voice_stop(bool recognise) { (void)recognise; }
+#endif
+#if !CONFIG_LIB_VOICE_DIY   /* the board-voice calls, unused without it */
+void voice_stop_to(bool recognise, int target) { (void)target; voice_stop(recognise); }
+bool voice_has_form(void) { return false; }
+bool voice_has_search(void) { return false; }
+void voice_form_op(int vf, const ui_t *u) { (void)vf; (void)u; }
+void voice_take(vs_screen_t *s, vs_hit_t *hits, int16_t *nhits, char *q, size_t qcap) { (void)s; (void)hits; (void)nhits; (void)q; (void)qcap; }
+void voice_rec_button(int rc) { (void)rc; }
+int voice_rec_take(ui_t *u) { (void)u; return -1; }
 #endif

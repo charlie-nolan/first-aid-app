@@ -1,0 +1,51 @@
+menu "Speech recognizer engine"
+
+choice ASR_ENGINE
+    prompt "Engine that turns a TALK clip into word hypotheses"
+    default ASR_ENGINE_DIY
+    help
+        All engines give the same output (voice_hyp_t: up to 5 guesses of lexicon word ids,
+        confidences and a reject score), so the form engine (components/vform) and the router
+        do not care which one runs. Bench them for speed, size and agreement.
+
+config ASR_ENGINE_DIY
+    bool "DIY int8 phoneme CTC model (pipeline/speech/fasr), plain C kernels"
+    help
+        Preferred. Causal depthwise-conv CTC model (0.5-1 M params), log-mel front end,
+        lexicon-trie beam search with <unk> garbage, calibrated reject. Checked bit for bit against
+        the speech thread's Python (host tests in this folder). Model/lexicon/calibration come from
+        the cart's ASRM/LEXI/ASRC chunks (firmware/tools/cart_add.py).
+
+config ASR_ENGINE_ESPDL
+    bool "Same fasr model run through ESP-DL"
+    help
+        The fasr ONNX export quantized for ESP-DL. NOT BUILT YET.
+
+config ASR_ENGINE_MULTINET
+    bool "ESP-SR MultiNet (fallback, fixed phrase list)"
+    help
+        What main/voice.c does today: MultiNet with the phrase list in library/phrases.txt.
+endchoice
+
+config ASR_FE_FLOAT
+    bool "Float32 FFT in the front end (fast; features move ~1 ulp from the Python)"
+    default n
+    help
+        The S3 has no double-precision hardware, so the float64 FFT is ~1 s per second of audio.
+        Float32 is ~20x faster. On 633 recordings the top words changed on 1 (noise) and no
+        reject decision flipped, but it is no longer bit-exact with pipeline/speech/fasr until the
+        speech thread builds its goldens from this C front end. Off until that re-baseline.
+
+config ASR_PREFETCH
+    bool "Prefetch the next pointwise layer's weights into internal RAM (core 0) while the model runs"
+    default n
+    help
+        Two internal buffers of one pointwise layer each (64 KB for size m, ~100 KB for size l). Same
+        results; whether it is faster depends on what else uses internal RAM (time it with asr_bench).
+
+config ASR_MAX_HYPS
+    int "n-best guesses kept"
+    range 1 5
+    default 5
+
+endmenu

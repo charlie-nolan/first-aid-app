@@ -1,0 +1,14 @@
+# Beta firmware overlay: everything on the board (menus, library reader, lights, sleep screen) plus the
+# board voice: our speech engine, the fill-in-the-blanks form, keyword search, full cards.
+#   idf.py -B build-beta-plain -D SDKCONFIG=build-beta-plain/sdkconfig \
+#          -D "SDKCONFIG_DEFAULTS=sdkconfig.defaults;sdkconfig.plain;sdkconfig.beta" build
+# (Plus: sdkconfig.plus instead of sdkconfig.plain.) Flash a voice library with tools/flash_voice.sh.
+# CONFIG_LIB_VOICE is not set
+CONFIG_LIB_VOICE_DIY=y
+CONFIG_ASR_ENGINE_DIY=y
+CONFIG_ASR_FE_FLOAT=y
+CONFIG_COMPILER_OPTIMIZATION_PERF=y
+CONFIG_SPIRAM_SPEED_80M=y
+CONFIG_ESP32S3_DATA_CACHE_64KB=y
+CONFIG_ESP32S3_DATA_CACHE_LINE_64B=y
+CONFIG_LIB_VOICE_STREAM=y

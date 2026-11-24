@@ -4,6 +4,7 @@
  * cartridge, restore the 5 reading windows from RTC memory, show the wake
  * screen ("Life threat? Call 911 / SOS first."). Then handle buttons and voice
  * until idle, draw the sleep card, and deep sleep until a button is pressed. */
+#include <stdio.h>
 #include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -21,6 +22,8 @@
 #include "lights.h"
 #include "power.h"
 #include "voice.h"
+#include "esp_heap_caps.h"
+#include "driver/usb_serial_jtag.h"
 void psram_test_start(void);
 #include "cart.h"
 
@@ -169,6 +172,12 @@ void app_main(void) {
     show(RD_FULL);                                   /* wake screen */
     buttons_init();
     ui.has_voice = voice_init(&cart);
+#if CONFIG_LIB_VOICE_DIY
+    ui.vs = heap_caps_calloc(1, sizeof *ui.vs, MALLOC_CAP_SPIRAM);
+    ui.hits = heap_caps_calloc(VS_HITS, sizeof *ui.hits, MALLOC_CAP_SPIRAM);
+    ui.has_form = ui.has_voice && ui.vs && voice_has_form();
+    ui.has_search = ui.has_voice && ui.hits && voice_has_search();
+#endif
     psram_test_start();                              /* no-op unless Kconfig LIB_PSRAM_TEST */
 #if CONFIG_LIB_VOICE && CONFIG_LIB_VOICE_NUMBERS
     ui.voice_numbers = ui.has_voice;
@@ -183,11 +192,25 @@ void app_main(void) {
         if (xQueueReceive(app_q, &m, pdMS_TO_TICKS(1000))) {
             last = esp_timer_get_time();
             if (m.type == MSG_BUTTON && combo_filter(&m)) continue;
-            ui_act_t a = m.type == MSG_BUTTON ? ui_event(&ui, (ui_btn_t)m.btn, (ui_evkind_t)m.kind, m.held_ms)
-                                              : ui_voice(&ui, m.cmd, m.prob, m.n);
+            ui_act_t a;
+            if (m.type == MSG_BUTTON) a = ui_event(&ui, (ui_btn_t)m.btn, (ui_evkind_t)m.kind, m.held_ms);
+            else if (m.type == MSG_VSCREEN) { voice_take(ui.vs, 0, 0, 0, 0); a = ui_vscreen(&ui); }
+            else if (m.type == MSG_REC) { int on = voice_rec_take(&ui); a = ui_rec(&ui, on < 0 ? ui.mode == M_REC : on); }
+            else if (m.type == MSG_VSEARCH) { voice_take(0, ui.hits, &ui.nhits, ui.squery, sizeof ui.squery); a = ui_vsearch(&ui); }
+            else a = ui_voice(&ui, m.cmd, m.prob, m.n);
             if (a.voice == VO_START) voice_start();
+            else if (a.voice == VO_STOP && ui.mode == M_REC) { voice_stop(true); snprintf(ui.rec_status, sizeof ui.rec_status, "Sending..."); a.redraw = RD_PARTIAL; }
+            else if (a.voice == VO_STOP && ui.vs) {          /* board voice: the clip goes to the form or the search */
+                int to = ui.mode == M_SEARCH ? VT_SEARCH : ui.mode == M_FORM ? VT_ANSWER : VT_NEW;
+                if (to == VT_NEW) { ui.vs->kind = VS_START; ui.vs->heard[0] = ui.vs->msg[0] = 0; ui.mode = M_FORM; }
+                snprintf(ui.vs_status, sizeof ui.vs_status, "Thinking...");
+                voice_stop_to(true, to);
+                a.redraw = RD_PARTIAL;
+            }
             else if (a.voice == VO_STOP) voice_stop(true);
             else if (a.voice == VO_CANCEL) voice_stop(false);
+            if (a.vf) voice_form_op(a.vf, &ui);
+            if (a.rc) voice_rec_button(a.rc);
             if (a.light_step) { saved.light = (uint8_t)((saved.light + 1) % 3); lights_front(saved.light); }
             if (a.signal >= 0) lights_signal((uint8_t)a.signal);
             if (a.mesh) power_mesh(saved.mesh_on);
@@ -197,6 +220,15 @@ void app_main(void) {
             show(a.redraw);
         }
         int64_t now = esp_timer_get_time();
+        static int64_t think_since;                  /* board voice: no answer from the engine -> say so */
+        if (ui.vs && !strcmp(ui.vs_status, "Thinking...")) {
+            if (!think_since) think_since = now;
+            else if (now - think_since > 20 * 1000000LL) {
+                snprintf(ui.vs_status, sizeof ui.vs_status, "No answer from the speech engine. Hold TALK to try again.");
+                ESP_LOGE(TAG, "voice: no result 20 s after TALK");
+                think_since = 0; show(RD_PARTIAL);
+            }
+        } else think_since = 0;
         if (now - last_bat > 10 * 1000000LL) { last_bat = now; update_battery(); }
 #ifndef CONFIG_LIB_PACE_RETURN_SECONDS
 #define CONFIG_LIB_PACE_RETURN_SECONDS 20
@@ -205,7 +237,7 @@ void app_main(void) {
             show(RD_DEEP);                           /* pace light on: back to the CPR instructions */
             last = now;
         }
-        bool busy = lights_signal_active() || ui.listening;
+        bool busy = lights_signal_active() || ui.listening || usb_serial_jtag_is_connected();   /* on a computer's USB: stay awake (bench) */
 #if CONFIG_LIB_VOICE_BENCH || CONFIG_LIB_PSRAM_TEST
         busy = true;                                 /* bench modes: stay awake for the clip loop / soak test */
 #endif
