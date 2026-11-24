@@ -1,0 +1,22 @@
+Streaming speech on the plain XIAO S3 (asr_bench, medium model 24bc72a/801cde0 weights, 8 golden clips; words left out).
+Each clip: decoded whole, then fed in 0.32 s pieces as while TALK is held; 'after release' = what is left when TALK is let go.
+
+CLIP 00 1.63 s audio: total 1136 ms (front end 158, model 399, search 578)
+STREAM 00 while held 1221 ms (1.63 s audio), after release 48 ms, same words
+CLIP 01 1.52 s audio: total 704 ms (front end 73, model 377, search 254)
+STREAM 01 while held 666 ms (1.52 s audio), after release 209 ms, same words
+CLIP 02 1.34 s audio: total 551 ms (front end 64, model 337, search 150)
+STREAM 02 while held 649 ms (1.34 s audio), after release 71 ms, same words
+CLIP 03 2.35 s audio: total 1061 ms (front end 113, model 591, search 356)
+STREAM 03 while held 1234 ms (2.35 s audio), after release 98 ms, same words
+CLIP 04 2.23 s audio: total 943 ms (front end 107, model 561, search 274)
+STREAM 04 while held 1012 ms (2.23 s audio), after release 163 ms, same words
+CLIP 05 1.61 s audio: total 863 ms (front end 77, model 394, search 391)
+STREAM 05 while held 1034 ms (1.61 s audio), after release 2 ms, same words
+CLIP 06 1.23 s audio: total 496 ms (front end 58, model 310, search 126)
+STREAM 06 while held 481 ms (1.23 s audio), after release 142 ms, same words
+CLIP 07 2.04 s audio: total 869 ms (front end 98, model 519, search 251)
+STREAM 07 while held 1022 ms (2.04 s audio), after release 79 ms, same words
+
+Beta fix 359de99 (TALK stuck on Thinking): speech task stack; board test with injected TALK presses:
+  before: 'voice: no result 20 s after TALK' x3;  after: voice task started, 'job 0: 67 ms' x3 (streaming on)
