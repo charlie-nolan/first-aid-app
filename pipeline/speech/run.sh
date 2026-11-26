@@ -45,6 +45,12 @@ s_evaluate() { sets="--set $SP/tts/eval.jsonl"; [ -s "$SP/me/eval.jsonl" ] && se
                [ -s "$SP/me_dev/eval.jsonl" ] && sets="$sets --set $SP/me_dev/eval.jsonl"
                python -m fasr evaluate --run firstaid $sets | tee "$SP/eval-firstaid.txt"; }
 s_export()   { python -m fasr export --run firstaid; }
+# Stage 3 (not in ALL): one tail per group on the device base model's frozen trunk; score vs base; export kept tails.
+# Needs the base's int8 export first (fasr export_int8 --run $TAIL_BASE). Redo: rm $SP/.done/tails
+s_tails()    { wait_for_gpu 3000; sets="--set $SP/tts/eval.jsonl"; [ -s "$SP/me_dev/eval.jsonl" ] && sets="$sets --set $SP/me_dev/eval.jsonl"
+               python -m fasr tail all --base "${TAIL_BASE:-firstaid2m}" --hours "${TAIL_HOURS:-1}" \
+                 --train "$SP/tts/train.jsonl:6" --train "$SP/librispeech/train.jsonl:1" $(me_args) $(noise_args) \
+                 --dev "$SP/tts/dev.jsonl" $sets | tee "$SP/tails-${TAIL_BASE:-firstaid2m}.txt"; }
 
 ALL="setup lexicon opendata synth pretrain whisper finetune evaluate export"
 for s in ${@:-$ALL}; do step "$s" "s_$s"; done

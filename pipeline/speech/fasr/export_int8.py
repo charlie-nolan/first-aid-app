@@ -140,14 +140,17 @@ def rshift_round(v: np.ndarray, s) -> np.ndarray:
     return np.where(s < 0, v << np.maximum(-s, 0), pos)
 
 
-def quantise(layers, calib_feats: list[np.ndarray], pct=99.99) -> dict:
-    """Activation exponents from float activations on calibration clips, weights per channel."""
+def quantise(layers, calib_feats: list[np.ndarray], pct=99.99, fixed: dict | None = None) -> dict:
+    """Activation exponents from float activations on calibration clips, weights per channel.
+    fixed = {"input" | layer name: e_out} forces those exponents (Stage 3 tails: the shared trunk keeps
+    the device base model's exponents, so H at the split needs no requant)."""
     peaks: dict[str, list] = {}
     for f in calib_feats:
         _, acts = forward_f(layers, f, keep=True)
         for k, v in acts.items():
             peaks.setdefault(k, []).append(np.percentile(np.abs(v), pct))
     e_act = {k: _exp_for(float(np.max(v))) for k, v in peaks.items()}
+    e_act.update(fixed or {})
     q = {"e_in": e_act["input"], "layers": [], "mu": layers[0]["mu"], "sd": layers[0]["sd"]}
     e_prev = e_act["input"]
     for L in layers:
@@ -185,13 +188,20 @@ def forward_q(q: dict, feats: np.ndarray):
     """The bit-exact integer reference. Returns (x_q input, {layer: int8 out}, logits int32)."""
     xn = ((feats.astype(np.float64) - q["mu"]) / q["sd"]).T
     x = np.clip(np.round(xn * 2.0 ** q["e_in"]), -128, 127).astype(np.int8)
-    x_in, outs, blk_in, e_blk = x, {}, None, None
-    for Q in q["layers"]:
+    outs, acc = run_q(q["layers"], x)
+    return x, outs, acc
+
+
+def run_q(qlayers: list[dict], x: np.ndarray):
+    """Integer layers on an int8 (C, T) input: the whole model from x_q, or a Stage 3 tail from H.
+    Returns ({layer: int8 out}, head logits int32)."""
+    outs, blk_in, e_blk = {}, None, None
+    for Q in qlayers:
         if Q["name"].endswith(".dw"):
             blk_in, e_blk = x, Q["e_in"]
         acc = conv_q(x, Q)
         if Q["head"]:
-            return x_in, outs, acc.astype(np.int32)
+            return outs, acc.astype(np.int32)
         shift = (Q["e_in"] + Q["e_w"].astype(np.int64))[:, None] - Q["e_out"]
         y = rshift_round(acc, shift)
         if Q["residual"]:

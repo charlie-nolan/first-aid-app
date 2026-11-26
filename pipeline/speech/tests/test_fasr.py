@@ -108,3 +108,95 @@ def test_i_eye_homophone():
     for words, pos, want in cases:
         got = resolve_homophones({"h": [{"ids": [ids[w] for w in words]}]}, trie)["h"][0]["ids"]
         assert trie.name[got[pos]] == want, (words, pos)
+
+
+# ------------------------------------------------------------------ Stage 3 tails
+def _tiny_q(seed=0):
+    import torch
+    from fasr.export_int8 import fold, quantise
+    from fasr.model import AcousticModel
+    torch.manual_seed(seed)
+    m = AcousticModel("xs").eval()
+    for mod in m.modules():
+        if isinstance(mod, torch.nn.BatchNorm1d):
+            mod.running_mean.uniform_(-0.2, 0.2); mod.running_var.uniform_(0.5, 1.5)
+    rng = np.random.default_rng(seed)
+    feats = [rng.normal(size=(120, 40)).astype(np.float32) for _ in range(3)]
+    return m, fold(m), feats, quantise(fold(m), feats)
+
+
+def test_tail_from_h_is_bit_identical():
+    from fasr.export_int8 import forward_q, quantise, run_q
+    from fasr.tail import SPLIT
+    m, layers, feats, q = _tiny_q()
+    k = SPLIT["xs"]; n_trunk = 1 + 2 * k
+    x_q, outs, acc = forward_q(q, feats[0])
+    h = outs[f"b{k - 1}.pw"]
+    touts, tacc = run_q(q["layers"][n_trunk:], h)
+    assert np.array_equal(tacc, acc)
+    assert q["layers"][n_trunk]["e_in"] == q["layers"][n_trunk - 1]["e_out"] == q["layers"][n_trunk + 1]["e_res"]
+    # fixed exponents (the device base model's) win over calibration
+    fixed = {"input": q["e_in"] - 1, f"b{k - 1}.pw": q["layers"][n_trunk - 1]["e_out"] - 1}
+    q2 = quantise(layers, feats, fixed=fixed)
+    assert q2["e_in"] == q["e_in"] - 1 and q2["layers"][n_trunk]["e_in"] == q["layers"][n_trunk - 1]["e_out"] - 1
+
+
+def test_tail_pack_matches_asrpack(tmp_path):
+    import importlib.util
+    import json
+    from fasr.export_int8 import write_bin
+    from fasr.tail import EXPT_HDR, SPLIT, pack_expt, pack_fq81
+    _, _, _, q = _tiny_q(1)
+    n_trunk = 1 + 2 * SPLIT["xs"]
+    tq = {"e_in": q["layers"][n_trunk - 1]["e_out"], "layers": q["layers"][n_trunk:], "mu": q["mu"], "sd": q["sd"]}
+    meta = write_bin(tq, tmp_path)
+    meta.update(format="FASR-Q8 v1", e_in=tq["e_in"], mu=q["mu"].tolist(), sd=q["sd"].tolist())
+    (tmp_path / "model.json").write_text(json.dumps(meta))
+    spec = importlib.util.spec_from_file_location(
+        "asrpack", Path(__file__).resolve().parents[3] / "firmware" / "components" / "asr" / "tools" / "asrpack.py")
+    ap = importlib.util.module_from_spec(spec); spec.loader.exec_module(ap)
+    ap.main([str(tmp_path), "-o", str(tmp_path / "asrm.bin")])
+    fq = pack_fq81(meta, (tmp_path / "model.bin").read_bytes())
+    assert fq == (tmp_path / "asrm.bin").read_bytes()
+    e = pack_expt(3, "burns", b"12345678", n_trunk, len(q["layers"]), tq["e_in"], fq)
+    assert e[:4] == b"EXPT" and len(e) == EXPT_HDR + len(fq) and e[EXPT_HDR:EXPT_HDR + 4] == b"FQ81"
+    import struct
+    ver, gid = struct.unpack_from("<HH", e, 4)
+    a_, b_, eh, n = struct.unpack_from("<HHb3xI", e, 16)
+    assert (ver, gid, e[8:16], a_, b_, eh, n) == (1, 3, b"12345678", n_trunk, len(q["layers"]), tq["e_in"], len(fq))
+    assert e[28:44].rstrip(b"\0") == b"burns"
+
+
+def test_freeze_trunk_keeps_trunk_and_bn_stats():
+    import torch
+    from fasr.model import AcousticModel
+    from fasr.train import freeze_trunk
+    torch.manual_seed(0)
+    m = AcousticModel("xs")
+    frozen = freeze_trunk(m, 6)
+    before = {k: v.clone() for k, v in m.state_dict().items()}
+    opt = torch.optim.AdamW([p for p in m.parameters() if p.requires_grad], lr=1e-2)
+    m.train(); [f.eval() for f in frozen]
+    for _ in range(3):
+        loss = m(torch.randn(2, 80, 40)).mean()
+        opt.zero_grad(); loss.backward(); opt.step()
+    after = m.state_dict()
+    for k in before:
+        trunk = k.split(".")[0] in ("stem", "bn0", "mu", "sd") or (k.startswith("blocks.") and int(k.split(".")[1]) < 6)
+        if trunk:
+            assert torch.equal(before[k], after[k]), k
+    assert not torch.equal(before["head.weight"], after["head.weight"])
+    assert not torch.equal(before["blocks.7.pw.weight"], after["blocks.7.pw.weight"])
+
+
+def test_tail_groups():
+    from fasr.tail import LIFE_CORE, clip_groups, in_group, load_groups
+    g = load_groups()
+    assert list(g)[:5] == ["bleeding", "bones", "breathing", "burns", "environment"]
+    assert clip_groups("my leg is bleeding", g)[0] == {"bleeding"}
+    assert clip_groups("she twisted her ankle", g)[0] == {"bones"}
+    assert clip_groups("he can't move his arm", g)[0] == set()        # body parts alone pick no group
+    r = {"text": "he's not breathing"}
+    assert all(in_group(r, k, g) for k in g)                           # life clips train every tail
+    ids = {x["word"] for x in ROWS}
+    assert all(w in ids for w in LIFE_CORE)

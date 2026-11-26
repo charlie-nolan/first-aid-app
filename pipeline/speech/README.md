@@ -42,6 +42,16 @@ to continue. SIGUSR1/SIGUSR2 do the same; SIGTERM saves and exits; rerunning res
 exact-in-5-best, reject on off-topic) and writes the n-best per clip for the router thread.
 The real verdict is `pipeline/gpu/bench_loop.py` on the Plus, same clips, against MultiNet.
 
+## Stage 3: shared trunk + expert tails (`fasr tail`)
+
+The device runs the trunk (stem + first blocks, frozen) once and keeps its int8 output H. When
+the router picks a group, it loads that group's tail (last 4 blocks + head, ~0.29 MB for m) and
+re-runs only the tail on H. Split: m = blocks 0-9 | 10-13, l = 0-11 | 12-15. Groups and their
+words: `pipeline/plb/content/voice/tail_groups.yaml` (life-word clips train every tail).
+`bash run.sh tails` trains one tail per group, scores each against the base (keyword recall,
+wrong keywords per clip, life words missed) and exports the kept ones as EXPT files with goldens
+to `$WORK/speech/export/tails/<base export>/<group>/`. File format: `fasr/tail.py` docstring.
+
 ## Recording through the device's own mic (best training data)
 
 `firmware/recorder` is a separate small firmware. It shows a sentence on the e-ink. You hold TALK, read the sentence, and let go. The clip then goes over USB to the PC.

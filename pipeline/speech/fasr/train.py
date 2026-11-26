@@ -86,6 +86,16 @@ def evaluate(model, items, dev: torch.device, bs: int = 32, limit: int = 2000) -
     return errs / max(1, toks)
 
 
+def freeze_trunk(model: AcousticModel, n_blocks: int) -> list:
+    """Freeze the shared trunk (stem + first n_blocks blocks) for a Stage 3 tail. Returns the frozen
+    modules (the caller keeps them in eval mode). The input norm mu/sd are buffers and never train."""
+    mods = [model.stem, model.bn0] + list(model.blocks[:n_blocks])
+    for mod in mods:
+        for p in mod.parameters():
+            p.requires_grad_(False)
+    return mods
+
+
 def move_opt(opt, dev):
     for st in opt.state.values():
         for k, v in st.items():
@@ -118,7 +128,12 @@ def main(argv=None):
     ap.add_argument("--eval-min", type=float, default=30)
     ap.add_argument("--workers", type=int, default=6)
     ap.add_argument("--cpu", action="store_true")
+    ap.add_argument("--freeze-trunk", type=int, default=-1,
+                    help="Stage 3 tails: keep the stem + the first N blocks frozen (weights AND BatchNorm stats), "
+                         "train only the later blocks + head; needs --init (fasr tail sets this)")
     a = ap.parse_args(argv)
+    if a.freeze_trunk >= 0 and not a.init:
+        raise SystemExit("--freeze-trunk needs --init (a frozen random trunk is useless)")
 
     run = WORK / "speech" / "runs" / a.run
     run.mkdir(parents=True, exist_ok=True)
@@ -144,9 +159,16 @@ def main(argv=None):
         raise SystemExit("no training utterances")
 
     model = AcousticModel(a.size).to(dev)
+    frozen = freeze_trunk(model, a.freeze_trunk) if a.freeze_trunk >= 0 else []
+
+    def train_mode():   # frozen trunk stays in eval: BN running stats and dropout never change
+        model.train()
+        for mod in frozen:
+            mod.eval()
+
     ck = run / "ckpt.pt"
     state = {"step": 0, "secs": 0.0, "best": 9.9}
-    opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=1e-2)
+    opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=a.lr, weight_decay=1e-2)
     if ck.exists():
         d = torch.load(ck, map_location=dev)
         model.load_compat(d["model"]); opt.load_state_dict(d["opt"]); state = d["state"]
@@ -168,7 +190,8 @@ def main(argv=None):
 
     def save(path=ck):
         tmp = path.with_suffix(".tmp")
-        torch.save({"model": model.state_dict(), "opt": opt.state_dict(), "state": state, "size": a.size}, tmp)
+        torch.save({"model": model.state_dict(), "opt": opt.state_dict(), "state": state, "size": a.size,
+                    "freeze_trunk": a.freeze_trunk, "init": a.init}, tmp)
         os.replace(tmp, path)
 
     pauser = Pauser(Path(os.environ.get("FASR_PAUSE_FILE", WORK / "PAUSE_GPU")))
@@ -178,7 +201,7 @@ def main(argv=None):
     aug = Augment(a.noise_dir, seed=state["step"], mic_eq=a.mic_eq)
     last_ck = last_ev = time.time()
     t_mark = time.time()
-    model.train()
+    train_mode()
     try:
         def used():
             return state["secs"] + time.time() - t_mark
@@ -213,7 +236,7 @@ def main(argv=None):
                 opt.zero_grad(set_to_none=True)
                 scaler.scale(loss).backward()
                 scaler.unscale_(opt)
-                torch.nn.utils.clip_grad_norm_(model.parameters(), 5.0)
+                torch.nn.utils.clip_grad_norm_([p for p in model.parameters() if p.requires_grad], 5.0)
                 scaler.step(opt); scaler.update()
                 state["step"] += 1
                 now = time.time()
@@ -222,6 +245,7 @@ def main(argv=None):
                         f"{(state['secs'] + now - t_mark)/3600:.2f}/{a.hours} h")
                 if now - last_ev > a.eval_min * 60:
                     per = evaluate(model, dev_items, dev)
+                    train_mode()
                     say(f"dev phone error {per:.3f} (best {state['best']:.3f})")
                     if per < state["best"]:
                         state["best"] = per; save(run / "best.pt")
