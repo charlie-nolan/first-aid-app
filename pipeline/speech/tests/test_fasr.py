@@ -200,3 +200,16 @@ def test_tail_groups():
     assert all(in_group(r, k, g) for k in g)                           # life clips train every tail
     ids = {x["word"] for x in ROWS}
     assert all(w in ids for w in LIFE_CORE)
+
+
+def test_trunk_id_matches_tail_rule(tmp_path):
+    import hashlib
+    from fasr.export_int8 import trunk_info, write_bin
+    from fasr.tail import SPLIT, trunk_end
+    _, _, _, q = _tiny_q(2)
+    meta = write_bin(q, tmp_path)
+    blob = (tmp_path / "model.bin").read_bytes()
+    t = trunk_info(meta["layers"], blob, "xs")
+    n = 1 + 2 * SPLIT["xs"]
+    assert t["layer_a"] == n and t["trunk_bytes"] == trunk_end(meta["layers"], n)
+    assert t["trunk_id"] == hashlib.sha256(blob[:t["trunk_bytes"]]).digest()[:8].hex()

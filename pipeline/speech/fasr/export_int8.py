@@ -268,6 +268,18 @@ def write_header(q: dict, out: Path, commit: str):
     (out / "model_c.h").write_text("\n".join(lines) + "\n")
 
 
+def trunk_info(meta_layers: list[dict], model_bin: bytes, size: str) -> dict:
+    """Stage 3: the shared trunk's id for this export at the default split (fasr.tail.SPLIT).
+    trunk_id = sha256(model.bin up to the end of the trunk's last array)[:8]; an EXPT tail is valid
+    for this model only if its trunk_id is the same."""
+    from .tail import SPLIT
+    k = SPLIT[size]
+    n_trunk = 1 + 2 * k
+    end = max(l["e_w_off"] + l["cout"] for l in meta_layers[:n_trunk])
+    return dict(split_block=k, layer_a=n_trunk, e_h=int(meta_layers[n_trunk - 1]["e_out"]), trunk_bytes=end,
+                trunk_id=hashlib.sha256(model_bin[:end]).hexdigest()[:16])
+
+
 def _commit() -> str:
     try:
         root = Path(__file__).resolve().parents[3]
@@ -317,6 +329,7 @@ def main(argv=None):
 
     q = quantise(layers, [c[1][:600] for c in calib])
     meta = write_bin(q, out)
+    meta["trunk"] = trunk_info(meta["layers"], (out / "model.bin").read_bytes(), m.size)
     meta.update(format=FORMAT, e_in=q["e_in"], mu=q["mu"].tolist(), sd=q["sd"].tolist(), commit=commit, run=a.run, frontend=dict(
         sr=SR, win=WIN, hop=HOP, nfft=NFFT, nmel=NMEL, fmin=FMIN, fmax=FMAX, window="hann(periodic, N+1 drop last)",
         log="ln(power + 1e-6)", out_stride=2, impl=frontend_name(), note="golden feats come from this implementation"))
@@ -355,7 +368,7 @@ def main(argv=None):
     n_w = sum(Q["wq"].size for Q in q["layers"])
     man = dict(commit=commit, run=a.run, format=FORMAT, weights=n_w, model_bin_bytes=meta["bytes"],
                int8_vs_float_greedy_agreement=round(agree / max(1, tot), 4), fold_max_err=fold_err,
-               golden=len(golden), reject_calib=bool(cal_f.exists()),
+               golden=len(golden), reject_calib=bool(cal_f.exists()), trunk=meta["trunk"],
                files={p.name: hashlib.sha256(p.read_bytes()).hexdigest()[:16] for p in sorted(out.iterdir()) if p.is_file()})
     (out / "MANIFEST.json").write_text(json.dumps(man, indent=1))
     print(json.dumps(man, indent=1))

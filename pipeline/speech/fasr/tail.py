@@ -257,7 +257,7 @@ def cmd_score(a):
 
 
 # ------------------------------------------------------------------ export
-def trunk_end(meta_layers: list[dict], n_trunk_layers: int) -> int:
+def trunk_end(meta_layers: list[dict], n_trunk_layers: int) -> int:   # same rule as export_int8.trunk_info
     return max(l["e_w_off"] + l["cout"] for l in meta_layers[:n_trunk_layers])
 
 
@@ -349,6 +349,8 @@ def cmd_export(a):
     if fb[:end] != bbin[:end] or not same_e:
         raise SystemExit(f"trunk bytes differ from the base export {bexp}: export the base again from this commit")
     trunk_id = hashlib.sha256(bbin[:end]).digest()[:8]
+    if bmeta.get("trunk", {}).get("layer_a") == n_trunk:
+        assert bmeta["trunk"]["trunk_id"] == trunk_id.hex(), "base model.json trunk_id disagrees"
 
     commit = _commit()
     out = Path(a.out) if a.out else WORK / "speech" / "export" / "tails" / bexp.name / a.group
