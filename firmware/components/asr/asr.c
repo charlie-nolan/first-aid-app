@@ -84,6 +84,7 @@ static const void *chunk(const void *rom, size_t len, const char tag[4], size_t 
     return NULL;
 }
 
+static uint8_t trunk_id[8]; static int trunk_a = -1;       /* the cart's TRNK chunk: the base trunk (tails must match) */
 static fq_model_t M; static fd_lex_t X; static fd_calib_t CAL; static bool have_cal, ready;
 static float *feats, *logp; static void *ws_model, *ws_dec; static int32_t *logits;
 static uint32_t t_fe, t_model, t_search;
@@ -99,6 +100,8 @@ asr_err_t asr_open_cart(const void *rom, size_t len) {
     const uint8_t *c = chunk(rom, len, "ASRC", &cl);
     if (!m || !l || !fq_open(&M, m, ml) || !fd_open(&X, l, ll)) return ASR_NO_MODEL;
     have_cal = c && cl >= 4 + 26 * 8 && !memcmp(c, "RJC1", 4);
+    size_t tl = 0; const uint8_t *tr = chunk(rom, len, "TRNK", &tl);     /* Stage 3: the base trunk's id */
+    if (tr && tl >= 18 && !memcmp(tr, "TRNK", 4)) { trunk_a = tr[6] | tr[7] << 8; memcpy(trunk_id, tr + 10, 8); }
     if (have_cal) {
         double v[26]; memcpy(v, c + 4, sizeof v);
         memcpy(CAL.mean, v, 64); memcpy(CAL.std, v + 8, 64); memcpy(CAL.weights, v + 16, 64);
@@ -211,7 +214,8 @@ asr_err_t asr_stream_end(const int16_t *pcm, size_t samples, asr_hyp_t *out) {
 asr_err_t asr_tail_open(const void *expt, size_t len) {
     tl_ok = false;
     if (!ready) return ASR_NOT_BUILT;
-    if (!expt || !fq_tail_open(&TL, expt, len, NULL)) return ASR_NO_MODEL;     /* TODO: trunk_id from the cart */
+    if (!expt || !fq_tail_open(&TL, expt, len, trunk_a >= 0 ? trunk_id : NULL)) return ASR_NO_MODEL;   /* no TRNK: unchecked */
+    if (trunk_a >= 0 && TL.layer_a != trunk_a) return ASR_NO_MODEL;
     if (TL.layer_b != M.nl || TL.layer_a < 1) return ASR_NO_MODEL;
     int C = TL.m.layers[0] | TL.m.layers[1] << 8;                               /* the tail's input channels */
     if (!hbuf) { h_stride = fq_out_len(&M, st_T); hbuf = big((size_t)M.cmax * h_stride); }
