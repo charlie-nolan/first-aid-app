@@ -428,6 +428,43 @@ def pick(key: str, value: str | None, cands: list[Candidate], to: str | None = N
     return "form", None, None
 
 
+def filled_blanks(cands: list[Candidate]) -> list[dict]:
+    """The blanks already filled, for the chips row (Expert Banks spec Stage 1, Charlie 11-26):
+    [{key, q, label}] over the kept candidates in their order, each in fill order (the order the
+    values landed in c.filled), a key shared by several trees once (first tree's value). q is the
+    label of the question card that asks the slot (the key when no card asks it); label is that
+    card's tile for the value, else the value itself ("forearm" on a card that asks "arm")."""
+    out, seen = [], set()
+    for c in cands:
+        qs = _questions(c.tree, c.smap)
+        for key, v in c.filled.items():
+            if key in seen or v in (None, ""):
+                continue
+            seen.add(key)
+            cards = [k for k, q in qs.items() if q.get("slot") == key and k in c.tree["nodes"]]
+            q = c.tree["nodes"][cards[0]].get("label", key) if cards else key
+            label = next((t["label"] for k in cards for t in tiles(c.tree, c.smap, k)
+                          if t.get("value") == v), None)
+            out.append({"key": key, "q": str(q), "label": str(label or v)})
+    return out
+
+
+def unfill(cands: list[Candidate], key: str):
+    """Clear a filled blank (the person picked its chip and pressed TALK): every kept tree drops
+    its value for `key` and walks again from its root with the blanks that are left, so the cleared
+    blank comes back as a field. Other blanks stay filled, even ones answered after it (their chips
+    stay, and can be cleared the same way). A key no tree has filled changes nothing. Same returns
+    as pick(): a walk that now lands on a card in a single tree opens it."""
+    for c in cands:
+        if key in c.filled:
+            c.filled = {k: v for k, v in c.filled.items() if k != key}
+            c.advance()
+    done = [c for c in cands if not c.asking]
+    if len(cands) == 1 and done:
+        return "open", done[0].name, done[0].card
+    return "form", None, None
+
+
 def _soft(c: Candidate, slot: str, value: str, label: str) -> float:
     """Partial evidence for an answer the person did not quite say: the share of a phrase's words
     (or the tile label's) that were heard. Below fill strength by design: it only ranks."""

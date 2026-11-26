@@ -675,3 +675,48 @@ def test_place_only_match_loses_its_tile_to_trees_with_own_evidence():
             "wfa-sprains": t({"can_use": {"no": ["can't walk"]}}, "can_use")}
     kept = [c.name for c in keep_trees(["eye think my friend femur is broken eat camp put any way on legs can't walk"], pool)]
     assert kept[:2] == ["fractures", "wfa-sprains"] and "burns" not in kept
+
+
+def test_filled_blanks_list_the_chips_in_fill_order():
+    from vr.form import filled_blanks, pick
+    cands = [Candidate("bites", TREE, SMAP)]
+    assert first_sentence("a dog got me", cands)[0] == "form"
+    assert filled_blanks(cands) == [{"key": "animal", "q": "What bit you?", "label": "mammal"}]
+    nodes = {**TREE["nodes"], "mammal": {**TREE["nodes"]["mammal"], "choices": [
+        {"label": "Arm or leg", "to": "limb", "value": "limb"}, {"label": "Face", "to": "face", "value": "face"}]}}
+    cands = [Candidate("bites", {**TREE, "nodes": nodes}, SMAP), Candidate("burns", BURNS, BSMAP)]
+    first_sentence("a dog bit my leg and it's a big burn", cands)
+    keys = [f["key"] for f in filled_blanks(cands)]
+    assert len(keys) == len(set(keys))                       # a shared key once
+    where = next(f for f in filled_blanks(cands) if f["key"] == "where")
+    assert where["label"] == "Arm or leg"                    # the card's own tile label
+    assert filled_blanks([Candidate("bites", TREE, SMAP)]) == []
+
+
+def test_unfill_reopens_the_blank_and_keeps_the_others():
+    from vr.form import filled_blanks, pick, unfill
+    cands = [Candidate("bites", TREE, SMAP), Candidate("burns", BURNS, BSMAP)]
+    first_sentence("the dog bit my leg", cands)
+    assert any(f["key"] == "where" for f in filled_blanks(cands))
+    assert unfill(cands, "animal") == ("form", None, None)
+    bites = next(c for c in cands if c.name == "bites")
+    assert bites.asking == "animal" and "where" in bites.filled
+    assert [f.key for f in open_fields(cands) if f.key == "animal"] == ["animal"]
+    assert unfill(cands, "nothing_filled") == ("form", None, None)
+    cands = [Candidate("bites", TREE, SMAP)]
+    first_sentence("a dog got me", cands)
+    assert pick("where", "face", cands) == ("open", "bites", "face")
+
+
+def test_parity_unfill_case_clears_the_first_chip():
+    from vr.parity import Screen, run_case
+    trees = {"bites": (TREE, SMAP)}
+    s = Screen(trees)
+    fr = s.said("a dog got me")
+    assert fr["kind"] == "form" and fr["filled"] == [{"key": "animal", "q": "What bit you?", "label": "mammal"}]
+    assert list(fr) == ["v", "seq", "kind", "heard", "fields", "filled", "top", "msg"]
+    fr = s.picked({"seq": fr["seq"], "field": "animal", "value": None, "clear": True})
+    assert fr["kind"] == "form" and fr["filled"] == [] and fr["fields"][0]["key"] == "animal"
+    answers, frames = run_case(trees, "a dog got me", "unfill")
+    assert answers[0] == {"pick": {"seq": 1, "field": "animal", "value": None, "clear": True}}
+    assert len(answers) <= 3 and frames[1]["filled"] == []
