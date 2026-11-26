@@ -1,0 +1,22 @@
+# Stage 3 tail groups (speech side): which clips train each expert tail (fasr tail).
+# A clip joins a group when its text has one of the group's words. Clips with a life word
+# (fasr.tail.LIFE_CORE) join EVERY group, so no tail forgets a life threat. Everyday words only
+# (no manual text). Plain body parts (leg, arm) are left out: every group's clips have them.
+# Group order = id in the EXPT tail file (0-based). The groups follow the
+# router's sectors (sectors.yaml) at the size a first experiment can fill with clips.
+groups:
+  bleeding:      # sector bleeding_wounds
+    [bleeding, blood, bleed, cut, gash, wound, laceration, tourniquet, pressure, bandage, gauze, spurting,
+     gushing, oozing, dripping, soaked, stab, stabbed, puncture, scrape, scraped, nosebleed, knife, glass]
+  bones:         # sector bones_joints: fractures, sprains, dislocations, head/spine
+    [broke, broken, break, fracture, fractured, sprain, sprained, strain, twisted, dislocated, splint, bone,
+     collarbone, fell, fall, swollen, deformed, spine, rolled, popped, snapped, crooked]
+  breathing:     # sector breathing_cpr + asthma/allergy
+    [breathing, breathe, breath, choking, choke, cpr, compressions, pulse, unresponsive, unconscious,
+     drowning, asthma, inhaler, wheezing, epipen, allergic, anaphylaxis, throat, collapsed, blue]
+  burns:
+    [burn, burned, burnt, burns, scald, scalded, blister, blistered, fire, flame, boiling, hot, stove,
+     sunburn, chemical, smoke]
+  environment:   # sectors cold + heat + bites_stings
+    [cold, hypothermia, shivering, frostbite, numb, freezing, wet, heat, hot, sweating, dizzy, dehydrated,
+     heatstroke, sun, lightning, snake, bite, bitten, sting, stung, bee, wasp, tick, spider, altitude]

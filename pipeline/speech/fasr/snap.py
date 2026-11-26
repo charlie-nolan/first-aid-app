@@ -24,7 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "pipeline" / "speech" / "docs" / "runs"
-CAPTURED = {"train", "evaluate", "pagescore", "slot", "calibrate", "adapt", "export", "export_int8"}
+CAPTURED = {"train", "evaluate", "pagescore", "slot", "calibrate", "adapt", "export", "export_int8", "tail"}
 MAX_LINES, WRAP = 70, 110
 BG, FG, DIM, ACC = (24, 26, 33), (220, 223, 228), (130, 136, 150), (110, 200, 140)
 
