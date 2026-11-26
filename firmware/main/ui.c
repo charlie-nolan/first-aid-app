@@ -10,6 +10,7 @@
  * lock note); medical wording always comes from the cartridge. */
 #include "ui.h"
 #include <string.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 #define MAXP 64                          /* passages per node we can page through */
@@ -906,16 +907,67 @@ static const char *vs_heard(ui_t *u, char *b, size_t cap) {
     if (u->vs->heard[0]) { snprintf(b, cap, "Heard: %s", u->vs->heard); return b; }
     return "Voice";
 }
-static void lbl_vs_choice(ui_t *u, int i, char *b, size_t cap) { snprintf(b, cap, "%d  %s", i + 1, u->vs->f[u->vs_f].ch[i].label); }
 static void lbl_vs_card(ui_t *u, int i, char *b, size_t cap) { snprintf(b, cap, "%d  %s", i + 1, u->vs->cards[i].title); }
 static void render_form(ui_t *u, cart_fb_t *fb) {
     vs_screen_t *v = u->vs; lay_t l = layout(u); char h[160];
     if (!v) { header(u, fb, "Voice", 0); return; }
     if (v->kind == VS_FORM && v->nf) {
+        /* Stage 1 (EXPERT_BANKS_SPEC.md): what was heard, the chips (blanks already filled), the open question */
         vs_field_t *f = &v->f[u->vs_f < v->nf ? u->vs_f : 0];
         char r[16]; snprintf(r, sizeof r, "%d/%d", u->vs_f + 1, v->nf);
-        draw_list(u, fb, f->key[0] == '@' ? "Which is it?" : f->q, r, f->nch, u->vs_c, lbl_vs_choice,
-                  u->vs_status[0] ? u->vs_status : "TALK pick  hold TALK say  DOWN next  BACK read");
+        header(u, fb, vs_heard(u, h, sizeof h), r);
+        int y = l.body_y - 1, lh0 = cart_font_line_height(u->c, ST(u, 0));
+        if (v->nchips) {                                   /* the chips row: one rounded box per filled blank */
+            int x = 2;
+            for (int i = 0; i < v->nchips; i++) {
+                char ct[160];                              /* "yes" / "no" alone says nothing: "swelling: yes" */
+                if (strlen(v->chip[i].label) <= 3) {
+                    snprintf(ct, sizeof ct, "%.40s: %.8s", v->chip[i].key, v->chip[i].label);
+                    for (char *q = ct; *q; q++) if (*q == '_') *q = ' ';
+                } else snprintf(ct, sizeof ct, "%.48s", v->chip[i].label);
+                int tw = cart_draw_str(u->c, ST(u, 0), 0, 0, 0, 0, ct) + 8;
+                if (x + tw > UI_W - 2) {                   /* no room: "+n" */
+                    char more[8]; snprintf(more, sizeof more, "+%d", v->nchips - i);
+                    draw_fit(u, fb, 0, 0, x + 1, base_of(u, 0, y + 1), UI_W - x - 2, more);
+                    break;
+                }
+                for (int xx = x + 2; xx < x + tw - 2; xx++) { fb_px(fb, xx, y); fb_px(fb, xx, y + lh0 + 2); }
+                for (int yy = y + 2; yy < y + lh0 + 1; yy++) { fb_px(fb, x, yy); fb_px(fb, x + tw - 1, yy); }
+                fb_px(fb, x + 1, y + 1); fb_px(fb, x + tw - 2, y + 1); fb_px(fb, x + 1, y + lh0 + 1); fb_px(fb, x + tw - 2, y + lh0 + 1);
+                cart_draw_str(u->c, ST(u, 0), 0, fb, x + 4, base_of(u, 0, y + 1), ct);
+                if (u->vs_onchip && i == u->vs_chip) fb_xor_rect(fb, x + 1, y + 1, tw - 2, lh0 + 1);
+                x += tw + 3;
+            }
+            y += lh0 + 5;
+            fb_hline(fb, 0, UI_W - 1, y - 2);
+        }
+        int lq = cart_font_line_height(u->c, ST(u, 1));
+        draw_fit(u, fb, 1, 1, 3, base_of(u, 1, y), UI_W - 6, f->key[0] == '@' ? "Which is it?" : f->q);
+        y += lq + 1;
+        bool tiles = u->has_window_keys && f->nch <= 4;    /* Plus: one corner button per answer */
+        if (tiles) {
+            int tw = UI_W / 2, th = (l.ftr_y - y - 1) / 2;
+            for (int i = 0; i < f->nch; i++) {
+                int x0 = (i % 2) * tw, y0 = y + (i / 2) * th;
+                for (int xx = x0 + 1; xx < x0 + tw - 1; xx++) { fb_px(fb, xx, y0); fb_px(fb, xx, y0 + th - 1); }
+                for (int yy = y0; yy < y0 + th; yy++) { fb_px(fb, x0 + 1, yy); fb_px(fb, x0 + tw - 2, yy); }
+                fb_corner_mark(fb, i, y0 + 1, y0 + th - 2);
+                draw_wrap(u, fb, 0, x0 + 8, y0 + 2, tw - 14, th - 3, f->ch[i].label);
+            }
+        } else {
+            int per = (l.ftr_y - y - 1) / lh0; if (per < 1) per = 1;
+            int top = (u->vs_c / per) * per;
+            for (int i = top; i < f->nch && i < top + per; i++) {
+                int yy = y + (i - top) * lh0; char t[64];
+                snprintf(t, sizeof t, "%d  %.58s", i + 1, f->ch[i].label);
+                draw_fit(u, fb, 0, 0, 6, base_of(u, 0, yy), UI_W - 12, t);
+                if (i == u->vs_c && !u->vs_onchip) fb_xor_rect(fb, 2, yy, UI_W - 4, lh0);
+            }
+        }
+        footer(u, fb, u->vs_status[0] ? u->vs_status
+                    : u->vs_onchip ? "TALK clear this one  DOWN next  BACK done"
+                    : tiles ? (v->nchips ? "Corner = answer  hold UP chips  TALK say" : "Corner = answer  hold TALK say  BACK read")
+                    : v->nchips ? "TALK pick  DOWN next (then chips)  BACK read" : "TALK pick  hold TALK say  DOWN next  BACK read");
     } else if (v->kind == VS_SKIP && v->ncards) {
         draw_list(u, fb, "Likely cards", 0, v->ncards, u->vs_card, lbl_vs_card,
                   u->vs_status[0] ? u->vs_status : "TALK open  DOWN next  BACK read");
@@ -971,14 +1023,35 @@ static ui_act_t form_event(ui_t *u, ui_btn_t b, ui_evkind_t k, ui_act_t a) {
     vs_screen_t *v = u->vs;
     if (!v) { u->mode = M_READ; return a; }
     u->vs_status[0] = 0;
+    if (b == B_UP && k == E_LONG && v->kind == VS_FORM && v->nchips) { u->vs_onchip = 1; u->vs_chip = 0; return a; }
     if (b == B_DOWN && k == E_LONG) { a.vf = VF_SKIP; snprintf(u->vs_status, sizeof u->vs_status, "Looking for cards..."); return a; }
     if (k != E_SHORT) { a.redraw = RD_NONE; return a; }
+    bool form = v->kind == VS_FORM && v->nf;
+    bool tiles = form && u->has_window_keys && v->f[u->vs_f].nch <= 4 && !u->vs_onchip;
+    if (form && u->vs_onchip) {                          /* on the chips row */
+        if (b == B_TALK) { a.vf = VF_CLEAR; snprintf(u->vs_status, sizeof u->vs_status, "Clearing: %s", v->chip[u->vs_chip].label); }
+        else if (b == B_DOWN || b == B_WIN_R) { if (++u->vs_chip >= v->nchips) { u->vs_onchip = 0; u->vs_chip = 0; } }
+        else if (b == B_UP || b == B_WIN_L) { if (u->vs_chip) u->vs_chip--; else u->vs_onchip = 0; }
+        else if (b == B_BACK) u->vs_onchip = 0;
+        else a.redraw = RD_NONE;
+        return a;
+    }
+    if (tiles && corner_of(b) >= 0) {                    /* Plus: a corner button answers */
+        int c = corner_of(b);
+        if (c < v->f[u->vs_f].nch) { u->vs_c = (uint8_t)c; a.vf = VF_PICK; snprintf(u->vs_status, sizeof u->vs_status, "Picked: %s", v->f[u->vs_f].ch[c].label); }
+        else a.redraw = RD_NONE;
+        return a;
+    }
     if (b == B_TALK) {
         if (v->kind == VS_FORM && v->nf) { a.vf = VF_PICK; snprintf(u->vs_status, sizeof u->vs_status, "Picked: %s", v->f[u->vs_f].ch[u->vs_c].label); }
         else if (v->kind == VS_SKIP && v->ncards) { a.vf = VF_OPEN; snprintf(u->vs_status, sizeof u->vs_status, "Opening..."); }
         else a.redraw = RD_NONE;
-    } else if (b == B_DOWN) vs_move(u, +1);
-    else if (b == B_UP) vs_move(u, -1);
+    } else if (b == B_DOWN) {
+        bool last = form && u->vs_f == v->nf - 1 && u->vs_c == v->f[u->vs_f].nch - 1;
+        if (last && v->nchips) { u->vs_onchip = 1; u->vs_chip = 0; }   /* past the last choice: onto the chips */
+        else vs_move(u, +1);
+    }
+    else if (b == B_UP) { if (form && v->nchips && u->has_window_keys) { u->vs_onchip = 1; u->vs_chip = 0; } else vs_move(u, -1); }
     else if ((b == B_WIN_R || b == B_WIN_L) && v->kind == VS_FORM && v->nf) {
         u->vs_f = (uint8_t)((u->vs_f + (b == B_WIN_R ? 1 : v->nf - 1)) % v->nf); u->vs_c = 0;
     } else if (b == B_BACK) u->mode = M_READ;
@@ -1005,7 +1078,7 @@ static ui_act_t search_event(ui_t *u, ui_btn_t b, ui_evkind_t k, ui_act_t a) {
 ui_act_t ui_vscreen(ui_t *u) {
     ui_act_t a = { RD_PARTIAL, 0, -1, VO_NONE, 0, 0, 0, 0, 0 };
     uint16_t node0 = W(u)->node; uint8_t mode0 = (uint8_t)u->mode;
-    u->listening = 0; u->vs_f = u->vs_c = u->vs_card = 0; u->vs_status[0] = 0;
+    u->listening = 0; u->vs_f = u->vs_c = u->vs_card = 0; u->vs_onchip = u->vs_chip = 0; u->vs_status[0] = 0;
     if (u->vs->kind == VS_CARD && u->vs->card.cart_node != CART_NONE && cart_node(u->c, u->vs->card.cart_node)) {
         go_node(u, u->vs->card.cart_node); u->ret_mode = M_FORM; u->ret_node = u->vs->card.cart_node;
     } else u->mode = M_FORM;

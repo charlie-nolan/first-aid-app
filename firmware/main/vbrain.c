@@ -63,6 +63,14 @@ static bool parse_screen(const char *js, vs_screen_t *s) {
         }
         if (d->nch) s->nf++;
     }
+    const cJSON *ch;
+    cJSON_ArrayForEach(ch, cJSON_GetObjectItem(r, "filled")) {
+        if (s->nchips >= 8) break;
+        cpy(s->chip[s->nchips].key, sizeof s->chip[0].key, ch, "key");
+        cpy(s->chip[s->nchips].q, sizeof s->chip[0].q, ch, "q");
+        cpy(s->chip[s->nchips].label, sizeof s->chip[0].label, ch, "label");
+        s->nchips++;
+    }
     const cJSON *it;
     cJSON_ArrayForEach(it, cJSON_GetObjectItem(r, "cards")) {
         if (s->ncards >= VS_CARDS) break;
@@ -106,6 +114,7 @@ bool vb_op(const vb_op_t *o, vs_screen_t *s) {
     if (o->op == VF_PICK) fp_screen_picked(&scr, o->a, o->plain ? NULL : o->b, o->plain ? o->c : NULL, out, OUT_CAP);
     else if (o->op == VF_OPEN) fp_screen_open(&scr, o->a, out, OUT_CAP);
     else if (o->op == VF_SKIP) fp_screen_skip(&scr, out, OUT_CAP);
+    else if (o->op == VF_CLEAR) fp_screen_unfill(&scr, o->a, out, OUT_CAP);
     else fp_screen_new(&scr, out, OUT_CAP);
     return parse_screen(out, s);
 }
@@ -119,6 +128,7 @@ bool vb_op_of(int vf, const ui_t *u, vb_op_t *o) {
         return true;
     }
     if (vf == VF_OPEN && v->kind == VS_SKIP && v->ncards) { snprintf(o->a, sizeof o->a, "%s", v->cards[u->vs_card].node); return true; }
+    if (vf == VF_CLEAR && v->kind == VS_FORM && u->vs_chip < v->nchips) { snprintf(o->a, sizeof o->a, "%s", v->chip[u->vs_chip].key); return true; }
     return vf == VF_SKIP;
 }
 int vb_search(const char *q, int reject, int reject_at, vs_hit_t *hits, int max) {

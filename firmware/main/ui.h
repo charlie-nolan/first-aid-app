@@ -24,7 +24,7 @@ typedef enum { SIG_OFF, SIG_FLASHLIGHT, SIG_SOS_WHITE, SIG_IR, SIG_CPR } ui_sign
 typedef enum { M_WAKE, M_READ, M_LIBRARY, M_MENU, M_PICK, M_MSG, M_CTX_DIMS, M_CTX_VALUES, M_HOME, M_FORM, M_SEARCH, M_REC } ui_mode_t;
 enum { RD_NONE, RD_PARTIAL, RD_FULL, RD_DEEP };   /* RD_DEEP: full black-white flash, e.g. opening a CPR page */
 enum { VO_NONE, VO_START, VO_STOP, VO_CANCEL };
-enum { VF_NONE, VF_PICK, VF_OPEN, VF_SKIP };
+enum { VF_NONE, VF_PICK, VF_OPEN, VF_SKIP, VF_CLEAR };   /* VF_CLEAR: a chip (filled blank) cleared */
 enum { RC_NONE, RC_SKIP, RC_REDO, RC_BACK };    /* training mode (M_REC): what main sends to the PC */   /* board voice form: what main sends to the form engine */
 
 /* ---- board voice (DIY speech + the fill-in-the-blanks form, main/voice_diy.c) ----
@@ -43,6 +43,8 @@ typedef struct {
     int seq; uint8_t kind, nf, ncards;
     char heard[128], msg[128];
     vs_field_t f[VS_FIELDS];
+    uint8_t nchips;                 /* the blanks already filled (vr.form.filled_blanks): the chips row */
+    struct { char key[40], q[96], label[48]; } chip[8];
     vs_card_t cards[VS_CARDS], card;
 } vs_screen_t;
 typedef struct { char title[96]; uint16_t cart_node; uint8_t life; } vs_hit_t;   /* keyword search tile */
@@ -103,6 +105,7 @@ typedef struct {
     /* board voice form + keyword search (set up by main when the DIY voice is built; NULL otherwise) */
     vs_screen_t *vs; vs_hit_t *hits;
     uint8_t has_form, has_search, vs_f, vs_c, vs_card;
+    uint8_t vs_onchip, vs_chip;     /* the cursor is on the chips row, and on which chip */
     int16_t nhits, hsel;
     char squery[64], vs_status[64];
     uint8_t ret_mode; uint16_t ret_node;
