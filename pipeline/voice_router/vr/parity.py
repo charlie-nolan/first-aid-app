@@ -5,7 +5,12 @@ tree choice vr.live.keep_trees, then vr.form), then up to 3 answers, and records
 
     {"id", "text", "answers": [{"pick": {...}} | {"text": "..."}], "frames": [SHOW json, ...]}
 
-Answers: variant "pick" taps the top field's first choice (a plain tile too: value null + node,
+Clearing a chip (the board selects it and presses TALK) is a PICK with "clear": true:
+{"seq", "field": key, "value": null, "clear": true} -> vr.form.unfill(cands, key), then the usual
+frame (a form with that blank open again, or a card).
+
+Answers: variant "unfill" clears the first chip of the first form frame, then taps on as "pick"
+(cases only when that frame has a chip). Variant "pick" taps the top field's first choice (a plain tile too: value null + node,
 which the bridge passes whole as pick(field, None, cands, to=node)); variant "say" speaks the label
 of the top field's first choice that sets a value, through vr.form.answer.
 
@@ -16,7 +21,7 @@ candidate's own "tree/" prefix.
 Frame rules (a C port must produce the same bytes):
   * every frame: {"v": 1, "seq": n, "kind": K, "heard": <first hypothesis or answer text>[:100]}
     seq counts SHOW frames from 1 within a case. Only the keys below are added per kind.
-  * kind "form": "fields", "top", "msg" ("" unless noted).
+  * kind "form": "fields", "filled", "top", "msg" ("" unless noted).
       fields = open_fields(cands) in order, each {"key", "q": question[:94],
                "choices": [...][:12], "after": [slot, value] | null}; a field with no usable
                choice is dropped; at most 6 fields (fields[:6], after dropping).
@@ -25,6 +30,9 @@ Frame rules (a C port must produce the same bytes):
                "node": node_id(field.trees[0], target)[:78]}. Plain tiles appear only on the field
                being asked now (look-ahead fields carry answers only).
       choices with neither value nor target are skipped.
+      filled = vr.form.filled_blanks(cands)[:8], each {"key", "q": q[:94], "label": label[:46]}: the
+               blanks already filled (the chips row), kept trees in order, each in fill order, a
+               key once. [] when nothing is filled.
       top  = ranked_cards(cands, 3) as [{"title": "<Tree title> > <card label>", "node": node_id}]
   * kind "card": "card": {"title", "cites": [ref strings][:6], "node": node_id} (never text).
   * kind "skip": "cards": [{"title", "node"}][:6] from vr.form.skip.
@@ -88,8 +96,10 @@ class Screen:
             if ch:
                 fields.append({"key": f.key, "q": f.question[:94], "choices": ch[:12],
                                "after": list(f.when) if f.when else None})
+        filled = [{"key": f["key"], "q": f["q"][:94], "label": f["label"][:46]}
+                  for f in F.filled_blanks(self.cands)][:8]
         top = [self._ref(n, c) for n, c in F.ranked_cards(self.cands, 3)]
-        return self.show("form", fields=fields[:6], top=top, msg=msg)
+        return self.show("form", fields=fields[:6], filled=filled, top=top, msg=msg)
 
     def card_screen(self, name, card):
         t, cites = _title(self.trees, name, card)
@@ -133,6 +143,8 @@ class Screen:
     def picked(self, p: dict):
         if self.cands is None:
             return self.show("start", msg="Hold TALK and say what happened.")
+        if p.get("clear"):
+            return self.result(*F.unfill(self.cands, p["field"]))
         if p.get("value") is None and p.get("node"):
             return self.result(*F.pick(p["field"], None, self.cands, to=p["node"]))
         return self.result(*F.pick(p["field"], p["value"], self.cands))
@@ -159,6 +171,13 @@ def seed_lines(files: list[Path]) -> list[str]:
 def run_case(trees, text: str, mode: str, steps: int = 3):
     s, answers = Screen(trees), []
     fr = s.said(text)
+    if mode == "unfill":                  # clear the first chip, then tap on as "pick" does
+        if fr["kind"] != "form" or not fr["filled"]:
+            return [], s.frames
+        p = {"seq": fr["seq"], "field": fr["filled"][0]["key"], "value": None, "clear": True}
+        answers.append({"pick": p})
+        fr = s.picked(p)
+        mode, steps = "pick", steps - 1
     for _ in range(steps):
         if fr["kind"] != "form" or not fr["fields"]:
             break
@@ -216,9 +235,9 @@ def main(argv=None):
         return
     with open(a.out, "w") as out:
         for i, t in enumerate(lines):
-            for mode in ("pick", "say"):
+            for mode in ("pick", "say", "unfill"):
                 answers, frames = run_case(trees, t, mode)
-                if mode == "say" and not answers:
+                if mode != "pick" and not answers:
                     continue
                 out.write(json.dumps({"id": f"p{i:04d}-{mode}", "text": t, "answers": answers, "frames": frames}) + "\n")
                 n += 1
