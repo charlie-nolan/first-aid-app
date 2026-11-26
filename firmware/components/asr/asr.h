@@ -39,4 +39,9 @@ void asr_stream_feed(const int16_t *pcm, size_t samples);
 size_t asr_stream_bytes(void);                 /* bytes of the streaming buffers (0 = no streaming) */
 void asr_stream_abort(void);                   /* drop the stream (a tap, not speech) */
 asr_err_t asr_stream_end(const int16_t *pcm, size_t samples, asr_hyp_t *out);
+/* Stage 3 (expert tails): load one EXPT v1 tail; streams then keep the trunk's output H, and after
+ * asr_stream_end, asr_tail_redecode re-runs only the tail on it and decodes again (no second audio pass). */
+asr_err_t asr_tail_open(const void *expt, size_t len);
+void asr_tail_close(void);
+asr_err_t asr_tail_redecode(asr_hyp_t *out);
 void asr_last_timing(uint32_t *fe_us, uint32_t *model_us, uint32_t *search_us);

@@ -52,10 +52,14 @@ extern uint32_t fq_prof_us[5];
 typedef struct {
     const fq_model_t *m; int Tmax, nin, nout;
     int8_t *xin, *hist, *pl[4], *xt, *col; int32_t *lg;
+    int h_layer; int8_t *h; int h_stride;   /* Stage 3: keep layer h_layer's output (C x frames, row stride h_stride) */
 } fq_stream_t;
 size_t fq_stream_size(const fq_model_t *m, int Tmax);          /* bytes for fq_stream_init's mem (Tmax feature frames) */
 void fq_stream_init(fq_stream_t *st, const fq_model_t *m, void *mem, int Tmax);
 int fq_stream_feed(fq_stream_t *st, const float *feats, int nfeat, bool final, float *logp);
+/* Stage 3: also keep the trunk's output H (the output of base layer `layer`, i.e. a tail's layer_a - 1) while
+ * streaming: h = C x stride int8 (stride >= the most model frames). Call after fq_stream_init. */
+void fq_stream_keep_h(fq_stream_t *st, int layer, int8_t *h, int stride);
 
 /* ---- Stage 3: shared trunk + per-group expert tails (speech thread, fasr/tail.py EXPT v1) ----
  * The base model runs once; the int8 output of its layer layer_a-1 (H, channel-major C x T') is kept. A tail is

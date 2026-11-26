@@ -353,7 +353,7 @@ void fq_stream_init(fq_stream_t *st, const fq_model_t *m, void *mem, int Tmax) {
     uint8_t *p = (uint8_t *)(((uintptr_t)mem + sizeof *st + 15) & ~(uintptr_t)15);
     size_t c = (size_t)m->cmax, h = 0;
     for (int i = 0; i < m->nl; i++) { const uint8_t *l = LAYER(m, i); if (L_GROUPS(l) > 1) h += (size_t)L_CIN(l) * (L_K(l) - 1); }
-    memset(st, 0, sizeof *st); st->m = m; st->Tmax = Tmax;
+    memset(st, 0, sizeof *st); st->m = m; st->Tmax = Tmax; st->h_layer = -1;
     st->xin = (int8_t *)p; p += al16(40 * (size_t)Tmax);
     st->hist = (int8_t *)p; p += al16(h); memset(st->hist, 0, h);   /* zeros = the left padding */
     for (int i = 0; i < 4; i++) { st->pl[i] = (int8_t *)p; p += al16(c * (FQ_CH + 16)); }
@@ -399,6 +399,8 @@ int fq_stream_feed(fq_stream_t *st, const float *feats, int nfeat, bool final, f
                 break;
             } else if (conv(m, l, a, n, b, blk, NULL, st->xt) < 0) return -1;
             int8_t *t = a; a = b; b = t;
+            if (i == st->h_layer && st->h)            /* the trunk's output for these frames: keep it (H) */
+                for (int ch = 0; ch < L_COUT(l); ch++) memcpy(st->h + (size_t)ch * st->h_stride + t0, a + (size_t)ch * n, n);
         }
         st->nout += n;
     }
@@ -420,3 +422,5 @@ bool fq_tail_open(fq_tail_t *t, const void *blob, size_t len, const uint8_t *tru
     if (!fq_open(&t->m, b + 48, fl)) return false;
     return t->m.e_in == t->e_h && t->m.nl == t->layer_b - t->layer_a;
 }
+
+void fq_stream_keep_h(fq_stream_t *st, int layer, int8_t *h, int stride) { st->h_layer = layer; st->h = h; st->h_stride = stride; }

@@ -156,9 +156,11 @@ void asr_last_timing(uint32_t *fe_us, uint32_t *model_us, uint32_t *search_us) {
 }
 
 /* ---- streaming: the front end, the model and the beam search run while TALK is held ---- */
+static fq_tail_t TL; static bool tl_ok; static int8_t *hbuf; static int h_stride;
 asr_err_t asr_stream_begin(void) {
     if (!ready || !st_mem) return ASR_NOT_BUILT;
     fq_stream_init(&ST, &M, st_mem, st_T);
+    if (tl_ok) fq_stream_keep_h(&ST, TL.layer_a - 1, hbuf, h_stride);   /* Stage 3: keep H for the tail */
     fd_begin(&X, ws_dec);
     st_fe = st_lp = 0; st_on = true;
     return ASR_OK;
@@ -193,6 +195,47 @@ asr_err_t asr_stream_end(const int16_t *pcm, size_t samples, asr_hyp_t *out) {
     static fd_result_t r;
     fd_finish(&X, logp, st_lp, have_cal ? &CAL : NULL, ws_dec, &r);
     t_search += (uint32_t)(now_us() - a);
+    out->n = (uint8_t)r.n;
+    for (int h = 0; h < r.n && h < ASR_MAX_HYP; h++) {
+        out->h[h].len = r.h[h].len;
+        memcpy(out->h[h].id, r.h[h].id, sizeof out->h[h].id);
+        memcpy(out->h[h].conf, r.h[h].conf, sizeof out->h[h].conf);
+    }
+    out->reject = (uint8_t)r.reject; out->reject_raw = (uint8_t)r.reject_raw; out->veto = r.veto;
+    return ASR_OK;
+}
+
+/* ---- Stage 3: a group's expert tail on the trunk's saved output H ----
+ * asr_tail_open loads one tail (EXPT v1); every stream from then on keeps H (the output of base layer
+ * layer_a - 1); after asr_stream_end, asr_tail_redecode runs only the tail on that H and decodes again. */
+asr_err_t asr_tail_open(const void *expt, size_t len) {
+    tl_ok = false;
+    if (!ready) return ASR_NOT_BUILT;
+    if (!expt || !fq_tail_open(&TL, expt, len, NULL)) return ASR_NO_MODEL;     /* TODO: trunk_id from the cart */
+    if (TL.layer_b != M.nl || TL.layer_a < 1) return ASR_NO_MODEL;
+    int C = TL.m.layers[0] | TL.m.layers[1] << 8;                               /* the tail's input channels */
+    if (!hbuf) { h_stride = fq_out_len(&M, st_T); hbuf = big((size_t)M.cmax * h_stride); }
+    if (!hbuf || C > M.cmax) return ASR_NO_MEMORY;
+    tl_ok = true;
+    return ASR_OK;
+}
+void asr_tail_close(void) { tl_ok = false; }
+asr_err_t asr_tail_redecode(asr_hyp_t *out) {
+    memset(out, 0, sizeof *out); out->reject = 100;
+    if (!tl_ok || st_lp <= 0) return ASR_NOT_BUILT;
+    int C = TL.m.layers[0] | TL.m.layers[1] << 8, To = st_lp;
+    int8_t *hc = big((size_t)C * To);                                           /* H, rows packed to To */
+    if (!hc) return ASR_NO_MEMORY;
+    for (int c = 0; c < C; c++) memcpy(hc + (size_t)c * To, hbuf + (size_t)c * h_stride, To);
+    int64_t a = now_us();
+    int got = fq_forward_h(&TL.m, hc, C, To, ws_model, logits);
+    free(hc);
+    if (got != To) return ASR_NO_MODEL;
+    fq_logp(&TL.m, logits, To, logp);
+    int64_t b = now_us();
+    static fd_result_t r;
+    fd_decode(&X, logp, To, have_cal ? &CAL : NULL, ws_dec, &r);
+    t_fe = 0; t_model = (uint32_t)(b - a); t_search = (uint32_t)(now_us() - b);
     out->n = (uint8_t)r.n;
     for (int h = 0; h < r.n && h < ASR_MAX_HYP; h++) {
         out->h[h].len = r.h[h].len;
