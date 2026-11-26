@@ -1,0 +1,8 @@
+# XIAO ESP32-S3 Plus (16 MB), beta firmware (board voice, no ESP-SR): the old 6 MB ESP-SR "model" partition is
+# gone and the app slot is 1 MB (the beta app is ~0.5 MB), so the library (cards + speech model + expert tails)
+# gets ~14.9 MB. Library must be 64 KB aligned (mmap). The MultiNet build keeps partitions-16mb.csv.
+# Name,    Type, SubType, Offset,   Size
+nvs,       data, nvs,     0x9000,   0x6000
+phy_init,  data, phy,     0xf000,   0x1000
+factory,   app,  factory, 0x10000,  0x100000
+library,   data, 0x40,    0x110000, 0xEF0000

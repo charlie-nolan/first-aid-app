@@ -8,7 +8,7 @@ set -euo pipefail
 board=$1; b=$2; cart=$3; port=${4:-$(ls /dev/ttyACM* | head -1)}
 case $board in
   plain) lib=0x210000; max=$((0x5F0000));;
-  plus)  lib=0x800000; max=$((0x800000));;
+  plus)  lib=0x110000; max=$((0xEF0000));;   # partitions-16mb-beta.csv (sdkconfig.plus-beta)
   *) echo "board: plain or plus"; exit 2;;
 esac
 size=$(stat -c %s "$cart")
@@ -18,6 +18,7 @@ grep -q "^CONFIG_LIB_VOICE_DIY=y" "$b/sdkconfig" 2>/dev/null || grep -q "^CONFIG
   || grep -q "CONFIG_LIB_VOICE_DIY 1" "$b/config/sdkconfig.h" || { echo "$b is not a beta build (LIB_VOICE_DIY)"; exit 1; }
 if [ "$board" = plus ] && ! grep -q "CONFIG_LIB_BOARD_PLUS 1" "$b/config/sdkconfig.h"; then echo "$b is not a Plus build"; exit 1; fi
 if [ "$board" = plain ] && grep -q "CONFIG_LIB_BOARD_PLUS 1" "$b/config/sdkconfig.h"; then echo "$b is a Plus build"; exit 1; fi
+if [ "$board" = plus ] && ! grep -q 'partitions-16mb-beta.csv' "$b/sdkconfig" 2>/dev/null; then echo "$b is not built with sdkconfig.plus-beta (library at 0x110000)"; exit 1; fi
 . ~/esp/esp-idf/export.sh >/dev/null 2>&1
 if [ "${APP_ONLY:-0}" = 1 ]; then
   python -m esptool --chip esp32s3 -p "$port" -b 921600 write_flash 0x10000 "$b/librarian.bin"

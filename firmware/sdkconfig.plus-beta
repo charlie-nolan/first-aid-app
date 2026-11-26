@@ -1,0 +1,4 @@
+# Plus + beta: the 16 MB layout without the ESP-SR model partition (partitions-16mb-beta.csv).
+#   idf.py -B build-beta-plus -D SDKCONFIG=build-beta-plus/sdkconfig \
+#          -D "SDKCONFIG_DEFAULTS=sdkconfig.defaults;sdkconfig.plus;sdkconfig.beta;sdkconfig.plus-beta" build
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions-16mb-beta.csv"
