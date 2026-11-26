@@ -40,7 +40,8 @@ def main(argv=None):
                 script.append(f"SAY {esc(ans['text'])}")
             else:
                 p = ans["pick"]
-                script.append(f"PICK {esc(p['field'])}\t{esc(p.get('value'))}\t{esc(p.get('node'))}")
+                if p.get("clear"): script.append(f"CLEAR {esc(p['field'])}")
+                else: script.append(f"PICK {esc(p['field'])}\t{esc(p.get('value'))}\t{esc(p.get('node'))}")
     if a.fuzz:
         for t in dict.fromkeys(c["text"] for c in cases):
             script.append(f"FUZZ {esc(t)}")

@@ -124,6 +124,7 @@ int main(int argc, char **argv) {
         struct timespec t0, t1;
         clock_gettime(CLOCK_MONOTONIC, &t0);
         if (!strcmp(line, "SAY")) fp_screen_said(&sc, p, out, sizeof out);
+        else if (!strcmp(line, "CLEAR")) fp_screen_unfill(&sc, p, out, sizeof out);
         else if (!strcmp(line, "PICK")) {
             char *k = field(&p), *v = field(&p), *nd = field(&p);
             fp_screen_picked(&sc, k, v, nd, out, sizeof out);

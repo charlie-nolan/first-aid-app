@@ -22,7 +22,7 @@ static inline uint32_t rd32(const uint8_t *p) { return p[0] | p[1] << 8 | p[2] <
 
 bool fp_open(fp_pack_t *pk, const void *blob, size_t len) {
     const uint8_t *b = blob;
-    if (len < 24 || memcmp(b, "FPK1", 4) || rd16(b + 4) != 6 || rd32(b + 20) != len) return false;
+    if (len < 24 || memcmp(b, "FPK1", 4) || rd16(b + 4) != 7 || rd32(b + 20) != len) return false;
     pk->b = b; pk->len = len; pk->ntrees = rd16(b + 6); pk->nstr = rd32(b + 8);
     if (rd32(b + 12) + 4 * pk->nstr > len || rd32(b + 16) + 4u * pk->ntrees > len) return false;
     return true;
@@ -1899,4 +1899,56 @@ const void *fp_cart_chunk(const void *rom, size_t len, const char tag[4], size_t
         return b + off;
     }
     return NULL;
+}
+
+/* ---- vr.form.filled_blanks / unfill (0608f1f): the chips row, and clearing one ---- */
+static const uint8_t *qorder(const fp_sess_t *s, int t) {   /* MENU tail: u16 q, q x u16 node indices */
+    const uint8_t *m = s->trees[t].menu, *tp = m + 2 + 2 * rd16(m), *fl = tp + 2 + 2 * rd16(tp), *lc = fl + 2;
+    return lc + 2 + 2 * rd16(lc);
+}
+int fp_filled_blanks(const fp_sess_t *s, fp_chip_t *out, int max) {
+    int n = 0;
+    fp_str seen[64]; int ns = 0;
+    for (int i = 0; i < s->ncands; i++) {
+        const fp_cand_t *c = &s->cands[i];
+        const uint8_t *qo = qorder(s, c->tree);
+        for (int k = 0; k < c->filled.n; k++) {
+            fp_str key = c->filled.slot[k], v = c->filled.val[k];
+            bool dup = false;
+            for (int j = 0; j < ns; j++) if (seen[j] == key) dup = true;
+            if (dup || v == FP_NONE || !*S(v)) continue;
+            if (ns < 64) seen[ns++] = key;
+            fp_str q = key, label = FP_NONE; bool first = true;
+            for (int j = 0; j < rd16(qo); j++) {             /* the question cards asking this slot, in order */
+                int nd = rd16(qo + 2 + 2 * j);
+                const uint8_t *nn = node(s, c->tree, nd);
+                if (N_QSLOT(nn) != key) continue;
+                if (first) { q = N_LABEL(nn) != FP_NONE ? N_LABEL(nn) : key; first = false; }
+                if (label == FP_NONE) {
+                    fp_tile_t ts[MAXT]; int nt = fp_tiles(s, c->tree, nd, ts, MAXT);
+                    for (int x = 0; x < nt && label == FP_NONE; x++) if (ts[x].value == v) label = ts[x].label;
+                }
+            }
+            if (n < max) out[n] = (fp_chip_t){key, q, label != FP_NONE && *S(label) ? label : v};   /* str(label or v) */
+            n++;
+        }
+    }
+    return n < max ? n : max;
+}
+fp_result_t fp_unfill(fp_sess_t *s, const char *key) {
+    int ks = fp_find_str(&s->pk, key);
+    for (int i = 0; i < s->ncands && ks >= 0; i++) {
+        fp_cand_t *c = &s->cands[i];
+        int at = -1;
+        for (int k = 0; k < c->filled.n; k++) if (c->filled.slot[k] == (fp_str)ks) at = k;
+        if (at < 0) continue;
+        memmove(&c->filled.slot[at], &c->filled.slot[at + 1], sizeof(fp_str) * (size_t)(c->filled.n - at - 1));
+        memmove(&c->filled.val[at], &c->filled.val[at + 1], sizeof(fp_str) * (size_t)(c->filled.n - at - 1));
+        c->filled.n--;
+        advance(s, c, s->trees[c->tree].root);                /* walk again from the root */
+    }
+    int done = -1;
+    for (int i = 0; i < s->ncands; i++) if (s->cands[i].asking == FP_NONE) { done = i; break; }
+    if (s->ncands == 1 && done >= 0) return res(FP_OPEN, s->cands[0].tree, s->cands[0].card);
+    return res(FP_FORM, 0, 0);
 }

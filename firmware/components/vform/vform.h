@@ -124,6 +124,13 @@ int fp_tab_rank(fp_sess_t *s, const fp_cand_t *c);     /* vr.form.life_rank */
 bool fp_tab_life(fp_sess_t *s, const fp_cand_t *c);    /* vr.form._life_target is set */
 /* Keep only the candidates of one tab (vr bridge: cands = split_tabs(cands)[0]). */
 void fp_keep_tab(fp_sess_t *s, const fp_tab_t *tab);
+/* vr.form.filled_blanks: the blanks already filled (the chips row), kept trees in order, each in fill order, a key
+ * once. q = the label of the first question card asking the slot (else the key); label = that card's tile for the
+ * value (else the value). Returns how many (<= max). */
+typedef struct { fp_str key, q, label; } fp_chip_t;
+int fp_filled_blanks(const fp_sess_t *s, fp_chip_t *out, int max);
+/* vr.form.unfill: clear a filled blank; every kept tree holding it walks again from its root. Returns like fp_pick. */
+fp_result_t fp_unfill(fp_sess_t *s, const char *key);
 /* vr.form.most_telling: the open blank to put first, or FP_NONE. */
 fp_str fp_most_telling(fp_sess_t *s);
 

@@ -19,6 +19,8 @@ int fp_screen_said(fp_screen_t *sc, const char *text, char *out, size_t cap);
 int fp_screen_said_n(fp_screen_t *sc, const char *const *hyps, int nh, char *out, size_t cap);
 /* A tapped choice: value NULL + node = a plain tile (node id sent back unchanged). */
 int fp_screen_picked(fp_screen_t *sc, const char *field, const char *value, const char *node, char *out, size_t cap);
+/* A chip cleared (PICK {"field": key, "value": null, "clear": true}): vr.form.unfill. */
+int fp_screen_unfill(fp_screen_t *sc, const char *field, char *out, size_t cap);
 int fp_screen_skip(fp_screen_t *sc, char *out, size_t cap);
 int fp_screen_open(fp_screen_t *sc, const char *node, char *out, size_t cap);
 /* Speech reject: the bridge's "again" frame. */

@@ -24,7 +24,9 @@ Layout (little endian; every offset is from the start of the blob; NONE = 0xFFFF
           then u16 m, m x u16 phrase ids (condition names for the tree, vr.form.topic_phrases' raw
           phrases: smap topic_words + vr.form._DEFAULT_TOPICS[name] + the name when it is a condition),
           then u16 flags (bit 0: generic home of the shared life blanks, vr.live.GENERIC_HOME / smap generic_home),
-          then u16 l, l x u16 slot ids (location slots: smap location_slots or vr.live.LOCATION_SLOTS)
+          then u16 l, l x u16 slot ids (location slots: smap location_slots or vr.live.LOCATION_SLOTS),
+          then u16 q, q x u16 node indices: the question cards in vr.intake._questions order (v7, for
+          vr.form.filled_blanks: the first card asking a slot names its chip)
   NODE    u16 key label qslot nchoices ntiles nqch ncites flags (bit 0: content card, has cite or text)
           u32 off_choices off_tiles off_qch off_cites                                 (32 bytes)
   CHOICE  u16 to label; i16 to_node; u8 has_value kind_next                          (8 bytes)
@@ -47,7 +49,7 @@ from pathlib import Path
 import yaml
 
 NONE = 0xFFFF
-VERSION = 6
+VERSION = 7
 
 
 def _s(v) -> str:
@@ -147,10 +149,12 @@ def pack_tree(P: Pack, name: str, tree: dict, smap: dict, vr) -> bytes:
     base = name.split("wfa-")[-1]
     topic = [str(ph) for ph in (smap.get("topic_words") or [])] + list(getattr(F, "_DEFAULT_TOPICS", {}).get(name, [])) + \
         ([base] if base in getattr(F, "_NAME_IS_TOPIC", set()) else [])
+    qorder = [idx[k] for k, q in qs.items() if k in idx and q.get("slot")]
     off_menu = P.put(struct.pack("<H", len(menu)) + b"".join(struct.pack("<H", P.sid(m)) for m in menu)
                      + struct.pack("<H", len(topic)) + b"".join(struct.pack("<H", P.sid(t)) for t in topic)
                      + struct.pack("<H", 1 if (name in getattr(vr_live, "GENERIC_HOME", set()) or smap.get("generic_home")) else 0)
-                     + struct.pack("<H", len(loc)) + b"".join(struct.pack("<H", P.sid(x)) for x in loc),
+                     + struct.pack("<H", len(loc)) + b"".join(struct.pack("<H", P.sid(x)) for x in loc)
+                     + struct.pack("<H", len(qorder)) + b"".join(struct.pack("<H", i) for i in qorder),
                      align=2)
     root = idx.get(tree.get("root"), 0)
     return struct.pack("<8H6I", P.sid(name), P.sid(tree.get("title", name)), root, len(keys), len(slots),

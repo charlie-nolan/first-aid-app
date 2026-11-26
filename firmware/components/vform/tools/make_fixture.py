@@ -169,9 +169,12 @@ def main(argv=None):
     n = 0
     with open(a.out / "fixture_parity.jsonl", "w") as f:
         for i, t in enumerate(SENTENCES):
-            for mode in ("pick", "say"):
-                answers, frames = run_case(TREES, t, mode)
-                if mode == "say" and not answers:
+            for mode in ("pick", "say", "unfill"):         # unfill: vr 0608f1f (clear the first chip)
+                try:
+                    answers, frames = run_case(TREES, t, mode)
+                except Exception:                              # an older vr without the mode
+                    continue
+                if mode != "pick" and not answers:
                     continue
                 f.write(json.dumps({"id": f"f{i:03d}-{mode}", "text": t, "answers": answers, "frames": frames}) + "\n")
                 n += 1

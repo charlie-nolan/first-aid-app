@@ -159,6 +159,15 @@ static int form_screen(fp_screen_t *sc, jb_t *b, const char *msg) {
         else { raw(b, "["); jstr(b, SS(f[i].when_slot), -1); raw(b, ","); jstr(b, SS(f[i].when_val), -1); raw(b, "]"); }
         raw(b, "}");
     }
+    raw(b, "],\"filled\":[");                           /* the chips row: vr.form.filled_blanks(cands)[:8] */
+    fp_chip_t ch[8];
+    int nchip = fp_filled_blanks(s, ch, 8);
+    for (int i = 0; i < nchip; i++) {
+        if (i) raw(b, ",");
+        raw(b, "{\"key\":"); jstr(b, SS(ch[i].key), -1);
+        raw(b, ",\"q\":"); jstr(b, SS(ch[i].q), 94);
+        raw(b, ",\"label\":"); jstr(b, SS(ch[i].label), 46); raw(b, "}");
+    }
     raw(b, "],\"top\":");
     fp_ref_t r[3];
     int nr = fp_ranked_cards(s, 3, r, 3);
@@ -255,6 +264,11 @@ int fp_screen_picked(fp_screen_t *sc, const char *field, const char *value, cons
     if (!sc->open) return start(sc, &b, "Hold TALK and say what happened.");
     if (!value && node && *node) return result(sc, &b, fp_pick(sc->s, field, NULL, node));
     return result(sc, &b, fp_pick(sc->s, field, value, NULL));
+}
+int fp_screen_unfill(fp_screen_t *sc, const char *field, char *out, size_t cap) {
+    jb_t b = {out, cap, 0};
+    if (!sc->open) return start(sc, &b, "Hold TALK and say what happened.");
+    return result(sc, &b, fp_unfill(sc->s, field));
 }
 
 int fp_screen_open(fp_screen_t *sc, const char *node, char *out, size_t cap) {
