@@ -56,3 +56,20 @@ typedef struct {
 size_t fq_stream_size(const fq_model_t *m, int Tmax);          /* bytes for fq_stream_init's mem (Tmax feature frames) */
 void fq_stream_init(fq_stream_t *st, const fq_model_t *m, void *mem, int Tmax);
 int fq_stream_feed(fq_stream_t *st, const float *feats, int nfeat, bool final, float *logp);
+
+/* ---- Stage 3: shared trunk + per-group expert tails (speech thread, fasr/tail.py EXPT v1) ----
+ * The base model runs once; the int8 output of its layer layer_a-1 (H, channel-major C x T') is kept. A tail is
+ * an FQ81 blob of only the base layers layer_a..n-1 (fine-tuned per group), run straight on H. */
+typedef struct {
+    uint16_t version, group_id, layer_a, layer_b;
+    uint8_t trunk_id[8];
+    int8_t e_h;
+    char group[17];
+    fq_model_t m;              /* the tail layers (fq_open on the embedded FQ81) */
+} fq_tail_t;
+/* Read an EXPT v1 tail. trunk_id (8 bytes) = the loaded base trunk's id: a tail for another trunk is refused
+ * (NULL skips the check). false = bad header / FQ81 / trunk. */
+bool fq_tail_open(fq_tail_t *t, const void *blob, size_t len, const uint8_t *trunk_id);
+/* Run every layer of m on an int8 input h (C x T, channel-major, exponent = m's e_in) instead of log-mel:
+ * a tail on the trunk's saved H. Same work space as fq_forward (fq_ws_size(m, T)). Returns output frames. */
+int fq_forward_h(const fq_model_t *m, const int8_t *h, int C, int T, void *ws, int32_t *logits);

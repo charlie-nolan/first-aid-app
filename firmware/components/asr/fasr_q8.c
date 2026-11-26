@@ -262,6 +262,8 @@ static void quant_in(const fq_model_t *m, const float *feats, int t0, int t1, in
 static bool is_pw(const uint8_t *l) { return L_K(l) == 1 && L_STRIDE(l) == 1 && L_PAD(l) == 0 && L_GROUPS(l) == 1 && L_CIN(l) % 16 == 0; }
 static size_t pw_bytes(const uint8_t *l) { return (size_t)L_CIN(l) * L_COUT(l); }
 
+static int run_layers(const fq_model_t *m, int8_t *x, int8_t *y, int8_t *blk, int8_t *xt, int Tc, int32_t *logits,
+                      fq_layer_cb cb, void *ctx);
 int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t *logits, fq_layer_cb cb, void *ctx) {
     size_t plane = (size_t)m->cmax * (T > 0 ? T : 1);
     int8_t *x = ws, *y = x + plane, *blk = y + plane;
@@ -269,7 +271,18 @@ int fq_forward(const fq_model_t *m, const float *feats, int T, void *ws, int32_t
     int64_t p0 = PROF_NOW();
     quant_in(m, feats, 0, T, x, T);
     fq_prof_us[0] += (uint32_t)(PROF_NOW() - p0);
-    int Tc = T;
+    return run_layers(m, x, y, blk, xt, T, logits, cb, ctx);
+}
+int fq_forward_h(const fq_model_t *m, const int8_t *h, int C, int T, void *ws, int32_t *logits) {
+    if (C != L_CIN(LAYER(m, 0)) || C > m->cmax) return -1;
+    size_t plane = (size_t)m->cmax * (T > 0 ? T : 1);
+    int8_t *x = ws, *y = x + plane, *blk = y + plane;
+    int8_t *xt = (int8_t *)(((uintptr_t)(blk + plane) + 15) & ~(uintptr_t)15);
+    memcpy(x, h, (size_t)C * T);
+    return run_layers(m, x, y, blk, xt, T, logits, NULL, NULL);
+}
+static int run_layers(const fq_model_t *m, int8_t *x, int8_t *y, int8_t *blk, int8_t *xt, int Tc, int32_t *logits,
+                      fq_layer_cb cb, void *ctx) {
     /* prefetch: the pointwise layers in order; buffer b holds the k-th one when k % 2 == b */
     int pw_next = -1, pw_k = 0;
     if (pf_on) {
@@ -390,4 +403,20 @@ int fq_stream_feed(fq_stream_t *st, const float *feats, int nfeat, bool final, f
         st->nout += n;
     }
     return st->nout;
+}
+
+/* ---- EXPT v1 tails ---- */
+bool fq_tail_open(fq_tail_t *t, const void *blob, size_t len, const uint8_t *trunk_id) {
+    const uint8_t *b = blob;
+    memset(t, 0, sizeof *t);
+    if (len < 48 || memcmp(b, "EXPT", 4)) return false;
+    t->version = r16(b + 4); t->group_id = r16(b + 6);
+    memcpy(t->trunk_id, b + 8, 8);
+    t->layer_a = r16(b + 16); t->layer_b = r16(b + 18); t->e_h = (int8_t)b[20];
+    uint32_t fl = r32(b + 24);
+    memcpy(t->group, b + 28, 16); t->group[16] = 0;
+    if (t->version != 1 || 48 + (size_t)fl > len) return false;
+    if (trunk_id && memcmp(trunk_id, t->trunk_id, 8)) return false;    /* a tail for another trunk */
+    if (!fq_open(&t->m, b + 48, fl)) return false;
+    return t->m.e_in == t->e_h && t->m.nl == t->layer_b - t->layer_a;
 }
