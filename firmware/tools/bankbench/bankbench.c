@@ -52,10 +52,12 @@ static void open_cal(const uint8_t *c, size_t cl) {
     memcpy(CAL.mean, v, 64); memcpy(CAL.std, v + 8, 64); memcpy(CAL.weights, v + 16, 64);
     CAL.bias = v[24]; CAL.threshold = v[25];
 }
-static void trees_json(fp_sess_t *s, const char *const *h, int nh) {
+static void trees_json(fp_sess_t *s, const char *const *h, int nh, const char *pname) {
     int n = fp_keep_trees(s, h, nh, 3);
     printf("[");
     for (int i = 0; i < n; i++) { if (i) putchar(','); jstr(fp_s(&s->pk, s->trees[s->cands[i].tree].name)); }
+    printf("],\"%s\":[", pname);
+    for (int i = 0; i < n; i++) printf("%s%.3f", i ? "," : "", s->cands[i].p);
     printf("]");
 }
 
@@ -132,9 +134,9 @@ int main(int argc, char **argv) {
         printf(",\"frames\":%d,\"model_ms\":%.1f,\"search_ms\":%.2f,", got, (t1 - t0) * 1000, (t2 - t1) * 1000);
         nbest_json(&r, tx);
         const char *hy[FD_MAX_HYPS]; for (int h = 0; h < r.n; h++) hy[h] = tx[h];
-        printf(",\"trees\":"); if (r.n) trees_json(&s, hy, r.n); else printf("[]");
+        printf(",\"trees\":"); if (r.n) trees_json(&s, hy, r.n, "p"); else printf("[],\"p\":[]");
         const char *lab[1] = {label};
-        printf(",\"oracle_trees\":"); trees_json(&s, lab, 1);
+        printf(",\"oracle_trees\":"); trees_json(&s, lab, 1, "oracle_p");
         printf("}\n"); fflush(stdout);
         free(feats); free(mws); free(lg); free(lp); free(w); idx++;
     }

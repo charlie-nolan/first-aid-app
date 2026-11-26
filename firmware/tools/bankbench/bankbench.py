@@ -43,6 +43,10 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     for k in ("bench", "cart", "fasr", "lexicon", "slots", "work"): ap.add_argument("--" + k, required=True)
     ap.add_argument("--split", default="eval")
+    ap.add_argument("--k", type=int, default=2, help="trees loaded (banks)")
+    ap.add_argument("--no-2b", action="store_true")
+    ap.add_argument("--conf", type=float, default=0.6, help="2A*: refill with the top tree's bank only when its share p >= this")
+    ap.add_argument("--gate", default="pass1", choices=["pass1", "oracle"], help="oracle: load the label's trees (refill quality alone)")
     a = ap.parse_args(argv)
     W = Path(a.work); sys.path.insert(0, a.fasr)
     from fasr.decode import ALWAYS_WORDS, LIFE_WORDS
@@ -82,7 +86,7 @@ def main(argv=None):
         return out
     idx = [c["i"] for c in p1 if split[c["i"]] == a.split]
     truth = fills([(c["i"], t, c["label"]) for c in p1 if c["i"] in idx for t in c["oracle_trees"][:2]])
-    gate = {c["i"]: c["trees"][:2] for c in p1}
+    gate = {c["i"]: (c["oracle_trees"] if a.gate == "oracle" else c["trees"])[:a.k] for c in p1}
     top = {c["i"]: (c["nbest"][0] if c["nbest"] else "") for c in p1}
     P = {"P1": fills([(i, t, top[i]) for i in idx for t in gate[i]])}
 
@@ -112,10 +116,13 @@ def main(argv=None):
             out.write_bytes(bytes(b))
         return out
     asrc = W / "asrc.bin"
-    for mode, name in (("narrow", "2A"), ("bias", "2C")):
+    pz = {c["i"]: (c.get("p") or [0])[0] for c in p1}
+    for mode, name in (("narrow", "2A"), ("bias", "2C"), ("narrow", "2A*")):
         jobs = defaultdict(list)
         for i in idx:
-            if gate[i]: jobs[lexi_for(gate[i], mode)].append(i)
+            if name == "2A*":
+                if gate[i] and pz[i] >= a.conf: jobs[lexi_for(gate[i][:1], mode)].append(i)
+            elif gate[i]: jobs[lexi_for(gate[i], mode)].append(i)
         text, ms = {i: top[i] for i in idx}, []
         for lx, ids in jobs.items():
             res = run([a.bench, "decode", str(lx)] + ([str(asrc)] if asrc.exists() else []), [str(W / "logp" / f"{i}.logp") for i in ids])
@@ -174,7 +181,8 @@ def main(argv=None):
         return out
     # threshold on a train sample (cheap grid), then the chosen split
     cache = W / "thr2b.json"
-    if cache.exists(): thr = json.loads(cache.read_text())["thr"]
+    if a.no_2b: thr = None
+    elif cache.exists(): thr = json.loads(cache.read_text())["thr"]
     else:
         tr = [c["i"] for c in p1 if split[c["i"]] == "train"][:120]
         ttruth = fills([(c["i"], t, c["label"]) for c in p1 if c["i"] in tr for t in c["oracle_trees"][:2]])
@@ -185,14 +193,14 @@ def main(argv=None):
             if f1 > bestf: bestf, thr = f1, th
         cache.write_text(json.dumps({"thr": thr, "f1_train": bestf}))
     import time; t0 = time.time()
-    P["2B"] = run_2b(thr, idx); P["2B_ms"] = (time.time() - t0) * 1000 / max(1, len(idx))
+    P["2B"] = run_2b(thr, idx) if not a.no_2b else defaultdict(set); P["2B_ms"] = (time.time() - t0) * 1000 / max(1, len(idx))
 
     # ---- score
     print(f"split {a.split}: {len(idx)} clips, {sum(len(truth[i]) for i in idx)} true blanks "
           f"({sum(len([p for p in truth[i] if p in life_pairs]) for i in idx)} life), gate: oracle tree in Pass-1 top 2 "
           f"{sum(1 for c in p1 if c['i'] in idx and c['oracle_trees'] and c['oracle_trees'][0] in gate[c['i']])}"
           f"/{sum(1 for c in p1 if c['i'] in idx and c['oracle_trees'])}")
-    for name in ("P1", "2A", "2C", "2B"):
+    for name in ("P1", "2A", "2A*", "2C", "2B"):
         pr = P[name]
         tp = sum(len(pr[i] & truth[i]) for i in idx); fp = sum(len(pr[i] - truth[i]) for i in idx)
         fn = sum(len(truth[i] - pr[i]) for i in idx)
